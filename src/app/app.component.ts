@@ -10,13 +10,14 @@ import { ContactComponent } from './views/personal/contact/contact.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = MainComponent;
+  rootPage: any = SigninComponent;
 
   pages: Array<{title: string, component: any}>;
 

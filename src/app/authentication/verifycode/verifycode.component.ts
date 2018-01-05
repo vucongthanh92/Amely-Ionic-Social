@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-verifycode',
-  templateUrl: './verifycode.component.html',
-  styleUrls: ['./verifycode.component.css']
+  templateUrl: './verifycode.component.html'
 })
 export class VerifycodeComponent implements OnInit {
 

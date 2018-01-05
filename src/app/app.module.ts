@@ -1,3 +1,4 @@
+import { AuthenticationModule } from './authentication/authentication.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,7 +13,7 @@ import { ContactComponent } from './views/personal/contact/contact.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
-import { ShopComponent } from './components/shop/shop.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { ShopComponent } from './components/shop/shop.component';
     NavComponent,
     ContactComponent,
     NewsFeedComponent,
-    ShopsComponent,
     PrivateComponent,
-    ShopComponent
+    ShopsComponent,
+    SigninComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { ShopComponent } from './components/shop/shop.component';
     ContactComponent,
     NewsFeedComponent,
     ShopsComponent,
-    PrivateComponent
+    PrivateComponent,
+    SigninComponent
   ],
   providers: [
     StatusBar,
