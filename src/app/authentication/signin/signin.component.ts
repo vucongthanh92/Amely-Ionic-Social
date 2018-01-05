@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
+import { NavController, NavParams , Platform } from 'ionic-angular';
+import { NewsFeedComponent } from '../../views/social/news-feed/news-feed.component';
 
 @Component({
   selector: 'app-signin',
@@ -6,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, public nav: NavController) { }
 
   ngOnInit() {
   }
 
+  login () {
+    this.nav.setRoot(NewsFeedComponent);
+  }
 }

@@ -15,6 +15,8 @@ import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 
+import { AuthenticationService } from './authentication/authentication.service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -46,6 +48,7 @@ import { SigninComponent } from './authentication/signin/signin.component';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthenticationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
