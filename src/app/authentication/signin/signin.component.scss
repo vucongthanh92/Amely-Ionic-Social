@@ -1,13 +1,14 @@
 app-signin {
-
+	ion-content {
+		background-image: url("../../assets/imgs/background.jpg");
+	}	
 	ion-grid {
 		height: 100%;
 		justify-content: center;
-		// background-image: url('./../')
 	}
 	.edtLogin {
 		margin-bottom: 5vw;
-		border-radius:30vw;
+		border-radius: 30vw;
 		font-size: 4vw;
 		height: 10vw;
 	}
@@ -17,7 +18,7 @@ app-signin {
 	}
 	#btnLogin{
 		width: 100%;
-		border-radius:50vw;
+		border-radius: 50vw;
 		font-size: 4vw;
 		height: 10vw;
 	}
