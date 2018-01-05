@@ -26,7 +26,6 @@ import { SigninComponent } from './authentication/signin/signin.component';
     PrivateComponent,
     ShopsComponent,
     SigninComponent
-    
   ],
   imports: [
     BrowserModule,

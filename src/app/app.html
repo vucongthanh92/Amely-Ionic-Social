@@ -1,10 +1,15 @@
 <ion-menu [content]="content">
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+  	<ion-grid>
+  		<ion-row>
+  			<ion-col class="main-nav" col-6 offset-3 *ngFor="let p of pages" (click)="openPage(p)">
+  				<img src="assets/imgs/{{ p.title }}.png" />
+  				<p>
+  					{{ p.title }}
+  				</p>
+  			</ion-col>
+  		</ion-row>
+  	</ion-grid>
   </ion-content>
 </ion-menu>
 
