@@ -10,8 +10,9 @@ import { MainComponent } from './layouts/main/main.component';
 import { NavComponent } from './layouts/nav/nav.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
-import { ShopComponent } from './views/shopping/shop/shop.component';
+import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { PrivateComponent } from './views/inventory/private/private.component';
     NavComponent,
     ContactComponent,
     NewsFeedComponent,
-    ShopComponent,
-    PrivateComponent
+    ShopsComponent,
+    PrivateComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { PrivateComponent } from './views/inventory/private/private.component';
     NavComponent,
     ContactComponent,
     NewsFeedComponent,
-    ShopComponent,
+    ShopsComponent,
     PrivateComponent
   ],
   providers: [

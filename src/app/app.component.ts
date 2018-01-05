@@ -8,7 +8,7 @@ import { MainComponent } from './layouts/main/main.component';
 import { NavComponent } from './layouts/nav/nav.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
-import { ShopComponent } from './views/shopping/shop/shop.component';
+import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
 
 @Component({
@@ -27,7 +27,7 @@ export class MyApp {
     this.pages = [
       { title: 'Contact', component: ContactComponent },
       { title: 'Social', component: NewsFeedComponent },
-      { title: 'Shopping', component: ShopComponent },
+      { title: 'Shopping', component: ShopsComponent },
       { title: 'Inventory', component: PrivateComponent },
       { title: 'Settings', component: NavComponent }
     ];
