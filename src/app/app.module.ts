@@ -42,7 +42,7 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     PersonalComponent,
     GroupComponent,
     OfficialAccountComponent,
-    UserComponent
+    UserComponent,
     RegisterComponent,
     VerifycodeComponent
   ],
@@ -66,7 +66,7 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     PersonalComponent,
     GroupComponent,
     OfficialAccountComponent,
-    UserComponent
+    UserComponent,
     RegisterComponent,
     VerifycodeComponent
   ],
