@@ -7,6 +7,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Contact</h3>
+<ion-content class="outer-content">
+      Weather: {{ weather == 'sunny' ? '96' : '77' }}°
+      <ion-icon [name]="weather" color="danger"></ion-icon>
+  
 </ion-content>
+
+<ion-footer>
+  <div class="bar bar-header bar-dark">
+    <ion-segment [(ngModel)]="weather" color="danger">
+		<ion-segment-button value="sunny" checked>
+			Sunny
+		</ion-segment-button>
+		<ion-segment-button value="rainy">
+			Rainy
+		</ion-segment-button>
+		<div id='indicator' class="indicatorSegment" >  
+        
+      	</div>
+    </ion-segment>
+  </div>
+</ion-footer>
+
