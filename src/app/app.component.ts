@@ -12,7 +12,8 @@ import { NewsFeedComponent } from './views/social/news-feed/news-feed.component'
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
 import { SigninComponent } from './authentication/signin/signin.component';
-
+import { SettingsComponent } from './views/settings/settings.component';
+import { FeedComponent } from './components/feed/feed.component';
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,7 +32,7 @@ export class MyApp {
       { title: 'Social', component: NewsFeedComponent },
       { title: 'Shopping', component: ShopsComponent },
       { title: 'Inventory', component: PrivateComponent },
-      { title: 'Settings', component: NavComponent }
+      { title: 'Settings', component: SettingsComponent }
     ];
 
   }

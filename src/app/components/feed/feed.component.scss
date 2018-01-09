@@ -1,0 +1,25 @@
+app-feed{
+    ion-avatar img  {
+        width:100% !important;
+        height : 100% !important;
+        max-width: 13vw !important;  //any size
+        max-height: 13vw !important; //any size
+    }
+   
+    .row{
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+
+    .textHeader{
+        font-size: 5vw;
+    }
+
+     .textTimeLocation{
+        font-size: 3vw;
+    }
+
+    .textContent{
+        font-size: 4vw;
+    }
+}

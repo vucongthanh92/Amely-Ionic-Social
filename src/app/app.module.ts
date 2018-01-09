@@ -19,12 +19,17 @@ import { PrivateComponent } from './views/inventory/private/private.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
-
 import { AuthenticationService } from './authentication/authentication.service';
-
 import { GroupComponent } from './views/personal/contact/group/group.component';
 import { OfficialAccountComponent } from './views/personal/contact/official-account/official-account.component';
 import { UserComponent } from './views/personal/contact/user/user.component';
+//SETTING
+import { SettingsComponent } from './views/settings/settings.component';
+import { SettingPrivateComponent } from './views/settings/setting-private/setting-private.component';
+import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
+import { SettingGeneralComponent } from './views/settings/setting-general/setting-general.component';
+// FEED
+import { FeedComponent } from './components/feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +49,14 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     OfficialAccountComponent,
     UserComponent,
     RegisterComponent,
-    VerifycodeComponent
+    VerifycodeComponent,
+    // SETTING
+    SettingsComponent,
+    SettingGeneralComponent,
+    SettingSecurityComponent,
+    SettingPrivateComponent,
+    FeedComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +80,14 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     OfficialAccountComponent,
     UserComponent,
     RegisterComponent,
-    VerifycodeComponent
+    VerifycodeComponent,
+    // SETTING
+    SettingsComponent,
+    SettingGeneralComponent,
+    SettingPrivateComponent,
+    SettingSecurityComponent,
+    // FEED
+    FeedComponent
   ],
   providers: [
     StatusBar,
