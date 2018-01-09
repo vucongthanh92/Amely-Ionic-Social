@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+
+import { SigninComponent } from "./../signin/signin.component";
 
 @Component({
   selector: 'app-verifycode',
@@ -6,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifycodeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavController) { }
 
   ngOnInit() {
   }
 
+  onBackPress() {
+    this.nav.setRoot(SigninComponent);
+  }
+
+  sendVerifyCode(){
+    this.nav.setRoot(SigninComponent);
+  }
 }

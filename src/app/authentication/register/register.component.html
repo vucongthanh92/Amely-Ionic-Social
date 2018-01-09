@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> Đăng ký</ion-title>
+    <!-- <ion-buttons end>
+      <button (click)="onSubmitRegister();" style="background: none">
+        <ion-label id="btnSubmit">
+          Đăng ký
+        </ion-label>
+      </button>
+    </ion-buttons> -->
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onSubmitRegister();">
+        <ion-icon name="done-all" style="font-size: 50px;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <!-- FIRSTNAME -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="text" placeholder="Họ"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END FIRSTNAME  -->
+
+      <!-- LASTNAME  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="text" placeholder="Tên"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END LASTNAME -->
+
+      <!-- BIRTHDAY  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Ngày sinh"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <!-- END BIRTHDAY -->
+
+      <!-- GENDER -->
+      <ion-col col-12>
+
+        <ion-segment color="white" class="edtLogin" id="segmentGender" color="secondary">
+          <ion-label>Giới Tính </ion-label>
+
+          <ion-segment-button value="male" checked>
+            Nam
+          </ion-segment-button>
+          <ion-segment-button value="female">
+            Nữ
+          </ion-segment-button>
+        </ion-segment>
+
+      </ion-col>
+      <!--  END GENDER -->
+
+
+      <!-- USERNAME  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="text" placeholder="Tài khoản đăng nhập"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END USERNAME -->
+
+      <!-- PASSWORD  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="password" placeholder="Mật khẩu"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END PASSWORD -->
+
+
+      <!-- REPASSWORD  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="password" placeholder="Nhập lại mật khẩu"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END REPASSWORD -->
+
+
+      <!-- EMAIL  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="email" placeholder="Email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END EMAIL -->
+
+
+      <!-- REEMAIL  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="email" placeholder="Nhập lại email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END REEMAIL -->
+
+
+      <!-- REEMAIL  -->
+      <ion-col col-12>
+        <ion-item class="edtLogin">
+          <ion-label>
+            <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
+          </ion-label>
+          <ion-input type="number" placeholder="Số điện thoại"></ion-input>
+        </ion-item>
+      </ion-col>
+      <!-- END REEMAIL -->
+
+    </ion-row>
+
+    <ion-row>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

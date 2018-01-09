@@ -14,6 +14,8 @@ import { NewsFeedComponent } from './views/social/news-feed/news-feed.component'
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
 import { SigninComponent } from './authentication/signin/signin.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
 
 import { AuthenticationService } from './authentication/authentication.service';
 
@@ -27,7 +29,9 @@ import { AuthenticationService } from './authentication/authentication.service';
     NewsFeedComponent,
     PrivateComponent,
     ShopsComponent,
-    SigninComponent
+    SigninComponent,
+    RegisterComponent,
+    VerifycodeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import { AuthenticationService } from './authentication/authentication.service';
     NewsFeedComponent,
     ShopsComponent,
     PrivateComponent,
-    SigninComponent
+    SigninComponent,
+    RegisterComponent,
+    VerifycodeComponent
   ],
   providers: [
     StatusBar,
