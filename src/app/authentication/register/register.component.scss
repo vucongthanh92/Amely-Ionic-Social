@@ -1,0 +1,61 @@
+app-register {
+	ion-content {
+		background-image: url("../../assets/imgs/background.jpg");
+	}	
+	ion-grid {
+        height: 100%;
+        justify-content: center;
+    }
+    ion-label{
+       flex: none;
+    }
+    .col{
+        margin-bottom: -20px;
+    }
+	.edtLogin {
+		margin-bottom: 5vw;
+		border-radius: 30vw;
+		font-size: 4vw;
+		height: 10vw;
+		background-color: #ffffff45;
+		color: white;
+	
+	}
+
+    #segmentGender{
+        padding-top:5.8vw;
+        padding-bottom: 5.8vw;
+        padding-left: 3vw;
+        padding-right: 3vw; 
+    }
+
+    .segment-ios-secondary .segment-button{
+        border-color: #289ae1;
+        color: #289ae1;
+    }
+
+    .segment-ios-secondary .segment-button.segment-activated {
+        color: #fff;
+        background-color: #289ae1;
+    }
+
+	.item-ios.item-block .item-inner{
+		border-bottom: 0px;
+    }
+    
+	#btnLogin{
+		width: 100%;
+		border-radius: 50vw;
+		font-size: 4vw;
+		height: 10vw;
+	}
+	.txtRememberRegister{
+		color: white;
+		width: 100%;
+		text-align: center;
+    }
+    #btnSubmit{
+        font-size:1.7rem;
+        color: #289ae1;
+    }
+}

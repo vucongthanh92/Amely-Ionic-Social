@@ -1,0 +1,50 @@
+app-verifycode{
+
+    ion-content {
+        background-image: url("../../assets/imgs/background.jpg");
+    }	
+
+    ion-label{
+        font-size: 4vw;
+       
+    }
+
+    img{
+        max-width: 15vw;
+        border: 0px;
+    }
+
+    .toolbar-title {
+        font-size: 5vw;
+        padding: 4vw;
+    }
+
+    .card-header {
+        color: blue;
+        border-bottom: 0.5px solid blue ;
+        margin: 5px;
+        font-size: 5vw;
+    }
+
+    #txtPhoneNumber{
+        display: contents !important;
+        font-style: italic;
+        color: blue;
+        font-size: 4vw;
+    }
+
+    #edtVerifyCode{
+        margin-bottom: 5vw;
+		border-radius: 2vw;
+        font-size: 5vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        border: 1px solid #808080;
+    }
+    .button-inner{
+        font-size: 4vw;
+    }
+    .button-round{
+        padding: 5vw;
+    }
+}

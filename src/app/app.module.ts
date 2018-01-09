@@ -17,6 +17,9 @@ import { NewsFeedComponent } from './views/social/news-feed/news-feed.component'
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { PrivateComponent } from './views/inventory/private/private.component';
 import { SigninComponent } from './authentication/signin/signin.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
+
 import { AuthenticationService } from './authentication/authentication.service';
 
 import { GroupComponent } from './views/personal/contact/group/group.component';
@@ -40,6 +43,8 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     GroupComponent,
     OfficialAccountComponent,
     UserComponent
+    RegisterComponent,
+    VerifycodeComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,8 @@ import { UserComponent } from './views/personal/contact/user/user.component';
     GroupComponent,
     OfficialAccountComponent,
     UserComponent
+    RegisterComponent,
+    VerifycodeComponent
   ],
   providers: [
     StatusBar,
