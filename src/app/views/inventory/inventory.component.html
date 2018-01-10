@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>INVENTORY</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs tabsPlacement="top">
+  <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="information-circle"></ion-tab>
+  <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="contacts"></ion-tab>
+</ion-tabs>
