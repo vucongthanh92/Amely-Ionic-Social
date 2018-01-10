@@ -3,10 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Social</ion-title>
+    <ion-title>Xã hội</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Social</h3>
+<ion-content class="outer-content">
+  <ion-list>
+    <ion-item *ngFor="let number of [0,1,2,3,4]">
+      <app-feed></app-feed>
+    </ion-item>
+  </ion-list>
 </ion-content>

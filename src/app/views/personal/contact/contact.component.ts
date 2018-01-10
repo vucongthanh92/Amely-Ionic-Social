@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { GroupComponent } from './group/group.component';
 import { MessageComponent } from '../message/message.component';
 import { NotificationComponent } from '../notification/notification.component';
 import { Slides } from 'ionic-angular';

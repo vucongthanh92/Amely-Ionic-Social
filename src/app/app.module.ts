@@ -13,21 +13,20 @@ import { PersonalComponent } from './views/personal/personal.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { MessageComponent } from './views/personal/message/message.component';
 import { NotificationComponent } from './views/personal/notification/notification.component';
-import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
 import { AuthenticationService } from './authentication/authentication.service';
-import { GroupComponent } from './views/personal/contact/group/group.component';
-import { OfficialAccountComponent } from './views/personal/contact/official-account/official-account.component';
-import { UserComponent } from './views/personal/contact/user/user.component';
-//INVENTORY
+// SOCIAL
+import { SocialComponent } from './views/social/social.component';
+import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
+// INVENTORY
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { InventoryPublicComponent } from './views/inventory/inventory-public/inventory-public.component';
 import { InventoryPrivateComponent } from './views/inventory/inventory-private/inventory-private.component';
 import { InventoryHistoryComponent } from './views/inventory/inventory-history/inventory-history.component';
-//SETTING
+// SETTING
 import { SettingsComponent } from './views/settings/settings.component';
 import { SettingPrivateComponent } from './views/settings/setting-private/setting-private.component';
 import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
@@ -48,11 +47,10 @@ import { FeedComponent } from './components/feed/feed.component';
     ShopsComponent,
     SigninComponent,
     PersonalComponent,
-    GroupComponent,
-    OfficialAccountComponent,
-    UserComponent,
     RegisterComponent,
     VerifycodeComponent,
+    // SOCIAL
+    SocialComponent,
     // INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
@@ -83,11 +81,10 @@ import { FeedComponent } from './components/feed/feed.component';
     ShopsComponent,
     SigninComponent,
     PersonalComponent,
-    GroupComponent,
-    OfficialAccountComponent,
-    UserComponent,
     RegisterComponent,
     VerifycodeComponent,
+    // SOCIAL
+    SocialComponent,
     //INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,

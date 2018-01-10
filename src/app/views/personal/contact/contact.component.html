@@ -10,8 +10,8 @@
 <ion-content class="outer-content">
   <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
     <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list *ngFor="let number of [0,1,2,3,4]">
-        <ion-item>
+      <ion-list>
+        <ion-item *ngFor="let number of [0,1,2,3,4]">
           <ion-row>
             <ion-col col-3>
               <img width="100%" src="assets/imgs/logo.png" />
@@ -28,8 +28,8 @@
       </ion-list>
     </ion-slide>
     <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list *ngFor="let number of [0,1,2,3,4]">
-        <ion-item>
+      <ion-list>
+        <ion-item *ngFor="let number of [0,1,2,3,4]">
           <ion-row>
             <ion-col col-3>
               <img width="100%" src="assets/imgs/logo.png" />
@@ -67,8 +67,8 @@
       </ion-list>
     </ion-slide>
     <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list *ngFor="let number of [0,1,2,3,4]">
-        <ion-item>
+      <ion-list>
+        <ion-item *ngFor="let number of [0,1,2,3,4]">
           <ion-row>
             <ion-col col-3>
               <img width="100%" src="assets/imgs/logo.png" />

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { NavController, NavParams , Platform } from 'ionic-angular';
-import { NewsFeedComponent } from '../../views/social/news-feed/news-feed.component';
 import { RegisterComponent } from "../register/register.component";
+import { SocialComponent } from '../../views/social/social.component';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   }
 
   login () {
-    this.nav.setRoot(NewsFeedComponent);
+    this.nav.setRoot(SocialComponent);
   }
 
   onRegister(){
