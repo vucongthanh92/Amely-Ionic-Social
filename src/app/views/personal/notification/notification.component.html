@@ -3,10 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Notification</ion-title>
+    <ion-title>Thông báo</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Notification</h3>
+  <ion-row *ngFor="let number of [0,1,2,3,4]">
+    <ion-col col-3>
+      <img width="100%" src="assets/imgs/logo.png" />
+    </ion-col>
+    <ion-col col-9>
+      Thông tin tài khoản gốc <br>
+      Nov 17,2017
+    </ion-col>
+  </ion-row>
 </ion-content>

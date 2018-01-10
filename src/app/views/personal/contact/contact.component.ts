@@ -1,87 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GroupComponent } from './group/group.component';
 import { MessageComponent } from '../message/message.component';
 import { NotificationComponent } from '../notification/notification.component';
+import { Slides } from 'ionic-angular';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html'
 })
 export class ContactComponent implements OnInit {
-  tab1Root = MessageComponent;
-  constructor() { }
+  @ViewChild('mySlider') slider: Slides;
+  currentIndex = 0;
+  constructor() { 
+    this.currentIndex = 0;
+  }
 
   ngOnInit() {
   }
+  slideChanged() {
+    this.currentIndex = this.slider.realIndex;
+  }
 
-  appType = 'Paid';
-  safari = 'Shared Links';
-  weather = 'sunny';
-
-  apps: any = {
-    'Paid': [
-      {
-        name: 'Monopoly',
-        price: '$0.99'
-      },
-      {
-        name: 'Angry Birds',
-        price: '$2.99'
-      }
-    ],
-    'Free': [
-      {
-        name: 'Snapchat',
-        price: 'GET'
-      },
-      {
-        name: 'Instagram',
-        price: 'OPEN'
-      }
-    ],
-    'Top': [
-      {
-        name: 'Spotify',
-        price: 'OPEN'
-      },
-      {
-        name: 'Pandora',
-        price: 'GET'
-      }
-    ]
-  };
-
-  items: any = {
-    'Bookmarks': [
-      {
-        name: 'Favorites',
-        icon: 'ios-star-outline'
-      },
-      {
-        name: 'History',
-        icon: 'ios-clock-outline'
-      }
-    ],
-    'Reading List': [
-      {
-        name: 'Terms of Service',
-        icon: 'create'
-      },
-      {
-        name: 'User Guide',
-        icon: 'book'
-      }
-    ],
-    'Shared Links': [
-      {
-        name: 'Ionic Framework',
-        icon: 'ionic'
-      },
-      {
-        name: 'Learn Angular',
-        icon: 'logo-angular'
-      }
-    ]
-  };
-
+  goToSlide(index) {
+    this.slider.slideTo(index, 500);
+  }
 }

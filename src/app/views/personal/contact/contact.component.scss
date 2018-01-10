@@ -6,4 +6,10 @@ app-contact {
     ion-segment-button {
         border-radius: 0px;
     }
+    .swiper-slide img {
+    	width: 100%;
+    }
+    .list-ios, .list-md, .label-md {
+    	margin: 0px;
+    }
 }

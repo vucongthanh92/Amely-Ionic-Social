@@ -3,10 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Message</ion-title>
+    <ion-title>Tin nhắn</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Message</h3>
+  <ion-row *ngFor="let number of [0,1,2,3,4]">
+    <ion-col col-3>
+      <img width="100%" src="assets/imgs/logo.png" />
+    </ion-col>
+    <ion-col col-6>
+      Thông tin tài khoản gốc <br>
+      Khung qua may
+    </ion-col>
+    <ion-col col-3>
+      Nov 17,2017
+    </ion-col>
+  </ion-row>
 </ion-content>
