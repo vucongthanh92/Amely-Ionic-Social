@@ -10,7 +10,7 @@ import { PersonalComponent } from './views/personal/personal.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
-import { PrivateComponent } from './views/inventory/private/private.component';
+import { InventoryComponent } from './views/inventory/inventory.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -31,7 +31,7 @@ export class MyApp {
       { title: 'Contact', component: PersonalComponent },
       { title: 'Social', component: NewsFeedComponent },
       { title: 'Shopping', component: ShopsComponent },
-      { title: 'Inventory', component: PrivateComponent },
+      { title: 'Inventory', component: InventoryComponent },
       { title: 'Settings', component: SettingsComponent }
     ];
 
@@ -53,4 +53,3 @@ export class MyApp {
   }
 
 }
-
