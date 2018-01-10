@@ -21,6 +21,9 @@ import { AuthenticationService } from './authentication/authentication.service';
 // SOCIAL
 import { SocialComponent } from './views/social/social.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
+import { OffersComponent } from './views/social/offers/offers.component';
+import { NearByComponent } from './views/social/near-by/near-by.component';
+import { EventsComponent } from './views/social/events/events.component';
 // INVENTORY
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { InventoryPublicComponent } from './views/inventory/inventory-public/inventory-public.component';
@@ -51,6 +54,9 @@ import { FeedComponent } from './components/feed/feed.component';
     VerifycodeComponent,
     // SOCIAL
     SocialComponent,
+    OffersComponent,
+    NearByComponent,
+    EventsComponent,
     // INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
@@ -85,6 +91,9 @@ import { FeedComponent } from './components/feed/feed.component';
     VerifycodeComponent,
     // SOCIAL
     SocialComponent,
+    OffersComponent,
+    NearByComponent,
+    EventsComponent,
     //INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,

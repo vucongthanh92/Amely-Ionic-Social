@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Slides } from 'ionic-angular';
 
 @Component({
   selector: 'app-offers',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffersComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('mySlider') slider: Slides;
+  currentIndex = 0;
+  constructor() { 
+    this.currentIndex = 0;
+  }
 
   ngOnInit() {
+  }
+  slideChanged() {
+    this.currentIndex = this.slider.realIndex;
+  }
+
+  goToSlide(index) {
+    this.slider.slideTo(index, 500);
   }
 
 }
