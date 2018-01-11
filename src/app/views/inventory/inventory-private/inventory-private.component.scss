@@ -99,8 +99,14 @@ footer {
   margin: 0em;
 }
 
+.invenFooter {
+  height: 100%;
+  text-align: center;
+}
+
 .toolbarFooter{
   min-height: 65px;
+  background-color: #fe974e;
 }
 
 .badge2{
@@ -133,4 +139,26 @@ footer {
 .itemRM{
   padding-right: 8px;
   border-bottom: 0 !important;
+}
+
+.divFooter{
+  width: 10vw;
+  height: 0vw;
+  position: relative;
+}
+
+.badgeFooter{
+  position: relative;
+  right: -5px;
+  background-color: #fe974e;
+  border-radius: 100%;
+}
+
+.buttonFooter{
+  right: 15px;
+}
+
+.buttonFooterBorder{
+  border-left: 1px solid;
+  border-radius: 0px;
 }
