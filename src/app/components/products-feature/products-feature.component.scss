@@ -1,0 +1,9 @@
+app-products-feature {
+	.inner {
+    height: 100%;
+    ion-card {
+      display: table-cell;
+      border: 1px solid #eee;
+    }
+	}
+}

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { VouchersComponent } from './vouchers.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [VouchersComponent]
 })
-export class ShopFriendlyModule { }
+export class VouchersModule { }

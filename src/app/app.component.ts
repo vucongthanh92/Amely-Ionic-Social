@@ -2,22 +2,20 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
-import { MainComponent } from './layouts/main/main.component';
-import { NavComponent } from './layouts/nav/nav.component';
-import { PersonalComponent } from './views/personal/personal.component';
-import { ContactComponent } from './views/personal/contact/contact.component';
-import { SocialComponent } from './views/social/social.component';
-import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
-import { ShopsComponent } from './views/shopping/shops/shops.component';
-import { InventoryComponent } from './views/inventory/inventory.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { ProductsFeatureComponent } from './components/products-feature/products-feature.component';
 import { SigninComponent } from './authentication/signin/signin.component';
+
+import { PersonalComponent } from './views/personal/personal.component';
+import { SocialComponent } from './views/social/social.component';
+import { ShoppingComponent } from './views/shopping/shopping.component';
+import { InventoryComponent } from './views/inventory/inventory.component';
 import { SettingsComponent } from './views/settings/settings.component';
-import { FeedComponent } from './components/feed/feed.component';
+
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = SigninComponent;
@@ -31,7 +29,7 @@ export class MyApp {
     this.pages = [
       { title: 'Contact', component: PersonalComponent },
       { title: 'Social', component: SocialComponent },
-      { title: 'Shopping', component: ShopsComponent },
+      { title: 'Shopping', component: ShoppingComponent },
       { title: 'Inventory', component: InventoryComponent },
       { title: 'Settings', component: SettingsComponent }
     ];

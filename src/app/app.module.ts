@@ -13,7 +13,11 @@ import { PersonalComponent } from './views/personal/personal.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { MessageComponent } from './views/personal/message/message.component';
 import { NotificationComponent } from './views/personal/notification/notification.component';
-import { ShopsComponent } from './views/shopping/shops/shops.component';
+// COMPONENTS
+import { CategoriesComponent } from './components/categories/categories.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { ProductsFeatureComponent } from './components/products-feature/products-feature.component';
+// AUTHENTICATION
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
@@ -24,6 +28,9 @@ import { NewsFeedComponent } from './views/social/news-feed/news-feed.component'
 import { OffersComponent } from './views/social/offers/offers.component';
 import { NearByComponent } from './views/social/near-by/near-by.component';
 import { EventsComponent } from './views/social/events/events.component';
+// SHOPPING
+import { ShoppingComponent } from './views/shopping/shopping.component';
+import { ShopsComponent } from './views/shopping/shops/shops.component';
 // INVENTORY
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { InventoryPublicComponent } from './views/inventory/inventory-public/inventory-public.component';
@@ -35,7 +42,8 @@ import { SettingPrivateComponent } from './views/settings/setting-private/settin
 import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
 import { SettingGeneralComponent } from './views/settings/setting-general/setting-general.component';
 // FEED
-import { FeedComponent } from './components/feed/feed.component';
+
+
 
 @NgModule({
   declarations: [
@@ -47,9 +55,13 @@ import { FeedComponent } from './components/feed/feed.component';
     MessageComponent,
     NotificationComponent,
     NewsFeedComponent,
-    ShopsComponent,
-    SigninComponent,
     PersonalComponent,
+    // COMPONENTS
+    CategoriesComponent,
+    ProductsFeatureComponent,
+    FeedComponent,
+    // AUTHENTICATION
+    SigninComponent,
     RegisterComponent,
     VerifycodeComponent,
     // SOCIAL
@@ -57,6 +69,9 @@ import { FeedComponent } from './components/feed/feed.component';
     OffersComponent,
     NearByComponent,
     EventsComponent,
+    // SHOPPING
+    ShoppingComponent,
+    ShopsComponent,
     // INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
@@ -67,8 +82,6 @@ import { FeedComponent } from './components/feed/feed.component';
     SettingGeneralComponent,
     SettingSecurityComponent,
     SettingPrivateComponent,
-    FeedComponent,
-    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -84,9 +97,13 @@ import { FeedComponent } from './components/feed/feed.component';
     MessageComponent,
     NotificationComponent,
     NewsFeedComponent,
-    ShopsComponent,
-    SigninComponent,
     PersonalComponent,
+    // COMPONENTS
+    CategoriesComponent,
+    ProductsFeatureComponent,
+    FeedComponent,
+    // AUTHENTICATION
+    SigninComponent,
     RegisterComponent,
     VerifycodeComponent,
     // SOCIAL
@@ -94,6 +111,9 @@ import { FeedComponent } from './components/feed/feed.component';
     OffersComponent,
     NearByComponent,
     EventsComponent,
+    // SHOPPING
+    ShoppingComponent,
+    ShopsComponent,
     //INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
