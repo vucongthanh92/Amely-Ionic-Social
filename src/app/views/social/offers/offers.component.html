@@ -11,10 +11,33 @@
   <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
     <ion-slide style="display: block; overflow-y:scroll">
       <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
+        <ion-item *ngFor="let number of [0,1]" class="ion-itemSocial">
           <ion-row>
             <ion-col col-12>
-              DSADSA
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div class="box social">
+                    <div class="divImg">
+                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
+                      <img width="100%" src="assets/imgs/logo.png" />
+                      <ion-badge class="badgeSocialBottom">0</ion-badge>
+                    </div>
+                        <h3 class="h3Img">Ionic</h3>
+                   </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="box social">
+                    <div class="divImg">
+                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
+                      <img width="100%" src="assets/imgs/logo.png" />
+                      <ion-badge class="badgeSocialBottom">0</ion-badge>
+                    </div>
+                        <h3 class="h3Img">Ionic</h3>
+                   </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-col>
           </ion-row>
         </ion-item>
@@ -33,18 +56,43 @@
     </ion-slide>
     <ion-slide style="display: block; overflow-y:scroll">
       <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
+        <ion-item *ngFor="let number of [0,1]" class="ion-itemSocial">
           <ion-row>
             <ion-col col-12>
-              DSA123
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div class="box social">
+                    <div class="divImg">
+                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
+                      <img width="100%" src="assets/imgs/logo.png" />
+                      <ion-badge class="badgeSocialBottom">0</ion-badge>
+                    </div>
+                        <h3 class="h3Img">Ionic</h3>
+                   </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="box social">
+                    <div class="divImg">
+                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
+                      <img width="100%" src="assets/imgs/logo.png" />
+                      <ion-badge class="badgeSocialBottom">0</ion-badge>
+                    </div>
+                        <h3 class="h3Img">Ionic</h3>
+                   </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-col>
           </ion-row>
         </ion-item>
       </ion-list>
     </ion-slide>
   </ion-slides>
+  <ion-fab right bottom>
+    <button ion-fab class="ion-fabSocial"><ion-icon name="md-add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
-
 <ion-footer>
   <div class="bar bar-header bar-dark">
     <ion-segment color="primary">
