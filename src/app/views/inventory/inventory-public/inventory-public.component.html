@@ -7,6 +7,48 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  Public
+<ion-content class="outer-content">
+  <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
+    <ion-slide style="display: block; overflow-y:scroll; margin-top: 10px;">
+      <ion-card *ngFor="let number of [0,1,2,3,4,5,6,7,8]">
+	    <ion-row>
+	      <ion-col col-3>
+	        <img width="100%" src="assets/imgs/logo.png" />
+	      </ion-col>
+	      <ion-col col-9>
+	        <ion-label>Name Shop</ion-label>
+	        good very good
+	      </ion-col>
+	    </ion-row>
+	  </ion-card>
+    </ion-slide>
+    <ion-slide style="display: block; overflow-y:scroll">
+      <ion-card *ngFor="let number of [0,1,2,3,4,5,6,7,8]">
+	    <ion-row>
+	      <ion-col col-3>
+	        <img width="100%" src="assets/imgs/logo.png" />
+	      </ion-col>
+	      <ion-col col-9>
+	        <ion-label>Name Shop</ion-label>
+	        good very good
+	      </ion-col>
+	    </ion-row>
+	  </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <ion-fab right bottom>
+    <button ion-fab class="ion-fabSocial"><ion-icon name="md-add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
+<ion-footer>
+  <div class="bar bar-header bar-dark">
+    <ion-segment color="primary">
+      <ion-segment-button (click)="goToSlide(0);" value="user" class="segment-button {{currentIndex == 0 ? 'segment-activated activated': ''}}">
+        TỪ NHÓM
+      </ion-segment-button>
+      <ion-segment-button (click)="goToSlide(1);" value="group" class="segment-button {{currentIndex == 1 ? 'segment-activated activated': ''}}" >
+        TỪ SỰ KIỆN
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-footer>

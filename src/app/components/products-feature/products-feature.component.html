@@ -1,23 +1,23 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Shopping</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content class="outer-content" >
-  <div style="background-color: #fff; padding: 5px">
-    <h3>Sản phẩm nổi bật</h3>
-    <ion-scroll scrollX="true" style="width: 100%; height: 280px;">
-      <div class="inner">
-        <ion-row>
-          <ion-col col-2 *ngFor="let number of [0,1,2,3,4]">
-            <img width="100%" src="assets/imgs/logo.png" />
-          </ion-col>
-        </ion-row>
-      </div>
-    </ion-scroll>
-  </div>
-</ion-content>
+<div style="background-color: #fff; padding: 5px; margin: 10px 0px;">
+  <ion-row>
+    <ion-col col-8>
+      <h3>Sản phẩm bán chạy</h3>
+    </ion-col>
+    <ion-col col-4 style="text-align: right">
+      XEM TẤT CẢ
+    </ion-col>
+  </ion-row>
+  <ion-scroll scrollX style="height:250px; margin-top: 10px">
+    <div class="scroll-item">
+      <ion-col *ngFor="let number of [0,1,2,3,4,5]">
+        <div class="item-card">
+          <img width="100%" src="assets/imgs/logo.png">
+          <div style="margin-top: 10px;">
+            <h4>Title abc het han</h4>
+            <h4>100.000 VND</h4>
+          </div>
+        </div>
+      </ion-col>
+    </div>
+  </ion-scroll>
+</div>

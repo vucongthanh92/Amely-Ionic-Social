@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-products-feature',
@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProductsFeatureComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('mySlider') mySlider: any;
+  constructor() {
+  }
 
   ngOnInit() {
   }

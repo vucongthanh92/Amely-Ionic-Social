@@ -31,6 +31,8 @@ import { EventsComponent } from './views/social/events/events.component';
 // SHOPPING
 import { ShoppingComponent } from './views/shopping/shopping.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
+import { VouchersComponent } from './views/shopping/vouchers/vouchers.component';
+import { ShopsFriendlyComponent } from './views/shopping/shops-friendly/shops-friendly.component';
 // INVENTORY
 import { InventoryComponent } from './views/inventory/inventory.component';
 import { InventoryPublicComponent } from './views/inventory/inventory-public/inventory-public.component';
@@ -72,6 +74,8 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
+    VouchersComponent,
+    ShopsFriendlyComponent,
     // INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
@@ -114,6 +118,8 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
+    VouchersComponent,
+    ShopsFriendlyComponent,
     //INVENTORY
     InventoryComponent,
     InventoryPrivateComponent,
