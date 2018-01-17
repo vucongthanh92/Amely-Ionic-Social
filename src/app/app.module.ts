@@ -9,19 +9,26 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MainComponent } from './layouts/main/main.component';
 import { NavComponent } from './layouts/nav/nav.component';
-import { PersonalComponent } from './views/personal/personal.component';
-import { ContactComponent } from './views/personal/contact/contact.component';
-import { MessageComponent } from './views/personal/message/message.component';
-import { NotificationComponent } from './views/personal/notification/notification.component';
+
 // COMPONENTS
 import { CategoriesComponent } from './components/categories/categories.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { ProductsFeatureComponent } from './components/products-feature/products-feature.component';
+import { UserComponent } from './components/user/user.component';
+import { AlbumComponent } from './components/album/album.component';
+import { FriendsComponent } from './components/friends/friends.component';
+import { AddFeedComponent } from './components/add-feed/add-feed.component';
 // AUTHENTICATION
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { VerifycodeComponent } from './authentication/verifycode/verifycode.component';
 import { AuthenticationService } from './authentication/authentication.service';
+// PERSONAL
+import { PersonalMenuComponent } from './views/personal/personal-menu/personal-menu.component';
+import { PersonalComponent } from './views/personal/personal.component';
+import { ContactComponent } from './views/personal/contact/contact.component';
+import { MessageComponent } from './views/personal/message/message.component';
+import { NotificationComponent } from './views/personal/notification/notification.component';
 // SOCIAL
 import { SocialComponent } from './views/social/social.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
@@ -53,19 +60,25 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     HomePage,
     MainComponent,
     NavComponent,
-    ContactComponent,
-    MessageComponent,
-    NotificationComponent,
     NewsFeedComponent,
     PersonalComponent,
     // COMPONENTS
     CategoriesComponent,
     ProductsFeatureComponent,
     FeedComponent,
+    UserComponent,
+    AlbumComponent,
+    FriendsComponent,
+    AddFeedComponent,
     // AUTHENTICATION
     SigninComponent,
     RegisterComponent,
     VerifycodeComponent,
+    // PERSONAL
+    PersonalMenuComponent,
+    ContactComponent,
+    MessageComponent,
+    NotificationComponent,
     // SOCIAL
     SocialComponent,
     OffersComponent,
@@ -97,19 +110,25 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     HomePage,
     MainComponent,
     NavComponent,
-    ContactComponent,
-    MessageComponent,
-    NotificationComponent,
     NewsFeedComponent,
     PersonalComponent,
     // COMPONENTS
     CategoriesComponent,
     ProductsFeatureComponent,
     FeedComponent,
+    UserComponent,
+    AlbumComponent,
+    FriendsComponent,
+    AddFeedComponent,
     // AUTHENTICATION
     SigninComponent,
     RegisterComponent,
     VerifycodeComponent,
+    // PERSONAL
+    PersonalMenuComponent,
+    ContactComponent,
+    MessageComponent,
+    NotificationComponent,
     // SOCIAL
     SocialComponent,
     OffersComponent,

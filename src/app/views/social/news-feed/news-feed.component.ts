@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { AddFeedComponent } from '../../../components/add-feed/add-feed.component';
 
 @Component({
   selector: 'app-news-feed',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsFeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
 
+  addNewFeed() {
+  	this.appCtrl.getRootNav().setRoot(AddFeedComponent);
+  }
 }

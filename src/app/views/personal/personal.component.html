@@ -1,5 +1,20 @@
-<ion-tabs tabsPlacement="top"  primary>
-  <ion-tab [root]="tab1Root" tabTitle="Danh bạ" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Tin nhắn" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Thông báo" tabIcon="contacts"></ion-tab>
-</ion-tabs>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Của tôi</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="menuPage()">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+	<ion-tabs tabsPlacement="top"  primary>
+	  <ion-tab [root]="tab1Root" tabTitle="Danh bạ" tabIcon="home"></ion-tab>
+	  <ion-tab [root]="tab2Root" tabTitle="Tin nhắn" tabIcon="information-circle"></ion-tab>
+	  <ion-tab [root]="tab3Root" tabTitle="Thông báo" tabIcon="contacts"></ion-tab>
+	</ion-tabs>
+</ion-content>

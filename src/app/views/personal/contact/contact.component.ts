@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageComponent } from '../message/message.component';
 import { NotificationComponent } from '../notification/notification.component';
-import { Slides } from 'ionic-angular';
+import { Slides, MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'app-contact',
@@ -10,7 +10,7 @@ import { Slides } from 'ionic-angular';
 export class ContactComponent implements OnInit {
   @ViewChild('mySlider') slider: Slides;
   currentIndex = 0;
-  constructor() { 
+  constructor(public menuCtrl: MenuController) { 
     this.currentIndex = 0;
   }
 
