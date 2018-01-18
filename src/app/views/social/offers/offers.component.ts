@@ -8,11 +8,8 @@ import { CreateOfferComponent } from '../../../components/create-offer/create-of
 })
 export class OffersComponent implements OnInit {
 
-  @ViewChild('mySlider') slider: Slides;
   offersTab = 'myself';
-  
   constructor(public nav: NavController, public appCtrl: App) {}
-
   ngOnInit() {
   }
 
