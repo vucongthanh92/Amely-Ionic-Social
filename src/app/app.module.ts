@@ -18,6 +18,7 @@ import { UserComponent } from './components/user/user.component';
 import { AlbumComponent } from './components/album/album.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { AddFeedComponent } from './components/add-feed/add-feed.component';
+import { CreateOfferComponent } from './components/create-offer/create-offer.component';
 // AUTHENTICATION
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -61,6 +62,7 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { SettingPrivateComponent } from './views/settings/setting-private/setting-private.component';
 import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
 import { SettingGeneralComponent } from './views/settings/setting-general/setting-general.component';
+
 // FEED
 
 @NgModule({
@@ -79,6 +81,7 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     AlbumComponent,
     FriendsComponent,
     AddFeedComponent,
+    CreateOfferComponent,
     // AUTHENTICATION
     SigninComponent,
     RegisterComponent,
@@ -119,6 +122,7 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     SettingGeneralComponent,
     SettingSecurityComponent,
     SettingPrivateComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -140,6 +144,7 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     AlbumComponent,
     FriendsComponent,
     AddFeedComponent,
+    CreateOfferComponent,
     // AUTHENTICATION
     SigninComponent,
     RegisterComponent,

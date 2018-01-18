@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Slides } from 'ionic-angular';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { CreateOfferComponent } from '../../../components/create-offer/create-offer.component';
 
 @Component({
   selector: 'app-offers',
@@ -10,9 +11,7 @@ export class OffersComponent implements OnInit {
   @ViewChild('mySlider') slider: Slides;
   offersTab = 'myself';
   
-  constructor() { 
-
-  }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
@@ -38,6 +37,8 @@ export class OffersComponent implements OnInit {
         this.pendingPage = false;
         this.searchPage = true;
         break;
+      case 'create-offer':
+        this.appCtrl.getRootNav().setRoot(CreateOfferComponent);
       default:
         break;
     }
