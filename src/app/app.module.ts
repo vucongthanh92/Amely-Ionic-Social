@@ -19,6 +19,7 @@ import { AlbumComponent } from './components/album/album.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { AddFeedComponent } from './components/add-feed/add-feed.component';
 import { CreateOfferComponent } from './components/create-offer/create-offer.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 // AUTHENTICATION
 import { SigninComponent } from './authentication/signin/signin.component';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -47,6 +48,10 @@ import { EventsComponent } from './views/social/events/events.component';
     import { OffersMyselfComponent } from './views/social/offers/offers-myself/offers-myself.component';
     import { OffersPendingComponent } from './views/social/offers/offers-pending/offers-pending.component';
     import { OffersSearchComponent } from './views/social/offers/offers-search/offers-search.component';
+    // EVENTS 
+    import { EventsUserComponent } from './views/social/events/events-user/events-user.component';
+    import { EventsGuestComponent } from './views/social/events/events-guest/events-guest.component';
+    import { EventsHistoryComponent } from './views/social/events/events-history/events-history.component';
 // SHOPPING
 import { ShoppingComponent } from './views/shopping/shopping.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
@@ -62,6 +67,7 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { SettingPrivateComponent } from './views/settings/setting-private/setting-private.component';
 import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
 import { SettingGeneralComponent } from './views/settings/setting-general/setting-general.component';
+
 
 // FEED
 
@@ -107,6 +113,10 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
         OffersMyselfComponent,
         OffersPendingComponent,
         OffersSearchComponent,
+        // EVENTS 
+        EventsUserComponent,
+        EventsGuestComponent,
+        EventsHistoryComponent,
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
@@ -122,6 +132,7 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     SettingGeneralComponent,
     SettingSecurityComponent,
     SettingPrivateComponent,
+    CreateEventComponent,
     
   ],
   imports: [
@@ -145,6 +156,7 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     FriendsComponent,
     AddFeedComponent,
     CreateOfferComponent,
+    CreateEventComponent,
     // AUTHENTICATION
     SigninComponent,
     RegisterComponent,
@@ -163,10 +175,17 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     OffersComponent,
     NearByComponent,
     EventsComponent,
-        // USER
+        // NEARBY
+        NearByUserComponent,
+        NearByShopComponent,
+        // OFFERS
         OffersMyselfComponent,
         OffersPendingComponent,
         OffersSearchComponent,
+        // EVENTS 
+        EventsUserComponent,
+        EventsGuestComponent,
+        EventsHistoryComponent,
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
