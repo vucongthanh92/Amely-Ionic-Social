@@ -1,0 +1,22 @@
+<ion-row>
+  <ion-col col-6 *ngFor="let number of [0,1,2,3,4]">
+      <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" margin-top>
+        <img width="48px" height="48px" src="assets/imgs/logo.png" style="position: absolute;top: -10px;z-index: 1;" />
+        <ion-col col-12 text-right margin->
+            <ion-icon name="timer"></ion-icon> 1 ngay 12:00
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color: #fff;margin-top: 5px;padding: 10px;border-radius: 10px;position: relative;z-index: 0;">
+        <div style="background-color: #fff; border-radius: 10px;">
+          <p style="font-size: 15px;" no-margin text-center><ion-icon name="globe"></ion-icon> Theo vi tri</p>
+          <div style="padding: 0 5px">
+            <img width="100%" src="assets/imgs/logo.png" />
+          </div>
+          <p style="font-size: 15px;" no-margin text-center>Theo vi tri</p>
+        </div>
+        <button ion-button color="danger" outline icon-only style="position: absolute;right: 0;bottom: -20px;border: 0px;padding: 0;margin: 0;">
+          <ion-icon name='bookmark' is-active="false"></ion-icon>
+        </button>
+      </ion-row>
+  </ion-col>
+</ion-row>

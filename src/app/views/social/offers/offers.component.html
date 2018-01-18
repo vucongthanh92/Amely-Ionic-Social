@@ -8,87 +8,33 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
-    <ion-slide style="display: block; overflow-y:scroll; margin-top: 10px;">
-      <ion-row>
-        <ion-col col-6 style="margin: 20px 0px; position: relative;" *ngFor="let number of [0,1,2,3,4]">
-          <div style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;" >
-            <ion-icon name="timer"></ion-icon> 1 ngay 12:00
-          </div>
-          <div style="background-color: #fff; border-radius: 10px; padding: 0 30px;">
-            <p style="padding-top: 30px; margin: 0px;font-size: 15px;"><ion-icon name="globe"></ion-icon> Theo vi tri</p>
-            <div style="padding: 0 5px">
-              <img width="100%" src="assets/imgs/logo.png" />
-            </div>
-            <p style="padding-bottom: 30px; margin: 0px;font-size: 15px;">Theo vi tri</p>
-          </div>
-          <div style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;" >
-            50
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-slide>
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
-          <ion-row>
-            <ion-col col-12>
-              DSA
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1]" class="ion-itemSocial">
-          <ion-row>
-            <ion-col col-12>
-              <ion-grid>
-                <ion-row>
-                  <ion-col>
-                    <div class="box social">
-                    <div class="divImg">
-                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
-                      <img width="100%" src="assets/imgs/logo.png" />
-                      <ion-badge class="badgeSocialBottom">0</ion-badge>
-                    </div>
-                        <h3 class="h3Img">Ionic</h3>
-                   </div>
-                  </ion-col>
-                  <ion-col>
-                    <div class="box social">
-                    <div class="divImg">
-                      <ion-badge class="badgeSocialTop"> <ion-icon ios="ios-timer-outline" md="md-timer"></ion-icon> 1 ngày 23:49</ion-badge>
-                      <img width="100%" src="assets/imgs/logo.png" />
-                      <ion-badge class="badgeSocialBottom">0</ion-badge>
-                    </div>
-                        <h3 class="h3Img">Ionic</h3>
-                   </div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-  </ion-slides>
-  <ion-fab right bottom>
-    <button ion-fab ><ion-icon name="add"></ion-icon></button>
+  <div *ngIf="myselfPage">
+    <app-offers-myself></app-offers-myself>
+  </div>
+  <div *ngIf="pendingPage">
+    <app-offers-pending></app-offers-pending>
+  </div>
+  <div *ngIf="searchPage">
+    <app-offers-search></app-offers-search>
+  </div>
+  <ion-fab right bottom *ngIf="myselfPage">
+    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-fab right bottom *ngIf="pendingPage">
+    <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>
 <ion-footer>
   <div class="bar bar-header bar-dark">
-    <ion-segment color="primary">
-      <ion-segment-button (click)="goToSlide(0);" value="user" class="segment-button {{currentIndex == 0 ? 'segment-activated activated': ''}}">
-        CỦA TÔI
+    <ion-segment color="primary" [(ngModel)]="offersTab">
+      <ion-segment-button value="myself" class="segment-button" (click)="goToPage('myself');">
+        Của tôi
       </ion-segment-button>
-      <ion-segment-button (click)="goToSlide(1);" value="group" class="segment-button {{currentIndex == 1 ? 'segment-activated activated': ''}}" >
-        CHỜ DUYỆT
+      <ion-segment-button value="pending" class="segment-button" (click)="goToPage('pending');">
+        Chờ duyệt
       </ion-segment-button>
-      <ion-segment-button (click)="goToSlide(2);" value="business" class="segment-button {{currentIndex == 2 ? 'segment-activated activated': ''}}">
-        TÌM KIẾM
+      <ion-segment-button value="search" class="segment-button" (click)="goToPage('search');">
+        Tìm kiếm
       </ion-segment-button>
     </ion-segment>
   </div>

@@ -8,19 +8,38 @@ import { Slides } from 'ionic-angular';
 export class OffersComponent implements OnInit {
 
   @ViewChild('mySlider') slider: Slides;
-  currentIndex = 0;
+  offersTab = 'myself';
+  
   constructor() { 
-    this.currentIndex = 0;
+
   }
 
   ngOnInit() {
   }
-  slideChanged() {
-    this.currentIndex = this.slider.realIndex;
-  }
 
-  goToSlide(index) {
-    this.slider.slideTo(index, 500);
-  }
+  myselfPage = true;
+  pendingPage = false;
+  searchPage = false;
 
+  goToPage(value) {
+    switch (value) {
+      case 'myself':
+        this.myselfPage = true;
+        this.pendingPage = false;
+        this.searchPage = false;
+        break;
+      case 'pending':
+        this.myselfPage = false;
+        this.pendingPage = true;
+        this.searchPage = false;
+        break;
+      case 'search':
+        this.myselfPage = false;
+        this.pendingPage = false;
+        this.searchPage = true;
+        break;
+      default:
+        break;
+    }
+  }
 }

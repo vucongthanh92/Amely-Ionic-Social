@@ -1,90 +1,30 @@
 <ion-content class="outer-content">
-  <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4,5,6,7]">
-          <ion-row>
-            <ion-col col-3>
-              <img width="100%" src="assets/imgs/logo.png" />
-            </ion-col>
-            <ion-col col-7>
-              Thông tin tài khoản gốc <br>
-              Thông tin tài khoản gốc
-            </ion-col>
-            <ion-col col-2>
-              <img width="100%" src="assets/imgs/ic_chat.png" />
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
-          <ion-row>
-            <ion-col col-3>
-              <img width="100%" src="assets/imgs/logo.png" />
-            </ion-col>
-            <ion-col col-7 >
-              Thông tin tài khoản gốc <br>
-              <div style="position: absolute; bottom: 0;">
-                <ion-row >
-                  <ion-col col-2>
-                    <img width="100%" src="assets/imgs/ic_like.png" />
-                  </ion-col>
-                  <ion-col col-2>
-                    Duy
-                  </ion-col>
-                  <ion-col col-2>
-                    <img width="100%" src="assets/imgs/ic_like.png" />
-                  </ion-col>
-                  <ion-col col-2>
-                    2
-                  </ion-col>
-                  <ion-col col-2>
-                    <img width="100%" src="assets/imgs/ic_like.png" />
-                  </ion-col>
-                  <ion-col col-2>
-                    1
-                  </ion-col>
-                </ion-row>
-              </div>
-            </ion-col>
-            <ion-col col-2>
-              <img width="100%" src="assets/imgs/ic_chat.png" />
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
-          <ion-row>
-            <ion-col col-3>
-              <img width="100%" src="assets/imgs/logo.png" />
-            </ion-col>
-            <ion-col col-9>
-              Thông tin tài khoản gốc asdasfasf <br>
-              Thông tin tài khoản gốc
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-  </ion-slides>
+  <div *ngIf="usersPage">
+    <app-contact-users></app-contact-users>
+  </div>
+  <div *ngIf="groupsPage">
+    <app-contact-groups></app-contact-groups>
+  </div>
+  <div *ngIf="businessPage">
+    <app-contact-business></app-contact-business>
+  </div>
+  <ion-fab right bottom *ngIf="usersPage">
+    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-fab right bottom *ngIf="groupsPage">
+    <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
-
 <ion-footer>
   <div class="bar bar-header bar-dark">
-    <ion-segment color="primary">
-      <ion-segment-button (click)="goToSlide(0);" value="user" class="segment-button {{currentIndex == 0 ? 'segment-activated activated': ''}}">
+    <ion-segment color="primary" [(ngModel)]="contactTab">
+      <ion-segment-button value="user" class="segment-button" (click)="goToPage('user')">
         Cá nhân
       </ion-segment-button>
-      <ion-segment-button (click)="goToSlide(1);" value="group" class="segment-button {{currentIndex == 1 ? 'segment-activated activated': ''}}" >
+      <ion-segment-button value="group" class="segment-button" (click)="goToPage('group')">
         Nhóm
       </ion-segment-button>
-      <ion-segment-button (click)="goToSlide(2);" value="business" class="segment-button {{currentIndex == 2 ? 'segment-activated activated': ''}}">
+      <ion-segment-button value="business" class="segment-button" (click)="goToPage('business')">
         Cộng đồng
       </ion-segment-button>
     </ion-segment>

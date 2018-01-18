@@ -15,13 +15,22 @@ export class NearByComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  slideChanged() {
-    this.currentIndex = this.slider.realIndex;
-  }
+  nearbyTab = 'user';
+  userPage = true;
+  shopPage = false;
 
-  goToSlide(index) {
-    this.slider.slideTo(index, 500);
+  goToPage(value) {
+    switch (value) {
+      case 'user':
+        this.userPage = true;
+        this.shopPage = false;
+        break;
+      case 'shop':
+        this.userPage = false;
+        this.shopPage = true;
+        break;
+      default:
+        break;
+    }
   }
-
 }

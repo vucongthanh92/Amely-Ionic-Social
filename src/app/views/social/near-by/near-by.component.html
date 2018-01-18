@@ -8,40 +8,21 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-slides  (ionSlideDidChange)="slideChanged()" #mySlider >
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
-          <ion-row>
-            <ion-col col-12>
-              DSADSA
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-    <ion-slide style="display: block; overflow-y:scroll">
-      <ion-list>
-        <ion-item *ngFor="let number of [0,1,2,3,4]">
-          <ion-row>
-            <ion-col col-12>
-              DSA
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
-    </ion-slide>
-  </ion-slides>
+  <div *ngIf="userPage">
+    <app-near-by-user></app-near-by-user>
+  </div>
+  <div *ngIf="shopPage">
+    <app-near-by-shop></app-near-by-shop>
+  </div>
 </ion-content>
-
 <ion-footer>
   <div class="bar bar-header bar-dark">
-    <ion-segment color="primary">
-      <ion-segment-button (click)="goToSlide(0);" value="user" class="segment-button {{currentIndex == 0 ? 'segment-activated activated': ''}}">
-        NGƯỜI DÙNG
+    <ion-segment color="primary" [(ngModel)]="nearbyTab">
+      <ion-segment-button value="user" class="segment-button" (click)="goToPage('user');">
+        Người dùng
       </ion-segment-button>
-      <ion-segment-button (click)="goToSlide(1);" value="group" class="segment-button {{currentIndex == 1 ? 'segment-activated activated': ''}}" >
-        CỬA HÀNG
+      <ion-segment-button value="shop" class="segment-button" (click)="goToPage('shop');">
+        Cửa hàng
       </ion-segment-button>
     </ion-segment>
   </div>

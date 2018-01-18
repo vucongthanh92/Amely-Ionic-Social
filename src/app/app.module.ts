@@ -29,12 +29,23 @@ import { PersonalComponent } from './views/personal/personal.component';
 import { ContactComponent } from './views/personal/contact/contact.component';
 import { MessageComponent } from './views/personal/message/message.component';
 import { NotificationComponent } from './views/personal/notification/notification.component';
+    // CONTACT
+    import { ContactUsersComponent } from './views/personal/contact/contact-users/contact-users.component';
+    import { ContactGroupsComponent } from './views/personal/contact/contact-groups/contact-groups.component';
+    import { ContactBusinessComponent } from './views/personal/contact/contact-business/contact-business.component';
 // SOCIAL
 import { SocialComponent } from './views/social/social.component';
 import { NewsFeedComponent } from './views/social/news-feed/news-feed.component';
 import { OffersComponent } from './views/social/offers/offers.component';
 import { NearByComponent } from './views/social/near-by/near-by.component';
 import { EventsComponent } from './views/social/events/events.component';
+    // NEARBY
+    import { NearByUserComponent } from './views/social/near-by/near-by-user/near-by-user.component';
+    import { NearByShopComponent } from './views/social/near-by/near-by-shop/near-by-shop.component';
+    // OFFERS
+    import { OffersMyselfComponent } from './views/social/offers/offers-myself/offers-myself.component';
+    import { OffersPendingComponent } from './views/social/offers/offers-pending/offers-pending.component';
+    import { OffersSearchComponent } from './views/social/offers/offers-search/offers-search.component';
 // SHOPPING
 import { ShoppingComponent } from './views/shopping/shopping.component';
 import { ShopsComponent } from './views/shopping/shops/shops.component';
@@ -51,8 +62,6 @@ import { SettingPrivateComponent } from './views/settings/setting-private/settin
 import { SettingSecurityComponent } from './views/settings/setting-security/setting-security.component';
 import { SettingGeneralComponent } from './views/settings/setting-general/setting-general.component';
 // FEED
-
-
 
 @NgModule({
   declarations: [
@@ -79,11 +88,22 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     ContactComponent,
     MessageComponent,
     NotificationComponent,
+        // CONTACT
+        ContactUsersComponent,
+        ContactGroupsComponent,
+        ContactBusinessComponent,
     // SOCIAL
     SocialComponent,
     OffersComponent,
     NearByComponent,
     EventsComponent,
+        // NEARBY
+        NearByUserComponent,
+        NearByShopComponent,
+        // OFFERS
+        OffersMyselfComponent,
+        OffersPendingComponent,
+        OffersSearchComponent,
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
@@ -129,11 +149,19 @@ import { SettingGeneralComponent } from './views/settings/setting-general/settin
     ContactComponent,
     MessageComponent,
     NotificationComponent,
+        // CONTACT
+        ContactUsersComponent,
+        ContactGroupsComponent,
+        ContactBusinessComponent,
     // SOCIAL
     SocialComponent,
     OffersComponent,
     NearByComponent,
     EventsComponent,
+        // USER
+        OffersMyselfComponent,
+        OffersPendingComponent,
+        OffersSearchComponent,
     // SHOPPING
     ShoppingComponent,
     ShopsComponent,
