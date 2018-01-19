@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from 'ionic-angular';
+
+import { SharedModule } from '../../../shared/shared.module';
 import { MessageComponent } from './message.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule,
+    SharedModule
   ],
-  declarations: [MessageComponent]
+  declarations: [
+  	MessageComponent
+  ],
+  entryComponents: [
+    MessageComponent
+  ]
 })
 export class MessageModule { }

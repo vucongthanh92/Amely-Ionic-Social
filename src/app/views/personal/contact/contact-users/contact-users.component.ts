@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { UserComponent } from '../../../../components/user/user.component';
 
 @Component({
   selector: 'app-contact-users',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
 
+  goToPage() {
+  	
+  	this.nav.push(UserComponent);
+  }
 }
