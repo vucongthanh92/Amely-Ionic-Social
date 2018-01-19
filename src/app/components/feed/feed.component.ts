@@ -6,13 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FeedComponent {
   
-  @Input('numbers') numbers: any;
+  @Input('contents') contents: any;
 
   constructor() {
   }
 
   ngAfterViewInit() {
-  		console.log(this.numbers);
   	
   }
 

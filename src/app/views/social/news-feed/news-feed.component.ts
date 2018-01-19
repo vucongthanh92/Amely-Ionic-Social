@@ -2,15 +2,6 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { AddFeedComponent } from '../../../components/add-feed/add-feed.component';
 
-interface CardInterface {
-  name: string;
-  location: string;
-  day: string;
-  month: string;
-  year: string;
-  img: string;
-}
-
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
@@ -24,14 +15,15 @@ export class NewsFeedComponent implements OnInit {
   ngOnInit() {
   }
 
-  private cards: CardInterface[] = [
+  private cards = [
     {
       name: 'Innovation Showcase 2017',
       location: 'Canberra Fitters Workshop',
       day: '7',
       month: 'DEC',
       year: '2017',
-      img: 'innovation-showcase.png'
+      img: 'innovation-showcase.png',
+      title: 'abc'
     },
     {
       name: 'Heritage Tours',
@@ -47,7 +39,8 @@ export class NewsFeedComponent implements OnInit {
       day: '10',
       month: 'JAN',
       year: '2018',
-      img: 'summer-sensations.png'
+      img: 'summer-sensations.png',
+      title: 'def'
     },
     {
       name: 'Renewable Energy Day 2017',
@@ -63,27 +56,4 @@ export class NewsFeedComponent implements OnInit {
   	this.appCtrl.getRootNav().setRoot(AddFeedComponent);
   }
 
-  ionViewDidLoad() {
-    console.log('a1');
-  }
-
-  ionViewWillEnter() {
-    console.log('a2');
-  }
-
-  ionViewDidEnter() {
-    console.log('a3');
-  }
-
-  ionViewWillLeave() {
-    console.log('a4');
-  }
-
-  ionViewDidLeave() {
-    console.log('a5');
-  }
-
-  ionViewWillUnload() {
-    console.log('a6');
-  }
 }
