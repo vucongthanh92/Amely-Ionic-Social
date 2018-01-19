@@ -13,6 +13,12 @@
 
 .iconSize{
   font-size: 20px;
+  color: #faac64;
+}
+.iconSize1{
+  font-size: 30px;
+  color: #cdcdcd;
+  padding-bottom: 15px;
 }
 
 .selectSize{
@@ -20,9 +26,16 @@
   max-width: 95%;
   padding: 11px 8px 11px 0px;
 }
+.item-ios{
+  font-size: 16px;
+  max-width: 100%;
+  padding: 11px 0px 11px 0px;
+  padding-left: 0px !important;
+}
 
 .marginRow{
   margin-bottom: 15px;
+  left: 32vw;
 }
 
 .popover-ios .popover-content{
@@ -39,13 +52,13 @@
 }
 
 .buttonChoose{
-  width: 100px;
-height: 100px;
-border-radius: 10px;
-/* border-spacing: 10px; */
-/* border: 4px dashed black; */
-border-width: 3px;
-border-style: dashed;
-border-color: #cdcdcd;
-background-color: #ffffff;
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  border-width: 3px;
+  border-style: dashed;
+  border-color: #cdcdcd;
+  background-color: #ffffff;
+  font-size: 16px;
+  color: #cdcdcd;
 }
