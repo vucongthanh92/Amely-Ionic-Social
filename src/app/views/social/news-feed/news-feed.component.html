@@ -9,8 +9,8 @@
 
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item *ngFor="let number of [0,1,2,3,4]">
-      <app-feed></app-feed>
+    <ion-item *ngFor="let card of cards">
+      <app-feed numbers="{{card.name}}" ></app-feed>
     </ion-item>
   </ion-list>
 </ion-content>
