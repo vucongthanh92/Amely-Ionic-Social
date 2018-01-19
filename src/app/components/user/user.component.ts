@@ -36,4 +36,29 @@ export class UserComponent implements OnInit {
   doPulling(refresher: Refresher) {
     console.log('DOPULLING', refresher.progress);
   }
+  newfeedsPage = true;
+  imagesPage = false;
+  friendsPage = false;
+  userTab = 'newfeeds';
+  goToPage(value) {
+    switch (value) {
+      case 'newfeeds':
+        this.newfeedsPage = true;
+        this.imagesPage = false;
+        this.friendsPage = false;
+        break;
+      case 'images':
+        this.newfeedsPage = false;
+        this.imagesPage = true;
+        this.friendsPage = false;
+        break;
+      case 'friends':
+        this.newfeedsPage = false;
+        this.imagesPage = false;
+        this.friendsPage = true;
+        break;
+      default:
+        break;
+    }
+  }
 }

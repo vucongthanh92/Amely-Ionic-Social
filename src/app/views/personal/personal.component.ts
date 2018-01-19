@@ -14,6 +14,7 @@ import { ContactGroupsComponent } from './contact/contact-groups/contact-groups.
 
 export class PersonalComponent implements OnInit {
 	
+  tabActive = true;
   tab1Root = ContactComponent;
   tab2Root = MessageComponent;
   tab3Root = NotificationComponent;

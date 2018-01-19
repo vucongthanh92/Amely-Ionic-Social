@@ -1,6 +1,7 @@
 import { Directive, Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { AddFeedComponent } from '../../../components/add-feed/add-feed.component';
+import { FeedComponent } from '../../../components/feed/feed.component';
 
 @Component({
   selector: 'app-news-feed',
