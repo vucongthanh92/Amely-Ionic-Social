@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html'
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent {
+  
+  @Input('contents') contents: any;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+  	
   }
 
 }
