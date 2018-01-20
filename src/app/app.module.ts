@@ -18,7 +18,6 @@ import { MainComponent } from './layouts/main/main.component';
 import { NavComponent } from './layouts/nav/nav.component';
 
 // SERVICES
-import { AuthenticationService } from './authentication/authentication.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,6 @@ import { AuthenticationService } from './authentication/authentication.service';
   providers: [
     StatusBar,
     SplashScreen,
-    AuthenticationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

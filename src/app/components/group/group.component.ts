@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { MessageComponent } from '../message/message.component';
+import { GiftComponent } from '../gift/gift.component';
 
 @Component({
   selector: 'app-group',
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
@@ -24,6 +27,12 @@ export class GroupComponent implements OnInit {
       case 'members':
         this.newfeedsPage = false;
         this.membersPage = true;
+        break;
+      case 'gift':
+        this.appCtrl.getRootNav().push(GiftComponent);
+        break;
+      case 'chat':
+        this.appCtrl.getRootNav().push(MessageComponent);
         break;
       default:
         break;

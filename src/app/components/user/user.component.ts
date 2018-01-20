@@ -3,6 +3,8 @@ import { App, NavController, Refresher } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
+import { MessageComponent } from '../message/message.component';
+import { GiftComponent } from '../gift/gift.component';
 
 @Component({
   selector: 'app-user',
@@ -62,6 +64,12 @@ export class UserComponent {
         break;
       case 'shop':
         this.nav.push(ShopComponent);
+        break;
+      case 'gift':
+        this.appCtrl.getRootNav().push(GiftComponent);
+        break;
+      case 'chat':
+        this.appCtrl.getRootNav().push(MessageComponent);
         break;
       default:
         break;

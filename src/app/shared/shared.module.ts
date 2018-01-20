@@ -17,6 +17,7 @@ import { ProductComponent } from '../components/product/product.component';
 import { MessageComponent } from '../components/message/message.component';
 import { GroupComponent } from '../components/group/group.component';
 import { BusinessComponent } from '../components/business/business.component';
+import { GiftComponent } from '../components/gift/gift.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { BusinessComponent } from '../components/business/business.component';
     FeedMenuComponent,
     MessageComponent,
     GroupComponent,
-    BusinessComponent
+    BusinessComponent,
+    GiftComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -55,7 +57,8 @@ import { BusinessComponent } from '../components/business/business.component';
     FeedMenuComponent,
     MessageComponent,
     GroupComponent,
-    BusinessComponent
+    BusinessComponent,
+    GiftComponent
   ],
   exports: [
     CategoriesComponent,
@@ -72,7 +75,8 @@ import { BusinessComponent } from '../components/business/business.component';
     FeedMenuComponent,
     MessageComponent,
     GroupComponent,
-    BusinessComponent
+    BusinessComponent,
+    GiftComponent
   ]
 })
 export class SharedModule { }
