@@ -1,10 +1,10 @@
 <ion-list>
-  <ion-item *ngFor="let number of [0,1,2,3,4]">
+  <ion-item *ngFor="let number of [0,1,2,3,4]" >
     <ion-row>
-      <ion-col col-3>
+      <ion-col col-3 (click)="goToPage()">
         <img width="100%" src="assets/imgs/logo.png" />
       </ion-col>
-      <ion-col col-7 >
+      <ion-col col-7 (click)="goToPage()">
         Thông tin tài khoản gốc <br>
         <div style="position: absolute; bottom: 0;">
           <ion-row >
@@ -30,7 +30,7 @@
         </div>
       </ion-col>
       <ion-col col-2>
-        <img width="100%" src="assets/imgs/ic_chat.png" />
+        <img width="100%" src="assets/imgs/ic_chat.png" (click)="goToPageChat()"/>
       </ion-col>
     </ion-row>
   </ion-item>

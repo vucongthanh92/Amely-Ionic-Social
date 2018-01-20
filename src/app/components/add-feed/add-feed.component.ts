@@ -12,9 +12,4 @@ export class AddFeedComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  backPage() {
-  	this.nav.setRoot(SocialComponent);
-  }
-
 }

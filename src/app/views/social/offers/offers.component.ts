@@ -35,7 +35,7 @@ export class OffersComponent implements OnInit {
         this.searchPage = true;
         break;
       case 'create-offer':
-        this.appCtrl.getRootNav().setRoot(CreateOfferComponent);
+        this.appCtrl.getRootNav().push(CreateOfferComponent);
       default:
         break;
     }

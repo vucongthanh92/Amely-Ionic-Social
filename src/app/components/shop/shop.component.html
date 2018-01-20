@@ -1,3 +1,140 @@
-<p>
-  shop works!
-</p>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cửa hàng</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <div class="about-header">
+    <img src="assets/imgs/logo.png" alt="ionic logo">
+  </div>
+  <div class="bar bar-header bar-dark" style="background-color: #fff;">
+    <ion-segment color="primary" [(ngModel)]="shopTab" style="border-bottom: 1px solid #eee;">
+      <ion-segment-button value="products" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;" (click)="goToPage('products');">
+        Sản phẩm
+      </ion-segment-button>
+      <ion-segment-button value="info" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px" (click)="goToPage('info');">
+        Thông tin
+      </ion-segment-button>
+    </ion-segment>
+    <ion-row text-center>
+      <ion-col col-6>
+        <button ion-button icon-left clear small color="danger">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>Thích</div>
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button icon-left clear small color="danger">
+          <ion-icon name="text"></ion-icon>
+          <div>Nhắn tin</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
+    <ion-refresher-content
+      pullingText="Pull to refresh..."
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="productsPage">
+    <app-categories></app-categories>
+    <app-products-feature></app-products-feature>
+  </div>
+  <div *ngIf="infoPage">
+    <ion-card>
+      <ion-card-header>
+        Thông tin cửa hàng
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-6>
+            Tên cửa hàng
+          </ion-col>
+          <ion-col col-6>
+            vipn600
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Địa chỉ cửa hàng
+          </ion-col>
+          <ion-col col-6>
+            quận 12
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Số điện thoại
+          </ion-col>
+          <ion-col col-6>
+            789456321
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Mã số thuế
+          </ion-col>
+          <ion-col col-6>
+            123456789
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Thông tin chủ cửa hàng
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-6>
+            Họ tên
+          </ion-col>
+          <ion-col col-6>
+            Voucher
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Địa chỉ
+          </ion-col>
+          <ion-col col-6>
+            quận 12
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Số điện thoại
+          </ion-col>
+          <ion-col col-6>
+            789456321
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Danh sách cửa hàng
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-6>
+            Địa chỉ
+          </ion-col>
+          <ion-col col-6>
+            công hòa
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6>
+            Số điện thoại
+          </ion-col>
+          <ion-col col-6>
+            789456321
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

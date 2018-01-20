@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MessageComponent } from '../message/message.component';
+import { MessagesComponent } from '../messages/messages.component';
 import { Slides, MenuController, NavController } from 'ionic-angular';
 import { ContactUsersComponent } from './contact-users/contact-users.component';
 import { ContactGroupsComponent } from './contact-groups/contact-groups.component';

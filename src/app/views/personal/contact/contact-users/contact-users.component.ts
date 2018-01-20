@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
+import { MessageComponent } from '../../../../components/message/message.component';
 
 @Component({
   selector: 'app-contact-users',
@@ -14,7 +15,10 @@ export class ContactUsersComponent implements OnInit {
   }
 
   goToPage() {
-  	
-  	this.nav.push(UserComponent);
+  	this.appCtrl.getRootNav().push(UserComponent);
+  }
+
+  goToPageChat() {
+  	this.appCtrl.getRootNav().push(MessageComponent);
   }
 }

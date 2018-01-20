@@ -35,7 +35,7 @@ export class EventsComponent implements OnInit {
         this.historyPage = true;
         break;
       case 'create-event':
-        this.appCtrl.getRootNav().setRoot(CreateEventComponent);
+        this.appCtrl.getRootNav().push(CreateEventComponent);
       default:
         break;
     }

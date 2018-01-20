@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-friends',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
 
+  goToPage(value) {
+  	this.appCtrl.getRootNav().push(UserComponent);
+  }
 }

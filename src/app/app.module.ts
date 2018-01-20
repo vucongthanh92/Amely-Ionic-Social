@@ -20,14 +20,12 @@ import { NavComponent } from './layouts/nav/nav.component';
 // SERVICES
 import { AuthenticationService } from './authentication/authentication.service';
 
-
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     MainComponent,
-    NavComponent,
-    
+    NavComponent
   ],
   imports: [
     BrowserModule,

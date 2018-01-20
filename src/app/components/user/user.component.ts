@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, App, FabContainer, ItemSliding, List, ModalController, NavController, ToastController, LoadingController, Refresher } from 'ionic-angular';
+import { App, NavController, Refresher } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
+import { ShopComponent } from '../shop/shop.component';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
 })
 
-export class UserComponent implements OnInit {
-  constructor(public nav: NavController) {
-  }
+export class UserComponent {
+  
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
@@ -36,10 +37,12 @@ export class UserComponent implements OnInit {
   doPulling(refresher: Refresher) {
     console.log('DOPULLING', refresher.progress);
   }
+
   newfeedsPage = true;
   imagesPage = false;
   friendsPage = false;
   userTab = 'newfeeds';
+
   goToPage(value) {
     switch (value) {
       case 'newfeeds':
@@ -56,6 +59,9 @@ export class UserComponent implements OnInit {
         this.newfeedsPage = false;
         this.imagesPage = false;
         this.friendsPage = true;
+        break;
+      case 'shop':
+        this.nav.push(ShopComponent);
         break;
       default:
         break;

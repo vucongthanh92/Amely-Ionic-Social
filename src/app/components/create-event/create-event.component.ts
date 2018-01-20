@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher, ViewController } from 'ionic-angular';
+import { EventsComponent } from '../../views/social/events/events.component';
 
 @Component({
   selector: 'app-create-event',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEventComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }

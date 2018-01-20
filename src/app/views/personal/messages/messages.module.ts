@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
 
 import { SharedModule } from '../../../shared/shared.module';
-import { MessageComponent } from './message.component';
+import { MessagesComponent } from './messages.component';
 
 @NgModule({
   imports: [
@@ -12,10 +12,10 @@ import { MessageComponent } from './message.component';
     SharedModule
   ],
   declarations: [
-  	MessageComponent
+  	MessagesComponent
   ],
   entryComponents: [
-    MessageComponent
+    MessagesComponent
   ]
 })
-export class MessageModule { }
+export class MessagesModule { }

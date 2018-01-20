@@ -9,7 +9,7 @@
   </ion-row>
   <ion-scroll scrollX style="height:250px; margin-top: 10px">
     <div class="scroll-item">
-      <ion-col *ngFor="let number of [0,1,2,3,4,5]">
+      <ion-col *ngFor="let number of [0,1,2,3,4,5]" (click)="goToPage('product')">
         <div class="item-card">
           <img width="100%" src="assets/imgs/logo.png">
           <div style="margin-top: 10px;">
