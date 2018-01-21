@@ -9,7 +9,7 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { PersonalComponent } from './views/personal/personal.component';
 import { SocialComponent } from './views/social/social.component';
 import { ShoppingComponent } from './views/shopping/shopping.component';
-import { InventoryComponent } from './views/inventory/inventory.component';
+import { InventoriesComponent } from './views/inventories/inventories.component';
 import { SettingsComponent } from './views/settings/settings.component';
 
 @Component({
@@ -30,7 +30,7 @@ export class MyApp {
       { title: 'Contact', component: PersonalComponent },
       { title: 'Social', component: SocialComponent },
       { title: 'Shopping', component: ShoppingComponent },
-      { title: 'Inventory', component: InventoryComponent },
+      { title: 'Inventory', component: InventoriesComponent },
       { title: 'Settings', component: SettingsComponent }
     ];
 

@@ -66,10 +66,10 @@ export class UserComponent {
         this.nav.push(ShopComponent);
         break;
       case 'gift':
-        this.appCtrl.getRootNav().push(GiftComponent);
+        this.nav.push(GiftComponent);
         break;
       case 'chat':
-        this.appCtrl.getRootNav().push(MessageComponent);
+        this.nav.push(MessageComponent);
         break;
       default:
         break;

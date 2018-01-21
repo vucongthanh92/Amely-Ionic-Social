@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+
 import { MessagesComponent } from '../messages/messages.component';
-import { Slides, MenuController, NavController } from 'ionic-angular';
 import { ContactUsersComponent } from './contact-users/contact-users.component';
 import { ContactGroupsComponent } from './contact-groups/contact-groups.component';
+import { AddFriendComponent } from '../../../components/add-friend/add-friend.component';
+import { AddGroupComponent } from '../../../components/add-group/add-group.component';
 
 @Component({
   selector: 'app-contact',
@@ -13,26 +16,19 @@ export class ContactComponent implements OnInit {
   groupsPage = false;
   businessPage = false;
   contactTab = 'user';
-  @ViewChild('mySlider') slider: Slides;
-  currentIndex = 0;
-  constructor(public menuCtrl: MenuController, public nav: NavController) { 
-    this.currentIndex = 0;
 
-  }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
-
-  slideChanged() {
-    this.currentIndex = this.slider.realIndex;
-  }
-
-  goToSlide(index) {
-    this.slider.slideTo(index, 500);
-  }
-
   goToPage(value) {
     switch (value) {
+      case 'add-group':
+        this.appCtrl.getRootNav().push(AddGroupComponent);
+        break;
+      case 'add-friend':
+        this.appCtrl.getRootNav().push(AddFriendComponent);
+        break;
       case 'user':
         this.usersPage = true;
         this.groupsPage = false;

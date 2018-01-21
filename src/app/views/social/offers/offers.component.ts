@@ -10,6 +10,7 @@ export class OffersComponent implements OnInit {
 
   offersTab = 'myself';
   constructor(public nav: NavController, public appCtrl: App) {}
+  
   ngOnInit() {
   }
 

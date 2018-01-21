@@ -1,14 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
-import { ProductAllComponent } from '../product-all/product-all.component';
 
 @Component({
-  selector: 'app-products-feature',
-  templateUrl: './products-feature.component.html'
+  selector: 'app-product-all',
+  templateUrl: './product-all.component.html'
 })
-
-export class ProductsFeatureComponent implements OnInit {
+export class ProductAllComponent {
 
   constructor(public nav: NavController, public appCtrl: App) {}
 
@@ -17,9 +15,6 @@ export class ProductsFeatureComponent implements OnInit {
 
   goToPage(value) {
     switch (value) {
-      case 'all':
-        this.appCtrl.getRootNav().push(ProductAllComponent);
-        break;
       case 'product':
         this.appCtrl.getRootNav().push(ProductComponent);
         break;
@@ -27,5 +22,4 @@ export class ProductsFeatureComponent implements OnInit {
         break;
     }
   }
-
 }

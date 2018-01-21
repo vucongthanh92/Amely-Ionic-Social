@@ -18,6 +18,15 @@ import { MessageComponent } from '../components/message/message.component';
 import { GroupComponent } from '../components/group/group.component';
 import { BusinessComponent } from '../components/business/business.component';
 import { GiftComponent } from '../components/gift/gift.component';
+import { ProductCategoryComponent } from '../components/product-category/product-category.component';
+import { ProductAllComponent } from '../components/product-all/product-all.component';
+import { InventoryComponent } from '../components/inventory/inventory.component';
+import { InvenroyItemsComponent } from '../components/invenroy-items/invenroy-items.component';
+import { ItemComponent } from '../components/item/item.component';
+import { FindFriendComponent } from '../components/find-friend/find-friend.component';
+import { AddFriendComponent } from '../components/add-friend/add-friend.component';
+import { NoteFriendComponent } from '../components/note-friend/note-friend.component';
+import { AddGroupComponent } from '../components/add-group/add-group.component';
 
 @NgModule({
   imports: [
@@ -40,7 +49,16 @@ import { GiftComponent } from '../components/gift/gift.component';
     MessageComponent,
     GroupComponent,
     BusinessComponent,
-    GiftComponent
+    GiftComponent,
+    ProductCategoryComponent,
+    ProductAllComponent,
+    InventoryComponent,
+    InvenroyItemsComponent,
+    ItemComponent,
+    FindFriendComponent,
+    AddFriendComponent,
+    NoteFriendComponent,
+    AddGroupComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -58,7 +76,16 @@ import { GiftComponent } from '../components/gift/gift.component';
     MessageComponent,
     GroupComponent,
     BusinessComponent,
-    GiftComponent
+    GiftComponent,
+    ProductCategoryComponent,
+    ProductAllComponent,
+    InventoryComponent,
+    InvenroyItemsComponent,
+    ItemComponent,
+    FindFriendComponent,
+    AddFriendComponent,
+    NoteFriendComponent,
+    AddGroupComponent
   ],
   exports: [
     CategoriesComponent,
@@ -76,7 +103,16 @@ import { GiftComponent } from '../components/gift/gift.component';
     MessageComponent,
     GroupComponent,
     BusinessComponent,
-    GiftComponent
+    GiftComponent,
+    ProductCategoryComponent,
+    ProductAllComponent,
+    InventoryComponent,
+    InvenroyItemsComponent,
+    ItemComponent,
+    FindFriendComponent,
+    AddFriendComponent,
+    NoteFriendComponent,
+    AddGroupComponent
   ]
 })
 export class SharedModule { }
