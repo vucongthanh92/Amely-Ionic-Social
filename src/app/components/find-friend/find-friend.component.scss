@@ -1,0 +1,61 @@
+  app-find-friend {
+    .bodyContent {
+      background-color: #f8f8f8;
+    }
+    .divContent {
+      background-color: #ffffff;
+      margin-top: 10px;
+      height: 90px;
+    }
+    .ionFooterToolbar {
+      background-color: red;
+      height: 150px;
+    }
+
+    .buttonSearch {
+      border-radius: 8px;
+      height: 1.8em;
+      font-size: 1.6rem;
+      color: #fff;
+      background-color: #488aff;
+      margin: 0.4rem 0.2rem;
+      padding: 0 1em;
+    }
+
+    .marginCol {
+      margin-left: 10px;
+      height: 30px;
+    }
+    .marginFooter {
+      top: -12px;
+      margin-left: -5px;
+    }
+    .iconFooterBarcode {
+      text-align: center;
+      top: -30px;
+      font-size: 60px;
+    }
+    .iconFooterFacebook {
+      text-align: center;
+      top: -25px;
+      font-size: 50px;
+    }
+    .labelIconBarcode {
+      font-size: 15px !important;
+      margin: -5px 8px -5px 0;
+    }
+    .labelIconFacebook {
+      font-size: 15px !important;
+      margin: 3px 8px -5px 0;
+    }
+    .buttonIcon {
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      top: -20px;
+      background-color: #e06b27;
+    }
+    .iconFooter {
+      font-size: 40px;
+    }
+  }
