@@ -1,8 +1,9 @@
+import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
 import { NavController, NavParams , Platform } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { SocialComponent } from '../../views/social/social.component';
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'app-signin',
@@ -10,13 +11,32 @@ import { SocialComponent } from '../../views/social/social.component';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, public nav: NavController) { }
+  user = { username: '', password: '' };
+
+  constructor(
+    private authenticationService: AuthenticationService, 
+    public nav: NavController,
+    private toastCtrl: ToastController
+  ) { }
 
   ngOnInit() {
   }
 
-  login () {
-    this.nav.setRoot(SocialComponent);
+  onLogin() {
+    this.authenticationService.login(this.user.username, this.user.password).subscribe(resp => {
+      if (resp.status == false) {
+        const toast = this.toastCtrl.create({
+          message: 'Đăng nhập thất bại!',
+          position: "bottom",
+          duration: 3000
+        });
+
+        toast.present();
+      } else {
+        this.authenticationService.setSession(resp);
+        this.nav.setRoot(SocialComponent);    
+      }
+    });
   }
 
   onRegister(){

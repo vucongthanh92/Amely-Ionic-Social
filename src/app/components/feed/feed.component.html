@@ -1,40 +1,41 @@
 <ion-card style="margin: 12px 0px; width: 100%">
   <ion-item>
     <ion-avatar item-start>
-      <img src="assets/imgs/logo.png">
+      <img src="{{ user.avatar }}">
     </ion-avatar>
     <ion-row>
       <ion-col col-10>
-        <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
+        <h2>{{ user.username }}</h2>
+        <time>{{ post.time_created | amTimeAgo }}</time>
       </ion-col>
       <ion-col col-2>
           <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-item>
-  <img width="100%" src="assets/imgs/logo.png">
+  <ion-list *ngIf="wallphotos">
+    <ion-item *ngFor="let wallphoto of wallphotos">
+      <img width="100%"  src="{{ wallphoto }}" >
+    </ion-item>
+  </ion-list>
+  
   <ion-card-content style="white-space: initial;">
-    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+    {{ description }}
   </ion-card-content>
   <ion-row>
     <ion-col>
       <button ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
+        <div>{{ post.likes }} Thích</div>
       </button>
     </ion-col>
     <ion-col>
       <button ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
+        <div>{{ post.comments }} Bình luận</div>
       </button>
     </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
-    </ion-col>
+    <ion-col></ion-col>
   </ion-row>
-
+ 
 </ion-card>

@@ -1,3 +1,4 @@
+import { SocialService } from './../social.service';
 import { Directive, Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { AddFeedComponent } from '../../../components/add-feed/add-feed.component';
@@ -10,48 +11,48 @@ import { FeedComponent } from '../../../components/feed/feed.component';
 
 
 export class NewsFeedComponent implements OnInit {
-
-  constructor(public nav: NavController, public appCtrl: App) {}
+  
+  posts: any;
+  post: any;
+  users: any;
+  moods: any;
+  shares: any;
+  offset = 0;
+  constructor(
+    private socialService: SocialService,
+    public nav: NavController, 
+    public appCtrl: App
+  ) {}
 
   ngOnInit() {
+    this.socialService.getFeeds(this.offset).subscribe( data => {
+      this.offset = this.offset + data.posts.length;
+      this.posts = data.posts;
+      this.users = data.users;
+      this.moods = data.moods;
+      this.shares = data.shares;
+    });
+    
   }
 
-  private cards = [
-    {
-      name: 'Innovation Showcase 2017',
-      location: 'Canberra Fitters Workshop',
-      day: '7',
-      month: 'DEC',
-      year: '2017',
-      img: 'innovation-showcase.png',
-      title: 'abc'
-    },
-    {
-      name: 'Heritage Tours',
-      location: 'Canberra Glassworks',
-      day: '25',
-      month: 'NOV',
-      year: '2017',
-      img: 'heritage-tours.png'
-    },
-    {
-      name: 'Summer Sensations',
-      location: 'Canberra Glassworks',
-      day: '10',
-      month: 'JAN',
-      year: '2018',
-      img: 'summer-sensations.png',
-      title: 'def'
-    },
-    {
-      name: 'Renewable Energy Day 2017',
-      location: 'Visit renewable energy sites throughout the ACT',
-      day: '25',
-      month: 'NOV',
-      year: '2017',
-      img: 'renewable-energy-day.png'
-    }
-  ];
+  doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      this.socialService.getFeeds(this.offset).subscribe(data => {
+        this.posts = this.posts.concat(data.posts);
+        this.users = Object.assign(this.users, data.users);
+        this.moods = Object.assign(this.moods, data.moods);
+        this.shares = data.shares;
+        
+        this.offset = this.offset + data.posts.length;
+      });
+
+      infiniteScroll.complete();
+    }, 500);
+  }
+
+  getPoster(poster_guid) {
+    return this.users[poster_guid];
+  }
 
   addNewFeed() {
   	this.appCtrl.getRootNav().push(AddFeedComponent);

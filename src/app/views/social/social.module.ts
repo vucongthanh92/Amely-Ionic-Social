@@ -1,3 +1,4 @@
+import { SocialService } from './social.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
@@ -25,6 +26,9 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   entryComponents: [
     SocialComponent
+  ],
+  providers: [
+    SocialService
   ]
 })
 

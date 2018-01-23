@@ -1,3 +1,4 @@
+import { ApiModule } from './api/api.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SharedModule } from './shared/shared.module';
 import { SocialModule } from './views/social/social.module';
@@ -13,7 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { MyApp } from './app.component';
     ShoppingModule,
     PersonalModule,
     InventoriesModule,
-    SettingsModule
+    SettingsModule,
+    ApiModule,
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

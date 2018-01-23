@@ -1,0 +1,9 @@
+{
+  "name": "ngswaggergen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "ng-swagger-gen": "^0.9.4"
+  }
+}

@@ -1,3 +1,4 @@
+import { PersonalService } from './../personal.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 
@@ -16,11 +17,19 @@ export class ContactComponent implements OnInit {
   groupsPage = false;
   businessPage = false;
   contactTab = 'user';
-
-  constructor(public nav: NavController, public appCtrl: App) {}
+  friends: any;
+  
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App,
+    public personalService: PersonalService
+  ) {}
 
   ngOnInit() {
+    
   }
+
+  
   goToPage(value) {
     switch (value) {
       case 'add-group':

@@ -1,12 +1,11 @@
 <ion-list>
-  <ion-item *ngFor="let number of [0,1,2,3,4,5,6]">
+  <ion-item *ngFor="let friend of friends">
     <ion-row>
       <ion-col col-3 (click)="goToPage()">
-        <img width="100%" src="assets/imgs/logo.png" />
+        <img width="100%" src="{{ friend.avatar }}" />
       </ion-col>
       <ion-col col-7 (click)="goToPage()">
-        Thông tin tài khoản gốc <br>
-        Thông tin tài khoản gốc
+        {{ friend.username }}
       </ion-col>
       <ion-col col-2>
         <img width="100%" src="assets/imgs/ic_chat.png" (click)="goToPageChat()"/>

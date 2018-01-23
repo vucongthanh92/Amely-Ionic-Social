@@ -6,13 +6,15 @@
     <ion-title>Xã hội</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item *ngFor="let number of [0,1,2,3,4]">
-      <app-feed></app-feed>
+    <ion-item *ngFor="let post of posts">
+      <app-feed [post]="post" [user]="getPoster(post.poster_guid)" ></app-feed>
     </ion-item>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 <ion-fab right bottom>
   <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()"><ion-icon name="add"></ion-icon></button>

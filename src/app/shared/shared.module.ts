@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
+import { MomentModule } from 'angular2-moment';
 
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { FeedComponent } from '../components/feed/feed.component';
@@ -34,6 +35,7 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
   imports: [
     CommonModule, 
     IonicModule,
+    MomentModule
   ],
   declarations: [
     CategoriesComponent,
