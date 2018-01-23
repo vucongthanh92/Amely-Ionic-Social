@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Tang qua</ion-title>
     <ion-buttons end>
-      <button ion-button >
+      <button ion-button>
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -14,67 +14,83 @@
     <ion-grid>
 
       <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Hình thức</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="formality" interface="popover" placeholder="Chọn hình thức trao đổi">
-          <ion-option value="a">Chọn hình thức trao đổi1</ion-option>
-          <ion-option value="b">Chọn hình thức trao đổi2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-bulb"></ion-icon>
-      </ion-col>
-    </ion-row>
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Hình thức</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <i>
+            <ion-select class="selectSize" [(ngModel)]="formality" interface="popover" placeholder="Chọn hình thức trao đổi">
+              <ion-option value="a">Chọn hình thức trao đổi1</ion-option>
+              <ion-option value="b">Chọn hình thức trao đổi2</ion-option>
+            </ion-select>
+          </i>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-bulb"></ion-icon>
+        </ion-col>
+      </ion-row>
 
       <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Đối tượng</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="object" interface="popover" placeholder="Chọn đối tượng trao đổi">
-          <ion-option value="a">Chọn đối tượng trao đổi1</ion-option>
-          <ion-option value="b">Chọn đối tượng trao đổi2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-person"></ion-icon>
-      </ion-col>
-    </ion-row>
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Đối tượng</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <i>
+            <ion-select class="selectSize" [(ngModel)]="object" interface="popover" placeholder="Chọn đối tượng trao đổi">
+              <ion-option value="a">Chọn đối tượng trao đổi1</ion-option>
+              <ion-option value="b">Chọn đối tượng trao đổi2</ion-option>
+            </ion-select>
+          </i>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-person"></ion-icon>
+        </ion-col>
+      </ion-row>
 
       <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Thời gian</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="time" interface="popover" placeholder="Chọn số ngày hiệu lực">
-          <ion-option value="a">Chọn số ngày hiệu lực1</ion-option>
-          <ion-option value="b">Chọn số ngày hiệu lực2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-calendar"></ion-icon>
-      </ion-col>
-    </ion-row>
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Thời gian</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <i>
+            <ion-select class="selectSize" [(ngModel)]="time" interface="popover" placeholder="Chọn số ngày hiệu lực">
+              <ion-option value="a">Chọn số ngày hiệu lực1</ion-option>
+              <ion-option value="b">Chọn số ngày hiệu lực2</ion-option>
+            </ion-select>
+          </i>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-calendar"></ion-icon>
+        </ion-col>
+      </ion-row>
 
       <ion-row class="marginRow">
-      <ion-col col-12>
-        <div class="divSize"><ion-label>Quà trao đổi</ion-label></div>
-      </ion-col>
-    </ion-row>
+        <ion-col col-12>
+          <div class="divSize">
+            <ion-label>Quà trao đổi</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
       <ion-row>
-      <ion-col class="marginRow" col-12>
-        <button class="buttonChoose" type="button" name="button"><ion-icon class="iconSize1" name="ios-add-circle-outline" ></ion-icon><br>Chọn quà</button>
-      </ion-col>
-      <ion-col>
-        <i>
-        <ion-item>
-          <ion-input class="item-ios" type="text" placeholder="Nhập ghi chú (tối đa 50 ký tự)"></ion-input>
-        </ion-item>
-        </i>
-      </ion-col>
-    </ion-row>
+        <ion-col class="marginRow" col-12>
+          <button class="buttonChoose" type="button" name="button" (click)="goToPage()">
+            <ion-icon class="iconSize1" name="ios-add-circle-outline"></ion-icon>
+            <br>Chọn quà</button>
+        </ion-col>
+        <ion-col>
+          <i>
+            <ion-item>
+              <ion-input class="item-ios" type="text" placeholder="Nhập ghi chú (tối đa 50 ký tự)"></ion-input>
+            </ion-item>
+          </i>
+        </ion-col>
+      </ion-row>
 
     </ion-grid>
   </div>

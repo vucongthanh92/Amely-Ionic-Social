@@ -27,6 +27,8 @@ import { FindFriendComponent } from '../components/find-friend/find-friend.compo
 import { AddFriendComponent } from '../components/add-friend/add-friend.component';
 import { NoteFriendComponent } from '../components/note-friend/note-friend.component';
 import { AddGroupComponent } from '../components/add-group/add-group.component';
+import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.component';
+
 
 @NgModule({
   imports: [
@@ -58,7 +60,8 @@ import { AddGroupComponent } from '../components/add-group/add-group.component';
     FindFriendComponent,
     AddFriendComponent,
     NoteFriendComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    ChooseItemComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -85,7 +88,8 @@ import { AddGroupComponent } from '../components/add-group/add-group.component';
     FindFriendComponent,
     AddFriendComponent,
     NoteFriendComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    ChooseItemComponent
   ],
   exports: [
     CategoriesComponent,
@@ -112,7 +116,8 @@ import { AddGroupComponent } from '../components/add-group/add-group.component';
     FindFriendComponent,
     AddFriendComponent,
     NoteFriendComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    ChooseItemComponent
   ]
 })
 export class SharedModule { }

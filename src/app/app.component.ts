@@ -11,6 +11,9 @@ import { SocialComponent } from './views/social/social.component';
 import { ShoppingComponent } from './views/shopping/shopping.component';
 import { InventoriesComponent } from './views/inventories/inventories.component';
 import { SettingsComponent } from './views/settings/settings.component';
+import { ChooseItemComponent } from './components/gift/choose-item/choose-item.component';
+
+
 
 @Component({
   templateUrl: 'app.html'
