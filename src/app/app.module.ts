@@ -35,7 +35,7 @@ import { MomentModule } from 'angular2-moment';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     StatusBar,
