@@ -1,0 +1,14 @@
+app-social{
+    .my-icon {
+        background-repeat: no-repeat;
+        background-position: 50%;
+        .my-search-inactive {
+            background-image: url('../img/my-search-inactive.svg');
+            background-size: 21px; // square icon
+        }
+        .my-search-active {
+            background-image: url('../img/my-search-active.svg');
+            background-size: 21px; // square icon
+        }
+}
+}

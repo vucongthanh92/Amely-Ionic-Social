@@ -23,7 +23,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = SigninComponent;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any,image: string}>;
 
   constructor(
     public platform: Platform, 
@@ -36,11 +36,11 @@ export class MyApp {
     
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Contact', component: PersonalComponent },
-      { title: 'Social', component: SocialComponent },
-      { title: 'Shopping', component: ShoppingComponent },
-      { title: 'Inventory', component: InventoriesComponent },
-      { title: 'Settings', component: SettingsComponent }
+      { title: 'Contact', component: PersonalComponent,image:'' },
+      { title: 'Social', component: SocialComponent, image:'assets/imgs/Social.png' },
+      { title: 'Shopping', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
+      { title: 'Inventory', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
+      { title: 'Settings', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
     ];
 
   }
