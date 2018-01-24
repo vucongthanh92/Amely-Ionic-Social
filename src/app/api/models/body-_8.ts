@@ -2,8 +2,8 @@
 
 /**
  */
-export class body {
-    invitation_type: string;
+export class body_8 {
     from_guid: string;
     to_guid: string;
+    invitation_type: string;
 }

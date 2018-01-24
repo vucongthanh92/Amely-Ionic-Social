@@ -1,9 +1,10 @@
 /* tslint:disable */
+import { Feed } from './feed';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200 {
-    token?: string;
-    status?: boolean;
-    error?: string;
+    post?: Feed;
+    users?: User[];
 }

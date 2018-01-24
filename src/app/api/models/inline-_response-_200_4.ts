@@ -1,10 +1,10 @@
 /* tslint:disable */
 import { DefaultResponse } from './default-response';
-import { Group } from './group';
+import { User } from './user';
 
 /**
  */
-export class inline_response_200_2 {
+export class inline_response_200_4 {
     result?: DefaultResponse;
-    group?: Group[];
+    user?: User;
 }
