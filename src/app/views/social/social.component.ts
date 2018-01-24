@@ -1,3 +1,4 @@
+import { MenuController, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { OffersComponent } from './offers/offers.component';
@@ -6,7 +7,8 @@ import { EventsComponent } from './events/events.component';
 
 @Component({
   selector: 'app-social',
-  templateUrl: './social.component.html'
+  templateUrl: './social.component.html',
+  
 })
 export class SocialComponent implements OnInit {
 
@@ -14,9 +16,14 @@ export class SocialComponent implements OnInit {
   tab2Root = OffersComponent;
   tab3Root = NearByComponent;
   tab4Root = EventsComponent;
-
-  constructor() { }
-
+  abcdef: any;
+  constructor(
+    public menuCtrl: MenuController
+  ) {
+    // this.menuCtrl.enable(true, 'mainMenu');
+    // this.abcdef = "dasdfas";
+    
+  }
   ngOnInit() {
   }
 

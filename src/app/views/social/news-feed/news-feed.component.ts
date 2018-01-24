@@ -32,7 +32,6 @@ export class NewsFeedComponent implements OnInit {
       this.moods = data.moods;
       this.shares = data.shares;
     });
-    
   }
 
   doInfinite(infiniteScroll) {

@@ -24,7 +24,7 @@ export class MyApp {
   rootPage: any = SigninComponent;
 
   pages: Array<{title: string, component: any,image: string}>;
-
+  
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
@@ -35,14 +35,6 @@ export class MyApp {
     this.initializeApp();
     
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Contact', component: PersonalComponent,image:'' },
-      { title: 'Social', component: SocialComponent, image:'assets/imgs/Social.png' },
-      { title: 'Shopping', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
-      { title: 'Inventory', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
-      { title: 'Settings', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
-    ];
-
   }
 
   initializeApp() {
@@ -53,12 +45,4 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
-
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-    this.menuCtrl.close();
-  }
-
 }
