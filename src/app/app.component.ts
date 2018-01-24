@@ -36,11 +36,11 @@ export class MyApp {
     
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Contact', component: PersonalComponent, image: '<img src="assets/imgs/Contact.png" />' },
-      { title: 'Social', component: SocialComponent, image: '<img src="assets/imgs/Social.png" />' },
-      { title: 'Shopping', component: ShoppingComponent, image: '<img src="assets/imgs/Shopping.png" />' },
-      { title: 'Inventory', component: InventoriesComponent, image: '<img src="assets/imgs/Inventory.png" />' },
-      { title: 'Settings', component: SettingsComponent, image: '<img src="assets/imgs/Settings.png" />' }
+      { title: 'Contact', component: PersonalComponent },
+      { title: 'Social', component: SocialComponent },
+      { title: 'Shopping', component: ShoppingComponent },
+      { title: 'Inventory', component: InventoriesComponent },
+      { title: 'Settings', component: SettingsComponent }
     ];
 
   }
