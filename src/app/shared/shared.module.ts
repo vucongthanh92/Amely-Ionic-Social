@@ -1,3 +1,4 @@
+import { GiftItemDetailComponent } from './../components/gift/gift-item-detail/gift-item-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
@@ -63,7 +64,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddFriendComponent,
     NoteFriendComponent,
     AddGroupComponent,
-    ChooseItemComponent
+    ChooseItemComponent,
+    GiftItemDetailComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -91,7 +93,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddFriendComponent,
     NoteFriendComponent,
     AddGroupComponent,
-    ChooseItemComponent
+    ChooseItemComponent,
+    GiftItemDetailComponent
   ],
   exports: [
     CategoriesComponent,
@@ -119,7 +122,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddFriendComponent,
     NoteFriendComponent,
     AddGroupComponent,
-    ChooseItemComponent
+    ChooseItemComponent,
+    GiftItemDetailComponent
   ]
 })
 export class SharedModule { }

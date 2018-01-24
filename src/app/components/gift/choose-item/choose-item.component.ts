@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { GiftItemDetailComponent } from '../gift-item-detail/gift-item-detail.component';
 
 @Component({
   selector: 'app-choose-item',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) {}
 
   ngOnInit() {
   }
 
+  goToDetail(){
+    this.appCtrl.getRootNav().push(GiftItemDetailComponent);
+  }
 }
