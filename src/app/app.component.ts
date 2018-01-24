@@ -33,9 +33,7 @@ export class MyApp {
     private api: ApiService
   ) {
     this.initializeApp();
-    this.api.getProfile({"username": "thinhn"}).subscribe( data => {
-
-    });
+    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Contact', component: PersonalComponent, image: '<img src="assets/imgs/Contact.png" />' },
