@@ -1202,7 +1202,7 @@ export class ApiService extends BaseService {
    * @param username - Global Unique IDentity
    * @param guid - Global Unique IDentity
    */
-  getProfileResponse(params: ApiService.GetProfileParams): Observable<HttpResponse<DefaultResponse>> {
+  getProfileResponse(params: ApiService.GetProfileParams): Observable<HttpResponse<User>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1222,9 +1222,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+        let _body: User = null;
+        _body = _resp.body as User
+        return _resp.clone({ body: _body }) as HttpResponse<User>;
       })
     );
   }
@@ -1234,7 +1234,7 @@ export class ApiService extends BaseService {
    * @param username - Global Unique IDentity
    * @param guid - Global Unique IDentity
    */
-  getProfile(params: ApiService.GetProfileParams): Observable<DefaultResponse> {
+  getProfile(params: ApiService.GetProfileParams): Observable<User> {
     return this.getProfileResponse(params).pipe(
       map(_r => _r.body)
     );

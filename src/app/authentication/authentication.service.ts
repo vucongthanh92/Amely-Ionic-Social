@@ -18,6 +18,7 @@ export class AuthenticationService {
 
   public setSession(authResponse) {
     localStorage.setItem('token', authResponse.token);
+    
     return true;
   }
 

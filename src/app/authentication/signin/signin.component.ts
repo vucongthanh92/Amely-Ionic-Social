@@ -1,9 +1,10 @@
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams , Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, MenuController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { SocialComponent } from '../../views/social/social.component';
 import { ToastController } from 'ionic-angular';
+import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 
 @Component({
   selector: 'app-signin',
@@ -16,8 +17,10 @@ export class SigninComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService, 
     public nav: NavController,
-    private toastCtrl: ToastController
-  ) { }
+    private toastCtrl: ToastController,
+    public menuCtrl: MenuController
+  ) { 
+  }
 
   ngOnInit() {
   }
@@ -34,7 +37,9 @@ export class SigninComponent implements OnInit {
         toast.present();
       } else {
         this.authenticationService.setSession(resp);
-        this.nav.setRoot(SocialComponent);    
+        // if () {
+          this.nav.setRoot(MainMenuComponent);
+        // }
       }
     });
   }

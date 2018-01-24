@@ -15,14 +15,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { MomentModule } from 'angular2-moment';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicPageModule.forChild(MainMenuComponent),
     AuthenticationModule,
     SharedModule,
     SocialModule,
