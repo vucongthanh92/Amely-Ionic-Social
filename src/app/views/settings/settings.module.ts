@@ -16,14 +16,14 @@ import { SettingPrivateComponent } from './setting-private/setting-private.compo
     SharedModule
   ],
   declarations: [
-  	SettingsComponent, 
-  	SettingSecurityComponent, 
+  	SettingsComponent,
+  	SettingSecurityComponent,
   	SettingGeneralComponent,
   	SettingPrivateComponent
   ],
   entryComponents: [
-    SettingsComponent, 
-  	SettingSecurityComponent, 
+    SettingsComponent,
+  	SettingSecurityComponent,
   	SettingGeneralComponent,
   	SettingPrivateComponent
   ]

@@ -32,7 +32,7 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     IonicModule,
   ],
   declarations: [
