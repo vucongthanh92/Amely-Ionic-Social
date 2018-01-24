@@ -1,3 +1,59 @@
 app-settings{
-    
+        
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=setting-general], .tab-button-icon[aria-label=setting-general] {
+            background-image: url(../assets/imgs/ic_setting_general.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=setting-general], .tab-button-icon[aria-label=setting-general] {
+            background-image: url(../assets/imgs/ic_setting_general_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+        
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=setting-private], .tab-button-icon[aria-label=setting-private] {
+            background-image: url(../assets/imgs/ic_setting_private.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=setting-private], .tab-button-icon[aria-label=setting-private] {
+            background-image: url(../assets/imgs/ic_setting_private_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+            
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=setting-security], .tab-button-icon[aria-label=setting-security] {
+            background-image: url(../assets/imgs/ic_setting_security.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=setting-security], .tab-button-icon[aria-label=setting-security] {
+            background-image: url(../assets/imgs/ic_setting_security_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
 }

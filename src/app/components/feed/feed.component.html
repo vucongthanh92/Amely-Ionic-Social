@@ -9,33 +9,34 @@
         <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
       </ion-col>
       <ion-col col-2>
-          <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
+        <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-item>
   <ion-list *ngIf="wallphotos">
     <ion-item *ngFor="let wallphoto of wallphotos">
-      <img width="100%"  src="{{ wallphoto }}" >
+      <img width="100%" src="{{ wallphoto }}">
     </ion-item>
   </ion-list>
-  
+
   <ion-card-content style="white-space: initial;">
     {{ description }}
   </ion-card-content>
   <ion-row>
     <ion-col>
       <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
+        <img id="icLikeComment" src="assets/imgs/ic_like.png">
         <!-- <div>{{ post.likes }} Thích</div> -->
       </button>
     </ion-col>
     <ion-col>
       <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
+        <img id="icLikeComment" src="assets/imgs/ic_comment.png">
+        <!-- <ion-icon name="text"></ion-icon> -->
         <!-- <div>{{ post.comments }} Bình luận</div> -->
       </button>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
- 
+
 </ion-card>
