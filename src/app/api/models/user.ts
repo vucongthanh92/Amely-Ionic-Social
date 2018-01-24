@@ -3,7 +3,7 @@ import { GUID } from './guid';
 
 /**
  */
-export class user {
+export class User {
     birthdate?: string;
     guid?: GUID;
     last_name?: string;

@@ -2,7 +2,7 @@
 
 /**
  */
-export class product {
+export class Product {
     is_special?: string;
     guid?: string;
     type?: string;

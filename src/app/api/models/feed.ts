@@ -3,7 +3,7 @@ import { GUID } from './guid';
 
 /**
  */
-export class feed {
+export class Feed {
     guid?: GUID;
     owner_guid: GUID;
     type?: string;

@@ -2,7 +2,7 @@
 
 /**
  */
-export class result {
+export class DefaultResponse {
     token?: string;
     error?: number;
     status?: boolean;

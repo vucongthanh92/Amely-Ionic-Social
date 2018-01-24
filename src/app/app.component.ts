@@ -1,3 +1,4 @@
+import { ApiService } from './api/services/api.service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,16 +25,24 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public menuCtrl: MenuController) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen, 
+    public menuCtrl: MenuController,
+    private api: ApiService
+  ) {
     this.initializeApp();
+    this.api.getProfile({"username": "thinhn"}).subscribe( data => {
 
+    });
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Contact', component: PersonalComponent },
-      { title: 'Social', component: SocialComponent },
-      { title: 'Shopping', component: ShoppingComponent },
-      { title: 'Inventory', component: InventoriesComponent },
-      { title: 'Settings', component: SettingsComponent }
+      { title: 'Contact', component: PersonalComponent, image: '<img src="assets/imgs/Contact.png" />' },
+      { title: 'Social', component: SocialComponent, image: '<img src="assets/imgs/Social.png" />' },
+      { title: 'Shopping', component: ShoppingComponent, image: '<img src="assets/imgs/Shopping.png" />' },
+      { title: 'Inventory', component: InventoriesComponent, image: '<img src="assets/imgs/Inventory.png" />' },
+      { title: 'Settings', component: SettingsComponent, image: '<img src="assets/imgs/Settings.png" />' }
     ];
 
   }

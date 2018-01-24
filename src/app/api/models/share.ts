@@ -1,10 +1,10 @@
 /* tslint:disable */
-import { feed } from './feed';
-import { product } from './product';
+import { Feed } from './feed';
+import { Product } from './product';
 
 /**
  */
-export class share {
-    posts?: feed[];
-    products?: product[];
+export class Share {
+    posts?: Feed[];
+    products?: Product[];
 }
