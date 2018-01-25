@@ -26,9 +26,9 @@ export class MyApp {
   pages: Array<{title: string, component: any,image: string}>;
   
   constructor(
-    public platform: Platform, 
-    public statusBar: StatusBar, 
-    public splashScreen: SplashScreen, 
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
     private api: ApiService
   ) {

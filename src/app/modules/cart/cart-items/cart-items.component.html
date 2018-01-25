@@ -1,3 +1,71 @@
-<p>
-  cart-items works!
-</p>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Giỏ hàng</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;">
+    <ion-row>
+    	<ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;" *ngFor="let number of [0,1,2,3]">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 style="margin-right: 15px;">
+              <img width="100%" src="assets/imgs/logo.png" />
+            </ion-col>
+            <ion-col col-6 class="ionContent">
+              <div>
+                <h4>Name</h4>
+              </div>
+              <div class="">
+                <h4 style="color: red; top: -10px; position: relative;">300,000 đ</h4>
+              </div>
+              <div class="list list-inline">
+                <button class="buttonIon" type="button" name="button"><ion-icon ios="md-remove" md="md-remove"></ion-icon></button>
+                <ion-input class="inputIon" type="text" placeholder="1"></ion-input>
+                <button class="buttonIon" type="button" name="button"><ion-icon ios="md-add" md="md-add"></ion-icon></button>
+              </div>
+            </ion-col>
+            <ion-col col-2>
+              <div class="divIcon">
+                <button style="background-color: #ffffff;" type="button" name="button">
+                  <ion-icon class="iconTrash" ios="ios-refresh" md="md-refresh"></ion-icon>
+                </button>
+                <br>
+                <button style="background-color: #ffffff;" type="button" name="button">
+                  <ion-icon class="iconTrash" ios="ios-trash" md="md-trash"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    	</ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<ion-footer style="background-color: #ffffff;">
+    <div padding-horizontal>
+      <ion-item>
+        Tổng sản phẩm
+        <ion-note class="ionNote" item-end>
+        33
+        </ion-note>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label>Tổng tiền : </ion-label>
+        <h4 style="color: red; ">300,000 đ</h4>
+      </ion-item> -->
+      <ion-item>
+        Tổng tiền
+        <ion-note class="ionNote" item-end>
+        300,000 đ
+        </ion-note>
+      </ion-item>
+    <div class="divVAT">
+      <ion-label><i>(Đã bao gồm VAT)</i></ion-label>
+    </div>
+    </div>
+
+    <button type="button" name="button" ion-button full no-margin>THANH TOÁN</button>
+</ion-footer>

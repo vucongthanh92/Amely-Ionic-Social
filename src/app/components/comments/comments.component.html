@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bình luận</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;">
+    <ion-row>
+    	<ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;  top: -10px;" *ngFor="let number of [0,1,2,3]">
+        <ion-grid>
+          <ion-row style="margin-bottom: 20px;">
+            <ion-item>
+               <ion-thumbnail item-start>
+                 <img width="100%" src="assets/imgs/logo.png" />
+               </ion-thumbnail>
+               <h2>NAME</h2>
+               <p><img style="max-width: 50%" src="assets/imgs/logo.png" /></p>
+               <p><i>25/01/2018</i></p>
+             </ion-item>
+          </ion-row>
+        </ion-grid>
+    	</ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-right color="royal">
+        <ion-icon style="font-size: 40px; color: #9E9E9E; left: -10px; position: relative;" name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-input placeholder="Nhập bình luận..."></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-right color="royal">
+        <ion-icon style="font-size: 40px; margin-right: 10px;" name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
