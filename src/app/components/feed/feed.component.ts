@@ -17,6 +17,8 @@ export class FeedComponent {
   @Input('post') post: Feed;
   @Input('user') user: User;
 
+  descriptionPost: string;
+
   constructor(
     public menuCtrl: MenuController, 
     public nav: NavController, 
@@ -35,13 +37,14 @@ export class FeedComponent {
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
       }
-
+      this.descriptionPost = this.post.description.post;
+      
       switch (this.post.item_type) {
         case 'profile:photo':
-          this.post.description.post = "Đã thay đổi hình đại diện";
+          this.descriptionPost = "Đã thay đổi hình đại diện";
           break;
         case 'cover:photo':
-          this.post.description.post = "Đã thay đổi ảnh bìa";
+          this.descriptionPost = "Đã thay đổi ảnh bìa";
           break;
       }
     }

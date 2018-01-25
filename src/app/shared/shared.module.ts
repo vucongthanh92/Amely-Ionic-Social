@@ -68,7 +68,7 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
-    InventoryListItemsComponent
+    InventoryListItemsComponent,
     FeedsComponent
   ],
   entryComponents: [
