@@ -30,14 +30,14 @@ export class FeedComponent {
 
   ngOnInit() {
     if (this.post) {
-      this.post.description = JSON.parse(this.post.description);
+      let description = JSON.parse(this.post.description);
       
       this.post.time_created = new Date(this.post.time_created * 1000);
       
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
       }
-      this.descriptionPost = this.post.description.post;
+      this.descriptionPost = description.post;
       
       switch (this.post.item_type) {
         case 'profile:photo':
@@ -48,7 +48,6 @@ export class FeedComponent {
           break;
       }
     }
-
   }
 
   openPopover(myEvent) {
