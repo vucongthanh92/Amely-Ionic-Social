@@ -1,11 +1,11 @@
 <ion-card style="margin: 12px 0px; width: 100%">
   <ion-item>
     <ion-avatar item-start>
-      <img src="test">
+      <img src="{{ user.avatar }}">
     </ion-avatar>
     <ion-row>
       <ion-col col-10>
-        <h2>dasd</h2>
+        <h2>{{ user.username }}</h2>
         <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
       </ion-col>
       <ion-col col-2>
@@ -13,27 +13,27 @@
       </ion-col>
     </ion-row>
   </ion-item>
-  <ion-list *ngIf="wallphotos">
-    <ion-item *ngFor="let wallphoto of wallphotos">
+  <ion-list *ngIf="hasWallPhoto">
+    <ion-item *ngFor="let wallphoto of post.wallphoto">
       <img width="100%" src="{{ wallphoto }}">
     </ion-item>
   </ion-list>
 
   <ion-card-content style="white-space: initial;">
-    {{ description }}
+    {{ post.description.post }}
   </ion-card-content>
   <ion-row>
     <ion-col>
       <button ion-button icon-left clear small>
         <img id="icLikeComment" src="assets/imgs/ic_like.png">
-        <!-- <div>{{ post.likes }} Thích</div> -->
+        <div>{{ post.likes }} Thích</div>
       </button>
     </ion-col>
     <ion-col>
       <button ion-button icon-left clear small>
         <img id="icLikeComment" src="assets/imgs/ic_comment.png">
         <!-- <ion-icon name="text"></ion-icon> -->
-        <!-- <div>{{ post.comments }} Bình luận</div> -->
+        <div>{{ post.comments }} Bình luận</div>
       </button>
     </ion-col>
     <ion-col></ion-col>
