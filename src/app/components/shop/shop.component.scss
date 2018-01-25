@@ -40,7 +40,50 @@ app-shop {
     margin-right: 10px;
   } 
 
-  .segment-button {
+ 
+  .segment-ios-primary .segment-button{
     border: 0px;
+    background-color: transparent; 
+    color: black;
+    height: 45px;
+  }
+
+  .segment-ios-primary .segment-button.segment-activated{
+    background-color: transparent;
+    color:blue;
+  }
+
+  .txtTitle{
+    clear: both;
+    margin-top: -19px;
+    font-size: 15px;
+  }
+
+   #tabIconProduct{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_friend.png);
+  }
+
+  .segment-activated img#tabIconProduct {
+    content:url(./../../assets/imgs/ic_friend_actived.png);
+  }
+
+   #tabIconInfo{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_friend.png);
+  }
+
+  .segment-activated img#tabIconInfo {
+    content:url(./../../assets/imgs/ic_friend_actived.png);
+  }
+
+  .iconSubTab{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
   }
 }

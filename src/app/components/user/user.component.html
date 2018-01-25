@@ -9,26 +9,35 @@
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="userTab">
-      <ion-segment-button value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;" (click)="goToPage('newfeeds');">
-        Cập nhật
+      <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px;border-right: 1px solid #eee;" (click)="goToPage('newfeeds');">
+        <img id="tabIconFeeds" />
+        <div class="txtTitle">Cập Nhật</div>
       </ion-segment-button>
-      <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;" (click)="goToPage('images');">
-        Hình ảnh
+      <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px;  border-right: 1px solid #eee;" (click)="goToPage('images');">
+        <img id="tabIconImage" /> <div class="txtTitle">Hình Ảnh</div>
       </ion-segment-button>
-      <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px" (click)="goToPage('friends');">
-        Bạn bè
+      <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; border-right: 1px solid #eee;" (click)="goToPage('friends');">
+        <img id="tabIconFriend" /><div class="txtTitle">Bạn Bè</div>
       </ion-segment-button>
     </ion-segment>
     <ion-row text-center>
-      <ion-col col-6>
+      <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage('gift');">
-          <ion-icon name="thumbs-up"></ion-icon>
+          <img class="iconSubTab" src="assets/imgs/ic_send_gift_blue.png" alt="ionic logo">
           <div>Tặng quà</div>
         </button>
       </ion-col>
-      <ion-col col-6>
+
+      <ion-col col-4>
+        <button ion-button icon-left clear small color="danger" >
+          <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
+          <div>Kết bạn</div>
+        </button>
+      </ion-col>
+
+      <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage('chat');">
-          <ion-icon name="text"></ion-icon>
+            <img  class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
           <div>Nhắn tin</div>
         </button>
       </ion-col>
@@ -45,7 +54,7 @@
     <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
       <ion-card-content>
         <ion-item (click)="goToPage('shop')">
-          <ion-icon name="football"></ion-icon> Cửa hàng
+          <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -53,25 +62,25 @@
       <ion-card-content>
         <ion-row>
           <ion-col col-6>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p  class="iconPage">
+            <img src="assets/imgs/ic_gender_male_gray.png" /> Nam  
             </p>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p class="iconPage">
+                <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20  (chưa có icon)
             </p>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p  class="iconPage">
+              <img src="assets/imgs/ic_birthday_gray.png" /> 20/11/2018
             </p>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p  class="iconPage">
+              <img src="assets/imgs/ic_phone_gray.png" /> 0906080704
             </p>
           </ion-col>
           <ion-col col-6>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p  class="iconPage">
+              <img src="assets/imgs/ic_send_mail_gray.png" /> Mood (chưa có icon)
             </p>
-            <p>
-              <ion-icon name="football"></ion-icon> Cửa hàng  
+            <p  class="iconPage">
+              <img src="assets/imgs/ic_send_mail_gray.png" /> 0/10 (chưa có icon)
             </p>
           </ion-col>
         </ion-row>

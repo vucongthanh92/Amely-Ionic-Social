@@ -1,3 +1,4 @@
+import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
 import { GiftItemDetailComponent } from './../components/gift/gift-item-detail/gift-item-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -65,7 +66,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    InventoryListItemsComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -94,7 +96,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    InventoryListItemsComponent
   ],
   exports: [
     CategoriesComponent,
@@ -123,7 +126,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    InventoryListItemsComponent
   ]
 })
 export class SharedModule { }

@@ -40,7 +40,77 @@ app-user {
     margin-right: 10px;
   } 
 
-  .segment-button {
+  .segment-ios-primary .segment-button{
     border: 0px;
+    background-color: transparent; 
+    color: black;
+    height: 45px;
+  }
+
+  .segment-ios-primary .segment-button.segment-activated{
+    background-color: transparent;
+    color:blue;
+  }
+  
+  #tabIconFeeds{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_feed.png);
+  }
+  .txtTitle{
+    clear: both;
+    margin-top: -19px;
+  }
+
+  .segment-activated img#tabIconFeeds {
+    content:url(./../../assets/imgs/ic_feed_actived.png);
+  }
+
+
+  #tabIconFriend{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_friend.png);
+  }
+
+  .segment-activated img#tabIconFriend {
+    content:url(./../../assets/imgs/ic_friend_actived.png);
+  }
+  
+  #tabIconImage{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_image.png);
+  }  
+
+  .segment-activated img#tabIconImage {
+    content:url(./../../assets/imgs/ic_image_actived.png);
+  }
+
+   .iconPage {
+     margin: 0 0 10px 0;
+   }
+
+  .iconPage img{
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 0 5px 0 0;
+  }
+
+  ion-card img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    float: left;
+  }
+
+  .iconSubTab{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
   }
 }
