@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Nav, Platform, MenuController, NavController, PopoverController, NavParams} from 'ionic-angular';
+import { App, Nav, Platform, MenuController, NavController, PopoverController, NavParams, Refresher} from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
+import { CommentsComponent } from '../comments/comments.component';
 
 import moment from 'moment';
 
@@ -9,19 +10,18 @@ import moment from 'moment';
   templateUrl: './feed.component.html'
 })
 export class FeedComponent {
-  
+
   @Input('contents') contents: any;
   @Input('post') post: any;
   @Input('user') user: any;
 
   description: any;
   wallphotos: any;
-  
+
   constructor(
-    public menuCtrl: MenuController, 
-    public nav: NavController, 
-    private popoverCtrl: PopoverController,
-    
+    public menuCtrl: MenuController,
+    public nav: NavController, public appCtrl: App,
+    private popoverCtrl: PopoverController
   ) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class FeedComponent {
       } else {
         this.wallphotos = false;
       }
-  
+
       switch (this.post.item_type) {
         case 'profile:photo':
           this.description = "Đã thay đổi hình đại diện";
@@ -45,6 +45,10 @@ export class FeedComponent {
       }
     }
 
+  }
+
+  changePage() {
+    this.appCtrl.getRootNav().push(CommentsComponent);
   }
 
   openPopover(myEvent) {

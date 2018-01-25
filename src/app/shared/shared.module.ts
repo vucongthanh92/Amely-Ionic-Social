@@ -31,6 +31,12 @@ import { NoteFriendComponent } from '../components/note-friend/note-friend.compo
 import { AddGroupComponent } from '../components/add-group/add-group.component';
 import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.component';
 
+import { CartItemsComponent } from '../modules/cart/cart-items/cart-items.component';
+import { CommentsComponent } from '../components/comments/comments.component';
+import { SearchComponent } from '../components/search/search.component';
+import { OffersItemDetailComponent } from '../views/social/offers/offers-item-detail/offers-item-detail.component';
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
+import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 
 @NgModule({
   imports: [
@@ -65,7 +71,13 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    CartItemsComponent,
+    CommentsComponent,
+    OffersItemDetailComponent,
+    SearchComponent,
+    ChangePasswordComponent,
+    ChangePhonenumberComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -94,7 +106,13 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    CartItemsComponent,
+    CommentsComponent,
+    OffersItemDetailComponent,
+    SearchComponent,
+    ChangePasswordComponent,
+    ChangePhonenumberComponent
   ],
   exports: [
     CategoriesComponent,
@@ -123,7 +141,13 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     NoteFriendComponent,
     AddGroupComponent,
     ChooseItemComponent,
-    GiftItemDetailComponent
+    GiftItemDetailComponent,
+    CartItemsComponent,
+    CommentsComponent,
+    OffersItemDetailComponent,
+    SearchComponent,
+    ChangePasswordComponent,
+    ChangePhonenumberComponent
   ]
 })
 export class SharedModule { }

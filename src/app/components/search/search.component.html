@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Tìm kiếm
+    </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="search">
+      <ion-segment-button value="peoples">
+        Người dùng
+      </ion-segment-button>
+      <ion-segment-button value="product">
+        Sản phẩm
+      </ion-segment-button>
+      <ion-segment-button value="store">
+        Cửa hàng
+      </ion-segment-button>
+      <ion-segment-button value="group">
+        Nhóm
+      </ion-segment-button>
+      <ion-segment-button value="event">
+        Sự kiện
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div [ngSwitch]="search">
+    <ion-list *ngSwitchCase="'peoples'">
+      <ion-item *ngFor="let number of [0,1,2,3]">
+        <ion-thumbnail item-start>
+          <img width="80%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <h2>NAMEEEEEEEEEEEE</h2>
+        <ion-thumbnail item-end>
+          <button type="button" name="button" ion-button style="height: 40px; width: 90px;">Thêm bạn</button>
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'product'">
+      <ion-item *ngFor="let number of [0,1,2,3]">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <h2>NAMEEEEEEEEEEEE</h2>
+        <h2 style="color: red; font-weight: bold;">300,000 đ</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'store'">
+      <ion-item *ngFor="let number of [0,1,2,3]">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <h2>NAMEEEEEEEEEEEE</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'group'">
+      <ion-item *ngFor="let number of [0,1,2,3]">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <h2>NAMEEEEEEEEEEEE</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'event'">
+      <ion-item *ngFor="let number of [0,1,2,3]">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <h2>NAMEEEEEEEEEEEE</h2>
+        <h2>25/01/2018</h2>
+      </ion-item>
+    </ion-list>
+
+
+  </div>
+</ion-content>

@@ -18,7 +18,7 @@
       <img width="100%"  src="{{ wallphoto }}" >
     </ion-item>
   </ion-list>
-  
+
   <ion-card-content style="white-space: initial;">
     {{ description }}
   </ion-card-content>
@@ -30,12 +30,12 @@
       </button>
     </ion-col>
     <ion-col>
-      <button ion-button icon-left clear small>
+      <button ion-button icon-left clear small (click)="changePage()">
         <ion-icon name="text"></ion-icon>
         <!-- <div>{{ post.comments }} Bình luận</div> -->
       </button>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
- 
+
 </ion-card>
