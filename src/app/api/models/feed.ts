@@ -1,15 +1,22 @@
 /* tslint:disable */
-import { GUID } from './guid';
+import { Mood } from './mood';
+import { Feed_description } from './feed-_description';
 
 /**
  */
 export class Feed {
-    guid?: GUID;
-    owner_guid: GUID;
+    access?: number;
+    guid?: number;
     type?: string;
-    content: string;
-    friends: string[];
-    location: string;
-    privacy: number;
-    ossn_photo: string;
+    subtype?: string;
+    mood?: Mood;
+    poster_guid?: number;
+    owner_guid?: number;
+    likes?: number;
+    comments?: number;
+    title?: string;
+    wallphoto?: string[];
+    description: string;
+    time_created: any;
+    item_type: string;
 }

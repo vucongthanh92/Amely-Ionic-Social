@@ -1,4 +1,5 @@
 import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
+import { FeedsComponent } from './../components/feeds/feeds.component';
 import { GiftItemDetailComponent } from './../components/gift/gift-item-detail/gift-item-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -68,6 +69,7 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     ChooseItemComponent,
     GiftItemDetailComponent,
     InventoryListItemsComponent
+    FeedsComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -97,7 +99,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
-    InventoryListItemsComponent
+    InventoryListItemsComponent,
+    FeedsComponent
   ],
   exports: [
     CategoriesComponent,
@@ -127,7 +130,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
-    InventoryListItemsComponent
+    InventoryListItemsComponent,
+    FeedsComponent
   ]
 })
 export class SharedModule { }

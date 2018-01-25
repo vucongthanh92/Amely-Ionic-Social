@@ -1,11 +1,10 @@
 /* tslint:disable */
-import { GUID } from './guid';
 
 /**
  */
 export class User {
     birthdate?: string;
-    guid?: GUID;
+    guid?: number;
     last_name?: string;
     first_name?: string;
     email?: string;

@@ -1,11 +1,10 @@
 /* tslint:disable */
-import { GUID } from './guid';
 import { User } from './user';
 
 /**
  */
 export class Group {
-    guid: GUID;
+    guid: number;
     name: string;
     members: User[];
 }

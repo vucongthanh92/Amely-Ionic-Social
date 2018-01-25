@@ -1,3 +1,4 @@
+import { FeedsService } from './services/feeds.service';
 import { ApiModule } from './api/api.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SharedModule } from './shared/shared.module';
@@ -44,6 +45,7 @@ import { MainMenuComponent } from './layout/main-menu/main-menu.component';
   providers: [
     StatusBar,
     SplashScreen,
+    FeedsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
