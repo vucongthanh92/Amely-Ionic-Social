@@ -26,13 +26,19 @@ export class MainMenuComponent implements OnInit {
     public menuCtrl: MenuController,
     private api: ApiService
   ) {
-    this.moodLocal = [
-      { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs' },
-      { guid: '7724' },
-      { guid: '7732' },
-      { guid: '7733' },
-    ]
-    localStorage.setItem("mood_local", this.moodLocal)
+    // this.moodLocal = [
+    //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
+    //   { guid: '7724', title: 'WANNA_GIFT', image: 'assets/imgs/ic_gift_4.png' },
+    //   { guid: '7732', title: 'WANNA_GET', image: 'assets/imgs/ic_gift_3.png' },
+    //   { guid: '7733', title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
+    // ]
+    this.moodLocal = {
+      7723: { title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
+      7724: { title: 'WANNA_GIFT', image: 'assets/imgs/ic_gift_4.png' },
+      7732: { title: 'WANNA_GET', image: 'assets/imgs/ic_gift_3.png' },
+      7733: { title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
+    }
+    localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
   }
 
   ngOnInit() {

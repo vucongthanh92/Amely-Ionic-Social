@@ -6,10 +6,15 @@
     <ion-row>
       <ion-col col-10>
         <h2>{{ user.username }}</h2>
+
         <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
       </ion-col>
       <ion-col col-2>
         <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="mood">
+        <a class="mood">{{mood.title}}</a>
+        <img id="iconMood" src="{{moodIcon.image}}">
       </ion-col>
     </ion-row>
   </ion-item>
@@ -22,18 +27,36 @@
   <ion-card-content style="white-space: initial;">
     {{ descriptionPost }}
   </ion-card-content>
+  <ion-row *ngIf="userTag" style="font-weight: 500">
+    -
+    <div *ngIf="isHideMoreTag; else elseSubArr">
+      <div *ngFor="let user of userTag" style="float: left">
+        <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+      </div>
+    </div>
+
+    <ng-template #elseSubArr>
+      <div>
+        <div *ngFor="let user of subArrUserTag" style="float: left">
+          <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+        </div>
+        <a *ngIf="isShowMoreTag" style="color: black;margin-right: 5px;">+{{userTag.length-3}}</a>
+      </div>
+    </ng-template>
+
+  </ion-row>
   <ion-row>
     <ion-col>
       <button ion-button icon-left clear small>
         <img id="icLikeComment" src="assets/imgs/ic_like.png">
-        <div>{{ post.likes }} Thích</div>
+        <div>&nbsp; {{ post.likes }} Thích</div>
       </button>
     </ion-col>
     <ion-col>
       <button ion-button icon-left clear small>
         <img id="icLikeComment" src="assets/imgs/ic_comment.png">
         <!-- <ion-icon name="text"></ion-icon> -->
-        <div>{{ post.comments }} Bình luận</div>
+        <div>&nbsp; {{ post.comments }} Bình luận</div>
       </button>
     </ion-col>
     <ion-col></ion-col>

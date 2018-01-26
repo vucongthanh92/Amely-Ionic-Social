@@ -8,6 +8,7 @@ import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
+import { locale } from 'angular2-moment/node_modules/moment';
 
 @Component({
   selector: 'app-user',
@@ -24,24 +25,30 @@ export class UserComponent {
   genderLabel: string;
   isUserCurrent: any;
   birthday: string;
-
+  iconMood: string;
+  moodLocal: any;
   constructor(public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
     public userService: UserService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-
+    this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
   }
 
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
     this.getUser().subscribe(data => {
+      console.log(data);
       this.user = data;
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
       this.isUserCurrent = this.userGuid == this.userCurrent.guid ? "true" : null;
       let date = new Date(data.birthdate);
       this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
+      if (this.user.mood != null) {
+        // this.iconMood= this.moodLocal.find(e=>e.guid===data.mood.guid).image;
+        this.iconMood = this.moodLocal[this.user.mood.guid].image;
+      }
 
     });
   }

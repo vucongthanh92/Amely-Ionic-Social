@@ -40,7 +40,6 @@ export class FeedsComponent implements OnInit {
         this.users = Object.assign(this.users, data.users);
         this.moods = Object.assign(this.moods, data.moods);
         this.shares = data.shares;
-
         this.offset = this.offset + data.posts.length;
       });
 
@@ -50,6 +49,22 @@ export class FeedsComponent implements OnInit {
 
   getPoster(poster_guid) {
     return this.users[poster_guid];
+  }
+
+  getMood(moodGuid) {
+    return this.moods[moodGuid];
+  }
+
+  getUsersTag(desc) {
+    let description = JSON.parse(desc);
+    let arrUserTag =[];
+    if (description.friend) {
+      let userGuidTag = description.friend.split(",");
+      userGuidTag.forEach(e => {
+        arrUserTag.push(this.users[e])
+      });
+    }   
+    return arrUserTag;
   }
 
 }
