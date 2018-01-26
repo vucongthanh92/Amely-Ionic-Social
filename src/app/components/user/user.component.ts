@@ -1,5 +1,8 @@
+import { User } from './../../api/models/user';
+import { guid } from './../../api/models/guid';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController, Refresher, NavParams } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
@@ -12,12 +15,44 @@ import { GiftComponent } from '../gift/gift.component';
 })
 
 export class UserComponent {
-  
-  constructor(public nav: NavController, public appCtrl: App) {}
+  userGuid: string;
+  username: string;
+  user: any;
+  feed_type = "user";
+  userCurrent: any;
+  genderIcon: string;
+  genderLabel: string;
+  isUserCurrent: any;
+  birthday: string;
 
-  ngOnInit() {
+  constructor(public nav: NavController,
+    public appCtrl: App,
+    public navParams: NavParams,
+    public userService: UserService) {
+    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+
   }
 
+  ngOnInit() {
+    this.userGuid = this.navParams.get('userGuid');
+    this.getUser().subscribe(data => {
+      this.user = data;
+      this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
+      this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
+      this.isUserCurrent = this.userGuid == this.userCurrent.guid ? "true" : null;
+      let date = new Date(data.birthdate);
+      this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
+
+    });
+  }
+
+  getUser() {
+    if (this.userGuid) {
+      return this.userService.getUser(null, this.userGuid);
+    } else if (this.username) {
+      return this.userService.getUser(null, this.userGuid);
+    }
+  }
   changePageAlbum() {
     this.nav.push(AlbumComponent);
   }
@@ -26,14 +61,14 @@ export class UserComponent {
     this.nav.push(FriendsComponent);
   }
 
-  refreshPage(){
+  refreshPage() {
     this.nav.setRoot(UserComponent);
   }
 
   doRefresh(refresher: Refresher) {
     console.log('DOREFRESH', refresher);
 
-      refresher.complete();
+    refresher.complete();
   }
 
   doPulling(refresher: Refresher) {

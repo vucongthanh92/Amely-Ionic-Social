@@ -11,22 +11,22 @@ import { MessageComponent } from '../../../../components/message/message.compone
 export class ContactUsersComponent implements OnInit {
 
   constructor(
-    public nav: NavController, 
+    public nav: NavController,
     public appCtrl: App,
     private personalService: PersonalService
 
-  ) {}
+  ) { }
   friends: any;
   ngOnInit() {
     this.getFriends();
   }
 
-  goToPage() {
-  	this.appCtrl.getRootNav().push(UserComponent);
+  goToPage(friend: any) {
+    this.appCtrl.getRootNav().push(UserComponent, { userGuid: friend.guid });
   }
 
   goToPageChat() {
-  	this.appCtrl.getRootNav().push(MessageComponent);
+    this.appCtrl.getRootNav().push(MessageComponent);
   }
 
   getFriends() {

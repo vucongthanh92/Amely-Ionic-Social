@@ -18,6 +18,7 @@ import { MyApp } from './app.component';
 import { MomentModule } from 'angular2-moment';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MainMenuComponent } from './layout/main-menu/main-menu.component';
     StatusBar,
     SplashScreen,
     FeedsService,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
