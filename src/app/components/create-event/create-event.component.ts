@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher, ViewController } from 'ionic-angular';
-import { EventsComponent } from '../../views/social/events/events.component';
+import { App, NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-create-event',

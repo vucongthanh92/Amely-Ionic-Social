@@ -1,10 +1,7 @@
 import { PersonalService } from './../personal.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
 
-import { MessagesComponent } from '../messages/messages.component';
-import { ContactUsersComponent } from './contact-users/contact-users.component';
-import { ContactGroupsComponent } from './contact-groups/contact-groups.component';
 import { AddFriendComponent } from '../../../components/add-friend/add-friend.component';
 import { AddGroupComponent } from '../../../components/add-group/add-group.component';
 

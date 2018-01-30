@@ -1,4 +1,4 @@
-import { MenuController, NavController } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { OffersComponent } from './offers/offers.component';

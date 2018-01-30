@@ -2,7 +2,7 @@ import { Group } from './../../../../api/models/group';
 import { User } from './../../../../api/models/user';
 import { GroupService } from './../../../../services/group.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { GroupComponent } from '../../../../components/group/group.component';
 import { MessageComponent } from '../../../../components/message/message.component';
 
@@ -13,8 +13,8 @@ import { MessageComponent } from '../../../../components/message/message.compone
 })
 export class ContactGroupsComponent implements OnInit {
 
-  private groups: any;
-  private users: any;
+  private groups: Group[];
+  private users: User[];
   private userCurrent: User;
   constructor(public nav: NavController, public appCtrl: App, public groupService: GroupService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));

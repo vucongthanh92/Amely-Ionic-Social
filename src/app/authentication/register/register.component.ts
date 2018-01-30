@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VerifycodeComponent } from "./../verifycode/verifycode.component";
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-register',

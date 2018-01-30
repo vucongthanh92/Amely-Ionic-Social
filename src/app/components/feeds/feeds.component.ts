@@ -1,7 +1,7 @@
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
-import { Directive, Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Feed } from '../../api/models/feed';
 
 @Component({

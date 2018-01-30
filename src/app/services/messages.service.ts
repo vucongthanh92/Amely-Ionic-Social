@@ -40,4 +40,9 @@ export class MessagesService {
     let path = "/shared/messages/" + keyChat;
     return this.afDatabase.list(path).push(message);
   }
+
+  getGift(subjectId, username) {
+    let path = "/notifications/" + username;
+    return this.afDatabase.list(path).query.orderByChild('subject_guid').equalTo(subjectId);
+  }
 }

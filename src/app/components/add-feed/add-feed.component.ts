@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
-import { SocialComponent } from '../../views/social/social.component';
+import { App, NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-add-feed',

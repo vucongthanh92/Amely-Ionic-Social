@@ -1,7 +1,5 @@
-import { User } from './../../api/models/user';
-import { guid } from './../../api/models/guid';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { App, NavController, Refresher, NavParams } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';

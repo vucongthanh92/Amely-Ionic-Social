@@ -1,18 +1,9 @@
-import { ApiService } from './api/services/api.service';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CategoriesComponent } from './components/categories/categories.component';
-import { ProductsFeatureComponent } from './components/products-feature/products-feature.component';
-import { SigninComponent } from './authentication/signin/signin.component';
 
-import { PersonalComponent } from './views/personal/personal.component';
-import { SocialComponent } from './views/social/social.component';
-import { ShoppingComponent } from './views/shopping/shopping.component';
-import { InventoriesComponent } from './views/inventories/inventories.component';
-import { SettingsComponent } from './views/settings/settings.component';
-import { ChooseItemComponent } from './components/gift/choose-item/choose-item.component';
+import { SigninComponent } from './authentication/signin/signin.component';
 
 
 
@@ -30,8 +21,7 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public menuCtrl: MenuController,
-    private api: ApiService
+    public menuCtrl: MenuController
   ) {
     this.initializeApp();
   }

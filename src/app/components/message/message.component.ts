@@ -1,9 +1,11 @@
+import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
-import { ToastController, AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 @Component({
   selector: 'app-message',
@@ -12,7 +14,7 @@ import { Content } from 'ionic-angular';
 
 export class MessageComponent implements OnInit {
 
-  userCurrent: any;
+  userCurrent: User;
   param: any;
   messages: any;
   messageText = null;
@@ -20,12 +22,18 @@ export class MessageComponent implements OnInit {
   @ViewChild(Content) content: Content
 
   constructor(
+    private imagePicker: ImagePicker,
     private toastCtrl: ToastController,
     public messagesService: MessagesService,
     public navParams: NavParams,
     public nav: NavController, 
     public appCtrl: App) 
     {
+      this.imagePicker.getPictures({}).then((results) => {
+        for (var i = 0; i < results.length; i++) {
+          console.log('Image URI: ' + results[i]);
+        }
+      }, (err) => { });
       this.param = this.navParams.get("param");
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
@@ -34,6 +42,20 @@ export class MessageComponent implements OnInit {
         itemsSnapshot.forEach( items => {
           if (items.hasChildren()) {
             let object = items.val();
+            if (object.attachment) {
+              let sender = this.userCurrent.username;
+              if (object.from == this.userCurrent.username ) {
+                object.isSender = true;
+                sender = this.param.from;
+              }
+              let subjectId = object.attachment.url;
+              this.messagesService.getGift(subjectId, sender).on('value', gift => {
+                gift.forEach(g => {
+                  object.gift = g.val();
+                  return false;
+                });
+              });
+            }
             if (object.from == this.userCurrent.username) {
               object.isSender = true;
             } else {

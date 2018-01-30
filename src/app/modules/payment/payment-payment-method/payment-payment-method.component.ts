@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { PaymentOptionsAtmComponent } from '../payment-payment-options/payment-options-atm/payment-options-atm.component';
 import { PaymentOptionsPaypalComponent } from '../payment-payment-options/payment-options-paypal/payment-options-paypal.component';
 import { PaymentOptionsVisaComponent } from '../payment-payment-options/payment-options-visa/payment-options-visa.component';

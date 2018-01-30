@@ -1,7 +1,5 @@
 
 import { Injectable } from '@angular/core';
-import { Component, ViewChild } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../api/services/api.service';
 
 @Injectable()

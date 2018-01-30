@@ -1,5 +1,5 @@
 
-import { Nav, MenuController, NavController } from 'ionic-angular';
+import { Nav, MenuController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 

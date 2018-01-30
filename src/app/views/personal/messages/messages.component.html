@@ -16,25 +16,22 @@
             <time>{{ individual.time | amTimeAgo }}</time>
           </p>
         </ion-col>
-        <ion-col col-3>
-          
-        </ion-col>
       </ion-row>
     </ion-item>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf="groups" >
     <h3>Nhom</h3>
-    <ion-item (click)="goToPage()">
+    <ion-item *ngFor="let group of groups" (click)="goToPage(group)">
       <ion-row>
         <ion-col col-3>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" src="{{ group.avatar }}" />
         </ion-col>
-        <ion-col col-6>
-          Thông tin tài khoản gốc
-          <br> Khung qua may
-        </ion-col>
-        <ion-col col-3>
-          Nov 17,2017
+        <ion-col col-9>
+          <p>{{ group.title }}</p>
+          <p>{{ group.last_message }}</p>
+          <p text-right style="font-size: 10px">
+            <time>{{ group.last_time | amTimeAgo }}</time>
+          </p>
         </ion-col>
       </ion-row>
     </ion-item>

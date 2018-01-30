@@ -16,6 +16,18 @@
         </div>
         <div class="msg-content">
           <span class="triangle"></span>
+          <div *ngIf="message.gift">
+            <p> Đã tặng {{ message.gift.item_quantity }} {{ message.gift.item_title }}</p>
+            <img width="100%" src="{{ message.gift.item_image }}" />
+            <ion-row *ngIf="!message.isSender">
+              <ion-col col-6>
+                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button round color="danger" style="padding: 10px" small>Từ chối</button>
+              </ion-col>
+              <ion-col col-6>
+                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button round color="secondary" style="padding: 10px" small>Chập nhận</button>
+              </ion-col>
+            </ion-row>
+          </div>
           <p class="line-breaker ">{{ message.text }}</p>
           <time style="font-size: 10px; color: #eee;">{{ message.time | amTimeAgo }}</time>
         </div>
