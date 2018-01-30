@@ -8,7 +8,6 @@ import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
-import { locale } from 'angular2-moment/node_modules/moment';
 
 @Component({
   selector: 'app-user',

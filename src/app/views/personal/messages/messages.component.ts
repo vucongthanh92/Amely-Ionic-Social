@@ -55,10 +55,6 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  getAvatar(username) {
-    
-  }
-
   goToPage(value) {
     this.nav.push(MessageComponent, { param: value });
   }
