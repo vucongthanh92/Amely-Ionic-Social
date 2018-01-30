@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
@@ -9,7 +10,8 @@ import { MessagesComponent } from './messages.component';
   imports: [
     CommonModule,
     IonicModule,
-    SharedModule
+    SharedModule,
+    MomentModule
   ],
   declarations: [
   	MessagesComponent

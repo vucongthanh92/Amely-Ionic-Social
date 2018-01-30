@@ -32,6 +32,7 @@ import { AddFriendComponent } from '../components/add-friend/add-friend.componen
 import { NoteFriendComponent } from '../components/note-friend/note-friend.component';
 import { AddGroupComponent } from '../components/add-group/add-group.component';
 import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.component';
+import { LayoutPersonalComponent } from '../layout/layout-personal/layout-personal.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     ChooseItemComponent,
     GiftItemDetailComponent,
     InventoryListItemsComponent,
-    FeedsComponent
+    FeedsComponent,
+    LayoutPersonalComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -100,7 +102,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     ChooseItemComponent,
     GiftItemDetailComponent,
     InventoryListItemsComponent,
-    FeedsComponent
+    FeedsComponent,
+    LayoutPersonalComponent
   ],
   exports: [
     CategoriesComponent,
@@ -131,7 +134,8 @@ import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.
     ChooseItemComponent,
     GiftItemDetailComponent,
     InventoryListItemsComponent,
-    FeedsComponent
+    FeedsComponent,
+    LayoutPersonalComponent
   ]
 })
 export class SharedModule { }

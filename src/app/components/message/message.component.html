@@ -1,94 +1,23 @@
-<ion-header>
+<ion-header >
 
-    <ion-navbar>
+    <ion-navbar >
         <ion-title>asda</ion-title>
     </ion-navbar>
 
 </ion-header>
 
-<ion-content>
+<ion-content has-header="false" padding="true" has-tabs="false" hide-nav-bar="true">
   <div class="message-wrap">
-    <div class="message left">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
+    <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
+      <img *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}" alt="ionic logo">
       <div class="msg-detail">
         <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
+          <p>{{ message.from }}</p>
         </div>
         <div class="msg-content">
           <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
-        </div>
-      </div>
-    </div>
-    <div class="message left">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
-        </div>
-      </div>
-    </div>
-    <div class="message right">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting</p>
-        </div>
-      </div>
-    </div>
-    <div class="message left">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
-        </div>
-      </div>
-    </div>
-    <div class="message right">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
-        </div>
-      </div>
-    </div>
-    <div class="message left">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
-        </div>
-      </div>
-    </div>
-    <div class="message right">
-      <img class="user-img" src="assets/imgs/logo.png" alt="ionic logo">
-      <div class="msg-detail">
-        <div class="msg-info">
-          <p>das12&nbsp;&nbsp;&nbsp;2132</p>
-        </div>
-        <div class="msg-content">
-          <span class="triangle"></span>
-          <p class="line-breaker ">cvbcvb</p>
+          <p class="line-breaker ">{{ message.text }}</p>
+          <time style="font-size: 10px; color: #eee;">{{ message.time | amTimeAgo }}</time>
         </div>
       </div>
     </div>
@@ -120,11 +49,11 @@
       </button>
     </ion-col>
     <ion-col col-8>
-      <ion-textarea #chat_input placeholder="Text Input">
+      <ion-textarea #chat_input [(ngModel)]="messageText" name="title" placeholder="Text Input">
       </ion-textarea>
     </ion-col>
     <ion-col col-2>
-      <button ion-button clear icon-only item-right (click)="sendMsg()">
+      <button ion-button clear icon-only item-right (click)="sendMessage()">
           <img src="assets/imgs/ic_send_blue.png">
         <!-- <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon> -->
       </button>

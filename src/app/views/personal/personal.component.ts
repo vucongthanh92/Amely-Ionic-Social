@@ -28,11 +28,6 @@ export class PersonalComponent implements OnInit {
     this.nav.push(PersonalMenuComponent);
   }
 
-  openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PersonalMenuComponent);
-    popover.present({
-      ev: myEvent
-    });
-  }
+  
 
 }
