@@ -1,3 +1,47 @@
-<p>
-  payment-payment-method works!
-</p>
+<ion-header>
+  <ion-navbar>
+   <button ion-button icon-only menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+
+   <ion-title>
+     Phương thức thanh toán
+   </ion-title>
+
+ </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;">
+    <ion-list>
+      <button ion-item (click)="changePagePaypal()">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <ion-label>Tài khoản Paypal</ion-label>
+      </button>
+      <button ion-item (click)="changePageWallet()">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <ion-label>Ví của tôi</ion-label>
+      </button>
+      <button ion-item (click)="changePageVisa()">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <ion-label>Thẻ quốc tế Visa/Master</ion-label>
+      </button>
+      <button ion-item (click)="changePageAtm()">
+        <ion-thumbnail item-start>
+          <img width="100%" src="assets/imgs/logo.png" />
+        </ion-thumbnail>
+        <ion-label>Thẻ ATM nội địa</ion-label>
+      </button>
+    </ion-list>
+
+  </div>
+
+</ion-content>

@@ -1,3 +1,70 @@
-<p>
-  payment-customer-info works!
-</p>
+<ion-header>
+  <ion-navbar>
+   <button ion-button icon-only menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+
+   <ion-title>
+     Thông tin khách hàng
+   </ion-title>
+
+   <ion-buttons end>
+     <button ion-button icon-only (click)="changePage()">
+       Next <ion-icon name="arrow-forward"></ion-icon>
+     </button>
+   </ion-buttons>
+ </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;">
+    <ion-list>
+
+  <ion-item>
+    <ion-label stacked>Họ tên</ion-label>
+    <ion-input type="text" placeholder="Nguyen Van A"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Số điện thoại</ion-label>
+    <ion-input type="text" placeholder="0909999999"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Địa chỉ</ion-label>
+    <ion-input type="text" placeholder="Việt Nam"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Ghi chú</ion-label>
+    <ion-input type="text" placeholder="abc..."></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Thành phố / Tỉnh</ion-label>
+    <ion-select>
+      <ion-option value="1">TPHCM</ion-option>
+      <ion-option value="2">Hà Nội</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Quận</ion-label>
+    <ion-select>
+      <ion-option value="1">1</ion-option>
+      <ion-option value="2">2</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Huyện</ion-label>
+    <ion-select>
+      <ion-option value="1">aaa</ion-option>
+      <ion-option value="2">bbbb</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+  </div>
+
+  <div style="background-color: #fff;">
+
+  </div>
+</ion-content>

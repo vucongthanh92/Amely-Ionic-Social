@@ -1,0 +1,68 @@
+app-payment-items{
+  .buttonIon {
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: inset;
+    background-color: #ffffff;
+  }
+
+  .inputIon {
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: inset;
+    background-color: #ffffff;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .text-input-ios {
+    margin: 7px 8px 11px 4px;
+  }
+  .list.list-inline {
+    display: -moz-box;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    top: -12px;
+    position: relative;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+  .divVAT {
+    position: relative;
+    top: -10px;
+    font-size: 12px;
+  }
+  .ionNote {
+    color: red;
+    font-weight: bold;
+  }
+  .item-ios {
+  padding-left: 0 !important;
+  border-radius: 0;
+  position: relative;
+  font-size: 1.7rem;
+  color: #000;
+  background-color: #ffffff;
+  -webkit-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+  }
+  .item-ios.item-block .item-inner {
+  border-bottom: 0.55px solid #eee !important;
+  }
+  .iconTrash {
+    font-size: 2.2em;
+    color: #b1b1b1;
+  }
+  .divIcon {
+    position: relative;
+    top: 20px;
+    margin-left: 40px;
+  }
+}

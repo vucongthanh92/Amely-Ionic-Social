@@ -1,4 +1,15 @@
-app-cart-items{
+ app-inventory-gift {
+   .box{
+      height:100%;
+    }
+    .item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
+      width: 80px;
+      height: 80px;
+    }
+    .scrollable{
+      height: 200px;
+      border: 2px solid red;
+    }
     .buttonIon {
       width: 50px;
       height: 30px;
@@ -31,20 +42,8 @@ app-cart-items{
       top: -12px;
       position: relative;
     }
-    h4 {
-      font-size: 1.5rem;
-    }
-    .divVAT {
-      position: relative;
-      top: -10px;
-      font-size: 12px;
-    }
-    .ionNote {
-      color: red;
-      font-weight: bold;
-    }
     .item-ios {
-    padding-left: 0 !important;
+    padding-left: 10px !important;
     border-radius: 0;
     position: relative;
     font-size: 1.7rem;
@@ -54,15 +53,31 @@ app-cart-items{
     transition: background-color 200ms linear;
     }
     .item-ios.item-block .item-inner {
-    border-bottom: 0.55px solid #eee !important;
+    border-bottom: 0.55px #eee !important;
     }
-    .iconTrash {
-      font-size: 2.2em;
-      color: #b1b1b1;
+    .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: block;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     }
-    .divIcon {
-      position: relative;
-      top: 20px;
-      margin-left: 40px;
-    }
+    .slider-pager {
+	top: 0;
+	bottom: initial;
 }
+ }

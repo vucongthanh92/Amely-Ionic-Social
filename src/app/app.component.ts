@@ -15,6 +15,7 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { ChooseItemComponent } from './components/gift/choose-item/choose-item.component';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
