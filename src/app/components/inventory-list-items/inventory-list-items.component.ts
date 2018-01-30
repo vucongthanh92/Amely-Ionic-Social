@@ -11,24 +11,34 @@ export class InventoryListItemsComponent implements OnInit {
 
   @Input('inventory_type') inventory_type: any;
 
-  types: Array<{ title: string,image: string }>;
+  @Input('badgeNew') badgeNew: number;
+  @Input('badgeWishList') badgeWishList: number;
+  @Input('badgeExpired') badgeExpired: number;
+  @Input('badgeNonExpiry') badgeNonExpiry: number;
+  @Input('badgeExpiry') badgeExpiry: number;
+  @Input('badgeVoucher') badgeVoucher: number;
+  @Input('badgeTicket') badgeTicket: number;
+  @Input('badgeNearlyExpiry') badgeNearlyExpiry: number;
+  @Input('badgeNearlyStored') badgeNearlyStored: number;
+  @Input('badgeGiveList') badgeGiveList: number;
+  @Input('badgeStored') badgeStored: number;
+  types: Array<{ title: string, image: string, badge:number}>;
 
   constructor(public nav: NavController, public appCtrl: App) { }
 
   ngOnInit() {
-    console.log(this.inventory_type);
     this.initTypes();
   }
 
-  initTypes(){
-    this.types=[
-      { title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png'},
-      { title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png'},
-      { title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png'},
-      { title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png'},
-      { title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png'},
-      { title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png'},
-      { title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png'},
+  initTypes() {
+    this.types = [
+      { title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png', badge: this.badgeNew },
+      { title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png', badge: this.badgeWishList},
+      { title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png', badge: this.badgeNew},
+      { title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png', badge: this.badgeNew},
+      { title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png', badge: this.badgeNew },
+      { title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png', badge: this.badgeNew},
+      { title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png', badge: this.badgeNew},
     ]
   }
 

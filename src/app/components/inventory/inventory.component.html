@@ -1,49 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Kho</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Kho</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content class="content">
 	<ion-row>
 		<ion-col col-12 text-center style="background-color: #fff">
-		    <img width="30px" height="30px" src="assets/imgs/logo.png" /> <span>vi111pham</span>
+			<img width="30px" height="30px" src="assets/imgs/logo.png" />
+			<span>vi111pham</span>
 		</ion-col>
 		<ion-col col-6>
-		  	<ion-card style="margin:0px; width: 100%">
-			  <ion-card-header>
-			    <ion-icon name="calculator"> Group co kho</ion-icon>
-			  </ion-card-header>
+			<ion-card style="margin:0px; width: 100%">
+				<ion-card-header>
+					<ion-icon name="calculator"> Group co kho</ion-icon>
+				</ion-card-header>
 			</ion-card>
 		</ion-col>
 		<ion-col col-6>
 			<ion-card style="margin:0px; width: 100%">
-			  <ion-card-header>
-				<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :
-			  </ion-card-header>
+				<ion-card-header>
+					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :
+				</ion-card-header>
 			</ion-card>
 		</ion-col>
 	</ion-row>
 
 	<ion-grid>
-	  <app-inventory-list-items [inventory_type]="home" ></app-inventory-list-items>
+		<app-inventory-list-items [badgeNew]="badgeNew" [badgeWishList]="badgeWishList" [badgeExpired]="badgeExpired" [badgeNonExpiry]="badgeNonExpiry"
+		 [badgeExpiry]="badgeExpiry" [badgeVoucher]="badgeVoucher" [badgeTicket]="badgeTicket" [badgeNearlyExpiry]="" [badgeNearlyStored]="badgeNearlyStored"
+		 [badgeGiveList]="badgeGiveList" [badgeStored]="badgeStored"></app-inventory-list-items>
 	</ion-grid>
 
 </ion-content>
 <ion-footer>
-  <ion-toolbar class="toolbarFooter">
-    <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button block (click)="goToPage('items')">Sắp hết hạn dùng</button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button block (click)="goToPage('items')">Sắp hết hạn lưu kho</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </ion-toolbar>
+	<ion-toolbar class="toolbarFooter">
+		<ion-grid>
+			<ion-row>
+				<ion-col col-6>
+					<button ion-button block (click)="goToPage('items')">Sắp hết hạn dùng</button>
+				</ion-col>
+				<ion-col col-6>
+					<button ion-button block (click)="goToPage('items')">Sắp hết hạn lưu kho</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-toolbar>
 </ion-footer>

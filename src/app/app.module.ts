@@ -1,3 +1,4 @@
+import { GroupService } from './services/group.service';
 import { FeedsService } from './services/feeds.service';
 import { ApiModule } from './api/api.module';
 import { AuthenticationModule } from './authentication/authentication.module';
@@ -19,6 +20,7 @@ import { MomentModule } from 'angular2-moment';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 import { UserService } from './services/user.service';
+import { InventoriesService } from './services/inventories.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { UserService } from './services/user.service';
     SplashScreen,
     FeedsService,
     UserService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    GroupService,
+    InventoriesService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

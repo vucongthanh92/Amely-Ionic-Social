@@ -9,6 +9,6 @@ export class body_3 {
     privacy: string;
     mood: string;
     images: string;
-    owner_guid?: string;
+    owner_guid?: number;
     type?: string;
 }

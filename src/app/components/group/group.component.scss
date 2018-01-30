@@ -40,7 +40,55 @@ app-group {
     margin-right: 10px;
   } 
 
-  .segment-button {
+
+  
+  .segment-ios-primary .segment-button{
     border: 0px;
+    background-color: transparent; 
+    color: black;
+    height: 45px;
   }
+
+  .segment-ios-primary .segment-button.segment-activated{
+    background-color: transparent;
+    color:blue;
+  }
+  
+  .txtTitle{
+    clear: both;
+    font-size: 14px;
+    margin-top: -14px;
+  }
+
+  #tabIconFeeds{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_feed.png);
+  }
+
+  .segment-activated img#tabIconFeeds {
+    content:url(./../../assets/imgs/ic_feed_actived.png);
+  }
+
+  
+
+  #tabIconMember{
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    content:url(./../../assets/imgs/ic_friend.png);
+  }
+
+  .segment-activated img#tabIconMember {
+    content:url(./../../assets/imgs/ic_friend_actived.png);
+  }
+
+  .iconGroup{
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+  }
+
 }

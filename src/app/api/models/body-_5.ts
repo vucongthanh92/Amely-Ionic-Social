@@ -3,13 +3,13 @@
 /**
  */
 export class body_5 {
-    post_guid: string;
+    post_guid: number;
     content: string;
     friends: string;
     location: string;
     privacy: string;
     mood: string;
     images: string;
-    owner_guid?: string;
+    owner_guid?: number;
     type?: string;
 }

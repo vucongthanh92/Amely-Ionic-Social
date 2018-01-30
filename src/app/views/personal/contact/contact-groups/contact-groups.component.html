@@ -1,36 +1,36 @@
 <ion-list>
-  <ion-item *ngFor="let number of [0,1,2,3,4]" >
+  <ion-item *ngFor="let group of groups" >
     <ion-row>
-      <ion-col col-3 (click)="goToPage()">
-        <img width="100%" src="assets/imgs/logo.png" />
+      <ion-col col-3 (click)="goToPage(group.guid)">
+        <img  id="imgAvatar" src="{{group.avatar}}" />
       </ion-col>
-      <ion-col col-7 (click)="goToPage()">
-        Thông tin tài khoản gốc <br>
+      <ion-col col-7 (click)="goToPage(group.guid)">
+       {{group.title}} <br>
         <div style="position: absolute; bottom: 0;">
           <ion-row >
             <ion-col col-2>
-              <img width="100%" src="assets/imgs/ic_like.png" />
+              <img  class="imgInfo" src="assets/imgs/ic_user_admin_gray.png" />
+            </ion-col>
+            <ion-col col-2 class="textInfo">
+              {{getOwner(group.owner_guid).fullname}}
             </ion-col>
             <ion-col col-2>
-              Duy
+              <img  class="imgInfo" src="assets/imgs/ic_friend_actived.png" />
             </ion-col>
-            <ion-col col-2>
-              <img width="100%" src="assets/imgs/ic_like.png" />
+            <ion-col col-2 class="textInfo">
+              {{group.members_count}}
             </ion-col>
-            <ion-col col-2>
-              2
+            <ion-col *ngIf="group.has_inventory"  col-2>
+              <img  class="imgInfo" src="assets/imgs/ic_gift_1.png" />
             </ion-col>
-            <ion-col col-2>
-              <img width="100%" src="assets/imgs/ic_like.png" />
-            </ion-col>
-            <ion-col col-2>
-              1
+            <ion-col  *ngIf="group.has_inventory" col-2 class="textInfo">
+              {{group.inventory_items}}
             </ion-col>
           </ion-row>
         </div>
       </ion-col>
       <ion-col col-2>
-        <img width="100%" src="assets/imgs/ic_chat.png" (click)="goToPageChat()"/>
+        <img  class="imgChat" src="assets/imgs/ic_chat.png" (click)="goToPageChat()"/>
       </ion-col>
     </ion-row>
   </ion-item>

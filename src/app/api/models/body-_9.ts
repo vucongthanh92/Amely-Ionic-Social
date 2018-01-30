@@ -3,6 +3,7 @@
 /**
  */
 export class body_9 {
-    type: string[];
-    guid: number;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }

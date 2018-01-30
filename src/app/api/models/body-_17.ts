@@ -2,9 +2,8 @@
 
 /**
  */
-export class body_4 {
-    feeds_type: string;
-    owner_guid?: number;
+export class body_17 {
+    shop_guid?: number;
     offset?: number;
     limit?: number;
 }
