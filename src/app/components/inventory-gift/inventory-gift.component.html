@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-navbar>
+   <button ion-button icon-only menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+
+   <ion-title>
+     Xác nhận tặng quà
+   </ion-title>
+ </ion-navbar>
+</ion-header>
+
+
+  <ion-content>
+    <ion-slides (ionSlideDidChange)="slideChanged()" pager>
+      <ion-slide style="background: #fff" >
+        <div class="box">
+          <ion-list>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <h2>Cá nhân</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <h2>Nhóm</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <h2>Cộng đồng</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <h2>Sự kiện</h2>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <h2>Quét mã QR</h2>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-slide>
+      <ion-slide style="background: #fff">
+        <div class="box">
+           <ion-scroll style="width:100%;height:100vh" scrollY="true">
+          <ion-list scroll="true">
+            <ion-item *ngFor="let number of [0,1,2,3,4,5,6,7]">
+              <ion-thumbnail item-start>
+                <img width="100%" src="assets/imgs/logo.png" />
+              </ion-thumbnail>
+              <ion-radio value="" item-end></ion-radio>
+              <ion-label>Name</ion-label>
+            </ion-item>
+          </ion-list>
+          </ion-scroll>
+        </div>
+
+      </ion-slide>
+      <ion-slide style="background: #fff">
+        <div class="box">
+          <div class="">
+              <ion-list no-border>
+                  <ion-list-header style="text-align: left;">
+                    Thông tin nhận quà
+                  </ion-list-header>
+
+                  <ion-item>
+                    <ion-icon name='contacts' item-start></ion-icon>
+                    Họ tên
+                  </ion-item>
+                </ion-list>
+          </div>
+          <div class="">
+              <ion-list no-border>
+                  <ion-list-header style="text-align: left;">
+                    Danh mục quà
+                  </ion-list-header>
+                    <ion-row>
+                    	<ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;" >
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col col-3 style="margin-right: 15px;">
+                              <img style="height: 90px;" width="100%" src="assets/imgs/logo.png" />
+                            </ion-col>
+                            <ion-col col-6 style="top: -20px;">
+                              <div>
+                                <h4>Name</h4>
+                              </div>
+                              <div class="">
+                                <h4 style="color: #9e9e9e; top: -10px; position: relative;">Songoku</h4>
+                              </div>
+                              <div class="list list-inline">
+                                <button class="buttonIon" type="button" name="button"><ion-icon ios="md-remove" md="md-remove"></ion-icon></button>
+                                <ion-input class="inputIon" type="text" placeholder="1"></ion-input>
+                                <button class="buttonIon" type="button" name="button"><ion-icon ios="md-add" md="md-add"></ion-icon></button>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                    	</ion-col>
+                    </ion-row>
+                </ion-list>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button icon-only (click)="goSlidePrevious()">
+          <ion-icon name="arrow-back"></ion-icon> Back
+        </button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="goSlideNext()">
+          Next <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

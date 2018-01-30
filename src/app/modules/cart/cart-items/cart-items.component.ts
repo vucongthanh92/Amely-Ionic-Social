@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { PaymentItemsComponent } from '../../payment/payment-items/payment-items.component';
 
 @Component({
   selector: 'app-cart-items',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartItemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) { }
 
   ngOnInit() {
   }
 
+  changePage() {
+    this.appCtrl.getRootNav().push(PaymentItemsComponent);
+  }
 }

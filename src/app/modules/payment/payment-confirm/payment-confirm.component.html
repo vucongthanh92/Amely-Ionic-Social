@@ -1,3 +1,112 @@
-<p>
-  payment-confirm works!
-</p>
+<ion-header>
+  <ion-navbar>
+   <button ion-button icon-only menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+
+   <ion-title>
+     Xác nhận
+   </ion-title>
+   <ion-buttons end>
+     <button ion-button icon-only (click)="changePage()">
+       COMPLETE
+     </button>
+   </ion-buttons>
+ </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="">
+      <ion-list no-border>
+          <ion-list-header>
+            Khách hàng
+          </ion-list-header>
+
+          <ion-item>
+            <ion-icon name='contacts' item-start></ion-icon>
+            Họ tên
+            <ion-note item-end>
+            Nguyễn Đức Thắng
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='call' item-start></ion-icon>
+            Số điện thoại
+            <ion-note item-end>
+            0976787779
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='navigate' item-start></ion-icon>
+            Địa chỉ
+            <ion-note item-end>
+            Bình Dương
+            </ion-note>
+          </ion-item>
+        </ion-list>
+  </div>
+  <div class="">
+      <ion-list no-border>
+          <ion-list-header>
+            Người nhận
+          </ion-list-header>
+
+          <ion-item>
+            <ion-icon name='contacts' item-start></ion-icon>
+            Họ tên
+            <ion-note item-end>
+            Name
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='call' item-start></ion-icon>
+            Số điện thoại
+            <ion-note item-end>
+            0976767676
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='navigate' item-start></ion-icon>
+            Địa chỉ
+            <ion-note item-end>
+            Hà nội
+            </ion-note>
+          </ion-item>
+        </ion-list>
+  </div>
+  <div class="">
+      <ion-list no-border>
+          <ion-list-header>
+            Thông tin thanh toán
+          </ion-list-header>
+
+          <ion-item>
+            <ion-icon name='card' item-start></ion-icon>
+            Tổng tiền
+            <ion-note item-end style="color: red;">
+            111.222 đ
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='cash' item-start></ion-icon>
+            Phương thức thanh toán
+            <ion-note item-end>
+            Ví của tôi
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='basket' item-start></ion-icon>
+            Hình thức giao hàng
+            <ion-note item-end>
+            Giao hàng chuẩn
+            </ion-note>
+          </ion-item>
+        </ion-list>
+  </div>
+</ion-content>

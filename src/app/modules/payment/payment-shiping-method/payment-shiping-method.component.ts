@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { App, NavController, Refresher } from 'ionic-angular';
+import { PaymentReceiverInfoComponent } from '../payment-receiver-info/payment-receiver-info.component';
 
 @Component({
   selector: 'app-payment-shiping-method',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentShipingMethodComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavController, public appCtrl: App) { }
 
   ngOnInit() {
   }
 
+  changePage() {
+    this.appCtrl.getRootNav().push(PaymentReceiverInfoComponent);
+  }
 }
