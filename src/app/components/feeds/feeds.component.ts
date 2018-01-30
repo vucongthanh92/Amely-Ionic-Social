@@ -12,6 +12,8 @@ import { Feed } from '../../api/models/feed';
 export class FeedsComponent implements OnInit {
 
   @Input('feed_type') feed_type: string;
+  @Input('owner_guid') owner_guid: string;
+
   posts: Feed[];
   users: User[];
   moods: Mood[];
@@ -22,7 +24,7 @@ export class FeedsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.feedsService.getFeeds(this.feed_type, null, this.offset).subscribe(data => {
+    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
       this.offset = this.offset + data.posts.length;
       this.posts = data.posts;
       this.users = data.users;
@@ -33,7 +35,7 @@ export class FeedsComponent implements OnInit {
 
   doInfinite(infiniteScroll) {
     setTimeout(() => {
-      this.feedsService.getFeeds(this.feed_type, null, this.offset).subscribe(data => {
+      this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
         this.moods = Object.assign(this.moods, data.moods);

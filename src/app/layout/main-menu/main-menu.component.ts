@@ -20,14 +20,21 @@ export class MainMenuComponent implements OnInit {
 
   pages: Array<{ title: string, component: any, image: string }>;
   loggin_user: any;
+  moodLocal: any;
 
   constructor(
     public menuCtrl: MenuController,
     private api: ApiService
-  ) { 
-    
+  ) {
+    this.moodLocal = [
+      { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs' },
+      { guid: '7724' },
+      { guid: '7732' },
+      { guid: '7733' },
+    ]
+    localStorage.setItem("mood_local", this.moodLocal)
   }
-  
+
   ngOnInit() {
     this.api.getProfile({}).subscribe(data => {
       this.pages = [
@@ -40,7 +47,7 @@ export class MainMenuComponent implements OnInit {
       localStorage.setItem('loggin_user', JSON.stringify(data));
     });
   }
-  
+
   openPage(page) {
     this.nav.setRoot(page.component);
     this.menuCtrl.close();

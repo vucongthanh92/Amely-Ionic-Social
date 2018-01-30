@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, Platform, MenuController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { SocialComponent } from '../../views/social/social.component';
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 
 @Component({
@@ -37,9 +37,7 @@ export class SigninComponent implements OnInit {
         toast.present();
       } else {
         this.authenticationService.setSession(resp);
-        // if () {
-          this.nav.setRoot(MainMenuComponent);
-        // }
+        this.nav.setRoot(MainMenuComponent);
       }
     });
   }

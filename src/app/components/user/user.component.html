@@ -3,21 +3,26 @@
     <ion-title>Trang cá nhân</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content *ngIf="user" class="outer-content">
   <div class="about-header">
-  	<img src="assets/imgs/logo.png" alt="ionic logo">
+    <img  src="{{user.avatar}}" alt="ionic logo">
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="userTab">
-      <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px;border-right: 1px solid #eee;" (click)="goToPage('newfeeds');">
+      <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px;border-right: 1px solid #eee;"
+        (click)="goToPage('newfeeds');">
         <img id="tabIconFeeds" />
         <div class="txtTitle">Cập Nhật</div>
       </ion-segment-button>
-      <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px;  border-right: 1px solid #eee;" (click)="goToPage('images');">
-        <img id="tabIconImage" /> <div class="txtTitle">Hình Ảnh</div>
+      <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px;  border-right: 1px solid #eee;"
+        (click)="goToPage('images');">
+        <img id="tabIconImage" />
+        <div class="txtTitle">Hình Ảnh</div>
       </ion-segment-button>
-      <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; border-right: 1px solid #eee;" (click)="goToPage('friends');">
-        <img id="tabIconFriend" /><div class="txtTitle">Bạn Bè</div>
+      <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; border-right: 1px solid #eee;"
+        (click)="goToPage('friends');">
+        <img id="tabIconFriend" />
+        <div class="txtTitle">Bạn Bè</div>
       </ion-segment-button>
     </ion-segment>
     <ion-row text-center>
@@ -29,7 +34,7 @@
       </ion-col>
 
       <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" >
+        <button ion-button icon-left clear small color="danger">
           <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
           <div>Kết bạn</div>
         </button>
@@ -37,16 +42,14 @@
 
       <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage('chat');">
-            <img  class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
+          <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
           <div>Nhắn tin</div>
         </button>
       </ion-col>
     </ion-row>
   </div>
   <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
-    <ion-refresher-content
-      pullingText="Pull to refresh..."
-      refreshingText="Refreshing...">
+    <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -62,24 +65,25 @@
       <ion-card-content>
         <ion-row>
           <ion-col col-6>
-            <p  class="iconPage">
-            <img src="assets/imgs/ic_gender_male_gray.png" /> Nam  
+            <p class="iconPage">
+              <img src="{{genderIcon}}" /> {{genderLabel}}
+            </p>
+            <p *ngIf="isUserCurrent"  class="iconPage">
+              <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20 (chưa có icon)
+            </p>
+            <p *ngIf="birthday"  class="iconPage">
+              <img src="assets/imgs/ic_birthday_gray.png" />
+               {{birthday}}
             </p>
             <p class="iconPage">
-                <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20  (chưa có icon)
-            </p>
-            <p  class="iconPage">
-              <img src="assets/imgs/ic_birthday_gray.png" /> 20/11/2018
-            </p>
-            <p  class="iconPage">
-              <img src="assets/imgs/ic_phone_gray.png" /> 0906080704
+              <img src="assets/imgs/ic_phone_gray.png" /> {{user.mobilelogin}}
             </p>
           </ion-col>
           <ion-col col-6>
-            <p  class="iconPage">
-              <img src="assets/imgs/ic_send_mail_gray.png" /> Mood (chưa có icon)
+            <p *ngIf="user.mood"  class="iconPage">
+              <img src="{{user.mood.icon}}" />{{user.mood.title}}
             </p>
-            <p  class="iconPage">
+            <p *ngIf="isUserCurrent" class="iconPage">
               <img src="assets/imgs/ic_send_mail_gray.png" /> 0/10 (chưa có icon)
             </p>
           </ion-col>
@@ -87,11 +91,11 @@
       </ion-card-content>
     </ion-card>
 
-    
-    <ion-list>
-      <ion-item *ngFor="let number of [0,1,2,3,4]">
-        <app-feed></app-feed>
-      </ion-item>
+
+    <ion-list *ngIf="userGuid">
+      <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+        <app-feeds  [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
+      <!-- </ion-item> -->
     </ion-list>
   </div>
   <div *ngIf="imagesPage">

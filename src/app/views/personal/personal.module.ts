@@ -9,6 +9,7 @@ import { ContactModule } from './contact/contact.module';
 import { MessagesModule } from './messages/messages.module';
 import { NotificationModule } from './notification/notification.module';
 import { SharedModule } from '../../shared/shared.module';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     ContactModule,
     MessagesModule,
     NotificationModule,
-    SharedModule
+    SharedModule,
+    MomentModule
   ],
   declarations: [
     PersonalComponent,

@@ -32,6 +32,7 @@ import { AddFriendComponent } from '../components/add-friend/add-friend.componen
 import { NoteFriendComponent } from '../components/note-friend/note-friend.component';
 import { AddGroupComponent } from '../components/add-group/add-group.component';
 import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.component';
+import { LayoutPersonalComponent } from '../layout/layout-personal/layout-personal.component';
 
 import { CartItemsComponent } from '../modules/cart/cart-items/cart-items.component';
 import { CommentsComponent } from '../components/comments/comments.component';
@@ -81,7 +82,8 @@ import { ChangePhonenumberComponent } from '../components/change-phonenumber/cha
     OffersItemDetailComponent,
     SearchComponent,
     ChangePasswordComponent,
-    ChangePhonenumberComponent
+    ChangePhonenumberComponent,
+    LayoutPersonalComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -118,7 +120,8 @@ import { ChangePhonenumberComponent } from '../components/change-phonenumber/cha
     OffersItemDetailComponent,
     SearchComponent,
     ChangePasswordComponent,
-    ChangePhonenumberComponent
+    ChangePhonenumberComponent,
+    LayoutPersonalComponent
   ],
   exports: [
     CategoriesComponent,
@@ -155,7 +158,8 @@ import { ChangePhonenumberComponent } from '../components/change-phonenumber/cha
     OffersItemDetailComponent,
     SearchComponent,
     ChangePasswordComponent,
-    ChangePhonenumberComponent
+    ChangePhonenumberComponent,
+    LayoutPersonalComponent
   ]
 })
 export class SharedModule { }
