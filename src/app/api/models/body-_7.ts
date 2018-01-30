@@ -3,7 +3,7 @@
 /**
  */
 export class body_7 {
-    group_guid: string;
+    group_guid: number;
     name: string;
     description: string;
     privacy: string;

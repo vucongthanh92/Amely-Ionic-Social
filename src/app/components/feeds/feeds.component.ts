@@ -14,22 +14,29 @@ export class FeedsComponent implements OnInit {
   @Input('feed_type') feed_type: string;
   @Input('owner_guid') owner_guid: string;
 
+
   posts: Feed[];
   users: User[];
   moods: Mood[];
   shares: any;
   offset = 0;
+  private isHasData: boolean;
   constructor(
     private feedsService: FeedsService
   ) { }
 
   ngOnInit() {
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-      this.offset = this.offset + data.posts.length;
-      this.posts = data.posts;
-      this.users = data.users;
-      this.moods = data.moods;
-      this.shares = data.shares;
+      if (data.posts) {
+        this.offset = this.offset + data.posts.length;
+        this.posts = data.posts;
+        this.users = data.users;
+        this.moods = data.moods;
+        this.shares = data.shares;
+        this.isHasData = true;
+      } else {
+        this.isHasData = false;
+      }
     });
   }
 
@@ -48,22 +55,28 @@ export class FeedsComponent implements OnInit {
   }
 
   getPoster(poster_guid) {
-    return this.users[poster_guid];
+    if (poster_guid) {
+      return this.users[poster_guid];
+    }
+    return null;
   }
 
   getMood(moodGuid) {
-    return this.moods[moodGuid];
+    if (moodGuid) {
+      return this.moods[moodGuid];
+    }
+    return null;
   }
 
   getUsersTag(desc) {
     let description = JSON.parse(desc);
-    let arrUserTag =[];
+    let arrUserTag = [];
     if (description.friend) {
       let userGuidTag = description.friend.split(",");
       userGuidTag.forEach(e => {
         arrUserTag.push(this.users[e])
       });
-    }   
+    }
     return arrUserTag;
   }
 

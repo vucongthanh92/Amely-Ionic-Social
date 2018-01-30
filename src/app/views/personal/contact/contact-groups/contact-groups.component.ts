@@ -1,7 +1,11 @@
+import { Group } from './../../../../api/models/group';
+import { User } from './../../../../api/models/user';
+import { GroupService } from './../../../../services/group.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController, Refresher } from 'ionic-angular';
 import { GroupComponent } from '../../../../components/group/group.component';
 import { MessageComponent } from '../../../../components/message/message.component';
+
 
 @Component({
   selector: 'app-contact-groups',
@@ -9,17 +13,30 @@ import { MessageComponent } from '../../../../components/message/message.compone
 })
 export class ContactGroupsComponent implements OnInit {
 
-  constructor(public nav: NavController, public appCtrl: App) {}
-
-  ngOnInit() {
+  private groups: any;
+  private users: any;
+  private userCurrent: User;
+  constructor(public nav: NavController, public appCtrl: App, public groupService: GroupService) {
+    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
-  goToPage() {
-  	this.appCtrl.getRootNav().push(GroupComponent);
+  ngOnInit() {
+    this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
+      this.groups = data.groups;
+      this.users = data.owners;
+    })
+  }
+
+  getOwner(userGuid) {
+    return this.users[userGuid];
+  }
+
+  goToPage(guid) {
+    this.appCtrl.getRootNav().push(GroupComponent,{groupGuid:guid});
   }
 
   goToPageChat() {
-  	this.appCtrl.getRootNav().push(MessageComponent);
+    this.appCtrl.getRootNav().push(MessageComponent);
   }
 
 }

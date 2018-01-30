@@ -3,17 +3,22 @@
     <ion-title>Nhom A</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content class="outer-content" *ngIf="group">
   <div class="about-header">
-    <img src="assets/imgs/logo.png" alt="ionic logo">
+    <img src="{{ group.avatar }}" alt="ionic logo">
+
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="groupTab" style="border-bottom: 1px solid #eee;">
-      <ion-segment-button value="newfeed" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;" (click)="goToPage('newfeed');">
-        Cập nhật
+      <ion-segment-button value="newfeed" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;"
+        (click)="goToPage('newfeed');">
+        <img id="tabIconFeeds" />
+        <div class="txtTitle">Cập Nhật</div>
       </ion-segment-button>
       <ion-segment-button value="members" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px" (click)="goToPage('members');">
-        Thành viên
+        <img id="tabIconMember" />
+        <div class="txtTitle">Thành viên</div>
+
       </ion-segment-button>
     </ion-segment>
     <ion-row text-center>
@@ -35,25 +40,27 @@
   <div *ngIf="newfeedsPage">
     <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
       <ion-card-content>
-        <ion-row>
+        <ion-row *ngIf="group">
           <ion-col col-12>
             <p>
-              <ion-icon name="football"></ion-icon> Quản trị nhóm: Vinh Pham
+              <img class="iconGroup" src="assets/imgs/ic_setting_private_actived.png"> Quản trị nhóm: {{getOwner(group.owner_guid)}}
             </p>
             <p>
-              <ion-icon name="football"></ion-icon> Ngày lập: 01/12/2017
+              <img class="iconGroup" src="assets/imgs/ic_inventory_history_actived.png"> Ngày lập: {{dateCreated | date:'dd/MM/yyyy' }}
             </p>
             <p>
-              <ion-icon name="football"></ion-icon> Số thành viên: 2
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png"> Số thành viên:{{group.members.length}}
             </p>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
     <ion-list>
-      <ion-item *ngFor="let number of [0,1,2,3,4]">
-        <app-feed></app-feed>
-      </ion-item>
+      <ion-list *ngIf="groupGuid">
+        <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+        <app-feeds [feed_type]="feed_type" [owner_guid]="groupGuid"></app-feeds>
+        <!-- </ion-item> -->
+      </ion-list>
     </ion-list>
   </div>
   <div *ngIf="membersPage">

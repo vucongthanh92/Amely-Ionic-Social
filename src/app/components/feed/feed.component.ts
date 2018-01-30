@@ -36,7 +36,6 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    console.log(this.mood);
     if (this.mood) {
       this.moodIcon = this.moodLocal[this.mood.guid]
     }
@@ -50,7 +49,7 @@ export class FeedComponent {
     if (this.post) {
       let description = JSON.parse(this.post.description);
 
-      this.post.time_created = new Date(this.post.time_created * 1000);
+      // this.post.time_created = new Date(this.post.time_created * 1000);
 
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
