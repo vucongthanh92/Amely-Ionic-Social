@@ -1,0 +1,82 @@
+app-social{
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=feed], .tab-button-icon[aria-label=feed] {
+            background-image: url(../assets/imgs/ic_feed.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=feed], .tab-button-icon[aria-label=feed] {
+            background-image: url(../assets/imgs/ic_feed_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+    
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=offer], .tab-button-icon[aria-label=offer] {
+            background-image: url(../assets/imgs/ic_offer.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=offer], .tab-button-icon[aria-label=offer] {
+            background-image: url(../assets/imgs/ic_offer_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+    
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=around], .tab-button-icon[aria-label=around] {
+            background-image: url(../assets/imgs/ic_around.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=around], .tab-button-icon[aria-label=around] {
+            background-image: url(../assets/imgs/ic_around_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+    
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=event], .tab-button-icon[aria-label=event] {
+            background-image: url(../assets/imgs/ic_event.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=event], .tab-button-icon[aria-label=event] {
+            background-image: url(../assets/imgs/ic_event_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+}

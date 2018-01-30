@@ -1,0 +1,60 @@
+app-inventories{
+   
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=inventory-personal], .tab-button-icon[aria-label=inventory-personal] {
+            background-image: url(../assets/imgs/ic_inventory_personal.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=inventory-personal], .tab-button-icon[aria-label=inventory-personal] {
+            background-image: url(../assets/imgs/ic_inventory_personal_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=inventory-general], .tab-button-icon[aria-label=inventory-general] {
+            background-image: url(../assets/imgs/ic_inventory_general.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=inventory-general], .tab-button-icon[aria-label=inventory-general] {
+            background-image: url(../assets/imgs/ic_inventory_general_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+    
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=inventory-history], .tab-button-icon[aria-label=inventory-history] {
+            background-image: url(../assets/imgs/ic_inventory_history.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=inventory-history], .tab-button-icon[aria-label=inventory-history] {
+            background-image: url(../assets/imgs/ic_inventory_history_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+} 

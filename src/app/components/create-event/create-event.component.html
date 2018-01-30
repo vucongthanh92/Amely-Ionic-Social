@@ -89,22 +89,22 @@
     <ion-row class="marginRowBottom">
       <ion-col col-6 class="marginColBottom startDay">
         <ion-datetime displayFormat="MMM DD YYYY" placeholder="Ngày bắt đầu"></ion-datetime>
-        <ion-icon class="iconBottom" ios="ios-calendar-outline"  ></ion-icon>
+        <ion-icon class="iconBottom"  id="iconDay" ></ion-icon>
       </ion-col>
       <ion-col col-6 class="marginColBottom startTime">
         <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ bắt đầu"></ion-datetime>
-        <ion-icon class="iconBottom" ios="ios-clock-outline"  ></ion-icon>
+        <ion-icon class="iconBottom" id="iconHour"></ion-icon>
       </ion-col>
     </ion-row>
 
     <ion-row class="marginRowBottom">
       <ion-col col-6 class="marginColBottom endDay">
         <ion-datetime displayFormat="MMM DD YYYY" placeholder="Ngày kết thúc"></ion-datetime>
-        <ion-icon class="iconBottom" ios="ios-calendar-outline"  ></ion-icon>
+        <ion-icon class="iconBottom" id="iconDay"></ion-icon>
       </ion-col>
       <ion-col col-6 class="marginColBottom endTime">
         <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ kết thúc"></ion-datetime>
-        <ion-icon class="iconBottom" ios="ios-clock-outline"  ></ion-icon>
+        <ion-icon class="iconBottom" id="iconHour"></ion-icon>
       </ion-col>
     </ion-row>
 
@@ -113,7 +113,7 @@
         <ion-input class="inputBottom" type="text" placeholder="Địa điểm"></ion-input>
         <button class="buttonLocation">
           <ion-label class="marginLabel">Bản đồ </ion-label>
-          <ion-icon class="iconLocation" ios="ios-navigate-outline"  ></ion-icon>
+          <ion-icon class="iconLocation" id="iconPlace" ></ion-icon>
         </button>
       </ion-col>
     </ion-row>
@@ -121,7 +121,7 @@
     <ion-row class="marginRowBottom">
       <ion-col class="marginColBottom1">
         <ion-input class="inputBottom" type="text" placeholder="Khách mời (0)"></ion-input>
-        <ion-icon class="iconBottom1" ios="ios-contact-outline"></ion-icon>
+        <ion-icon class="iconBottom1"  id="iconContact"></ion-icon>
       </ion-col>
     </ion-row>
 

@@ -1,0 +1,58 @@
+ app-shopping{        
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=store], .tab-button-icon[aria-label=store] {
+            background-image: url(../assets/imgs/ic_tab_store.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=store], .tab-button-icon[aria-label=store] {
+            background-image: url(../assets/imgs/ic_tab_store_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+
+   .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=voucher], .tab-button-icon[aria-label=voucher] {
+            background-image: url(../assets/imgs/ic_voucher.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=voucher], .tab-button-icon[aria-label=voucher] {
+            background-image: url(../assets/imgs/ic_voucher_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+       
+    .tabs-ios {
+        a[aria-selected=false]{
+            .tab-button-icon[ng-reflect-name=store-friendly], .tab-button-icon[aria-label=store-friendly] {
+            background-image: url(../assets/imgs/ic_shop_friendly.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+        a[aria-selected=true] {
+            .tab-button-icon[ng-reflect-name=store-friendly], .tab-button-icon[aria-label=store-friendly] {
+            background-image: url(../assets/imgs/ic_shop_friendly_actived.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            }
+        }
+    }
+}

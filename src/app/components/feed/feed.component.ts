@@ -1,9 +1,12 @@
+import { User } from './../../api/models/user';
+import { Feed } from './../../api/models/feed';
 import { Component, OnInit, Input } from '@angular/core';
 import { App, Nav, Platform, MenuController, NavController, PopoverController, NavParams, Refresher} from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 
 import moment from 'moment';
+
 
 @Component({
   selector: 'app-feed',
@@ -12,11 +15,10 @@ import moment from 'moment';
 export class FeedComponent {
 
   @Input('contents') contents: any;
-  @Input('post') post: any;
-  @Input('user') user: any;
+  @Input('post') post: Feed;
+  @Input('user') user: User;
 
-  description: any;
-  wallphotos: any;
+  descriptionPost: string;
 
   constructor(
     public menuCtrl: MenuController,
@@ -24,27 +26,28 @@ export class FeedComponent {
     private popoverCtrl: PopoverController
   ) { }
 
+  hasWallPhoto = true;
+
   ngOnInit() {
     if (this.post) {
+      let description = JSON.parse(this.post.description);
+      
       this.post.time_created = new Date(this.post.time_created * 1000);
-      let contentBody = JSON.parse(this.post.description);
-      this.description = contentBody.post;
-      if (Array.isArray(this.post.wallphoto)) {
-        this.wallphotos = this.post.wallphoto;
-      } else {
-        this.wallphotos = false;
+      
+      if (Array.isArray(this.post.wallphoto) === false) {
+        this.hasWallPhoto = false;
       }
+      this.descriptionPost = description.post;
 
       switch (this.post.item_type) {
         case 'profile:photo':
-          this.description = "Đã thay đổi hình đại diện";
+          this.descriptionPost = "Đã thay đổi hình đại diện";
           break;
         case 'cover:photo':
-          this.description = "Đã thay đổi ảnh bìa";
+          this.descriptionPost = "Đã thay đổi ảnh bìa";
           break;
       }
     }
-
   }
 
   changePage() {

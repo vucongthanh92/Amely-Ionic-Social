@@ -1,3 +1,4 @@
+import { FeedsService } from './services/feeds.service';
 import { ApiModule } from './api/api.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { SharedModule } from './shared/shared.module';
@@ -15,14 +16,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { MomentModule } from 'angular2-moment';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
     MyApp,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicPageModule.forChild(MainMenuComponent),
     AuthenticationModule,
     SharedModule,
     SocialModule,
@@ -40,6 +45,7 @@ import { MomentModule } from 'angular2-moment';
   providers: [
     StatusBar,
     SplashScreen,
+    FeedsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

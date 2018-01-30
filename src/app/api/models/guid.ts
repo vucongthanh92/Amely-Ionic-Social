@@ -1,6 +1,9 @@
 /* tslint:disable */
 
 /**
- * Global Unique IDentity
  */
-export type GUID = number;
+export class guid {
+    post_guid: string;
+    comment: string;
+    images: string;
+}

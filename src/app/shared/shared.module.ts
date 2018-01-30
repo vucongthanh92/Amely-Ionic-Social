@@ -1,3 +1,5 @@
+import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
+import { FeedsComponent } from './../components/feeds/feeds.component';
 import { GiftItemDetailComponent } from './../components/gift/gift-item-detail/gift-item-detail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -84,6 +86,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
+    InventoryListItemsComponent,
+    FeedsComponent,
     CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,
@@ -131,6 +135,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
+    InventoryListItemsComponent,
+    FeedsComponent,
     CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,
@@ -178,6 +184,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     AddGroupComponent,
     ChooseItemComponent,
     GiftItemDetailComponent,
+    InventoryListItemsComponent,
+    FeedsComponent,
     CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,

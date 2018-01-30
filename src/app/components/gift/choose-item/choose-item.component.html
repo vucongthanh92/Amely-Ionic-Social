@@ -6,29 +6,29 @@
 
 <ion-content style="background-color: #57bde3;height: 100%;position: relative">
   <div id="divContent">
-      <ion-row>
-          <ion-col col-4 *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12]" style="padding: 5px;" (click)="goToDetail()" >
-            <div>
-              <img width="100%" src="assets/imgs/logo.png" />
-              <div style="padding: 5px">
-                <p no-margin>abc</p>
-                <p no-margin>SL: 1</p>
-              </div>
-            </div>
-          </ion-col>
-        </ion-row>
+    <ion-row>
+      <ion-col col-4 *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12]" style="padding: 5px;" (click)="goToDetail()">
+        <div>
+          <img width="100%" src="assets/imgs/logo.png" />
+          <div style="padding: 5px">
+            <p no-margin>abc</p>
+            <p no-margin>SL: 1</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>
 <ion-footer>
-    <ion-scroll scrollX style="height:120px;">
-        <div class="scroll-item">
-          <div class="item-card" *ngFor="let number of [0,1,2,3,4,5,6,7,8]">
-            <img src="assets/imgs/ic_like.png">
-            <div id="item-badge">
-              <a> 10</a>
-            </div>
-            <p>Mới nhập</p>
-          </div>
+  <ion-scroll scrollX style="height:120px;">
+    <div class="scroll-item">
+      <div class="item-card" *ngFor="let type of types">
+        <img  src="{{type.image}}">
+        <div id="item-badge">
+          <a> 10</a>
         </div>
-      </ion-scroll>
+        <p>{{type.title}}</p>
+      </div>
+    </div>
+  </ion-scroll>
 </ion-footer>

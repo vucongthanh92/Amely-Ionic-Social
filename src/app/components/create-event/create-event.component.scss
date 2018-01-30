@@ -1,5 +1,5 @@
 app-create-event {
-     .divTop {
+    .divTop {
          background-color: #ffffff;
          height: 25vw;
     }
@@ -36,17 +36,20 @@ app-create-event {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
+         width: auto !important;
          color: #93ccf0;
     }
      .iconTopWedding {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
+         width: auto !important;
          color: #ee91a5;
     }
      .iconTopBirthday {
          font-size: 60px;
          margin-top: -10px;
+         width: auto !important;
          z-index: 10px;
          color: #fbb03b;
     }
@@ -54,6 +57,7 @@ app-create-event {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
+         width: auto !important;
          color: #ffe784;
     }
      .marginCol {
@@ -175,4 +179,38 @@ app-create-event {
      .marginLabel{
        margin: 0px 30px -28px 0;
      }
+     .icon{
+         width: 20px;
+         display: inline-block;
+     }
+
+     #iconDay {
+        content: url(../../../assets/imgs/ic_calendar_blue.png);
+        width: 31px;
+        height: 31px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+     #iconHour {
+        content: url(../../../assets/imgs/ic_clock_blue.png);
+        width: 31px;
+        height: 31px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #iconPlace {
+        content: url(../../../assets/imgs/ic_place_blue.png);
+        width: 31px;
+        height: 31px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #iconContact {
+        content: url(../../../assets/imgs/ic_contact_blue.png);
+        width: 31px;
+        height: 31px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
 }

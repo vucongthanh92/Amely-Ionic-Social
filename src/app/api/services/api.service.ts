@@ -25,6 +25,7 @@ import { body_6 } from '../models/body-_6';
 import { body_7 } from '../models/body-_7';
 import { body_8 } from '../models/body-_8';
 import { body_9 } from '../models/body-_9';
+import { guid } from '../models/guid';
 import { inline_response_200_4 } from '../models/inline-_response-_200_4';
 import { body_10 } from '../models/body-_10';
 
@@ -39,16 +40,14 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * Return invites list of group
-   * @param to_guid - undefined
-   * @param invitation_type - undefined
+   * Return acceptances list
+   * @param type - undefined
    */
-  getAcceptanceResponse(params: ApiService.GetAcceptanceParams): Observable<HttpResponse<DefaultResponse>> {
+  getAcceptanceResponse(type: string): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (params.toGuid != null) __params = __params.set("to_guid", params.toGuid.toString());
-    if (params.invitationType != null) __params = __params.set("invitation_type", params.invitationType.toString());
+    if (type != null) __params = __params.set("type", type.toString());
     let req = new HttpRequest<any>(
       "GET",
       this.rootUrl + `/acceptance`,
@@ -71,12 +70,53 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * Return invites list of group
-   * @param to_guid - undefined
-   * @param invitation_type - undefined
+   * Return acceptances list
+   * @param type - undefined
    */
-  getAcceptance(params: ApiService.GetAcceptanceParams): Observable<DefaultResponse> {
-    return this.getAcceptanceResponse(params).pipe(
+  getAcceptance(type: string): Observable<DefaultResponse> {
+    return this.getAcceptanceResponse(type).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Delete acceptance
+   * @param type - undefined
+   * @param guid - undefined
+   */
+  deleteAcceptanceResponse(params: ApiService.DeleteAcceptanceParams): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.type != null) __params = __params.set("type", params.type.toString());
+    if (params.guid != null) __params = __params.set("guid", params.guid.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/acceptance`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Delete acceptance
+   * @param type - undefined
+   * @param guid - undefined
+   */
+  deleteAcceptance(params: ApiService.DeleteAcceptanceParams): Observable<DefaultResponse> {
+    return this.deleteAcceptanceResponse(params).pipe(
       map(_r => _r.body)
     );
   }
@@ -1198,19 +1238,17 @@ export class ApiService extends BaseService {
     );
   }
   /**
-   * get profile page. have only done user profile, not event, group, shop
-   * @param username - Global Unique IDentity
+   * get notifications
    * @param guid - Global Unique IDentity
    */
-  getProfileResponse(params: ApiService.GetProfileParams): Observable<HttpResponse<DefaultResponse>> {
+  getNotificationResponse(guid?: number): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (params.username != null) __params = __params.set("username", params.username.toString());
-    if (params.guid != null) __params = __params.set("guid", params.guid.toString());
+    if (guid != null) __params = __params.set("guid", guid.toString());
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/profile`,
+      this.rootUrl + `/notifications`,
       __body,
       {
         headers: __headers,
@@ -1230,11 +1268,127 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * get notifications
+   * @param guid - Global Unique IDentity
+   */
+  getNotification(guid?: number): Observable<DefaultResponse> {
+    return this.getNotificationResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * delete a notification
+   */
+  deleteNotificationResponse(): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/notifications`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * delete a notification
+   */
+  deleteNotification(): Observable<DefaultResponse> {
+    return this.deleteNotificationResponse().pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * update notification
+   * @param guid - undefined
+   */
+  updateNotificationResponse(guid: guid): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = guid;
+    let req = new HttpRequest<any>(
+      "PATCH",
+      this.rootUrl + `/notifications`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * update notification
+   * @param guid - undefined
+   */
+  updateNotification(guid: guid): Observable<DefaultResponse> {
+    return this.updateNotificationResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * get profile page. have only done user profile, not event, group, shop
    * @param username - Global Unique IDentity
    * @param guid - Global Unique IDentity
    */
-  getProfile(params: ApiService.GetProfileParams): Observable<DefaultResponse> {
+  getProfileResponse(params: ApiService.GetProfileParams): Observable<HttpResponse<User>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.username != null) __params = __params.set("username", params.username.toString());
+    if (params.guid != null) __params = __params.set("guid", params.guid.toString());
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/profile`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: User = null;
+        _body = _resp.body as User
+        return _resp.clone({body: _body}) as HttpResponse<User>;
+      })
+    );
+  }
+
+  /**
+   * get profile page. have only done user profile, not event, group, shop
+   * @param username - Global Unique IDentity
+   * @param guid - Global Unique IDentity
+   */
+  getProfile(params: ApiService.GetProfileParams): Observable<User> {
     return this.getProfileResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -1280,9 +1434,9 @@ export class ApiService extends BaseService {
   }}
 
 export module ApiService {
-  export interface GetAcceptanceParams {
-    toGuid: string;
-    invitationType: string;
+  export interface DeleteAcceptanceParams {
+    type: string;
+    guid: number;
   }
   export interface DeleteApprovalParams {
     toGuid: string;

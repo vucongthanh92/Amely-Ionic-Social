@@ -1,4 +1,3 @@
-export { GUID } from './models/guid';
 export { DefaultResponse } from './models/default-response';
 export { Feed } from './models/feed';
 export { Share } from './models/share';
@@ -20,5 +19,7 @@ export { inline_response_200_3 } from './models/inline-_response-_200_3';
 export { body_7 } from './models/body-_7';
 export { body_8 } from './models/body-_8';
 export { body_9 } from './models/body-_9';
+export { guid } from './models/guid';
 export { body_10 } from './models/body-_10';
 export { inline_response_200_4 } from './models/inline-_response-_200_4';
+export { Feed_description } from './models/feed-_description';
