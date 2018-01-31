@@ -1,8 +1,10 @@
 /* tslint:disable */
-import { Category } from './category';
+import { Feed } from './feed';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200 {
-    posts?: Category[];
+    post?: Feed;
+    users?: User[];
 }

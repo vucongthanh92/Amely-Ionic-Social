@@ -1,10 +1,10 @@
 /* tslint:disable */
 import { DefaultResponse } from './default-response';
-import { User } from './user';
+import { Product } from './product';
 
 /**
  */
 export class inline_response_200_6 {
-    result?: DefaultResponse;
-    user?: User;
+    result?: DefaultResponse[];
+    product?: Product[];
 }

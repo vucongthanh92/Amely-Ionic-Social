@@ -3,13 +3,14 @@
     <ion-col col-8>
       <h3>Danh mục</h3>
     </ion-col>
-    <ion-col col-4 style="text-align: right">
+    <ion-col *ngIf="categoriesParent" col-4 style="text-align: right">
+      <h5 *ngIf="categoriesParent.length>6">Xem tat ca</h5>
     </ion-col>
   </ion-row>
-  <ion-row>
-  	<ion-col col-4 style="text-align: center" *ngFor="let number of [0,1,2,3,4]" (click)="goToPage();">
-  		<img width="100%" src="assets/imgs/logo.png" />
-  		<h4>Du lich</h4>
-  	</ion-col>
+  <ion-row *ngIf="categoriesParent">
+    <ion-col col-4 style="text-align: center" *ngFor="let category of categoriesParent.slice(0,6)" (click)="goToPage(category);">
+      <img width="70%" src="{{category.logo}}" />
+      <h4>{{category.title}}</h4>
+    </ion-col>
   </ion-row>
 </div>

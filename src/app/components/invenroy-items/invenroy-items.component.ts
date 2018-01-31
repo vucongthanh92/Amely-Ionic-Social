@@ -27,7 +27,6 @@ export class InvenroyItemsComponent implements OnInit {
     this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(data => {
       if (data instanceof Array) {
         this.inventoriesItem = data;
-        console.log(data);
       }
 
     })

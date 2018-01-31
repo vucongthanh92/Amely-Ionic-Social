@@ -12,7 +12,7 @@ import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 })
 export class SigninComponent implements OnInit {
 
-  user = { username: 'quannm', password: '123456' };
+  user = { username: 'quan5000', password: '123456' };
 
   constructor(
     private authenticationService: AuthenticationService, 

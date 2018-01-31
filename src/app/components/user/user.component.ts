@@ -38,7 +38,6 @@ export class UserComponent {
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
     this.getUser().subscribe(data => {
-      console.log(data);
       this.user = data;
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";

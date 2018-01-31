@@ -1,20 +1,21 @@
-<div style="background-color: #fff; padding: 5px; margin: 10px 0px;">
+<div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="productsMostSold.length>0">
   <ion-row>
     <ion-col col-8>
       <h3>Sản phẩm bán chạy</h3>
     </ion-col>
-    <ion-col col-4 style="text-align: right" (click)="goToPage('all');">
+    <ion-col col-4 style="text-align: right" (click)="goToPage('all',null);">
       XEM TẤT CẢ
     </ion-col>
   </ion-row>
   <ion-scroll scrollX style="height:250px; margin-top: 10px">
-    <div class="scroll-item">
-      <ion-col *ngFor="let number of [0,1,2,3,4,5]" (click)="goToPage('product')">
+    <div class="scroll-item" *ngIf="productsMostSold">
+      <ion-col *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
         <div class="item-card">
-          <img width="100%" src="assets/imgs/logo.png">
+          <img width="70%" *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg">
+          <img width="70%"  *ngIf="product.images[0]" src="{{product.images[0]}}">
           <div style="margin-top: 10px;">
-            <h4>Title abc het han</h4>
-            <h4>100.000 VND</h4>
+            <h4>{{product.title}}</h4>
+            <h4>{{product.price}} {{product.currency}}</h4>
           </div>
         </div>
       </ion-col>

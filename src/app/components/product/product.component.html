@@ -1,73 +1,74 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>ABCDEF</ion-title>
+    <ion-title *ngIf="product">{{product.title}}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="changePage()">
-        <ion-icon name="cart" ></ion-icon>
+        <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content class="outer-content" *ngIf="product">
   <ion-row>
     <ion-col col-12>
-      <img src="assets/imgs/logo.png" alt="ionic logo" width="100%">
+      <img *ngIf="product.images[0]" src="{{getImage(product.images[0])}}" alt="ionic logo" width="100%">
+      <img *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
     </ion-col>
   </ion-row>
   <ion-card>
     <ion-card-content>
       <ion-row>
         <ion-col col-12>
-          ABCDEF
+          {{product.title}} {{product.price}}
         </ion-col>
         <ion-col col-12>
-          123.456 VND
+          {{product.price}}
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
   <ion-card>
-      <ion-card-header>
-        Thông tin cửa hàng
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row>
-          <ion-col col-6>
-            Tên cửa hàng
-          </ion-col>
-          <ion-col col-6>
-            vipn600
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Địa chỉ cửa hàng
-          </ion-col>
-          <ion-col col-6>
-            quận 12
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Số điện thoại
-          </ion-col>
-          <ion-col col-6>
-            789456321
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Mã số thuế
-          </ion-col>
-          <ion-col col-6>
-            123456789
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
+    <ion-card-header>
+      Thông tin cửa hàng
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-6>
+          Tên cửa hàng
+        </ion-col>
+        <ion-col col-6>
+          {{shop.owner_name}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Địa chỉ cửa hàng
+        </ion-col>
+        <ion-col col-6>
+          {{shop.owner_address}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Số điện thoại
+        </ion-col>
+        <ion-col col-6>
+          {{shop.owner_phone}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Mã số thuế
+        </ion-col>
+        <ion-col col-6>
+          {{shop.shop_bidn}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer>
   <button ion-button block color="danger">
-      Mua
+    Thêm vào giỏ hàng
   </button>
 </ion-footer>
