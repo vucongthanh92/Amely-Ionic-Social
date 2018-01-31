@@ -31,14 +31,15 @@ export class InventoryListItemsComponent implements OnInit {
   }
 
   initTypes() {
+    
     this.types = [
       { title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png', badge: this.badgeNew },
       { title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png', badge: this.badgeWishList},
-      { title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png', badge: this.badgeNew},
-      { title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png', badge: this.badgeNew},
-      { title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png', badge: this.badgeNew },
-      { title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png', badge: this.badgeNew},
-      { title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png', badge: this.badgeNew},
+      { title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png', badge: this.badgeGiveList},
+      { title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png', badge: this.badgeExpiry},
+      { title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png', badge: this.badgeNonExpiry },
+      { title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png', badge: this.badgeVoucher},
+      { title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png', badge: this.badgeTicket},
     ]
   }
 

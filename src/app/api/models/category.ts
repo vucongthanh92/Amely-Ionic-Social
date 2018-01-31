@@ -3,10 +3,18 @@
 /**
  */
 export class Category {
-    title?: string;
+    friendly_url?: string;
+    guid?: number;
+    owner_guid?: number;
     description?: string;
-    enabled?: string;
+    title?: string;
+    type?: string;
+    subtype?: string;
+    time_created?: number;
     sort_order?: string;
+    enabled?: string;
     parent_guid?: string;
+    creator_guid?: string;
+    total_product?: string;
     logo?: string;
 }

@@ -7,12 +7,13 @@
 <ion-content style="background-color: #57bde3;height: 100%;position: relative">
   <div id="divContent">
     <ion-row>
-      <ion-col col-4 *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12]" style="padding: 5px;" (click)="goToDetail()">
+      <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;" (click)="goToDetail(item)">
         <div>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" *ngIf="item.product_snapshot.images[0]" src="{{item.product_snapshot.images[0]}}" />
+          <img width="100%" *ngIf="item.product_snapshot.images[0]=='' " src="assets/imgs/image_not_found.jpg">
           <div style="padding: 5px">
-            <p no-margin>abc</p>
-            <p no-margin>SL: 1</p>
+            <p no-margin>{{item.product_snapshot.title}}</p>
+            <p no-margin>SL: {{item.quantity}}</p>
           </div>
         </div>
       </ion-col>
@@ -22,10 +23,10 @@
 <ion-footer>
   <ion-scroll scrollX style="height:120px;">
     <div class="scroll-item">
-      <div class="item-card" *ngFor="let type of types">
-        <img  src="{{type.image}}">
+      <div class="item-card" *ngFor="let type of types" (click)="onFilterItem(type.item_type)">
+        <img src="{{type.image}}">
         <div id="item-badge">
-          <a> 10</a>
+          <a> {{type.badge}}</a>
         </div>
         <p>{{type.title}}</p>
       </div>

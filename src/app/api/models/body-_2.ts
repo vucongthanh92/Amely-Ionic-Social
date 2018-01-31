@@ -3,7 +3,9 @@
 /**
  */
 export class body_2 {
-    post_guid: string;
-    comment: string;
-    images: string;
+    offset?: number;
+    limit?: number;
+    shop_guid?: number;
+    type?: number;
+    get_all?: number;
 }

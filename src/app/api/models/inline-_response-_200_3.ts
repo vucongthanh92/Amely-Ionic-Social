@@ -1,12 +1,12 @@
 /* tslint:disable */
 import { DefaultResponse } from './default-response';
-import { Product } from './product';
-import { Category } from './category';
+import { Group } from './group';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_3 {
-    result?: DefaultResponse[];
-    product?: Product[];
-    categories?: Category[];
+    result?: DefaultResponse;
+    groups?: Group[];
+    owners?: User[];
 }

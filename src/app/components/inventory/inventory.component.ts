@@ -24,78 +24,40 @@ export class InventoryComponent implements OnInit {
   public badgeNearlyStored: number = 0;
   public badgeGiveList: number = 0;
   public badgeStored: number = 0;
-  arrTagBadge = [];
+  arrTagBadge: any;
+  public totalItem: number = 0;
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService) { }
-
+  types: Array<{ item_type: string, title: string, image: string, badge: number }> = [];
   ngOnInit() {
-    this.arrTagBadge.push('wishlist');
-    this.arrTagBadge.push('expired');
-    this.arrTagBadge.push('non_expiry');
-    this.arrTagBadge.push('expiry');
-    this.arrTagBadge.push('voucher');
-    this.arrTagBadge.push('ticket');
-    this.arrTagBadge.push('new');
-    this.arrTagBadge.push('nearly_expiry');
-    this.arrTagBadge.push('nearly_stored');
-    this.arrTagBadge.push('givelist');
-    this.arrTagBadge.push('stored');
+    this.arrTagBadge = [
+      { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
+      { item_type: 'expired', title: '', image: '' },
+      { item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
+      { item_type: 'expiry', title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png' },
+      { item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
+      { item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
+      { item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png' },
+      { item_type: 'nearly_expiry', title: '', image: '' },
+      { item_type: 'nearly_stored', title: '', image: '' },
+      { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' },
+      { item_type: 'stored', title: '', image: '' }];
 
-    this.arrTagBadge.forEach(e=>{
-      this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'wishlist', this.inventoryType).subscribe(data => {
-        if (data)
-          this.badgeWishList = data.length
+    this.arrTagBadge.forEach(e => {
+      this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
+        if (data && e.item_type != 'expired' && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored' && e.item_type != 'stored') {
+          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
+        }
+        this.totalItem += data.length ? data.length : 0;
+
       });
     })
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'wishlist', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeWishList = data.length
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'expired', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeExpired = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'non_expiry', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeNonExpiry = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'expiry', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeExpiry = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'voucher', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeVoucher = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'ticket', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeTicket = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'new', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeNew = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'nearly_expiry', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeNearlyExpiry = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'nearly_stored', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeNearlyStored = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'givelist', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeGiveList = data.length;
-    });
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, 'stored', this.inventoryType).subscribe(data => {
-      if (data)
-        this.badgeWishList = data.length;
-    });
+
   }
 
-  goToPage(value) {
+  goToPage(value, item_type, title) {
     switch (value) {
       case 'items':
-        this.appCtrl.getRootNav().push(InvenroyItemsComponent);
+        this.appCtrl.getRootNav().push(InvenroyItemsComponent, { ownerGuid: this.ownerGuid, itemType: item_type, inventoryType: this.inventoryType, title: title });
         break;
       case 'default':
         break;

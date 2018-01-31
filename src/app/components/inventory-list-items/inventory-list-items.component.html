@@ -2,7 +2,7 @@
   <ion-col col-4 *ngFor="let type of types" (click)="goToPage('items')">
     <div class="box inventory">
       <div class="divImg">
-        <ion-badge item-end class="badge1">0</ion-badge>
+        <ion-badge item-end class="badge1">{{type.badge}}</ion-badge>
         <img width="100%" src="{{type.image}}" />
       </div>
       <h6 class="h3Img">{{type.title}}</h6>

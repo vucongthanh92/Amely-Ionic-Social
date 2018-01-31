@@ -3,10 +3,13 @@
 /**
  */
 export class body_6 {
-    name: string;
-    description: string;
+    post_guid: number;
+    content: string;
+    friends: string;
+    location: string;
     privacy: string;
-    member_invite: string;
-    membership: string;
-    members: string[];
+    mood: string;
+    images: string;
+    owner_guid?: number;
+    type?: string;
 }

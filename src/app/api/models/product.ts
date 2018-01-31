@@ -1,4 +1,5 @@
 /* tslint:disable */
+import { Shop } from './shop';
 
 /**
  */
@@ -41,4 +42,5 @@ export class Product {
     shop_categories?: string;
     market_categories?: string;
     images?: string;
+    shop?: Shop;
 }

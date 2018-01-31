@@ -19,15 +19,9 @@ export class GroupComponent implements OnInit {
   dateCreated: Date;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private groupService: GroupService) {
-    console.log(this.group);
     this.groupGuid = this.navParams.get('groupGuid');
-    console.log(this.groupGuid);
     this.groupService.getGroup(this.groupGuid).subscribe(data => {
-      console.log(data.avatar);
       this.groups.push(data);
-      // if (!data.hasOwnProperty('avatar')) {
-      //   data.avatar = "";
-      // }
       this.group = data;
       console.log(this.group.avatar);
       this.dateCreated = new Date(this.group.time_created * 1000);

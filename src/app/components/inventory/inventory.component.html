@@ -23,16 +23,29 @@
 		<ion-col col-6>
 			<ion-card style="margin:0px; width: 100%">
 				<ion-card-header>
-					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :
+					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
 	</ion-row>
 
 	<ion-grid>
-		<app-inventory-list-items [badgeNew]="badgeNew" [badgeWishList]="badgeWishList" [badgeExpired]="badgeExpired" [badgeNonExpiry]="badgeNonExpiry"
-		 [badgeExpiry]="badgeExpiry" [badgeVoucher]="badgeVoucher" [badgeTicket]="badgeTicket" [badgeNearlyExpiry]="" [badgeNearlyStored]="badgeNearlyStored"
-		 [badgeGiveList]="badgeGiveList" [badgeStored]="badgeStored"></app-inventory-list-items>
+		<ion-row>
+			<ion-col col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
+				<div class="box inventory">
+					<div class="divImg">
+						<ion-badge item-end class="badge1">{{type.badge}}</ion-badge>
+						<img width="100%" src="{{type.image}}" />
+					</div>
+					<h6 class="h3Img">{{type.title}}</h6>
+				</div>
+			</ion-col>
+			<ion-col col-4>
+				<div class="box inventory">
+					<h3 class="h3Img">...</h3>
+				</div>
+			</ion-col>
+		</ion-row>
 	</ion-grid>
 
 </ion-content>

@@ -10,19 +10,19 @@
 <ion-content class="content">
   <ion-row style="background-color: #fff; font-size: 20px">
     <ion-col col-3>
-        1 qua
+      {{inventoriesItem.length}} qua
     </ion-col>
     <ion-col col-9>
-        Khong han dung
+      {{title}}
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-4 *ngFor="let number of [0,1,2,3,4,5,6]" (click)="goToPage('item')" style="padding: 5px;" >
+    <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" style="padding: 5px;">
       <div style="background-color: #fff;">
-        <img width="100%" src="assets/imgs/logo.png" />
+        <img width="100%" src="{{item.product_snapshot.images[0]}}" />
         <div style="padding: 5px">
-          <p no-margin>abc</p>
-          <p no-margin>SL: 1</p>
+          <p no-margin>{{item.product_snapshot.title}}</p>
+          <p no-margin>SL: {{item.quantity}}</p>
         </div>
       </div>
     </ion-col>
@@ -32,14 +32,14 @@
 <ion-footer>
   <ion-toolbar class="toolbarFooter">
     <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button block>Sắp hết hạn dùng</button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button block>Sắp hết hạn lưu kho</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button block>Sắp hết hạn dùng</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button block>Sắp hết hạn lưu kho</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>

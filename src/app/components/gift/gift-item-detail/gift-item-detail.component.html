@@ -2,8 +2,8 @@
   <ion-navbar>
     <ion-title>Thông tin quà tặng</ion-title>
     <ion-buttons end>
-      <button ion-button >
-        <ion-icon name="send" ></ion-icon>
+      <button ion-button>
+        <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -13,19 +13,20 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img width="100%" src="assets/imgs/logo.png" />
+        <img width="100%" *ngIf="imageUrl"  src="{{imageUrl}}" />
+        <img width="100%" *ngIf="imageUrl==''"  src="assets/imgs/image_not_found.jpg" />
       </ion-col>
       <ion-col col-8>
         <ion-row>
-          Iphone 8 plus
+           {{item.product_snapshot.title}}
         </ion-row>
         <ion-row style="margin: 20px 0 0 0; background-color: rgb(184, 184, 184);border-radius: 8px;padding: 5px;">
-          Description Description Description Description Description Description Description Description
+           {{item.product_snapshot.description}}
         </ion-row>
 
         <ion-row style="margin: 20px 0 0 0;">
           Số lượng :
-          <a style="color: rgb(173, 43, 43)">5</a>
+          <a style="color: rgb(173, 43, 43)">{{item.quantity}}</a>
         </ion-row>
       </ion-col>
     </ion-row>
@@ -36,13 +37,13 @@
       </ion-col>
       <ion-col col-8>
         <ion-col col-4>
-            <button ion-button round>+</button>
+          <button ion-button round (click)="onMinus()">-</button>
         </ion-col>
         <ion-col col-4>
-            <button ion-button round>5</button>
+          <button ion-button round>{{quantitySend}}</button>
         </ion-col>
         <ion-col col-4>
-            <button ion-button round>-</button>
+          <button ion-button round (click)="onAdd()">+</button>
         </ion-col>
       </ion-col>
     </ion-row>

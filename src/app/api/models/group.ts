@@ -20,4 +20,5 @@ export class Group {
     inventory_items?: string;
     avatar?: string;
     cover?: string;
+    last_message?: string;
 }

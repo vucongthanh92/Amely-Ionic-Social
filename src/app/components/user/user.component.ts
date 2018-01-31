@@ -8,6 +8,7 @@ import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
+import { ChooseItemComponent } from '../gift/choose-item/choose-item.component';
 
 @Component({
   selector: 'app-user',
@@ -107,7 +108,7 @@ export class UserComponent {
         this.nav.push(ShopComponent);
         break;
       case 'gift':
-        this.nav.push(GiftComponent);
+        this.nav.push(ChooseItemComponent);
         break;
       case 'chat':
         this.nav.push(MessageComponent);

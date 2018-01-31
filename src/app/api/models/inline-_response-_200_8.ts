@@ -1,10 +1,9 @@
 /* tslint:disable */
 import { DefaultResponse } from './default-response';
-import { Product } from './product';
 
 /**
  */
-export class inline_response_200_7 {
+export class inline_response_200_8 {
     result?: DefaultResponse[];
-    product?: Product[];
+    products?: DefaultResponse[];
 }

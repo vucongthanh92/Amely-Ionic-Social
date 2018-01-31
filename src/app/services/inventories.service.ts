@@ -12,4 +12,7 @@ export class InventoriesService {
   getInventoriesByType(offset, limit, ownerGuid, itemType, inventoryType) {
     return this.apiService.getInventoryByType({ offset: offset, limit: limit, owner_guid: ownerGuid, inventory_type: inventoryType, item_type: itemType });
   }
+  getItemInventory(guid){
+    return this.apiService.getInventoryItem(guid);
+  }
 }
