@@ -21,4 +21,5 @@ export class Group {
     avatar?: string;
     cover?: string;
     last_message?: string;
+    last_time?: number;
 }

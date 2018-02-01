@@ -1,7 +1,7 @@
 import { Item } from './../../../api/models/item';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { App, NavController, NavParams } from 'ionic-angular';
+
 @Component({
   selector: 'app-gift-item-detail',
   templateUrl: './gift-item-detail.component.html'

@@ -1,8 +1,7 @@
-import { guid } from './../../api/models/guid';
 import { Group } from './../../api/models/group';
 import { GroupService } from './../../services/group.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
 

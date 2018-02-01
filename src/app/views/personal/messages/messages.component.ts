@@ -1,9 +1,11 @@
+import { GroupService } from './../../../services/group.service';
 import { MessagesService } from './../../../services/messages.service';
 import { User } from './../../../api/models/user';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { MessageComponent } from '../../../components/message/message.component';
 import { UserService } from '../../../services/user.service';
+import { Group } from '../../../api/models/group';
 
 @Component({
   selector: 'app-messages',
@@ -11,14 +13,15 @@ import { UserService } from '../../../services/user.service';
 })
 export class MessagesComponent implements OnInit {
 
+  users: User[];
   user: User;
+  userCurrent: User;
+  groups: Group[];
   individualList: any;
-  groupList: any;
-  userCurrent: any;
   dataSnapshot: any;
-  avatar: string;
 
   constructor(
+    public groupService: GroupService,
     public messagesService: MessagesService,
     public userService: UserService,
     public nav: NavController,
@@ -52,6 +55,24 @@ export class MessagesComponent implements OnInit {
         });
         return false;
       });
+    });
+
+    this.groupService.getGroups(this.userCurrent.guid).subscribe( data => {
+      this.groups = [];
+      data.groups.forEach( group => {
+        this.messagesService.getLastMessage(group.guid).on('value', lastmessage => {
+          lastmessage.forEach(e => {
+            group.last_message = e.val().text;
+            group.last_time = e.val().time;
+            this.groups = this.groups.filter(data => data.guid != group.guid);
+            this.groups.push(group);
+            this.groups.sort(this.compare);
+            return false;
+          });
+        });
+        return false;
+      });
+      this.users = data.owners;
     });
   }
 

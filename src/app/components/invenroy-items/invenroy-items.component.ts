@@ -1,6 +1,6 @@
 import { Item } from './../../api/models/item';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { ItemComponent } from '../item/item.component';
 import { InventoriesService } from '../../services/inventories.service';
 

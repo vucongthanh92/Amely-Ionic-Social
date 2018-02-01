@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { ChangePasswordComponent } from '../../../components/change-password/change-password.component';
 import { ChangePhonenumberComponent } from '../../../components/change-phonenumber/change-phonenumber.component';
 

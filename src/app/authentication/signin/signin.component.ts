@@ -1,9 +1,8 @@
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, Platform, MenuController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
-import { SocialComponent } from '../../views/social/social.component';
-import { ToastController, AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 
 @Component({
@@ -12,20 +11,16 @@ import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 })
 export class SigninComponent implements OnInit {
 
-  user = { username: 'quan5000', password: '123456' };
-  
+  user = { username: "thinhn", password: "thinhn123" };
+ 
   constructor(
     private authenticationService: AuthenticationService, 
     public nav: NavController,
-    private toastCtrl: ToastController,
-    public menuCtrl: MenuController
+    private toastCtrl: ToastController
   ) { 
   }
-
-  ngOnInit() { 
-    // let a=25000;
-    // console.log(a.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
-    
+  
+  ngOnInit() {
   }
 
   onLogin() {

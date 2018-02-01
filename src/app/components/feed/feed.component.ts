@@ -1,12 +1,9 @@
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
-import { Component, OnInit, Input } from '@angular/core';
-import { App, Nav, Platform, MenuController, NavController, PopoverController, NavParams, Refresher} from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
-
-import moment, { localeData } from 'moment';
-
 
 @Component({
   selector: 'app-feed',

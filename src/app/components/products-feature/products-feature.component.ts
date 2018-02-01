@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
 import { ProductAllComponent } from '../product-all/product-all.component';
 import { ShoppingsService } from '../../services/shoppings.service';

@@ -3,7 +3,7 @@ import { User } from './../../../api/models/user';
 import { Item } from './../../../api/models/item';
 import { InventoriesService } from './../../../services/inventories.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { GiftItemDetailComponent } from '../gift-item-detail/gift-item-detail.component';
 
 @Component({

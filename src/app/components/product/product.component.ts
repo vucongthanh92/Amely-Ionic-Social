@@ -3,7 +3,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Category } from './../../api/models/category';
 import { Product } from './../../api/models/product';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { CartItemsComponent } from '../../modules/cart/cart-items/cart-items.component';
 import { ProductsService } from '../../services/products.service';
 import { inline_response_200_3 } from '../../api/models/inline-_response-_200_3';

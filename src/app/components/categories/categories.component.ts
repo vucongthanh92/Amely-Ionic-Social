@@ -1,6 +1,6 @@
 import { Category } from './../../api/models/category';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { ProductCategoryComponent } from '../product-category/product-category.component';
 import { ShoppingsService } from '../../services/shoppings.service';
 

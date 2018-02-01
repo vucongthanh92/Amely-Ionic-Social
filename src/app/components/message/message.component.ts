@@ -1,9 +1,15 @@
+import { Camera } from '@ionic-native/camera';
+import { PhotosService } from './../../services/photos.service';
+import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
-import { ToastController, AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
+import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import 'firebase/storage';
 
 @Component({
   selector: 'app-message',
@@ -12,14 +18,19 @@ import { Content } from 'ionic-angular';
 
 export class MessageComponent implements OnInit {
 
-  userCurrent: any;
+  userCurrent: User;
   param: any;
   messages: any;
   messageText = null;
+  Picture: any;
+  base64Image: any; 
 
   @ViewChild(Content) content: Content
 
   constructor(
+    public firebase: FirebaseApp,
+    public cameraPlugin: Camera,
+    private photosService: PhotosService,
     private toastCtrl: ToastController,
     public messagesService: MessagesService,
     public navParams: NavParams,
@@ -34,6 +45,31 @@ export class MessageComponent implements OnInit {
         itemsSnapshot.forEach( items => {
           if (items.hasChildren()) {
             let object = items.val();
+            if (object.attachment) {
+              let sender = this.userCurrent.username;
+              if (object.from == this.userCurrent.username ) {
+                object.isSender = true;
+                sender = this.param.from;
+              }
+              let subjectId = object.attachment.url;
+              switch (object.attachment.media_type) {
+                case 'gift':
+                  this.messagesService.getGift(subjectId, sender).on('value', gift => {
+                    gift.forEach(g => {
+                      object.gift = g.val();
+                      return false;
+                    });
+                  });
+                  break;
+                case 'image':
+                  
+                  break;
+                default:
+                  break;
+              }
+              
+              
+            }
             if (object.from == this.userCurrent.username) {
               object.isSender = true;
             } else {
@@ -51,7 +87,7 @@ export class MessageComponent implements OnInit {
             }
             object.time = new Date(object.time);
             this.messages.push(object);
-            // this.content.scrollToBottom(0);
+            this.content.scrollToBottom(0);
           }
           return false;
         });
@@ -59,6 +95,14 @@ export class MessageComponent implements OnInit {
           this.content.scrollToBottom(500);
         }, 500);
       });
+  }
+
+  selectFromGallery() {
+    this.messagesService.selectFromGallery(this.param.key);
+  }
+
+  takePicture() {
+    this.messagesService.takePicture(this.param.key);
   }
 
   ionViewDidLoad() {

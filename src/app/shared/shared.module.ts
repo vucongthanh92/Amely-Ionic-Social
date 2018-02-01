@@ -1,3 +1,4 @@
+import { PaymentModule } from './../modules/payment/payment.module';
 import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
 import { FeedsComponent } from './../components/feeds/feeds.component';
 import { GiftItemDetailComponent } from './../components/gift/gift-item-detail/gift-item-detail.component';
@@ -40,24 +41,15 @@ import { SearchComponent } from '../components/search/search.component';
 import { OffersItemDetailComponent } from '../views/social/offers/offers-item-detail/offers-item-detail.component';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
-import { PaymentComponent } from '../modules/payment/payment.component';
-import { PaymentCustomerInfoComponent } from '../modules/payment/payment-customer-info/payment-customer-info.component';
-import { PaymentShipingMethodComponent } from '../modules/payment/payment-shiping-method/payment-shiping-method.component';
-import { PaymentReceiverInfoComponent } from '../modules/payment/payment-receiver-info/payment-receiver-info.component';
-import { PaymentPaymentMethodComponent } from '../modules/payment/payment-payment-method/payment-payment-method.component';
-import { PaymentItemsComponent } from '../modules/payment/payment-items/payment-items.component';
-import { PaymentOptionsAtmComponent } from '../modules/payment/payment-payment-options/payment-options-atm/payment-options-atm.component';
-import { PaymentOptionsPaypalComponent } from '../modules/payment/payment-payment-options/payment-options-paypal/payment-options-paypal.component';
-import { PaymentOptionsVisaComponent } from '../modules/payment/payment-payment-options/payment-options-visa/payment-options-visa.component';
-import { PaymentOptionsWalletComponent } from '../modules/payment/payment-payment-options/payment-options-wallet/payment-options-wallet.component';
-import { PaymentConfirmComponent } from '../modules/payment/payment-confirm/payment-confirm.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
+// import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    MomentModule
+    MomentModule,
+    PaymentModule
   ],
   declarations: [
     CategoriesComponent,
@@ -96,17 +88,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     LayoutPersonalComponent,
-    PaymentComponent,
-    PaymentCustomerInfoComponent,
-    PaymentShipingMethodComponent,
-    PaymentReceiverInfoComponent,
-    PaymentPaymentMethodComponent,
-    PaymentItemsComponent,
-    PaymentOptionsAtmComponent,
-    PaymentOptionsPaypalComponent,
-    PaymentOptionsVisaComponent,
-    PaymentOptionsWalletComponent,
-    PaymentConfirmComponent,
     InventoryGiftComponent
   ],
   entryComponents: [
@@ -146,17 +127,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     LayoutPersonalComponent,
-    PaymentComponent,
-    PaymentCustomerInfoComponent,
-    PaymentShipingMethodComponent,
-    PaymentReceiverInfoComponent,
-    PaymentPaymentMethodComponent,
-    PaymentItemsComponent,
-    PaymentOptionsAtmComponent,
-    PaymentOptionsPaypalComponent,
-    PaymentOptionsVisaComponent,
-    PaymentOptionsWalletComponent,
-    PaymentConfirmComponent,
     InventoryGiftComponent
   ],
   exports: [
@@ -196,17 +166,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     LayoutPersonalComponent,
-    PaymentComponent,
-    PaymentCustomerInfoComponent,
-    PaymentShipingMethodComponent,
-    PaymentReceiverInfoComponent,
-    PaymentPaymentMethodComponent,
-    PaymentItemsComponent,
-    PaymentOptionsAtmComponent,
-    PaymentOptionsPaypalComponent,
-    PaymentOptionsVisaComponent,
-    PaymentOptionsWalletComponent,
-    PaymentConfirmComponent,
     InventoryGiftComponent
   ]
 })

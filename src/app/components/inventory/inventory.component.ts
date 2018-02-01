@@ -1,9 +1,7 @@
-import { guid } from './../../api/models/guid';
 import { InventoriesService } from './../../services/inventories.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
-import { ApiService } from '../../api/services/api.service';
 
 @Component({
   selector: 'app-inventory',
