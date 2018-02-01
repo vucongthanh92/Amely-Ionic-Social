@@ -1,3 +1,4 @@
+import { PhotosService } from './services/photos.service';
 import { MessagesService } from './services/messages.service';
 import { GroupService } from './services/group.service';
 import { FeedsService } from './services/feeds.service';
@@ -24,12 +25,18 @@ import { InventoriesService } from './services/inventories.service';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { Camera } from '@ionic-native/camera';
+import { FilePath } from '@ionic-native/file-path';
+import { File } from '@ionic-native/file';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
   authDomain: "ezqua-44ed9.firebaseio.com",
   databaseURL: "https://ezqua-44ed9.firebaseio.com",
-  storageBucket: "",
+  storageBucket: "ezqua-44ed9.appspot.com",
+  projectId: "ezqua-44ed9",
   messagingSenderId: "29502497091"
 };
 
@@ -44,6 +51,8 @@ export const firebaseConfig = {
     IonicPageModule.forChild(MainMenuComponent),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     AuthenticationModule,
     SharedModule,
     SocialModule,
@@ -66,7 +75,11 @@ export const firebaseConfig = {
     MessagesService,
     GroupService,
     InventoriesService,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    PhotosService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Camera,
+    FilePath,
+    File
   ]
 })
 export class AppModule { }

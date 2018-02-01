@@ -1,3 +1,5 @@
+import { Camera } from '@ionic-native/camera';
+import { PhotosService } from './../../services/photos.service';
 import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -5,7 +7,9 @@ import { App, NavController, NavParams } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
+import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import 'firebase/storage';
 
 @Component({
   selector: 'app-message',
@@ -18,22 +22,21 @@ export class MessageComponent implements OnInit {
   param: any;
   messages: any;
   messageText = null;
+  Picture: any;
+  base64Image: any; 
 
   @ViewChild(Content) content: Content
 
   constructor(
-    private imagePicker: ImagePicker,
+    public firebase: FirebaseApp,
+    public cameraPlugin: Camera,
+    private photosService: PhotosService,
     private toastCtrl: ToastController,
     public messagesService: MessagesService,
     public navParams: NavParams,
     public nav: NavController, 
     public appCtrl: App) 
     {
-      this.imagePicker.getPictures({}).then((results) => {
-        for (var i = 0; i < results.length; i++) {
-          console.log('Image URI: ' + results[i]);
-        }
-      }, (err) => { });
       this.param = this.navParams.get("param");
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
@@ -49,12 +52,23 @@ export class MessageComponent implements OnInit {
                 sender = this.param.from;
               }
               let subjectId = object.attachment.url;
-              this.messagesService.getGift(subjectId, sender).on('value', gift => {
-                gift.forEach(g => {
-                  object.gift = g.val();
-                  return false;
-                });
-              });
+              switch (object.attachment.media_type) {
+                case 'gift':
+                  this.messagesService.getGift(subjectId, sender).on('value', gift => {
+                    gift.forEach(g => {
+                      object.gift = g.val();
+                      return false;
+                    });
+                  });
+                  break;
+                case 'image':
+                  
+                  break;
+                default:
+                  break;
+              }
+              
+              
             }
             if (object.from == this.userCurrent.username) {
               object.isSender = true;
@@ -73,7 +87,7 @@ export class MessageComponent implements OnInit {
             }
             object.time = new Date(object.time);
             this.messages.push(object);
-            // this.content.scrollToBottom(0);
+            this.content.scrollToBottom(0);
           }
           return false;
         });
@@ -81,6 +95,14 @@ export class MessageComponent implements OnInit {
           this.content.scrollToBottom(500);
         }, 500);
       });
+  }
+
+  selectFromGallery() {
+    this.messagesService.selectFromGallery(this.param.key);
+  }
+
+  takePicture() {
+    this.messagesService.takePicture(this.param.key);
   }
 
   ionViewDidLoad() {

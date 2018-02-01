@@ -16,11 +16,10 @@ export class SigninComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService, 
     public nav: NavController,
-    private toastCtrl: ToastController,
-    public menuCtrl: MenuController
+    private toastCtrl: ToastController
   ) { 
   }
-
+  
   ngOnInit() {
   }
 
