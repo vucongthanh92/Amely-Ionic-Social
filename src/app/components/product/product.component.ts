@@ -7,6 +7,7 @@ import { App, NavController, Refresher } from 'ionic-angular';
 import { CartItemsComponent } from '../../modules/cart/cart-items/cart-items.component';
 import { ProductsService } from '../../services/products.service';
 import { inline_response_200_3 } from '../../api/models/inline-_response-_200_3';
+import { CustomService } from '../../services/custom.service';
 
 @Component({
   selector: 'app-product',
@@ -17,17 +18,20 @@ export class ProductComponent implements OnInit {
   public categories: Array<Category>;
   private guid: number;
   public shop: Shop;
-  constructor(public nav: NavController, public appCtrl: App, private productsService: ProductsService, private navParam: NavParams) {
+  constructor(public nav: NavController, public appCtrl: App, private productsService: ProductsService, private navParam: NavParams, private customSerice:CustomService) {
     this.guid = this.navParam.get('guid');
   }
 
   ngOnInit() {
-    console.log(this.guid);
     this.productsService.getProduct(this.guid).subscribe(data => {
       this.product = data.product;
       this.categories = data.categories;
       this.shop = data.shop;
     });
+  }
+
+  formatCurrency(price, currency: string) {
+    return this.customSerice.formatCurrency(price, currency);
   }
 
   changePage() {

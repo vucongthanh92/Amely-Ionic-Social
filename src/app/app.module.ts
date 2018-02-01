@@ -1,3 +1,4 @@
+import { EventsService } from './services/events.service';
 import { ProductsService } from './services/products.service';
 import { MessagesService } from './services/messages.service';
 import { GroupService } from './services/group.service';
@@ -27,6 +28,7 @@ import { InventoriesService } from './services/inventories.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ShoppingsService } from './services/shoppings.service';
+import { CustomService } from './services/custom.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
@@ -71,6 +73,8 @@ export const firebaseConfig = {
     InventoriesService,
     ShoppingsService,
     ProductsService,
+    CustomService,
+    EventsService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

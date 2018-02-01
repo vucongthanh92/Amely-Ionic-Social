@@ -11,11 +11,11 @@
     <div class="scroll-item" *ngIf="productsMostSold">
       <ion-col *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
         <div class="item-card">
-          <img width="70%" *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg">
-          <img width="70%"  *ngIf="product.images[0]" src="{{product.images[0]}}">
+          <img class="imgageProduct" *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg">
+          <img class="imgageProduct" *ngIf="product.images[0]" src="{{product.images[0]}}">
           <div style="margin-top: 10px;">
             <h4>{{product.title}}</h4>
-            <h4>{{product.price}} {{product.currency}}</h4>
+            <h4>{{formatCurrency(product.price,product.currency)}}</h4>
           </div>
         </div>
       </ion-col>

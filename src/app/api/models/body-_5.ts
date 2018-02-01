@@ -3,8 +3,12 @@
 /**
  */
 export class body_5 {
-    feeds_type: string;
+    content: string;
+    friends: string;
+    location: string;
+    privacy: string;
+    mood: string;
+    images: string;
     owner_guid?: number;
-    offset?: number;
-    limit?: number;
+    type?: string;
 }

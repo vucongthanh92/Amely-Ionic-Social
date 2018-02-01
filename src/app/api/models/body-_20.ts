@@ -2,7 +2,8 @@
 
 /**
  */
-export class body_18 {
+export class body_20 {
+    promotion_guid?: number;
     title?: string;
     description?: string;
     time_start?: string;

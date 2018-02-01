@@ -9,7 +9,15 @@ export class ShoppingsService {
     return this.apiService.getCategories({ offset: offset, limit: limit, shop_guid: shop_guid, type: type, get_all: get_all })
   }
 
-  getMostSoldProducts(){
+  getMostSoldProducts() {
     return this.apiService.getProductsMostSold();
+  }
+
+  getVouchers(offset: number, limit: number) {
+    return this.apiService.getVouchers({ offset: offset, limit: limit })
+  }
+
+  getFriendlyShop(){
+    return this.apiService.getFriendlyShop();
   }
 }

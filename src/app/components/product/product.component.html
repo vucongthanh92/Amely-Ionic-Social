@@ -19,10 +19,10 @@
     <ion-card-content>
       <ion-row>
         <ion-col col-12>
-          {{product.title}} {{product.price}}
+          {{product.title}}
         </ion-col>
         <ion-col col-12>
-          {{product.price}}
+           {{formatCurrency(product.price,product.currency)}}
         </ion-col>
       </ion-row>
     </ion-card-content>

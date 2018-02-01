@@ -4,6 +4,7 @@ import { ProductComponent } from '../product/product.component';
 import { ProductAllComponent } from '../product-all/product-all.component';
 import { ShoppingsService } from '../../services/shoppings.service';
 import { Product } from '../../api/models/product';
+import { CustomService } from '../../services/custom.service';
 
 @Component({
   selector: 'app-products-feature',
@@ -12,7 +13,8 @@ import { Product } from '../../api/models/product';
 
 export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
-  constructor(public nav: NavController, public appCtrl: App, private shoppingSerivce: ShoppingsService) { }
+ 
+  constructor(public nav: NavController, public appCtrl: App, private shoppingSerivce: ShoppingsService,private customSerice:CustomService) { }
 
   ngOnInit() {
     this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
@@ -20,6 +22,10 @@ export class ProductsFeatureComponent implements OnInit {
         this.productsMostSold = data;
       }
     })
+  }
+
+  formatCurrency(price,currency :string){
+    return this.customSerice.formatCurrency(price,currency);
   }
 
   goToPage(value, product: Product) {

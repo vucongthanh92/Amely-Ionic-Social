@@ -2,9 +2,7 @@
 
 /**
  */
-export class body_6 {
-    feeds_type: string;
-    owner_guid?: number;
+export class body_21 {
     offset?: number;
     limit?: number;
 }

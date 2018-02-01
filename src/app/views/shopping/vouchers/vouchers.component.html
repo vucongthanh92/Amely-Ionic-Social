@@ -9,11 +9,12 @@
 
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item *ngFor="let number of [0,1,2,3,4]" (click)="goToPage('product');">
+    <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
       <ion-card>
-        <img width="100%" src="assets/imgs/logo.png" />
-        <h3>Spnem</h3>
-        <h3>$2</h3>
+        <img width="100%" *ngIf="voucher.images[0]" src="{{voucher.images[0]}}" />
+        <img width="100%" *ngIf="voucher.images[0]==''" src="assets/imgs/image_not_found.jpg" />
+        <h3>{{voucher.title}}</h3>
+        <h3>{{customService.formatCurrency(voucher.price,voucher.currency)}}</h3>
       </ion-card>
     </ion-item>
   </ion-list>
@@ -22,9 +23,9 @@
 <ion-footer>
   <ion-scroll scrollX style="height:50px;">
     <div class="scroll-item">
-      <ion-col *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10]" (click)="goToPage('category');">
+      <ion-col *ngFor="let category of categories" (click)="goToPage('category',null);">
         <div class="item-card">
-          <button ion-button clear>Primary Clear</button>
+          <button ion-button clear>{{category.title}}</button>
         </div>
       </ion-col>
     </div>

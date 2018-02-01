@@ -3,5 +3,6 @@
 /**
  */
 export class body_12 {
-    owner_guid: number;
+    type: string[];
+    guid: number;
 }

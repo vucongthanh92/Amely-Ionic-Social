@@ -1,10 +1,10 @@
 /* tslint:disable */
-import { Feed } from './feed';
+import { Event } from './event';
 import { User } from './user';
 
 /**
  */
 export class inline_response_200 {
-    post?: Feed;
+    events?: Event[];
     users?: User[];
 }
