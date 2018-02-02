@@ -2,8 +2,8 @@
 
 /**
  */
-export class body_17 {
+export class body_23 {
+    shop_guid?: number;
     offset?: number;
     limit?: number;
-    target?: string;
 }

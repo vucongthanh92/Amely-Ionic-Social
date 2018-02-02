@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { GiftsService } from './gifts.service';
 
 @Injectable()
 export class MessagesService {
@@ -12,6 +13,7 @@ export class MessagesService {
   message: { from: string, status: string, text: any, time: number };
 
   constructor(
+    public giftsService: GiftsService,
     public storage: AngularFireStorage,
     public camera: Camera,
     public afDatabase: AngularFireDatabase,
@@ -50,6 +52,11 @@ export class MessagesService {
     return this.afDatabase.list(path).query.orderByChild('subject_guid').equalTo(subjectId);
   }
 
+  createNotification(username, obj) {  
+    let path = "/notifications/" + username;
+    return this.afDatabase.list(path).push(obj);
+  }
+
   selectFromGallery(keyChat) {
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -83,6 +90,33 @@ export class MessagesService {
         let message = { from: this.userCurrent.username, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
         this.afDatabase.list(path).push(message);
       });
+    });
+  }
+
+  acceptGift(username, gift_guid) {
+    this.giftsService.accept(gift_guid).subscribe(res => {
+      console.log(res);
+      if (res.status) {
+        let path = "/notifications/" + username;
+        let message = { notification_type: "gift:accept", status: "accept"};
+        let ref = this.afDatabase.list(path);
+        ref.query.orderByChild("subject_guid").equalTo(gift_guid).once('child_added', snap => {
+          ref.update(snap.key, message);
+        });
+      }
+    });
+  }
+
+  rejectGift(username, gift_guid) {
+    this.giftsService.reject(gift_guid).subscribe( res => {
+      if (res.status) {
+        let path = "/notifications/" + username;
+        let message = { notification_type: "gift:reject", status: "reject" };
+        let ref = this.afDatabase.list(path);
+        ref.query.orderByChild("subject_guid").equalTo(gift_guid).once('child_added', snap => {
+          ref.update(snap.key, message);
+        });
+      }
     });
   }
 }

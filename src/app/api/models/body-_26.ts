@@ -2,8 +2,7 @@
 
 /**
  */
-export class body_17 {
+export class body_26 {
     offset?: number;
     limit?: number;
-    target?: string;
 }

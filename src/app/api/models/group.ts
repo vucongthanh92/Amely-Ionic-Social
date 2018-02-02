@@ -4,7 +4,7 @@ import { User } from './user';
 /**
  */
 export class Group {
-    membership?: string;
+    membInvite?: string;
     guid?: number;
     members?: User[];
     time_created?: number;
@@ -12,8 +12,8 @@ export class Group {
     description?: string;
     type?: string;
     subtype?: string;
+    membership?: string;
     title?: string;
-    membInvite?: string;
     groupMembership?: string;
     has_inventory?: string;
     thought?: string;

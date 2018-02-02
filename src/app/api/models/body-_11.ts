@@ -3,7 +3,10 @@
 /**
  */
 export class body_11 {
-    from_guid: number;
-    to_guid: number;
-    invitation_type: string;
+    name: string;
+    description: string;
+    privacy: string;
+    member_invite: string;
+    membership: string;
+    members: string[];
 }

@@ -3,6 +3,11 @@
 /**
  */
 export class body_21 {
-    offset?: number;
-    limit?: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+    gender: string;
+    birthdate: string;
+    usercurrency: string;
+    friends_hidden: string;
 }
