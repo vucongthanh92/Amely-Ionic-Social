@@ -90,12 +90,9 @@ export const firebaseConfig = {
     CustomService,
     EventsService,
     PhotosService,
-<<<<<<< HEAD
     TransactionsService,
     OffersService,
-=======
     GiftsService,
->>>>>>> origin/thinhn
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

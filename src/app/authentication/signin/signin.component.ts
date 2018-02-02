@@ -1,5 +1,5 @@
 import { AuthenticationService } from './../authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { ToastController } from 'ionic-angular';
@@ -11,7 +11,8 @@ import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 })
 export class SigninComponent implements OnInit {
 
-  user = { username: "admin", password: "dfm2010@" };
+  @Input('username') username: string;
+  @Input('password') password: string;
  
   constructor(
     private authenticationService: AuthenticationService, 
@@ -24,7 +25,7 @@ export class SigninComponent implements OnInit {
   }
 
   onLogin() {
-    this.authenticationService.login(this.user.username, this.user.password).subscribe(resp => {
+    this.authenticationService.login(this.username, this.password).subscribe(resp => {
       if (resp.status == false) {
         const toast = this.toastCtrl.create({
           message: 'Đăng nhập thất bại!',
