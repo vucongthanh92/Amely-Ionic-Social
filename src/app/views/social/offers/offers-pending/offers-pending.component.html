@@ -1,23 +1,35 @@
-<div margin *ngFor="let number of [0,1,2,3,4]">
-  <ion-row style="position: relative;background-color: #fff; border-radius: 10px;">
-    <img width="48px" height="48px" src="assets/imgs/logo.png" style="position: absolute;top: -10px" />
-    <ion-col col-12 text-right margin->
-        <ion-icon name="person"></ion-icon> Xung quanh
+<div margin *ngFor="let counterOffer of counterOffers">
+  <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" *ngIf="counterOffers">
+    <img *ngIf="counterOffer.offer.owner.avatar != null" width="48px" height="48px" src="{{counterOffer.offer.owner.avatar}}"
+      style="position: absolute;top: -10px" />
+
+    <ion-col *ngIf="counterOffer.offer.target=='public'" col-12 text-right margin->
+      <ion-icon class="public"></ion-icon> Xung quanh
     </ion-col>
+
+    <ion-col *ngIf="counterOffer.offer.target=='location'" col-12 text-right margin->
+      <ion-icon class="around"></ion-icon> Theo vị trí
+    </ion-col>
+
+    <ion-col *ngIf="counterOffer.offer.target=='friends'" col-12 text-right margin->
+      <ion-icon class="friend"></ion-icon> Bạn bè
+    </ion-col>
+
   </ion-row>
   <ion-row style="background-color: #fff;margin-top: 5px;padding: 10px;border-radius: 10px;">
     <ion-col col-3>
-      <img width="100%" src="assets/imgs/logo.png" />
+      <img *ngIf="counterOffer.product_snapshot.images[0]" width="100%" src="{{counterOffer.product_snapshot.images[0]}}" />
+      <img *ngIf="counterOffer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
     </ion-col>
     <ion-col col-9>
       <div text-left>
-        Product789
+        {{counterOffer.product_snapshot.title}} #{{counterOffer.guid}}
       </div>
       <div text-left>
-        Noi dung product <br> dasdas
+        {{counterOffer.description}}
       </div>
       <div text-right>
-        16:25 23/11/2017
+        {{getTimeString(counterOffer.time_created) | date:"HH:mm dd/MM/yy" }}
       </div>
     </ion-col>
   </ion-row>

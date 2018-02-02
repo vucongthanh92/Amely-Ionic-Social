@@ -9,8 +9,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
-      Đã nhận món qùa số {{number}}
+    <ion-item *ngFor="let transaction of transactions">
+     <a *ngIf="transaction.status==='requested'"  style="color: rgb(0, 0, 0)"> Đã tặng món quà số #{{transaction.guid}}</a>
+     <a *ngIf="transaction.status==='rejected'" style="color: red"> Đã từ chối quà số #{{transaction.guid}}</a>
+     <a *ngIf="transaction.status==='accepted'" style="color: green"> Đã đồng ý nhận quà số #{{transaction.guid}}</a>
     </ion-item>
   </ion-list>
 </ion-content>

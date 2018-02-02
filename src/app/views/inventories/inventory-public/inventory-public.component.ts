@@ -25,7 +25,7 @@ export class InventoryPublicComponent implements OnInit {
   ngOnInit() {
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
       if (data.groups) {
-        this.groups = data.groups
+        this.groups = data.groups.filter(e => e.has_inventory === '2')
       }
       if (data.owners) {
         this.usersGroup = data.owners;
@@ -34,7 +34,7 @@ export class InventoryPublicComponent implements OnInit {
 
     this.eventsService.getEvents(0, 9999, 'all').subscribe(data => {
       if (data.events) {
-        this.events = data.events;
+        this.events = data.events.filter(e => e.has_inventory === '1');
       }
       if (data.users) {
         this.usersEvent = data.users;
@@ -42,14 +42,22 @@ export class InventoryPublicComponent implements OnInit {
     });
   }
 
-  getAdminGroup(guid) {
-    return this.usersGroup[guid].fullname;
+  getFullnameAdmin(guid, type) {
+    switch (type) {
+      case 'group':
+        return this.usersGroup[guid].fullname;
+      case 'event':
+        return this.usersEvent[guid].fullname;
+      default:
+        return 'Đang cập nhật';
+    }
+
   }
   inventoryPublicTab = 'group';
   groupPage = true;
   eventPage = false;
 
-  goToPage(value) {
+  goToPage(value, type, guid) {
     switch (value) {
       case 'group':
         this.groupPage = true;

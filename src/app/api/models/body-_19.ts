@@ -3,7 +3,11 @@
 /**
  */
 export class body_19 {
-    shop_guid?: number;
-    offset?: number;
-    limit?: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+    gender: string;
+    birthdate: string;
+    usercurrency: string;
+    friends_hidden: string;
 }

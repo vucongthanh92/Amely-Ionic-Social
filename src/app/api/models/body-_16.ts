@@ -3,8 +3,8 @@
 /**
  */
 export class body_16 {
-    end_day?: string;
-    product_guid?: number;
+    expiry?: number;
+    sku?: string;
     title?: string;
     description?: string;
     manufacturer?: string;
@@ -15,17 +15,16 @@ export class body_16 {
     price?: number;
     currency?: string;
     quantity?: number;
-    expiry?: number;
+    weight?: number;
+    product_group?: number;
+    featured?: number;
+    storage_duration?: string;
     duration?: number;
     begin_day?: string;
-    sku?: string;
+    end_day?: string;
     friendly_url?: string;
     origin?: string;
     order?: string;
-    weight?: number;
-    storage_duration?: number;
-    product_group?: number;
-    featured?: number;
     status?: string;
     ossn_photo?: string[];
     shop_category?: string[];

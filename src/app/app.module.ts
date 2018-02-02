@@ -36,6 +36,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { Camera } from '@ionic-native/camera';
 import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
+import { TransactionsService } from './services/transactions.service';
+import { OffersService } from './services/offers.service';
 
 
 export const firebaseConfig = {
@@ -54,7 +56,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true}),
+    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true }),
     IonicPageModule.forChild(MainMenuComponent),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -87,6 +89,8 @@ export const firebaseConfig = {
     CustomService,
     EventsService,
     PhotosService,
+    TransactionsService,
+    OffersService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

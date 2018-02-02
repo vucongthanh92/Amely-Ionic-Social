@@ -3,11 +3,11 @@
 /**
  */
 export class body_17 {
-    firstname: string;
-    lastname: string;
-    email: string;
-    gender: string;
-    birthdate: string;
-    usercurrency: string;
-    friends_hidden: string;
+    category_guid?: number;
+    shop_guid?: number;
+    type_product?: string;
+    product_filter?: number;
+    get_all?: number;
+    offset?: number;
+    limit?: number;
 }

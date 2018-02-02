@@ -1,13 +1,13 @@
 <ion-list>
-  <ion-item *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
+  <ion-item *ngFor="let event of events">
     <ion-row>
       <ion-col col-3>
-        <img width="100%" src="assets/imgs/logo.png" />
+        <img width="100%" src="{{event.avatar}}" />
       </ion-col>
       <ion-col col-9>
-        Test Fix Date Picker <br>
-        22/01/2018 <br>
-        chu su kien vipn201
+        {{event.title}}
+        <br>{{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}
+        <br>Chủ sự kiện : {{getFullname(event.owner_guid)}}
       </ion-col>
     </ion-row>
   </ion-item>

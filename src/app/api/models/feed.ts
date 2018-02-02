@@ -1,6 +1,5 @@
 /* tslint:disable */
 import { Mood } from './mood';
-import { Feed_description } from './feed-_description';
 
 /**
  */
@@ -19,5 +18,5 @@ export class Feed {
     title?: string;
     wallphoto?: string[];
     time_created?: number;
-    description?: any;
+    description?: string;
 }

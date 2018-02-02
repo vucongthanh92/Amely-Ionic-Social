@@ -1,3 +1,5 @@
+import { Offer } from './../../../../api/models/offer';
+import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
@@ -7,10 +9,15 @@ import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-det
   templateUrl: './offers-myself.component.html'
 })
 export class OffersMyselfComponent implements OnInit {
-
-  constructor(public nav: NavController, public appCtrl: App) { }
+  public offers: Array<Offer> = [];
+  constructor(public nav: NavController, public appCtrl: App,private offersService:OffersService) { }
 
   ngOnInit() {
+    this.offersService.getOffers(0, 9999, null).subscribe(data => {
+      if (data instanceof Array) {
+        this.offers = data;        
+      }
+    })
   }
 
   changePage() {

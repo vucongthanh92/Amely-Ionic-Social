@@ -1,3 +1,5 @@
+import { OffersService } from './../../../../services/offers.service';
+import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './offers-search.component.html'
 })
 export class OffersSearchComponent implements OnInit {
-
-  constructor() { }
+  public offers: Array<Offer>;
+  constructor(private offersServie: OffersService) { }
 
   ngOnInit() {
+    this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
+      if (data instanceof Array) {
+        this.offers = data;
+        console.log(data);
+        
+      }
+    })
   }
 
 }
