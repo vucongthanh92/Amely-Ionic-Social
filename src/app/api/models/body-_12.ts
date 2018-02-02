@@ -3,7 +3,8 @@
 /**
  */
 export class body_12 {
-    from_guid: number;
-    to_guid: number;
-    invitation_type: string;
+    feeds_type: string;
+    owner_guid?: number;
+    offset?: number;
+    limit?: number;
 }

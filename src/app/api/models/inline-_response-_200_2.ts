@@ -1,14 +1,10 @@
 /* tslint:disable */
-import { Feed } from './feed';
+import { Event } from './event';
 import { User } from './user';
-import { Mood } from './mood';
-import { Share } from './share';
 
 /**
  */
 export class inline_response_200_2 {
-    posts?: Feed[];
+    events?: Event[];
     users?: User[];
-    moods?: Mood[];
-    shares?: Share[];
 }

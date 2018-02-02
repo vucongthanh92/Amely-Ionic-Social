@@ -3,11 +3,10 @@
 /**
  */
 export class body_17 {
-    category_guid?: number;
-    shop_guid?: number;
-    type_product?: string;
-    product_filter?: number;
-    get_all?: number;
-    offset?: number;
-    limit?: number;
+    name: string;
+    description: string;
+    privacy: string;
+    member_invite: string;
+    membership: string;
+    members: string[];
 }

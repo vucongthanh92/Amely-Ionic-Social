@@ -3,6 +3,13 @@
 /**
  */
 export class body_13 {
-    type: string[];
-    guid: number;
+    post_guid: number;
+    content: string;
+    friends: string;
+    location: string;
+    privacy: string;
+    mood: string;
+    images: string;
+    owner_guid?: number;
+    type?: string;
 }

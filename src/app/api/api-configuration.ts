@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = "http://dev.ezqua.com/ws/v1/";
+  rootUrl: string = "https://dev.ezqua.com/ws/v1";
 }

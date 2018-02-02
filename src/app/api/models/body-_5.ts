@@ -3,7 +3,11 @@
 /**
  */
 export class body_5 {
-    event_type?: string;
-    offset?: number;
-    limit?: number;
+    title?: string;
+    description?: string;
+    friendly_url?: string;
+    sort_order?: number;
+    enabled?: string;
+    parent_guid?: number;
+    image?: string;
 }

@@ -3,11 +3,9 @@
 /**
  */
 export class body_19 {
-    firstname: string;
-    lastname: string;
-    email: string;
-    gender: string;
-    birthdate: string;
-    usercurrency: string;
-    friends_hidden: string;
+    offset: number;
+    limit: number;
+    owner_guid: number;
+    inventory_type: string;
+    item_type: string;
 }

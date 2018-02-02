@@ -3,13 +3,7 @@
 /**
  */
 export class body_8 {
-    post_guid: number;
-    content: string;
-    friends: string;
-    location: string;
-    privacy: string;
-    mood: string;
+    post_guid: string;
+    comment: string;
     images: string;
-    owner_guid?: number;
-    type?: string;
 }

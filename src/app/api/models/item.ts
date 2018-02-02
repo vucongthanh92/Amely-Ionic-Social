@@ -7,12 +7,12 @@ export class Item {
     inventory_type?: string;
     guid?: string;
     type?: string;
-    time_created?: string;
+    time_created?: number;
     title?: string;
     description?: string;
     subtype?: string;
     owner_guid?: string;
-    quantity?: string;
+    quantity?: number;
     product_snapshot?: Product;
     expiry_type?: string;
     is_special?: string;

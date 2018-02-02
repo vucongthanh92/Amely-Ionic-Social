@@ -1,12 +1,14 @@
 /* tslint:disable */
-import { Product } from './product';
-import { Category } from './category';
-import { Shop } from './shop';
+import { Feed } from './feed';
+import { User } from './user';
+import { Mood } from './mood';
+import { Share } from './share';
 
 /**
  */
 export class inline_response_200_4 {
-    product?: Product;
-    categories?: Category[];
-    shop?: Shop;
+    posts?: Feed[];
+    users?: User[];
+    moods?: Mood[];
+    shares?: Share[];
 }

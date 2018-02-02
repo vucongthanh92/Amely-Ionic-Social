@@ -1,3 +1,4 @@
+import { GiftsService } from './services/gifts.service';
 import { EventsService } from './services/events.service';
 import { ProductsService } from './services/products.service';
 import { PhotosService } from './services/photos.service';
@@ -89,8 +90,12 @@ export const firebaseConfig = {
     CustomService,
     EventsService,
     PhotosService,
+<<<<<<< HEAD
     TransactionsService,
     OffersService,
+=======
+    GiftsService,
+>>>>>>> origin/thinhn
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

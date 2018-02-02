@@ -3,7 +3,6 @@
 /**
  */
 export class body_21 {
-    shop_guid?: number;
-    offset?: number;
-    limit?: number;
+    type: string[];
+    guid: number;
 }

@@ -47,6 +47,7 @@ export class MessagesComponent implements OnInit {
             this.individualList = this.individualList.filter(data => data.key != object.key);
             this.userService.getUser(object.from, null).subscribe(data => {
               object.avatar = data.avatar;
+              object.guid = data.guid;
             });
             this.individualList.push(object);
             this.individualList.sort(this.compare);

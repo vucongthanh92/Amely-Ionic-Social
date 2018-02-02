@@ -1,12 +1,10 @@
 /* tslint:disable */
-import { DefaultResponse } from './default-response';
-import { Group } from './group';
+import { Feed } from './feed';
 import { User } from './user';
 
 /**
  */
 export class inline_response_200_3 {
-    result?: DefaultResponse;
-    groups?: Group[];
-    owners?: User[];
+    post?: Feed;
+    users?: User[];
 }

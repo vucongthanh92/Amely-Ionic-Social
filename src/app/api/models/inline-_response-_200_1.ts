@@ -1,10 +1,8 @@
 /* tslint:disable */
-import { Feed } from './feed';
-import { User } from './user';
+import { Cart_item } from './cart-_item';
 
 /**
  */
 export class inline_response_200_1 {
-    post?: Feed;
-    users?: User[];
+    cart?: Cart_item[];
 }

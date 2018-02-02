@@ -3,9 +3,7 @@
 /**
  */
 export class body_20 {
-    title?: string;
-    description?: string;
-    time_start?: string;
-    time_end?: string;
-    status?: string;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }

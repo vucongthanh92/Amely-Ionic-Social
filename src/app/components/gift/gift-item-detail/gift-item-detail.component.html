@@ -1,8 +1,11 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
     <ion-title>Thông tin quà tặng</ion-title>
     <ion-buttons end>
-      <button ion-button>
+      <button ion-button (click)="choosenItem()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -40,7 +43,7 @@
           <button ion-button round (click)="onMinus()">-</button>
         </ion-col>
         <ion-col col-4>
-          <button ion-button round>{{quantitySend}}</button>
+          <ion-input type="number" [(ngModel)]="quantity" name="quantity" value="{{ quantitySend }}"></ion-input>
         </ion-col>
         <ion-col col-4>
           <button ion-button round (click)="onAdd()">+</button>

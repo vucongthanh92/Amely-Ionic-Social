@@ -1,3 +1,4 @@
+import { GiftsService } from './../../services/gifts.service';
 import { Camera } from '@ionic-native/camera';
 import { PhotosService } from './../../services/photos.service';
 import { User } from './../../api/models/user';
@@ -10,6 +11,8 @@ import { Content } from 'ionic-angular';
 import { FirebaseApp } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'firebase/storage';
+import { Item } from '../../api/models/item';
+import { Gift } from '../../api/models/gift';
 
 @Component({
   selector: 'app-message',
@@ -23,11 +26,15 @@ export class MessageComponent implements OnInit {
   messages: any;
   messageText = null;
   Picture: any;
-  base64Image: any; 
+  base64Image: any;
+  usernameChat: string;
+  item: Item;
+  gift: any;
 
   @ViewChild(Content) content: Content
 
   constructor(
+    public giftsService: GiftsService,
     public firebase: FirebaseApp,
     public cameraPlugin: Camera,
     private photosService: PhotosService,
@@ -38,6 +45,7 @@ export class MessageComponent implements OnInit {
     public appCtrl: App) 
     {
       this.param = this.navParams.get("param");
+      this.usernameChat = this.param.from;
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
         this.messages = [];
@@ -62,13 +70,10 @@ export class MessageComponent implements OnInit {
                   });
                   break;
                 case 'image':
-                  
                   break;
                 default:
                   break;
               }
-              
-              
             }
             if (object.from == this.userCurrent.username) {
               object.isSender = true;
@@ -87,14 +92,21 @@ export class MessageComponent implements OnInit {
             }
             object.time = new Date(object.time);
             this.messages.push(object);
-            this.content.scrollToBottom(0);
+            if (this.messages.length > 0) {
+              setTimeout(() => {
+                this.content.scrollToBottom(500);
+              }, 500);
+            }
           }
           return false;
         });
-        setTimeout(() => {
-          this.content.scrollToBottom(500);
-        }, 500);
       });
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.content.scrollToBottom(500);
+    }, 500);
   }
 
   selectFromGallery() {
@@ -105,23 +117,16 @@ export class MessageComponent implements OnInit {
     this.messagesService.takePicture(this.param.key);
   }
 
-  ionViewDidLoad() {
-    // this.content.scrollToBottom(0);
-  }
-  ionViewWillEnter() {
-    // this.content.scrollToBottom(0);
-  }
-  ionViewDidEnter() {
-    this.content.scrollToBottom(500);
-  }
-  ngOnInit() {
-    // this.content.scrollToBottom(0);    
+  ngOnInit() { 
   }
   
   sendMessage() {
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
+      setTimeout(() => {
+        this.content.scrollToBottom(100);
+      }, 100);
     } else {
       const toast = this.toastCtrl.create({
         message: 'Không có nội dung gửi!',
@@ -133,6 +138,14 @@ export class MessageComponent implements OnInit {
     this.messageText = null;
   }
 
+  acceptGift(gift_guid) {
+    this.messagesService.acceptGift(this.userCurrent.username, gift_guid);
+  }
+
+  rejectGift(gift_guid) {
+    this.messagesService.rejectGift(this.userCurrent.username, gift_guid);
+  }
+
   newfeedsPage = true;
   membersPage = false;
   groupTab = 'newfeed';
@@ -140,7 +153,7 @@ export class MessageComponent implements OnInit {
   goToPage(value) {
     switch (value) {
       case 'gift':
-        this.appCtrl.getRootNav().push(GiftComponent);
+        this.appCtrl.getRootNav().push(GiftComponent, { param: this.param });
         break;
       default:
         break;

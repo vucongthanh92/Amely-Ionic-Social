@@ -3,8 +3,12 @@
 /**
  */
 export class body_7 {
-    feeds_type: string;
-    owner_guid?: number;
-    offset?: number;
-    limit?: number;
+    category_guid?: number;
+    title?: string;
+    description?: string;
+    friendly_url?: string;
+    sort_order?: number;
+    enabled?: string;
+    parent_guid?: number;
+    image?: string;
 }

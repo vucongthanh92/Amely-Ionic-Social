@@ -3,10 +3,7 @@
 /**
  */
 export class body_10 {
-    group_guid: number;
-    name: string;
-    description: string;
-    privacy: string;
-    member_invite: string;
-    membership: string;
+    event_type?: string;
+    offset?: number;
+    limit?: number;
 }

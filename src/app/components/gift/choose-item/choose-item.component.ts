@@ -3,8 +3,9 @@ import { User } from './../../../api/models/user';
 import { Item } from './../../../api/models/item';
 import { InventoriesService } from './../../../services/inventories.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, ModalController, NavParams } from 'ionic-angular';
 import { GiftItemDetailComponent } from '../gift-item-detail/gift-item-detail.component';
+import { GiftComponent } from '../gift.component';
 
 @Component({
   selector: 'app-choose-item',
@@ -16,7 +17,12 @@ export class ChooseItemComponent implements OnInit {
   public inventoriesItem: Array<Item> = [];
   private arrTagBadge: any;
   private userCurrent: User;
-  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService) {
+  constructor(
+    public params: NavParams,
+    public modalCtrl: ModalController,
+    public nav: NavController, 
+    public appCtrl: App, 
+    public inventorySerive: InventoriesService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -43,6 +49,19 @@ export class ChooseItemComponent implements OnInit {
     })
   }
 
+  presentItemDetail(item) {
+    let profileModal = this.modalCtrl.create(GiftItemDetailComponent, { item: item });
+    profileModal.present();
+
+    profileModal.onDidDismiss( item => {
+      let callback = this.params.get("callback");
+
+      callback(item.item).then(() => {
+        this.nav.pop();
+      });
+    });
+  }
+
   onFilterItem(item_type) {
     this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, item_type, 'user').subscribe(data => {
       if (data instanceof Array) {
@@ -56,4 +75,5 @@ export class ChooseItemComponent implements OnInit {
   goToDetail(item) {
     this.appCtrl.getRootNav().push(GiftItemDetailComponent, { item: item });
   }
+
 }
