@@ -11,8 +11,8 @@ import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string;
-  @Input('password') password: string;
+  @Input('username') username: string='quannm';
+  @Input('password') password: string='123456';
  
   constructor(
     private authenticationService: AuthenticationService, 

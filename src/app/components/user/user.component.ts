@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user.service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { App, NavController, Refresher, NavParams } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
@@ -25,6 +25,7 @@ export class UserComponent {
   birthday: string;
   iconMood: string;
   moodLocal: any;
+  from='user';
   constructor(public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
@@ -35,7 +36,7 @@ export class UserComponent {
 
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
-    this.getUser().subscribe(data => {
+    this.userService.getUser(null,this.userGuid).subscribe(data => {
       this.user = data;
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
@@ -115,3 +116,4 @@ export class UserComponent {
     }
   }
 }
+ 

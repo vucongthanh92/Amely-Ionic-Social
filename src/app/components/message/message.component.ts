@@ -139,7 +139,7 @@ export class MessageComponent implements OnInit {
   }
 
   acceptGift(gift_guid) {
-    this.messagesService.acceptGift(this.userCurrent.username, gift_guid);
+    this.messagesService.acceptGift(this.userCurrent.username, +gift_guid);
   }
 
   rejectGift(gift_guid) {

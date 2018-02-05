@@ -20,8 +20,8 @@ export class GiftsService {
     return this.api.createGift(params);
   }
 
-  accept(gift_guid) {
-    return this.api.acceptGift({ gift_guid: gift_guid });
+  accept(gift_guid: number) {
+    return this.api.acceptGift({ gift_guid: gift_guid});
   }
 
   reject(gift_guid) {

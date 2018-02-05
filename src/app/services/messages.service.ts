@@ -94,7 +94,7 @@ export class MessagesService {
   }
 
   acceptGift(username, gift_guid) {
-    this.giftsService.accept(gift_guid).subscribe(res => {
+    this.giftsService.accept(+gift_guid).subscribe(res => {
       console.log(res);
       if (res.status) {
         let path = "/notifications/" + username;

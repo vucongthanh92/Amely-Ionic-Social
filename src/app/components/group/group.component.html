@@ -64,6 +64,6 @@
     </ion-list>
   </div>
   <div *ngIf="membersPage">
-    <app-friends></app-friends>
-  </div>
+    <app-friends [from]="'group'" [guid]="group.guid" [object]="group"></app-friends>
+  </div> 
 </ion-content>

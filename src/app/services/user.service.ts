@@ -10,4 +10,12 @@ export class UserService {
   getUser(username, guid) {
     return this.api.getProfile({ "username": username, "guid": guid }).pipe();
   }
+
+  getFriends(user_guid) {
+    return this.api.getFriends(user_guid);
+  }
+
+  getAlbum() {
+    return this.api.getAlbums();
+  }
 }
