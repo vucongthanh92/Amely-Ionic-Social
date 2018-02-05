@@ -14,8 +14,6 @@ export class OffersSearchComponent implements OnInit {
     this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
       if (data instanceof Array) {
         this.offers = data;
-        console.log(data);
-        
       }
     })
   }

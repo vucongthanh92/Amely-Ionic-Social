@@ -19,8 +19,6 @@ export class OffersPendingComponent implements OnInit {
   }
 
   getTimeString(time : number){
-    console.log(new Date(time*1000));
-    
     return new Date(time*1000);
   }
 }

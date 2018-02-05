@@ -23,11 +23,8 @@ export class AlbumComponent implements OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    console.log(this.guid +"  "+this.type);
-    
     this.service.getAlbum().subscribe(data => {
       this.photos = data.filter(e =>  e.type === this.type && e.owner_guid === this.guid );
-      console.log(this.photos);
       
       this.photosAvatar = this.photos.filter(e => e.description.indexOf("_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard") != -1);
       this.photosCover = this.photos.filter(e => e.description.indexOf("-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen") != -1);
