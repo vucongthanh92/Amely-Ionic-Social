@@ -20,7 +20,7 @@
           <div *ngIf="message.gift">
             <ion-row>
               <ion-col col-10>
-                <p text-center>{{ message.gift.item_title }}</p>
+                <p>Quà: {{ message.gift.item_title }}</p>
                 <p>Số lượng: {{ message.gift.item_quantity }}</p>
               </ion-col>
               <ion-col col-2 text-right>
@@ -30,13 +30,27 @@
             </ion-row>
             <img width="100%" src="{{ message.gift.item_image }}" />
             <p class="line-breaker ">{{ message.text }}</p>
-            <ion-row *ngIf="!message.gift.hidden" >
-              <ion-col col-6 *ngIf="!message.isSender">
+            <div *ngIf="message.chat_type == 'group'">
+              <ion-row *ngIf="message.gift.owner">
+                <ion-col col-6>
+                  <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
+                    <ion-icon name="close-circle"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col col-6>
+                  <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </div>
+            <ion-row *ngIf="!message.isSender">
+              <ion-col col-6 >
                 <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
                   <ion-icon name="close-circle"></ion-icon>
                 </button>
               </ion-col>
-              <ion-col col-6 *ngIf="!message.isSender">
+              <ion-col col-6>
                 <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
                   <ion-icon name="checkmark-circle"></ion-icon>
                 </button>

@@ -94,6 +94,7 @@ export class MessageComponent implements OnInit {
             checkAvatarSender = object.from;
           }
           object.time = new Date(object.time);
+          object.chat_type = "individual";
           this.messages.push(object);
           if (this.messages.length > 0) {
             setTimeout(() => {
@@ -107,6 +108,8 @@ export class MessageComponent implements OnInit {
   }
 
   getMessagesGroup() {
+    let owner = this.param.members.filter(data => data.guid == this.param.owner_guid);
+    let owner_username = owner[0].username;
     this.messagesService.getMessages(this.param.guid).query.on("value", itemsSnapshot => {
       this.messages = [];
       let checkAvatarSender = "";
@@ -118,7 +121,12 @@ export class MessageComponent implements OnInit {
               case 'gift':
                 this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
                   gift.forEach(g => {
-                    object.gift = g.val();
+                    if (g.val().item_guid) {
+                      object.gift = g.val();
+                      if (object.from == owner_username) {
+                        object.gift.owner = true;
+                      }
+                    }
                     return false;
                   });
                 });
@@ -129,6 +137,7 @@ export class MessageComponent implements OnInit {
                 break;
             }
           }
+          
           if (object.from == this.userCurrent.username) {
             object.isSender = true;
           } else {
@@ -150,6 +159,7 @@ export class MessageComponent implements OnInit {
             checkAvatarSender = object.from;
           }
           object.time = new Date(object.time);
+          object.chat_type = "group";
           this.messages.push(object);
           if (this.messages.length > 0) {
             setTimeout(() => {
@@ -181,12 +191,11 @@ export class MessageComponent implements OnInit {
   
   sendMessage() {
     if (this.messageText) {
-      console.log(this.param);
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
       setTimeout(() => {
         this.content.scrollToBottom(100);
-      }, 100);
+      }, 1000);
     } else {
       const toast = this.toastCtrl.create({
         message: 'Không có nội dung gửi!',
@@ -199,7 +208,7 @@ export class MessageComponent implements OnInit {
   }
 
   acceptGift(gift_guid) {
-    this.messagesService.acceptGift(this.userCurrent.username, +gift_guid);
+    this.messagesService.acceptGift(this.userCurrent.username, gift_guid);
   }
 
   rejectGift(gift_guid) {

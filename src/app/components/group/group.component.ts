@@ -38,8 +38,8 @@ export class GroupComponent implements OnInit {
       return this.group.members.find(x => x.guid == guid).fullname;
     }
   }
-  goToPage(value) {
-    switch (value) {
+  goToPage(type, value) {
+    switch (type) {
       case 'newfeed':
         this.newfeedsPage = true;
         this.membersPage = false;
@@ -49,13 +49,18 @@ export class GroupComponent implements OnInit {
         this.membersPage = true;
         break;
       case 'gift':
-        this.appCtrl.getRootNav().push(GiftComponent);
+        value.chat_type = "group";
+        value.key = this.group.guid;
+        this.appCtrl.getRootNav().push(GiftComponent, { param: value });
         break;
       case 'chat':
-        this.appCtrl.getRootNav().push(MessageComponent);
+        value.chat_type = "group";
+        value.key = this.group.guid;
+        this.appCtrl.getRootNav().push(MessageComponent, { param: value });
         break;
       default:
         break;
     }
   }
+
 }

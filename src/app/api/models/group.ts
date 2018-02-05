@@ -22,5 +22,4 @@ export class Group {
     cover?: string;
     last_message?: string;
     last_time?: number;
-    key?: string;
 }
