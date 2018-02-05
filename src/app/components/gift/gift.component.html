@@ -13,8 +13,11 @@
   <div class="scroll-content divBody">
     <ion-grid>
       <ion-row>
-        <ion-col col-12>
-           <p>Người nhận: &nbsp; {{ param.from }}</p> 
+        <ion-col col-12 *ngIf="isUser">
+           <p>Người nhận: &nbsp; {{ param.username }}</p> 
+        </ion-col>
+        <ion-col col-12 *ngIf="!isUser">
+          <p>Nhóm nhận quà: &nbsp; {{ param.title }}</p>
         </ion-col>
       </ion-row>
       <ion-row class="marginRow">

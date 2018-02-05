@@ -19,6 +19,8 @@ export class GiftComponent implements OnInit {
   userCurrent: User;
   param: any;
   gift: Gift;
+  receiver: string;
+  isUser: boolean;
 
   constructor(
     public toastCtrl: ToastController,
@@ -28,7 +30,15 @@ export class GiftComponent implements OnInit {
     public appCtrl: App) {
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       this.param = this.params.get('param');
-
+      switch (this.param.chat_type) {
+        case 'individual':
+          this.isUser = true;
+          break;
+      
+        default:
+          this.isUser = false;
+          break;
+      }
     }
 
   ngOnInit() {
@@ -47,6 +57,16 @@ export class GiftComponent implements OnInit {
       item_quantity: this.item.quantity, 
       message: this.description 
     };
+    switch (this.param.chat_type) {
+      case 'individual':
+        obj.to_type = "user";
+        break;
+      case 'group':
+        obj.to_type = "group";
+        break;
+      default:
+        break;
+    }
     this.giftsService.gift(obj).subscribe(res => {
       if (res.status) {
         this.nav.pop();

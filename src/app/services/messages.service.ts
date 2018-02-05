@@ -29,7 +29,7 @@ export class MessagesService {
 
   getGroupsChat() {
     let path = "/users/" + this.userCurrent.username + "/chat/";
-    return this.afDatabase.list(path + "group");
+    return this.afDatabase.list(path + "group").query.orderByChild('last_read').startAt(1);
   }
 
   getMessages(keyChat) {

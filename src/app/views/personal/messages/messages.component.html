@@ -4,7 +4,7 @@
 <ion-content class="outer-content">
   <ion-list *ngIf="individualList">
     <h3>Ca nhan</h3>
-    <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual)">
+    <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual, 'individual')">
       <ion-row>
         <ion-col col-3>
           <img width="100%" src="{{ individual.avatar }}" />
@@ -21,7 +21,7 @@
   </ion-list>
   <ion-list *ngIf="groups" >
     <h3>Nhom</h3>
-    <ion-item *ngFor="let group of groups" (click)="goToPage(group)">
+    <ion-item *ngFor="let group of groups" (click)="goToPage(group, 'group')">
       <ion-row>
         <ion-col col-3>
           <img width="100%" src="{{ group.avatar }}" />

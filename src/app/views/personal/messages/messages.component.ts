@@ -58,27 +58,58 @@ export class MessagesComponent implements OnInit {
       });
     });
 
-    this.groupService.getGroups(this.userCurrent.guid).subscribe( data => {
+    this.messagesService.getGroupsChat().on('value', itemSnap => {
       this.groups = [];
-      data.groups.forEach( group => {
-        this.messagesService.getLastMessage(group.guid).on('value', lastmessage => {
+      itemSnap.forEach(items => {
+        let group_guid = items.val().key;
+        this.messagesService.getLastMessage(group_guid).on('value', lastmessage => {
           lastmessage.forEach(e => {
-            group.last_message = e.val().text;
-            group.last_time = e.val().time;
-            this.groups = this.groups.filter(data => data.guid != group.guid);
-            this.groups.push(group);
-            this.groups.sort(this.compare);
+            this.groupService.getGroup(group_guid).subscribe( group => {
+              group.last_message = e.val().text;
+              group.last_time = e.val().time;
+              group.key = group_guid;
+              this.groups = this.groups.filter(data => data.guid != group_guid);
+              this.groups.push(group);
+              this.groups.sort(this.compareGroup);
+            });
             return false;
           });
         });
         return false;
       });
-      this.users = data.owners;
     });
+    
+
+    // this.groupService.getGroups(this.userCurrent.guid).subscribe( data => {
+    //   this.groups = [];
+    //   data.groups.forEach( group => {
+    //     this.messagesService.getLastMessage(group.guid).on('value', lastmessage => {
+    //       lastmessage.forEach(e => {
+    //         group.last_message = e.val().text;
+    //         group.last_time = e.val().time;
+    //         this.groups = this.groups.filter(data => data.guid != group.guid);
+    //         this.groups.push(group);
+    //         this.groups.sort(this.compare);
+    //         return false;
+    //       });
+    //     });
+    //     return false;
+    //   });
+    //   this.users = data.owners;
+    // });
   }
 
-  goToPage(value) {
+  goToPage(value, chat_type) {
+    value.chat_type = chat_type;
     this.nav.push(MessageComponent, { param: value });
+  }
+
+  compareGroup(a, b) {
+    if (a.last_time > b.last_time)
+      return -1;
+    if (a.last_time < b.last_time)
+      return 1;
+    return 0;
   }
 
   compare(a, b) {

@@ -1,3 +1,4 @@
+import { GeolocationService } from './services/geolocation.service';
 import { GiftsService } from './services/gifts.service';
 import { EventsService } from './services/events.service';
 import { ProductsService } from './services/products.service';
@@ -39,6 +40,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 import { TransactionsService } from './services/transactions.service';
 import { OffersService } from './services/offers.service';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 export const firebaseConfig = {
@@ -93,10 +95,12 @@ export const firebaseConfig = {
     TransactionsService,
     OffersService,
     GiftsService,
+    GeolocationService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,
-    File
+    Geolocation,
+    File,
   ]
 })
 export class AppModule { }

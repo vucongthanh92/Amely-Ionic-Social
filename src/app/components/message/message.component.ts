@@ -45,62 +45,121 @@ export class MessageComponent implements OnInit {
     public appCtrl: App) 
     {
       this.param = this.navParams.get("param");
-      this.usernameChat = this.param.from;
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-      this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
-        this.messages = [];
-        let checkAvatarSender = "";
-        itemsSnapshot.forEach( items => {
-          if (items.hasChildren()) {
-            let object = items.val();
-            if (object.attachment) {
-              let sender = this.userCurrent.username;
-              if (object.from == this.userCurrent.username ) {
-                object.isSender = true;
-                sender = this.param.from;
-              }
-              let subjectId = object.attachment.url;
-              switch (object.attachment.media_type) {
-                case 'gift':
-                  this.messagesService.getGift(subjectId, sender).on('value', gift => {
-                    gift.forEach(g => {
-                      object.gift = g.val();
-                      return false;
-                    });
+      if (this.param.chat_type == "individual") {
+        this.getMessagesIndividual();
+        this.usernameChat = this.param.from;
+      } else {
+        this.getMessagesGroup();
+        this.usernameChat = this.param.title;
+      }
+  }
+
+  getMessagesIndividual() {
+    this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
+      this.messages = [];
+      let checkAvatarSender = "";
+      itemsSnapshot.forEach(items => {
+        if (items.hasChildren()) {
+          let object = items.val();
+          if (object.attachment) {
+            switch (object.attachment.media_type) {
+              case 'gift':
+                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
+                  gift.forEach(g => {
+                    object.gift = g.val();
+                    return false;
                   });
-                  break;
-                case 'image':
-                  break;
-                default:
-                  break;
-              }
-            }
-            if (object.from == this.userCurrent.username) {
-              object.isSender = true;
-            } else {
-              object.isSender = false;
-            }
-            if (object.from == checkAvatarSender) {
-              object.avatar = false;
-            } else {
-              if (object.from == this.userCurrent.username) {
-                object.avatar = this.userCurrent.avatar;
-              } else {
-                object.avatar = this.param.avatar;
-              }
-              checkAvatarSender = object.from;
-            }
-            object.time = new Date(object.time);
-            this.messages.push(object);
-            if (this.messages.length > 0) {
-              setTimeout(() => {
-                this.content.scrollToBottom(500);
-              }, 500);
+                });
+                break;
+              case 'image':
+                break;
+              default:
+                break;
             }
           }
-          return false;
-        });
+          if (object.from == this.userCurrent.username) {
+            object.isSender = true;
+          } else {
+            object.isSender = false;
+          }
+          if (object.from == checkAvatarSender) {
+            object.avatar = false;
+          } else {
+            if (object.from == this.userCurrent.username) {
+              object.avatar = this.userCurrent.avatar;
+            } else {
+              object.avatar = this.param.avatar;
+            }
+            checkAvatarSender = object.from;
+          }
+          object.time = new Date(object.time);
+          this.messages.push(object);
+          if (this.messages.length > 0) {
+            setTimeout(() => {
+              this.content.scrollToBottom(500);
+            }, 1000);
+          }
+        }
+        return false;
       });
+    });
+  }
+
+  getMessagesGroup() {
+    this.messagesService.getMessages(this.param.guid).query.on("value", itemsSnapshot => {
+      this.messages = [];
+      let checkAvatarSender = "";
+      itemsSnapshot.forEach( items => {
+        if (items.hasChildren()) {
+          let object = items.val();
+          if (object.attachment) {
+            switch (object.attachment.media_type) {
+              case 'gift':
+                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
+                  gift.forEach(g => {
+                    object.gift = g.val();
+                    return false;
+                  });
+                });
+                break;
+              case 'image':
+                break;
+              default:
+                break;
+            }
+          }
+          if (object.from == this.userCurrent.username) {
+            object.isSender = true;
+          } else {
+            object.isSender = false;
+          }
+          if (object.from == checkAvatarSender) {
+            object.avatar = false;
+          } else {
+            if (object.from == this.userCurrent.username) {
+              object.avatar = this.userCurrent.avatar;
+            } else {
+              let member = this.param.members.filter(data => data.username == object.from);
+              if (member instanceof Array) {
+                object.avatar = member[0].avatar;
+              } else {
+                object.avatar = "assets/default/avatar.png";
+              }
+            }
+            checkAvatarSender = object.from;
+          }
+          object.time = new Date(object.time);
+          this.messages.push(object);
+          if (this.messages.length > 0) {
+            setTimeout(() => {
+              this.content.scrollToBottom(500);
+            }, 1000);
+          }
+        }
+        return false;
+      });
+    });
   }
 
   ionViewDidEnter() {
@@ -122,6 +181,7 @@ export class MessageComponent implements OnInit {
   
   sendMessage() {
     if (this.messageText) {
+      console.log(this.param);
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
       setTimeout(() => {
