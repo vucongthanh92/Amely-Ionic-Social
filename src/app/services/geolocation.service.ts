@@ -123,7 +123,7 @@ export class GeolocationService {
   getUsers(lat, lng) {
     var geoQuery = this.geoFireUsers.query({
       center: [lat, lng],
-      radius: 5000
+      radius: 5
     });
     return geoQuery;
   }
@@ -131,7 +131,7 @@ export class GeolocationService {
   getShops(lat, lng) {
     var geoQuery = this.geoFireShops.query({
       center: [lat, lng],
-      radius: 5000
+      radius: 5
     });
     return geoQuery;
   }
