@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
   
   latitude: any;
   longitude: any;
-
+  
   constructor(
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,

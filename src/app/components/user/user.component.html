@@ -99,10 +99,10 @@
     </ion-list>
   </div>
   <div *ngIf="imagesPage">
-    <app-album></app-album>
+    <app-album  [guid]="userGuid" [type]="'user'"></app-album>
   </div>
   <div *ngIf="friendsPage">
-    <app-friends></app-friends>
+    <app-friends [from]="'user'" [guid]="userGuid" ></app-friends>
   </div>
 
 

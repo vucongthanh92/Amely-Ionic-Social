@@ -18,7 +18,6 @@ export class EventsUserComponent implements OnInit {
         this.events = data.events;
       }
       this.users = data.users;
-      console.log(data);
     })
   }
 

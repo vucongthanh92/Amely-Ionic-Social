@@ -1,5 +1,37 @@
-<ion-row>
-	<ion-col col-3 *ngFor="let number of [0,1,2,3,4,5,6,7]">
-		<img width="100%" src="assets/imgs/logo.png" />
-	</ion-col>
-</ion-row>
+<ion-grid *ngIf="photos">
+	<!-- <ion-row>
+		<ion-col col-4 *ngIf="photosAvatar" (click)="onShowImage('avatar')">
+			<img width="100%" src="{{photosAvatar[0].value}}" /> Avatar
+		</ion-col>
+
+		<ion-col col-4 *ngIf="photosCover" (click)="onShowImage('cover')">
+			<img width="100%" src="{{photosCover[0].value}}" />Cover
+
+		</ion-col>
+
+		<ion-col col-4 *ngIf="photosFeeds" (click)="onShowImage('feed')">
+			<img width="100%" src="{{photosFeeds[0].value}}" />Trên dòng thời gian
+		</ion-col>
+	</ion-row> -->
+
+	<!-- <ion-row *ngIf="isFirstTime"></ion-row>
+
+	<ion-row *ngIf="isShowAvatar">
+		<ion-col col-3 *ngFor="let photo of photosAvatar">
+			<img width="100%" src="{{photo.value}}" />
+		</ion-col>
+	</ion-row>
+
+	<ion-row *ngIf="isShowCover">
+		<ion-col col-3 *ngFor="let photo of photosCover">
+			<img width="100%" src="{{photo.value}}" />
+		</ion-col>
+	</ion-row> -->
+
+	<ion-row *ngIf="photos" >
+		<ion-col col-3 *ngFor="let photo of photos">
+			<img width="100%" src="{{photo.value}}" />
+		</ion-col>
+	</ion-row>
+
+</ion-grid>

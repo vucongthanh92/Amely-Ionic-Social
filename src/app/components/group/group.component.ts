@@ -22,7 +22,6 @@ export class GroupComponent implements OnInit {
     this.groupService.getGroup(this.groupGuid).subscribe(data => {
       this.groups.push(data);
       this.group = data;
-      console.log(this.group.avatar);
       this.dateCreated = new Date(this.group.time_created * 1000);
     })
    }

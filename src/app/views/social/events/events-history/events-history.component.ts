@@ -18,7 +18,6 @@ export class EventsHistoryComponent implements OnInit {
         this.events = data.events;
       }
       this.users = data.users;
-      console.log(data);
     })
   }
   

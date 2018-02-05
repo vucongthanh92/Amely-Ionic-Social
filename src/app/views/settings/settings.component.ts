@@ -14,7 +14,6 @@ export class SettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("adsds")
   }
 
 }

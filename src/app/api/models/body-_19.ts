@@ -3,9 +3,7 @@
 /**
  */
 export class body_19 {
-    offset: number;
-    limit: number;
-    owner_guid: number;
-    inventory_type: string;
-    item_type: string;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }
