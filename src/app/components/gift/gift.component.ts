@@ -1,3 +1,4 @@
+import { MessagesService } from './../../services/messages.service';
 import { User } from './../../api/models/user';
 import { GiftsService } from './../../services/gifts.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -23,6 +24,7 @@ export class GiftComponent implements OnInit {
   isUser: boolean;
 
   constructor(
+    public messagesService: MessagesService,
     public toastCtrl: ToastController,
     public giftsService: GiftsService,
     public params: NavParams,
@@ -32,6 +34,7 @@ export class GiftComponent implements OnInit {
       this.param = this.params.get('param');
       switch (this.param.chat_type) {
         case 'individual':
+          this.checkKeyChat(this.userCurrent.username, this.param.from, "individual");
           this.isUser = true;
           break;
       
@@ -46,6 +49,27 @@ export class GiftComponent implements OnInit {
 
   ionViewDidEnter() {
 
+  }
+
+  checkKeyChat(owner_from, owner_to, type) {
+    this.messagesService.getKeyChat(owner_from, owner_to, "individual").query.once('value', snap => {
+      let key = "";
+      if (snap.val() == null) {
+        this.messagesService.getKeyChat(owner_to, owner_from, "individual").query.once('value', item => {
+          if (item.val()) {
+            key = item.val().key;
+            this.messagesService.createKeyChat("individual", owner_from, owner_to, item.val());
+          } else {
+            key = this.messagesService.generateKey();
+            let obj = { key: key, last_read: 0, unread_count: 0 };
+            this.messagesService.createKeyChat("individual", owner_from, owner_to, obj);
+            this.messagesService.createKeyChat("individual", owner_to, owner_from, obj);
+          }
+        });
+      } else {
+        return true;
+      }
+    });
   }
 
   createGift() {
@@ -67,6 +91,7 @@ export class GiftComponent implements OnInit {
       default:
         break;
     }
+    
     this.giftsService.gift(obj).subscribe(res => {
       if (res.status) {
         this.nav.pop();

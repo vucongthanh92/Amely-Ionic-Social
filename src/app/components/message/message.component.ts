@@ -65,7 +65,8 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
+                let owner_gift = [this.userCurrent.username, this.param.from].filter(data => data != object.from);
+                this.messagesService.getGift(object.attachment.url, owner_gift[0]).on('value', gift => {
                   gift.forEach(g => {
                     object.gift = g.val();
                     return false;
@@ -96,11 +97,6 @@ export class MessageComponent implements OnInit {
           object.time = new Date(object.time);
           object.chat_type = "individual";
           this.messages.push(object);
-          if (this.messages.length > 0) {
-            setTimeout(() => {
-              this.content.scrollToBottom(500);
-            }, 1000);
-          }
         }
         return false;
       });
@@ -150,7 +146,7 @@ export class MessageComponent implements OnInit {
               object.avatar = this.userCurrent.avatar;
             } else {
               let member = this.param.members.filter(data => data.username == object.from);
-              if (member instanceof Array) {
+              if (member.length > 0) {
                 object.avatar = member[0].avatar;
               } else {
                 object.avatar = "assets/default/avatar.png";
@@ -193,9 +189,9 @@ export class MessageComponent implements OnInit {
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
-      setTimeout(() => {
-        this.content.scrollToBottom(100);
-      }, 1000);
+      // setTimeout(() => {
+      //   this.content.scrollToBottom(100);
+      // }, 1000);
     } else {
       const toast = this.toastCtrl.create({
         message: 'Không có nội dung gửi!',

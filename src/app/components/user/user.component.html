@@ -27,7 +27,7 @@
     </ion-segment>
     <ion-row text-center>
       <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goToPage('gift');">
+        <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'gift');">
           <img class="iconSubTab" src="assets/imgs/ic_send_gift_blue.png" alt="ionic logo">
           <div>Tặng quà</div>
         </button>
@@ -41,7 +41,7 @@
       </ion-col>
 
       <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goToPage('chat');">
+        <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'chat');">
           <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
           <div>Nhắn tin</div>
         </button>

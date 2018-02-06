@@ -44,7 +44,6 @@ export class ChooseItemComponent implements OnInit {
             this.inventoriesItem = this.inventoriesItem.concat(data);
           }
         }
-
       });
     })
   }
