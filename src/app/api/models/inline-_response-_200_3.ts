@@ -1,10 +1,8 @@
 /* tslint:disable */
-import { Event } from './event';
-import { User } from './user';
+import { Cart_item } from './cart-_item';
 
 /**
  */
 export class inline_response_200_3 {
-    events?: Event[];
-    users?: User[];
+    cart?: Cart_item[];
 }

@@ -3,9 +3,7 @@
 /**
  */
 export class body_8 {
+    owner_guid?: number;
     offset?: number;
     limit?: number;
-    shop_guid?: number;
-    type?: number;
-    get_all?: number;
 }

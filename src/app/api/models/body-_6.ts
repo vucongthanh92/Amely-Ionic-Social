@@ -3,6 +3,8 @@
 /**
  */
 export class body_6 {
-    guid?: number;
-    quantity?: number;
+    owner_guid?: number;
+    bookmark_type?: string;
+    offset?: number;
+    limit?: number;
 }

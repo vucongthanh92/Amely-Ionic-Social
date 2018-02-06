@@ -3,6 +3,6 @@
 /**
  */
 export class body_29 {
-    guid?: number;
-    status?: number;
+    vote_type?: string;
+    group_guid?: number;
 }

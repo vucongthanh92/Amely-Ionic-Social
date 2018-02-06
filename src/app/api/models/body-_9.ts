@@ -3,12 +3,11 @@
 /**
  */
 export class body_9 {
-    category_guid?: number;
-    title?: string;
+    business_guid?: number;
+    name?: string;
     description?: string;
-    friendly_url?: string;
-    sort_order?: number;
-    enabled?: string;
-    parent_guid?: number;
-    image?: string;
+    category?: string;
+    phone?: string;
+    address?: string;
+    website?: string;
 }

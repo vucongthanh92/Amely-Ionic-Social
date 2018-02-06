@@ -3,6 +3,8 @@
 /**
  */
 export class body_18 {
-    owner_guid?: number;
-    type?: string;
+    offer_guid?: number;
+    item_guid?: number;
+    quantity?: number;
+    note?: string;
 }

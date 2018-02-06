@@ -3,6 +3,7 @@
 /**
  */
 export class body_2 {
-    item_guid?: number;
-    bookmark_type?: string;
+    invitation_type?: string;
+    from_guid?: string;
+    to_guid?: string;
 }

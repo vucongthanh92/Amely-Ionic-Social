@@ -3,5 +3,6 @@
 /**
  */
 export class body_41 {
-    currency?: string;
+    guid?: number;
+    status?: number;
 }

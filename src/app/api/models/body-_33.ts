@@ -3,11 +3,7 @@
 /**
  */
 export class body_33 {
-    firstname: string;
-    lastname: string;
-    email: string;
-    gender: string;
-    birthdate: string;
-    usercurrency: string;
-    friends_hidden: string;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }

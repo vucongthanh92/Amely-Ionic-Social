@@ -1,8 +1,10 @@
 /* tslint:disable */
-import { Cart } from './cart';
+import { Business } from './business';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_1 {
-    cart?: Cart[];
+    pages?: Business[];
+    users?: User[];
 }

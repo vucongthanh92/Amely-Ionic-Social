@@ -6,6 +6,7 @@ import { User } from './user';
 export class Group {
     membInvite?: string;
     guid?: number;
+    title?: string;
     members?: User[];
     time_created?: number;
     owner_guid?: number;
@@ -13,7 +14,7 @@ export class Group {
     type?: string;
     subtype?: string;
     membership?: string;
-    title?: string;
+    owner?: User;
     groupMembership?: string;
     has_inventory?: string;
     thought?: string;
@@ -23,6 +24,4 @@ export class Group {
     last_message?: string;
     last_time?: number;
     key?: string;
-    owner:User;
-    chat_type?: string;
 }

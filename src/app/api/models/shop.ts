@@ -29,5 +29,4 @@ export class Shop {
     shipping_method?: string;
     avatar?: string;
     stores?: Store[];
-    store?: Store;
 }
