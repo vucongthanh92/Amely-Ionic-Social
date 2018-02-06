@@ -1,3 +1,4 @@
+import { MessagesService } from './../../../../services/messages.service';
 import { User } from './../../../../api/models/user';
 import { PersonalService } from './../../personal.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,9 +11,17 @@ import { MessageComponent } from '../../../../components/message/message.compone
   templateUrl: './contact-users.component.html'
 })
 export class ContactUsersComponent implements OnInit {
+  
   private userCurrent: User;
   private moodLocal: any;
-  public friends: Array<User>; constructor(public nav: NavController, public appCtrl: App, private personalService: PersonalService) {
+  public friends: Array<User>; 
+
+  constructor(
+    public messagesService: MessagesService,
+    public nav: NavController, 
+    public appCtrl: App, 
+    private personalService: PersonalService) 
+    {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
   }
@@ -25,8 +34,34 @@ export class ContactUsersComponent implements OnInit {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: friend.guid });
   }
 
-  goToPageChat() {
-    this.appCtrl.getRootNav().push(MessageComponent);
+  goToPageChat(friend, chat_type) {
+    this.messagesService.getKeyChat(this.userCurrent.username, friend.username, "individual").query.once('value', snap => {
+      let key = "";
+      if (snap.val() == null) {
+        this.messagesService.getKeyChat(friend.username, this.userCurrent.username, "individual").query.once('value', item => {
+          if (item.val()) {
+            key = item.val().key;
+            this.messagesService.createKeyChat("individual", this.userCurrent.username, friend.username, item.val()); 
+            friend.key = key;
+            friend.chat_type = "individual";
+            this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
+          } else {
+            key = this.messagesService.generateKey();
+            let obj = { key: key, last_read: 0, unread_count: 0 };
+            this.messagesService.createKeyChat("individual", this.userCurrent.username, friend.username, obj);
+            this.messagesService.createKeyChat("individual", friend.username, this.userCurrent.username, obj);
+            friend.key = key;
+            friend.chat_type = "individual";
+            this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
+          }
+        });
+      } else {
+        key = snap.val().key;
+        friend.key = key;
+        friend.chat_type = "individual";
+        this.appCtrl.getRootNav().push(MessageComponent, { param: friend});
+      }
+    });
   }
 
   getFriends() {

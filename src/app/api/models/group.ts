@@ -24,4 +24,5 @@ export class Group {
     last_time?: number;
     key?: string;
     owner:User;
+    chat_type?: string;
 }

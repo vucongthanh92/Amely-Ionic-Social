@@ -49,6 +49,7 @@ export class MessagesComponent implements OnInit {
               object.avatar = data.avatar;
               object.guid = data.guid;
             });
+            object.chat_type = "individual";
             this.individualList.push(object);
             this.individualList.sort(this.compare);
             return false;
@@ -69,6 +70,7 @@ export class MessagesComponent implements OnInit {
               group.last_time = e.val().time;
               group.key = group_guid;
               this.groups = this.groups.filter(data => data.guid != group_guid);
+              group.chat_type = "group";
               this.groups.push(group);
               this.groups.sort(this.compareGroup);
             });

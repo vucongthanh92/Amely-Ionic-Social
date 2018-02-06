@@ -20,7 +20,32 @@ export class MessagesService {
     public userService: UserService
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-   }
+  }
+  
+  
+  generateKey() {
+    return this.afDatabase.list('/users/').push({}).key;
+  }
+
+  getKeyChat(owner_from, owner_to, type) {
+    let path = "/users/" + owner_from + "/chat/" + type + "/" + owner_to;
+    return this.afDatabase.list(path);
+  }
+
+  createKeyChat(type, owner_from, owner_to, obj) {
+    let path = "/users/" + owner_from + "/chat/" + type;
+    switch (type) {
+      case "individual":
+        this.afDatabase.list(path).set(owner_to, obj);
+        break;
+      case "group":
+        this.afDatabase.list(path).set(owner_to, obj);
+        break;
+        default:
+        break;
+      }
+    this.afDatabase.list(path).set(owner_to, obj);
+  }
 
   getUsersChat() {
     let path = "/users/" + this.userCurrent.username + "/chat/";

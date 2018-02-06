@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { GroupComponent } from '../../../../components/group/group.component';
 import { MessageComponent } from '../../../../components/message/message.component';
+import { MessagesService } from '../../../../services/messages.service';
 
 
 @Component({
@@ -16,7 +17,11 @@ export class ContactGroupsComponent implements OnInit {
   private groups: Group[];
   private users: User[];
   private userCurrent: User;
-  constructor(public nav: NavController, public appCtrl: App, public groupService: GroupService) {
+  constructor(
+    public messagesService: MessagesService,
+    public nav: NavController, 
+    public appCtrl: App, 
+    public groupService: GroupService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -35,8 +40,20 @@ export class ContactGroupsComponent implements OnInit {
     this.appCtrl.getRootNav().push(GroupComponent,{groupGuid:guid});
   }
 
-  goToPageChat() {
-    this.appCtrl.getRootNav().push(MessageComponent);
+  goToPageChat(group, chat_type) {
+    this.messagesService.getKeyChat(this.userCurrent.username, group.guid, "group").query.once('value', snap => {
+      if (snap.val()) {
+        group.key = group.guid;
+        group.chat_type = "group";
+        this.appCtrl.getRootNav().push(MessageComponent, { param: group });
+      } else {
+        let obj = { key: group.guid, last_read: 0, unread_count: 0 };
+        this.messagesService.createKeyChat("group", this.userCurrent.username, group.guid, obj);
+        group.key = group.guid;
+        group.chat_type = "group";
+        this.appCtrl.getRootNav().push(MessageComponent, { param: group });
+      }
+    });
   }
 
 }
