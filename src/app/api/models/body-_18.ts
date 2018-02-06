@@ -3,8 +3,7 @@
 /**
  */
 export class body_18 {
-    offer_guid?: number;
-    item_guid?: number;
-    quantity?: number;
-    note?: string;
+    post_guid: string;
+    comment: string;
+    images: string;
 }

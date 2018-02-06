@@ -20,7 +20,7 @@ export class Offer {
     time_created?: number;
     expried?: number;
     status?: string;
-    so_guid?: string;
+    so_guid?: number;
     offered?: boolean;
     current_time?: number;
     time_end?: number;

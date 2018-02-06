@@ -94,6 +94,7 @@ export class MessageComponent implements OnInit {
             }
             checkAvatarSender = object.from;
           }
+          
           object.time = new Date(object.time);
           object.chat_type = "individual";
           this.messages.push(object);

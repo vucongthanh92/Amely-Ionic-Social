@@ -3,6 +3,5 @@
 /**
  */
 export class body_41 {
-    guid?: number;
-    status?: number;
+    owner_guid: number;
 }

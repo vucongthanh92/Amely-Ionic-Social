@@ -14,7 +14,7 @@ export class CounterOffer {
     subtype?: string;
     time_created?: number;
     quantity?: number;
-    so_guid?: string;
+    so_guid?: number;
     product_snapshot?: Product;
     owner?: User;
     offer?: Offer;

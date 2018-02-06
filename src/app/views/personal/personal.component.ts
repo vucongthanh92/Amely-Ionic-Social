@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController } from 'ionic-angular';
+import { MenuController, NavController, PopoverController } from 'ionic-angular';
 import { ContactComponent } from './contact/contact.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -17,13 +17,24 @@ export class PersonalComponent implements OnInit {
   tab2Root = MessagesComponent;
   tab3Root = NotificationComponent;
 
-  constructor(public menuCtrl: MenuController, public nav: NavController) { }
+  constructor(
+    public popoverCtrl: PopoverController,
+    public menuCtrl: MenuController, 
+    public nav: NavController) { }
 
   ngOnInit() {
   }
 
   menuPage() {
     this.nav.push(PersonalMenuComponent);
+  }
+
+
+  public openPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PersonalMenuComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   

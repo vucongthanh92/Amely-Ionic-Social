@@ -1,19 +1,18 @@
 /* tslint:disable */
 
 /**
+ * Submit properties to be changed
+ * fields required true
  */
 export class body_55 {
-    shipping_method?: string;
-    shop_name?: string;
-    shop_address?: string;
-    shop_bidn?: string;
-    adjourn_price?: string;
-    friendly_url?: string;
-    shop_phone?: string;
-    owner_name?: string;
-    owner_phone?: string;
-    owner_address?: string;
-    owner_ssn?: string;
-    ossn_photo?: string;
-    approve?: string;
+    username?: string;
+    firstname?: string;
+    lastname?: string;
+    email?: string;
+    email_re?: string;
+    password?: string;
+    password_re?: string;
+    mobilelogin?: string;
+    birthdate?: string;
+    gender?: string;
 }

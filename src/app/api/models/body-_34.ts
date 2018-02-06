@@ -3,6 +3,10 @@
 /**
  */
 export class body_34 {
-    duration?: number;
-    item_guid?: number;
+    group_guid: number;
+    name: string;
+    description: string;
+    privacy: string;
+    member_invite: string;
+    membership: string;
 }

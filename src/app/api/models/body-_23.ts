@@ -3,12 +3,17 @@
 /**
  */
 export class body_23 {
-    content?: string;
-    friends?: string;
+    template?: string;
+    title?: string;
+    start_date?: string;
+    end_date?: string;
+    country?: string;
     location?: string;
-    privacy?: string;
-    mood?: string;
-    images?: string;
+    description?: string;
+    has_inventory?: string;
+    status?: string;
+    event_type?: string;
     owner_guid?: number;
-    type?: string;
+    members?: string[];
+    invites?: string[];
 }

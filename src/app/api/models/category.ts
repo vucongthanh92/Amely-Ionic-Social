@@ -15,6 +15,6 @@ export class Category {
     enabled?: string;
     parent_guid?: string;
     creator_guid?: string;
-    total_product?: string;
+    total_product?: number;
     logo?: string;
 }

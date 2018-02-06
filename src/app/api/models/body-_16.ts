@@ -3,7 +3,7 @@
 /**
  */
 export class body_16 {
-    post_guid: string;
-    comment: string;
-    images: string;
+    old_password?: string;
+    new_password?: string;
+    confirm_password?: string;
 }

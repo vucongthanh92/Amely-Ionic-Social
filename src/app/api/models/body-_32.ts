@@ -3,9 +3,6 @@
 /**
  */
 export class body_32 {
-    offset: number;
-    limit: number;
-    owner_guid: number;
-    inventory_type: string;
-    item_type: string;
+    vote_type?: string;
+    group_guid?: number;
 }

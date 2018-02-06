@@ -3,8 +3,7 @@
 /**
  */
 export class body_24 {
-    feeds_type?: string;
-    owner_guid?: number;
+    event_type?: string;
     offset?: number;
     limit?: number;
 }

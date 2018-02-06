@@ -11,12 +11,19 @@ import { Product } from '../../api/models/product';
   templateUrl: './item.component.html'
 })
 export class ItemComponent implements OnInit {
+  qrData = null;
+  createdCode = null;
   private itemGuid: number;
-  public item: Item;
-  public product: Product;
-  public shop: Shop;
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService) {
-    this.itemGuid = this.navParams.get('itemGuid');
+  item: Item;
+  product: Product;
+  shop: Shop;
+
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App, 
+    private navParams: NavParams, 
+    private inventoriesService: InventoriesService) {
+      this.itemGuid = this.navParams.get('itemGuid');
     // this.item.product_snapshot
   }
 
@@ -28,4 +35,7 @@ export class ItemComponent implements OnInit {
     })
   }
 
+  createCode() {
+    this.createdCode = "Dsadasdasdasdasdas";
+  }
 }

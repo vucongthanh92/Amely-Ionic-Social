@@ -3,5 +3,7 @@
 /**
  */
 export class body_36 {
-    owner_guid: number;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }

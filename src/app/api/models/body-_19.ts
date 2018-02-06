@@ -3,6 +3,5 @@
 /**
  */
 export class body_19 {
-    offset?: number;
-    limit?: number;
+    mobiles?: string[];
 }

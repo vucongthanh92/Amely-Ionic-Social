@@ -3,5 +3,7 @@
 /**
  */
 export class body_59 {
-    currency?: string;
+    share_type?: string;
+    subject_guid?: number;
+    post?: string;
 }

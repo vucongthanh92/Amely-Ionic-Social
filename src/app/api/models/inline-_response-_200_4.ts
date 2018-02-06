@@ -1,10 +1,10 @@
 /* tslint:disable */
-import { Event } from './event';
-import { User } from './user';
+import { Delivery_order } from './delivery-_order';
+import { Shop } from './shop';
 
 /**
  */
 export class inline_response_200_4 {
-    events?: Event[];
-    users?: User[];
+    dos?: Delivery_order;
+    shops?: Shop;
 }

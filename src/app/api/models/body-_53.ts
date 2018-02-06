@@ -3,5 +3,10 @@
 /**
  */
 export class body_53 {
-    mobile?: string;
+    promotion_guid?: number;
+    title?: string;
+    description?: string;
+    time_start?: string;
+    time_end?: string;
+    status?: string;
 }

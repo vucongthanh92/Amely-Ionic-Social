@@ -3,10 +3,11 @@
 /**
  */
 export class body_48 {
-    promotion_guid?: number;
-    title?: string;
-    description?: string;
-    time_start?: string;
-    time_end?: string;
-    status?: string;
+    category_guid?: number;
+    shop_guid?: number;
+    type_product?: string;
+    product_filter?: number;
+    get_all?: number;
+    offset?: number;
+    limit?: number;
 }

@@ -3,11 +3,12 @@
 /**
  */
 export class body_26 {
-    from_guid?: number;
-    from_type?: string;
-    to_guid?: number;
-    to_type?: string;
-    item_guid?: number;
-    item_quantity?: number;
-    message?: string;
+    content?: string;
+    friends?: string;
+    location?: string;
+    privacy?: string;
+    mood?: string;
+    images?: string;
+    owner_guid?: number;
+    type?: string;
 }

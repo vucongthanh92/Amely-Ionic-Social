@@ -3,6 +3,9 @@
 /**
  */
 export class body_51 {
-    to_guid?: number;
-    type?: string;
+    title?: string;
+    description?: string;
+    time_start?: string;
+    time_end?: string;
+    status?: string;
 }

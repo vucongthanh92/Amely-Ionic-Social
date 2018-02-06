@@ -3,5 +3,5 @@
 /**
  */
 export class body_17 {
-    mobiles?: string[];
+    new_phone?: string;
 }
