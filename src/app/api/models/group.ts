@@ -24,4 +24,5 @@ export class Group {
     last_message?: string;
     last_time?: number;
     key?: string;
+    chat_type?: string;
 }

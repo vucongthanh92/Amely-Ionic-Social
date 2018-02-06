@@ -5,7 +5,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { Event } from '../../api/models/event';
 
 @Component({
   selector: 'app-inventory',
