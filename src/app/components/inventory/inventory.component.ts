@@ -1,3 +1,4 @@
+import { User } from './../../api/models/user';
 import { Event } from './../../api/models/event';
 import { Group } from './../../api/models/group';
 import { InventoriesService } from './../../services/inventories.service';
@@ -12,9 +13,10 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 })
 export class InventoryComponent implements OnInit {
   @Input('type') inventoryType: string;
-  @Input('ownerGuid') ownerGuid: string;
+  @Input('ownerGuid') ownerGuid: number;
 
-  public check_header = true;
+  public userCurrent: User;
+  public hidden_header: boolean;
   public group: Group;
   public event: Event;
   public badgeNew: number = 0;
@@ -31,12 +33,12 @@ export class InventoryComponent implements OnInit {
   arrTagBadge: any;
   public totalItem: number = 0;
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams) {
+    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
   types: Array<{ item_type: string, title: string, image: string, badge: number }> = [];
   ngOnInit() {
     if (this.inventoryType == undefined) {
-      this.check_header = false;
       this.inventoryType = this.navParams.get("type");
     }
     if (this.ownerGuid == undefined) this.ownerGuid = this.navParams.get("ownerGuid");
@@ -46,8 +48,11 @@ export class InventoryComponent implements OnInit {
       this.event = this.navParams.get("obj");
     }
 
-    console.log(this.event);
-    console.log(this.group);
+    if (this.ownerGuid == this.userCurrent.guid) {
+      this.hidden_header = true;
+    } else {
+      this.hidden_header = false;
+    }
     
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },

@@ -6,9 +6,10 @@
     <ion-title>Kho</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-tabs tabsPlacement="top">
-  <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
-  <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
-  <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
-</ion-tabs>
+<ion-content class="outer-content">
+  <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
+    <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
+    <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
+  </ion-tabs>
+</ion-content>

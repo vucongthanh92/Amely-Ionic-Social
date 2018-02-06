@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="outer-content">
   <ion-list>
     <ion-item *ngFor="let transaction of transactions">
      <a *ngIf="transaction.status==='requested'"  style="color: rgb(0, 0, 0)"> Đã tặng món quà số #{{transaction.guid}}</a>
