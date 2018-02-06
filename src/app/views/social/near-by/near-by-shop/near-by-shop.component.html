@@ -1,16 +1,17 @@
-<ion-list>
-  <ion-item *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10]">
+<ion-list *ngIf="datas" >
+  <ion-item *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
     <ion-row>
       <ion-col col-2>
-        <img width="100%" src="assets/imgs/logo.png" />
+        <img width="100%" src="{{data.shop.avatar}}" />
       </ion-col>
       <ion-col col-8>
-        Bone Shop <br>
-        dsadas <br>
-        dsa
+        {{data.shop.title}}
+        <br> {{data.shop.store.phone}}
+        <br>  {{data.shop.store.address}}
       </ion-col>
       <ion-col col-2 style="position: relative;">
-        <p style="position: absolute; bottom: 0;"><ion-icon name='pin'></ion-icon> 1 km</p>
+        <p style="position: absolute; bottom: 0;">
+          <ion-icon name='pin'></ion-icon> {{formatDistance(data.distance)}}</p>
       </ion-col>
     </ion-row>
   </ion-item>

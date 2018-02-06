@@ -1,7 +1,7 @@
 <ion-card style="margin: 12px 0px; width: 100%">
   <ion-item>
     <ion-avatar item-start>
-      <img src="{{ user.avatar }}">
+      <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
     </ion-avatar>
     <ion-row>
       <ion-col col-10>

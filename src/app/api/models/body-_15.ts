@@ -3,6 +3,8 @@
 /**
  */
 export class body_15 {
+    feeds_type?: string;
     owner_guid?: number;
-    type?: string;
+    offset?: number;
+    limit?: number;
 }

@@ -25,7 +25,7 @@ export class UserComponent {
   birthday: string;
   iconMood: string;
   moodLocal: any;
-  from='user';
+  from = 'user';
   constructor(public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
@@ -36,7 +36,7 @@ export class UserComponent {
 
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
-    this.userService.getUser(null,this.userGuid).subscribe(data => {
+    this.userService.getUser(null, this.userGuid).subscribe(data => {
       this.user = data;
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
@@ -85,7 +85,7 @@ export class UserComponent {
   friendsPage = false;
   userTab = 'newfeeds';
 
-  goToPage(value) {
+  goToPage(value, guid) {
     switch (value) {
       case 'newfeeds':
         this.newfeedsPage = true;
@@ -103,7 +103,9 @@ export class UserComponent {
         this.friendsPage = true;
         break;
       case 'shop':
-        this.nav.push(ShopComponent);
+      console.log(guid);
+      
+        this.nav.push(ShopComponent, { guid: guid });
         break;
       case 'gift':
         this.nav.push(ChooseItemComponent);
@@ -116,4 +118,3 @@ export class UserComponent {
     }
   }
 }
- 

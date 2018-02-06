@@ -10,7 +10,7 @@
 <ion-content class="outer-content">
   <div *ngIf="groupPage">
     <ion-list>
-      <ion-item *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid);">
+      <ion-item *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid,group);">
         <ion-row>
           <ion-col col-2>
             <img *ngIf="group.avatar" src="{{group.avatar}}" alt="ionic logo" width="100%">
@@ -27,7 +27,7 @@
   </div>
   <div *ngIf="eventPage">
     <ion-list>
-      <ion-item *ngFor="let event of events" (click)="goToPage('gift','event',event.guid);">
+      <ion-item *ngFor="let event of events" (click)="goToPage('gift','event',event.guid,event);">
         <ion-row>
           <ion-col col-2>
             <img src="{{event.avatar}}" alt="ionic logo" width="100%">

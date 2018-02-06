@@ -29,12 +29,6 @@ export class NearByUserComponent implements OnInit {
       })
     });
 
-    let geoQueryShop = this.geolocationService.getShops(this.lat, this.lng);
-    geoQueryShop.on("key_entered", function (key, location, distance) {
-      // console.log(key + " shop query at " + location + " (" + distance + " km from center)");
-    });
-
-
   }
 
   compareUser(a, b) {
@@ -54,7 +48,6 @@ export class NearByUserComponent implements OnInit {
   }
 
   goToPageProfile(guid) {
-    console.log(guid);
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid });
   }
 

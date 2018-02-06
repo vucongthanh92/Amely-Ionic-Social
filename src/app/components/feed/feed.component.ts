@@ -1,3 +1,4 @@
+import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
 import { Component, Input } from '@angular/core';
@@ -28,6 +29,8 @@ export class FeedComponent {
     private popoverCtrl: PopoverController
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
+   
+    
   }
 
   hasWallPhoto = true;
@@ -74,5 +77,7 @@ export class FeedComponent {
       ev: myEvent
     });
   }
-
+  goToUserProfile(guid){
+    this.nav.push(UserComponent, { userGuid: guid })
+  }
 }

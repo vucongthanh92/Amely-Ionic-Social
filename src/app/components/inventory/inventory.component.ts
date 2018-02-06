@@ -1,7 +1,11 @@
+import { Event } from './../../api/models/event';
+import { Group } from './../../api/models/group';
 import { InventoriesService } from './../../services/inventories.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
+import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Event } from '../../api/models/event';
 
 @Component({
   selector: 'app-inventory',
@@ -11,6 +15,8 @@ export class InventoryComponent implements OnInit {
   @Input('type') inventoryType: string;
   @Input('ownerGuid') ownerGuid: string;
 
+  public group: Group;
+  public event: Event;
   public badgeNew: number = 0;
   public badgeWishList: number = 0;
   public badgeExpired: number = 0;
@@ -24,9 +30,22 @@ export class InventoryComponent implements OnInit {
   public badgeStored: number = 0;
   arrTagBadge: any;
   public totalItem: number = 0;
-  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService) { }
+  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams) {
+  }
+
   types: Array<{ item_type: string, title: string, image: string, badge: number }> = [];
   ngOnInit() {
+    if (this.inventoryType == undefined) this.inventoryType = this.navParams.get("type");
+    if (this.ownerGuid == undefined) this.ownerGuid = this.navParams.get("ownerGuid");
+    if (this.inventoryType === 'group') {
+      this.group = this.navParams.get("obj");
+    } else if (this.inventoryType === 'event') {
+      this.event = this.navParams.get("obj");
+    }
+
+    console.log(this.event);
+    console.log(this.group);
+    
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
       { item_type: 'expired', title: '', image: '' },
@@ -40,13 +59,14 @@ export class InventoryComponent implements OnInit {
       { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' },
       { item_type: 'stored', title: '', image: '' }];
 
+
     this.arrTagBadge.forEach(e => {
       this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
         if (data && e.item_type != 'expired' && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored' && e.item_type != 'stored') {
           this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
         }
-        this.totalItem += data.length ? data.length : 0;
-
+        if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
+          this.totalItem += data.length ? data.length : 0;
       });
     })
 

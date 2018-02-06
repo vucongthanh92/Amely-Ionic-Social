@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content *ngIf="user" class="outer-content">
   <div class="about-header">
-    <img  src="{{user.avatar}}" alt="ionic logo">
+    <img src="{{user.avatar}}" alt="ionic logo">
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="userTab">
@@ -52,11 +52,11 @@
     <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-
+ 
   <div *ngIf="newfeedsPage">
-    <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
+    <ion-card  *ngIf="user.shop.guid" style="margin-left: 0px; margin-right: 0px; width: 100%">
       <ion-card-content>
-        <ion-item (click)="goToPage('shop')">
+        <ion-item (click)="goToPage('shop',user.shop.guid)">
           <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
         </ion-item>
       </ion-card-content>
@@ -68,19 +68,18 @@
             <p class="iconPage">
               <img src="{{genderIcon}}" /> {{genderLabel}}
             </p>
-            <p *ngIf="isUserCurrent"  class="iconPage">
+            <p *ngIf="isUserCurrent" class="iconPage">
               <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20 (chưa có icon)
             </p>
-            <p *ngIf="birthday"  class="iconPage">
-              <img src="assets/imgs/ic_birthday_gray.png" />
-               {{birthday}}
+            <p *ngIf="birthday" class="iconPage">
+              <img src="assets/imgs/ic_birthday_gray.png" /> {{birthday}}
             </p>
             <p class="iconPage">
               <img src="assets/imgs/ic_phone_gray.png" /> {{user.mobilelogin}}
             </p>
           </ion-col>
           <ion-col col-6>
-            <p *ngIf="user.mood"  class="iconPage">
+            <p *ngIf="user.mood" class="iconPage">
               <img src="{{iconMood}}" />{{user.mood.title}}
             </p>
             <p *ngIf="isUserCurrent" class="iconPage">
@@ -94,15 +93,15 @@
 
     <ion-list *ngIf="userGuid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-        <app-feeds  [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
+      <app-feeds [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
       <!-- </ion-item> -->
     </ion-list>
   </div>
   <div *ngIf="imagesPage">
-    <app-album  [guid]="userGuid" [type]="'user'"></app-album>
+    <app-album [guid]="userGuid" [type]="'user'"></app-album>
   </div>
   <div *ngIf="friendsPage">
-    <app-friends [from]="'user'" [guid]="userGuid" ></app-friends>
+    <app-friends [from]="'user'" [guid]="userGuid"></app-friends>
   </div>
 
 

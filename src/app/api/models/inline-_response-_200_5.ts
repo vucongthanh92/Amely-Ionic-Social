@@ -1,12 +1,14 @@
 /* tslint:disable */
-import { DefaultResponse } from './default-response';
-import { Group } from './group';
+import { Feed } from './feed';
 import { User } from './user';
+import { Mood } from './mood';
+import { Share } from './share';
 
 /**
  */
 export class inline_response_200_5 {
-    result?: DefaultResponse;
-    groups?: Group[];
-    owners?: User[];
+    posts?: Feed[];
+    users?: User[];
+    moods?: Mood[];
+    shares?: Share[];
 }

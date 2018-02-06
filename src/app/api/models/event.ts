@@ -1,3 +1,4 @@
+import { User } from './user';
 /* tslint:disable */
 import { Product } from './product';
 
@@ -27,4 +28,5 @@ export class Event {
     cover?: string;
     members_accepted?: string;
     invites_accepted?: string;
+    owner: User;
 }

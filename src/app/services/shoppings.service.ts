@@ -17,7 +17,14 @@ export class ShoppingsService {
     return this.apiService.getVouchers({ offset: offset, limit: limit })
   }
 
-  getFriendlyShop(){
+  getFriendlyShop() {
     return this.apiService.getFriendlyShop();
+  }
+
+  getProducts(category_guid, shop_guid, type_product, product_filter, get_all, offset, limit) {
+    return this.apiService.getProducts({
+      category_guid: category_guid, shop_guid: shop_guid, type_product: type_product, product_filter: product_filter,
+      get_all: get_all, offset: offset, limit: limit
+    });
   }
 }

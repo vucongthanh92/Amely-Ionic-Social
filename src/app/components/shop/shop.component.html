@@ -3,15 +3,16 @@
     <ion-title>Cửa hàng</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content class="outer-content" *ngIf="shop">
   <div class="about-header">
-    <img src="assets/imgs/logo.png" alt="ionic logo">
+    <img src="{{shop.avatar}}" alt="ionic logo">
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="shopTab" style="border-bottom: 1px solid #eee;">
-      <ion-segment-button value="products" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;" (click)="goToPage('products');">
-          <img id="tabIconProduct" />
-          <div class="txtTitle">Sản Phẩm</div>
+      <ion-segment-button value="products" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;"
+        (click)="goToPage('products');">
+        <img id="tabIconProduct" />
+        <div class="txtTitle">Sản Phẩm</div>
       </ion-segment-button>
       <ion-segment-button value="info" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px" (click)="goToPage('info');">
         <img id="tabIconInfo" />
@@ -21,7 +22,7 @@
     <ion-row text-center>
       <ion-col col-6>
         <button ion-button icon-left clear small color="danger">
-        <img class="iconSubTab" src="assets/imgs/ic_like.png" alt="ionic logo">
+          <img class="iconSubTab" src="assets/imgs/ic_like.png" alt="ionic logo">
           <div>Thích</div>
         </button>
       </ion-col>
@@ -33,16 +34,14 @@
       </ion-col>
     </ion-row>
   </div>
-  <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
-    <ion-refresher-content
-      pullingText="Pull to refresh..."
-      refreshingText="Refreshing...">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
+    <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
 
   <div *ngIf="productsPage">
-    <app-categories></app-categories>
-    <app-products-feature></app-products-feature>
+    <app-categories [shopGuid]="shop.guid"></app-categories>
+    <app-products-feature  [shopGuid]="shop.guid"></app-products-feature>
   </div>
   <div *ngIf="infoPage">
     <ion-card>
@@ -55,7 +54,7 @@
             Tên cửa hàng
           </ion-col>
           <ion-col col-6>
-            vipn600
+            {{shop.title}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -63,7 +62,7 @@
             Địa chỉ cửa hàng
           </ion-col>
           <ion-col col-6>
-            quận 12
+            {{shop.shop_address}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -71,7 +70,7 @@
             Số điện thoại
           </ion-col>
           <ion-col col-6>
-            789456321
+            {{shop.shop_phone}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -79,7 +78,7 @@
             Mã số thuế
           </ion-col>
           <ion-col col-6>
-            123456789
+            {{shop.shop_bidn}}
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -94,7 +93,7 @@
             Họ tên
           </ion-col>
           <ion-col col-6>
-            Voucher
+             {{shop.owner_name}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -102,7 +101,7 @@
             Địa chỉ
           </ion-col>
           <ion-col col-6>
-            quận 12
+             {{shop.owner_address}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -110,7 +109,7 @@
             Số điện thoại
           </ion-col>
           <ion-col col-6>
-            789456321
+           {{shop.owner_phone}}
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -119,13 +118,13 @@
       <ion-card-header>
         Danh sách cửa hàng
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content *ngFor="let store of shop.stores" > 
         <ion-row>
           <ion-col col-6>
             Địa chỉ
           </ion-col>
           <ion-col col-6>
-            công hòa
+            {{store.address}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -133,10 +132,11 @@
             Số điện thoại
           </ion-col>
           <ion-col col-6>
-            789456321
+             {{store.phone}}
           </ion-col>
         </ion-row>
       </ion-card-content>
+
     </ion-card>
   </div>
 </ion-content>

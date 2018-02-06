@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
 import { ProductAllComponent } from '../product-all/product-all.component';
@@ -13,19 +13,32 @@ import { CustomService } from '../../services/custom.service';
 
 export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
- 
-  constructor(public nav: NavController, public appCtrl: App, private shoppingSerivce: ShoppingsService,private customSerice:CustomService) { }
+  @Input('shopGuid') shopGuid;
+  constructor(public nav: NavController, public appCtrl: App, private shoppingSerivce: ShoppingsService, private customSerice: CustomService) { }
 
   ngOnInit() {
-    this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
-      if (data instanceof Array) {
-        this.productsMostSold = data;
+    if (this.shopGuid != undefined) {
+      this.initShopProductFeatue();
+    } else {
+      this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
+        if (data instanceof Array) {
+          this.productsMostSold = data;
+        }
+      })
+    }
+  }
+
+  initShopProductFeatue() {
+    // "default" "feature"
+    this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
+      if (data.products instanceof Array) {
+        this.productsMostSold = data.products;
       }
     })
   }
 
-  formatCurrency(price,currency :string){
-    return this.customSerice.formatCurrency(price,currency);
+  formatCurrency(price, currency: string) {
+    return this.customSerice.formatCurrency(price, currency);
   }
 
   goToPage(value, product: Product) {

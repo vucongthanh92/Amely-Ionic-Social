@@ -3,7 +3,7 @@
 /**
  */
 export class body_22 {
-    offset?: number;
-    limit?: number;
-    target?: string;
+    from_guid: number;
+    to_guid: number;
+    invitation_type: string;
 }

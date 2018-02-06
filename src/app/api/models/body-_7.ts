@@ -3,7 +3,6 @@
 /**
  */
 export class body_7 {
-    category_guid?: number;
     title?: string;
     description?: string;
     friendly_url?: string;

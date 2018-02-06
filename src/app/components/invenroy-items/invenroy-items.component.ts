@@ -24,12 +24,21 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.inventoryType);
+    
+    if (this.itemType==='all') {
+      this.inventoryService.getInventory(this.ownerGuid,this.inventoryType).subscribe(data=>{
+        if (data instanceof Array) {
+          this.inventoriesItem = data;
+        }
+      })
+    }else{
     this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(data => {
       if (data instanceof Array) {
         this.inventoriesItem = data;
       }
-
     })
+  }
   }
 
   goToPage(value, item) {

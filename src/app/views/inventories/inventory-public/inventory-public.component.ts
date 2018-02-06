@@ -35,6 +35,7 @@ export class InventoryPublicComponent implements OnInit {
     this.eventsService.getEvents(0, 9999, 'all').subscribe(data => {
       if (data.events) {
         this.events = data.events.filter(e => e.has_inventory === '1');
+
       }
       if (data.users) {
         this.usersEvent = data.users;
@@ -57,7 +58,7 @@ export class InventoryPublicComponent implements OnInit {
   groupPage = true;
   eventPage = false;
 
-  goToPage(value, type, guid) {
+  goToPage(value, type, guid, obj) {
     switch (value) {
       case 'group':
         this.groupPage = true;
@@ -68,7 +69,14 @@ export class InventoryPublicComponent implements OnInit {
         this.eventPage = true;
         break;
       case 'gift':
-        this.appCtrl.getRootNav().push(InventoryComponent);
+        if (type == 'event') {
+          obj.owner = this.usersEvent[obj.owner_guid];
+        }else if (type=="group") {
+          obj.owner = this.usersGroup[obj.owner_guid];
+          console.log(this.usersGroup[obj.owner_guid]);
+          
+        }
+        this.appCtrl.getRootNav().push(InventoryComponent, { type: type, ownerGuid: guid, obj: obj });
         break;
       default:
         break;

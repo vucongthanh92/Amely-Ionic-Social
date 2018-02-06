@@ -9,18 +9,40 @@
 
 <ion-content class="content">
 	<ion-row>
-		<ion-col col-12 text-center style="background-color: #fff">
-			<img width="30px" height="30px" src="assets/imgs/logo.png" />
-			<span>vi111pham</span>
+		<ion-col *ngIf="inventoryType=='group'" col-12 text-center style="background-color: #fff">
+			<img *ngIf="group.owner.avatar"  width="30px" height="30px" src="{{group.owner.avatar}}" />
+			<span>{{group.owner.fullname}}</span>
 		</ion-col>
-		<ion-col col-6>
+		<ion-col col-6 *ngIf="inventoryType=='group'">
 			<ion-card style="margin:0px; width: 100%">
 				<ion-card-header>
-					<ion-icon name="calculator"> Group co kho</ion-icon>
+					<img height="30px" width="30px" style="float: left" src="{{group.avatar}}">{{group.title}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
-		<ion-col col-6>
+
+		<ion-col *ngIf="inventoryType=='event'" col-12 text-center style="background-color: #fff">
+			<img width="30px" height="30px" src="{{event.owner.avatar}}" />
+			<span>{{event.owner.fullname}}</span>
+		</ion-col>
+		<ion-col col-6 *ngIf="inventoryType=='event'">
+			<ion-card style="margin:0px; width: 100%">
+				<ion-card-header>
+				<img height="30px" width="30px" style="float: left" src="{{event.avatar}}">>{{event.title}}
+				</ion-card-header>
+			</ion-card>
+		</ion-col>
+
+
+		<ion-col *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
+			<ion-card style="margin:0px; width: 100%">
+				<ion-card-header>
+					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
+				</ion-card-header>
+			</ion-card>
+		</ion-col>
+
+		<ion-col *ngIf="inventoryType=='user'" col-12 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card style="margin:0px; width: 100%">
 				<ion-card-header>
 					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
