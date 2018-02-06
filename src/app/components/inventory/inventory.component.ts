@@ -14,6 +14,7 @@ export class InventoryComponent implements OnInit {
   @Input('type') inventoryType: string;
   @Input('ownerGuid') ownerGuid: string;
 
+  public check_header = true;
   public group: Group;
   public event: Event;
   public badgeNew: number = 0;
@@ -34,7 +35,10 @@ export class InventoryComponent implements OnInit {
 
   types: Array<{ item_type: string, title: string, image: string, badge: number }> = [];
   ngOnInit() {
-    if (this.inventoryType == undefined) this.inventoryType = this.navParams.get("type");
+    if (this.inventoryType == undefined) {
+      this.check_header = false;
+      this.inventoryType = this.navParams.get("type");
+    }
     if (this.ownerGuid == undefined) this.ownerGuid = this.navParams.get("ownerGuid");
     if (this.inventoryType === 'group') {
       this.group = this.navParams.get("obj");
