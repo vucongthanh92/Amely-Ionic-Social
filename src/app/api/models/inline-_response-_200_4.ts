@@ -1,14 +1,10 @@
 /* tslint:disable */
-import { Feed } from './feed';
-import { User } from './user';
-import { Mood } from './mood';
-import { Share } from './share';
+import { Delivery_order } from './delivery-_order';
+import { Shop } from './shop';
 
 /**
  */
 export class inline_response_200_4 {
-    posts?: Feed[];
-    users?: User[];
-    moods?: Mood[];
-    shares?: Share[];
+    dos?: Delivery_order;
+    shops?: Shop;
 }

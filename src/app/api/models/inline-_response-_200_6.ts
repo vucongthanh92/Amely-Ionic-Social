@@ -1,12 +1,10 @@
 /* tslint:disable */
-import { Product } from './product';
-import { Category } from './category';
-import { Shop } from './shop';
+import { Feed } from './feed';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_6 {
-    product?: Product;
-    categories?: Category[];
-    shop?: Shop;
+    post?: Feed;
+    users?: User[];
 }

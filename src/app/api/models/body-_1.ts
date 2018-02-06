@@ -3,6 +3,7 @@
 /**
  */
 export class body_1 {
-    username: string;
-    password: string;
+    advertise_type?: string;
+    offset?: number;
+    limit?: number;
 }

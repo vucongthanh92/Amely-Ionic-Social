@@ -3,12 +3,5 @@
 /**
  */
 export class body_11 {
-    content: string;
-    friends: string;
-    location: string;
-    privacy: string;
-    mood: string;
-    images: string;
-    owner_guid?: number;
-    type?: string;
+    items?: string;
 }

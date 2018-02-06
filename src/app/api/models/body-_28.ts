@@ -3,7 +3,13 @@
 /**
  */
 export class body_28 {
-    shop_guid?: number;
-    offset?: number;
-    limit?: number;
+    post_guid?: number;
+    content?: string;
+    friends?: string;
+    location?: string;
+    privacy?: string;
+    mood?: string;
+    images?: string;
+    owner_guid?: number;
+    type?: string;
 }

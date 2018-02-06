@@ -3,6 +3,5 @@
 /**
  */
 export class body_31 {
-    offset?: number;
-    limit?: number;
+    item_guid: number;
 }

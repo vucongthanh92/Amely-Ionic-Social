@@ -3,6 +3,7 @@
 /**
  */
 export class body_2 {
-    guid?: number;
-    quantity?: number;
+    invitation_type?: string;
+    from_guid?: string;
+    to_guid?: string;
 }

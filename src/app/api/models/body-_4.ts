@@ -3,6 +3,5 @@
 /**
  */
 export class body_4 {
-    guid?: number;
-    quantity?: number;
+    user_guid?: number;
 }

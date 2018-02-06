@@ -3,7 +3,7 @@
 /**
  */
 export class body_8 {
-    post_guid: string;
-    comment: string;
-    images: string;
+    owner_guid?: number;
+    offset?: number;
+    limit?: number;
 }

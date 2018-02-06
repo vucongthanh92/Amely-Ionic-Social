@@ -1,10 +1,10 @@
 /* tslint:disable */
-import { Shop } from './shop';
-import { User } from './user';
+import { Product } from './product';
+import { Category } from './category';
 
 /**
  */
 export class inline_response_200_11 {
-    shops?: Shop[];
-    owners?: User[];
+    products?: Product[];
+    categories?: Category[];
 }

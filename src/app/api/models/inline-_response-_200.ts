@@ -1,8 +1,9 @@
 /* tslint:disable */
-import { Cart } from './cart';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200 {
-    cart?: Cart[];
+    offer?: string[];
+    users?: User;
 }

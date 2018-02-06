@@ -3,11 +3,7 @@
 /**
  */
 export class body_24 {
-    category_guid?: number;
-    shop_guid?: number;
-    type_product?: string;
-    product_filter?: number;
-    get_all?: number;
+    event_type?: string;
     offset?: number;
     limit?: number;
 }

@@ -1,4 +1,5 @@
 /* tslint:disable */
+import { User } from './user';
 import { Product } from './product';
 
 /**
@@ -6,6 +7,7 @@ import { Product } from './product';
 export class Event {
     has_inventory?: string;
     guid?: number;
+    owner?: User;
     description?: string;
     title?: string;
     type?: string;

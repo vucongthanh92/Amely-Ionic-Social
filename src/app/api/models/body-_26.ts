@@ -3,11 +3,12 @@
 /**
  */
 export class body_26 {
-    firstname: string;
-    lastname: string;
-    email: string;
-    gender: string;
-    birthdate: string;
-    usercurrency: string;
-    friends_hidden: string;
+    content?: string;
+    friends?: string;
+    location?: string;
+    privacy?: string;
+    mood?: string;
+    images?: string;
+    owner_guid?: number;
+    type?: string;
 }

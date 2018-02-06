@@ -3,7 +3,6 @@
 /**
  */
 export class body_10 {
-    event_type?: string;
-    offset?: number;
-    limit?: number;
+    guid?: number;
+    quantity?: number;
 }

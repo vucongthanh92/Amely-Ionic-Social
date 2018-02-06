@@ -3,5 +3,6 @@
 /**
  */
 export class body_3 {
-    items?: string;
+    username: string;
+    password: string;
 }

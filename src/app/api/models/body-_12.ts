@@ -3,8 +3,6 @@
 /**
  */
 export class body_12 {
-    feeds_type: string;
-    owner_guid?: number;
-    offset?: number;
-    limit?: number;
+    guid?: number;
+    quantity?: number;
 }

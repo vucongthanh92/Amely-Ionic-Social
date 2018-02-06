@@ -3,34 +3,17 @@
 /**
  */
 export class body_23 {
-    expiry?: number;
-    sku?: string;
+    template?: string;
     title?: string;
+    start_date?: string;
+    end_date?: string;
+    country?: string;
+    location?: string;
     description?: string;
-    manufacturer?: string;
-    is_special?: number;
-    voucher_category?: number;
-    ticket_category?: number;
-    tax?: number;
-    price?: number;
-    currency?: string;
-    quantity?: number;
-    weight?: number;
-    product_group?: number;
-    featured?: number;
-    storage_duration?: string;
-    duration?: number;
-    begin_day?: string;
-    end_day?: string;
-    friendly_url?: string;
-    origin?: string;
-    order?: string;
+    has_inventory?: string;
     status?: string;
-    ossn_photo?: string[];
-    shop_category?: string[];
-    market_category?: string[];
-    custom_attribute_keys?: string[];
-    custom_attribute_values?: string[];
-    images?: string[];
-    unit?: string;
+    event_type?: string;
+    owner_guid?: number;
+    members?: string[];
+    invites?: string[];
 }

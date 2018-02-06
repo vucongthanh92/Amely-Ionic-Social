@@ -3,10 +3,7 @@
 /**
  */
 export class body_16 {
-    name: string;
-    description: string;
-    privacy: string;
-    member_invite: string;
-    membership: string;
-    members: string[];
+    old_password?: string;
+    new_password?: string;
+    confirm_password?: string;
 }

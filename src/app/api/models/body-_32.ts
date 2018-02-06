@@ -3,6 +3,6 @@
 /**
  */
 export class body_32 {
-    offset?: number;
-    limit?: number;
+    vote_type?: string;
+    group_guid?: number;
 }

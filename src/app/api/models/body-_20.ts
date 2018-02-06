@@ -3,6 +3,8 @@
 /**
  */
 export class body_20 {
-    type: string[];
-    guid: number;
+    offer_guid?: number;
+    item_guid?: number;
+    quantity?: number;
+    note?: string;
 }
