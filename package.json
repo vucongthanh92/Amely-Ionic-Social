@@ -20,6 +20,7 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
+    "@ionic-native/barcode-scanner": "^4.5.3",
     "@ionic-native/camera": "^4.5.3",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/file": "^4.5.3",
@@ -51,12 +52,14 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "moment": "^2.20.1",
+    "ngx-qrcode2": "0.0.5",
+    "phonegap-plugin-barcodescanner": "^7.0.2",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@angular/cli": "^1.6.3",
+    "@angular/cli": "^1.6.7",
     "@ionic/app-scripts": "3.1.6",
     "typescript": "2.4.2"
   },
@@ -73,6 +76,9 @@
       "cordova-plugin-file": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
+      "phonegap-plugin-barcodescanner": {
+        "CAMERA_USAGE_DESCRIPTION": " "
       }
     },
     "platforms": [

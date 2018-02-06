@@ -42,6 +42,9 @@ import { TransactionsService } from './services/transactions.service';
 import { OffersService } from './services/offers.service';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
@@ -73,7 +76,8 @@ export const firebaseConfig = {
     InventoriesModule,
     SettingsModule,
     ApiModule,
-    MomentModule
+    MomentModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,6 +105,7 @@ export const firebaseConfig = {
     FilePath,
     Geolocation,
     File,
+    BarcodeScanner
   ]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 app-personal {
 
-    .tabs-ios {
+    .tabs {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=contactpage], .tab-button-icon[aria-label=contactpage] {
             background-image: url(../assets/imgs/ic_contact.png);
@@ -19,7 +19,7 @@ app-personal {
         }
     }
 
-    .tabs-ios {
+    .tabs {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=chat], .tab-button-icon[aria-label=chat] {
             background-image: url(../assets/imgs/ic_tab_chat.png);
@@ -38,7 +38,7 @@ app-personal {
         }
     }
 
-    .tabs-ios {
+    .tabs {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=notify], .tab-button-icon[aria-label=notify] {
             background-image: url(../assets/imgs/ic_notify.png);

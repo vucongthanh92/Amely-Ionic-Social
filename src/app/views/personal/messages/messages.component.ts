@@ -103,7 +103,7 @@ export class MessagesComponent implements OnInit {
 
   goToPage(value, chat_type) {
     value.chat_type = chat_type;
-    this.nav.push(MessageComponent, { param: value });
+    this.appCtrl.getRootNav().push(MessageComponent, { param: value });
   }
 
   compareGroup(a, b) {

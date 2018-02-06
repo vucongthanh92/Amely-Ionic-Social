@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page" *ngIf="product">
+<ion-content *ngIf="product">
   <ion-card style="position: relative;" >
     <img *ngIf="product.images[0]"  src="{{product.images[0]}}" />
     <img *ngIf="product.images[0]==null"  src="assets/imgs/logo.png" />
@@ -24,6 +24,9 @@
     <ion-card-header>
       {{product.title}}
     </ion-card-header>
+  </ion-card>
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
   </ion-card>
   <ion-card>
     <ion-card-header>
@@ -66,11 +69,11 @@
   </ion-card>
 </ion-content>
 <ion-footer>
-  <ion-toolbar class="toolbarFooter">
+  <ion-toolbar>
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <button ion-button block>Su dung</button>
+          <button ion-button block (click)="createCode()">Su dung</button>
         </ion-col>
         <ion-col col-4>
           <button ion-button block>Tang qua</button>
