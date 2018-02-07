@@ -21,7 +21,7 @@ export class OffersSearchComponent implements OnInit {
     this.lng = Number(localStorage.getItem("lng"));
     let geoQueryOffer = this.geolocationService.getOffers(this.lat, this.lng);
     geoQueryOffer.on("key_entered", function (key, location, distance) {
-      console.log(key + " user query at " + location + " (" + distance + " km from center)");
+      // console.log(key + " user query at " + location + " (" + distance + " km from center)");
     });
   }
 

@@ -1,10 +1,10 @@
 /* tslint:disable */
-import { Delivery_order } from './delivery-_order';
-import { Shop } from './shop';
+import { Comment } from './comment';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_4 {
-    dos?: Delivery_order;
-    shops?: Shop;
+    comments?: Comment[];
+    users?: User[];
 }

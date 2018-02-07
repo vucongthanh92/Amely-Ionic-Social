@@ -10,17 +10,17 @@
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="userTab">
       <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px;border-right: 1px solid #eee;"
-        (click)="goToPage('newfeeds');">
+        (click)="goToPage(user,'newfeeds');">
         <img id="tabIconFeeds" />
         <div class="txtTitle">Cập Nhật</div>
       </ion-segment-button>
       <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px;  border-right: 1px solid #eee;"
-        (click)="goToPage('images');">
+        (click)="goToPage(user,'images');">
         <img id="tabIconImage" />
         <div class="txtTitle">Hình Ảnh</div>
       </ion-segment-button>
       <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; border-right: 1px solid #eee;"
-        (click)="goToPage('friends');">
+        (click)="goToPage(user,'friends');">
         <img id="tabIconFriend" />
         <div class="txtTitle">Bạn Bè</div>
       </ion-segment-button>

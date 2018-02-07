@@ -11,4 +11,12 @@ export class FeedsService {
   getFeeds(feeds_type, owner_guid, offset) {
     return this.api.getFeeds({ "feeds_type": feeds_type, "owner_guid": owner_guid, "offset": offset, "limit": 10 }).pipe();
   }
+
+  getComments(postGuid: number, offset: number, limit: number) {
+    return this.api.getComments({ type: null, postGuid: postGuid, offset: offset, limit: limit });
+  }
+
+  putComment(post_guid, comment, images){
+    return this.api.createComment({ post_guid: post_guid, comment: comment, images: images});
+  }
 }

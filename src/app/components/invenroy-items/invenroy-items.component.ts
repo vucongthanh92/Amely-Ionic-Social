@@ -24,7 +24,6 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.inventoryType);
     
     if (this.itemType==='all') {
       this.inventoryService.getInventory(this.ownerGuid,this.inventoryType).subscribe(data=>{
@@ -43,7 +42,7 @@ export class InvenroyItemsComponent implements OnInit {
 
   goToPage(value, item) {
     switch (value) {
-      case 'item':
+      case 'item': 
         this.appCtrl.getRootNav().push(ItemComponent, { itemGuid: item.guid });
         break;
       case 'default':

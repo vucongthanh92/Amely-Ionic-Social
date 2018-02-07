@@ -42,9 +42,6 @@ export class InventoryComponent implements OnInit {
       this.event = this.navParams.get("obj");
     }
 
-    console.log(this.event);
-    console.log(this.group);
-    
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
       { item_type: 'expired', title: '', image: '' },

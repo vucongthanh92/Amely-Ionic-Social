@@ -1,9 +1,38 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Du lich</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <app-categories></app-categories>
-  <app-products-feature></app-products-feature>
+
+  <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categories_parent.length>0">
+    <ion-row>
+      <ion-col col-8>
+        <h3>Danh mục</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="text-align: center" *ngFor="let category of categories_parent" (click)="goToSubCat(category)">
+        <img width="70%" src="{{category.logo}}" />
+        <h4>{{category.title}}</h4>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+  <ion-grid>
+    <ion-row *ngFor="let product of products">
+      <ion-col col-4>
+        <img *ngIf="product.images[0]" src="{{product.images[0]}}">
+      </ion-col>
+      <ion-col col-8>
+        <ion-row>{{product.title}}</ion-row>
+        <ion-row>{{showDescription(product.description)}}</ion-row>
+        <ion-row>{{ this.custom_service.formatCurrency(product.price,product.currency)}}</ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

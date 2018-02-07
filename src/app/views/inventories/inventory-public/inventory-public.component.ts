@@ -73,7 +73,6 @@ export class InventoryPublicComponent implements OnInit {
           obj.owner = this.usersEvent[obj.owner_guid];
         }else if (type=="group") {
           obj.owner = this.usersGroup[obj.owner_guid];
-          console.log(this.usersGroup[obj.owner_guid]);
           
         }
         this.appCtrl.getRootNav().push(InventoryComponent, { type: type, ownerGuid: guid, obj: obj });
