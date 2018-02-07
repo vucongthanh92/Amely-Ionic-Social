@@ -6,8 +6,16 @@ app-main-menu {
     .main-nav p {
         text-align : center;
         margin-top: 0px;
+        color: white;
+        margin: 10px 0px 0px 0px;
     }
+
     .content-main {
         background-image: url("../assets/imgs/background.jpg");
+    }
+
+    .menu_images {
+        border-radius: 50%;
+        width: 100%;
     }
 }

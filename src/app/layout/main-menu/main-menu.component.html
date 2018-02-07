@@ -3,7 +3,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="main-nav" col-6 offset-3 *ngFor="let p of pages" (click)="openPage(p)">
-          <img width="100%" style="border-radius: 50%;" src="{{ p.image }}" />
+          <img class="menu_images" src="{{ p.image }}" />
           <p>{{ p.title }}</p>
         </ion-col>
       </ion-row>

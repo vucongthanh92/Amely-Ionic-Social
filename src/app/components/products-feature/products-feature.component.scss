@@ -17,7 +17,6 @@ app-products-feature {
   .item-card {
     display: inline-block;
     position: relative;
-    width: 15%;
   }
   
   ion-scroll[scrollX] {
@@ -28,7 +27,42 @@ app-products-feature {
   }
   
   .imgageProduct{
-        width: 70%;
+    width: 70%;
+  }
+
+  .product_feature {
+    height: 100vh;
+  }
+
+  .product_feature_label {
+    float: left;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0px 5px 0px;
+    text-transform: capitalize;
+    color: #333;
+  }
+
+  .product_feature_readmore {
+    margin: 14px 0px 0px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #488AFF;
+    font-style: italic;
+    text-align: right;
+    padding: 5px 7px 0px 0px;
+    box-sizing: border-box;
+  }
+
+  .product_feature_title {
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+
+  .product_feature_price {
+    color: #D9534F;
+    font-size: 14px;
+    text-transform: capitalize;
   }
 
 }
