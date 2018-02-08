@@ -5,6 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Business } from '../../api/models/business';
 
 @Component({
   selector: 'app-inventory',
@@ -16,6 +17,7 @@ export class InventoryComponent implements OnInit {
 
   public group: Group;
   public event: Event;
+  public page: Business;
   public badgeNew: number = 0;
   public badgeWishList: number = 0;
   public badgeExpired: number = 0;
@@ -40,6 +42,8 @@ export class InventoryComponent implements OnInit {
       this.group = this.navParams.get("obj");
     } else if (this.inventoryType === 'event') {
       this.event = this.navParams.get("obj");
+    } else if (this.inventoryType === 'business') {
+      this.page = this.navParams.get("obj");
     }
 
     this.arrTagBadge = [

@@ -3,6 +3,5 @@
 /**
  */
 export class body_67 {
-    offset?: number;
-    limit?: number;
+    currency?: string;
 }

@@ -72,7 +72,5 @@ export class CommentsComponent implements OnInit {
       })
     }
     this.content = '';
-
-
   }
 }

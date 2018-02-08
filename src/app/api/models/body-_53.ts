@@ -1,12 +1,10 @@
 /* tslint:disable */
 
 /**
+ * Submit properties to be changed
  */
 export class body_53 {
-    promotion_guid?: number;
-    title?: string;
-    description?: string;
-    time_start?: string;
-    time_end?: string;
-    status?: string;
+    item_guid?: number;
+    owner_guid?: number;
+    quantity_redeem?: number;
 }

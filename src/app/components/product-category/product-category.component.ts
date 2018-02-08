@@ -33,11 +33,7 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.category_id + " " + this.shop_guid + " " + this.type_product + " ");
-
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
-      console.log(data);
-
       if (data.products instanceof Array) {
         this.products = data.products;
       }

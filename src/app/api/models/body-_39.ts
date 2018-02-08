@@ -3,6 +3,6 @@
 /**
  */
 export class body_39 {
-    type: string[];
+    type: string;
     guid: number;
 }
