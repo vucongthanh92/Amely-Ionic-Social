@@ -45,7 +45,7 @@ export class ProductsFeatureComponent implements OnInit {
   goToPage(value, product: Product) {
     switch (value) {
       case 'product':
-        this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid });
+        this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       case 'view_all':
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product:'feature'});

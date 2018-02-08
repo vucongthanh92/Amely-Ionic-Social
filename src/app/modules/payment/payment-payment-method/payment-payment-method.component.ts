@@ -1,3 +1,4 @@
+import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { PaymentOptionsAtmComponent } from '../payment-payment-options/payment-options-atm/payment-options-atm.component';
@@ -11,7 +12,13 @@ import { PaymentOptionsWalletComponent } from '../payment-payment-options/paymen
 })
 export class PaymentPaymentMethodComponent implements OnInit {
 
-  constructor(public nav: NavController, public appCtrl: App) { }
+  constructor(
+    private paymentService: PaymentService,
+    public nav: NavController, 
+    public appCtrl: App) {
+      console.log(this.paymentService.payment_methods);
+      console.log(this.paymentService.param_create_order);
+     }
 
   ngOnInit() {
   }

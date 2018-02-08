@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
 import { MomentModule } from 'angular2-moment';
+import { CartModule } from '../modules/cart/cart.module';
 
 import { CategoriesComponent } from '../components/categories/categories.component';
 import { FeedComponent } from '../components/feed/feed.component';
@@ -34,13 +35,13 @@ import { AddFriendComponent } from '../components/add-friend/add-friend.componen
 import { NoteFriendComponent } from '../components/note-friend/note-friend.component';
 import { AddGroupComponent } from '../components/add-group/add-group.component';
 import { ChooseItemComponent } from '../components/gift/choose-item/choose-item.component';
-import { CartItemsComponent } from '../modules/cart/cart-items/cart-items.component';
 import { CommentsComponent } from '../components/comments/comments.component';
 import { SearchComponent } from '../components/search/search.component';
 import { OffersItemDetailComponent } from '../views/social/offers/offers-item-detail/offers-item-detail.component';
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
+
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
@@ -49,7 +50,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     IonicModule,
     MomentModule,
     PaymentModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    CartModule
   ],
   declarations: [
     CategoriesComponent,
@@ -81,7 +83,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     GiftItemDetailComponent,
     InventoryListItemsComponent,
     FeedsComponent,
-    CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,
     SearchComponent,
@@ -119,7 +120,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     GiftItemDetailComponent,
     InventoryListItemsComponent,
     FeedsComponent,
-    CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,
     SearchComponent,
@@ -157,7 +157,6 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     GiftItemDetailComponent,
     InventoryListItemsComponent,
     FeedsComponent,
-    CartItemsComponent,
     CommentsComponent,
     OffersItemDetailComponent,
     SearchComponent,

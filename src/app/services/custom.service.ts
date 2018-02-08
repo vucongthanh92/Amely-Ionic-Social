@@ -1,16 +1,21 @@
 import { ApiService } from './../api/services/api.service';
+import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class CustomService {
+
+  cart = [];
+  user_current: User;
+
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
   constructor(public api: ApiService, private toastCtrl: ToastController) {
     this.currencies = [
       { isoCode: 'VND', displayName: 'VND', rightSymbol: '₫', leftSymbol: '', decimals: 0, decPoints: ',', thousandSeparator: '.' },
       { isoCode: 'USD', displayName: 'USD', rightSymbol: '', leftSymbol: '$', decimals: 2, decPoints: '.', thousandSeparator: ',' }
-    ]
+    ];
   }
 
   formatCurrency(amount: string, currency: string) {
