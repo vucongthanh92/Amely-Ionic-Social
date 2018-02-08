@@ -22,7 +22,6 @@ export class NearByShopComponent implements OnInit {
       // console.log(key + " shop query at " + location + " (" + distance + " km from center)");
       let storeGuid = key.substring(key.indexOf('-') + 1, key.length);
       let shopGuid = key.substring(0,key.indexOf('-'));
-      console.log(shopGuid+"  "+storeGuid);
       
       that.shopService.getShop(shopGuid, storeGuid).subscribe(data => {
         that.datas.push({ shop: data, distance: distance });
@@ -51,8 +50,6 @@ export class NearByShopComponent implements OnInit {
   }
 
   goToShop(guid){
-    console.log(guid);
-    
     this.nav.push(ShopComponent, { guid: guid });
   }
 }

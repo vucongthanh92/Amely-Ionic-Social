@@ -1,3 +1,4 @@
+import { ProductCategoryComponent } from './../product-category/product-category.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
@@ -43,11 +44,11 @@ export class ProductsFeatureComponent implements OnInit {
 
   goToPage(value, product: Product) {
     switch (value) {
-      case 'all':
-        this.appCtrl.getRootNav().push(ProductAllComponent);
-        break;
       case 'product':
         this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid });
+        break;
+      case 'view_all':
+        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product:'feature'});
         break;
       default:
         break;

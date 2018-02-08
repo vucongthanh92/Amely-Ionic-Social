@@ -3,7 +3,7 @@
     <ion-col col-8>
       <h3>Sản phẩm bán chạy</h3>
     </ion-col>
-    <ion-col col-4 style="text-align: right" (click)="goToPage('all',null);">
+    <ion-col col-4 style="text-align: right" *ngIf="shopGuid!= undefined " (click)="goToPage('view_all')">
       XEM TẤT CẢ
     </ion-col>
   </ion-row>

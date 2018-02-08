@@ -45,6 +45,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BusinessService } from './services/business.service';
 
 
 export const firebaseConfig = {
@@ -102,6 +103,7 @@ export const firebaseConfig = {
     GiftsService,
     GeolocationService,
     ShopsService,
+    BusinessService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

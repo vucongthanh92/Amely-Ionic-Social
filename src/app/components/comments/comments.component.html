@@ -6,21 +6,48 @@
 
 <ion-content class="outer-content">
   <div style="background-color: #fff;">
-    <ion-row>
-    	<ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;  top: -10px;" *ngFor="let number of [0,1,2,3]">
+    <ion-row *ngIf="comments">
+
+      <ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;  top: -10px;" *ngFor="let comment of comments">
         <ion-grid>
           <ion-row style="margin-bottom: 20px;">
             <ion-item>
-               <ion-thumbnail item-start>
-                 <img width="100%" src="assets/imgs/logo.png" />
-               </ion-thumbnail>
-               <h2>NAME</h2>
-               <p><img style="max-width: 50%" src="assets/imgs/logo.png" /></p>
-               <p><i>25/01/2018</i></p>
-             </ion-item>
+              <ion-thumbnail item-start>
+
+                <div *ngIf="!checkUserCurrent(comment.owner_guid)">
+                  <img *ngIf="findUser(comment.owner_guid)" width="100%" src="{{findUser(comment.owner_guid).avatar}}" />
+                </div>
+
+                <div *ngIf="checkUserCurrent(comment.owner_guid)">
+                  <img width="100%" src="{{user_current.avatar}}" />
+                </div>
+
+              </ion-thumbnail>
+
+              <div *ngIf="!checkUserCurrent(comment.owner_guid)">
+                <h2 *ngIf="findUser(comment.owner_guid)">{{findUser(comment.owner_guid).fullname}}</h2>
+              </div>
+
+              <div *ngIf="checkUserCurrent(comment.owner_guid)">
+                <h2 >{{user_current.fullname}}</h2>
+              </div>
+
+              <p>
+                <img *ngIf="comment.photo" style="max-width: 50%" src="{{comment.photo}}" />
+              </p>
+              <p>
+                <i>{{comment.content}}</i>
+              </p>
+              <p>
+                <i>{{formatDate(comment.time_created)| amTimeAgo}}</i>
+              </p>
+            </ion-item>
           </ion-row>
         </ion-grid>
-    	</ion-col>
+      </ion-col>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-row>
   </div>
 </ion-content>
@@ -32,9 +59,9 @@
         <ion-icon style="font-size: 40px; color: #9E9E9E; left: -10px; position: relative;" name="camera"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-input placeholder="Nhập bình luận..."></ion-input>
+    <ion-input [(ngModel)]="content" placeholder="Nhập bình luận..."></ion-input>
     <ion-buttons end>
-      <button ion-button icon-right color="royal">
+      <button ion-button icon-right color="royal" (click)="onSend()">
         <ion-icon style="font-size: 40px; margin-right: 10px;" name="send"></ion-icon>
       </button>
     </ion-buttons>

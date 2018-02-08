@@ -29,8 +29,8 @@ export class FeedComponent {
     private popoverCtrl: PopoverController
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
-   
-    
+
+
   }
 
   hasWallPhoto = true;
@@ -68,7 +68,7 @@ export class FeedComponent {
   }
 
   changePage() {
-    this.appCtrl.getRootNav().push(CommentsComponent);
+    this.appCtrl.getRootNav().push(CommentsComponent, { guid: this.post.guid });
   }
 
   openPopover(myEvent) {
@@ -77,7 +77,7 @@ export class FeedComponent {
       ev: myEvent
     });
   }
-  goToUserProfile(guid){
+  goToUserProfile(guid) {
     this.nav.push(UserComponent, { userGuid: guid })
   }
 }

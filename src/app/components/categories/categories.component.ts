@@ -15,19 +15,19 @@ export class CategoriesComponent implements OnInit {
   constructor(public nav: NavController, public appCtrl: App, private shoppingService: ShoppingsService) { }
 
   ngOnInit() {
-    if (this.shopGuid!=undefined) {
-     this. initShopCategories()
-    } else {
-      this.shoppingService.getCategories(0, 9999, null, 1, 0).subscribe(data => {
-        if (data instanceof Array) {
-          this.categories = data;
-          this.categoriesParent = this.categories.filter(e => e.parent_guid == null || e.parent_guid == "0" || e.parent_guid.length == 0);
-        }
-      })
-    }
+    // if (this.shopGuid != undefined) {
+      this.initShopCategories()
+    // } else {
+    //   this.shoppingService.getCategories(0, 9999, null, 1, 0).subscribe(data => {
+    //     if (data instanceof Array) {
+    //       this.categories = data;
+    //       this.categoriesParent = this.categories.filter(e => e.parent_guid == null || e.parent_guid == "0" || e.parent_guid.length == 0);
+    //     }
+    //   })
+    // }
   }
 
-  initShopCategories(){
+  initShopCategories() {
     this.shoppingService.getCategories(0, 9999, this.shopGuid, 1, 0).subscribe(data => {
       if (data instanceof Array) {
         this.categories = data;
@@ -37,7 +37,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   goToPage(category: Category) {
-    this.appCtrl.getRootNav().push(ProductCategoryComponent);
+    this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories ,title:category.title});
   }
 
 }

@@ -13,8 +13,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string;
-  @Input('password') password: string;
+  @Input('username') username: string='quan5000';
+  @Input('password') password: string='123456';
   
   latitude: any;
   longitude: any;

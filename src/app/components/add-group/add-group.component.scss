@@ -70,4 +70,18 @@
       border-radius: 30px;
       width: 125px;
     }
+    ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+      display: inline-block;
+      }
+    }
+    .item-card {
+      display: inline-block;
+      position: relative;
+      width: 15%;
+    }
+    #row-scroll-item{
+        display: block !important;
+    }
   }

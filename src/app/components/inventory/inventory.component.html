@@ -30,6 +30,18 @@
 			</ion-card>
 		</ion-col>
 
+		<ion-col *ngIf="inventoryType=='business'" col-12 text-center style="background-color: #fff">
+			<img width="30px" height="30px" src="{{page.owner.avatar}}" />
+			<span>{{page.owner.fullname}}</span>
+		</ion-col>
+		<ion-col col-6 *ngIf="inventoryType=='business'">
+			<ion-card style="margin:0px; width: 100%">
+				<ion-card-header>
+				<img height="30px" width="30px" style="float: left" src="{{page.avatar}}">>{{page.title}}
+				</ion-card-header>
+			</ion-card>
+		</ion-col>
+
 
 		<ion-col *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card style="margin:0px; width: 100%">

@@ -8,5 +8,6 @@ export class body_33 {
     privacy: string;
     member_invite: string;
     membership: string;
-    members: string[];
+    has_inventory?: string;
+    members: number[];
 }

@@ -1,24 +1,39 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Cong dong</ion-title>
+    <ion-title>Cộng đồng</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content class="outer-content" *ngIf="page">
   <div class="about-header">
-    <img src="assets/imgs/logo.png" alt="ionic logo">
+    <img src="{{page.avatar}}" alt="ionic logo">
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-row text-center>
-      <ion-col col-6>
+      <ion-col col-4>
+        <button ion-button icon-left clear small color="danger" (click)="goInventory();">
+          <img width="24px" height="24px" src="assets/imgs/ic_go_to_inventory.png">
+          <div>Vào kho</div>
+        </button>
+      </ion-col>
+      <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage('gift');">
-          <ion-icon name="thumbs-up"></ion-icon>
+          <img width="24px" height="24px" src="assets/imgs/ic_send_gift_blue.png">
           <div>Tặng quà</div>
         </button>
       </ion-col>
-      <ion-col col-6>
+
+
+      <ion-col col-4 *ngIf="page.followed" (click)="likePage(false)" >
         <button ion-button icon-left clear small color="danger">
-          <ion-icon name="text"></ion-icon>
+          <img width="24px" height="24px" src="assets/imgs/ic_like_actived.png">
           <div>Đã thích</div>
+        </button>
+      </ion-col>
+
+      <ion-col col-4 *ngIf="!page.followed" (click)="likePage(true)">
+        <button ion-button icon-left clear small color="danger">
+          <img width="24px" height="24px" src="assets/imgs/ic_like.png">
+          <div>Thích</div>
         </button>
       </ion-col>
     </ion-row>
@@ -30,16 +45,16 @@
         <ion-row>
           <ion-col col-12>
             <p>
-              <ion-icon name="football"></ion-icon> artist
+              <img class="icon-header" src="assets/imgs/ic_info_gay.png"> {{page.category}}
             </p>
             <p>
-              <ion-icon name="football"></ion-icon> 8
+              <img class="icon-header" src="assets/imgs/ic_like_actived.png"> {{page.follow}}
             </p>
             <p>
-              <ion-icon name="football"></ion-icon> 123 Hang trong
+              <img class="icon-header" src="assets/imgs/ic_location_actived.png"> {{page.address}}
             </p>
             <p>
-              <ion-icon name="football"></ion-icon> http://google.com
+              <img class="icon-header" src="assets/imgs/ic_play_actived.png">{{page.website}}
             </p>
           </ion-col>
         </ion-row>
@@ -47,16 +62,16 @@
     </ion-card>
     <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
       <ion-card-header>
-        Mo ta
+        Mô tả
       </ion-card-header>
       <ion-card-content>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting
+        {{page.description}}
       </ion-card-content>
     </ion-card>
-    <ion-list>
-      <ion-item *ngFor="let number of [0,1,2,3,4]">
-        <app-feed></app-feed>
-      </ion-item>
+    <ion-list *ngIf="business_guid">
+      <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+      <app-feeds [feed_type]="'business'" [owner_guid]="business_guid"></app-feeds>
+      <!-- </ion-item> -->
     </ion-list>
   </div>
 </ion-content>

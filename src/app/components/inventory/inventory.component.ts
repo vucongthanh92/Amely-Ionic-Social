@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Business } from '../../api/models/business';
 
 @Component({
   selector: 'app-inventory',
@@ -19,6 +20,7 @@ export class InventoryComponent implements OnInit {
   public hidden_header: boolean;
   public group: Group;
   public event: Event;
+  public page: Business;
   public badgeNew: number = 0;
   public badgeWishList: number = 0;
   public badgeExpired: number = 0;
@@ -46,6 +48,8 @@ export class InventoryComponent implements OnInit {
       this.group = this.navParams.get("obj");
     } else if (this.inventoryType === 'event') {
       this.event = this.navParams.get("obj");
+    } else if (this.inventoryType === 'business') {
+      this.page = this.navParams.get("obj");
     }
 
     if (this.ownerGuid == this.userCurrent.guid) {
@@ -53,7 +57,7 @@ export class InventoryComponent implements OnInit {
     } else {
       this.hidden_header = false;
     }
-    
+
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
       { item_type: 'expired', title: '', image: '' },
