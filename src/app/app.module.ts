@@ -1,3 +1,4 @@
+import { PaymentService } from './services/payment.service';
 import { ShopsService } from './services/shops.service';
 import { GeolocationService } from './services/geolocation.service';
 import { GiftsService } from './services/gifts.service';
@@ -15,7 +16,6 @@ import { ShoppingModule } from './views/shopping/shopping.module';
 import { PersonalModule } from './views/personal/personal.module';
 import { InventoriesModule } from './views/inventories/inventories.module';
 import { SettingsModule } from './views/settings/settings.module';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule } from 'ionic-angular';
@@ -78,7 +78,7 @@ export const firebaseConfig = {
     SettingsModule,
     ApiModule,
     MomentModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -102,6 +102,7 @@ export const firebaseConfig = {
     GiftsService,
     GeolocationService,
     ShopsService,
+    PaymentService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

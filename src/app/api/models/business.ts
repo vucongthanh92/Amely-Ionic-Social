@@ -21,6 +21,6 @@ export class Business {
     cover?: string;
     owner?: string;
     follow?: string;
-    followed?: string;
+    followed?: boolean;
     thought?: string;
 }

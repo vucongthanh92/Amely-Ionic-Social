@@ -27,4 +27,8 @@ export class ShoppingsService {
       get_all: get_all, offset: offset, limit: limit
     });
   }
+  
+  putCart(product_list) {
+    return this.apiService.getCarts(product_list);
+  }
 }

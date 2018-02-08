@@ -1,9 +1,11 @@
-<ion-header>
+<ion-header >
   <ion-navbar>
     <ion-title *ngIf="product">{{product.title}}</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="changePage()">
-        <ion-icon name="cart"></ion-icon>
+      <button ion-button clear (click)="changePage()">
+        <ion-icon name="cart">
+          <ion-badge color="danger" *ngIf="count_product"> {{ count_product }}</ion-badge>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -11,7 +13,7 @@
 <ion-content class="outer-content" *ngIf="product">
   <ion-row>
     <ion-col col-12>
-      <img *ngIf="product.images[0]" src="{{getImage(product.images[0])}}" alt="ionic logo" width="100%">
+      <img *ngIf="product.images[0]" src="{{ product.images[0] }}" alt="ionic logo" width="100%">
       <img *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
     </ion-col>
   </ion-row>
@@ -27,7 +29,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-card>
+  <ion-card *ngIf="shop">
     <ion-card-header>
       Thông tin cửa hàng
     </ion-card-header>
@@ -68,7 +70,7 @@
   </ion-card>
 </ion-content>
 <ion-footer>
-  <button ion-button block color="danger">
+  <button ion-button block color="danger" (click)="putCartLocal(product)">
     Thêm vào giỏ hàng
   </button>
 </ion-footer>

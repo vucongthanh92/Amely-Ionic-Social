@@ -4,6 +4,6 @@
  */
 export class body_65 {
     owner_guid?: number;
-    avatar_type?: string;
+    cover_type?: string;
     images?: string;
 }

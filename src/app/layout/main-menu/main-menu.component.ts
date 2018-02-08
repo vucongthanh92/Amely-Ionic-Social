@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 
 import { Nav, MenuController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -23,6 +24,7 @@ export class MainMenuComponent implements OnInit {
   moodLocal: any;
 
   constructor(
+    private customService: CustomService,
     public menuCtrl: MenuController,
     private api: ApiService
   ) {
@@ -51,6 +53,7 @@ export class MainMenuComponent implements OnInit {
         { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
       ];
       localStorage.setItem('loggin_user', JSON.stringify(data));
+      this.customService.user_current = data;
     });
   }
 

@@ -47,7 +47,7 @@ export class ProductsFeatureComponent implements OnInit {
         this.appCtrl.getRootNav().push(ProductAllComponent);
         break;
       case 'product':
-        this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid });
+        this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       default:
         break;
