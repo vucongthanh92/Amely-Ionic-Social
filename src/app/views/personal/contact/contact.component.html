@@ -1,18 +1,22 @@
-<ion-content  class="outer-content">
+<ion-content class="outer-content">
   <div *ngIf="usersPage">
     <app-contact-users></app-contact-users>
   </div>
   <div *ngIf="groupsPage">
-    <app-contact-groups></app-contact-groups>
+    <app-contact-groups ></app-contact-groups>
   </div>
   <div *ngIf="businessPage">
     <app-contact-business></app-contact-business>
   </div>
   <ion-fab right bottom *ngIf="usersPage" (click)="goToPage('add-friend');">
-    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
   <ion-fab right bottom *ngIf="groupsPage" (click)="goToPage('add-group');">
-    <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="primary">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
 </ion-content>
 <ion-footer>

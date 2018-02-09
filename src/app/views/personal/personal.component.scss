@@ -1,5 +1,6 @@
 app-personal {
-
+    .searchbar-search-icon { display:none; width:0; height:0; }
+    
     .tabs {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=contactpage], .tab-button-icon[aria-label=contactpage] {

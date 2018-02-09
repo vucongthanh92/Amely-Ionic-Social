@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController, PopoverController } from 'ionic-angular';
+import { CustomService } from './../../services/custom.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { MenuController, NavController, PopoverController, NavParams, App } from 'ionic-angular';
 import { ContactComponent } from './contact/contact.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PersonalMenuComponent } from './personal-menu/personal-menu.component';
-
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html'
 })
 
 export class PersonalComponent implements OnInit {
-	
+
+  @Input('search') search: string;
+  isOn: boolean;
   tabActive = true;
   tab1Root = ContactComponent;
   tab2Root = MessagesComponent;
@@ -19,8 +21,9 @@ export class PersonalComponent implements OnInit {
 
   constructor(
     public popoverCtrl: PopoverController,
-    public menuCtrl: MenuController, 
-    public nav: NavController) { }
+    public menuCtrl: MenuController,
+    public customService: CustomService,
+    public nav: NavController, public appCtrl: App, public navParams: NavParams,) { }
 
   ngOnInit() {
   }
@@ -37,6 +40,15 @@ export class PersonalComponent implements OnInit {
     });
   }
 
-  
+  toggleDetails() {
+    this.isOn = !this.isOn;
+    if (!this.isOn) {
+      if (this.search != undefined && this.search.length > 3) {
+        this.customService.goToPageSearch(this.search, this.nav);
+      } else {
+        this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
+      }
+    }
+  }
 
 }

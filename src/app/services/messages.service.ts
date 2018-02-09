@@ -32,18 +32,29 @@ export class MessagesService {
     return this.afDatabase.list(path);
   }
 
+  /**
+   * 
+   * @param type group - individual
+   * @param owner_from 
+   * @param owner_to gr id
+   * @param obj 
+   */
   createKeyChat(type, owner_from, owner_to, obj) {
     let path = "/users/" + owner_from + "/chat/" + type;
-    switch (type) {
-      case "individual":
-        this.afDatabase.list(path).set(owner_to, obj);
-        break;
-      case "group":
-        this.afDatabase.list(path).set(owner_to, obj);
-        break;
-        default:
-        break;
-      }
+    // switch (type) {
+    //   case "individual":
+    //     this.afDatabase.list(path).set(owner_to, obj);
+    //     break;
+    //   case "group":
+    //     this.afDatabase.list(path).set(owner_to, obj);
+    //     break;
+    //     default:
+    //     break;
+    //   }
+    console.log(path);
+    console.log(owner_to);
+    console.log(obj);
+    
     this.afDatabase.list(path).set(owner_to, obj);
   }
 

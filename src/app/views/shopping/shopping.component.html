@@ -1,5 +1,28 @@
-<ion-tabs tabsPlacement="top"  primary>
-  <ion-tab [root]="tab1Root" tabTitle="CỬA HÀNG" tabIcon="store"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
-</ion-tabs>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!is_search_show">Mua Sắm</ion-title>
+    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+      <button ion-button (click)="changePage()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs tabsPlacement="top" primary>
+    <ion-tab [root]="tab1Root" tabTitle="CỬA HÀNG" tabIcon="store"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -1,7 +1,8 @@
+import { SearchComponent } from './../components/search/search.component';
 import { ApiService } from './../api/services/api.service';
 import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { ToastController, NavController } from 'ionic-angular';
 
 @Injectable()
 export class CustomService {
@@ -37,12 +38,12 @@ export class CustomService {
   like(type: string, guid: number) {
     return this.api.createLike({ type: type, guid: guid });
   }
-  
+
   unlike(type: string, guid: number) {
     return this.api.deleteLike({ type: type, guid: guid });
   }
 
-  toastMessage(message: string, position: string, duration:number) {
+  toastMessage(message: string, position: string, duration: number) {
     const toast = this.toastCtrl.create({
       message: message,
       position: position,
@@ -50,5 +51,10 @@ export class CustomService {
     });
     toast.present();
   }
-  
+
+  goToPageSearch(content: string, nav: NavController) {
+    nav.push(SearchComponent, { param: content, service: this })
+  }
+
+
 }

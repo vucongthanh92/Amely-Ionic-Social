@@ -14,8 +14,6 @@ export class ShopsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePage() {
-    this.appCtrl.getRootNav().push(CartItemsComponent);
-  }
+  
 
 }

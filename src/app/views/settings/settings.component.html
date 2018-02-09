@@ -1,5 +1,25 @@
-<ion-tabs tabsPlacement="top">
-  <ion-tab [root]="tabGeneral" tabTitle="CHUNG" tabIcon="setting-general"></ion-tab>
-  <ion-tab [root]="tabPrivate" tabTitle="RIÊNG TƯ" tabIcon="setting-private"></ion-tab>
-  <ion-tab [root]="tabSecurity" tabTitle="BẢO MẬT" tabIcon="setting-security"></ion-tab>
-</ion-tabs>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!is_search_show">Xã Hội</ion-title>
+    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="tabGeneral" tabTitle="CHUNG" tabIcon="setting-general"></ion-tab>
+    <ion-tab [root]="tabPrivate" tabTitle="RIÊNG TƯ" tabIcon="setting-private"></ion-tab>
+    <ion-tab [root]="tabSecurity" tabTitle="BẢO MẬT" tabIcon="setting-security"></ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -6,79 +6,99 @@
   </ion-navbar>
 
   <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="search">
-      <ion-segment-button value="peoples">
+    <ion-segment [(ngModel)]="search" *ngIf="is_has_data">
+      <ion-segment-button value="peoples" *ngIf="users">
         Người dùng
       </ion-segment-button>
-      <ion-segment-button value="product">
+      <ion-segment-button value="product" *ngIf="products">
         Sản phẩm
       </ion-segment-button>
-      <ion-segment-button value="store">
+      <ion-segment-button value="store" *ngIf="shops">
         Cửa hàng
       </ion-segment-button>
-      <ion-segment-button value="group">
+      <ion-segment-button value="group" *ngIf="groups">
         Nhóm
       </ion-segment-button>
-      <ion-segment-button value="event">
+      <ion-segment-button value="event" *ngIf="events">
         Sự kiện
       </ion-segment-button>
+      <ion-segment-button value="business" *ngIf="business">
+        Cộng đồng
+      </ion-segment-button>
+
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-  <div [ngSwitch]="search">
+
+  <div [ngSwitch]="search" *ngIf="is_has_data">
     <ion-list *ngSwitchCase="'peoples'">
-      <ion-item *ngFor="let number of [0,1,2,3]">
+      <ion-item *ngFor="let user of users" (click)="goToUserProfile(user)">
         <ion-thumbnail item-start>
-          <img width="80%" src="assets/imgs/logo.png" />
+          <img width="80%" src="{{user.avatar}}" />
         </ion-thumbnail>
-        <h2>NAMEEEEEEEEEEEE</h2>
-        <ion-thumbnail item-end>
+        <h2>{{user.fullname}}</h2>
+        <!-- <ion-thumbnail item-end>
           <button type="button" name="button" ion-button style="height: 40px; width: 90px;">Thêm bạn</button>
-        </ion-thumbnail>
+        </ion-thumbnail> -->
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'product'">
-      <ion-item *ngFor="let number of [0,1,2,3]">
+      <ion-item *ngFor="let product of products" (click)="goToProduct(product)">
         <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" *ngIf="product.images[0]" src="{{product.images[0]}}" />
         </ion-thumbnail>
-        <h2>NAMEEEEEEEEEEEE</h2>
-        <h2 style="color: red; font-weight: bold;">300,000 đ</h2>
+        <h2>{{product.title}}</h2>
+        <h2 style="color: red; font-weight: bold;">{{formatCurrency(product.price,product.currency)}}</h2>
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'store'">
-      <ion-item *ngFor="let number of [0,1,2,3]">
+      <ion-item *ngFor="let shop of shops" (click)="goToShopProfile(shop)">
         <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" src="{{shop.avatar}}" />
         </ion-thumbnail>
-        <h2>NAMEEEEEEEEEEEE</h2>
+        <h2>{{shop.title}}</h2>
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'group'">
-      <ion-item *ngFor="let number of [0,1,2,3]">
+      <ion-item *ngFor="let group of groups" (click)="goToGroupProfile(group)">
         <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" src="{{group.avatar}}" />
         </ion-thumbnail>
-        <h2>NAMEEEEEEEEEEEE</h2>
+        <h2>{{group.title}}</h2>
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'event'">
-      <ion-item *ngFor="let number of [0,1,2,3]">
+      <ion-item *ngFor="let event of events" (click)="goToEventrProfile(event)">
         <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
+          <img width="100%" src="{{event.avatar}}" />
         </ion-thumbnail>
-        <h2>NAMEEEEEEEEEEEE</h2>
-        <h2>25/01/2018</h2>
+        <h2>{{event.title}}</h2>
+        <h2>{{formatDate(event.time_created) | date:'dd/MM/yyyy'}}</h2>
       </ion-item>
     </ion-list>
 
+    <ion-list *ngSwitchCase="'business'">
+      <ion-item *ngFor="let b of business" (click)="goToBusinessProfile(b)">
+        <ion-thumbnail item-start>
+          <img width="100%" src="{{b.avatar}}" />
+        </ion-thumbnail>
+        <h2>{{b.title}}</h2>
+        <h2>{{b.thought}}</h2>
+      </ion-item>
+    </ion-list>
+
+
+  </div>
+
+  <div *ngIf="!is_has_data">
+
+    <h1>Không tìm thấy dữ liệu tìm kiếm</h1>
 
   </div>
 </ion-content>

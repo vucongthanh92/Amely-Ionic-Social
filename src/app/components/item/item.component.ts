@@ -18,20 +18,16 @@ export class ItemComponent implements OnInit {
   product: Product;
   shop: Shop;
 
-  constructor(
-    public nav: NavController, 
-    public appCtrl: App, 
-    private navParams: NavParams, 
-    private inventoriesService: InventoriesService) {
-      this.itemGuid = this.navParams.get('itemGuid');
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService) {
+    this.itemGuid = this.navParams.get('itemGuid');
     // this.item.product_snapshot
   }
 
   ngOnInit() {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(data => {
       this.item = data;
-      this.product=data.product_snapshot;
-      this.shop=data.product_snapshot.shop;
+      this.product = data.product_snapshot;
+      this.shop = data.product_snapshot.shop;
     })
   }
 

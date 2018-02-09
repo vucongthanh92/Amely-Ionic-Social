@@ -1,5 +1,5 @@
-<ion-list>
-  <ion-item *ngFor="let group of groups" >
+<ion-list >
+  <ion-item *ngFor="let group of groupService.groups_contact" >
     <ion-row>
       <ion-col col-3 (click)="goToPage(group.guid)">
         <img  id="imgAvatar" src="{{group.avatar}}" />

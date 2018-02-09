@@ -1,12 +1,12 @@
 /* tslint:disable */
-import { Shipping_methods } from './shipping-_methods';
-import { Payment_methods } from './payment-_methods';
-import { Options } from './options';
+import { DefaultResponse } from './default-response';
+import { Group } from './group';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_10 {
-    shipping_methods?: Shipping_methods;
-    payment_methods?: Payment_methods;
-    options?: Options;
+    result?: DefaultResponse;
+    groups?: Group[];
+    owners?: User[];
 }
