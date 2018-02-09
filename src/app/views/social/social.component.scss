@@ -1,4 +1,17 @@
 app-social{
+    .tabs-ios .tabbar {
+        padding: 2px 0px 0px 0px;
+    }
+    .tab-button-text {
+        padding: 3px 0px 0px 0px;
+    }
+    .tabs-ios .tab-button {
+        padding: 0px 0px 5px 0px;
+    }
+    .tabs-ios .tab-button[aria-selected=true] {
+        border-bottom: 1px solid #488aff;
+    }
+
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=feed], .tab-button-icon[aria-label=feed] {

@@ -1,15 +1,15 @@
-<ion-card style="margin: 12px 0px; width: 100%">
+<ion-card>
   <ion-item>
     <ion-avatar item-start>
       <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
     </ion-avatar>
     <ion-row>
-      <ion-col col-10>
-        <h2>{{ user.username }}</h2>
-
+      <ion-col class="feed_author" col-10>
+        <h2 class="feed_fullname">{{ user.username }}</h2>
+        <time class="feed_datetime">ngày hôm qua</time>
         <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
       </ion-col>
-      <ion-col col-2>
+      <ion-col class="feed_event" col-2>
         <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
       </ion-col>
       <ion-col *ngIf="mood">
@@ -27,11 +27,10 @@
   <ion-card-content style="white-space: initial;">
     {{ descriptionPost }}
   </ion-card-content>
-  <ion-row *ngIf="userTag" style="font-weight: 500">
-    -
+  <ion-row *ngIf="userTag">
     <div *ngIf="isHideMoreTag; else elseSubArr">
       <div *ngFor="let user of userTag" style="float: left">
-        <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+        <a>{{user.first_name}} {{user.last_name}},</a>
       </div>
     </div>
 
@@ -40,7 +39,7 @@
         <div *ngFor="let user of subArrUserTag" style="float: left">
           <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
         </div>
-        <a *ngIf="isShowMoreTag" style="color: black;margin-right: 5px;">+{{userTag.length-3}}</a>
+        <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
       </div>
     </ng-template>
 
@@ -49,14 +48,14 @@
     <ion-col>
       <button ion-button icon-left clear small>
         <img id="icLikeComment" src="assets/imgs/ic_like.png">
-        <div>&nbsp; {{ post.likes }} Thích</div>
+        <div>&nbsp; {{ post.likes }}</div>
       </button>
     </ion-col>
     <ion-col>
       <button ion-button icon-left clear small (click)="changePage()">
         <img id="icLikeComment" src="assets/imgs/ic_comment.png">
         <!-- <ion-icon name="text"></ion-icon> -->
-        <div>&nbsp; {{ post.comments }} Bình luận</div>
+        <div>&nbsp; {{ post.comments }}</div>
       </button>
     </ion-col>
     <ion-col></ion-col>
