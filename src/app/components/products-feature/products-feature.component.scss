@@ -6,57 +6,63 @@ app-products-feature {
       border: 1px solid #eee;
     }
   }
-  img1 {
-    border: 2px solid #BA55D3;
-    border-radius: 50%;
-    padding: 5px;
-    width: 50px;
-    background-color:#4B0082;
-    box-shadow: 1px 1px 1px 1px yellow;
-  }
+
   .item-card {
     display: inline-block;
     position: relative;
+    width: 50vw;
   }
   
   ion-scroll[scrollX] {
-    white-space: nowrap;
     .scroll-item {
-      display: inline-block;
+      display: flex;
     }
   }
   
   .imgageProduct{
-    width: 70%;
+    width: 45vw;
+    height: 30vh;
+    max-width: none;
+    max-height: none;
   }
 
   .product_feature {
-    height: 100vh;
+    min-height: 42vh;
   }
 
   .product_feature_label {
     float: left;
-    font-size: 20px;
-    font-weight: normal;
-    margin: 10px 0px 5px 0px;
-    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 10px 0px 10px 0px;
+    text-transform: uppercase;
     color: #333;
   }
 
   .product_feature_readmore {
-    margin: 14px 0px 0px 0px;
+    margin: 12px 0px 0px 0px;
     font-size: 14px;
     font-weight: 400;
     color: #488AFF;
     font-style: italic;
     text-align: right;
     padding: 5px 7px 0px 0px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
+  }
+
+  .product_feature_info {
+    margin-top: 10px;
   }
 
   .product_feature_title {
     font-size: 16px;
     text-transform: capitalize;
+    font-weight: 400;
+    margin: 0px 0px 5px 0px;
+    height: 20px;
+    overflow: hidden;
+    color: #333;
   }
 
   .product_feature_price {
