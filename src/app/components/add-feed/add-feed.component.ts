@@ -9,7 +9,9 @@ import { UserService } from '../../services/user.service';
 })
 export class AddFeedComponent implements OnInit {
 
+  @Input('search') search: string;
   @Input('content') content: string;
+  @Input('privacy') privacy: string;
   public is_show_tag: boolean;
   public is_show_autocomplete: boolean = false;
   public users: Array<User>;
@@ -30,7 +32,7 @@ export class AddFeedComponent implements OnInit {
 
   chooseUserTag(user: User) {
     this.usersTag.push(user);
-    this.content = '';
+    this.search = '';
     this.is_show_autocomplete = false;
   }
 
@@ -49,5 +51,11 @@ export class AddFeedComponent implements OnInit {
     } else {
       this.is_show_autocomplete = false;
     }
+  }
+
+  putFeed() {
+    console.log(this.content + " " + this.privacy);
+    console.log(this.usersTag);
+    
   }
 }
