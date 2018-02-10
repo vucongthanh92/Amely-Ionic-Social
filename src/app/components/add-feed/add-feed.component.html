@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Đăng bài viết mới</ion-title>
     <ion-buttons end>
-      <button ion-button >
+      <button ion-button>
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -26,22 +26,37 @@
       </ion-list>
     </ion-col>
     <ion-col col-4>
-      <button ion-button >
+      <button ion-button>
         <ion-icon name="paw"></ion-icon>
       </button>
     </ion-col>
   </ion-row>
   <ion-row style="background-color: #fff; border-top: 1px solid #eee;">
     <ion-col col-12>
-      <ion-textarea placeholder="Bạn đang nghĩ gì ?" rows="10"  name="description"></ion-textarea>
+      <ion-textarea placeholder="Bạn đang nghĩ gì ?" rows="10" name="description"></ion-textarea>
     </ion-col>
   </ion-row>
+
+  <ion-row>
+    <div *ngFor="let user of usersTag">
+      <a (click)="removeUserTag(user)">{{user.fullname}}, </a>
+    </div>
+  </ion-row>
+
 </ion-content>
 <ion-footer>
+  <ion-row *ngIf="is_show_tag">
+    <ion-list *ngIf="is_show_autocomplete">
+      <ion-item *ngFor="let user of usersTmp" (click)="chooseUserTag(user)">
+        {{ user.fullname }}
+      </ion-item>
+    </ion-list>
+    <ion-searchbar [(ngModel)]="content" (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-row>
   <ion-row style="background-color: #fff;border-top: 1px solid #eee">
     <ion-col col-4>
       <button ion-button full clear>
-        <ion-icon name="people"></ion-icon>
+        <ion-icon name="people" (click)="showTagFriend()"></ion-icon>
       </button>
     </ion-col>
     <ion-col col-4>
