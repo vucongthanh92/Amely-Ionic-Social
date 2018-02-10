@@ -30,15 +30,17 @@ export class PaymentCustomerInfoComponent implements OnInit {
     private paymentService: PaymentService,
     public nav: NavController, 
     public appCtrl: App) {
-    this.provinces = PROVINCES;
-     }
+      this.provinces = PROVINCES;
+      this.fullname = this.customService.user_current.fullname;
+      this.phone = this.customService.user_current.mobilelogin;
+    }
 
   ngOnInit() {
   }
 
   onProvinceChange(provinceid: string) {
     this.districts = DISTRICTS.filter(data => data.provinceid == provinceid);
-    this.wards = [];
+    this.wards = false;
   }
 
   onDistrictChange(districtid: string) {

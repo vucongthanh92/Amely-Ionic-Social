@@ -22,7 +22,7 @@ export class PaymentItemsComponent implements OnInit {
     private navParams: NavParams,
     public nav: NavController, 
     public appCtrl: App) { 
-      this.param = this.navParams.get("param");
+      this.param = this.paymentService.items;
       this.products = this.param.products;
       this.products = (<any>Object).values(this.products);
       this.sub_total = this.param.sub_total;
@@ -38,6 +38,6 @@ export class PaymentItemsComponent implements OnInit {
   }
 
   changePage() {
-    this.appCtrl.getRootNav().push(PaymentCustomerInfoComponent, { param: this.param });
+    this.appCtrl.getRootNav().push(PaymentCustomerInfoComponent);
   }
 }

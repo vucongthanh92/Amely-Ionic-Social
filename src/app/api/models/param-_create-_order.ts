@@ -3,7 +3,7 @@
 /**
  */
 export class Param_create_order {
-    shipping_phone?: string;
+    shipping_fullname?: string;
     fullname?: string;
     address?: string;
     province?: string;
@@ -11,8 +11,9 @@ export class Param_create_order {
     ward?: string;
     note?: string;
     payment?: string;
-    shipping_fullname?: string;
+    bankcode?: string;
     phone?: string;
+    shipping_phone?: string;
     shipping_address?: string;
     shipping_province?: string;
     shipping_district?: string;
