@@ -66,7 +66,6 @@ import { gift_guid } from '../models/gift-_guid';
 import { body_31 } from '../models/body-_31';
 import { body_32 } from '../models/body-_32';
 import { Group } from '../models/group';
-import { inline_response_200_10 } from '../models/inline-_response-_200_10';
 import { inline_response_200_9 } from '../models/inline-_response-_200_9';
 import { body_33 } from '../models/body-_33';
 import { body_34 } from '../models/body-_34';
@@ -87,6 +86,7 @@ import { body_42 } from '../models/body-_42';
 import { body_44 } from '../models/body-_44';
 import { Order } from '../models/order';
 import { inline_response_200_11 } from '../models/inline-_response-_200_11';
+import { inline_response_200_10 } from '../models/inline-_response-_200_10';
 import { Param_create_order } from '../models/param-_create-_order';
 import { body_45 } from '../models/body-_45';
 import { inline_response_200_12 } from '../models/inline-_response-_200_12';
@@ -2443,85 +2443,6 @@ export class ApiService extends BaseService {
     );
   }
   /**
-   * Return friend request list of user
-   */
-  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Return friend request list of user
-   */
-  getFriendRequest(): Observable<DefaultResponse> {
-    return this.getFriendRequestResponse().pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (guid != null) __params = __params.set("guid", guid.toString());
-    let req = new HttpRequest<any>(
-      "DELETE",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
-    return this.deleteFriendRequestResponse(guid).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
    * Return a friends list of an user (if not specified, the current logged in user)
    * @param user_guid - undefined
    */
@@ -2600,6 +2521,85 @@ export class ApiService extends BaseService {
    */
   deleteFriend(guid: number): Observable<DefaultResponse> {
     return this.deleteFriendResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Return friend request list of user
+   */
+  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Return friend request list of user
+   */
+  getFriendRequest(): Observable<DefaultResponse> {
+    return this.getFriendRequestResponse().pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (guid != null) __params = __params.set("guid", guid.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
+    return this.deleteFriendRequestResponse(guid).pipe(
       map(_r => _r.body)
     );
   }
@@ -2941,51 +2941,13 @@ export class ApiService extends BaseService {
   /**
    * @param owner_guid - Global Unique IDentity
    */
-  getGroupsResponse(ownerGuid?: number): Observable<HttpResponse<inline_response_200_10>> {
+  getGroupsResponse(ownerGuid?: number): Observable<HttpResponse<inline_response_200_9>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     if (ownerGuid != null) __params = __params.set("owner_guid", ownerGuid.toString());
     let req = new HttpRequest<any>(
       "POST",
-      this.rootUrl + `/groups`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_10 = null;
-        _body = _resp.body as inline_response_200_10
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_10>;
-      })
-    );
-  }
-
-  /**
-   * @param owner_guid - Global Unique IDentity
-   */
-  getGroups(ownerGuid?: number): Observable<inline_response_200_10> {
-    return this.getGroupsResponse(ownerGuid).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * Insert new group
-   * @param body - undefined
-   */
-  createGroupResponse(body: body_33): Observable<HttpResponse<inline_response_200_9>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    __body = body;
-    let req = new HttpRequest<any>(
-      "PUT",
       this.rootUrl + `/groups`,
       __body,
       {
@@ -3006,10 +2968,48 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * @param owner_guid - Global Unique IDentity
+   */
+  getGroups(ownerGuid?: number): Observable<inline_response_200_9> {
+    return this.getGroupsResponse(ownerGuid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * Insert new group
    * @param body - undefined
    */
-  createGroup(body: body_33): Observable<inline_response_200_9> {
+  createGroupResponse(body: body_33): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "PUT",
+      this.rootUrl + `/groups`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Insert new group
+   * @param body - undefined
+   */
+  createGroup(body: body_33): Observable<DefaultResponse> {
     return this.createGroupResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4177,7 +4177,7 @@ export class ApiService extends BaseService {
    * "to_guid": "13254"
    * @param body - undefined
    */
-  createOrderResponse(body: Param_create_order): Observable<HttpResponse<DefaultResponse>> {
+  createOrderResponse(body: Param_create_order): Observable<HttpResponse<inline_response_200_10>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -4196,9 +4196,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+        let _body: inline_response_200_10 = null;
+        _body = _resp.body as inline_response_200_10
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_10>;
       })
     );
   }
@@ -4226,7 +4226,7 @@ export class ApiService extends BaseService {
    * "to_guid": "13254"
    * @param body - undefined
    */
-  createOrder(body: Param_create_order): Observable<DefaultResponse> {
+  createOrder(body: Param_create_order): Observable<inline_response_200_10> {
     return this.createOrderResponse(body).pipe(
       map(_r => _r.body)
     );

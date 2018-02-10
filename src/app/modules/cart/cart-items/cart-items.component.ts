@@ -1,3 +1,4 @@
+import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
@@ -15,6 +16,7 @@ export class CartItemsComponent implements OnInit {
   total = 0;
 
   constructor(
+    private paymentService: PaymentService,
     private shoppingsService: ShoppingsService,
     private customService: CustomService,
     public nav: NavController, 
@@ -70,7 +72,8 @@ export class CartItemsComponent implements OnInit {
         carts.push(obj);
       });
       this.shoppingsService.putCart({ items: carts }).subscribe( data => {
-        this.appCtrl.getRootNav().push(PaymentItemsComponent, { param: data });
+        this.paymentService.items = data;
+        this.appCtrl.getRootNav().push(PaymentItemsComponent);
       });
     }
   }

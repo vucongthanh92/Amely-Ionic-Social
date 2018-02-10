@@ -47,7 +47,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
@@ -112,7 +112,8 @@ export const firebaseConfig = {
     FilePath,
     Geolocation,
     File,
-    BarcodeScanner
+    BarcodeScanner,
+    InAppBrowser
   ]
 })
 export class AppModule { }

@@ -8,40 +8,26 @@
      Phương thức thanh toán
    </ion-title>
 
+  <ion-buttons end>
+    <button ion-button icon-only (click)="changePage()">
+      Next
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </ion-buttons>
+
  </ion-navbar>
 </ion-header>
 
-
-
 <ion-content class="outer-content">
   <div style="background-color: #fff;">
-    <ion-list>
-      <button ion-item (click)="changePagePaypal()">
+    <ion-list radio-group [(ngModel)]="payment_selected">
+      <ion-item *ngFor="let payment_method of payment_methods">
         <ion-thumbnail item-start>
           <img width="100%" src="assets/imgs/logo.png" />
         </ion-thumbnail>
-        <ion-label>Tài khoản Paypal</ion-label>
-      </button>
-      <button ion-item (click)="changePageWallet()">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-label>Ví của tôi</ion-label>
-      </button>
-      <button ion-item (click)="changePageVisa()">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-label>Thẻ quốc tế Visa/Master</ion-label>
-      </button>
-      <button ion-item (click)="changePageAtm()">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-label>Thẻ ATM nội địa</ion-label>
-      </button>
+        <ion-radio value="{{ payment_method.filename }}" item-end></ion-radio>
+        <ion-label>{{ payment_method.displayname }}</ion-label>
+      </ion-item>
     </ion-list>
-
   </div>
-
 </ion-content>
