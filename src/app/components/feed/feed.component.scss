@@ -1,19 +1,58 @@
 app-feed{
+    .feed_fullname {
+        font-size: 15px;
+        text-transform: capitalize;
+        color: #333;
+        margin: 0px;
+    }
+
+    .feed_event {
+        text-align: right;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .card-content-ios {
+        padding: 0px 7px 0px 10px;
+        font-size: 13px;
+        line-height: 20px;
+        margin: 5px 0px 7px 0px;
+    }
+
+    .feed_author {
+        padding: 0px;
+    }
+
+    .feed_datetime {
+        font-size: 12px;
+        font-weight: 400;
+        color: #666;
+        font-style: italic;
+    }
+
+    .label-ios {
+        margin: 0px;
+        background-color: white;
+    }
+
+    .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 0px 0px 0px 0px;
+        overflow: hidden;
+    }
+
     ion-avatar img  {
-        width:100% !important;
-        height : 100% !important;
-        max-width: 13vw !important;  //any size
-        max-height: 13vw !important; //any size
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+        min-width: 100%;
     }
    
     #icLikeComment{
         width: 15px;
         height: 15px;
-    }
-
-    .row{
-        padding-left: 1vw;
-        padding-right: 1vw;
     }
 
     .textHeader{

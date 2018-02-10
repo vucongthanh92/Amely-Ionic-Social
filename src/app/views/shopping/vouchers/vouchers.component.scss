@@ -1,15 +1,41 @@
 app-vouchers {
-  .inner {
-    height: 100%;
-    ion-card {
-      display: table-cell;
-      border: 1px solid #eee;
-    }
+  .content-ios.outer-content {
+    background: #efeff4;
+  }
+
+  .button-ios span {
+    color: #FF8C00;
+    font-size: 15px;
+  }
+
+  .button-ios {
+    padding: 0px 9px 0px 9px;
+    text-transform: capitalize;
+    color: #4a8bfc;
+  }
+
+  .card-ios {
+    box-shadow: none;
   }
   
   .item-card {
     display: inline-block;
     position: relative;
+  }
+
+  .label-ios {
+    margin: 3px 0px 12px 0;
+    background-color: white;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding: 0px;
+  }
+
+  .item-ios {
+    background-color: #efeff4;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
   }
   
   ion-scroll[scrollX] {
@@ -18,4 +44,43 @@ app-vouchers {
       display: inline-block;
     }
   }
+
+  .voucher_title {
+    text-transform: capitalize;
+    font-size: 15px;
+    margin: 12px 0px 5px 0px;
+    font-weight: 400;
+    color: #333;
+    white-space: normal;
+    line-height: 21px;
+    padding: 0vw 5vw 0vw 5vw;
+  }
+
+  .voucher_price {
+    color: #D9534F;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0vw 5vw 0vw 5vw;
+    margin: 0px 0px 12px 0px;
+  }
+
+  .voucher_image_box {
+    position: relative;
+    max-height: 35vh;
+    overflow: hidden;
+  }
+
+  .voucher_limit {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-align: right;
+    padding: 9px 10px 9px 0px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-style: italic;
+  }
+
 }

@@ -1,3 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mua Sắm</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="changePage()">
+        <ion-icon class="navbar_cart" ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+      <button ion-button >
+        <ion-icon class="navbar_sent" name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
 <ion-content class="outer-content">
   <app-categories ></app-categories>
   <app-products-feature></app-products-feature>

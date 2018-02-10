@@ -1,0 +1,52 @@
+app-feeds {
+    .content-ios.outer-content {
+        background: #efeff4;
+    }
+
+    .button-ios span {
+        color: #FF8C00;
+        font-size: 15px;
+    }
+
+    .button-ios {
+        padding: 0px 9px 0px 9px;
+        text-transform: capitalize;
+        color: #4a8bfc;
+    }
+
+    .card-ios {
+        box-shadow: none;
+        background: none;
+        width: 100%;
+        margin: 0px;
+    }
+
+    .label-ios {
+        margin: 10px 15px 10px 15px;
+        background-color: white;
+    }
+    
+    .item-card {
+        display: inline-block;
+        position: relative;
+    }
+
+    .item-ios.item-block .item-inner {
+        padding: 0px;
+    }
+
+    .item-ios {
+        background-color: #fff;
+        margin: 7px 7px 7px 7px;
+        padding: 0px 0px 0px 0px;
+        box-sizing: border-box;
+        width: auto;
+    }
+    
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+        display: inline-block;
+        }
+    }
+}

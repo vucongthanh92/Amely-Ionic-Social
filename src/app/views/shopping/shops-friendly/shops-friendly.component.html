@@ -1,14 +1,13 @@
 <ion-content class="outer-content">
-  <ion-card *ngFor="let shop of shops" (click)="goToPage('shop');">
-    <ion-row>
-      <ion-col col-3>
-        <img width="100%" *ngIf="shop.avatar" src="{{shop.avatar}}" >
-
+  <ion-list *ngFor="let shop of shops" (click)="goToPage('shop');">
+    <ion-row class="shop_friendly_row">
+      <ion-col class="shop_friendly_box_image">
+        <img *ngIf="shop.avatar" src="{{shop.avatar}}" >
       </ion-col>
-      <ion-col col-9>
-        <ion-label>Name Shop</ion-label>
-        good very good
+      <ion-col class="shop_friendly_info" col-12>
+        <ion-label class="shop_friendly_title">Name Shop</ion-label>
+        <ion-label class="shop_friendly_description">good very good</ion-label>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-list>
 </ion-content>
