@@ -16,7 +16,11 @@ export class FeedsService {
     return this.api.getComments({ type: null, postGuid: postGuid, offset: offset, limit: limit });
   }
 
-  putComment(post_guid, comment, images){
-    return this.api.createComment({ post_guid: post_guid, comment: comment, images: images});
+  putComment(post_guid, comment, images) {
+    return this.api.createComment({ post_guid: post_guid, comment: comment, images: images });
+  }
+
+  putFeed(content, friends, location, privacy, mood, images, owner_guid, type) {
+    return this.api.createFeed({ content: content, friends: friends, location: location, privacy: privacy, mood: mood, images: images, owner_guid: owner_guid, type: type });
   }
 }

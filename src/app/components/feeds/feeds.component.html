@@ -1,8 +1,13 @@
 <ion-card *ngIf="isHasData">
-  <ion-item  *ngFor="let post of posts">
+  <ion-item *ngFor="let post of posts">
     <app-feed [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)" [user_tag]="getUsersTag(post.description)"></app-feed>
   </ion-item>
 </ion-card>
+<ion-fab right bottom>
+  <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
   <ion-infinite-scroll-content></ion-infinite-scroll-content>
 </ion-infinite-scroll>

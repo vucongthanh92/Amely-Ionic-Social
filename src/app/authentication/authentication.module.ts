@@ -10,9 +10,15 @@ import { VerifycodeComponent } from './verifycode/verifycode.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from './authentication.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
-  imports: [CommonModule, IonicModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    LaddaModule.forRoot({
+      style: "contract"
+    })],
   declarations: [ForgotComponent, SigninComponent, SignoutComponent, VerifycodeComponent, RegisterComponent],
   entryComponents: [ForgotComponent, SigninComponent, SignoutComponent, VerifycodeComponent, RegisterComponent],
   providers: [

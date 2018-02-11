@@ -1,3 +1,4 @@
+import { SearchComponent } from './../../components/search/search.component';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -26,7 +27,8 @@ export class InventoriesComponent implements OnInit {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {
       if (this.search_content != undefined && this.search_content.length > 3) {
-        this.customService.goToPageSearch(this.search_content, this.nav);
+        // this.customService.goToPageSearch(this.search_content, this.nav);
+        this.nav.push(SearchComponent, { param: this.search_content, service: this })
       } else {
         this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
       }

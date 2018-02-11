@@ -1,10 +1,12 @@
+import { App } from 'ionic-angular/components/app/app';
+import { BusinessComponent } from './../business/business.component';
 import { GroupComponent } from './../group/group.component';
 import { ShopComponent } from './../shop/shop.component';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Shop } from './../../api/models/shop';
-import { Component, OnInit, group } from '@angular/core';
-import { NavParams, NavController } from 'ionic-angular';
+import { Component, OnInit, group } from '@angular/core'; 
+import { NavController, NavParams } from 'ionic-angular';
 import { SearchService } from '../../services/search.service';
 import { Group } from '../../api/models/group';
 import { Product } from '../../api/models/product';
@@ -31,6 +33,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private navParams: NavParams,
     public nav: NavController,
+    private appCtrl: App,
     private searchService: SearchService) {
     this.contentSearch = this.navParams.get('param');
   }
@@ -111,10 +114,10 @@ export class SearchComponent implements OnInit {
   }
 
   goToBusinessProfile(business: Business) {
-
+    this.nav.push(BusinessComponent, { guid: business.guid });
   }
 
   goToProduct(product: Product) {
-    // this.nav.push(ProductComponent, { product: product });
+    this.nav.push(ProductComponent, { product: product });
   }
 }

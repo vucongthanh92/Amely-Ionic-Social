@@ -21,8 +21,6 @@ export class NewsFeedComponent implements OnInit {
   
   }
 
-  addNewFeed() {
-  	this.appCtrl.getRootNav().push(AddFeedComponent);
-  }
+
 
 }

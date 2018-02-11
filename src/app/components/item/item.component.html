@@ -35,7 +35,15 @@
     <ion-card-content>
       <ion-row>
         <ion-col col-6>
-          {{shop.title}}
+        Tên cửa hàng
+        </ion-col>
+        <ion-col col-6>
+           {{shop.title}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          Chủ cửa hàng
         </ion-col>
         <ion-col col-6>
           {{shop.owner_name}}
@@ -73,7 +81,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4>
-          <button ion-button block (click)="createCode()">Su dung</button>
+          <button [ladda]="is_used" ion-button block (click)="createCode()">Su dung</button>
         </ion-col>
         <ion-col col-4>
           <button ion-button block>Tang qua</button>

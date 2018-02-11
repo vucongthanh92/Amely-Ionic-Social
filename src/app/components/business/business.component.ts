@@ -14,7 +14,9 @@ import { CustomService } from '../../services/custom.service';
 export class BusinessComponent implements OnInit {
   private business_guid: number;
   public page: Business;
-  constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService, private customService: CustomService) {
+  constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService
+    , private customService: CustomService
+  ) {
     this.business_guid = nav_param.get('guid');
   }
 

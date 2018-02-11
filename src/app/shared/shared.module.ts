@@ -41,6 +41,7 @@ import { OffersItemDetailComponent } from '../views/social/offers/offers-item-de
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
+import { LaddaModule } from 'angular2-ladda';
 
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -51,7 +52,10 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     MomentModule,
     PaymentModule,
     NgxQRCodeModule,
-    CartModule
+    CartModule,
+    LaddaModule.forRoot({
+      style: "contract"
+    })
   ],
   declarations: [
     CategoriesComponent,

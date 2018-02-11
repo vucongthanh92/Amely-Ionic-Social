@@ -17,10 +17,10 @@ export class ItemComponent implements OnInit {
   item: Item;
   product: Product;
   shop: Shop;
+  public is_used: boolean = false;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService) {
     this.itemGuid = this.navParams.get('itemGuid');
-    // this.item.product_snapshot
   }
 
   ngOnInit() {
@@ -32,6 +32,12 @@ export class ItemComponent implements OnInit {
   }
 
   createCode() {
-    this.createdCode = "Dsadasdasdasdasdas";
+    this.is_used = true;
+    this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
+      if (this.createCode) {
+        this.createdCode = data.code
+      }
+      this.is_used = false;
+    })
   }
 }

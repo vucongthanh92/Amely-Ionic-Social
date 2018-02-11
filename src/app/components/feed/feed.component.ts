@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
@@ -26,7 +27,8 @@ export class FeedComponent {
   constructor(
     public menuCtrl: MenuController,
     public nav: NavController, public appCtrl: App,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private customService: CustomService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
 
@@ -79,5 +81,25 @@ export class FeedComponent {
   }
   goToUserProfile(guid) {
     this.nav.push(UserComponent, { userGuid: guid })
+  }
+
+  likeFeed() {
+    this.post.likes = this.post.liked ? +this.post.likes - 1 : +this.post.likes + 1;
+    if (this.post.liked) {
+      this.customService.unlike('post', this.post.guid).subscribe(data => {
+        if (!data.status) {
+          this.post.liked = true;
+          this.post.likes + 1;
+        }
+      })
+    } else {
+      this.customService.like('post', this.post.guid).subscribe(data => {
+        if (!data.status) {
+          this.post.liked = false;
+          this.post.likes - 1;
+        }
+      })
+    }
+    this.post.liked = !this.post.liked;
   }
 }

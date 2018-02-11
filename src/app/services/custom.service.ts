@@ -12,7 +12,10 @@ export class CustomService {
 
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
-  constructor(public api: ApiService, private toastCtrl: ToastController) {
+  constructor(
+    private api: ApiService,
+     private toastCtrl: ToastController
+    ) {
     this.currencies = [
       { isoCode: 'VND', displayName: 'VND', rightSymbol: '₫', leftSymbol: '', decimals: 0, decPoints: ',', thousandSeparator: '.' },
       { isoCode: 'USD', displayName: 'USD', rightSymbol: '', leftSymbol: '$', decimals: 2, decPoints: '.', thousandSeparator: ',' }
@@ -53,7 +56,7 @@ export class CustomService {
   }
 
   goToPageSearch(content: string, nav: NavController) {
-    nav.push(SearchComponent, { param: content, service: this })
+    // nav.push(SearchComponent, { param: content, service: this })
   }
 
 

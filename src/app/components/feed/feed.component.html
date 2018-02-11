@@ -46,9 +46,10 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <button ion-button icon-left clear small>
-        <img id="icLikeComment" src="assets/imgs/ic_like.png">
-        <div>&nbsp; {{ post.likes }}</div>
+      <button ion-button icon-left clear small (click)="likeFeed()">
+        <img id="icLikeComment" *ngIf="post.liked" src="assets/imgs/ic_like_actived.png">
+        <img id="icLikeComment" *ngIf="!post.liked" src="assets/imgs/ic_like.png">
+        <div>&nbsp; {{ +post.likes }}</div>
       </button>
     </ion-col>
     <ion-col>

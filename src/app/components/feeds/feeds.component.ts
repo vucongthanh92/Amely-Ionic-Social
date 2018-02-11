@@ -1,3 +1,5 @@
+import { AddFeedComponent } from './../add-feed/add-feed.component';
+import { App } from 'ionic-angular';
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
@@ -13,7 +15,7 @@ export class FeedsComponent implements OnInit {
 
   @Input('feed_type') feed_type: string;
   @Input('owner_guid') owner_guid: string;
-
+  @Input('type') type: string;
 
   posts: Feed[];
   users: User[];
@@ -22,7 +24,8 @@ export class FeedsComponent implements OnInit {
   offset = 0;
   private isHasData: boolean;
   constructor(
-    private feedsService: FeedsService
+    private feedsService: FeedsService,
+    private appCtrl: App,
   ) { }
 
   ngOnInit() {
@@ -80,4 +83,26 @@ export class FeedsComponent implements OnInit {
     return arrUserTag;
   }
 
+  addNewFeed() {
+    this.appCtrl.getRootNav().push(AddFeedComponent, { type: this.type, callback: this.myCallbackFunction });
+  }
+
+  myCallbackFunction = () => {
+    return new Promise((resolve, reject) => {
+      this.offset=0;
+      this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
+        if (data.posts) {
+          this.offset = this.offset + data.posts.length;
+          this.posts = data.posts;
+          this.users = data.users;
+          this.moods = data.moods;
+          this.shares = data.shares;
+          this.isHasData = true;
+        } else {
+          this.isHasData = false;
+        }
+      });
+      resolve();
+    });
+  }
 }
