@@ -4,13 +4,14 @@ import { Mood } from './mood';
 /**
  */
 export class Feed {
-    likes?: number;
+    liked?: boolean;
     guid?: number;
     type?: string;
     subtype?: string;
     mood?: Mood;
     poster_guid?: number;
     access?: number;
+    likes?: number;
     owner_guid?: number;
     comments?: number;
     item_type?: string;

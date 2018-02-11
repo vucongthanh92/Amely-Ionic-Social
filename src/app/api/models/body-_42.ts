@@ -1,22 +1,9 @@
 /* tslint:disable */
 
 /**
- * switch(offer_type)
- *   case "random"
- *     request: random_expiration
- *   case "giveaway"
- *     request: giveaway_approval
  */
 export class body_42 {
-    location_lat?: string;
-    item_guid?: number;
-    random_expiration?: boolean;
-    giveaway_approval?: boolean;
+    offset?: number;
+    limit?: number;
     target?: string;
-    offer_type?: string;
-    location_lng?: string;
-    duration?: number;
-    note?: string;
-    quantity?: number;
-    limit_counter?: string;
 }

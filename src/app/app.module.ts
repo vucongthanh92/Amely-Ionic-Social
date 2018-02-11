@@ -48,6 +48,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { OfferService } from './services/offer.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
@@ -107,6 +108,7 @@ export const firebaseConfig = {
     BusinessService,
     PaymentService,
     SearchService,
+    OfferService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

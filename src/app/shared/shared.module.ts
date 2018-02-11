@@ -1,3 +1,4 @@
+import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
 import { PaymentModule } from './../modules/payment/payment.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
@@ -88,7 +89,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent,
   ],
   entryComponents: [
     CategoriesComponent,
@@ -125,7 +127,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent
   ],
   exports: [
     CategoriesComponent,
@@ -162,7 +165,8 @@ import { InventoryGiftComponent } from '../components/inventory-gift/inventory-g
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent
   ]
 })
 export class SharedModule { }
