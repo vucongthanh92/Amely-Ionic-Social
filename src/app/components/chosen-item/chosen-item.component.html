@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Chọn quà</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #57bde3;height: 100%;position: relative">
+  <div id="divContent">
+    <ion-row>
+      <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;" (click)="presentItemDetail(item)">
+        <div>
+          <img width="100%" *ngIf="item.product_snapshot.images[0]" src="{{item.product_snapshot.images[0]}}" />
+          <img width="100%" *ngIf="item.product_snapshot.images[0]=='' " src="assets/imgs/image_not_found.jpg">
+          <div style="padding: 5px">
+            <p no-margin>{{item.product_snapshot.title}}</p>
+            <p no-margin>SL: {{item.quantity}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-scroll scrollX style="height:120px;">
+    <div class="scroll-item">
+      <div class="item-card" *ngFor="let type of types" (click)="onFilterItem(type.item_type)">
+        <img src="{{type.image}}">
+        <div id="item-badge">
+          <a> {{type.badge}}</a>
+        </div>
+        <p>{{type.title}}</p>
+      </div>
+    </div>
+  </ion-scroll>
+</ion-footer>

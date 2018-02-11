@@ -1,4 +1,8 @@
 app-create-offer {
+  ion-select {
+    max-width: 100%;
+    width: 100%;
+  }
   .divBody {
     margin-top: 5px;
     border-radius: 8px;
@@ -38,19 +42,6 @@ app-create-offer {
   .marginRow {
     margin-bottom: 15px;
     left: 32vw;
-  }
-
-  .popover-ios .popover-content {
-    top: 112px;
-    left: 105.906px !important;
-    transform-origin: right top 0px;
-    border-radius: 10px;
-    width: 65%;
-    min-width: 0;
-    min-height: 0;
-    max-height: 90% !important;
-    color: #000;
-    background: #fff;
   }
 
   .buttonChoose {

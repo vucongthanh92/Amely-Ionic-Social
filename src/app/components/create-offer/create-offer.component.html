@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Tạo đề xuất trao đổi</ion-title>
     <ion-buttons end>
-      <button ion-button >
+      <button ion-button (click)="offer()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -14,67 +14,107 @@
     <ion-grid>
 
       <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Hình thức</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="formality" interface="popover" placeholder="Chọn hình thức trao đổi">
-          <ion-option value="a">Chọn hình thức trao đổi1</ion-option>
-          <ion-option value="b">Chọn hình thức trao đổi2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-bulb"></ion-icon>
-      </ion-col>
-    </ion-row>
-
-      <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Đối tượng</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="object" interface="popover" placeholder="Chọn đối tượng trao đổi">
-          <ion-option value="a">Chọn đối tượng trao đổi1</ion-option>
-          <ion-option value="b">Chọn đối tượng trao đổi2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-person"></ion-icon>
-      </ion-col>
-    </ion-row>
-
-      <ion-row class="marginRow">
-      <ion-col col-4>
-        <div class="divSize"><ion-label fixed>Thời gian</ion-label></div>
-      </ion-col>
-      <ion-col col-7>
-        <i><ion-select class="selectSize" [(ngModel)]="time" interface="popover" placeholder="Chọn số ngày hiệu lực">
-          <ion-option value="a">Chọn số ngày hiệu lực1</ion-option>
-          <ion-option value="b">Chọn số ngày hiệu lực2</ion-option>
-        </ion-select></i>
-      </ion-col>
-      <ion-col>
-        <ion-icon class="iconSize" name="md-calendar"></ion-icon>
-      </ion-col>
-    </ion-row>
-
-      <ion-row class="marginRow">
-      <ion-col col-12>
-        <div class="divSize"><ion-label>Quà trao đổi</ion-label></div>
-      </ion-col>
-    </ion-row>
-      <ion-row>
-      <ion-col class="marginRow" col-12>
-        <button class="buttonChoose" type="button" name="button"><ion-icon class="iconSize1" name="ios-add-circle-outline" ></ion-icon><br>Chọn quà</button>
-      </ion-col>
-      <ion-col>
-        <i>
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Hình thức</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <ion-select [(ngModel)]="offer_type" name="offer_type" placeholder="Chọn hình thức trao đổi" [selectOptions]="offer_type_select">
+            <ion-option value="normal">Trao đổi thông thường </ion-option>
+            <ion-option value="giveaway">Tặng quà miễn phí </ion-option>
+            <ion-option value="random">Trao đổi ngẫu nhiên </ion-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-bulb"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-list radio-group *ngIf="offer_type == 'giveaway'" [(ngModel)]="giveaway_approval">
         <ion-item>
-          <ion-input class="item-ios" type="text" placeholder="Nhập ghi chú (tối đa 50 ký tự)"></ion-input>
+          <ion-label>Chờ duyệt trao đổi</ion-label>
+          <ion-toggle (ionChange)="isDisabled = !isDisabled"></ion-toggle>
         </ion-item>
-        </i>
-      </ion-col>
-    </ion-row>
+      </ion-list>
+      <ion-row class="marginRow" *ngIf="offer_type == 'random'">
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Số người tham gia</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <ion-select [(ngModel)]="limit_counter" name="limit_counter" placeholder="Số người tham gia" [selectOptions]="limit_counter_select">
+            <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}"> {{ number }} người</ion-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-bulb"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="marginRow">
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Đối tượng</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <ion-select [(ngModel)]="target" name="target" placeholder="Chọn hình thức trao đổi" [selectOptions]="target_select">
+            <ion-option value="public">Người xung quanh bạn</ion-option>
+            <ion-option value="friends">Bạn bè trong danh bạ</ion-option>
+            <ion-option value="location">Xung quanh 1 địa điểm</ion-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-person"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="marginRow">
+        <ion-col col-4>
+          <div class="divSize">
+            <ion-label fixed>Thời gian</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-7>
+          <ion-select [(ngModel)]="duration" name="duration" placeholder="Thời gian hiệu lực" [selectOptions]="duration_select">
+            <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}">{{ number }} ngày</ion-option>
+          </ion-select>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="iconSize" name="md-calendar"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="marginRow">
+        <ion-col col-12>
+          <div class="divSize">
+            <ion-label>Quà trao đổi</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 offset-3 (click)="chosenItem()">
+          <div *ngIf="!item">
+            <button class="buttonChoose" type="button" name="button">
+              <ion-icon class="iconSize1" name="ios-add-circle-outline"></ion-icon>
+              <br>Chọn quà
+            </button>
+          </div>
+          <div *ngIf="item">
+            <img width="100%" src="{{ avatar }}" />
+            <!-- <p>{{ item.product_snapshot.title }}</p> -->
+            <!-- <p> Số lượng: &nbsp; {{ item.quantity }}</p> -->
+          </div>
+        </ion-col>
+        <ion-col col-12>
+          <i>
+            <ion-item>
+              <ion-input class="item-ios" type="text" [(ngModel)]="description" name="description" placeholder="Nhập ghi chú (tối đa 50 ký tự)"></ion-input>
+            </ion-item>
+          </i>
+        </ion-col>
+      </ion-row>
 
     </ion-grid>
   </div>

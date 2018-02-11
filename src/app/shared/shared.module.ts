@@ -1,3 +1,4 @@
+import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
 import { PaymentModule } from './../modules/payment/payment.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { InventoryListItemsComponent } from './../components/inventory-list-items/inventory-list-items.component';
@@ -92,7 +93,8 @@ import { LaddaModule } from 'angular2-ladda';
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent,
   ],
   entryComponents: [
     CategoriesComponent,
@@ -129,7 +131,8 @@ import { LaddaModule } from 'angular2-ladda';
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent
   ],
   exports: [
     CategoriesComponent,
@@ -166,7 +169,8 @@ import { LaddaModule } from 'angular2-ladda';
     SearchComponent,
     ChangePasswordComponent,
     ChangePhonenumberComponent,
-    InventoryGiftComponent
+    InventoryGiftComponent,
+    ChosenItemComponent
   ]
 })
 export class SharedModule { }
