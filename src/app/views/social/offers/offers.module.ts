@@ -6,11 +6,13 @@ import { OffersComponent } from './offers.component';
 import { OffersMyselfComponent } from './offers-myself/offers-myself.component';
 import { OffersPendingComponent } from './offers-pending/offers-pending.component';
 import { OffersSearchComponent } from './offers-search/offers-search.component';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    SharedModule
   ],
   declarations: [
     OffersComponent,

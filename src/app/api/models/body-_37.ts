@@ -3,6 +3,7 @@
 /**
  */
 export class body_37 {
-    duration?: number;
-    item_guid?: number;
+    from_guid?: number;
+    to_guid?: number;
+    join_type?: string;
 }

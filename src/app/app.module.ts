@@ -49,6 +49,7 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
+// import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDT1wlI_BKGDVBVxf6wiWY4Jn3iyCntxPs",
@@ -62,7 +63,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    MainMenuComponent
+    MainMenuComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@
 /**
  */
 export class body_36 {
-    from_guid: number;
-    to_guid: number;
-    invitation_type: string;
+    duration?: number;
+    item_guid?: number;
 }

@@ -3,6 +3,7 @@
 /**
  */
 export class body_54 {
-    to_guid?: number;
-    type?: string;
+    report_type?: string;
+    guid?: number;
+    reason?: string;
 }

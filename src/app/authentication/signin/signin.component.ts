@@ -1,3 +1,4 @@
+import { TimerComponent } from './../../components/timer/timer.component';
 import { GeolocationService } from './../../services/geolocation.service';
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -14,11 +15,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class SigninComponent implements OnInit {
 
   @Input('username') username: string='quan5000';
-  @Input('password') password: string='123456';
+  @Input('password') password: string='12345678';
   
   latitude: any;
   longitude: any;
-  
+
   constructor(
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,
