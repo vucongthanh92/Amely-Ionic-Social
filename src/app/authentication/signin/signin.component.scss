@@ -1,47 +1,94 @@
 app-signin {
 	ion-content {
 		background-image: url("../assets/imgs/background.jpg");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-color: transparent;
 	}
 
-	ion-grid {
-		height: 100%;
-		justify-content: center;
+	.scroll-content {
+		background-image: radial-gradient(center center, ellipse cover, #ffeda3, #ffc800);
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
 	}
 
-	.edtLogin {
-		margin-bottom: 5vw;
-		border-radius: 30vw;
-		font-size: 4vw;
-		height: 10vw;
-		background-color: #ffffff45;
-		color: white;
-	
+	.logo {
+		width: auto;
+		height: auto;
+		max-width: 12em;
+		margin: 0 auto;
+		padding-bottom: 40px;
 	}
 
-	.item-ios.item-block .item-inner{
-		border-bottom: 0px;
+	.no-border {
+		border-bottom: 0 !important;
+		box-shadow: none !important;
 	}
 
-	#btnLogin{
-		width: 100%;
-		border-radius: 50vw;
-		font-size: 4vw;
-		height: 10vw;
-		background-color: #f0ad4e;
-		border: 1px solid #eea236;
-		text-transform: uppercase;
-	}
-
-	.txtRememberRegister{
-		color: white;
-		width: 100%;
+	ion-row {
+		align-items: center;
 		text-align: center;
-		 font-size: 4vw;
 	}
 
-	.text-input::-moz-placeholder {
-		color:white;
-		opacity: 0.5;
+	@media only screen and (min-width: 768px) {
+		ion-col.col {
+		margin: 0 auto;
+		max-width: 40%;
+		}
+	}
+
+	span {
+		color: white;
+	}
+
+	ion-item {
+		padding-left: 10px !important;
+		margin-bottom: 10px;
+		background-color: #f6f6f6;
+		opacity: 0.7;
+		font-size: 0.9em;
+	}
+
+	ion-list {
+		margin: 0;
+	}
+
+	ion-label {
+		font-size: 15px;
+		color: #333;
+	}
+
+	ion-input {
+		font-size: 15px;
+    	color: white;
+	}
+
+	.item-ios {
+		background-color: rgba(255, 255, 255, 0.3);
+	}
+
+	.login_icon {
+		width: 25px;
+		height: 25px;
+		margin: 1px 0px 0px 9px;
+	}
+
+	.login-button {
+		width: 100%;
+		font-size: 0.9em;
+		background-color: #f0ad4e;
+	}
+
+	.register-button {
+		width: 100%;
+		font-size: 0.9em;
+		background-color: #39acdc;
+	}
+
+	.list-ios[inset] .item {
+		border-bottom: 1px solid  rgba(255, 255, 255, 0.3);
 	}
 
 	.text-input:-ms-input-placeholder {

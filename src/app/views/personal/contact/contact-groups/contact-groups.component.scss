@@ -1,17 +1,65 @@
 app-contact-groups{
     .textInfo{
-        font-size: 12px;
+        font-size: 13px;
+        overflow: hidden;
+        line-height: 30px;
+        padding: 0px 0px 0px 3px;
+        color: #777;
     }
-    .imgInfo{
-        width: 15px;
-        height: 15px;
-    }
-    .imgChat{
-        width: 30px;
-        height: 30px;
-    }
-    #imgAvatar{
-       height: 70px;
+
+    .contact_group_box_image {
         width: 70px;
+        height: 60px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0px;
+        padding: 0px;
+        max-width: none;
+    }
+
+    .contact_group_imageinfo {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .contact_group_chatbox {
+        text-align: right;
+        padding: 0px;
+    }
+
+    .contact_group_info {
+        padding: 0px 0px 0px 10px;
+    }
+
+    .contact_group_chat{
+        width: 50%;
+        margin: 25% 0 0 0;
+    }
+
+    .contact_group_title {
+        white-space: normal;
+        font-size: 16px;
+        max-height: 40px;
+        overflow: hidden;
+        text-transform: capitalize;
+        padding: 3px 0px 0px 7px;
+    }
+
+    .item-ios {
+        padding: 0px 0px 0px 0px;
+    }
+
+    .list-ios .item-block .item-inner {
+        border-bottom: 0.55px solid #efeff4;
+        padding: 0px 9px 0px 12px;
+    }
+
+    .contact_group_mood {
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .contact_group_mood {
+        position: absolute;
+        bottom: 0px;
     }
 }
