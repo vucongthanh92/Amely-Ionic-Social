@@ -93,7 +93,7 @@
 
     <ion-list *ngIf="userGuid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-      <app-feeds [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
+      <app-feeds  [type]="'user'" [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
       <!-- </ion-item> -->
     </ion-list>
   </div>

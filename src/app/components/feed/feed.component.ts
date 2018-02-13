@@ -31,16 +31,15 @@ export class FeedComponent {
     private customService: CustomService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
-
-
   }
 
   hasWallPhoto = true;
 
   ngOnInit() {
-    if (this.mood) {
-      this.moodIcon = this.moodLocal[this.mood.guid]
-    }
+    console.log(this.mood);
+    // if (this.mood) {
+    //   this.moodIcon = this.moodLocal[this.mood.guid]
+    // }
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
     this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;

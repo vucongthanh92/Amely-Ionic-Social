@@ -58,7 +58,7 @@
     <ion-list>
       <ion-list *ngIf="groupGuid">
         <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-        <app-feeds [feed_type]="feed_type" [owner_guid]="groupGuid"></app-feeds>
+        <app-feeds  [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid"></app-feeds>
         <!-- </ion-item> -->
       </ion-list>
     </ion-list>

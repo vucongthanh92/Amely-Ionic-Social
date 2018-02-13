@@ -9,6 +9,7 @@ export class CustomService {
 
   cart = [];
   user_current: User;
+  mood_local: any;
   public url_site = "http://helloqua.com/";
   friends: Array<User>;
 
