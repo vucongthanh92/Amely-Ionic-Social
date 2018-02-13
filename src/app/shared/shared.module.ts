@@ -1,3 +1,4 @@
+
 import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
 import { PaymentModule } from './../modules/payment/payment.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
@@ -43,8 +44,7 @@ import { ChangePasswordComponent } from '../components/change-password/change-pa
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
 import { LaddaModule } from 'angular2-ladda';
-
-// import { WalletModule } from './../modules/wallet/wallet.module';
+import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
   imports: [
@@ -54,6 +54,7 @@ import { LaddaModule } from 'angular2-ladda';
     PaymentModule,
     NgxQRCodeModule,
     CartModule,
+    WalletModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -94,7 +95,7 @@ import { LaddaModule } from 'angular2-ladda';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent,
+    ChosenItemComponent
   ],
   entryComponents: [
     CategoriesComponent,

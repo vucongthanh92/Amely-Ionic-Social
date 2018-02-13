@@ -19,4 +19,12 @@ export class InventoriesService {
   createRedeem(item_guid, owner_guid, quantity_redeem) {
     return this.apiService.createRedeem({ item_guid: item_guid, owner_guid: owner_guid, quantity_redeem: quantity_redeem });
   }
+
+  getWallet(){
+    return this.apiService.getWallet();
+  }
+
+  createWallet(){
+    return this.apiService.createWallet({ currency:'VND'});
+  }
 }

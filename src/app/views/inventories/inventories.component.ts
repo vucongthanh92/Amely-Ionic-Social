@@ -1,5 +1,6 @@
+import { InventoryMenuComponent } from './inventory-menu/inventory-menu.component';
 import { SearchComponent } from './../../components/search/search.component';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams, PopoverController, Popover } from 'ionic-angular';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { InventoryPublicComponent } from './inventory-public/inventory-public.component';
@@ -17,12 +18,19 @@ export class InventoriesComponent implements OnInit {
   tabInventoryPrivate = InventoryPrivateComponent;
   tabInventoryPublic = InventoryPublicComponent;
   tabInventoryHistory = InventoryHistoryComponent;
-
-  constructor(public customService: CustomService, public nav: NavController, public appCtrl: App, public navParams: NavParams) { }
+  popover: Popover;
+  constructor(public popoverCtrl: PopoverController, public customService: CustomService, public nav: NavController, public appCtrl: App, public navParams: NavParams) { }
 
   ngOnInit() {
   }
 
+  openPopover(myEvent) {
+    this.popover = this.popoverCtrl.create(InventoryMenuComponent, { pop: this.popover});
+    this.popover.present({
+      ev: myEvent
+    });
+  }
+   
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {

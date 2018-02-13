@@ -9,13 +9,15 @@ export class CustomService {
 
   cart = [];
   user_current: User;
+  public url_site = "http://helloqua.com/";
+  friends: Array<User>;
 
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
   constructor(
     private api: ApiService,
-     private toastCtrl: ToastController
-    ) {
+    private toastCtrl: ToastController
+  ) {
     this.currencies = [
       { isoCode: 'VND', displayName: 'VND', rightSymbol: '₫', leftSymbol: '', decimals: 0, decPoints: ',', thousandSeparator: '.' },
       { isoCode: 'USD', displayName: 'USD', rightSymbol: '', leftSymbol: '$', decimals: 2, decPoints: '.', thousandSeparator: ',' }

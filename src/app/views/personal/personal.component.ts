@@ -29,12 +29,7 @@ export class PersonalComponent implements OnInit {
   ngOnInit() {
   }
 
-  menuPage() {
-    this.nav.push(PersonalMenuComponent);
-  }
-
-
-  public openPopover(myEvent) {
+  openPopover(myEvent) {
     let popover = this.popoverCtrl.create(PersonalMenuComponent);
     popover.present({
       ev: myEvent

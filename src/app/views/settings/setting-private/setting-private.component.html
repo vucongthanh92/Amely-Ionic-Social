@@ -1,21 +1,23 @@
-
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item>
+    <ion-item (click)="openProfile()">
       <b>Thông tin tài khoản gốc</b>
       <p>Tạo cập nhật thông tin thiết yếu tài khoản SQ</p>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="openShop()">
       <b>Thông tin tài khoản chủ shop cá nhân</b>
       <p>Thông tin khách hàng là chủ cửa hàng cá nhân</p>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="openSQCard()">
       <b>Thông tin thẻ thành viên</b>
       <p>Đăng ký, xem thông tin thẻ thành viên Amely</p>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="createCode()">
       <b>Mã QR</b>
       <p>Quét (scan), đổi, chia sẻ mã QR</p>
     </ion-item>
   </ion-list>
+  <ion-card *ngIf="code_qr">
+    <ngx-qrcode [qrc-value]="code_qr"></ngx-qrcode>
+  </ion-card>
 </ion-content>

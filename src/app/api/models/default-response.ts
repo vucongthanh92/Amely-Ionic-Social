@@ -4,6 +4,6 @@
  */
 export class DefaultResponse {
     token?: string;
-    error?: number;
+    error?: string;
     status?: boolean;
 }

@@ -1,3 +1,4 @@
+import { guid } from './../../api/models/guid';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
 import { Component, Input } from '@angular/core';
@@ -8,6 +9,7 @@ import { ShopComponent } from '../shop/shop.component';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
 import { ChooseItemComponent } from '../gift/choose-item/choose-item.component';
+import { CustomService } from '../../services/custom.service';
 
 @Component({
   selector: 'app-user',
@@ -22,16 +24,19 @@ export class UserComponent {
   userCurrent: any;
   genderIcon: string;
   genderLabel: string;
-  isUserCurrent: any;
   birthday: string;
   iconMood: string;
   moodLocal: any;
-  from='user';
+  title_add_friend: string = 'Kết bạn';
+  is_user_current: boolean = true;
+  is_friend: boolean = true;
+  from = 'user';
   constructor(
     public messagesService: MessagesService,
     public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
+    private customService: CustomService,
     public userService: UserService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
@@ -41,9 +46,10 @@ export class UserComponent {
     this.userGuid = this.navParams.get('userGuid');
     this.userService.getUser(null, this.userGuid).subscribe(data => {
       this.user = data;
+      this.is_user_current = this.user.guid == this.userCurrent.guid;
+      this.is_friend = this.userService.friends.some(e => e.guid==data.guid);
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
-      this.isUserCurrent = this.userGuid == this.userCurrent.guid ? "true" : null;
       let date = new Date(data.birthdate);
       this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
       if (this.user.mood != null) {
@@ -53,6 +59,7 @@ export class UserComponent {
 
     });
   }
+
 
   getUser() {
     if (this.userGuid) {
@@ -150,5 +157,18 @@ export class UserComponent {
       default:
         break;
     }
+  }
+  addFriend() {
+
+    if (this.title_add_friend === 'Kết bạn') {
+      this.userService.addFriend(this.userCurrent.guid, this.user.guid, "user").subscribe(data => {
+        if (data.status) {
+          this.title_add_friend = "Đã gửi lời mời";
+        } else {
+          this.title_add_friend = 'Kết bạn';
+        }
+      }); this.title_add_friend = "Đã gửi lời mời";
+    }
+
   }
 }

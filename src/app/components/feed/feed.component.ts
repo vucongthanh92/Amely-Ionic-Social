@@ -80,7 +80,7 @@ export class FeedComponent {
     });
   }
   goToUserProfile(guid) {
-    this.nav.push(UserComponent, { userGuid: guid })
+    this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
   }
 
   likeFeed() {
