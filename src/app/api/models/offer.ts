@@ -28,4 +28,5 @@ export class Offer {
     product_snapshot?: Product;
     owner?: User;
     counter_offers?: CounterOffer;
+    seconds?: number;
 }

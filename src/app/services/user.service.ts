@@ -4,7 +4,7 @@ import { ApiService } from './../api/services/api.service';
 
 @Injectable()
 export class UserService {
-
+  
   constructor(private api: ApiService) { }
 
   getUser(username, guid) {
@@ -29,5 +29,9 @@ export class UserService {
 
   changePhoneNumber(new_phone) {
     return this.api.change_phone({ new_phone: new_phone });
+  }
+
+  findUser(mobile) {
+    return this.api.searchs({ mobile: mobile });
   }
 }

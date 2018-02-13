@@ -3,5 +3,6 @@
 /**
  */
 export class body_31 {
-    item_guid: number;
+    vote_type?: string;
+    group_guid?: number;
 }

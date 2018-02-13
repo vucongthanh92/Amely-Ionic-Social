@@ -3,6 +3,11 @@
 /**
  */
 export class body_32 {
-    vote_type?: string;
-    group_guid?: number;
+    name: string;
+    description: string;
+    privacy: string;
+    member_invite: string;
+    membership: string;
+    has_inventory?: string;
+    members: number[];
 }

@@ -3,10 +3,9 @@
 /**
  */
 export class body_34 {
-    group_guid: number;
-    name: string;
-    description: string;
-    privacy: string;
-    member_invite: string;
-    membership: string;
+    offset: number;
+    limit: number;
+    owner_guid: number;
+    inventory_type: string;
+    item_type: string;
 }
