@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Xác nhận tặng quà</ion-title>
+  </ion-navbar>
+  <ion-buttons end>
+    <button ion-button (click)="confirm()">
+      <ion-icon name="send"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Thông tin nhận quà
+    </ion-card-header>
+    <ion-card-content>
+      <ion-thumbnail item-start>
+        <img src="{{ avatar }}">
+      </ion-thumbnail>
+      <h2>{{ title }}</h2>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Thông tin quà tặng
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img width="100%" *ngIf="imageUrl" src="{{imageUrl}}" />
+            <img width="100%" *ngIf="imageUrl==''" src="assets/imgs/image_not_found.jpg" />
+          </ion-col>
+          <ion-col col-8>
+            <ion-row>
+              {{item.product_snapshot.title}}
+            </ion-row>
+            <ion-row style="margin: 20px 0 0 0; background-color: rgb(184, 184, 184);border-radius: 8px;padding: 5px;">
+              {{item.product_snapshot.description}}
+            </ion-row>
+
+            <ion-row style="margin: 20px 0 0 0;">
+              Số lượng :
+              <a style="color: rgb(173, 43, 43)">{{item.quantity}}</a>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button round disabled="true">Số lượng</button>
+          </ion-col>
+          <ion-col col-8>
+            <ion-col col-4>
+              <button ion-button round (click)="onMinus()">-</button>
+            </ion-col>
+            <ion-col col-4>
+              <ion-input type="number" [(ngModel)]="quantity" name="quantity" value="{{ quantitySend }}"></ion-input>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button round (click)="onAdd()">+</button>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

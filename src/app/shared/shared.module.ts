@@ -1,3 +1,5 @@
+import { InventoryConfirmGiftComponent } from './../components/inventory-confirm-gift/inventory-confirm-gift.component';
+import { InventoryTargetsGiftComponent } from './../components/inventory-targets-gift/inventory-targets-gift.component';
 import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
 import { PaymentModule } from './../modules/payment/payment.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
@@ -43,7 +45,10 @@ import { ChangePasswordComponent } from '../components/change-password/change-pa
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
 import { LaddaModule } from 'angular2-ladda';
-
+import { WalletModule } from './../modules/wallet/wallet.module';
+import { TimerComponent } from '../components/timer/timer.component';
+import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
+// import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
@@ -54,6 +59,7 @@ import { LaddaModule } from 'angular2-ladda';
     PaymentModule,
     NgxQRCodeModule,
     CartModule,
+    WalletModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -95,6 +101,10 @@ import { LaddaModule } from 'angular2-ladda';
     ChangePhonenumberComponent,
     InventoryGiftComponent,
     ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -132,7 +142,11 @@ import { LaddaModule } from 'angular2-ladda';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent
+    ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ],
   exports: [
     CategoriesComponent,
@@ -170,7 +184,11 @@ import { LaddaModule } from 'angular2-ladda';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent
+    ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ]
 })
 export class SharedModule { }

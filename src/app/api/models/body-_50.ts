@@ -3,7 +3,10 @@
 /**
  */
 export class body_50 {
-    shop_guid?: number;
-    offset?: number;
-    limit?: number;
+    promotion_guid?: number;
+    title?: string;
+    description?: string;
+    time_start?: string;
+    time_end?: string;
+    status?: string;
 }

@@ -11,7 +11,7 @@
           <ion-label>Tiền tệ</ion-label>
         </ion-col>
         <ion-col col-9>
-          <ion-input type="text" placeholder="VND / USD"></ion-input>
+          <ion-label >VND</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -48,10 +48,10 @@
     <ion-grid>
       <ion-row>
         <ion-col col-8>
-          <button class="buttonDecline" type="button" ion-button>DECLINE</button>
+          <button class="buttonDecline" type="button" (click)="onCancel()" ion-button>DECLINE</button>
         </ion-col>
         <ion-col col-4>
-          <button type="button" ion-button>ACCEPT</button>
+          <button type="button" (click)="onAccept()" ion-button>ACCEPT</button>
         </ion-col>
       </ion-row>
     </ion-grid>

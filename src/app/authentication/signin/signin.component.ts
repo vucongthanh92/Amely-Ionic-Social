@@ -1,3 +1,4 @@
+import { TimerComponent } from './../../components/timer/timer.component';
 import { GeolocationService } from './../../services/geolocation.service';
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -19,6 +20,7 @@ export class SigninComponent implements OnInit {
   latitude: any;
   longitude: any;
   is_logging: boolean = false;
+
 
   constructor(
     public geolocationService: GeolocationService,

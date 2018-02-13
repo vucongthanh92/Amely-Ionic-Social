@@ -9,6 +9,7 @@ import { SocialComponent } from './../../views/social/social.component';
 import { ShoppingComponent } from './../../views/shopping/shopping.component';
 import { InventoriesComponent } from './../../views/inventories/inventories.component';
 import { SettingsComponent } from './../../views/settings/settings.component';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class MainMenuComponent implements OnInit {
   constructor(
     private customService: CustomService,
     public menuCtrl: MenuController,
-    private api: ApiService
+    private api: ApiService,
+    private userService: UserService
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
@@ -54,7 +56,11 @@ export class MainMenuComponent implements OnInit {
       ];
       localStorage.setItem('loggin_user', JSON.stringify(data));
       this.customService.user_current = data;
+      this.api.getFriends(data.guid).subscribe(d => {
+        this.customService.friends = d;
+      })
     });
+
   }
 
   openPage(page) {

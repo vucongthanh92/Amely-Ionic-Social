@@ -4,49 +4,53 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
+<ion-content class="outer-content" *ngIf="offer">
   <div style="background-color: #fff;">
     <ion-item no-padding style="font-size: 18px; text-align: center;">
-    <strong>1000</strong> ngày <strong>23</strong> giờ <strong>59</strong> phút <strong>59</strong> giây
-  </ion-item>
+      <strong *ngIf="offer.seconds">
+        <app-timer #countdownTimer [timeInSeconds]="offer.seconds"></app-timer>
+      </strong>
+    </ion-item>
   </div>
   <div style="background-color: #fff; text-align: center; font-size: 18px;" padding>
-    <div class="">
-      <strong>Đồng hồ nam dây da Timex</strong>
+    <div>
+      <strong>{{ offer.product_snapshot.title }}</strong>
     </div>
-    <p>Số lượng : 1</p>
-    <div class="">
-      <img width="80%" src="assets/imgs/logo.png" />
+    <p>Số lượng : {{ offer.quantity }}</p>
+    <div>
+      <img width="100%" src="{{ product_image }}" />
     </div>
-    <ion-item  no-padding >
-    <div class="">
-      <p style="text-align: left; color: #488aff"><ion-icon ios="ios-locate" md="md-locate" ></ion-icon> Xung quanh</p>
-    </div>
-    <div class="">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 style="margin-right: 20px;">
-            <img width="100%" src="assets/imgs/logo.png" />
-          </ion-col>
-          <ion-col col-6 class="ionContent">
-            <div>
-              <h4 class="h4Ion">Name</h4>
-            </div>
-            <div class="">
-              <button class="buttonIon" type="button" name="button" ion-button>Tham gia</button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+    <ion-item no-padding>
+      <div>
+        <p *ngIf="offer.target == 'public'" style="text-align: left; color: #488aff">
+          <ion-icon name="globe"></ion-icon> Xung quanh</p>
+        <p *ngIf="offer.target == 'friends'" style="text-align: left; color: #488aff">
+          <ion-icon name="people"></ion-icon> Bạn bè</p>
+        <p *ngIf="offer.target == 'location'" style="text-align: left; color: #488aff">
+          <ion-icon name="locate"></ion-icon> Vị trí</p>
+      </div>
+      <ion-row *ngIf="offer.owner">
+        <ion-col col-3 style="margin-right: 20px;">
+          <img width="100%" src="{{ offer.owner.images[0] }}" />
+        </ion-col>
+        <ion-col col-6 class="ionContent">
+          <div>
+            <h4 class="h4Ion">{{ offer.owner.username }}</h4>
+          </div>
+          <div>
+            <button class="buttonIon" type="button" name="button" ion-button>Tham gia</button>
+          </div>
+        </ion-col>
+      </ion-row>
     </ion-item>
     <div class="" style="margin-bottom: -20px;">
-      <p style="text-align: left; color: #b7b7b7;"><ion-icon style="color: #b7b7b7" ios="ios-flower" md="md-flower"></ion-icon> Thông tin sản phẩm</p>
-      <p style="color: #757575; text-align: left;"> Loại dây vải màu đen phối da khả năng chịu nước 50m, đèn nền định dạng 12h, có ngày Chất liệu mặt kính Mineral ( kính cứng ) bảo vệ mặt đồng hồ, khung viền bằng sắt chất liệu dây vải màu đen kích thước mặt đồng hồ 40mm.</p>
+      <p style="text-align: left; color: #b7b7b7;">
+        <ion-icon style="color: #b7b7b7" ios="ios-flower" md="md-flower"></ion-icon> Thông tin sản phẩm</p>
+      <p style="color: #757575; text-align: left;">{{ offer.product_snapshot.description }}</p>
     </div>
   </div>
 </ion-content>
 
 <ion-footer>
-    <button type="button" name="button" ion-button full no-margin>Xem danh sách tham gia</button>
+  <button type="button" name="button" ion-button full no-margin>Xem danh sách tham gia</button>
 </ion-footer>

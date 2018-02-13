@@ -1,0 +1,40 @@
+<ion-header *ngIf="!hidden_header">
+  <ion-navbar>
+    <ion-title>Kho</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content">
+  <ion-list>
+    <ion-item (click)="changePageTarget('users')">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Cá nhân</h2>
+    </ion-item>
+    <ion-item (click)="changePageTarget('groups')">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Nhóm</h2>
+    </ion-item>
+    <ion-item (click)="changePageTarget('businesses')">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Cộng đồng</h2>
+    </ion-item>
+    <ion-item (click)="changePageTarget('events')">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Sự kiện</h2>
+    </ion-item>
+    <ion-item (click)="scanQR()">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Quét mã QR</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -2,11 +2,11 @@
 
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item>
+    <ion-item (click)="changeLanguage()">
       <b>Ngôn Ngữ</b>
-      <p>Tiếng Việt</p>
+      <p>{{languageResult}}</p>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="logout()">
       <b>Đăng xuất tài khoản</b>
       <p>Đăng xuất tài khoản liên quan đến số điện thoại cụ <br> thể </p>
     </ion-item>
