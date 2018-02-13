@@ -31,8 +31,6 @@ export class FeedComponent {
     private customService: CustomService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
-
-
   }
 
   hasWallPhoto = true;

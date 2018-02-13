@@ -18,6 +18,7 @@ export class AddFeedComponent implements OnInit {
   @Input('content') content: string;
   @Input('privacy') privacy: string = '2';
   @ViewChild('search') searchbar;
+  
 
   public is_show_tag: boolean;
   public is_show_autocomplete: boolean = false;
@@ -30,11 +31,13 @@ export class AddFeedComponent implements OnInit {
   public mood_result: any;
   private type_feed: string;
   public isCreatingFeed = false;
+  private owner_guid;
 
   constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private userService: UserService, private customService: CustomService, public alertCtrl: AlertController,
     private feedService: FeedsService) {
     this.user_current = this.customService.user_current;
     this.type_feed = this.navParams.get('type')
+    this.owner_guid = this.navParams.get('owner_guid')
     this.moods = JSON.parse(localStorage.getItem("mood_local"));
 
   }
@@ -119,7 +122,15 @@ export class AddFeedComponent implements OnInit {
       this.isCreatingFeed = true;
       // content, friends, location, privacy, mood, images, owner_guid, type
       //type : user - group - event
-      this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, null, this.customService.user_current.guid, this.type_feed).subscribe(data => {
+      if (this.owner_guid == undefined) {
+        this.owner_guid = this.customService.user_current.guid;
+      }
+      // console.log(this.owner_guid);
+      // console.log(this.type_feed);
+
+      //type_feed va` owner guid post feed ntn
+
+      this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
         if (data.status) {
           const callback = this.navParams.get('callback');

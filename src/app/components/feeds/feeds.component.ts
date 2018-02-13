@@ -29,6 +29,8 @@ export class FeedsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
+
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
       if (data.posts) {
         this.offset = this.offset + data.posts.length;
@@ -84,12 +86,12 @@ export class FeedsComponent implements OnInit {
   }
 
   addNewFeed() {
-    this.appCtrl.getRootNav().push(AddFeedComponent, { type: this.type, callback: this.myCallbackFunction });
+    this.appCtrl.getRootNav().push(AddFeedComponent, { owner_guid: this.owner_guid, type: this.type, callback: this.myCallbackFunction });
   }
 
   myCallbackFunction = () => {
     return new Promise((resolve, reject) => {
-      this.offset=0;
+      this.offset = 0;
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
         if (data.posts) {
           this.offset = this.offset + data.posts.length;
