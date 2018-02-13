@@ -1,64 +1,63 @@
 <ion-card>
-  <ion-item>
-    <ion-avatar item-start>
-      <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
-    </ion-avatar>
-    <ion-row>
-      <ion-col class="feed_author" col-10>
-        <h2 class="feed_fullname">{{ user.username }}</h2>
-        <time class="feed_datetime">ngày hôm qua</time>
-        <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
-      </ion-col>
+    <ion-item>
+      <ion-avatar item-start>
+        <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
+      </ion-avatar>
+      <h2>{{ user.username }}</h2>
+      <p>ngày hôm qua</p>
+      <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
       <ion-col class="feed_event" col-2>
         <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
       </ion-col>
+
       <ion-col *ngIf="mood">
         <a class="mood">{{mood.title}}</a>
         <img id="iconMood" src="{{moodIcon.image}}">
       </ion-col>
-    </ion-row>
-  </ion-item>
-  <ion-list *ngIf="hasWallPhoto">
-    <ion-item *ngFor="let wallphoto of post.wallphoto">
-      <img width="100%" src="{{ wallphoto }}">
     </ion-item>
-  </ion-list>
 
-  <ion-card-content style="white-space: initial;">
-    {{ descriptionPost }}
-  </ion-card-content>
-  <ion-row *ngIf="userTag">
-    <div *ngIf="isHideMoreTag; else elseSubArr">
-      <div *ngFor="let user of userTag" style="float: left">
-        <a>{{user.first_name}} {{user.last_name}},</a>
-      </div>
-    </div>
+    <ion-list *ngIf="hasWallPhoto">
+      <ion-item *ngFor="let wallphoto of post.wallphoto">
+        <img width="100%" src="{{ wallphoto }}">
+      </ion-item>
+    </ion-list>
 
-    <ng-template #elseSubArr>
-      <div>
-        <div *ngFor="let user of subArrUserTag" style="float: left">
-          <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+    <ion-card-content>
+      <p>{{ descriptionPost }}</p>
+    </ion-card-content>
+
+    <ion-row *ngIf="userTag">
+      <div *ngIf="isHideMoreTag; else elseSubArr">
+        <div *ngFor="let user of userTag">
+          <a>{{user.first_name}} {{user.last_name}},</a>
         </div>
-        <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
       </div>
-    </ng-template>
 
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small (click)="likeFeed()">
-        <img id="icLikeComment" *ngIf="post.liked" src="assets/imgs/ic_like_actived.png">
-        <img id="icLikeComment" *ngIf="!post.liked" src="assets/imgs/ic_like.png">
-        <div>&nbsp; {{ +post.likes }}</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small (click)="changePage()">
-        <img id="icLikeComment" src="assets/imgs/ic_comment.png">
-        <!-- <ion-icon name="text"></ion-icon> -->
-        <div>&nbsp; {{ post.comments }}</div>
-      </button>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
+      <ng-template #elseSubArr>
+        <div>
+          <div *ngFor="let user of subArrUserTag" style="float: left">
+            <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+          </div>
+          <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
+        </div>
+      </ng-template>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="likeFeed()">
+          <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
+          <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
+           {{ +post.likes }} thích
+        </button>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button icon-left clear small (click)="changePage()">
+          <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
+          {{ post.comments }} bình luận
+        </button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
 </ion-card>
