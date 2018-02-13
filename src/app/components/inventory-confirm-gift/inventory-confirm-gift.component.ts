@@ -82,7 +82,7 @@ export class InventoryConfirmGiftComponent implements OnInit {
 
     this.giftsService.gift(this.param_create_gift).subscribe(data => {
       if (data.status) {
-        this.nav.popTo(ItemComponent);
+        this.nav.popToRoot();
       } else {
         this.customService.toastMessage(" Lỗi tặng quà!!! ", "bottom", 3000);
       }
