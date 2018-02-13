@@ -1,0 +1,21 @@
+app-contact-business {
+    .contact_business_avatar {
+        width: 100%;
+    }
+
+    .contact_business_title {
+        height: 22px;
+        overflow: hidden;
+        text-transform: capitalize;
+        margin: 0px 0px 0px 0px;
+        font-size: 17px;
+    }
+
+    .contact_business_description {
+        font-size: 13px;
+        color: #666;
+        overflow: hidden;
+        height: 32px;
+        white-space: normal;
+    }
+}

@@ -1,0 +1,22 @@
+app-notification {
+    .list-ios {
+        margin: 12px 8px 10px 10px;
+    }
+
+    .item-ios {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .notification_avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    .notification_date {
+        color: #999;
+        font-style: italic;
+        font-size: 13px;
+    }
+}

@@ -1,13 +1,13 @@
 <ion-content class="outer-content">
   <ion-list *ngIf="individualList">
-    <h3>Ca nhan</h3>
+    <h3 class="message_label">Cá Nhân</h3>
     <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual, 'individual')">
       <ion-row>
-        <ion-col col-3>
-          <img width="100%" src="{{ individual.avatar }}" />
+        <ion-col class="message_image_box">
+          <img class="message_avatar" src="{{ individual.avatar }}" />
         </ion-col>
-        <ion-col col-9>
-          <p>{{ individual.from }}</p>
+        <ion-col class="message_info" col-9>
+          <p class="message_title">{{ individual.from }}</p>
           <p>{{ individual.text }}</p>
           <p text-right style="font-size: 10px">
             <time>{{ individual.time | amTimeAgo }}</time>
@@ -17,14 +17,14 @@
     </ion-item>
   </ion-list>
   <ion-list *ngIf="groups" >
-    <h3>Nhom</h3>
+    <h3 class="message_label">Nhóm</h3>
     <ion-item *ngFor="let group of groups" (click)="goToPage(group, 'group')">
       <ion-row>
-        <ion-col col-3>
-          <img width="100%" src="{{ group.avatar }}" />
+        <ion-col class="message_image_box" col-3>
+          <img class="message_avatar" src="{{ group.avatar }}" />
         </ion-col>
-        <ion-col col-9>
-          <p>{{ group.title }}</p>
+        <ion-col class="message_info" col-9>
+          <p class="message_title">{{ group.title }}</p>
           <p>{{ group.last_message }}</p>
           <p text-right style="font-size: 10px">
             <time>{{ group.last_time | amTimeAgo }}</time>
