@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { AddFeedComponent } from './../add-feed/add-feed.component';
 import { App } from 'ionic-angular';
 import { FeedsService } from './../../services/feeds.service';
@@ -24,6 +25,7 @@ export class FeedsComponent implements OnInit {
   offset = 0;
   private isHasData: boolean;
   constructor(
+    private customService: CustomService,
     private feedsService: FeedsService,
     private appCtrl: App,
   ) { }
@@ -36,7 +38,6 @@ export class FeedsComponent implements OnInit {
         this.offset = this.offset + data.posts.length;
         this.posts = data.posts;
         this.users = data.users;
-        this.moods = data.moods;
         this.shares = data.shares;
         this.isHasData = true;
       } else {
@@ -50,7 +51,6 @@ export class FeedsComponent implements OnInit {
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
-        this.moods = Object.assign(this.moods, data.moods);
         this.shares = data.shares;
         this.offset = this.offset + data.posts.length;
       });
@@ -68,7 +68,9 @@ export class FeedsComponent implements OnInit {
 
   getMood(moodGuid) {
     if (moodGuid) {
-      return this.moods[moodGuid];
+      if (this.customService.mood_local[moodGuid]) {
+        return this.customService.mood_local[moodGuid];
+      }
     }
     return null;
   }

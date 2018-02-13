@@ -42,6 +42,7 @@ export class MainMenuComponent implements OnInit {
       7732: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png' },
       7733: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png' },
     }
+    this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
   }
 

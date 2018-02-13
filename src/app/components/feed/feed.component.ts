@@ -36,9 +36,10 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    if (this.mood) {
-      this.moodIcon = this.moodLocal[this.mood.guid]
-    }
+    console.log(this.mood);
+    // if (this.mood) {
+    //   this.moodIcon = this.moodLocal[this.mood.guid]
+    // }
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
     this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;
