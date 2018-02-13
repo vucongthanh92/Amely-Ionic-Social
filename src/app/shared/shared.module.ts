@@ -1,4 +1,5 @@
-
+import { InventoryConfirmGiftComponent } from './../components/inventory-confirm-gift/inventory-confirm-gift.component';
+import { InventoryTargetsGiftComponent } from './../components/inventory-targets-gift/inventory-targets-gift.component';
 import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
 import { PaymentModule } from './../modules/payment/payment.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
@@ -45,6 +46,10 @@ import { ChangePhonenumberComponent } from '../components/change-phonenumber/cha
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
 import { LaddaModule } from 'angular2-ladda';
 import { WalletModule } from './../modules/wallet/wallet.module';
+import { TimerComponent } from '../components/timer/timer.component';
+import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
+// import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
+// import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
   imports: [
@@ -95,7 +100,11 @@ import { WalletModule } from './../modules/wallet/wallet.module';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent
+    ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -133,7 +142,11 @@ import { WalletModule } from './../modules/wallet/wallet.module';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent
+    ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ],
   exports: [
     CategoriesComponent,
@@ -171,7 +184,11 @@ import { WalletModule } from './../modules/wallet/wallet.module';
     ChangePasswordComponent,
     ChangePhonenumberComponent,
     InventoryGiftComponent,
-    ChosenItemComponent
+    ChosenItemComponent,
+    TimerComponent,
+    InventoryTargetGiftComponent,
+    InventoryTargetsGiftComponent,
+    InventoryConfirmGiftComponent
   ]
 })
 export class SharedModule { }

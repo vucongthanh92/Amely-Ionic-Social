@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { OfferService } from './../../services/offer.service';
 import { ChosenItemComponent } from './../chosen-item/chosen-item.component';
 import { Component, OnInit, Input } from '@angular/core';
@@ -29,6 +30,7 @@ export class CreateOfferComponent implements OnInit {
   duration_select: any;
 
   constructor(
+    private customService: CustomService,
     private offerService: OfferService,
     private appCtrl: App,
     private nav: NavController
@@ -65,9 +67,10 @@ export class CreateOfferComponent implements OnInit {
     obj.location_lng = "100";
 
     this.offerService.createOffer(obj).subscribe(data => {
-      console.log(data);
       if (data.offer_guid) {
         this.nav.pop();
+      } else {
+        this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 5000);
       }
     })
   }
