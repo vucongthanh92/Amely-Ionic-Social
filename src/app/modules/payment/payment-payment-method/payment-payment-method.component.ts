@@ -23,7 +23,7 @@ export class PaymentPaymentMethodComponent implements OnInit {
     public nav: NavController, 
     public appCtrl: App) {
     this.payment_methods = (<any>Object).values(this.paymentService.payment_methods.payment_methods );
-    this.payment_methods = this.payment_methods.filter(data => data.filename != "onepay/opatm" && data.filename != "onepay/opcreditcard");
+    // this.payment_methods = this.payment_methods.filter(data => data.filename != "onepay/opatm" && data.filename != "onepay/opcreditcard");
     }
 
   ngOnInit() {

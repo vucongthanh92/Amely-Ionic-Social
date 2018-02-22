@@ -1,55 +1,57 @@
-.divImg{
-  position: relative;
-  margin: auto;
-  width: 10vw;
-  height: 10vw;
-}
-.social {
-	background-color: white;
-  text-align: center;
-  padding: 15vw;
-  margin: 0em;
-  width: auto;
-}
-
-.badgeSocialTop{
-  width: auto;
-  color: #4f4f4f !important;
-  text-align: center;
-  border-radius: 10px;
-  background-color: #f8f8f8;
-  position: absolute;
-  top: -17vw;
-  right: -7vw;
+app-offers {
+  .divImg{
+    position: relative;
+    margin: auto;
+    width: 10vw;
+    height: 10vw;
   }
-.badgeSocialBottom{
-  color: #4f4f4f !important;
-  text-align: center;
-  border-radius: 10px;
-  background-color: #f8f8f8;
-  position: absolute;
-  top: 26vw;
-  right: 0vw;
-  width: -webkit-fill-available;
+  .social {
+    background-color: white;
+    text-align: center;
+    padding: 15vw;
+    margin: 0em;
+    width: auto;
   }
 
-.ion-itemSocial{
-  background-color: #efeff4;
-  border-bottom: 0.55px solid #efeff4 !important;
-  margin-top: 5px;
-}
+  .badgeSocialTop{
+    width: auto;
+    color: #4f4f4f !important;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    position: absolute;
+    top: -17vw;
+    right: -7vw;
+    }
+  .badgeSocialBottom{
+    color: #4f4f4f !important;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    position: absolute;
+    top: 26vw;
+    right: 0vw;
+    width: -webkit-fill-available;
+    }
 
-.ion-fabSocial{
-  background-color: orange;
-}
+  .ion-itemSocial{
+    background-color: #efeff4;
+    border-bottom: 0.55px solid #efeff4 !important;
+    margin-top: 5px;
+  }
 
-.badgeFooter{
-  position: relative;
-  right: -5px;
-  background-color: #fe974e;
-  border-radius: 100%;
-}
+  .ion-fabSocial{
+    background-color: orange;
+  }
 
-.buttonFooter{
-  right: 15px;
+  .badgeFooter{
+    position: relative;
+    right: -5px;
+    background-color: #fe974e;
+    border-radius: 100%;
+  }
+
+  .buttonFooter{
+    right: 15px;
+  }
 }

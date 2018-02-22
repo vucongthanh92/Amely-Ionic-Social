@@ -1,3 +1,4 @@
+import { FirebaseService } from './firebase.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as GeoFire from "geofire";
@@ -10,6 +11,7 @@ export class GeolocationService {
   private geoFireOffers: GeoFire;
 
   constructor(
+    private fbService: FirebaseService,
     public af: AngularFireDatabase
   ) { 
     this.geoFireUsers = new GeoFire(this.af.list('/users').query.ref);
@@ -18,11 +20,12 @@ export class GeolocationService {
   }
 
   setLocation(username, lat, lng) {
-    let locations;
-    locations = {};
-    locations[username] = [lat, lng];
+    // let locations;
+    // locations = {};
+    // locations[username] = [lat, lng];
     let geoHash = this.encodeGeohash([lat, lng], 10);
-    this.af.database.ref('/users/' + username).update({ g: geoHash, l: [lat, lng] });
+    // this.af.database.ref('users/' + username).update({ g: geoHash, l: [lat, lng] });
+    this.fbService.createLocation(username, "users", geoHash, lat, lng);
   }
 
   validateLocation = function (location) {

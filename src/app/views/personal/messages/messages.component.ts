@@ -1,3 +1,4 @@
+import { CustomService } from './../../../services/custom.service';
 import { GroupService } from './../../../services/group.service';
 import { MessagesService } from './../../../services/messages.service';
 import { User } from './../../../api/models/user';
@@ -21,6 +22,7 @@ export class MessagesComponent implements OnInit {
   dataSnapshot: any;
 
   constructor(
+    private customService: CustomService,
     public groupService: GroupService,
     public messagesService: MessagesService,
     public userService: UserService,
@@ -36,7 +38,8 @@ export class MessagesComponent implements OnInit {
 
   
   ionViewDidLoad() {
-    this.messagesService.getUsersChat().on('value', itemSnap => {
+    let owner_from = this.customService.user_current.username;
+    this.messagesService.getListChat(owner_from, "individual").on('value', itemSnap => {
       this.individualList = [];
       itemSnap.forEach( items => {
         this.messagesService.getLastMessage(items.val().key).on('value', lastmessage => {
@@ -59,7 +62,7 @@ export class MessagesComponent implements OnInit {
       });
     });
 
-    this.messagesService.getGroupsChat().on('value', itemSnap => {
+    this.messagesService.getListChat(owner_from, "group").on('value', itemSnap => {
       this.groups = [];
       itemSnap.forEach(items => {
         let group_guid = items.val().key;

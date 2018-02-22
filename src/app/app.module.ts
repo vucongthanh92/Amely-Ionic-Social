@@ -1,3 +1,4 @@
+import { FirebaseService } from './services/firebase.service';
 import { PaymentService } from './services/payment.service';
 import { ShopsService } from './services/shops.service';
 import { GeolocationService } from './services/geolocation.service';
@@ -110,6 +111,7 @@ export const firebaseConfig = {
     PaymentService,
     SearchService,
     OfferService,
+    FirebaseService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,
