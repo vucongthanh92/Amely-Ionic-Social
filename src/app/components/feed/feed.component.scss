@@ -1,85 +1,12 @@
 app-feed{
-    .feed_fullname {
-        font-size: 15px;
-        text-transform: capitalize;
-        color: #333;
-        margin: 0px;
+    .label-ios {
+        position: relative;
     }
 
     .feed_event {
+        position: absolute;
+        top: 0px;
+        right: 0px;
         text-align: right;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .card-content-ios {
-        padding: 0px 7px 0px 10px;
-        font-size: 13px;
-        line-height: 20px;
-        margin: 5px 0px 7px 0px;
-    }
-
-    .feed_author {
-        padding: 0px;
-    }
-
-    .feed_datetime {
-        font-size: 12px;
-        font-weight: 400;
-        color: #666;
-        font-style: italic;
-    }
-
-    .label-ios {
-        margin: 0px;
-        background-color: white;
-    }
-
-    .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        margin: 0px 0px 0px 0px;
-        overflow: hidden;
-    }
-
-    ion-avatar img  {
-        height: 100%;
-        width: 100%;
-        min-height: 100%;
-        min-width: 100%;
-    }
-   
-    #icLikeComment{
-        width: 15px;
-        height: 15px;
-    }
-
-    .textHeader{
-        font-size: 5vw;
-    }
-
-     .textTimeLocation{
-        font-size: 3vw;
-    }
-
-    .textContent{
-        font-size: 4vw;
-    }
-
-    .content-description {
-        white-space: initial;
-    }
-    .social-cards ion-col {
-        padding: 0;
-    }
-    .mood{
-        font-size: 10px;
-        color: rgb(168, 168, 168);
-        float: left;
-        margin-right: 5px;
-    }
-    #iconMood{
-        width: 15px
     }
 }

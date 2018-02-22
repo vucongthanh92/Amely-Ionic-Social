@@ -70,7 +70,7 @@
     </ion-card>
     <ion-list *ngIf="business_guid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-      <app-feeds [feed_type]="'business'" [owner_guid]="business_guid"></app-feeds>
+      <app-feeds  [type]="'businesspage'" [feed_type]="'business'" [owner_guid]="business_guid"></app-feeds>
       <!-- </ion-item> -->
     </ion-list>
   </div>

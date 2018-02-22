@@ -9,6 +9,7 @@ import { SocialComponent } from './../../views/social/social.component';
 import { ShoppingComponent } from './../../views/shopping/shopping.component';
 import { InventoriesComponent } from './../../views/inventories/inventories.component';
 import { SettingsComponent } from './../../views/settings/settings.component';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class MainMenuComponent implements OnInit {
   constructor(
     private customService: CustomService,
     public menuCtrl: MenuController,
-    private api: ApiService
+    private api: ApiService,
+    private userService: UserService
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
@@ -35,11 +37,12 @@ export class MainMenuComponent implements OnInit {
     //   { guid: '7733', title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
     // ]
     this.moodLocal = {
-      7723: { title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
-      7724: { title: 'WANNA_GIFT', image: 'assets/imgs/ic_gift_4.png' },
-      7732: { title: 'WANNA_GET', image: 'assets/imgs/ic_gift_3.png' },
-      7733: { title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
+      7723: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png' },
+      7724: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png' },
+      7732: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png' },
+      7733: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png' },
     }
+    this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
   }
 
@@ -54,7 +57,11 @@ export class MainMenuComponent implements OnInit {
       ];
       localStorage.setItem('loggin_user', JSON.stringify(data));
       this.customService.user_current = data;
+      this.api.getFriends(data.guid).subscribe(d => {
+        this.customService.friends = d;
+      })
     });
+
   }
 
   openPage(page) {

@@ -1,6 +1,3 @@
-<ion-content class="outer-content">
-  <app-feeds [feed_type]="feed_type" ></app-feeds>
+<ion-content class="outer-content"  >
+  <app-feeds [type]="'user'" [feed_type]="feed_type"></app-feeds>
 </ion-content>
-<ion-fab right bottom>
-  <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()"><ion-icon name="add"></ion-icon></button>
-</ion-fab>

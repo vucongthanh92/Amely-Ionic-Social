@@ -1,0 +1,54 @@
+app-messages {
+    .scroll-content {
+        background-color: white;
+    }
+
+    .message_label {
+        padding: 15px 0px 10px 18px;
+        font-size: 15px;
+        margin: 0px;
+        color: #757575;
+        font-weight: 300;
+    }
+
+    .message_image_box {
+        border-radius: 50%;
+        height: 70px;
+        overflow: hidden;
+        padding: 0px;
+        width: 70px;
+        -webkit-flex-basis: 0;
+        flex-basis: auto;
+        -webkit-box-flex: unset;
+        flex-grow: 0;
+    }
+
+    .message_avatar {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+    }
+
+    .item-ios {
+        padding: 0px;
+        border: none;
+    }
+
+    .label-ios {
+        margin: 11px 0px 11px 15px;
+    }
+
+    .message_info {
+        margin: 0px 0px 0px 9px;
+    }
+
+    .message_title {
+        text-transform: capitalize;
+        color: #333;
+        margin: 0px 0px 3px 0px;
+    }
+
+    .list-ios {
+        margin: 0px 0 0px;
+    }
+}

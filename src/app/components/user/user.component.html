@@ -25,24 +25,24 @@
         <div class="txtTitle">Bạn Bè</div>
       </ion-segment-button>
     </ion-segment>
-    <ion-row text-center>
+    <ion-row text-center *ngIf="!is_user_current">
       <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'gift');">
-          <img class="iconSubTab" src="assets/imgs/ic_send_gift_blue.png" alt="ionic logo">
+          <img class="iconSubTab" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
           <div>Tặng quà</div>
         </button>
       </ion-col>
 
-      <ion-col col-4>
+      <ion-col col-4 *ngIf="!is_friend"   (click)="addFriend()">
         <button ion-button icon-left clear small color="danger">
-          <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
-          <div>Kết bạn</div>
+          <img class="iconSubTab" src="assets/imgs/ic_add_friend.png" alt="ionic logo">
+          <div>{{title_add_friend}}</div>
         </button>
       </ion-col>
 
       <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'chat');">
-          <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
+          <img class="iconSubTab" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
           <div>Nhắn tin</div>
         </button>
       </ion-col>
@@ -52,9 +52,9 @@
     <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
- 
+
   <div *ngIf="newfeedsPage">
-    <ion-card  *ngIf="user.shop.guid" style="margin-left: 0px; margin-right: 0px; width: 100%">
+    <ion-card *ngIf="user.shop.guid" style="margin-left: 0px; margin-right: 0px; width: 100%">
       <ion-card-content>
         <ion-item (click)="goToPage(user.shop.guid, 'shop')">
           <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
@@ -68,7 +68,7 @@
             <p class="iconPage">
               <img src="{{genderIcon}}" /> {{genderLabel}}
             </p>
-            <p *ngIf="isUserCurrent" class="iconPage">
+            <p *ngIf="is_user_current" class="iconPage">
               <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20 (chưa có icon)
             </p>
             <p *ngIf="birthday" class="iconPage">
@@ -82,7 +82,7 @@
             <p *ngIf="user.mood" class="iconPage">
               <img src="{{iconMood}}" />{{user.mood.title}}
             </p>
-            <p *ngIf="isUserCurrent" class="iconPage">
+            <p *ngIf="is_user_current" class="iconPage">
               <img src="assets/imgs/ic_send_mail_gray.png" /> 0/10 (chưa có icon)
             </p>
           </ion-col>
@@ -93,7 +93,7 @@
 
     <ion-list *ngIf="userGuid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-      <app-feeds [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
+      <app-feeds  [type]="'user'" [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
       <!-- </ion-item> -->
     </ion-list>
   </div>

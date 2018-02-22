@@ -24,7 +24,6 @@ export class ContactGroupsComponent implements OnInit {
     public appCtrl: App,
     public groupService: GroupService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    console.log(this.callback);
     
   }
 

@@ -1,42 +1,48 @@
-<ion-content>
-  <ion-grid>
-    <ion-row style="height: 30%">
-      <ion-col col-4 offset-4 style="text-align: center;">
-        <img width="80%" src="assets/imgs/logo1.png" />
+<ion-content padding class="transparent-header">
+  <div padding>
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="assets/imgs/logo1.png" />
       </ion-col>
     </ion-row>
     <form (ngSubmit)="onLogin()">
       <ion-row>
-        <ion-col col-12>
-          <ion-item class="edtLogin">
-            <ion-label>
-              <img width="30vw" height="30vw" src="assets/imgs/ic_username.png" />
-            </ion-label>
-            <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="username"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-12>
-          <ion-item class="edtLogin">
-            <ion-label>
-              <img width="30vw" height="30vw" src="assets/imgs/ic_password.png" />
-            </ion-label>
-            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6 push-3>
-          <input type="submit" value="Đăng Nhập" id="btnLogin" ion-button margin-top >
+        <ion-col>
+          <ion-list inset class="no-border">
+            <ion-item>
+              <ion-label>
+                <img class="login_icon" src="assets/imgs/ic_username.png" />
+              </ion-label>
+              <ion-input type="text" name="username" [(ngModel)]="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <img class="login_icon" src="assets/imgs/ic_password.png" />
+              </ion-label>
+              <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+            </ion-item>
+          </ion-list>
         </ion-col>
       </ion-row>
-      <ion-row >
-        <ion-row col-6 >
-          <p class="txtRememberRegister">Quên mật khẩu <img width="10vw" height="10vw" src="assets/imgs/logo.png" /></p>
-        </ion-row>
-        <ion-row col-6 >
-          <p class="txtRememberRegister" (click)="onRegister()">Đăng ký 
-            <img width="10vw" height="10vw" src="assets/imgs/logo.png" />
-          </p>
-        </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button class="login-button" type="submit" id="btnLogin">Đăng Nhập</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button class="register-button" type="button" (click)="onRegister()">Đăng Ký</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div class="txtRememberRegister">
+            <span>Quên Mật Khẩu</span>
+          </div>
+        </ion-col>
       </ion-row>
     </form>
-    </ion-grid>
+  </div>
 </ion-content>

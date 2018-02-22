@@ -44,6 +44,8 @@ import { OffersItemDetailComponent } from '../views/social/offers/offers-item-de
 import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 import { ChangePhonenumberComponent } from '../components/change-phonenumber/change-phonenumber.component';
 import { InventoryGiftComponent } from '../components/inventory-gift/inventory-gift.component';
+import { LaddaModule } from 'angular2-ladda';
+import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
@@ -57,7 +59,10 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     PaymentModule,
     NgxQRCodeModule,
     CartModule,
-    
+    WalletModule,
+    LaddaModule.forRoot({
+      style: "contract"
+    })
   ],
   declarations: [
     CategoriesComponent,

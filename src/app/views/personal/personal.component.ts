@@ -1,3 +1,4 @@
+import { SearchComponent } from './../../components/search/search.component';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuController, NavController, PopoverController, NavParams, App } from 'ionic-angular';
@@ -28,12 +29,7 @@ export class PersonalComponent implements OnInit {
   ngOnInit() {
   }
 
-  menuPage() {
-    this.nav.push(PersonalMenuComponent);
-  }
-
-
-  public openPopover(myEvent) {
+  openPopover(myEvent) {
     let popover = this.popoverCtrl.create(PersonalMenuComponent);
     popover.present({
       ev: myEvent
@@ -44,7 +40,8 @@ export class PersonalComponent implements OnInit {
     this.isOn = !this.isOn;
     if (!this.isOn) {
       if (this.search != undefined && this.search.length > 3) {
-        this.customService.goToPageSearch(this.search, this.nav);
+        // this.customService.goToPageSearch(this.search, this.nav);
+        this.nav.push(SearchComponent, { param: this.search, service: this })
       } else {
         this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
       }
