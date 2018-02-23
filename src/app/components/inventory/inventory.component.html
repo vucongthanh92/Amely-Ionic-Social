@@ -71,11 +71,11 @@
 					<h6 class="h3Img">{{type.title}}</h6>
 				</div>
 			</ion-col>
-			<ion-col col-4>
+			<!-- <ion-col col-4>
 				<div class="box inventory">
 					<h3 class="h3Img">...</h3>
 				</div>
-			</ion-col>
+			</ion-col> -->
 		</ion-row>
 	</ion-grid>
 
@@ -85,10 +85,10 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col col-6>
-					<button ion-button block (click)="goToPage('items')">Sắp hết hạn dùng</button>
+					<button ion-button block (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">Sắp hết hạn dùng ({{badge_near_expiry}})</button>
 				</ion-col>
 				<ion-col col-6>
-					<button ion-button block (click)="goToPage('items')">Sắp hết hạn lưu kho</button>
+					<button ion-button block (click)="goToPage('items','nearly_stored','Sắp hết hạn lưu kho')">Sắp hết hạn lưu kho ({{badge_near_stored}})</button>
 				</ion-col>
 			</ion-row>
 		</ion-grid>

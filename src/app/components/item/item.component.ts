@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { InventoryGiftComponent } from './../inventory-gift/inventory-gift.component';
 import { Shop } from './../../api/models/shop';
 import { InventoriesService } from './../../services/inventories.service';
@@ -20,9 +21,11 @@ export class ItemComponent implements OnInit {
   product: Product;
   shop: Shop;
   public is_used: boolean = false;
-
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService) {
+  is_remove_item: boolean = false;
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService, private customService: CustomService) {
     this.itemGuid = this.navParams.get('itemGuid');
+
+
   }
 
   ngOnInit() {
@@ -30,6 +33,7 @@ export class ItemComponent implements OnInit {
       this.item = data;
       this.product = data.product_snapshot;
       this.shop = data.product_snapshot.shop;
+      this.is_remove_item = this.item.stored_expried || this.item.used;
     })
   }
 
@@ -45,5 +49,9 @@ export class ItemComponent implements OnInit {
 
   gift() {
     this.nav.push(InventoryTargetsGiftComponent, { item: this.item });
+  }
+  
+  removeItem() {
+    this.customService.toastMessage('Tính năng đang cập nhật', 'bottom', 2000);
   }
 }

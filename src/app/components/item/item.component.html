@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content *ngIf="product">
-  <ion-card style="position: relative;" >
-    <img *ngIf="product.images[0]"  src="{{product.images[0]}}" />
-    <img *ngIf="product.images[0]==null"  src="assets/imgs/logo.png" />
-    <div style="position: absolute;right: 0;bottom: 0">
+  <ion-card style="position: relative;">
+    <img *ngIf="product.images[0]" src="{{product.images[0]}}" />
+    <img *ngIf="product.images[0]==null" src="assets/imgs/logo.png" />
+    <div *ngIf="!is_remove_item" style="position: absolute;right: 0;bottom: 0">
       <button ion-button icon-only style="background: #fff; color: #488aff;border: 1px solid #eee;border-radius: 25px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
         <ion-icon class="iconLike" name="iconLike"></ion-icon>
       </button>
@@ -35,10 +35,10 @@
     <ion-card-content>
       <ion-row>
         <ion-col col-6>
-        Tên cửa hàng
+          Tên cửa hàng
         </ion-col>
         <ion-col col-6>
-           {{shop.title}}
+          {{shop.title}}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -54,7 +54,7 @@
           Địa chỉ cửa hàng
         </ion-col>
         <ion-col col-6>
-           {{shop.shop_address}}
+          {{shop.shop_address}}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -62,7 +62,7 @@
           Số điện thoại
         </ion-col>
         <ion-col col-6>
-           {{shop.shop_phone}}
+          {{shop.shop_phone}}
         </ion-col>
       </ion-row>
       <ion-row>
@@ -70,24 +70,27 @@
           Mã số thuế
         </ion-col>
         <ion-col col-6>
-           {{shop.shop_bidn}}
+          {{shop.shop_bidn}}
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="item">
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
+        <ion-col col-4 *ngIf="!is_remove_item">
           <button [ladda]="is_used" ion-button block (click)="createCode()">Su dung</button>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-4 *ngIf="!is_remove_item">
           <button ion-button block (click)="gift()">Tang qua</button>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-4 *ngIf="!is_remove_item">
           <button ion-button block>Giao hang</button>
+        </ion-col>
+        <ion-col col-12 *ngIf="is_remove_item" (click)="removeItem()">
+          <button ion-button block>Xóa sản phẩm</button>
         </ion-col>
       </ion-row>
     </ion-grid>

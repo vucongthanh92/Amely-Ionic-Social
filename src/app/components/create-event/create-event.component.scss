@@ -213,4 +213,21 @@ app-create-event {
         background-size: contain;
         background-repeat: no-repeat;
     }
+
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+        display: inline-block;
+        }
+    }
+
+    .item-card {
+        display: inline-block;
+        position: relative;
+    }
+  
+    .item-card {
+        display: inline-block;
+        position: relative;
+    }
 }

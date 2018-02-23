@@ -33,12 +33,15 @@ export class InventoryComponent implements OnInit {
   public badgeGiveList: number = 0;
   public badgeStored: number = 0;
   arrTagBadge: any;
+  badge_near_stored: number = 0;
+  badge_near_expiry: number = 0;
   public totalItem: number = 0;
+
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
-  types: Array<{ item_type: string, title: string, image: string, badge: number }> = [];
+  types: Array<{ item_type: string, title: string, image: string, badge: number, position: number }> = [];
   ngOnInit() {
     if (this.inventoryType == undefined) {
       this.inventoryType = this.navParams.get("type");
@@ -59,26 +62,38 @@ export class InventoryComponent implements OnInit {
     }
 
     this.arrTagBadge = [
-      { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
-      { item_type: 'expired', title: '', image: '' },
-      { item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
-      { item_type: 'expiry', title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png' },
-      { item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
-      { item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
-      { item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png' },
-      { item_type: 'nearly_expiry', title: '', image: '' },
-      { item_type: 'nearly_stored', title: '', image: '' },
-      { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' },
-      { item_type: 'stored', title: '', image: '' }];
+      { position: 0, item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png' },
+      { position: 1, item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
+      { position: 2, item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' },
+      { position: 3, item_type: 'expiry', title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png' },
+      { position: 4, item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
+      { position: 5, item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
+      { position: 6, item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
+      { position: 7, item_type: 'expired', title: 'Hết hạn dùng', image: 'assets/imgs/ic_inventory_wanna_send.png' },
+      { position: 8, item_type: 'stored', title: 'Hết hạn lưu kho', image: 'assets/imgs/ic_inventory_wanna_send.png' },
+      { position: 9, item_type: 'nearly_expiry', title: '', image: '' },
+      { position: 10, item_type: 'nearly_stored', title: '', image: '' }];
 
 
     this.arrTagBadge.forEach(e => {
       this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
-        if (data && e.item_type != 'expired' && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored' && e.item_type != 'stored') {
-          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
+        if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
+          // this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
+          this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
         }
         if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
           this.totalItem += data.length ? data.length : 0;
+        if (data && e.item_type == 'nearly_stored' && data.length) {
+
+          this.badge_near_stored = data.length;
+          console.log(this.badge_near_stored);
+
+        }
+        if (data && e.item_type == 'nearly_expiry' && data.length) {
+          this.badge_near_expiry = data.length;
+          console.log(this.badge_near_expiry);
+        }
+
       });
     })
 
