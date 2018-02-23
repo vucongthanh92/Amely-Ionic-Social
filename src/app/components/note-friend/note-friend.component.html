@@ -1,3 +1,57 @@
-<ion-content>
-dasdas
+<ion-content class="outer-content">
+    <ion-list *ngIf="users">
+        <h3 class="message_label">Cá Nhân</h3>
+        <ion-item *ngFor="let u of users">
+            <ion-row>
+                <ion-col>
+                    <img class="message_avatar" src="{{u.avatar}}" />
+                </ion-col>
+                <ion-col col-7>
+                    <p class="message_title">{{u.fullname}}</p>
+                </ion-col>
+
+                <ion-col col-2>
+                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('user',u.guid)"></ion-icon>
+                    <ion-icon name="close-circle" color="danger" (click)="cancel('user',u.guid)"></ion-icon>
+                </ion-col>
+
+            </ion-row>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="groups">
+        <h3 class="message_label">Nhóm</h3>
+        <ion-item *ngFor="let g of groups">
+            <ion-row>
+                <ion-col class="message_image_box">
+                    <img class="message_avatar" src="{{g.avatar}}" />
+                </ion-col>
+                <ion-col class="message_info" col-7>
+                    <p class="message_title">{{g.title}}</p>
+                </ion-col>
+
+                <ion-col col-2>
+                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('group',g.guid)"></ion-icon>
+                    <ion-icon name="close-circle" color="danger" (click)="cancel('group',g.guid)"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="events">
+        <h3 class="message_label">Sự kiện</h3>
+        <ion-item *ngFor="let e of events">
+            <ion-row>
+                <ion-col class="message_image_box">
+                    <img class="message_avatar" src="{{e.avatar}}" />
+                </ion-col>
+                <ion-col class="message_info" col-7>
+                    <p class="message_title">{{e.title}}</p>
+                </ion-col>
+                <ion-col col-2>
+                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('event',e.guid)"></ion-icon>
+                    <ion-icon name="close-circle" color="danger" (click)="cancel('event',e.guid)"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+
 </ion-content>

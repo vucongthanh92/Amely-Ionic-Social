@@ -47,7 +47,7 @@ export class UserComponent {
     this.userService.getUser(null, this.userGuid).subscribe(data => {
       this.user = data;
       this.is_user_current = this.user.guid == this.userCurrent.guid;
-      this.is_friend = this.customService.friends.some(e => e.guid==data.guid);
+      this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
       let date = new Date(data.birthdate);
@@ -159,7 +159,6 @@ export class UserComponent {
     }
   }
   addFriend() {
-
     if (this.title_add_friend === 'Kết bạn') {
       this.userService.addFriend(this.userCurrent.guid, this.user.guid, "user").subscribe(data => {
         if (data.status) {
@@ -167,7 +166,8 @@ export class UserComponent {
         } else {
           this.title_add_friend = 'Kết bạn';
         }
-      }); this.title_add_friend = "Đã gửi lời mời";
+      });
+      this.title_add_friend = "Đã gửi lời mời";
     }
 
   }

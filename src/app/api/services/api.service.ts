@@ -72,6 +72,7 @@ import { body_32 } from '../models/body-_32';
 import { body_33 } from '../models/body-_33';
 import { Item } from '../models/item';
 import { body_34 } from '../models/body-_34';
+import { inline_response_200_11 } from '../models/inline-_response-_200_11';
 import { body_35 } from '../models/body-_35';
 import { body_36 } from '../models/body-_36';
 import { body_37 } from '../models/body-_37';
@@ -83,23 +84,23 @@ import { body_40 } from '../models/body-_40';
 import { guid } from '../models/guid';
 import { Offer } from '../models/offer';
 import { body_41 } from '../models/body-_41';
-import { inline_response_200_11 } from '../models/inline-_response-_200_11';
+import { inline_response_200_12 } from '../models/inline-_response-_200_12';
 import { Param_create_offer } from '../models/param-_create-_offer';
 import { body_42 } from '../models/body-_42';
 import { Order } from '../models/order';
+import { inline_response_200_14 } from '../models/inline-_response-_200_14';
 import { inline_response_200_13 } from '../models/inline-_response-_200_13';
-import { inline_response_200_12 } from '../models/inline-_response-_200_12';
 import { Param_create_order } from '../models/param-_create-_order';
 import { body_43 } from '../models/body-_43';
-import { inline_response_200_14 } from '../models/inline-_response-_200_14';
 import { inline_response_200_15 } from '../models/inline-_response-_200_15';
+import { inline_response_200_16 } from '../models/inline-_response-_200_16';
 import { body_45 } from '../models/body-_45';
 import { body_44 } from '../models/body-_44';
 import { body_46 } from '../models/body-_46';
-import { inline_response_200_16 } from '../models/inline-_response-_200_16';
-import { body_47 } from '../models/body-_47';
 import { inline_response_200_17 } from '../models/inline-_response-_200_17';
+import { body_47 } from '../models/body-_47';
 import { inline_response_200_18 } from '../models/inline-_response-_200_18';
+import { inline_response_200_19 } from '../models/inline-_response-_200_19';
 import { body_49 } from '../models/body-_49';
 import { body_48 } from '../models/body-_48';
 import { body_50 } from '../models/body-_50';
@@ -108,19 +109,19 @@ import { body_51 } from '../models/body-_51';
 import { body_52 } from '../models/body-_52';
 import { body_53 } from '../models/body-_53';
 import { body_54 } from '../models/body-_54';
-import { inline_response_200_19 } from '../models/inline-_response-_200_19';
+import { inline_response_200_20 } from '../models/inline-_response-_200_20';
 import { body_55 } from '../models/body-_55';
 import { Services } from '../models/services';
 import { body_56 } from '../models/body-_56';
-import { inline_response_200_20 } from '../models/inline-_response-_200_20';
+import { inline_response_200_21 } from '../models/inline-_response-_200_21';
 import { ShopOrder } from '../models/shop-order';
 import { body_57 } from '../models/body-_57';
 import { body_58 } from '../models/body-_58';
 import { body_59 } from '../models/body-_59';
-import { inline_response_200_21 } from '../models/inline-_response-_200_21';
+import { inline_response_200_22 } from '../models/inline-_response-_200_22';
 import { ShopShipping } from '../models/shop-shipping';
 import { body_60 } from '../models/body-_60';
-import { inline_response_200_22 } from '../models/inline-_response-_200_22';
+import { inline_response_200_23 } from '../models/inline-_response-_200_23';
 import { body_61 } from '../models/body-_61';
 import { Transaction } from '../models/transaction';
 import { body_62 } from '../models/body-_62';
@@ -3217,7 +3218,7 @@ export class ApiService extends BaseService {
   }
   /**
    */
-  getInvitationsResponse(): Observable<HttpResponse<DefaultResponse>> {
+  getInvitationsResponse(): Observable<HttpResponse<inline_response_200_11>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -3235,16 +3236,16 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+        let _body: inline_response_200_11 = null;
+        _body = _resp.body as inline_response_200_11
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_11>;
       })
     );
   }
 
   /**
    */
-  getInvitations(): Observable<DefaultResponse> {
+  getInvitations(): Observable<inline_response_200_11> {
     return this.getInvitationsResponse().pipe(
       map(_r => _r.body)
     );
@@ -3979,7 +3980,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createOfferResponse(body: Param_create_offer): Observable<HttpResponse<inline_response_200_11>> {
+  createOfferResponse(body: Param_create_offer): Observable<HttpResponse<inline_response_200_12>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -3998,9 +3999,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_11 = null;
-        _body = _resp.body as inline_response_200_11
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_11>;
+        let _body: inline_response_200_12 = null;
+        _body = _resp.body as inline_response_200_12
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_12>;
       })
     );
   }
@@ -4008,7 +4009,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createOffer(body: Param_create_offer): Observable<inline_response_200_11> {
+  createOffer(body: Param_create_offer): Observable<inline_response_200_12> {
     return this.createOfferResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4126,7 +4127,7 @@ export class ApiService extends BaseService {
   }
   /**
    */
-  getOrdersResponse(): Observable<HttpResponse<inline_response_200_13>> {
+  getOrdersResponse(): Observable<HttpResponse<inline_response_200_14>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -4144,16 +4145,16 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_13 = null;
-        _body = _resp.body as inline_response_200_13
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_13>;
+        let _body: inline_response_200_14 = null;
+        _body = _resp.body as inline_response_200_14
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_14>;
       })
     );
   }
 
   /**
    */
-  getOrders(): Observable<inline_response_200_13> {
+  getOrders(): Observable<inline_response_200_14> {
     return this.getOrdersResponse().pipe(
       map(_r => _r.body)
     );
@@ -4181,7 +4182,7 @@ export class ApiService extends BaseService {
    * "to_guid": "13254"
    * @param body - undefined
    */
-  createOrderResponse(body: Param_create_order): Observable<HttpResponse<inline_response_200_12>> {
+  createOrderResponse(body: Param_create_order): Observable<HttpResponse<inline_response_200_13>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -4200,9 +4201,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_12 = null;
-        _body = _resp.body as inline_response_200_12
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_12>;
+        let _body: inline_response_200_13 = null;
+        _body = _resp.body as inline_response_200_13
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_13>;
       })
     );
   }
@@ -4230,7 +4231,7 @@ export class ApiService extends BaseService {
    * "to_guid": "13254"
    * @param body - undefined
    */
-  createOrder(body: Param_create_order): Observable<inline_response_200_12> {
+  createOrder(body: Param_create_order): Observable<inline_response_200_13> {
     return this.createOrderResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4313,50 +4314,13 @@ export class ApiService extends BaseService {
   /**
    * @param guid - Global Unique IDentity
    */
-  getProductResponse(guid: number): Observable<HttpResponse<inline_response_200_14>> {
+  getProductResponse(guid: number): Observable<HttpResponse<inline_response_200_15>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     if (guid != null) __params = __params.set("guid", guid.toString());
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/products`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_14 = null;
-        _body = _resp.body as inline_response_200_14
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_14>;
-      })
-    );
-  }
-
-  /**
-   * @param guid - Global Unique IDentity
-   */
-  getProduct(guid: number): Observable<inline_response_200_14> {
-    return this.getProductResponse(guid).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * @param body - undefined
-   */
-  getProductsResponse(body: body_45): Observable<HttpResponse<inline_response_200_15>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    __body = body;
-    let req = new HttpRequest<any>(
-      "POST",
       this.rootUrl + `/products`,
       __body,
       {
@@ -4377,9 +4341,46 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * @param guid - Global Unique IDentity
+   */
+  getProduct(guid: number): Observable<inline_response_200_15> {
+    return this.getProductResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * @param body - undefined
    */
-  getProducts(body: body_45): Observable<inline_response_200_15> {
+  getProductsResponse(body: body_45): Observable<HttpResponse<inline_response_200_16>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/products`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: inline_response_200_16 = null;
+        _body = _resp.body as inline_response_200_16
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_16>;
+      })
+    );
+  }
+
+  /**
+   * @param body - undefined
+   */
+  getProducts(body: body_45): Observable<inline_response_200_16> {
     return this.getProductsResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4541,7 +4542,7 @@ export class ApiService extends BaseService {
    * update profile
    * @param body - undefined
    */
-  updateProfileResponse(body: body_47): Observable<HttpResponse<inline_response_200_16>> {
+  updateProfileResponse(body: body_47): Observable<HttpResponse<inline_response_200_17>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -4549,44 +4550,6 @@ export class ApiService extends BaseService {
     let req = new HttpRequest<any>(
       "PATCH",
       this.rootUrl + `/profile`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_16 = null;
-        _body = _resp.body as inline_response_200_16
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_16>;
-      })
-    );
-  }
-
-  /**
-   * update profile
-   * @param body - undefined
-   */
-  updateProfile(body: body_47): Observable<inline_response_200_16> {
-    return this.updateProfileResponse(body).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * @param promotion_guid - Global Unique IDentity
-   */
-  getPromotionResponse(promotionGuid: number): Observable<HttpResponse<inline_response_200_17>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (promotionGuid != null) __params = __params.set("promotion_guid", promotionGuid.toString());
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/promotions`,
       __body,
       {
         headers: __headers,
@@ -4606,23 +4569,24 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * @param promotion_guid - Global Unique IDentity
+   * update profile
+   * @param body - undefined
    */
-  getPromotion(promotionGuid: number): Observable<inline_response_200_17> {
-    return this.getPromotionResponse(promotionGuid).pipe(
+  updateProfile(body: body_47): Observable<inline_response_200_17> {
+    return this.updateProfileResponse(body).pipe(
       map(_r => _r.body)
     );
   }
   /**
-   * @param body - undefined
+   * @param promotion_guid - Global Unique IDentity
    */
-  getPromotionsResponse(body: body_49): Observable<HttpResponse<inline_response_200_18>> {
+  getPromotionResponse(promotionGuid: number): Observable<HttpResponse<inline_response_200_18>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = body;
+    if (promotionGuid != null) __params = __params.set("promotion_guid", promotionGuid.toString());
     let req = new HttpRequest<any>(
-      "POST",
+      "GET",
       this.rootUrl + `/promotions`,
       __body,
       {
@@ -4643,9 +4607,46 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * @param promotion_guid - Global Unique IDentity
+   */
+  getPromotion(promotionGuid: number): Observable<inline_response_200_18> {
+    return this.getPromotionResponse(promotionGuid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * @param body - undefined
    */
-  getPromotions(body: body_49): Observable<inline_response_200_18> {
+  getPromotionsResponse(body: body_49): Observable<HttpResponse<inline_response_200_19>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/promotions`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: inline_response_200_19 = null;
+        _body = _resp.body as inline_response_200_19
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_19>;
+      })
+    );
+  }
+
+  /**
+   * @param body - undefined
+   */
+  getPromotions(body: body_49): Observable<inline_response_200_19> {
     return this.getPromotionsResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4986,7 +4987,7 @@ export class ApiService extends BaseService {
   /**
    * @param q - Global Unique IDentity
    */
-  searchResponse(q: string): Observable<HttpResponse<inline_response_200_19>> {
+  searchResponse(q: string): Observable<HttpResponse<inline_response_200_20>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5005,9 +5006,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_19 = null;
-        _body = _resp.body as inline_response_200_19
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_19>;
+        let _body: inline_response_200_20 = null;
+        _body = _resp.body as inline_response_200_20
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_20>;
       })
     );
   }
@@ -5015,7 +5016,7 @@ export class ApiService extends BaseService {
   /**
    * @param q - Global Unique IDentity
    */
-  search(q: string): Observable<inline_response_200_19> {
+  search(q: string): Observable<inline_response_200_20> {
     return this.searchResponse(q).pipe(
       map(_r => _r.body)
     );
@@ -5131,7 +5132,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getShopOrderResponse(orderGuid?: number): Observable<HttpResponse<inline_response_200_20>> {
+  getShopOrderResponse(orderGuid?: number): Observable<HttpResponse<inline_response_200_21>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5150,9 +5151,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_20 = null;
-        _body = _resp.body as inline_response_200_20
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_20>;
+        let _body: inline_response_200_21 = null;
+        _body = _resp.body as inline_response_200_21
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_21>;
       })
     );
   }
@@ -5160,7 +5161,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getShopOrder(orderGuid?: number): Observable<inline_response_200_20> {
+  getShopOrder(orderGuid?: number): Observable<inline_response_200_21> {
     return this.getShopOrderResponse(orderGuid).pipe(
       map(_r => _r.body)
     );
@@ -5315,7 +5316,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getShopShippingResponse(orderGuid?: number): Observable<HttpResponse<inline_response_200_21>> {
+  getShopShippingResponse(orderGuid?: number): Observable<HttpResponse<inline_response_200_22>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5334,9 +5335,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_21 = null;
-        _body = _resp.body as inline_response_200_21
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_21>;
+        let _body: inline_response_200_22 = null;
+        _body = _resp.body as inline_response_200_22
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_22>;
       })
     );
   }
@@ -5344,7 +5345,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getShopShipping(orderGuid?: number): Observable<inline_response_200_21> {
+  getShopShipping(orderGuid?: number): Observable<inline_response_200_22> {
     return this.getShopShippingResponse(orderGuid).pipe(
       map(_r => _r.body)
     );
@@ -5431,7 +5432,7 @@ export class ApiService extends BaseService {
   /**
    * get all shop friendly
    */
-  getFriendlyShopResponse(): Observable<HttpResponse<inline_response_200_22>> {
+  getFriendlyShopResponse(): Observable<HttpResponse<inline_response_200_23>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5449,9 +5450,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: inline_response_200_22 = null;
-        _body = _resp.body as inline_response_200_22
-        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_22>;
+        let _body: inline_response_200_23 = null;
+        _body = _resp.body as inline_response_200_23
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_23>;
       })
     );
   }
@@ -5459,7 +5460,7 @@ export class ApiService extends BaseService {
   /**
    * get all shop friendly
    */
-  getFriendlyShop(): Observable<inline_response_200_22> {
+  getFriendlyShop(): Observable<inline_response_200_23> {
     return this.getFriendlyShopResponse().pipe(
       map(_r => _r.body)
     );
@@ -5906,9 +5907,9 @@ export module ApiService {
     guid: number;
   }
   export interface DeleteApprovalParams {
-    toGuid: string;
+    toGuid: number;
     invitationType: string;
-    fromGuid: string;
+    fromGuid: number;
   }
   export interface GetCommentsParams {
     type: string;

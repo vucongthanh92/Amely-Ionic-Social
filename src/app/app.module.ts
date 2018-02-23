@@ -1,3 +1,4 @@
+import { InvitationService } from './services/invitation.service';
 import { FirebaseService } from './services/firebase.service';
 import { PaymentService } from './services/payment.service';
 import { ShopsService } from './services/shops.service';
@@ -112,6 +113,7 @@ export const firebaseConfig = {
     SearchService,
     OfferService,
     FirebaseService,
+    InvitationService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

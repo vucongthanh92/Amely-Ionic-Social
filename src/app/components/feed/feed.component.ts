@@ -36,7 +36,7 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    console.log(this.mood);
+    // console.log(this.mood);
     // if (this.mood) {
     //   this.moodIcon = this.moodLocal[this.mood.guid]
     // }
