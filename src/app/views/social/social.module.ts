@@ -19,7 +19,7 @@ import { SharedModule } from '../../shared/shared.module';
     NearByModule,
     NewsFeedModule,
     OffersModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     SocialComponent

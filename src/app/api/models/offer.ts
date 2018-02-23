@@ -27,6 +27,6 @@ export class Offer {
     bookmarked?: string;
     product_snapshot?: Product;
     owner?: User;
-    counter_offers?: CounterOffer;
+    counter_offers?: CounterOffer[];
     seconds?: number;
 }

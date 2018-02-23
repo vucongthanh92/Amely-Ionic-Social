@@ -14,7 +14,26 @@ export class OfferService {
     // "giveaway_approval": true,
     // "limit_counter": 0,
     // "random_expiration": false,
-   return this.api.createOffer(obj);
+    return this.api.createOffer(obj);
   }
 
+  getOffer(offer_guid) {
+    return this.api.getOffer(offer_guid);
+  }
+  
+  getListCounter() {
+    return this.api.getCounterOffers({});
+  }
+
+  rejectCounter(counter_offer_guid) {
+    return this.api.deleteCounterOffer(counter_offer_guid);
+  }
+
+  agreeCounter(offer_guid, counter_offer_guid) {
+    return this.api.updateOffer({ offer_guid: offer_guid, counter_offer_guid: counter_offer_guid })
+  }
+
+  delete(offer_guid) {
+    return this.api.deleteOffer(offer_guid);
+  }
 }

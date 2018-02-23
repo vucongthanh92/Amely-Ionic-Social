@@ -55,6 +55,7 @@
     "geofire": "^4.1.2",
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
+    "ionic2-super-tabs": "^4.2.2",
     "ionicons": "3.0.0",
     "moment": "^2.20.1",
     "ngx-qrcode2": "0.0.5",
