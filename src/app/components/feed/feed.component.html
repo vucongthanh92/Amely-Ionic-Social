@@ -3,20 +3,21 @@
       <ion-avatar item-start>
         <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
       </ion-avatar>
-      <h2>{{ user.username }}</h2>
-      <p>ngày hôm qua</p>
+      <h2 class="feed_title">{{ user.username }}</h2>
+      <ion-col class="feed_mood item-inner" *ngIf="mood">
+        <span>{{mood.title}}</span>
+        <img id="iconMood" src="{{mood.image}}">
+      </ion-col>
+      <p class="feed_date">26/2/2018</p>
       <!-- <time>{{ post.time_created | amTimeAgo }}</time> -->
+
       <ion-col class="feed_event" col-2>
         <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
       </ion-col>
 
-      <ion-col *ngIf="mood">
-        <a class="mood">{{mood.title}}</a>
-        <img id="iconMood" src="{{mood.image}}">
-      </ion-col>
     </ion-item>
 
-    <ion-list *ngIf="hasWallPhoto">
+    <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto">
       <ion-item *ngFor="let wallphoto of post.wallphoto">
         <img width="100%" src="{{ wallphoto }}">
       </ion-item>
@@ -27,10 +28,10 @@
     </ion-card-content>
 
     <ion-row *ngIf="userTag">
-      <div *ngIf="isHideMoreTag; else elseSubArr">
-        <div *ngFor="let user of userTag">
+      <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
+        <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
           <a>{{user.first_name}} {{user.last_name}},</a>
-        </div>
+        </ion-item>
       </div>
 
       <ng-template #elseSubArr>
@@ -43,7 +44,7 @@
       </ng-template>
     </ion-row>
 
-    <ion-row>
+    <ion-row class="feed_interactive">
       <ion-col>
         <button ion-button icon-left clear small (click)="likeFeed()">
           <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>

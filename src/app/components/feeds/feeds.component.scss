@@ -9,7 +9,7 @@ app-feeds {
     }
 
     .button-ios {
-        padding: 0px 9px 0px 9px;
+        padding: 0px 5px 0px 5px;
         text-transform: capitalize;
         color: #4a8bfc;
     }
@@ -22,7 +22,7 @@ app-feeds {
     }
 
     .label-ios {
-        margin: 10px 10px 10px 15px;
+        margin: 7px 10px 7px 10px;
         background-color: white;
     }
     
@@ -37,7 +37,7 @@ app-feeds {
 
     .item-ios {
         background-color: #fff;
-        margin: 7px 7px 7px 7px;
+        margin: 7px 7px 10px 7px;
         padding: 0px 0px 0px 0px;
         box-sizing: border-box;
         width: auto;
@@ -48,5 +48,11 @@ app-feeds {
         .scroll-item {
         display: inline-block;
         }
+    }
+
+    .feeds_button {
+        position: fixed;
+        bottom: 55px;
+        right: 10px;
     }
 }
