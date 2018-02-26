@@ -92,16 +92,22 @@ app-social{
         }
     }
 
+     
+  .tabs-ios {
+    top: 44px;
+  }
+
+  .tabs-md {
+    top: 50px;
+  }
+
+  .footer-md {
+    bottom: 50px;
+  }
+  
+  .footer-ios {
+    bottom: 44px;
+  }
+
+
 }
-        .platform-ios {
-            ion-tabs.withNavbar {
-                margin-top: 44px;
-            }
-        }
-    
-    
-        .platform-android {
-            ion-tabs.withNavbar {
-                margin-top: 50px;
-            }
-        }
