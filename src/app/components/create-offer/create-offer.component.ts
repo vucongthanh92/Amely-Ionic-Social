@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
 import { OfferService } from './../../services/offer.service';
 import { ChosenItemComponent } from './../chosen-item/chosen-item.component';
@@ -5,7 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { Item } from '../../api/models/item';
 import { Param_create_offer } from '../../api/models/param-_create-_offer';
-
+import { GeolocationService } from '../../services/geolocation.service';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'app-create-offer',
@@ -30,6 +32,9 @@ export class CreateOfferComponent implements OnInit {
   duration_select: any;
 
   constructor(
+    private geolocationService: GeolocationService,
+    private geolocation: Geolocation,
+    private fbService: FirebaseService,
     private customService: CustomService,
     private offerService: OfferService,
     private appCtrl: App,
@@ -68,6 +73,13 @@ export class CreateOfferComponent implements OnInit {
 
     this.offerService.createOffer(obj).subscribe(data => {
       if (data.offer_guid) {
+        let owner_from = data.offer_guid;
+        this.geolocation.getCurrentPosition().then((resp) => {
+          let lat = resp.coords.latitude;
+          let lng = resp.coords.longitude;
+          let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
+          this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
+        });
         this.nav.pop();
       } else {
         this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 5000);

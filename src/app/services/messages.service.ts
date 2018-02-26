@@ -1,3 +1,5 @@
+import { CustomService } from './custom.service';
+import { FirebaseService } from './firebase.service';
 import { Camera } from '@ionic-native/camera';
 import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
@@ -8,110 +10,98 @@ import { GiftsService } from './gifts.service';
 @Injectable()
 export class MessagesService {
 
-  userCurrent: any;
   individualList: any;
   message: { from: string, status: string, text: any, time: number };
 
   constructor(
+    private customService: CustomService,
+    private fbService: FirebaseService,
     public giftsService: GiftsService,
     public storage: AngularFireStorage,
     public camera: Camera,
     public afDatabase: AngularFireDatabase,
     public userService: UserService
   ) {
-    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
   
   
   generateKey() {
-    return this.afDatabase.list('/users/').push({}).key;
+    return this.fbService.generateKey();
   }
 
-  getKeyChat(owner_from, owner_to, type) {
-    let path = "/users/" + owner_from + "/chat/" + type + "/" + owner_to;
-    return this.afDatabase.list(path);
+  getKeyChat(owner_from, owner_to, owner_to_type) {
+    return this.fbService.getKey(owner_from, owner_to, owner_to_type);
   }
 
   /**
    * 
-   * @param type group - individual
+   * @param owner_to_type group - individual
    * @param owner_from 
-   * @param owner_to gr id
+   * @param owner_to group_id - username
    * @param obj 
    */
-  createKeyChat(type, owner_from, owner_to, obj) {
-    let path = "/users/" + owner_from + "/chat/" + type;
-    // switch (type) {
-    //   case "individual":
-    //     this.afDatabase.list(path).set(owner_to, obj);
-    //     break;
-    //   case "group":
-    //     this.afDatabase.list(path).set(owner_to, obj);
-    //     break;
-    //     default:
-    //     break;
-    //   }
-    console.log(path);
-    console.log(owner_to);
-    console.log(obj);
-    
-    this.afDatabase.list(path).set(owner_to, obj);
+  createKeyChat(owner_to_type, owner_from, owner_to, obj) {
+    return this.fbService.createKey(owner_to_type, owner_from, owner_to, obj);
   }
 
-  getUsersChat() {
-    let path = "/users/" + this.userCurrent.username + "/chat/";
-    return this.afDatabase.list(path + "individual").query.orderByChild('last_read').startAt(1);
+  getListChat(owner_from, owner_to_type) {
+    return this.fbService.getListByOwner(owner_from, owner_to_type);
   }
 
-  getGroupsChat() {
-    let path = "/users/" + this.userCurrent.username + "/chat/";
-    return this.afDatabase.list(path + "group").query.orderByChild('last_read').startAt(1);
+  // getUsersChat() {
+  //   let path = "/users/" + this.customService.user_current.username + "/chat/";
+  //   let owner_from = this.customService.user_current.username;
+  //   let owner_to_type = "individual";
+  //   return this.fbService.getListByOwner(owner_from, owner_to_type);
+  // }
+
+  // getGroupsChat() {
+  //   let path = "/users/" + this.customService.user_current.username + "/chat/";
+  //   return this.afDatabase.list(path + "group").query.orderByChild('last_read').startAt(1);
+  // }
+
+  getMessages(key_chat) {
+    return this.fbService.getMessages(key_chat);
   }
 
-  getMessages(keyChat) {
-    let path = "/shared/messages/" + keyChat ;
-    return this.afDatabase.list(path);
+  getLastMessage(key_chat) {
+    return this.fbService.getLastMessage(key_chat);
   }
 
-  getLastMessage(keyChat) {
-    let path = "/shared/messages/" + keyChat;
-    return this.afDatabase.list(path).query.orderByChild('time').limitToLast(1);
+  sendMessage(message, key_chat) {
+    return this.fbService.createMessage(message, key_chat);
   }
 
-  sendMessage(message, keyChat) {
-    let path = "/shared/messages/" + keyChat;
-    return this.afDatabase.list(path).push(message);
-  }
-
-  getGift(subjectId, username) {
-    let path = "/notifications/" + username;
-    return this.afDatabase.list(path).query.orderByChild('subject_guid').equalTo(subjectId);
+  getGift(subject_id, username) {
+    return this.fbService.getGiftBySubject(subject_id, username);
   }
 
   createNotification(username, obj) {  
-    let path = "/notifications/" + username;
-    return this.afDatabase.list(path).push(obj);
+    return this.fbService.createNotification(username, obj);
   }
 
-  selectFromGallery(keyChat) {
+  selectFromGallery(key_chat) {
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL
     };
     this.camera.getPicture(options).then((imageData) => {
-      const filePath = "chat/" + this.userCurrent.username + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + ".jpg";
-      this.storage.ref(filePath).putString(imageData, 'base64', { contentType: 'image/jpg' }).then(task => {
-        let path = "/shared/messages/" + keyChat;
+      let owner_from = this.customService.user_current.username;
+      let extension = ".jpg";
+      let content_type = "image/jpg";
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+        let path = "/shared/messages/" + key_chat;
         let attachment = { media_type: "image", url: task.downloadURL };
-        let message = { from: this.userCurrent.username, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
-        this.afDatabase.list(path).push(message);
+        let message = { from: owner_from, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
+        this.fbService.createMessage(message, key_chat);
+        // this.afDatabase.list(path).push(message);
       });
     }, (err) => {
       // Handle error
     });
   }
 
-  takePicture(keyChat) {
+  takePicture(key_chat) {
     this.camera.getPicture({
       quality: 80,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -119,26 +109,26 @@ export class MessagesService {
       mediaType: this.camera.MediaType.PICTURE
     }).then((imageData) => {
       let captureDataUrl = 'data:image/jpeg;base64,' + imageData;
-      const filePath = "chat/" + this.userCurrent.username + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + ".jpg";
-      this.storage.ref(filePath).putString(imageData, 'base64', { contentType: 'image/jpg' }).then(task => {
-        let path = "/shared/messages/" + keyChat;
+      let owner_from = this.customService.user_current.username;
+      let extension = ".jpg";
+      let content_type = "image/jpg";
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+        let path = "/shared/messages/" + key_chat;
         let attachment = { media_type: "image", url: task.downloadURL};
-        let message = { from: this.userCurrent.username, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
-        this.afDatabase.list(path).push(message);
+        let message = { from: owner_from, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
+        this.fbService.createMessage(message, key_chat);
       });
     });
   }
 
   acceptGift(username, gift_guid) {
     this.giftsService.accept(gift_guid).subscribe(res => {
-      console.log(res);
       if (res.status) {
-        let path = "/notifications/" + username;
-        let message = { notification_type: "gift:accept", status: "accept"};
-        let ref = this.afDatabase.list(path);
-        ref.query.orderByChild("subject_guid").equalTo(gift_guid).once('child_added', snap => {
-          ref.update(snap.key, message);
-        });
+        let owner_from = this.customService.user_current.username;
+        let notification_type = "gift:accept";
+        let status = "accept";
+        let subject_guid = gift_guid;
+        this.fbService.updateNotificationBySubject(owner_from, notification_type, status, subject_guid);
       }
     });
   }
@@ -146,12 +136,11 @@ export class MessagesService {
   rejectGift(username, gift_guid) {
     this.giftsService.reject(gift_guid).subscribe( res => {
       if (res.status) {
-        let path = "/notifications/" + username;
-        let message = { notification_type: "gift:reject", status: "reject" };
-        let ref = this.afDatabase.list(path);
-        ref.query.orderByChild("subject_guid").equalTo(gift_guid).once('child_added', snap => {
-          ref.update(snap.key, message);
-        });
+        let owner_from = this.customService.user_current.username;
+        let notification_type = "gift:reject";
+        let status = "reject";
+        let subject_guid = gift_guid;
+        this.fbService.updateNotificationBySubject(owner_from, notification_type, status, subject_guid);
       }
     });
   }

@@ -55,7 +55,7 @@ app-user {
     width: 30px;
     height: 30px;
     padding: 4px;
-    content:url(./../../assets/imgs/ic_feed.png);
+    content:url(../assets/imgs/ic_feed.png);
   }
   .txtTitle{
     clear: both;
@@ -63,7 +63,7 @@ app-user {
   }
 
   .segment-activated img#tabIconFeeds {
-    content:url(./../../assets/imgs/ic_feed_actived.png);
+    content:url(../assets/imgs/ic_feed_actived.png);
   }
 
 
@@ -71,22 +71,22 @@ app-user {
     width: 30px;
     height: 30px;
     padding: 4px;
-    content:url(./../../assets/imgs/ic_friend.png);
+    content:url(../assets/imgs/ic_friend.png);
   }
 
   .segment-activated img#tabIconFriend {
-    content:url(./../../assets/imgs/ic_friend_actived.png);
+    content:url(../assets/imgs/ic_friend_actived.png);
   }
   
   #tabIconImage{
     width: 30px;
     height: 30px;
     padding: 4px;
-    content:url(./../../assets/imgs/ic_image.png);
+    content:url(../assets/imgs/ic_image.png);
   }  
 
   .segment-activated img#tabIconImage {
-    content:url(./../../assets/imgs/ic_image_actived.png);
+    content:url(../assets/imgs/ic_image_actived.png);
   }
 
    .iconPage {

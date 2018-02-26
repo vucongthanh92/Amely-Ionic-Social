@@ -72,6 +72,11 @@ export class PaymentConfirmComponent implements OnInit {
   changePage() { 
     this.paymentService.createOrder().subscribe(data => {
         const browser = this.iab.create(data.url);
+        browser.on('loadstop').subscribe(data => {
+          this.paymentService.items = false;
+          this.customService.cart = [];
+          this.nav.popToRoot();
+        });
         browser.on('exit').subscribe(data => {
           this.paymentService.items = false;
           this.customService.cart = [];
