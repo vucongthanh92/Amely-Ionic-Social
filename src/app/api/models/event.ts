@@ -1,6 +1,5 @@
 /* tslint:disable */
 import { User } from './user';
-import { Product } from './product';
 
 /**
  */
@@ -24,7 +23,7 @@ export class Event {
     friendly_url?: string;
     published?: string;
     owner_user?: number;
-    creator?: Product;
+    creator?: User;
     avatar?: string;
     cover?: string;
     members_accepted?: string;

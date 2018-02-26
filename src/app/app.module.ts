@@ -66,7 +66,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    MainMenuComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,

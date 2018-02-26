@@ -1,3 +1,4 @@
+import { EventMenuComponent } from './../components/event/event-menu/event-menu.component';
 import { EventComponent } from './../components/event/event.component';
 import { ModalCounterOfferComponent } from './../components/counters-offer/modal-counter-offer/modal-counter-offer.component';
 import { CountersOfferComponent } from './../components/counters-offer/counters-offer.component';
@@ -51,7 +52,6 @@ import { LaddaModule } from 'angular2-ladda';
 import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
-
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -111,7 +111,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
     ModalCounterOfferComponent,
-    EventComponent
+    EventComponent,
+    EventMenuComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -156,7 +157,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
     ModalCounterOfferComponent,
-    EventComponent
+    EventComponent,
+    EventMenuComponent
   ],
   exports: [
     CategoriesComponent,
@@ -201,7 +203,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
     ModalCounterOfferComponent,
-    EventComponent
+    EventComponent,
+    EventMenuComponent
   ]
 })
 export class SharedModule { }

@@ -1,7 +1,7 @@
 <div>
   <ion-card *ngIf="isHasData">
     <ion-item   *ngFor="let post of posts">
-      <app-feed [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)" [user_tag]="getUsersTag(post.description)"></app-feed>
+      <app-feed *ngIf="post"  [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)" [user_tag]="getUsersTag(post.description)"></app-feed>
     </ion-item>
   </ion-card>
 

@@ -52,7 +52,9 @@ export class FeedsComponent implements OnInit {
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
         this.shares = data.shares;
-        this.offset = this.offset + data.posts.length;
+        if (data.posts!=null) {
+          this.offset = this.offset + data.posts.length;
+        }
       });
 
       infiniteScroll.complete();

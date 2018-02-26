@@ -1,14 +1,19 @@
 <ion-list>
-  <ion-item *ngFor="let event of events" (click)="goToPage()">
+  <ion-item *ngFor="let event of events" (click)="goToPage(event.guid)">
     <ion-row>
       <ion-col col-3>
         <img width="100%" src="{{event.avatar}}" />
       </ion-col>
       <ion-col col-9>
-        {{event.title}}<br>
-        {{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}} <br>
-         Chủ sự kiện :{{getFullname(event.owner_guid)}}
+        {{event.title}}
+        <br> {{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}
+        <br> Chủ sự kiện :{{getFullname(event.owner_guid)}}
       </ion-col>
     </ion-row>
   </ion-item>
+  <ion-fab right bottom (click)="createEvent()">
+    <button ion-fab color="danger">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-list>
