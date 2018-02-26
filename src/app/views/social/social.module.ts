@@ -12,9 +12,10 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
 import { OffersModule } from './offers/offers.module';
 import { SharedModule } from '../../shared/shared.module';
 import { IonicPageModule } from 'ionic-angular';
-
+import { SuperTabsModule } from 'ionic2-super-tabs';
 @NgModule({
   imports: [
+    SuperTabsModule.forRoot(),
     CommonModule,
     IonicModule,
     EventsModule,

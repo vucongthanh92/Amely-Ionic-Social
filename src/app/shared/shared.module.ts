@@ -51,12 +51,13 @@ import { LaddaModule } from 'angular2-ladda';
 import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
-
+import { SuperTabsModule } from 'ionic2-super-tabs';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
 @NgModule({
   imports: [
+    SuperTabsModule.forRoot(),
     CommonModule,
     IonicModule,
     MomentModule,

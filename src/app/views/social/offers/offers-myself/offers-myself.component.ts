@@ -10,7 +10,10 @@ import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-det
 })
 export class OffersMyselfComponent implements OnInit {
   public offers: Array<Offer> = [];
-  constructor(public nav: NavController, public appCtrl: App, private offersService: OffersService) { }
+  constructor(
+    private nav: NavController, 
+    private appCtrl: App, 
+    private offersService: OffersService) { }
 
   ngOnInit() {
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
@@ -41,6 +44,7 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   changePage(offer) {
-    this.appCtrl.getRootNav().push(OffersItemDetailComponent, { param: offer });
+    this.nav.push(OffersItemDetailComponent, { param: offer });
+    // this.appCtrl.getRootNav().push(OffersItemDetailComponent, { param: offer });
   }
 }
