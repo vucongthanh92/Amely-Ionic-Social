@@ -163,7 +163,7 @@ export class CreateEventComponent implements OnInit {
     } else if (!this.location) {
       this.customSerivce.toastMessage('Địa điểm không được để trống !', 'bottom', 2000);
     } else {
-      this.eventService.createEvent();
+      // this.eventService.createEvent();
 
     }
 
