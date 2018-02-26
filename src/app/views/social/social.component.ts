@@ -34,6 +34,9 @@ export class SocialComponent implements OnInit {
   }
   ngOnInit() {
   }
+  ionViewDidEnter() {
+    console.log('1');
+  }
 
   search() {
     this.is_search_show = !this.is_search_show;

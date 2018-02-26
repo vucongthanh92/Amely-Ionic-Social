@@ -16,6 +16,10 @@ export class OffersMyselfComponent implements OnInit {
     private offersService: OffersService) { }
 
   ngOnInit() {
+    
+  }
+
+  ionViewDidEnter() {
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
       if (data instanceof Array) {
         this.offers = data;
@@ -23,28 +27,27 @@ export class OffersMyselfComponent implements OnInit {
     })
   }
 
-  ionViewDidLoad() {
-    console.log("I'm alive!");
-  }
-
-  ionViewWillEnter() {
-    console.log("Will Enter!!!");
-  }
-
-  ionViewWillLeave() {
-    console.log("Looks like I'm about to leave :(");
-  }
-  
-  ionViewDidLeave() {
-    console.log("Did Leave!!!");
-  }
-
-  ionViewDidEnter() {
-    console.log("Did Enter!!!");
-  }
-
   changePage(offer) {
-    this.nav.push(OffersItemDetailComponent, { param: offer });
-    // this.appCtrl.getRootNav().push(OffersItemDetailComponent, { param: offer });
+    // this.nav.push(OffersItemDetailComponent, { param: offer });
+    // this.nav.setRoot(OffersItemDetailComponent, { param: offer });
+    // this.nav.
+    // console.log(this.appCtrl.getActiveNav().canGoBack());
+    // this.nav.push(OffersItemDetailComponent, { param: offer });
+    this.appCtrl.getRootNav().push(OffersItemDetailComponent, {
+      callback: this.myCallbackFunction,
+      param: offer
+    });
+  }
+
+  goToPage() {
+    
+  }
+
+  myCallbackFunction = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log('asd');
+      this.nav.setRoot(this.nav.getActive().component);
+      resolve();
+    });
   }
 }

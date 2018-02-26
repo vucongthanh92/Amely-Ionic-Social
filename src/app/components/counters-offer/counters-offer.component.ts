@@ -70,12 +70,17 @@ export class CountersOfferComponent implements OnInit {
         {
           text: 'Đồng ý',
           handler: () => {
+            let callback = this.navParams.get("callback");
+
+            
             switch (key) {
               case 0:
                 this.offersService.rejectCounter(counter_guid).subscribe(data => {
                   if (data.status) {
                     this.customService.toastMessage("Bạn đã xóa trao đổi !", "bottom", 5000);
-                    this.nav.popToRoot();
+                    callback("callback").then(() => {
+                      this.nav.pop();
+                    });
                   }
                 });
                 break;
@@ -83,7 +88,9 @@ export class CountersOfferComponent implements OnInit {
                 this.offersService.agreeCounter(this.offer.guid, counter_guid).subscribe(data => {
                   if (data.status) {
                     this.customService.toastMessage("Bạn đã trao đổi thành công !", "bottom", 5000);
-                    this.nav.popToRoot();
+                    callback("callback").then(() => {
+                      this.nav.pop();
+                    });
                   }
                 });
                 break;
