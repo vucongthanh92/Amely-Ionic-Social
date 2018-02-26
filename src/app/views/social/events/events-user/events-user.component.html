@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item *ngFor="let event of events">
+  <ion-item *ngFor="let event of events" (click)="goToPage()">
     <ion-row>
       <ion-col col-3>
         <img width="100%" src="{{event.avatar}}" />

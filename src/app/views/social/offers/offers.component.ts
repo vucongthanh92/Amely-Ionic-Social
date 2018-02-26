@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { CreateOfferComponent } from '../../../components/create-offer/create-offer.component';
+import { OffersMyselfComponent } from './offers-myself/offers-myself.component';
 
 @Component({
   selector: 'app-offers',
@@ -13,6 +14,9 @@ export class OffersComponent implements OnInit {
   
   ngOnInit() {
   }
+
+  tab8Root = OffersMyselfComponent;
+  tab9Root = OffersMyselfComponent;
 
   myselfPage = true;
   pendingPage = false;

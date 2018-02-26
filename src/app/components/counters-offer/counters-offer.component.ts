@@ -2,7 +2,7 @@ import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
 import { ModalCounterOfferComponent } from './modal-counter-offer/modal-counter-offer.component';
 import { OffersService } from './../../services/offers.service';
-import { NavParams, ModalController, ItemSliding, Item, AlertController } from 'ionic-angular';
+import { NavParams, ModalController, ItemSliding, Item, AlertController, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../api/models/counter-offer';
 
@@ -16,6 +16,7 @@ export class CountersOfferComponent implements OnInit {
   offer: Offer
 
   constructor(
+    private nav: NavController,
     private customService: CustomService,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
@@ -71,17 +72,24 @@ export class CountersOfferComponent implements OnInit {
           handler: () => {
             switch (key) {
               case 0:
-                this.offersService.rejectCounter(counter_guid);
-                this.customService.toastMessage("Bạn đã xóa trao đổi !", "bottom", 5000);
+                this.offersService.rejectCounter(counter_guid).subscribe(data => {
+                  if (data.status) {
+                    this.customService.toastMessage("Bạn đã xóa trao đổi !", "bottom", 5000);
+                    this.nav.popToRoot();
+                  }
+                });
                 break;
               case 1:
-                this.offersService.agreeCounter(this.offer.guid, counter_guid);
-                this.customService.toastMessage("Bạn đã trao đổi thành công !", "bottom", 5000);
+                this.offersService.agreeCounter(this.offer.guid, counter_guid).subscribe(data => {
+                  if (data.status) {
+                    this.customService.toastMessage("Bạn đã trao đổi thành công !", "bottom", 5000);
+                    this.nav.popToRoot();
+                  }
+                });
                 break;
               default:
                 break;
             }
-            console.log('Agree clicked');
           }
         }
       ]

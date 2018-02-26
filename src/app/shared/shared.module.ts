@@ -1,3 +1,4 @@
+import { EventComponent } from './../components/event/event.component';
 import { ModalCounterOfferComponent } from './../components/counters-offer/modal-counter-offer/modal-counter-offer.component';
 import { CountersOfferComponent } from './../components/counters-offer/counters-offer.component';
 import { InventoryConfirmGiftComponent } from './../components/inventory-confirm-gift/inventory-confirm-gift.component';
@@ -109,7 +110,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryTargetsGiftComponent,
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
-    ModalCounterOfferComponent
+    ModalCounterOfferComponent,
+    EventComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -153,7 +155,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryTargetsGiftComponent,
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
-    ModalCounterOfferComponent
+    ModalCounterOfferComponent,
+    EventComponent
   ],
   exports: [
     CategoriesComponent,
@@ -197,7 +200,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     InventoryTargetsGiftComponent,
     InventoryConfirmGiftComponent,
     CountersOfferComponent,
-    ModalCounterOfferComponent
+    ModalCounterOfferComponent,
+    EventComponent
   ]
 })
 export class SharedModule { }
