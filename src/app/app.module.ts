@@ -51,6 +51,7 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
+
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 
 export const firebaseConfig = {
@@ -84,7 +85,7 @@ export const firebaseConfig = {
     SettingsModule,
     ApiModule,
     MomentModule,
-    NgxQRCodeModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

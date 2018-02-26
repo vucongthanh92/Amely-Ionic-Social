@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Danh sách phản hồi</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list *ngIf="counters">
+    <ion-item-sliding *ngFor="let counter of counters">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img width="100%" src="{{ counter.product_snapshot.images[0] }}">
+        </ion-thumbnail>
+        <h2>{{ counter.product_snapshot.title }}</h2>
+        <p>{{ counter.description }}</p>
+        <ion-item class="user-info">
+          <ion-avatar item-start>
+            <img width="100%" src="{{ counter.owner.avatar }}">
+          </ion-avatar>
+          <h2>{{ counter.owner.username }}</h2>
+        </ion-item>
+        <ion-icon name="md-arrow-back" item-end></ion-icon>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="agree(counter)">
+          <ion-icon name="chatbubbles"></ion-icon>
+          Chấp nhận
+        </button>
+        <button ion-button color="danger" (click)="reject(counter)">
+          <ion-icon name="trash"></ion-icon>
+           Từ chối
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  
+</ion-content>

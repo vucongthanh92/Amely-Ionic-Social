@@ -20,6 +20,26 @@ export class OffersMyselfComponent implements OnInit {
     })
   }
 
+  ionViewDidLoad() {
+    console.log("I'm alive!");
+  }
+
+  ionViewWillEnter() {
+    console.log("Will Enter!!!");
+  }
+
+  ionViewWillLeave() {
+    console.log("Looks like I'm about to leave :(");
+  }
+  
+  ionViewDidLeave() {
+    console.log("Did Leave!!!");
+  }
+
+  ionViewDidEnter() {
+    console.log("Did Enter!!!");
+  }
+
   changePage(offer) {
     this.appCtrl.getRootNav().push(OffersItemDetailComponent, { param: offer });
   }

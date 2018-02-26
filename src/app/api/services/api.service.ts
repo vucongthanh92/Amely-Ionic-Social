@@ -2448,85 +2448,6 @@ export class ApiService extends BaseService {
     );
   }
   /**
-   * Return friend request list of user
-   */
-  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Return friend request list of user
-   */
-  getFriendRequest(): Observable<DefaultResponse> {
-    return this.getFriendRequestResponse().pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (guid != null) __params = __params.set("guid", guid.toString());
-    let req = new HttpRequest<any>(
-      "DELETE",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
-    return this.deleteFriendRequestResponse(guid).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
    * Return a friends list of an user (if not specified, the current logged in user)
    * @param user_guid - undefined
    */
@@ -2605,6 +2526,85 @@ export class ApiService extends BaseService {
    */
   deleteFriend(guid: number): Observable<DefaultResponse> {
     return this.deleteFriendResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Return friend request list of user
+   */
+  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Return friend request list of user
+   */
+  getFriendRequest(): Observable<DefaultResponse> {
+    return this.getFriendRequestResponse().pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (guid != null) __params = __params.set("guid", guid.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
+    return this.deleteFriendRequestResponse(guid).pipe(
       map(_r => _r.body)
     );
   }

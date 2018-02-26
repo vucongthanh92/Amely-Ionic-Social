@@ -1,5 +1,6 @@
+import { CountersOfferComponent } from './../../../../components/counters-offer/counters-offer.component';
 import { CustomService } from './../../../../services/custom.service';
-import { NavParams } from 'ionic-angular';
+import { NavParams, NavController, App } from 'ionic-angular';
 import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../../../../services/offers.service';
@@ -13,21 +14,25 @@ export class OffersItemDetailComponent implements OnInit {
   offer: Offer;
   product_image: any;
 
-  constructor (
+  constructor(
     private customService: CustomService,
     private offersService: OffersService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private nav: NavController,
+    private app: App
   ) {
     this.offer = this.navParams.get('param');
-    console.log(this.offer);
     this.product_image = this.offer.product_snapshot.images[0];
-    this.customService.getCurrentTime().subscribe( data => {
+    this.customService.getCurrentTime().subscribe(data => {
       this.offer.seconds = this.offer.time_end - data.current_time;
-      console.log(this.offer.seconds);
     });
   }
 
   ngOnInit() {
+  }
+
+  changePage(offer) {
+    this.app.getRootNav().push(CountersOfferComponent, { param: offer });
   }
 
 }

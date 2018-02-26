@@ -1,3 +1,6 @@
+import { EventComponent } from './../components/event/event.component';
+import { ModalCounterOfferComponent } from './../components/counters-offer/modal-counter-offer/modal-counter-offer.component';
+import { CountersOfferComponent } from './../components/counters-offer/counters-offer.component';
 import { InventoryConfirmGiftComponent } from './../components/inventory-confirm-gift/inventory-confirm-gift.component';
 import { InventoryTargetsGiftComponent } from './../components/inventory-targets-gift/inventory-targets-gift.component';
 import { ChosenItemComponent } from './../components/chosen-item/chosen-item.component';
@@ -48,6 +51,7 @@ import { LaddaModule } from 'angular2-ladda';
 import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
+
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -104,7 +108,10 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     TimerComponent,
     InventoryTargetGiftComponent,
     InventoryTargetsGiftComponent,
-    InventoryConfirmGiftComponent
+    InventoryConfirmGiftComponent,
+    CountersOfferComponent,
+    ModalCounterOfferComponent,
+    EventComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -146,7 +153,10 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     TimerComponent,
     InventoryTargetGiftComponent,
     InventoryTargetsGiftComponent,
-    InventoryConfirmGiftComponent
+    InventoryConfirmGiftComponent,
+    CountersOfferComponent,
+    ModalCounterOfferComponent,
+    EventComponent
   ],
   exports: [
     CategoriesComponent,
@@ -188,7 +198,10 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     TimerComponent,
     InventoryTargetGiftComponent,
     InventoryTargetsGiftComponent,
-    InventoryConfirmGiftComponent
+    InventoryConfirmGiftComponent,
+    CountersOfferComponent,
+    ModalCounterOfferComponent,
+    EventComponent
   ]
 })
 export class SharedModule { }
