@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content *ngIf="user" class="outer-content">
-  <div class="about-header">
+  <div [style.background]="'url(' + user.cover + ')'" class="about-header" >
     <img src="{{user.avatar}}" alt="ionic logo">
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">

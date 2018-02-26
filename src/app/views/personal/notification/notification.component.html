@@ -1,15 +1,11 @@
-<ion-content class="outer-content">
-  <ion-list>
+<ion-content padding>
+  <ion-list no-lines>
     <ion-item *ngFor="let number of [0,1,2,3,4]">
-      <ion-row>
-        <ion-col col-3>
-          <img class="notification_avatar" src="assets/imgs/logo.png" />
-        </ion-col>
-        <ion-col col-9>
-          <div class="notification_title">Thông tin tài khoản gốc</div>
-          <div class="notification_date">Nov 17,2017</div>
-        </ion-col>
-      </ion-row>
+      <ion-avatar item-start>
+        <img src="assets/imgs/logo.png">
+      </ion-avatar>
+      <h2>Thông tin tài khoản gốc</h2>
+      <p>Nov 17,2017</p>
     </ion-item>
   </ion-list>
 </ion-content>
