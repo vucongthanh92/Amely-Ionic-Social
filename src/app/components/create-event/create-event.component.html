@@ -3,7 +3,7 @@
 
     <ion-title>Tạo sự kiện</ion-title>
     <ion-buttons end>
-      <button ion-button>
+      <button ion-button (click)="createEvent()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -57,7 +57,7 @@
       <ion-col>
         <i>
           <ion-item class="marginCol1">
-            <ion-input type="text" placeholder="Tên sự kiện"></ion-input>
+            <ion-input [(ngModel)]="name" type="text" placeholder="Tên sự kiện"></ion-input>
           </ion-item>
         </i>
       </ion-col>
@@ -67,7 +67,7 @@
         <ion-label>Tạo kho quà chung</ion-label>
       </ion-col>
       <ion-col col-3 class="marginCol3">
-        <ion-checkbox checked="false"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="has_inventory" checked="false"></ion-checkbox>
       </ion-col>
     </ion-row>
     <ion-row class="marginRow">
@@ -92,36 +92,36 @@
       </ion-col>
     </ion-row>
   </div>
-  <ion-textarea class="scroll-content divCenter2" placeholder="Mô tả"> </ion-textarea>
+  <ion-textarea [(ngModel)]="description" class="scroll-content divCenter2" placeholder="Mô tả"> </ion-textarea>
   <div class="scroll-content divBottom">
     <ion-label class="labelBottom">Chuẩn bị {{title_event}}</ion-label>
   </div>
   <div class="scroll-content divBottom1">
     <ion-row class="marginRowBottom">
       <ion-col col-6 class="marginColBottom startDay">
-        <ion-datetime displayFormat="MMM DD YYYY" placeholder="Ngày bắt đầu"></ion-datetime>
+        <ion-datetime [(ngModel)]="date_start" displayFormat="MMM DD YYYY" placeholder="Ngày bắt đầu"></ion-datetime>
         <ion-icon class="iconBottom" id="iconDay"></ion-icon>
       </ion-col>
       <ion-col col-6 class="marginColBottom startTime">
-        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ bắt đầu"></ion-datetime>
+        <ion-datetime [(ngModel)]="time_start" displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ bắt đầu"></ion-datetime>
         <ion-icon class="iconBottom" id="iconHour"></ion-icon>
       </ion-col>
     </ion-row>
 
     <ion-row class="marginRowBottom">
       <ion-col col-6 class="marginColBottom endDay">
-        <ion-datetime displayFormat="MMM DD YYYY" placeholder="Ngày kết thúc"></ion-datetime>
+        <ion-datetime [(ngModel)]="date_end" displayFormat="MMM DD YYYY" placeholder="Ngày kết thúc"></ion-datetime>
         <ion-icon class="iconBottom" id="iconDay"></ion-icon>
       </ion-col>
       <ion-col col-6 class="marginColBottom endTime">
-        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ kết thúc"></ion-datetime>
+        <ion-datetime [(ngModel)]="time_end" displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Giờ kết thúc"></ion-datetime>
         <ion-icon class="iconBottom" id="iconHour"></ion-icon>
       </ion-col>
     </ion-row>
 
     <ion-row class="marginRowBottom">
       <ion-col class="marginColBottom1">
-        <ion-input class="inputBottom" type="text" placeholder="Địa điểm"></ion-input>
+        <ion-input [(ngModel)]="location" class="inputBottom" type="text" placeholder="Địa điểm"></ion-input>
         <button class="buttonLocation">
           <ion-label class="marginLabel">Bản đồ </ion-label>
           <ion-icon class="iconLocation" id="iconPlace"></ion-icon>
@@ -139,7 +139,7 @@
     <ion-row class="marginRowBottom1">
       <ion-col class="marginColBottom1">
         <ion-label class="labelBottom1">Đóng/Mở</ion-label>
-        <ion-toggle class="ionToggleBottom" checked="false"></ion-toggle>
+        <ion-toggle [(ngModel)]="is_open" class="ionToggleBottom" checked="true"></ion-toggle>
       </ion-col>
     </ion-row>
   </div>
