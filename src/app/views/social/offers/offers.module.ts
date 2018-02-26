@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from 'ionic-angular';
+import { IonicModule, IonicPageModule } from 'ionic-angular';
 
 import { OffersComponent } from './offers.component';
 import { OffersMyselfComponent } from './offers-myself/offers-myself.component';
@@ -10,8 +10,8 @@ import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
+    IonicPageModule.forChild(OffersComponent),
     CommonModule,
-    IonicModule,
     SharedModule
   ],
   declarations: [

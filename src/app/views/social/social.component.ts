@@ -20,6 +20,8 @@ export class SocialComponent implements OnInit {
   tab2Root = OffersComponent;
   tab3Root = NearByComponent;
   tab4Root = EventsComponent;
+  tab5Root = NearByComponent;
+  tab6Root = EventsComponent;
   abcdef: any;
   constructor(
     public nav: NavController, public appCtrl: App, public navParams: NavParams,

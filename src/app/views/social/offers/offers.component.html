@@ -1,34 +1,5 @@
-<ion-content class="outer-content">
-  <div *ngIf="myselfPage">
-    <app-offers-myself></app-offers-myself>
-  </div>
-  <div *ngIf="pendingPage">
-    <app-offers-pending></app-offers-pending>
-  </div>
-  <div *ngIf="searchPage">
-    <app-offers-search></app-offers-search>
-  </div>
-  <ion-fab right bottom *ngIf="myselfPage" (click)="goToPage('create-offer')">
-    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
-  <!-- fsdfsdfds
-  <ion-tabs tabsPlacement="bottom" primary>
-    <ion-tab [root]="tab8Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
-    <ion-tab [root]="tab9Root" tabTitle="CẬP dsa213" tabIcon="feed"></ion-tab>
-  </ion-tabs> -->
-</ion-content>
-<ion-footer>
-  <div class="bar bar-header bar-dark">
-    <ion-segment color="primary" [(ngModel)]="offersTab">
-      <ion-segment-button value="myself" class="segment-button" (click)="goToPage('myself');">
-        Của tôi
-      </ion-segment-button>
-      <ion-segment-button value="pending" class="segment-button" (click)="goToPage('pending');">
-        Chờ duyệt
-      </ion-segment-button>
-      <ion-segment-button value="search" class="segment-button" (click)="goToPage('search');">
-        Tìm kiếm
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-</ion-footer>
+<ion-tabs tabsPlacement="bottom">
+  <ion-tab tabTitle="Recents" [root]="tab8Root"></ion-tab>
+  <ion-tab tabTitle="Favorites" [root]="tab8Root" tabBadge="23"></ion-tab>
+  <ion-tab tabTitle="Settings" [root]="tab8Root"></ion-tab>
+</ion-tabs>

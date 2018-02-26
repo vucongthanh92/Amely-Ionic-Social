@@ -1,3 +1,4 @@
+import { OffersComponent } from './offers/offers.component';
 import { SocialService } from './social.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { NearByModule } from './near-by/near-by.module';
 import { NewsFeedModule } from './news-feed/news-feed.module';
 import { OffersModule } from './offers/offers.module';
 import { SharedModule } from '../../shared/shared.module';
+import { IonicPageModule } from 'ionic-angular';
 
 @NgModule({
   imports: [

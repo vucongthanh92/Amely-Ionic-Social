@@ -1,35 +1,38 @@
-<ion-row *ngIf="offers">
-  <ion-col col-6 style="margin: 20px 0px; position: relative;" *ngFor="let offer of offers" (click)="changePage(offer)">
-    <div style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
-      text-center>
-      <ion-icon name="timer"></ion-icon> <app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
-    </div>
-    
-    <div style="background-color: #fff; border-radius: 10px; padding: 0 30px;">
+<ion-content class="outer-content" style="height: 90%; top: 88px;">
 
-      <p *ngIf="offer.target=='public'"  style="padding-top: 30px; margin: 0px;font-size: 15px;">
-        <ion-icon class="public"></ion-icon> Xunh quanh</p>
-
-      <p *ngIf="offer.target=='location'" style="padding-top: 30px; margin: 0px;font-size: 15px;">
-        <ion-icon  class="around"></ion-icon> Theo vị trí</p>
-
-      <p *ngIf="offer.target=='friends'" style="padding-top: 30px; margin: 0px;font-size: 15px;">
-        <ion-icon  class="friend"></ion-icon> Bạn bè</p>
-      <div style="padding: 0 5px">
-        <img width="100%" *ngIf="offer.product_snapshot.images[0]" src="{{offer.product_snapshot.images[0]}}" />
-        <img width="100%" *ngIf="offer.product_snapshot.images[0]==''"  src="assets/imgs/image_not_found.jpg" />
+  <ion-row *ngIf="offers">
+    <ion-col col-6 style="margin: 20px 0px; position: relative;" *ngFor="let offer of offers" (click)="changePage(offer)">
+      <div style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
+        text-center>
+        <ion-icon name="timer"></ion-icon> <app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
       </div>
-      <p style="padding-bottom: 30px; margin: 0px;font-size: 15px;">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
-    </div>
-
-    <div *ngIf="offer.offer_type=='random'"  style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
-      text-center>
-       {{offer.counter_offers_number}}/{{offer.limit_counter}}
-    </div>
-    <div *ngIf="offer.offer_type!='random'"  style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
-      text-center>
-       {{offer.counter_offers_number}}
-    </div>
-
-  </ion-col>
-</ion-row>
+      
+      <div style="background-color: #fff; border-radius: 10px; padding: 0 30px;">
+  
+        <p *ngIf="offer.target=='public'"  style="padding-top: 30px; margin: 0px;font-size: 15px;">
+          <ion-icon class="public"></ion-icon> Xunh quanh</p>
+  
+        <p *ngIf="offer.target=='location'" style="padding-top: 30px; margin: 0px;font-size: 15px;">
+          <ion-icon  class="around"></ion-icon> Theo vị trí</p>
+  
+        <p *ngIf="offer.target=='friends'" style="padding-top: 30px; margin: 0px;font-size: 15px;">
+          <ion-icon  class="friend"></ion-icon> Bạn bè</p>
+        <div style="padding: 0 5px">
+          <img width="100%" *ngIf="offer.product_snapshot.images[0]" src="{{offer.product_snapshot.images[0]}}" />
+          <img width="100%" *ngIf="offer.product_snapshot.images[0]==''"  src="assets/imgs/image_not_found.jpg" />
+        </div>
+        <p style="padding-bottom: 30px; margin: 0px;font-size: 15px;">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
+      </div>
+  
+      <div *ngIf="offer.offer_type=='random'"  style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
+        text-center>
+         {{offer.counter_offers_number}}/{{offer.limit_counter}}
+      </div>
+      <div *ngIf="offer.offer_type!='random'"  style="border: 1px solid #eee; border-radius: 3px;font-size: 15px;background-color: #fff; box-shadow: 0px 2px #888888;margin: -10px 20px 0px;position: absolute;left: 0; right: 0;"
+        text-center>
+         {{offer.counter_offers_number}}
+      </div>
+  
+    </ion-col>
+  </ion-row>
+</ion-content>
