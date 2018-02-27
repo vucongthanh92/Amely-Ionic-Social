@@ -1,13 +1,10 @@
 /* tslint:disable */
-import { Event } from './event';
+import { Feed } from './feed';
 import { User } from './user';
 
 /**
  */
 export class inline_response_200_7 {
-    events?: Event[];
+    post?: Feed;
     users?: User[];
-    token?: string;
-    error?: string;
-    status?: boolean;
 }

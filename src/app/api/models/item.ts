@@ -18,5 +18,4 @@ export class Item {
     is_special?: string;
     stored_end?: string;
     stored_expried?: boolean;
-    used?: boolean;
 }

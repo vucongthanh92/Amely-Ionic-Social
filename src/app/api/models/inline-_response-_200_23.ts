@@ -1,12 +1,10 @@
 /* tslint:disable */
-import { Product } from './product';
-import { ShippingInfo } from './shipping-info';
-import { DeliveryInfo } from './delivery-info';
+import { Shop } from './shop';
+import { User } from './user';
 
 /**
  */
 export class inline_response_200_23 {
-    product?: Product[];
-    order?: ShippingInfo;
-    delivery_info?: DeliveryInfo;
+    shops?: Shop[];
+    owners?: User[];
 }

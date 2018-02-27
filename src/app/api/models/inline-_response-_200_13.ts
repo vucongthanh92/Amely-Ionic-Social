@@ -3,5 +3,5 @@
 /**
  */
 export class inline_response_200_13 {
-    offer_guid?: number;
+    url?: string;
 }

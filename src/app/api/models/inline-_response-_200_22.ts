@@ -1,14 +1,12 @@
 /* tslint:disable */
 import { Product } from './product';
-import { OrderInfo } from './order-info';
+import { ShippingInfo } from './shipping-info';
 import { DeliveryInfo } from './delivery-info';
-import { PaymentInfo } from './payment-info';
 
 /**
  */
 export class inline_response_200_22 {
     product?: Product[];
-    order?: OrderInfo;
+    order?: ShippingInfo;
     delivery_info?: DeliveryInfo;
-    payment_info?: PaymentInfo;
 }
