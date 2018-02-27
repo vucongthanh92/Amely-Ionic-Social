@@ -26,6 +26,8 @@ export class CountersOfferComponent implements OnInit {
     this.offer = this.navParams.get('param');
     this.offersService.getOffer(this.offer.guid).subscribe(data => {
       this.counters = data.counter_offers;
+      
+
     });
   }
 

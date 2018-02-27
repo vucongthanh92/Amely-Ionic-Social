@@ -1,3 +1,4 @@
+<ion-content class="outer-content" style="height: 90%; top: 102px;">
 <div margin *ngFor="let counterOffer of counterOffers">
   <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" *ngIf="counterOffers">
     <img *ngIf="counterOffer.offer.owner.avatar != null" width="48px" height="48px" src="{{counterOffer.offer.owner.avatar}}"
@@ -34,3 +35,4 @@
     </ion-col>
   </ion-row>
 </div>
+</ion-content>
