@@ -1,16 +1,26 @@
 app-user {
-  .about-header {
-    padding: 16px;
+  .profile_cover {
+    padding: 30px;
     width: 100%;
     min-height: 150px;
     text-align: center;
+    background-size: cover !important;
+    margin: 40px 0px 0px 0px;
+    background-position: center !important;
   }
 
-  .about-header img {
-    max-width: 200px;
-    min-height: 115px;
-    margin-left: -15px;
-    padding: 25px 0 20px 0;
+  .profile_avatar {
+    width: 65px;
+    height: 65px;
+    border: 1px solid white;
+    margin: 10px 0px 0px 0px;
+  }
+
+  .profile_fullname {
+    color: white;
+    font-size: 18px;
+    margin: 5px 0px 0px 0px;
+    text-transform: capitalize;
   }
 
   .about-info p {
@@ -23,8 +33,7 @@ app-user {
     width: 20px;
   }
 
-  .md,
-  .wp {
+  .md, .wp {
     .about-info [text-right] {
       margin-right: 0;
     }

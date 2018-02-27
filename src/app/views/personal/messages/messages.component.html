@@ -1,36 +1,24 @@
-<ion-content class="outer-content">
+<ion-content class="chats">
   <ion-list *ngIf="individualList">
-    <h3 class="message_label">Cá Nhân</h3>
+    <ion-list-header>Cá Nhân</ion-list-header>
     <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual, 'individual')">
-      <ion-row>
-        <ion-col class="message_image_box">
-          <img class="message_avatar" src="{{ individual.avatar }}" />
-        </ion-col>
-        <ion-col class="message_info" col-9>
-          <p class="message_title">{{ individual.from }}</p>
-          <p>{{ individual.text }}</p>
-          <p text-right style="font-size: 10px">
-            <time>{{ individual.time | amTimeAgo }}</time>
-          </p>
-        </ion-col>
-      </ion-row>
+      <ion-avatar item-start>
+        <img src="{{ individual.avatar }}">
+      </ion-avatar>
+      <h2>{{ individual.from }}</h2>
+      <p class="messages_content">{{ individual.text }}</p>
+      <ion-note class="message_date" item-end>{{ individual.time | amTimeAgo }}</ion-note>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="groups" >
-    <h3 class="message_label">Nhóm</h3>
+  <ion-list *ngIf="groups">
+    <ion-list-header>Nhóm</ion-list-header>
     <ion-item *ngFor="let group of groups" (click)="goToPage(group, 'group')">
-      <ion-row>
-        <ion-col class="message_image_box" col-3>
-          <img class="message_avatar" src="{{ group.avatar }}" />
-        </ion-col>
-        <ion-col class="message_info" col-9>
-          <p class="message_title">{{ group.title }}</p>
-          <p>{{ group.last_message }}</p>
-          <p text-right style="font-size: 10px">
-            <time>{{ group.last_time | amTimeAgo }}</time>
-          </p>
-        </ion-col>
-      </ion-row>
+      <ion-avatar item-start>
+        <img src="{{ group.avatar }}">
+      </ion-avatar>
+      <h2>{{ group.title }}</h2>
+      <p class="messages_content">{{ group.last_message }}</p>
+      <ion-note item-end class="message_date">{{ group.last_time | amTimeAgo }}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,22 +1,24 @@
 app-notification {
-    .list-ios {
-        margin: 12px 8px 10px 10px;
-    }
+   .item-md,.item-ios {
+        padding-left:0px;
 
-    .item-ios {
-        padding: 0px;
-        margin: 0px;
-    }
+        ion-avatar img {
+            width:55px;
+            height:55px;
+        }
 
-    .notification_avatar {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-    }
+        ion-avatar[item-start]{
+            margin: 0px 30px 8px 0;
+        }
 
-    .notification_date {
-        color: #999;
-        font-style: italic;
-        font-size: 13px;
+        .number-circle{
+            color:white;
+            font-weight: 700;
+            border-radius: 50%;
+            background-color:red;
+            width: 20px;height:20px;
+            line-height: 20px;
+            text-align: center;
+        }
     }
 }
