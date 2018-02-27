@@ -3,27 +3,26 @@
     <ion-title>Trang cá nhân</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content *ngIf="user" class="outer-content">
   <div [style.background]="'url(' + user.cover + ')'" class="profile_cover">
     <img src="{{user.avatar}}" class="profile_avatar" alt="{{user.fullname}}">
     <div class="profile_fullname">{{user.fullname}}</div>
   </div>
-  <div class="bar bar-header bar-dark" style="background-color: #fff;">
+
+  <div class="bar bar-header bar-dark profile_bar">
     <ion-segment color="primary" [(ngModel)]="userTab">
-      <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button" style="border-radius: 0px; border: 0px;border-right: 1px solid #eee;"
-        (click)="goToPage(user,'newfeeds');">
-        <img id="tabIconFeeds" />
-        <div class="txtTitle">Cập Nhật</div>
+      <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button profile_tab" (click)="goToPage(user,'newfeeds');">
+        <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+        <div class="profile_tab_title">Cập Nhật</div>
       </ion-segment-button>
-      <ion-segment-button value="images" class="segment-button" style="border-radius: 0px; border: 0px;  border-right: 1px solid #eee;"
-        (click)="goToPage(user,'images');">
-        <img id="tabIconImage" />
-        <div class="txtTitle">Hình Ảnh</div>
+      <ion-segment-button value="images" class="segment-button profile_tab" (click)="goToPage(user,'images');">
+        <ion-icon ios="ios-images" md="md-images"></ion-icon>
+        <div class="profile_tab_title">Hình Ảnh</div>
       </ion-segment-button>
-      <ion-segment-button value="friends" class="segment-button" style="border-radius: 0px; border: 0px; border-right: 1px solid #eee;"
-        (click)="goToPage(user,'friends');">
-        <img id="tabIconFriend" />
-        <div class="txtTitle">Bạn Bè</div>
+      <ion-segment-button value="friends" class="segment-button profile_tab" (click)="goToPage(user,'friends');">
+        <ion-icon ios="ios-people" md="md-people"></ion-icon>
+        <div class="profile_tab_title">Bạn Bè</div>
       </ion-segment-button>
     </ion-segment>
     <ion-row text-center *ngIf="!is_user_current">
@@ -55,14 +54,15 @@
   </ion-refresher>
 
   <div *ngIf="newfeedsPage">
-    <ion-card *ngIf="user.shop.guid" style="margin-left: 0px; margin-right: 0px; width: 100%">
+    <ion-card *ngIf="user.shop.guid" class="profile_store">
       <ion-card-content>
         <ion-item (click)="goToPage(user.shop.guid, 'shop')">
           <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
         </ion-item>
       </ion-card-content>
     </ion-card>
-    <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
+
+    <ion-card class="profile_info">
       <ion-card-content>
         <ion-row>
           <ion-col col-6>
