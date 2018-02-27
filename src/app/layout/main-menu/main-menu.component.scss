@@ -2,13 +2,6 @@ app-main-menu {
     .menu-inner {
         width: 50%;
     }
-    
-    .main-nav p {
-        text-align : center;
-        margin-top: 0px;
-        color: white;
-        margin: 10px 0px 0px 0px;
-    }
 
     .content-main {
         background-image: url("../assets/imgs/background.jpg");
@@ -16,6 +9,23 @@ app-main-menu {
 
     .menu_images {
         border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        background-position: center !important;
+        background-size: cover !important;
+    }
+
+    .main-nav {
+        margin-top: 15px;
+    }
+
+    .main_title {
+        overflow: hidden;
         width: 100%;
+        text-align: center;
+        margin-top: 0px;
+        color: white;
+        margin: 10px 0px 0px 0px;
+        text-transform: uppercase;
     }
 }
