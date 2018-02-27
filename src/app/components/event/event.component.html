@@ -1,9 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Nhom A</ion-title>
+    <ion-title *ngIf="event">{{event.title}}</ion-title>
+    <ion-buttons end *ngIf="is_user">
+      <button ion-button (click)="openPopover($event)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content" >
+<ion-content class="outer-content" *ngIf="event">
   <div class="about-header">
     <img src="assets/imgs/logo.png" alt="ionic logo">
 
@@ -21,7 +26,7 @@
 
       </ion-segment-button>
     </ion-segment>
-    <ion-row text-center>
+    <ion-row text-center *ngIf="event.has_inventory=='1'">
       <ion-col col-6>
         <button ion-button icon-left clear small color="danger" (click)="goToPage('gift')">
           <ion-icon name="thumbs-up"></ion-icon>
@@ -37,42 +42,58 @@
         <ion-row>
           <ion-col col-12>
             <p>
-              <img class="iconGroup" src="assets/imgs/ic_setting_private_actived.png"> Quản trị nhóm: dasdas
+              <img class="iconGroup" src="assets/imgs/ic_setting_private_actived.png"> Quản trị : {{event.creator.fullname}}
             </p>
             <p>
-              <img class="iconGroup" src="assets/imgs/ic_inventory_history_actived.png"> Ngày lập: dasddasd
+              <img class="iconGroup" src="assets/imgs/ic_inventory_history_actived.png"> Ngày lập: {{convertDate(event.time_created) | date: ' H:mm dd/MM/yyyy'}}
             </p>
             <p>
-              <img class="iconGroup" src="assets/imgs/ic_member_actived.png"> Số thành viên:dasdas
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png"> Số thành viên: {{countMember()}}
+            </p>
+            <p *ngIf="eventService.publish==0">
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png">Sự kiện đã đóng
+            </p>
+            <p *ngIf="eventService.publish==1">
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png">Sự kiện đã mở và chưa công bố
+            </p>
+            <p *ngIf="eventService.publish==2">
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png">Sự kiện đã được công bố
+            </p>
+            <p *ngIf="eventService.publish==3">
+              <img class="iconGroup" src="assets/imgs/ic_member_actived.png">Sự kiện đã được công bố và đã đóng
             </p>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
     <ion-list>
-      <!-- <ion-list *ngIf="groupGuid">
-        <app-feeds [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid"></app-feeds>
-      </ion-list> -->
+      <ion-list *ngIf="event_guid">
+        <app-feeds [type]="'event'" [feed_type]="event" [owner_guid]="event_guid"></app-feeds>
+      </ion-list>
     </ion-list>
   </div>
   <div *ngIf="membersPage">
     <ion-list>
       <p>Chủ sự kiện</p>
-      <ion-item>
-        dsad
+      <ion-item *ngIf="getUser(event.creator.guid)">
+        <img width="50px" height="50px"  src="{{getUser(event.creator.guid).avatar}}"> {{getUser(event.creator.guid).fullname}}
       </ion-item>
     </ion-list>
     <ion-list>
       <p>Đồng tổ chức</p>
-      <ion-item>
-        dsad
-      </ion-item>
+      <div *ngFor="let guid of string_members">
+        <ion-item *ngIf="getUser(guid)">
+          <img width="50px" height="50px"  src="{{getUser(guid).avatar}}"> {{getUser(guid).fullname}}
+        </ion-item>
+      </div>
     </ion-list>
     <ion-list>
       <p>Khách mời</p>
-      <ion-item>
-        dsad
-      </ion-item>
+      <div *ngFor="let guid of string_guests">
+        <ion-item *ngIf="getUser(guid)">
+          <img width="50px" height="50px" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}"> {{getUser(guid).fullname}}
+        </ion-item>
+      </div>
     </ion-list>
   </div>
 </ion-content>

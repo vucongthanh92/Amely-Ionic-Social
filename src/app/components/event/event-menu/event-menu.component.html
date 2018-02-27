@@ -1,0 +1,11 @@
+<ion-list>
+  <ion-item (click)="publicEvent()" *ngIf="eventSerive.publish==1">
+    <ion-icon name="person"></ion-icon> Công bố sự kiện
+  </ion-item>
+  <ion-item (click)="closeOpenEvent()">
+    <div *ngIf="eventSerive.publish==1 || eventSerive.publish==2 ">
+      <ion-icon name="person"></ion-icon> Đóng sự kiện</div>
+    <div *ngIf="eventSerive.publish==0 ||eventSerive.publish==3">
+      <ion-icon name="person"></ion-icon> Mở sự kiện</div>
+  </ion-item>
+</ion-list>

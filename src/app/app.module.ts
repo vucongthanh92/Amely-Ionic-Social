@@ -1,3 +1,4 @@
+import { WalletsService } from './services/wallets.service';
 import { InvitationService } from './services/invitation.service';
 import { FirebaseService } from './services/firebase.service';
 import { PaymentService } from './services/payment.service';
@@ -66,7 +67,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    MainMenuComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +116,7 @@ export const firebaseConfig = {
     OfferService,
     FirebaseService,
     InvitationService,
+    WalletsService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

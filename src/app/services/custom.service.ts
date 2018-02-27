@@ -83,4 +83,8 @@ export class CustomService {
   invite(from_guid: number, to_guid: number[], invitation_type: string) {
     return this.api.createInvitation({ from_guid: from_guid, to_guid: to_guid, invitation_type: invitation_type });
   }
+
+  getTransactions(type: string) {
+    return this.api.getTransactions(type);
+  }
 }

@@ -5,6 +5,6 @@ import { User } from './user';
 /**
  */
 export class inline_response_200_6 {
-    events?: Event[];
+    events?: Event;
     users?: User[];
 }

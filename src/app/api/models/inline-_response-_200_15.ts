@@ -1,12 +1,12 @@
 /* tslint:disable */
-import { Product } from './product';
-import { Category } from './category';
-import { Shop } from './shop';
+import { Shipping_methods } from './shipping-_methods';
+import { Payment_methods } from './payment-_methods';
+import { Options } from './options';
 
 /**
  */
 export class inline_response_200_15 {
-    product?: Product;
-    categories?: Category[];
-    shop?: Shop;
+    shipping_methods?: Shipping_methods;
+    payment_methods?: Payment_methods;
+    options?: Options;
 }

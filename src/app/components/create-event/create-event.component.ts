@@ -1,7 +1,7 @@
 import { EventsService } from './../../services/events.service';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, AlertController } from 'ionic-angular';
+import { App, NavController, AlertController, NavParams } from 'ionic-angular';
 import { User } from '../../api/models';
 
 @Component({
@@ -30,7 +30,8 @@ export class CreateEventComponent implements OnInit {
   public location: string;
   public is_open: boolean;
   public type = this.type_default;
-  constructor(public nav: NavController, public appCtrl: App, private alertCtrl: AlertController, private customSerivce: CustomService,private eventService:EventsService) {
+  constructor(public nav: NavController, public appCtrl: App, private alertCtrl: AlertController, private customSerivce: CustomService,
+    private eventService: EventsService, public params: NavParams) {
 
   }
 
@@ -56,7 +57,6 @@ export class CreateEventComponent implements OnInit {
     alert.addButton({
       text: 'Đồng ý',
       handler: (data: any) => {
-        console.log(data);
         if (this.type == this.type_marry && data.length > 1) {
           this.customSerivce.toastMessage('Đám cưới chỉ được mời thêm 1 thành viên', 'bottom', 2000)
         } else {
@@ -86,7 +86,6 @@ export class CreateEventComponent implements OnInit {
     alert.addButton({
       text: 'Đồng ý',
       handler: (data: any) => {
-        console.log('Checkbox data:', data);
         this.guests_chosen = data;
       }
     });
@@ -121,28 +120,11 @@ export class CreateEventComponent implements OnInit {
   }
 
   createEvent() {
-    // console.log(this.type);
-    // console.log(this.name);
-    // console.log(this.has_inventory);
-    // console.log(this.members_chosen);
-    // console.log(this.description);
-    // console.log(this.date_start);
-    // console.log(this.time_start);
-    // console.log(this.date_end);
-    // console.log(this.time_end);
-    // console.log(this.location);
-    // console.log(this.guests_chosen);
-    // console.log(this.is_open);
-
     const string_datetime_start = this.date_start + " " + this.time_start;
     const datetime_start = new Date(Date.parse(string_datetime_start)).getTime();
 
     const string_datetime_end = this.date_end + " " + this.time_end;
     const datetime_end = new Date(Date.parse(string_datetime_end)).getTime();
-
-    console.log(Date.now());
-    console.log(datetime_start);
-    console.log(datetime_end);
 
     if (!this.name) {
       this.customSerivce.toastMessage('Tên sự kiện không được để trống !', 'bottom', 2000);
@@ -163,8 +145,24 @@ export class CreateEventComponent implements OnInit {
     } else if (!this.location) {
       this.customSerivce.toastMessage('Địa điểm không được để trống !', 'bottom', 2000);
     } else {
-      // this.eventService.createEvent();
+      // template: string, title: string, start_date: string, end_date: string,
+      //   country: string, location: string, description: string, has_inventory: string, status: string,
+      //     event_type: string, owner_guid: number, members: string[], invites: string[]
+      const status = this.is_open ? "2" : "1";
+      this.eventService.createEvent(this.type, this.name, (datetime_start / 1000) + "", (datetime_end / 1000) + "", "",
+        this.location, this.description, this.has_inventory ? "1" : "", status, 'user', this.customSerivce.user_current.guid,
+        this.members_chosen, this.guests_chosen).subscribe(data => {
+          if (data.status) {
+            this.customSerivce.toastMessage('Thành công', 'bottom', 2000);
+            let callback = this.params.get("callback");
+            callback().then(() => {
+              this.nav.pop();
+            });
 
+          } else {
+            this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
+          }
+        });
     }
 
   }
