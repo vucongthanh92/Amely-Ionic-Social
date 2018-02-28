@@ -21,7 +21,11 @@ export class OffersPendingComponent implements OnInit {
     });
   }
 
-  getTimeString(time : number){
+  getTimeString(time : number) {
     return new Date(time*1000);
+  }
+
+  detail() {
+
   }
 }

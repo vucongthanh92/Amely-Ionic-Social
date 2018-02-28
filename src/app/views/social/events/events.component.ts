@@ -1,3 +1,6 @@
+import { EventsHistoryComponent } from './events-history/events-history.component';
+import { EventsUserComponent } from './events-user/events-user.component';
+import { EventsGuestComponent } from './events-guest/events-guest.component';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { CreateEventComponent } from '../../../components/create-event/create-event.component';
@@ -11,6 +14,10 @@ export class EventsComponent implements OnInit {
   userPage = true;
   guestPage = false;
   historyPage = false;
+  
+  tab1Root = EventsUserComponent;
+  tab2Root = EventsGuestComponent;
+  tab3Root = EventsHistoryComponent;
   
   constructor(public nav: NavController, public appCtrl: App) {}
 

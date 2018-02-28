@@ -1,28 +1,5 @@
-<ion-content class="outer-content">
-  <div *ngIf="userPage">
-    <app-events-user></app-events-user>
-  </div>
-  <div *ngIf="guestPage">
-    <app-events-guest></app-events-guest>
-  </div>
-  <div *ngIf="historyPage">
-    <app-events-history></app-events-history>
-  </div>
-
-</ion-content>
-
-<ion-footer>
-  <div class="bar bar-header bar-dark">
-    <ion-segment color="primary" [(ngModel)]="eventsTab">
-      <ion-segment-button value="user" class="segment-button" (click)="goToPage('user');">
-        Thành viên
-      </ion-segment-button>
-      <ion-segment-button value="guest" class="segment-button" (click)="goToPage('guest');">
-        Khách mời
-      </ion-segment-button>
-      <ion-segment-button value="history" class="segment-button" (click)="goToPage('history');">
-        Lịch sử
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-</ion-footer>
+<ion-tabs tabsPlacement="bottom">
+  <ion-tab tabTitle="THÀNH VIÊN" [root]="tab1Root"></ion-tab>
+  <ion-tab tabTitle="KHÁCH MỜI" [root]="tab2Root"></ion-tab>
+  <ion-tab tabTitle="LỊCH SỬ" [root]="tab3Root"></ion-tab>
+</ion-tabs>

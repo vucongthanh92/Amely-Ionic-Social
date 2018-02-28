@@ -1,14 +1,16 @@
-<ion-list>
-  <ion-item *ngFor="let event of events">
-    <ion-row>
-      <ion-col col-3>
-        <img width="100%" src="{{event.avatar}}" />
-      </ion-col>
-      <ion-col col-9>
-        {{event.title}}
-        <br>{{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}
-        <br>Chủ sự kiện :{{getFullname(event.owner_guid)}}
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
+<ion-content class="outer-content" style="height: 90%; top: 102px;">
+  <ion-list>
+    <ion-item *ngFor="let event of events">
+      <ion-row>
+        <ion-col col-3>
+          <img width="100%" src="{{event.avatar}}" />
+        </ion-col>
+        <ion-col col-9>
+          {{event.title}}
+          <br>{{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}
+          <br>Chủ sự kiện :{{getFullname(event.owner_guid)}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
