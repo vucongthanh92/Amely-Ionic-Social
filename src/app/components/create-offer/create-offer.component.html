@@ -12,7 +12,9 @@
 <ion-content class="outer-content" style="background-color: #57bde3;">
   <div class="scroll-content divBody">
     <ion-grid>
+      <div *ngIf="!counter">
 
+      
       <ion-row class="marginRow">
         <ion-col col-4>
           <div class="divSize">
@@ -85,7 +87,7 @@
           <ion-icon class="iconSize" name="md-calendar"></ion-icon>
         </ion-col>
       </ion-row>
-
+      </div>
       <ion-row class="marginRow">
         <ion-col col-12>
           <div class="divSize">
@@ -113,6 +115,26 @@
               <ion-input class="item-ios" type="text" [(ngModel)]="description" name="description" placeholder="Nhập ghi chú (tối đa 50 ký tự)"></ion-input>
             </ion-item>
           </i>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="counter">
+        <ion-col col-12>
+          <div class="divSize">
+            <ion-label>Đối tượng trao đổi</ion-label>
+          </div>
+        </ion-col>
+        <ion-col col-12>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="{{ offer_target.owner.avatar }}">
+            </ion-avatar>
+            <h2>{{ offer_target.owner.username }}</h2>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <img width="100%" src="{{ offer_target.product_snapshot.images[0] }}">
+          <h2>{{ offer_target.product_snapshot.title }}</h2>
         </ion-col>
       </ion-row>
 

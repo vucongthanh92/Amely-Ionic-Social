@@ -1,11 +1,12 @@
 <ion-content class="outer-content" style="height: 90%; top: 102px;">
-  <button ion-button full>Mọi người xung quanh</button>
 <ion-row>
-  <ion-col col-6 *ngFor="let offer of offers">
+  <ion-col col-6 *ngFor="let offer of offers" (click)="changePage(offer)">
     <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" margin-top>
       <img width="48px" height="48px" src="{{offer.owner.avatar}}" style="position: absolute;top: -10px;z-index: 1;" />
       <ion-col col-12 text-right margin->
-        <ion-icon name="timer"></ion-icon> 1 ngay 12:00
+        <strong>
+          <ion-icon name="timer"></ion-icon><app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
+        </strong>
       </ion-col>
     </ion-row>
     <ion-row style="background-color: #fff;margin-top: 5px;padding: 10px;border-radius: 10px;position: relative;z-index: 0;">
@@ -21,7 +22,13 @@
           <ion-icon class="friend"></ion-icon> Bạn bè</p>
 
 
-        <div style="padding: 0 5px">
+        <div style="padding: 0 5px" class="item-ribbon">
+          <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
+            <span>FREE</span>
+          </span>
+          <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
+            <span>RANDOM</span>
+          </span>
           <img *ngIf="offer.product_snapshot.images[0]" width="100%" src="{{offer.product_snapshot.images[0]}}" />
           <img *ngIf="offer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
         </div>
@@ -35,8 +42,8 @@
   </ion-col>
 </ion-row>
 </ion-content>
-<ion-fab right bottom (click)="goToPage()">
-  <button ion-fab color="danger" style="bottom: 50px;">
-    <ion-icon name="add"></ion-icon>
+<ion-fab right bottom>
+  <button ion-fab color="primary" style="bottom: 50px;" (click)="doRadio()">
+    <ion-icon name="funnel"></ion-icon>
   </button>
 </ion-fab>

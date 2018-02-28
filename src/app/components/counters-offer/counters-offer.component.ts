@@ -47,6 +47,10 @@ export class CountersOfferComponent implements OnInit {
     console.log('dasda');
   }
 
+  detail(counter) {
+    console.log(counter);
+  }
+
   reject(counter) {
     let username = counter.owner.username;
     let message = "Bạn từ chối trao đổi với " + username + " ? ";

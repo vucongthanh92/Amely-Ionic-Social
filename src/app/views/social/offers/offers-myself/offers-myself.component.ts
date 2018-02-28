@@ -1,3 +1,4 @@
+import { CreateOfferComponent } from './../../../../components/create-offer/create-offer.component';
 import { Offer } from './../../../../api/models/offer';
 import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
@@ -40,12 +41,11 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   goToPage() {
-    
+    this.appCtrl.getRootNav().push(CreateOfferComponent);
   }
 
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
-      console.log('asd');
       this.nav.setRoot(this.nav.getActive().component);
       resolve();
     });

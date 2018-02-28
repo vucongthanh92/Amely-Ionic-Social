@@ -1,38 +1,32 @@
 <ion-content class="outer-content" style="height: 90%; top: 102px;">
-<div margin *ngFor="let counterOffer of counterOffers">
-  <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" *ngIf="counterOffers">
-    <img *ngIf="counterOffer.offer.owner.avatar != null" width="48px" height="48px" src="{{counterOffer.offer.owner.avatar}}"
-      style="position: absolute;top: -10px" />
-
-    <ion-col *ngIf="counterOffer.offer.target=='public'" col-12 text-right margin->
-      <ion-icon class="public"></ion-icon> Xung quanh
-    </ion-col>
-
-    <ion-col *ngIf="counterOffer.offer.target=='location'" col-12 text-right margin->
-      <ion-icon class="around"></ion-icon> Theo vị trí
-    </ion-col>
-
-    <ion-col *ngIf="counterOffer.offer.target=='friends'" col-12 text-right margin->
-      <ion-icon class="friend"></ion-icon> Bạn bè
-    </ion-col>
-
-  </ion-row>
-  <ion-row style="background-color: #fff;margin-top: 5px;padding: 10px;border-radius: 10px;">
-    <ion-col col-3>
-      <img *ngIf="counterOffer.product_snapshot.images[0]" width="100%" src="{{counterOffer.product_snapshot.images[0]}}" />
-      <img *ngIf="counterOffer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
-    </ion-col>
-    <ion-col col-9>
-      <div text-left>
-        {{counterOffer.product_snapshot.title}} #{{counterOffer.guid}}
-      </div>
-      <div text-left>
-        {{counterOffer.description}}
-      </div>
-      <div text-right>
-        {{getTimeString(counterOffer.time_created) | date:"HH:mm dd/MM/yy" }}
-      </div>
-    </ion-col>
-  </ion-row>
-</div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let counterOffer of counterOffers">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img width="100%" src="{{ counterOffer.product_snapshot.images[0] }}">
+          <img *ngIf="counterOffer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
+        </ion-thumbnail>
+        <h2>{{ counterOffer.product_snapshot.title }}</h2>
+        <p>{{ counterOffer.description }}</p>
+        <ion-item class="user-info">
+          <ion-avatar item-start>
+            <img width="100%" src="{{ counterOffer.offer.owner.avatar }}">
+          </ion-avatar>
+          <h2>{{ counterOffer.offer.owner.username }}</h2>
+        </ion-item>
+        <ion-icon name="md-arrow-back" item-end></ion-icon>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="detail(counterOffer)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          Xem chi tiết
+        </button>
+        <button ion-button color="danger" (click)="delete(counterOffer)">
+          <ion-icon name="trash"></ion-icon>
+          Xóa
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+
