@@ -69,8 +69,8 @@ export class InventoryComponent implements OnInit {
       { position: 4, item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
       { position: 5, item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
       { position: 6, item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
-      { position: 7, item_type: 'expired', title: 'Hết hạn dùng', image: 'assets/imgs/ic_inventory_wanna_send.png' },
-      { position: 8, item_type: 'stored', title: 'Hết hạn lưu kho', image: 'assets/imgs/ic_inventory_wanna_send.png' },
+      { position: 7, item_type: 'expired', title: 'Hết hạn dùng', image: 'assets/imgs/ic_used_actived.png' },
+      { position: 8, item_type: 'stored', title: 'Hết hạn lưu kho', image: 'assets/imgs/ic_expried.png' },
       { position: 9, item_type: 'nearly_expiry', title: '', image: '' },
       { position: 10, item_type: 'nearly_stored', title: '', image: '' }];
 

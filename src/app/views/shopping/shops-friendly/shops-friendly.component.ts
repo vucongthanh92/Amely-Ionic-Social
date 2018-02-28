@@ -21,10 +21,10 @@ export class ShopsFriendlyComponent implements OnInit {
     });
   }
 
-  goToPage(value) {
+  goToPage(value, guid) {
     switch (value) {
       case 'shop':
-        this.appCtrl.getRootNav().push(ShopComponent);
+        this.appCtrl.getRootNav().push(ShopComponent, { guid: guid });
         break;
       default:
         break;

@@ -1,3 +1,4 @@
+import { CreateShopComponent } from './../components/create-shop/create-shop.component';
 import { EventMenuComponent } from './../components/event/event-menu/event-menu.component';
 import { EventComponent } from './../components/event/event.component';
 import { ModalCounterOfferComponent } from './../components/counters-offer/modal-counter-offer/modal-counter-offer.component';
@@ -112,7 +113,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     CountersOfferComponent,
     ModalCounterOfferComponent,
     EventComponent,
-    EventMenuComponent
+    EventMenuComponent,
+    CreateShopComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -158,7 +160,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     CountersOfferComponent,
     ModalCounterOfferComponent,
     EventComponent,
-    EventMenuComponent
+    EventMenuComponent,
+    CreateShopComponent
   ],
   exports: [
     CategoriesComponent,
@@ -204,7 +207,8 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     CountersOfferComponent,
     ModalCounterOfferComponent,
     EventComponent,
-    EventMenuComponent
+    EventMenuComponent,
+    CreateShopComponent
   ]
 })
 export class SharedModule { }

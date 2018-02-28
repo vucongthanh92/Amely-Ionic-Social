@@ -30,12 +30,11 @@ export class EventMenuComponent implements OnInit {
     })
   }
   closeOpenEvent() {
-    console.log(this.eventSerive.publish);
 
-    if (this.event) {
-      console.log(this.event);
+    // if (this.event) {
+    //   console.log(this.event);
       
-    }
+    // }
     if (this.eventSerive.publish == 1 || this.eventSerive.publish == 2) {
       // close
       this.eventSerive.openCloseEvent(this.event.location, this.event.guid, this.event.description, this.event.start_date + '', this.event.end_date + '', this.event.country,

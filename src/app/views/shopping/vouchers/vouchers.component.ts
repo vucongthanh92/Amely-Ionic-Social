@@ -28,10 +28,10 @@ export class VouchersComponent implements OnInit {
     })
   }
 
-  goToPage(value, voucher: Product) {
+  goToPage(value, voucher: Product,category:Category) {
     switch (value) {
       case 'category':
-        this.appCtrl.getRootNav().push(ProductCategoryComponent);
+          this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
         break;
       case 'product':
         this.appCtrl.getRootNav().push(ProductComponent, { guid: voucher.guid });

@@ -1,3 +1,8 @@
+import { ShopsService } from './../../../services/shops.service';
+import { CreateShopComponent } from './../../../components/create-shop/create-shop.component';
+import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
+import { Wallet } from './../../../api/models/wallet';
+import { InventoriesService } from './../../../services/inventories.service';
 import { guid } from './../../../api/models/guid';
 import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
 import { CustomService } from './../../../services/custom.service';
@@ -12,7 +17,8 @@ export class SettingPrivateComponent implements OnInit {
 
   is_qr: boolean = false;
   code_qr: string;
-  constructor(private customService: CustomService, private nav: NavController, private appCtrl: App) { }
+  constructor(private customService: CustomService, private nav: NavController, private appCtrl: App,
+    private inventoriesService: InventoriesService, private shopService: ShopsService) { }
 
   ngOnInit() {
 
@@ -22,6 +28,34 @@ export class SettingPrivateComponent implements OnInit {
   }
 
   openShop() {
+    this.inventoriesService.getWallet().subscribe(data => {
+
+
+      if (data.guid == null) {
+        this.appCtrl.getRootNav().push(CreateWalletComponent);
+      } else {
+        this.getRequestShop();
+      }
+    })
+  }
+
+  // define('SHOP_REQUESTING', 0);
+  // define('SHOP_PENDING', 1);
+  // define('SHOP_REJECTED', 2);
+  // define('SHOP_APPROVED', 3);
+  // define('SHOP_SUSPENDED', 4);
+  // define('SHOP_UNPUBLISHED', 5);
+  getRequestShop() {
+    this.shopService.getRequestShop().subscribe(data => {
+      if (data.status == '3') {
+        this.customService.toastMessage('Đã tạo cửa hàng .', 'bottom', 2000)
+      } else if (data.status == '4') {
+        this.customService.toastMessage('Cửa hàng đã bị khóa .', 'bottom', 2000)
+      } else if (data.status == '5') {
+        this.customService.toastMessage('Cửa hàng đã đóng .', 'bottom', 2000)
+      } else
+        this.appCtrl.getRootNav().push(CreateShopComponent, { shop: data })
+    })
 
   }
 

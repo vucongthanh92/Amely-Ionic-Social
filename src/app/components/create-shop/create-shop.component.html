@@ -5,47 +5,57 @@
 </ion-header>
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item>
-      <ion-input type="text" placeholder="Tên cửa hàng"></ion-input>
+    <ion-item *ngIf="shop.status=='2'">
+      Cửa hàng không được phê duyệt vì {{shop.reason}}
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Số điện thoại cửa hàng"></ion-input>
+      <ion-input [(ngModel)]="name" type="text" placeholder="Tên cửa hàng"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Địa chỉ cửa hàng"></ion-input>
+      <ion-input type="tel" [(ngModel)]="phone" type="text" placeholder="Số điện thoại cửa hàng"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="BIDN"></ion-input>
+      <ion-input [(ngModel)]="address" type="text" placeholder="Địa chỉ cửa hàng"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Adjourn Price"></ion-input>
+      <ion-input type="number" [(ngModel)]="BIDN" placeholder="Mã doanh nghiệp"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Friend Url"></ion-input>
+      <ion-input type="number" [(ngModel)]="price" type="text" placeholder="Adjourn Price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="friend_url" type="text" placeholder="Friend Url"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Phương thức vận chuyển</ion-label>
-      <ion-select interface="popover">
-        <ion-option value="s">Self</ion-option>
-        <ion-option value="sq">SieuQua</ion-option>
+      <ion-select [(ngModel)]="shipping_method" interface="popover">
+        <ion-option value="Self">Self</ion-option>
+        <ion-option value="SieuQua">SieuQua</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Tên chủ shop"></ion-input>
+      <ion-input [(ngModel)]="owner_name" type="text" placeholder="Tên chủ shop"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Số điện thoại của chủ shop"></ion-input>
+      <ion-input type="tel" [(ngModel)]="owner_phone_number" type="text" placeholder="Số điện thoại của chủ shop"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Địa chỉ của chủ shop"></ion-input>
+      <ion-input [(ngModel)]="owner_address" type="text" placeholder="Địa chỉ của chủ shop"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="SSN"></ion-input>
+      <ion-input type="number" [(ngModel)]="ssn" type="text" placeholder="SSN"></ion-input>
     </ion-item>
   </ion-list>
   <div>*** In clicking submit you are agreeing to the Terms and Conditions</div>
-
+  <!-- define('SHOP_REQUESTING', 0);
+    define('SHOP_PENDING', 1);
+    define('SHOP_REJECTED', 2); 
+    define('SHOP_APPROVED',  3); 
+    define('SHOP_SUSPENDED', 4); 
+    define('SHOP_UNPUBLISHED', 5); -->
   <div padding>
-    <button ion-button color="primary" block>SUBMIT</button>
+    <button *ngIf="shop.status=='1'" [disabled]=true ion-button color="primary" block>Đang đợi phê duyệt</button>
+    <button *ngIf="shop.status=='2'" (click)="createShop()" ion-button color="primary" block>Cập nhật</button>
+    <button *ngIf="shop.status==false" (click)="createShop()" ion-button color="primary" block>Tạo cửa hàng</button>
   </div>
 </ion-content>

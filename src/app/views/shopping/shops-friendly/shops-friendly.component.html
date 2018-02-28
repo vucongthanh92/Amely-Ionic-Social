@@ -1,12 +1,12 @@
 <ion-content class="outer-content">
-  <ion-list *ngFor="let shop of shops" (click)="goToPage('shop');">
+  <ion-list *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
     <ion-row class="shop_friendly_row">
       <ion-col class="shop_friendly_box_image">
         <img *ngIf="shop.avatar" src="{{shop.avatar}}" >
       </ion-col>
       <ion-col class="shop_friendly_info" col-12>
-        <ion-label class="shop_friendly_title">Name Shop</ion-label>
-        <ion-label class="shop_friendly_description">good very good</ion-label>
+        <ion-label class="shop_friendly_title">{{shop.title}}</ion-label>
+        <ion-label *ngIf="shop.description"  class="shop_friendly_description">{{shop.description}}</ion-label>
       </ion-col>
     </ion-row>
   </ion-list>

@@ -1,5 +1,6 @@
 /* tslint:disable */
 import { Mood } from './mood';
+import { Shop } from './shop';
 
 /**
  */
@@ -18,4 +19,5 @@ export class User {
     avatar?: string;
     cover?: string;
     mood?: Mood;
+    shop?: Shop;
 }

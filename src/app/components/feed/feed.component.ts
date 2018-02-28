@@ -23,6 +23,8 @@ export class FeedComponent {
   moodLocal: any;
   moodIcon: string;
   subArrUserTag: any;
+  is_change_avatar: boolean;
+  is_change_conver: boolean;
 
   constructor(
     public menuCtrl: MenuController,
@@ -40,6 +42,11 @@ export class FeedComponent {
     // if (this.mood) {
     //   this.moodIcon = this.moodLocal[this.mood.guid]
     // }
+
+    // if (this.post.) {
+
+    // }
+
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
     this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;
@@ -65,6 +72,11 @@ export class FeedComponent {
           this.descriptionPost = "Đã thay đổi ảnh bìa";
           break;
       }
+      if (this.descriptionPost == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
+        this.descriptionPost = 'Đã thay đổi ảnh bìa'
+      } else if (this.descriptionPost == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen') {
+        this.descriptionPost = 'Đã thay đổi ảnh đại diện'
+      }
     }
   }
 
@@ -72,6 +84,9 @@ export class FeedComponent {
     this.appCtrl.getRootNav().push(CommentsComponent, { guid: this.post.guid });
   }
 
+  convertDate(time: number) {
+    return new Date(time * 1000);
+  }
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create(FeedMenuComponent);
     popover.present({

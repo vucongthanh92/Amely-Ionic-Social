@@ -15,8 +15,6 @@ import { Transaction } from '../../api/models';
 export class WalletComponent implements OnInit {
   public wallet: Wallet;
   public transactions: Array<Transaction>;
-  a = `<h1>12321</h1>
-      <p> 123213 </p>`;
   private PURCHASEORDER = "PurchaseOrder"; private CREATEADVERTISE = "CreateAdvertise";
   private DELETEADVERTISE = "DeleteAdvertise"; private CHANGEADVERTISE = "ChangeAdvertise";
   constructor(
