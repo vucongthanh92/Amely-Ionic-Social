@@ -52,11 +52,13 @@ export class ChosenItemComponent implements OnInit {
     profileModal.present();
 
     profileModal.onDidDismiss(item => {
-      let callback = this.params.get("callback");
-
-      callback(item.item).then(() => {
-        this.nav.pop();
-      });
+      if (typeof (item) != "undefined") {
+        let callback = this.params.get("callback");
+  
+        callback(item.item).then(() => {
+          this.nav.pop();
+        });
+      }
     });
   }
 

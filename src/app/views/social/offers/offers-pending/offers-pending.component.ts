@@ -11,6 +11,9 @@ export class OffersPendingComponent implements OnInit {
   constructor(private offerService: OffersService) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
     this.offerService.getCounterOffers(0, 9999).subscribe(data => {
       if (data instanceof Array) {
         this.counterOffers = data;

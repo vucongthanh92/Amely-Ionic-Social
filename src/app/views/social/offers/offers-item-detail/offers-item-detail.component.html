@@ -5,59 +5,103 @@
 </ion-header>
 
 <ion-content class="outer-content" *ngIf="offer">
-  <div style="background-color: #fff;">
-    <ion-item no-padding style="font-size: 18px; text-align: center;">
-      <strong *ngIf="offer.seconds">
+  <ion-card>
+    <ion-card-header>
+      Chủ trao đổi
+      <strong style="float: right" *ngIf="offer.seconds">
         <app-timer #countdownTimer [timeInSeconds]="offer.seconds"></app-timer>
       </strong>
+    </ion-card-header>
+    <ion-item *ngIf="offer.owner">
+      <ion-avatar item-start>
+        <img [src]="offer.owner.avatar">
+      </ion-avatar>
+      <h2>
+        {{ offer.owner.username }}
+        <span *ngIf="offer.target == 'public'" style="float: right; color: #488aff">
+          <ion-icon name="globe"></ion-icon> Xung quanh</span>
+        <span *ngIf="offer.target == 'friends'" style="float: right; color: #488aff">
+          <ion-icon name="people"></ion-icon> Bạn bè</span>
+        <span *ngIf="offer.target == 'location'" style="float: right; color: #488aff">
+          <ion-icon name="locate"></ion-icon> Vị trí</span>
+      </h2>
+      <button *ngIf="!is_counter" type="button" name="button" (click)="chosenItem(offer)" ion-button>Tham gia trao đổi</button>
     </ion-item>
-  </div>
-  <div style="background-color: #fff; text-align: center; font-size: 18px;" padding>
-    <div>
-      <strong>{{ offer.product_snapshot.title }}</strong>
-    </div>
-    <p>Số lượng : {{ offer.quantity }}</p>
-    <div>
-      <img width="100%" src="{{ product_image }}" />
-    </div>
-    <ion-item no-padding>
-      <div>
-        <p *ngIf="offer.target == 'public'" style="text-align: left; color: #488aff">
-          <ion-icon name="globe"></ion-icon> Xung quanh</p>
-          <ion-item style="border-bottom: 0px;">
-            <ion-avatar item-start>
-              <img src="assets/imgs/logo.png">
-            </ion-avatar>
-            <h2>Cher</h2>
-            <p>Ugh. As if.</p>
-          </ion-item>
-        <p *ngIf="offer.target == 'friends'" style="text-align: left; color: #488aff">
-          <ion-icon name="people"></ion-icon> Bạn bè</p>
-        <p *ngIf="offer.target == 'location'" style="text-align: left; color: #488aff">
-          <ion-icon name="locate"></ion-icon> Vị trí</p>
-      </div>
-      <ion-row *ngIf="offer.owner">
-        <ion-col col-3 style="margin-right: 20px;">
-          <img width="100%" src="{{ offer.owner.images[0] }}" />
-        </ion-col>
-        <ion-col col-6 class="ionContent">
-          <div>
-            <h4 class="h4Ion">{{ offer.owner.username }}</h4>
-          </div>
-          <div>
-            <button class="buttonIon" type="button" name="button" ion-button>Tham gia</button>
-          </div>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <img width="100%" [src]="offer.product_snapshot.images[0]">
+      </ion-col>
+      <ion-col col-12>
+        <ion-card-content>
+          <h3>
+            <strong>{{ offer.product_snapshot.title }}</strong>
+          </h3>
+          <p>Số lượng : {{ offer.quantity }}</p>
+        </ion-card-content>
+      </ion-col>
+      <ion-col col-12>
+          <p>Thông tin sản phẩm</p>
+          <p>{{ offer.product_snapshot.description }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card *ngIf="counter">
+    <ion-card-header>
+      Người trao đổi
+    </ion-card-header>
+    <ion-item *ngIf="counter.owner">
+      <ion-avatar item-start>
+        <img [src]="counter.owner.avatar">
+      </ion-avatar>
+      <h2>{{ counter.owner.username }}</h2>
     </ion-item>
-    <div class="" style="margin-bottom: -20px;">
-      <p style="text-align: left; color: #b7b7b7;">
-        <ion-icon style="color: #b7b7b7" ios="ios-flower" md="md-flower"></ion-icon> Thông tin sản phẩm</p>
-      <p style="color: #757575; text-align: left;">{{ offer.product_snapshot.description }}</p>
-    </div>
-  </div>
+    <ion-row *ngIf="counter.product_snapshot">
+      <ion-col col-12>
+        <img width="100%" [src]="counter.product_snapshot.images[0]">
+      </ion-col>
+      <ion-col col-12>
+        <ion-card-content>
+          <h3>
+            <strong>{{ counter.product_snapshot.title }}</strong>
+          </h3>
+          <p>Số lượng : {{ counter.quantity }}</p>
+        </ion-card-content>
+      </ion-col>
+      <ion-col col-12>
+        <p>Thông tin sản phẩm</p>
+        <p>{{ counter.product_snapshot.description }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+  
+      </ion-col>
+      <ion-col>
+  
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+  
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
-
-<ion-footer>
-  <button type="button" name="button" (click)="changePage(offer)" ion-button full no-margin>Xem danh sách tham gia</button>
-</ion-footer>
+<div *ngIf="offer">
+  <ion-footer *ngIf="offer.owner.username == customService.user_current.username">
+    <button type="button" name="button" (click)="changePage(offer)" ion-button full no-margin>Xem danh sách tham gia</button>
+  </ion-footer>
+</div>

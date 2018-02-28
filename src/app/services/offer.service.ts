@@ -9,6 +9,10 @@ export class OfferService {
     private api: ApiService
   ) { }
 
+  createCounterOffer(obj) {
+    return this.api.createCounterOffer(obj);
+  }
+
   createOffer(obj: Param_create_offer) {
 
     // "giveaway_approval": true,

@@ -5,6 +5,7 @@ import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OffersService } from '../../../../services/offers.service';
 import { OffersComponent } from '../offers.component';
+import { CreateOfferComponent } from '../../../../components/create-offer/create-offer.component';
 
 @Component({
   selector: 'app-offers-item-detail',
@@ -14,6 +15,8 @@ export class OffersItemDetailComponent implements OnInit {
 
   offer: Offer;
   product_image: any;
+  is_counter = false;
+  counter: Offer;
   @ViewChild('navbar') navBar: Navbar;
 
   constructor(
@@ -23,8 +26,26 @@ export class OffersItemDetailComponent implements OnInit {
     private nav: NavController,
     private app: App
   ) {
+    
+  }
+
+  ionViewDidEnter() {
     this.offer = this.navParams.get('param');
-    this.product_image = this.offer.product_snapshot.images[0];
+    if (typeof this.offer.owner == "undefined") {
+      this.offer.owner = this.customService.user_current;
+      this.is_counter = true;
+    }
+    if (typeof this.offer.counter_offers != "undefined") {
+      let arr = this.offer.counter_offers.filter(data => data.owner.username == this.customService.user_current.username);
+      if (arr.length > 0) {
+        this.counter = arr[0];
+      }
+      this.is_counter = this.offer.counter_offers.some(data => data.owner.username == this.customService.user_current.username);
+    }
+
+    this.offer.seconds = 0;
+    console.log(this.offer);
+    // this.product_image = this.offer.product_snapshot.images[0];
     this.customService.getCurrentTime().subscribe(data => {
       this.offer.seconds = this.offer.time_end - data.current_time;
     });
@@ -48,11 +69,29 @@ export class OffersItemDetailComponent implements OnInit {
     });
   }
 
+  chosenItem(offer) {
+    this.app.getRootNav().push(CreateOfferComponent , {
+      callback: this.myCreateOfferFunction,
+      counter: true,
+      param: offer
+    });
+  }
+
+  myCreateOfferFunction = (_params) => {
+    return new Promise((resolve, reject) => {
+      let callback = this.navParams.get("callback");
+      console.log('321');
+      console.log(_params);
+      callback("test").then(() => {
+        this.nav.setRoot(this.nav.getActive().component);
+      });
+      resolve();
+    });
+  }
+
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
-      console.log('item');
       let callback = this.navParams.get("callback");
-
       callback("test").then(() => {
         this.nav.pop();
       });

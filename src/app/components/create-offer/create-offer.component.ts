@@ -1,9 +1,10 @@
+import { Offer } from './../../api/models/offer';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
 import { OfferService } from './../../services/offer.service';
 import { ChosenItemComponent } from './../chosen-item/chosen-item.component';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, NavParams } from 'ionic-angular';
 import { Item } from '../../api/models/item';
 import { Param_create_offer } from '../../api/models/param-_create-_offer';
 import { GeolocationService } from '../../services/geolocation.service';
@@ -17,7 +18,8 @@ export class CreateOfferComponent implements OnInit {
 
   @Input('description') description: string;
 
-
+  offer_target: Offer;
+  counter = false;
   item: Item;
   avatar: any;
   offer_type: string;
@@ -38,8 +40,12 @@ export class CreateOfferComponent implements OnInit {
     private customService: CustomService,
     private offerService: OfferService,
     private appCtrl: App,
-    private nav: NavController
+    private nav: NavController,
+    private params: NavParams
   ) {
+    this.counter = this.params.get('counter');
+    this.offer_target = this.params.get('param');
+    
     this.offer_type_select = {
       title: "Hình thức trao đổi"
     }
@@ -58,33 +64,48 @@ export class CreateOfferComponent implements OnInit {
   }
 
   offer() {
-    let obj: Param_create_offer = {};
-    obj.offer_type = this.offer_type;
-    obj.duration = this.duration;
-    obj.target = this.target;
-    obj.limit_counter = this.limit_counter;
-    obj.giveaway_approval = this.giveaway_approval;
-    obj.random_expiration = false;
-    obj.item_guid = this.item.guid;
-    obj.quantity = this.item.quantity;
-    obj.note = this.description;
-    obj.location_lat = "100";
-    obj.location_lng = "100";
-
-    this.offerService.createOffer(obj).subscribe(data => {
-      if (data.offer_guid) {
-        let owner_from = data.offer_guid;
-        this.geolocation.getCurrentPosition().then((resp) => {
-          let lat = resp.coords.latitude;
-          let lng = resp.coords.longitude;
-          let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
-          this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
-        });
-        this.nav.pop();
-      } else {
-        this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 5000);
-      }
-    })
+    if (this.counter) {
+      let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity};
+      console.log(obj);
+      this.offerService.createCounterOffer(obj).subscribe(data => {
+        if (data.status) {
+          this.nav.pop();
+        } else {
+          this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 5000);
+        }
+      });
+    } else {
+      let obj: Param_create_offer = {};
+      obj.offer_type = this.offer_type;
+      obj.duration = this.duration;
+      obj.target = this.target;
+      obj.limit_counter = this.limit_counter;
+      obj.giveaway_approval = this.giveaway_approval;
+      obj.random_expiration = false;
+      obj.item_guid = this.item.guid;
+      obj.quantity = this.item.quantity;
+      obj.note = this.description;
+      obj.location_lat = "100";
+      obj.location_lng = "100";
+  
+      this.offerService.createOffer(obj).subscribe(data => {
+        if (data.offer_guid) {
+          let owner_from = data.offer_guid;
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let lat = resp.coords.latitude;
+            let lng = resp.coords.longitude;
+            let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
+            this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
+          });
+          let callback = this.params.get("callback");
+          callback("test").then(() => {
+            this.nav.pop();
+          });
+        } else {
+          this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 5000);
+        }
+      })
+    }
   }
 
   chosenItem() {
