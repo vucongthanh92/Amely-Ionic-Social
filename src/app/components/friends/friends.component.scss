@@ -1,0 +1,29 @@
+app-friends {
+    .item-md,.item-ios {
+
+        ion-avatar img {
+            width:55px;
+            height:55px;
+        }
+
+        ion-avatar[item-start]{
+            margin: 15px 15px 15px 10px;
+        }
+    }
+
+    .friends_fullname {
+        font-size: 15px;
+        font-weight: normal;
+        color: #666;
+    }
+
+    .friends_container {
+        border-top: 1px solid #efeff4;
+        margin: 0px;
+    }
+
+    .friends_action {
+        text-align: right;
+        padding: 0px;
+    }
+}

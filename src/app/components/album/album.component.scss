@@ -1,0 +1,45 @@
+app-album {
+    .album_box {
+        height: 80px;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    .album_title {
+        font-size: 13px;
+        text-align: center;
+        padding: 3px 3px 0px 3px;
+        text-transform: capitalize;
+        color: #666;
+    }
+
+    .album_container {
+        background-color: white;
+        border-top: 1px solid #efeff4;
+    }
+
+    .images_title {
+        width: 100%;
+        clear: both;
+        text-align: center;
+        margin: 15px 0px 7px 0px;
+        border-top: 1px solid #efeff4;
+        padding: 15px 0px 0px 0px;
+    }
+
+    .images_box {
+        padding: 0px 0px 10px 0px;
+    }
+
+    .images_layout {
+        height: 80px;
+        overflow: hidden;
+        padding-bottom: 0px;
+    }
+
+    .images_layout img {
+        max-width: 100%;
+        border: 0;
+        min-height: 100%;
+    }
+}

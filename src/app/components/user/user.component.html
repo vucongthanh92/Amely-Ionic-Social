@@ -25,29 +25,31 @@
         <div class="profile_tab_title">Bạn Bè</div>
       </ion-segment-button>
     </ion-segment>
-    <ion-row text-center *ngIf="!is_user_current">
+
+    <ion-row text-center class="profile_gift" *ngIf="!is_user_current">
       <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'gift');">
+        <button ion-button icon-left clear small (click)="goToPage(user, 'gift');">
           <img class="iconSubTab" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
-          <div>Tặng quà</div>
+          <div class="profile_gift_title">Tặng quà</div>
         </button>
       </ion-col>
 
-      <ion-col col-4 *ngIf="!is_friend"   (click)="addFriend()">
+      <ion-col col-4 *ngIf="!is_friend" (click)="addFriend()">
         <button ion-button icon-left clear small color="danger">
           <img class="iconSubTab" src="assets/imgs/ic_add_friend.png" alt="ionic logo">
-          <div>{{title_add_friend}}</div>
+          <div class="profile_gift_title">{{title_add_friend}}</div>
         </button>
       </ion-col>
 
       <ion-col col-4>
         <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'chat');">
           <img class="iconSubTab" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
-          <div>Nhắn tin</div>
+          <div class="profile_gift_title">Nhắn tin</div>
         </button>
       </ion-col>
     </ion-row>
   </div>
+
   <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
     <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
     </ion-refresher-content>
