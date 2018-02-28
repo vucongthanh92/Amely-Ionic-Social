@@ -43,6 +43,11 @@ export class InventoryComponent implements OnInit {
 
   types: Array<{ item_type: string, title: string, image: string, badge: number, position: number }> = [];
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.types = [];
     if (this.inventoryType == undefined) {
       this.inventoryType = this.navParams.get("type");
     }
@@ -84,14 +89,10 @@ export class InventoryComponent implements OnInit {
         if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
           this.totalItem += data.length ? data.length : 0;
         if (data && e.item_type == 'nearly_stored' && data.length) {
-
           this.badge_near_stored = data.length;
-          console.log(this.badge_near_stored);
-
         }
         if (data && e.item_type == 'nearly_expiry' && data.length) {
           this.badge_near_expiry = data.length;
-          console.log(this.badge_near_expiry);
         }
 
       });
@@ -102,10 +103,23 @@ export class InventoryComponent implements OnInit {
   goToPage(value, item_type, title) {
     switch (value) {
       case 'items':
-        this.appCtrl.getRootNav().push(InvenroyItemsComponent, { ownerGuid: this.ownerGuid, itemType: item_type, inventoryType: this.inventoryType, title: title });
+        this.appCtrl.getRootNav().push(InvenroyItemsComponent, {
+          ownerGuid: this.ownerGuid, itemType: item_type,
+          inventoryType: this.inventoryType, title: title, callback: this.myCallbackFunction
+        });
         break;
       case 'default':
         break;
     }
+  }
+
+  myCallbackFunction = (values) => {
+    return new Promise((resolve, reject) => {
+      console.log(values);
+      if (values) {
+        this.loadData();
+      }
+      resolve();
+    });
   }
 }

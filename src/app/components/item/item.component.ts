@@ -22,10 +22,12 @@ export class ItemComponent implements OnInit {
   shop: Shop;
   public is_used: boolean = false;
   is_remove_item: boolean = false;
+  callback: any;
+  is_reload_before_page = false;
+
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService, private customService: CustomService) {
     this.itemGuid = this.navParams.get('itemGuid');
-
-
+    this.callback = this.navParams.get('callback');
   }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class ItemComponent implements OnInit {
       this.product = data.product_snapshot;
       this.shop = data.product_snapshot.shop;
       this.is_remove_item = this.item.stored_expried || this.item.used;
+
     })
   }
 
@@ -50,8 +53,65 @@ export class ItemComponent implements OnInit {
   gift() {
     this.nav.push(InventoryTargetsGiftComponent, { item: this.item });
   }
-  
+
+  ionViewWillLeave() {
+    // Unregister the custom back button action for this page
+    this.callback(this.is_reload_before_page).then((values) => {
+
+    });
+
+  }
   removeItem() {
     this.customService.toastMessage('Tính năng đang cập nhật', 'bottom', 2000);
   }
+
+  onGiveList(isLike) {
+    if (isLike) {
+      this.item.givelist = '2';
+      this.inventoriesService.addGiveList(this.itemGuid).subscribe(data => {
+        if (!data.status) {
+          this.item.givelist = '1';
+          this.customService.toastMessage('Thêm vào danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000);
+        } else {
+          this.is_reload_before_page = true;
+        }
+      })
+    } else {
+      this.item.givelist = "1";
+      this.inventoriesService.deleteGiveList(this.itemGuid).subscribe(data => {
+        if (!data.status) {
+          this.item.givelist = '2';
+          this.customService.toastMessage('Hủy danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000)
+        } else {
+          this.is_reload_before_page = true;
+        }
+      })
+    }
+  }
+
+  onWishList(isLike) {
+    if (isLike) {
+      this.item.wishlist = '2';
+      this.inventoriesService.addWishList(this.itemGuid).subscribe(data => {
+        if (!data.status) {
+          this.item.wishlist = '1';
+          this.customService.toastMessage('Thêm vào danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
+        } else {
+          this.is_reload_before_page = true;
+        }
+      })
+    } else {
+      this.item.wishlist = '1';
+      this.inventoriesService.deleteWishList(this.itemGuid).subscribe(data => {
+        if (!data.status) {
+          this.item.wishlist = '2';
+          this.customService.toastMessage('Hủy danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
+        } else {
+          this.is_reload_before_page = true;
+        }
+      })
+    }
+  }
+
+
 }

@@ -20,11 +20,29 @@ export class InventoriesService {
     return this.apiService.createRedeem({ item_guid: item_guid, owner_guid: owner_guid, quantity_redeem: quantity_redeem });
   }
 
-  getWallet(){
+  getWallet() {
     return this.apiService.getWallet();
   }
 
-  createWallet(){
-    return this.apiService.createWallet({ currency:'VND'});
+  createWallet() {
+    return this.apiService.createWallet({ currency: 'VND' });
   }
+
+  addWishList(guid: number) {
+    return this.apiService.createWishList({ item_guid: guid });
+  }
+
+  deleteWishList(guid: number) {
+    return this.apiService.deleteWishList(guid);
+  }
+
+  addGiveList(guid: number) {
+    return this.apiService.createGiveList({ item_guid: guid });
+  }
+
+  deleteGiveList(guid: number) {
+    return this.apiService.deleteGiveList(guid);
+  }
+
+  
 }
