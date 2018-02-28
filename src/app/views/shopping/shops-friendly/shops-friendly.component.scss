@@ -1,70 +1,48 @@
 app-shops-friendly {
-    .content-ios.outer-content {
-        background-color: white;
+    .item-md,.item-ios {
+        padding-left:0px;
+
+        ion-avatar img {
+            width:55px;
+            height:55px;
+        }
+
+        ion-avatar[item-start]{
+            margin: 0px 30px 8px 0;
+        }
+
+        .number-circle{
+            color:white;
+            font-weight: 700;
+            border-radius: 50%;
+            background-color:red;
+            width: 20px;height:20px;
+            line-height: 20px;
+            text-align: center;
+        }
     }
 
-    .list-ios {
-        margin: 10px 9px 15px;
-        border-bottom: 1px dashed #ddd;
-        padding: 0px 0px 10px 0px;
+    .rating {
+      ion-icon {
+          font-size: 15px;
+          padding: 0px 1px !important;
+          background: none;
+          color:color($colors,primary);
+      }
     }
 
-    .list-ios:last-child {
-        border-bottom: none;
-        margin: 10px 5px 5px;
-        padding: 0px;
+    .shops_friendly_item {
+        margin: 5px 0px 12px 0px;
+        border-bottom: 1px solid #efeff4 !important;
+        padding: 0px 0px 5px 0px;
     }
 
-    .shop_friendly_box_image {
-        overflow: hidden;
-        width: 75px;
-        height: 75px;
-        border-radius: 50%;
-        padding: 0px;
-        -webkit-box-flex: inherit;
-        -webkit-flex-grow: inherit;
-        -ms-flex-positive: inherit;
-        flex-grow: inherit;
-        -webkit-flex-basis: auto;
-        position: absolute;
-    }
-
-    .shop_friendly_row {
-        position: relative;
-    }
-
-    .shop_friendly_box_image img {
-        overflow: hidden;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        padding: 0px;
-        -webkit-box-flex: inherit;
-        -webkit-flex-grow: inherit;
-        -ms-flex-positive: inherit;
-        flex-grow: inherit;
-        -webkit-flex-basis: auto;
-        position: absolute;
-        z-index: 1;
-        border: 3px solid white;
-    }
-
-    .shop_friendly_title {
-        margin: 7px 8px 7px 0px;
-        float: right;
-        width: 76%;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        text-transform: capitalize;
-    }
-
-    .shop_friendly_description {
-        padding: 7px 0px 7px 40px;
-        background-color: #f7f7f7;
+    .shops_friendly_title {
+        font-size: 15px;
         color: #666;
-        margin: 0px;
-        float: right;
-        width: 90%;
-        border-radius: 5px;
+    }
+
+    .shops_friendly_image {
+        border: 1px solid #efeff4;
     }
 }

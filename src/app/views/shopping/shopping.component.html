@@ -6,13 +6,13 @@
     <ion-title *ngIf="!is_search_show">Mua Sắm</ion-title>
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
     <ion-buttons end>
-      <button ion-button (click)="search()">
+      <button ion-button class="shopping_bar_icon" (click)="search()">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button ion-button (click)="changePage()">
+      <button ion-button class="shopping_bar_icon" (click)="changePage()">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
       </button>
-      <button ion-button>
+      <button class="shopping_bar_icon" ion-button>
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>

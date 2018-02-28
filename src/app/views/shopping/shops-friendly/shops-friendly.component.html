@@ -1,13 +1,11 @@
-<ion-content class="outer-content">
-  <ion-list *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
-    <ion-row class="shop_friendly_row">
-      <ion-col class="shop_friendly_box_image">
-        <img *ngIf="shop.avatar" src="{{shop.avatar}}" >
-      </ion-col>
-      <ion-col class="shop_friendly_info" col-12>
-        <ion-label class="shop_friendly_title">{{shop.title}}</ion-label>
-        <ion-label *ngIf="shop.description"  class="shop_friendly_description">{{shop.description}}</ion-label>
-      </ion-col>
-    </ion-row>
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item class="shops_friendly_item" *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
+      <ion-avatar item-start>
+        <img class="shops_friendly_image" *ngIf="shop.avatar" src="{{shop.avatar}}">
+      </ion-avatar>
+      <h2 class="shops_friendly_title">{{shop.title}}</h2>
+      <p *ngIf="shop.description">{{shop.description}}</p>
+    </ion-item>
   </ion-list>
 </ion-content>
