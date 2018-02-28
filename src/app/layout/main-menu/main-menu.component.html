@@ -3,8 +3,8 @@
     <ion-grid>
       <ion-row>
         <ion-col class="main-nav" col-6 offset-3 *ngFor="let p of pages" (click)="openPage(p)">
-          <img class="menu_images" src="{{ p.image }}" />
-          <p>{{ p.title }}</p>
+          <div [style.background]="'url(' + p.image + ')'" class="menu_images"></div>
+          <p class="main_title">{{ p.title }}</p>
         </ion-col>
       </ion-row>
     </ion-grid>
