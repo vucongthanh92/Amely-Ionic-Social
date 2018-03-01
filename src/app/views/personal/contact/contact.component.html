@@ -1,36 +1,7 @@
-<ion-content class="outer-content">
-  <div *ngIf="usersPage">
-    <app-contact-users></app-contact-users>
-  </div>
-  <div *ngIf="groupsPage">
-    <app-contact-groups ></app-contact-groups>
-  </div>
-  <div *ngIf="businessPage">
-    <app-contact-business></app-contact-business>
-  </div>
-  <ion-fab right bottom *ngIf="usersPage" (click)="goToPage('add-friend');">
-    <button ion-fab color="danger">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
-  <ion-fab right bottom *ngIf="groupsPage" (click)="goToPage('add-group');">
-    <button ion-fab color="primary">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+<ion-content>
+  <ion-tabs tabsPlacement="bottom" style="line-height: 2">
+    <ion-tab tabTitle="CÁ NHÂN" [root]="tab1Root"></ion-tab>
+    <ion-tab tabTitle="NHÓM" [root]="tab2Root"></ion-tab>
+    <ion-tab tabTitle="CỘNG ĐỒNG" [root]="tab3Root"></ion-tab>
+  </ion-tabs>
 </ion-content>
-<ion-footer>
-  <div class="bar bar-header bar-dark">
-    <ion-segment color="primary" [(ngModel)]="contactTab">
-      <ion-segment-button value="user" class="segment-button" (click)="goToPage('user')">
-        Cá nhân
-      </ion-segment-button>
-      <ion-segment-button value="group" class="segment-button" (click)="goToPage('group')">
-        Nhóm
-      </ion-segment-button>
-      <ion-segment-button value="business" class="segment-button" (click)="goToPage('business')">
-        Cộng đồng
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-</ion-footer>

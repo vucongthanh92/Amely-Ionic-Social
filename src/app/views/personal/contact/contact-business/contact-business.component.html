@@ -1,13 +1,15 @@
-<ion-list>
-  <ion-item *ngFor="let page of business_pages" (click)="goToPage(page)">
-    <ion-row>
-      <ion-col class="contact_business_box_image" col-3>
-        <img class="contact_business_avatar" src="{{page.avatar}}" />
-      </ion-col>
-      <ion-col col-9>
-        <div class="contact_business_title">{{page.title}}</div>
-        <div class="contact_business_description">{{page.description}}</div>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
+<ion-content class="outer-content" style="top: 44px;">
+  <ion-list>
+    <ion-item *ngFor="let page of business_pages" (click)="goToPage(page)">
+      <ion-row>
+        <ion-col class="contact_business_box_image" col-3>
+          <img class="contact_business_avatar" src="{{page.avatar}}" />
+        </ion-col>
+        <ion-col col-9>
+          <div class="contact_business_title">{{page.title}}</div>
+          <div class="contact_business_description">{{page.description}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>

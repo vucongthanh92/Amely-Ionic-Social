@@ -1,20 +1,6 @@
-<ion-content class="outer-content">
-  <div *ngIf="userPage">
-    <app-near-by-user></app-near-by-user>
-  </div>
-  <div *ngIf="shopPage">
-    <app-near-by-shop></app-near-by-shop>
-  </div>
+<ion-content>
+  <ion-tabs tabsPlacement="bottom">
+    <ion-tab tabTitle="NGƯỜI DÙNG" [root]="tab1Root"></ion-tab>
+    <ion-tab tabTitle="CỬA HÀNG" [root]="tab2Root"></ion-tab>
+  </ion-tabs>
 </ion-content>
-<ion-footer>
-  <div class="bar bar-header bar-dark">
-    <ion-segment color="primary" [(ngModel)]="nearbyTab">
-      <ion-segment-button value="user" class="segment-button" (click)="goToPage('user');">
-        Người dùng
-      </ion-segment-button>
-      <ion-segment-button value="shop" class="segment-button" (click)="goToPage('shop');">
-        Cửa hàng
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-</ion-footer>

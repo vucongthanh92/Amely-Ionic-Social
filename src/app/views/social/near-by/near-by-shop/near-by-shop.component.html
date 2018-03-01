@@ -1,18 +1,20 @@
-<ion-list *ngIf="datas" >
-  <ion-item *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
-    <ion-row>
-      <ion-col col-2>
-        <img width="100%" src="{{data.shop.avatar}}" />
-      </ion-col>
-      <ion-col col-8>
-        {{data.shop.title}}
-        <br> {{data.shop.store.phone}}
-        <br>  {{data.shop.store.address}}
-      </ion-col>
-      <ion-col col-2 style="position: relative;">
-        <p style="position: absolute; bottom: 0;">
-          <ion-icon name='pin'></ion-icon> {{formatDistance(data.distance)}}</p>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
+<ion-content class="outer-content" style="top: 44px;">
+  <ion-list *ngIf="datas" >
+    <ion-item *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
+      <ion-row>
+        <ion-col col-2>
+          <img width="100%" src="{{data.shop.avatar}}" />
+        </ion-col>
+        <ion-col col-8>
+          {{data.shop.title}}
+          <br> {{data.shop.store.phone}}
+          <br>  {{data.shop.store.address}}
+        </ion-col>
+        <ion-col col-2 style="position: relative;">
+          <p style="position: absolute; bottom: 0;">
+            <ion-icon name='pin'></ion-icon> {{formatDistance(data.distance)}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
