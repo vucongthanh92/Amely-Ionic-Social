@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cập nhật thông tin</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <ion-list>
+
+    <ion-item>
+      <ion-input [(ngModel)]="first_name" type="text" placeholder="Họ"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="last_name" type="text" placeholder="Tên"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Giới tính</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="male">Male</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ngày sinh</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="birthdate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hiển thị ngày tháng năm sinh</ion-label>
+      <ion-toggle [(ngModel)]="birthdate_hidden"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hiển thị số điện thoại</ion-label>
+      <ion-toggle [(ngModel)]="mobile_hidden"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hiển thị danh sách bạn bè</ion-label>
+      <ion-toggle [(ngModel)]="friend_hidden"></ion-toggle>
+    </ion-item>
+
+    <div padding>
+      <button (click)="updateInfo()" ion-button color="primary" block>Cập nhật</button>
+    </div>
+  </ion-list>
+</ion-content>

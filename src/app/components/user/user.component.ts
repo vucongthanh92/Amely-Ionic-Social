@@ -1,8 +1,9 @@
+import { UserMenuComponent } from './user-menu/user-menu.component';
 import { guid } from './../../api/models/guid';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
 import { Component, Input } from '@angular/core';
-import { App, NavController, Refresher, NavParams } from 'ionic-angular';
+import { App, NavController, Refresher, NavParams, PopoverController } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
@@ -10,6 +11,7 @@ import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
 import { ChooseItemComponent } from '../gift/choose-item/choose-item.component';
 import { CustomService } from '../../services/custom.service';
+import { User } from '../../api/models';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +21,7 @@ import { CustomService } from '../../services/custom.service';
 export class UserComponent {
   userGuid: string;
   username: string;
-  user: any;
+  user: User;
   feed_type = "user";
   userCurrent: any;
   genderIcon: string;
@@ -30,19 +32,27 @@ export class UserComponent {
   title_add_friend: string = 'Kết bạn';
   is_user_current: boolean = true;
   is_friend: boolean = true;
+  is_hidden_friend: boolean;
+  is_hidden_birthday: boolean;
+  is_hidden_phone_number: boolean;
   from = 'user';
   constructor(
     public messagesService: MessagesService,
     public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
-    private customService: CustomService,
+    private customService: CustomService, public popoverCtrl: PopoverController,
     public userService: UserService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
+    this.nav.swipeBackEnabled = true;
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
     this.userGuid = this.navParams.get('userGuid');
     this.userService.getUser(null, this.userGuid).subscribe(data => {
       this.user = data;
@@ -50,6 +60,13 @@ export class UserComponent {
       this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
       this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
       this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
+      this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
+      this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
+      this.is_hidden_phone_number = this.user.mobile_hidden == undefined || this.user.mobile_hidden == '0' ? false : true;
+      console.log(this.is_hidden_birthday);
+      console.log(this.is_hidden_friend);
+      console.log(this.is_hidden_phone_number);
+      
       let date = new Date(data.birthdate);
       this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
       if (this.user.mood != null) {
@@ -59,7 +76,6 @@ export class UserComponent {
 
     });
   }
-
 
   getUser() {
     if (this.userGuid) {
@@ -169,6 +185,19 @@ export class UserComponent {
       });
       this.title_add_friend = "Đã gửi lời mời";
     }
-
+  }
+  openPopover(myEvent) {
+    let popover = this.popoverCtrl.create(UserMenuComponent, { user: this.user, callback: this.myCallbackFunction });
+    popover.present({
+      ev: myEvent
+    });
+  }
+  myCallbackFunction = (_params) => {
+    return new Promise((resolve, reject) => {
+      if (_params) {
+        this.loadData()
+      }
+      resolve();
+    });
   }
 }

@@ -21,6 +21,7 @@ import { IonicPageModule } from 'ionic-angular';
     NewsFeedModule,
     OffersModule,
     SharedModule,
+    IonicModule.forRoot(SocialComponent, {  swipeBackEnabled: true })
   ],
   declarations: [
     SocialComponent

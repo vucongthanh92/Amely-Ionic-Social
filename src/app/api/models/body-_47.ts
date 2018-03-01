@@ -10,4 +10,6 @@ export class body_47 {
     birthdate: string;
     usercurrency: string;
     friends_hidden: string;
+    mobile_hidden?: string;
+    birthdate_hidden?: string;
 }

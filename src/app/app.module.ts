@@ -71,7 +71,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true }),
+    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, swipeBackEnabled: true }),
     IonicPageModule.forChild(MainMenuComponent),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

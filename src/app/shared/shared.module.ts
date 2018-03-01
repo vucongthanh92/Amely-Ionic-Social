@@ -1,3 +1,5 @@
+import { UserUpdateComponent } from './../components/user/user-update/user-update.component';
+import { MyApp } from './../app.component';
 import { CreateShopComponent } from './../components/create-shop/create-shop.component';
 import { EventMenuComponent } from './../components/event/event-menu/event-menu.component';
 import { EventComponent } from './../components/event/event.component';
@@ -53,6 +55,7 @@ import { LaddaModule } from 'angular2-ladda';
 import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
+import { UserMenuComponent } from '../components/user/user-menu/user-menu.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -114,7 +117,9 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     ModalCounterOfferComponent,
     EventComponent,
     EventMenuComponent,
-    CreateShopComponent
+    CreateShopComponent,
+    UserMenuComponent,
+    UserUpdateComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -161,7 +166,9 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     ModalCounterOfferComponent,
     EventComponent,
     EventMenuComponent,
-    CreateShopComponent
+    CreateShopComponent,
+    UserMenuComponent,
+    UserUpdateComponent
   ],
   exports: [
     CategoriesComponent,
@@ -208,7 +215,9 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
     ModalCounterOfferComponent,
     EventComponent,
     EventMenuComponent,
-    CreateShopComponent
+    CreateShopComponent,
+    UserMenuComponent,
+    UserUpdateComponent
   ]
 })
 export class SharedModule { }

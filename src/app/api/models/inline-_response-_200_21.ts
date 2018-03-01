@@ -1,18 +1,14 @@
 /* tslint:disable */
-import { User } from './user';
-import { Shop } from './shop';
-import { Group } from './group';
-import { Event } from './event';
-import { Business } from './business';
 import { Product } from './product';
+import { OrderInfo } from './order-info';
+import { DeliveryInfo } from './delivery-info';
+import { PaymentInfo } from './payment-info';
 
 /**
  */
 export class inline_response_200_21 {
-    users?: User[];
-    shops?: Shop[];
-    groups?: Group[];
-    events?: Event[];
-    business?: Business[];
-    products?: Product[];
+    product?: Product[];
+    order?: OrderInfo;
+    delivery_info?: DeliveryInfo;
+    payment_info?: PaymentInfo;
 }

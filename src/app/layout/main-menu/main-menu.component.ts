@@ -25,7 +25,7 @@ export class MainMenuComponent implements OnInit {
   moodLocal: any;
 
   constructor(
-    private customService: CustomService,
+    public customService: CustomService,
     public menuCtrl: MenuController,
     private api: ApiService,
     private userService: UserService
@@ -48,15 +48,15 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit() {
     this.api.getProfile({}).subscribe(data => {
+      localStorage.setItem('loggin_user', JSON.stringify(data));
+      this.customService.user_current = data;
       this.pages = [
-        { title: data.username, component: PersonalComponent, image: data.avatar },
+        { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
         { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
         { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
         { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
         { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
       ];
-      localStorage.setItem('loggin_user', JSON.stringify(data));
-      this.customService.user_current = data;
       this.api.getFriends(data.guid).subscribe(d => {
         this.customService.friends = d;
       })
@@ -69,4 +69,8 @@ export class MainMenuComponent implements OnInit {
     this.menuCtrl.close();
   }
 
+  openPageProfile(){
+    this.nav.setRoot(PersonalComponent);
+    this.menuCtrl.close();
+  }
 }
