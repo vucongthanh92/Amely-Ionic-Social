@@ -4,7 +4,7 @@ app-vouchers {
   }
 
   .button-ios span {
-    color: #FF8C00;
+    color:white;
     font-size: 15px;
   }
 
@@ -81,6 +81,11 @@ app-vouchers {
     box-sizing: border-box;
     font-size: 15px;
     font-style: italic;
+  }
+
+  .vouchers_button {
+    bottom: 44px;
+    background-color: #ffb76b;
   }
 
 }

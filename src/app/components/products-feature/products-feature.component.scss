@@ -32,7 +32,7 @@ app-products-feature {
 
   .product_feature_label {
     float: left;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     margin: 10px 0px 10px 0px;
     text-transform: uppercase;
@@ -70,6 +70,12 @@ app-products-feature {
     color: #D9534F;
     font-size: 14px;
     text-transform: capitalize;
+  }
+
+  .product_feature_container {
+    background-color: #fff; 
+    padding: 5px; 
+    margin: 10px 0px 45px;
   }
 
 }

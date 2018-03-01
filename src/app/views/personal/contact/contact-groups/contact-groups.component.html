@@ -1,4 +1,4 @@
-<ion-content class="outer-content" style="top: 44px;">
+<ion-content class="outer-content" class="contact_group">
   <ion-list >
     <ion-item *ngFor="let group of groupService.groups_contact" >
       <ion-row>
@@ -38,7 +38,7 @@
   </ion-list>
 </ion-content>
 <ion-fab right bottom  (click)="goToPage('add-group');">
-  <button ion-fab color="primary" style="bottom: 50px;">
+  <button ion-fab color="primary" class="contact_group_button">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>
