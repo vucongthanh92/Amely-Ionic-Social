@@ -6,6 +6,9 @@ import { AddFriendComponent } from '../../../components/add-friend/add-friend.co
 import { AddGroupComponent } from '../../../components/add-group/add-group.component';
 import { GroupService } from '../../../services/group.service';
 import { CustomService } from '../../../services/custom.service';
+import { ContactUsersComponent } from './contact-users/contact-users.component';
+import { ContactGroupsComponent } from './contact-groups/contact-groups.component';
+import { ContactBusinessComponent } from './contact-business/contact-business.component';
 
 @Component({
   selector: 'app-contact',
@@ -20,6 +23,10 @@ export class ContactComponent implements OnInit {
   friends: any;
   is_load_group: boolean;
 
+  tab1Root = ContactUsersComponent;
+  tab2Root = ContactGroupsComponent;
+  tab3Root = ContactBusinessComponent;
+  
   constructor(
     public nav: NavController,
     public appCtrl: App,

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
 import { MessageComponent } from '../../../../components/message/message.component';
+import { AddGroupComponent } from '../../../../components/add-group/add-group.component';
 
 @Component({
   selector: 'app-contact-users',
@@ -32,6 +33,10 @@ export class ContactUsersComponent implements OnInit {
 
   goToPage(friend: any) {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: friend.guid });
+  }
+
+  addFriend() {
+    // this.appCtrl.getRootNav().push(AddGroupComponent, { callback: this.myCallbackFunction });
   }
 
   goToPageChat(friend, chat_type) {

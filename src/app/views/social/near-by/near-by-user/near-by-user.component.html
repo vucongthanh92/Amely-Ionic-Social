@@ -1,23 +1,25 @@
-<ion-list *ngIf="datas">
-  <ion-item *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
-    <ion-row>
-      <ion-col col-2>
-        <img width="100%" src="{{data.user.avatar}}" />
-      </ion-col>
-      <ion-col col-10>
-        <div text-left>
-          {{data.user.fullname}}
-        </div>
-        <ion-row>
-          <ion-col col-6>
-            <img class="icon" *ngIf="data.user.gender!='male'" src="assets/imgs/ic_gender_male_blue.png">
-            <img class="icon" *ngIf="data.user.gender!='female'" src="assets/imgs/ic_gender_female_pink.png"> {{ countAge(data.user.birthdate) }}
-          </ion-col>
-          <ion-col col-6>
-            <img class="icon" src="assets/imgs/ic_place_blue.png">{{formatDistance(data.distance)}}
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
+<ion-content class="outer-content" style="top: 44px;">
+  <ion-list *ngIf="datas">
+    <ion-item *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
+      <ion-row>
+        <ion-col col-2>
+          <img width="100%" src="{{data.user.avatar}}" />
+        </ion-col>
+        <ion-col col-10>
+          <div text-left>
+            {{data.user.fullname}}
+          </div>
+          <ion-row>
+            <ion-col col-6>
+              <img class="icon" *ngIf="data.user.gender!='male'" src="assets/imgs/ic_gender_male_blue.png">
+              <img class="icon" *ngIf="data.user.gender!='female'" src="assets/imgs/ic_gender_female_pink.png"> {{ countAge(data.user.birthdate) }}
+            </ion-col>
+            <ion-col col-6>
+              <img class="icon" src="assets/imgs/ic_place_blue.png">{{formatDistance(data.distance)}}
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
