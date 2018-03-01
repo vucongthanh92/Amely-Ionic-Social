@@ -83,8 +83,10 @@ export class InventoryComponent implements OnInit {
     this.arrTagBadge.forEach(e => {
       this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
         if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
-          // this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
-          this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
+          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
+          // this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
+
+          this.types.sort(this.compare);
         }
         if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
           this.totalItem += data.length ? data.length : 0;
@@ -98,6 +100,14 @@ export class InventoryComponent implements OnInit {
       });
     })
 
+  }
+
+  compare(a, b) {
+    if (a.position > b.position)
+      return 1;
+    if (a.position < b.position)
+      return -1;
+    return 0;
   }
 
   goToPage(value, item_type, title) {
@@ -115,7 +125,6 @@ export class InventoryComponent implements OnInit {
 
   myCallbackFunction = (values) => {
     return new Promise((resolve, reject) => {
-      console.log(values);
       if (values) {
         this.loadData();
       }
