@@ -1,9 +1,18 @@
 /* tslint:disable */
-import { DefaultResponse } from './default-response';
+import { User } from './user';
+import { Shop } from './shop';
+import { Group } from './group';
+import { Event } from './event';
+import { Business } from './business';
+import { Product } from './product';
 
 /**
  */
 export class inline_response_200_20 {
-    result?: DefaultResponse[];
-    products?: DefaultResponse[];
+    users?: User[];
+    shops?: Shop[];
+    groups?: Group[];
+    events?: Event[];
+    business?: Business[];
+    products?: Product[];
 }

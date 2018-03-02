@@ -1,6 +1,6 @@
 <ion-content class="outer-content" class="events_container">
   <ion-list class="events_list">
-    <ion-item class="events_item" *ngFor="let event of events">
+    <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
         <ion-col class="events_image" col-3>
           <img width="100%" src="{{event.avatar}}" />

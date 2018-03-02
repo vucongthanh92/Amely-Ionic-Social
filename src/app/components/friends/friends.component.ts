@@ -13,6 +13,7 @@ export class FriendsComponent implements OnInit {
   @Input('from') from: string;
   @Input('guid') guid;
   @Input('object') obj;
+  @Input('dontShow') dontShow: boolean;
 
   public users: Array<User>;
   public userCurrent: User = {};
@@ -45,7 +46,9 @@ export class FriendsComponent implements OnInit {
   loadFriendProfile(user_guid) {
     this.isUserCurrent = user_guid === this.userCurrent.guid;
 
-    this.userService.getFriends(user_guid).subscribe(data => { this.users = data; });
+    if (!this.dontShow) {
+      this.userService.getFriends(user_guid).subscribe(data => { this.users = data; });
+    }
 
   }
 
@@ -60,7 +63,7 @@ export class FriendsComponent implements OnInit {
   }
 
   isGroupAdmin(guid) {
-    if(this.obj.owner_guid===guid)return true;
+    if (this.obj.owner_guid === guid) return true;
     return false;
   }
 }

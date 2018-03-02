@@ -17,16 +17,16 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" style="padding: 5px;">
-      <div style="background-color: #fff;">
-        <img *ngIf="item.product_snapshot.images"  width="100%" src="{{item.product_snapshot.images[0]}}" />
-        <img *ngIf="item.product_snapshot.images== undefined"  width="100%" src="assets/imgs/image_not_found.jpg" />
-        <div style="padding: 5px">
-          <p no-margin>{{item.product_snapshot.title}}</p>
-          <p no-margin>SL: {{item.quantity}}</p>
+      <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" style="padding: 5px;">
+        <div style="background-color: #fff;">
+          <img *ngIf="item.product_snapshot.images" width="100%" src="{{item.product_snapshot.images[0]}}" />
+          <img *ngIf="item.product_snapshot.images== undefined" width="100%" src="assets/imgs/image_not_found.jpg" />
+          <div style="padding: 5px">
+            <p no-margin>{{item.product_snapshot.title}}</p>
+            <p no-margin>SL: {{item.quantity}}</p>
+          </div>
         </div>
-      </div>
-    </ion-col>
+      </ion-col>
   </ion-row>
 
 </ion-content>

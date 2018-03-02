@@ -1,6 +1,6 @@
 <ion-content class="outer-content" id="offer_myself_container">
 
-  <ion-row *ngIf="offers">
+  <ion-row class="offer_myself_row" *ngIf="offers">
     <ion-col col-6 class="offer_myself_box" *ngFor="let offer of offers" (click)="changePage(offer)">
       <div class="offer_myself_datetime">
         <ion-icon name="timer"></ion-icon>
@@ -8,17 +8,18 @@
       </div>
       
       <div class="offer_myself_main">
-        <p *ngIf="offer.target=='public'" class="offer_myself_location">
-          <ion-icon class="public"></ion-icon> Xunh quanh</p>
-        <p *ngIf="offer.target=='location'" class="offer_myself_location">
-          <ion-icon  class="around"></ion-icon> Theo vị trí</p>
-        <p *ngIf="offer.target=='friends'" class="offer_myself_location">
-          <ion-icon  class="friend"></ion-icon> Bạn bè</p>
+        <ion-item *ngIf="offer.target=='public'" class="offer_myself_location">
+          <ion-icon item-start class="public"></ion-icon> Xung quanh
+        </ion-item>
+        <ion-item *ngIf="offer.target=='location'" class="offer_myself_location">
+          <ion-icon item-start class="around"></ion-icon> Theo vị trí
+        </ion-item>
+        <ion-item *ngIf="offer.target=='friends'" class="offer_myself_location">
+          <ion-icon item-start class="friend"></ion-icon> Bạn bè
+        </ion-item>
 
-        <div class="offer_myself_image">
-          <img width="100%" *ngIf="offer.product_snapshot.images[0]" src="{{offer.product_snapshot.images[0]}}" />
-          <img width="100%" *ngIf="offer.product_snapshot.images[0]==''"  src="assets/imgs/image_not_found.jpg" />
-        </div>
+        <div class="offer_myself_image" *ngIf="offer.product_snapshot.images[0]" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'"></div>
+        <div class="offer_myself_image" *ngIf="offer.product_snapshot.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')" ></div>
         <p class="offer_myself_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
       </div>
   
@@ -33,7 +34,7 @@
   </ion-row>
 </ion-content>
 <ion-fab right bottom (click)="goToPage()">
-  <button ion-fab color="danger" style="bottom: 50px;">
+  <button ion-fab color="danger" class="offer_myself_button">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>

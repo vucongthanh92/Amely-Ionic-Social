@@ -1,4 +1,3 @@
-import { logger } from '@firebase/database/dist/esm/src/core/util/util';
 import { Item } from './../../api/models/item';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController, NavParams } from 'ionic-angular';
@@ -28,20 +27,24 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
+    // this.loadData();
   }
 
-  loadData() {
+  ionViewDidEnter() {
     if (this.itemType === 'all') {
       this.inventoryService.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
         if (data instanceof Array) {
           this.inventoriesItem = data;
+        } else {
+          this.inventoriesItem = [];
         }
       })
     } else {
       this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(data => {
         if (data instanceof Array) {
           this.inventoriesItem = data;
+        } else {
+          this.inventoriesItem = [];
         }
       })
     }
@@ -58,13 +61,12 @@ export class InvenroyItemsComponent implements OnInit {
   }
   ionViewWillLeave() {
     // Unregister the custom back button action for this page
-    console.log(11111111111111);
 
   }
   myCallbackFunction = (values) => {
     return new Promise((resolve, reject) => {
       if (values) {
-        this.loadData();
+        this.nav.getActive().component;
         this.is_reload_before_page = true;
         this.callback(values).then((values1) => {
         });
