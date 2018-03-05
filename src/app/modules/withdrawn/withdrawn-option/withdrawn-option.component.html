@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar swipeBackEnabled="true">
+    <ion-title>Thông tin rút tiền</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changePage()">
+        Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-row>
+      Số tiền : {{convertAmount()}}
+    </ion-row>
+    <ion-row *ngIf="paymentMethod=='paypal/standard'">
+      <ion-col col-12>
+        <ion-input type="email" placeholder="Địa chỉ email" [(ngModel)]="email"></ion-input>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row *ngIf="paymentMethod=='sq/bankaccount'">
+      <ion-col col-12>
+        <ion-input type="number" placeholder="Số tài khoản ngân hàng" [(ngModel)]="account_number"></ion-input>
+      </ion-col>
+      <ion-col col-12>
+        <ion-input type="number" placeholder="Tên tài khoản ngân hàng" [(ngModel)]="account_name"></ion-input>
+      </ion-col>
+      <ion-col col-12>
+        <ion-input type="number" placeholder="Tên ngân hàng" [(ngModel)]="bank_name"></ion-input>
+      </ion-col>
+      <ion-col col-12>
+        <ion-input type="number" placeholder="Tên chi nhánh" [(ngModel)]="bank_branch_name"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <textarea rows="3" maxLength="500" [(ngModel)]="note" placeholder="Ghi chú"></textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="paymentMethod=='paypal/standard'">
+      <img src="assets/imgs/paypal.png">
+    </ion-row>
+
+</ion-content>

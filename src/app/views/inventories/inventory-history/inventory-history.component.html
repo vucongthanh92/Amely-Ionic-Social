@@ -1,6 +1,6 @@
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item *ngFor="let transaction of transactions">
+    <ion-item *ngFor="let transaction of transactions" (click)="openHistoryDetail(transaction)">
      <a *ngIf="transaction.status==='requested'"  style="color: rgb(0, 0, 0)"> Đã tặng món quà số #{{transaction.guid}}</a>
      <a *ngIf="transaction.status==='rejected'" style="color: red"> Đã từ chối quà số #{{transaction.guid}}</a>
      <a *ngIf="transaction.status==='accepted'" style="color: green"> Đã đồng ý nhận quà số #{{transaction.guid}}</a>

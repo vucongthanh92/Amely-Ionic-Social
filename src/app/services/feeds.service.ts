@@ -21,6 +21,11 @@ export class FeedsService {
   }
 
   putFeed(content, friends, location, privacy, mood, images, owner_guid, type) {
-    return this.api.createFeed({ content: content, friends: friends, location: location, privacy: privacy, mood: mood, images: images, owner_guid: owner_guid, type: type });
+    if (images == null) {
+      return this.api.createFeed({ content: content, friends: friends, location: location, privacy: privacy, mood: mood, owner_guid: owner_guid, type: type });
+    } else {
+      return this.api.createFeed({ content: content, friends: friends, location: location, privacy: privacy, mood: mood, images: images, owner_guid: owner_guid, type: type });
+
+    }
   }
 }
