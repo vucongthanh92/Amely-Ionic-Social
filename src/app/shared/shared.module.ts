@@ -1,3 +1,4 @@
+import { DeliveryModule } from './../modules/delivery/delivery.module';
 import { WithdrawnModule } from './../modules/withdrawn/withdrawn.module';
 import { UserUpdateComponent } from './../components/user/user-update/user-update.component';
 import { MyApp } from './../app.component';
@@ -73,6 +74,7 @@ import { DepositModule } from '../modules/deposit/deposit.module';
     WalletModule,
     DepositModule,
     WithdrawnModule,
+    DeliveryModule,
     LaddaModule.forRoot({
       style: "contract"
     })

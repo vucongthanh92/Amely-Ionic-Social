@@ -1,3 +1,4 @@
+import { DeliveryItemComponent } from './../../modules/delivery/delivery-item/delivery-item.component';
 import { CustomService } from './../../services/custom.service';
 import { InventoryGiftComponent } from './../inventory-gift/inventory-gift.component';
 import { Shop } from './../../api/models/shop';
@@ -63,6 +64,10 @@ export class ItemComponent implements OnInit {
   }
   removeItem() {
     this.customService.toastMessage('Tính năng đang cập nhật', 'bottom', 2000);
+  }
+
+  delivery(){
+    this.nav.push(DeliveryItemComponent, { item: this.item });
   }
 
   onGiveList(isLike) {

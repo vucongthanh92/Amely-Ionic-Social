@@ -97,7 +97,7 @@
           <button ion-button block (click)="gift()">Tang qua</button>
         </ion-col>
         <ion-col col-4 *ngIf="!is_remove_item">
-          <button ion-button block>Giao hang</button>
+          <button  (click)="delivery()"  ion-button block>Giao hang</button>
         </ion-col>
         <ion-col col-12 *ngIf="is_remove_item" (click)="removeItem()">
           <button ion-button block>Xóa sản phẩm</button>

@@ -1962,7 +1962,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createDOResponse(body: body_22): Observable<HttpResponse<DefaultResponse>> {
+  createDOResponse(body: body_22): Observable<HttpResponse<Delivery_order>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1981,9 +1981,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+        let _body: Delivery_order = null;
+        _body = _resp.body as Delivery_order
+        return _resp.clone({body: _body}) as HttpResponse<Delivery_order>;
       })
     );
   }
@@ -1991,7 +1991,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createDO(body: body_22): Observable<DefaultResponse> {
+  createDO(body: body_22): Observable<Delivery_order> {
     return this.createDOResponse(body).pipe(
       map(_r => _r.body)
     );

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      Thông tin khách hàng
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changePage()">
+        Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;">
+    <ion-list radio-group [(ngModel)]="payment_method">
+
+      <ion-list-header>
+        Phương thức giao hàng
+      </ion-list-header>
+
+      <div *ngFor="let item of payment_methods" >
+      <ion-item>
+        <ion-label>{{item.displayname}}</ion-label>
+        <ion-radio value="{{item.filename}}"></ion-radio>
+      </ion-item>
+</div>
+    </ion-list>
+    <ion-list>
+
+      <ion-item>
+        <ion-label stacked>Họ tên</ion-label>
+        <ion-input type="text" [(ngModel)]="fullname" name="fullname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Số điện thoại</ion-label>
+        <ion-input type="text" [(ngModel)]="phone" name="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Địa chỉ</ion-label>
+        <ion-input type="text" [(ngModel)]="address" name="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Ghi chú</ion-label>
+        <ion-input type="text" [(ngModel)]="note" name="note"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Thành phố / Tỉnh</ion-label>
+        <ion-select *ngIf="provinces" [(ngModel)]="province" name="province" (ionChange)="onProvinceChange($event)">
+          <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Quận / Huyện</ion-label>
+        <ion-select *ngIf="districts" [(ngModel)]="district" name="district" (ionChange)="onDistrictChange($event)">
+          <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phường / Xã</ion-label>
+        <ion-select *ngIf="wards" [(ngModel)]="ward" name="ward" (ionChange)="onWardChange($event)">
+          <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <div style="background-color: #fff;">
+
+  </div>
+</ion-content>

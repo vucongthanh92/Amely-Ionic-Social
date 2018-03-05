@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Xác nhận sản phẩm</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changePage()">
+        Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div style="background-color: #fff;" *ngIf="item">
+    <ion-row>
+      <ion-col col-12>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 *ngIf="item.product_snapshot.images">
+              <img width="100%" src="{{item.product_snapshot.images[0]}}" />
+            </ion-col>
+            <ion-col col-7>
+              <h4>{{item.product_snapshot.title}}</h4>
+
+              <ion-row>
+                <ion-col col-4>
+                  <button ion-button block icon-only (click)="decrease()">
+                    <ion-icon name="remove"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col col-4 text-center>
+                  {{quantity}}
+                </ion-col>
+                <ion-col col-4 (click)="increase()">
+                  <button ion-button block icon-only>
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
