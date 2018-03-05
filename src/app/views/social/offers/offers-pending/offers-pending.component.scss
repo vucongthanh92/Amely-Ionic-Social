@@ -14,4 +14,77 @@
         width: 24px;
         height: 24px;
     }
+
+    #offer_pending_container {
+        top: 44px;
+    }
+
+    .offer_pending_box {
+        margin: 10px 0px 0px 0px
+    }
+
+    .offer_pending_row {
+        border-bottom: 0.55px solid #c8c7cc !important;
+    }
+
+    .offer_pending_avatar {
+        z-index: 1;
+        margin: 0px 0px 0px 0px !important;
+    }
+
+    .offer_pending_avatar img {
+        border: 3px solid white;
+    }
+
+    .offer_pending_user_info {
+        padding: 0px;
+        border-bottom: none !important;
+    }
+
+    .offer_pending_user_info {
+        .item-inner {
+            margin-left: -10px;
+            z-index: 0;
+            border-bottom: none !important;
+        }
+
+        .label-ios {
+            margin: 7px 10px 7px 0px
+        }
+    }
+
+    .offer_pending_fullname {
+        background-color: #efeff4;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 5px 0px 5px 20px;
+        color: #333;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+
+    .offer_pending_image {
+        background-size: cover !important;
+        background-position: center !important;
+        margin: 0px 15px 0px 0px !important;
+        min-width: 70px;
+        min-height: 70px;
+    }
+
+    .item-inner {
+        border-bottom: none !important;
+    }
+
+    .offer_pending_title {
+        font-size: 15px;
+        color: #333;
+        margin: 0px 10px 3px 5px;
+        text-transform: capitalize;
+        display: flex;
+    }
+
+    .offer_pending_description {
+        margin: 0px 10px 3px 5px;
+        display: flex;
+    }
 }
