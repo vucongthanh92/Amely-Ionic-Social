@@ -1,3 +1,4 @@
+import { WithdrawnModule } from './../modules/withdrawn/withdrawn.module';
 import { UserUpdateComponent } from './../components/user/user-update/user-update.component';
 import { MyApp } from './../app.component';
 import { CreateShopComponent } from './../components/create-shop/create-shop.component';
@@ -56,6 +57,8 @@ import { WalletModule } from './../modules/wallet/wallet.module';
 import { TimerComponent } from '../components/timer/timer.component';
 import { InventoryTargetGiftComponent } from '../components/inventory-target-gift/inventory-target-gift.component';
 import { UserMenuComponent } from '../components/user/user-menu/user-menu.component';
+import { GiftHistoryComponent } from '../components/gift/gift-history/gift-history.component';
+import { DepositModule } from '../modules/deposit/deposit.module';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -68,6 +71,8 @@ import { UserMenuComponent } from '../components/user/user-menu/user-menu.compon
     NgxQRCodeModule,
     CartModule,
     WalletModule,
+    DepositModule,
+    WithdrawnModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -119,7 +124,8 @@ import { UserMenuComponent } from '../components/user/user-menu/user-menu.compon
     EventMenuComponent,
     CreateShopComponent,
     UserMenuComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    GiftHistoryComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -168,7 +174,8 @@ import { UserMenuComponent } from '../components/user/user-menu/user-menu.compon
     EventMenuComponent,
     CreateShopComponent,
     UserMenuComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    GiftHistoryComponent
   ],
   exports: [
     CategoriesComponent,
@@ -217,7 +224,8 @@ import { UserMenuComponent } from '../components/user/user-menu/user-menu.compon
     EventMenuComponent,
     CreateShopComponent,
     UserMenuComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    GiftHistoryComponent
   ]
 })
 export class SharedModule { }

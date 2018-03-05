@@ -12,7 +12,7 @@ export class PaymentShipingMethodComponent implements OnInit {
 
   shipping_methods: any;
   shipping_selected: any;
-
+  payment_selected:any;
   constructor(
     private customService: CustomService,
     private paymentService: PaymentService,

@@ -1,10 +1,13 @@
 /* tslint:disable */
-import { Shop } from './shop';
-import { User } from './user';
+import { Payment_methods } from './payment-_methods';
+import { Bankcode } from './bankcode';
 
 /**
  */
 export class inline_response_200_24 {
-    shops?: Shop[];
-    owners?: User[];
+    limit?: {};
+    payment_method?: Payment_methods;
+    url?: string;
+    status?: boolean;
+    bankcode?: Bankcode;
 }
