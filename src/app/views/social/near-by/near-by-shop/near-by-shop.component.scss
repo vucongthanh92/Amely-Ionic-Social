@@ -1,0 +1,85 @@
+app-near-by-shop {
+    .nearby_friendly {
+        background-color: white;
+        margin: 0px;
+        padding: 0px 0px 25px 0px;
+    }
+
+    .icon{
+        max-width: 24px;
+        border: 0;
+        float: left;
+    }
+
+    .item-md,.item-ios {
+        padding-left:0px;
+
+        ion-avatar img {
+            width:55px;
+            height:55px;
+        }
+
+        ion-avatar[item-start]{
+            margin: 0px 10px 5px 0;
+        }
+
+        .number-circle{
+            color:white;
+            font-weight: 700;
+            border-radius: 50%;
+            background-color:red;
+            width: 20px;height:20px;
+            line-height: 20px;
+            text-align: center;
+        }
+    }
+
+    .nearby_friendly_item {
+        margin: 0px 0px 0px 0px;
+        border-bottom: 1px solid #c8c7cc !important;
+        padding: 10px 0px 5px 15px;
+    }
+
+    .nearby_title {
+        font-size: 15px;
+        color: #666;
+        margin: 0px 0px 0px 10px;
+        text-transform: capitalize;
+    }
+
+    .nearby_image {
+        border: 1px solid #efeff4;
+    }
+
+    .nearby_icon {
+        font-size: 13px;
+        color: #666;
+        padding: 3px 0px 0px 7px;
+    }
+
+    .nearby_icon_title {
+        line-height: 25px;
+        float: left;
+        color: #999;
+    }
+
+    .button-ios {
+        margin: 0px;
+        padding: 0px 0px 0px 5px;
+    }
+
+    .nearby_icon_phone {
+        color: #35abf4;
+    }
+
+    .button-ios span {
+        color: #999;
+        font-size: 14px;
+    }
+
+    .nearby_description {
+        font-size: 14px;
+        color: #999;
+        padding: 5px 0px 0px 10px;
+    }
+}
