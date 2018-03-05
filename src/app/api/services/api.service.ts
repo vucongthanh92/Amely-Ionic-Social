@@ -128,6 +128,7 @@ import { body_62 } from '../models/body-_62';
 import { body_63 } from '../models/body-_63';
 import { body_64 } from '../models/body-_64';
 import { Wallet } from '../models/wallet';
+import { inline_response_200_24 } from '../models/inline-_response-_200_24';
 import { body_66 } from '../models/body-_66';
 import { body_65 } from '../models/body-_65';
 import { body_67 } from '../models/body-_67';
@@ -5722,7 +5723,7 @@ export class ApiService extends BaseService {
    *   }
    * @param body - undefined
    */
-  actionsWalletResponse(body: body_66): Observable<HttpResponse<Wallet>> {
+  actionsWalletResponse(body: body_66): Observable<HttpResponse<inline_response_200_24>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5741,9 +5742,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Wallet = null;
-        _body = _resp.body as Wallet
-        return _resp.clone({body: _body}) as HttpResponse<Wallet>;
+        let _body: inline_response_200_24 = null;
+        _body = _resp.body as inline_response_200_24
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_24>;
       })
     );
   }
@@ -5784,7 +5785,7 @@ export class ApiService extends BaseService {
    *   }
    * @param body - undefined
    */
-  actionsWallet(body: body_66): Observable<Wallet> {
+  actionsWallet(body: body_66): Observable<inline_response_200_24> {
     return this.actionsWalletResponse(body).pipe(
       map(_r => _r.body)
     );

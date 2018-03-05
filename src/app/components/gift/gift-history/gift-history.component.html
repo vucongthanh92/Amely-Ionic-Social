@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar swipeBackEnabled="true">
+    <ion-title>Chi tiết tặng quà</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content" *ngIf="gift">
+  <ion-card style="margin-top: 55px;">
+    <ion-card-header>
+      THÔNG TIN
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        Người gửi : {{gift.owner.fullname}}
+      </ion-row>
+      
+      <ion-row *ngIf="gift.to_user" >
+        Người nhận : {{gift.to_user.fullname}}
+      </ion-row>
+
+      <ion-row *ngIf="gift.to_group" >
+        Đến nhóm : {{gift.to_group.title}}
+      </ion-row>
+      
+      <ion-row *ngIf="gift.to_event" >
+        Đến sự kiện : {{gift.to_event.title}}
+      </ion-row>
+
+      <ion-row>
+        Thời gian :{{convertDate(gift.time_created)| date:'MM/dd/yyyy'}}
+      </ion-row>
+      <ion-row>
+        Số lượng : {{gift.item_quantity}}
+      </ion-row>
+      <ion-row *ngIf="status == 'accepted'">
+        Tình trạng : Đã nhận
+      </ion-row>
+      <ion-row *ngIf="status == 'rejected'">
+        Tình trạng : Từ chối
+      </ion-row>
+      <ion-row *ngIf="status == 'requested'">
+        Tình trạng : Đã gửi
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      CHI TIẾT SẢN PHẨM
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        {{gift.item.title}}
+      </ion-row>
+      <ion-row>
+        {{convertCurrency(gift.item.price,gift.item.currency)}}
+      </ion-row>
+      <img *ngIf="gift.item" [src]='sanitizer.bypassSecurityTrustResourceUrl(gift.item.images[0])'>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

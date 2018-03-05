@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar swipeBackEnabled="true">
+    <ion-title>Rút tiền</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="changePage()">
+        Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-row>
+      <ion-col col-6>Tối thiểu :{{showLimitAmount(true)}}</ion-col>
+      <ion-col col-6>Tối đa: {{showLimitAmount(false)}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-input  [(ngModel)]=amount type="number" placeholder="Nhập số tiền muốn rút"></ion-input>
+    </ion-row>
+    <ion-row>
+      <div style="background-color: #fff;">
+        <ion-list radio-group [(ngModel)]="payment_selected">
+          <ion-item *ngFor="let payment_method of payment_methods">
+            <ion-thumbnail item-start>
+              <img width="100%" src="assets/imgs/logo.png" />
+            </ion-thumbnail>
+            <ion-radio value="{{ payment_method.filename }}" item-end></ion-radio>
+            <ion-label>{{ payment_method.displayname }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-row>
+ 
+</ion-content>

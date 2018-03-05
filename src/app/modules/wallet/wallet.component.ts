@@ -1,3 +1,5 @@
+import { DepositPaymentMethodComponent } from './../deposit/deposit-payment-method/deposit-payment-method.component';
+import { WithdrawnPaymentMethodComponent } from './../withdrawn/withdrawn-payment-method/withdrawn-payment-method.component';
 import { logger } from '@firebase/database/dist/esm/src/core/util/util';
 import { CustomService } from './../../services/custom.service';
 import { Wallet } from './../../api/models/wallet';
@@ -37,16 +39,16 @@ export class WalletComponent implements OnInit {
   }
 
   deposit() {
-    this.nav.push(WalletDepositComponent);
+    this.nav.push(DepositPaymentMethodComponent, { wallet: this.wallet });
   }
 
   withdrawn() {
-    this.nav.push(WalletWithdrawnComponent);
+    this.nav.push(WithdrawnPaymentMethodComponent, { wallet: this.wallet });
   }
 
   formatDateTime(time: number) {
     const dateTime = new Date(time);
-    return (dateTime.getDate() + 1) + "/" + (dateTime.getMonth()+1) + "/" + dateTime.getFullYear();
+    return (dateTime.getDate() + 1) + "/" + (dateTime.getMonth() + 1) + "/" + dateTime.getFullYear();
   }
   showTransactionDescription(trans: Transaction) {
     let desc: string;
