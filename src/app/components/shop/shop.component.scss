@@ -1,17 +1,59 @@
 app-shop {
-  .about-header {
-    background-color: #434954;
-    padding: 16px;
+  .shop_cover {
+    padding: 30px;
     width: 100%;
     min-height: 150px;
     text-align: center;
+    background-size: cover !important;
+    margin: 40px 0px 0px 0px;
+    background-position: center !important;
   }
 
-  .about-header img {
-    max-width: 200px;
-    min-height: 115px;
-    margin-left: -15px;
-    padding: 25px 0 20px 0;
+  .shop_avatar {
+    width: 65px;
+    height: 65px;
+    border: 1px solid white;
+    margin: 10px 0px 0px 0px;
+  }
+
+  .shop_cover_title {
+    color: white;
+    font-size: 18px;
+    margin: 5px 0px 0px 0px;
+    text-transform: capitalize;
+  }
+
+  .shop_tabcontainer {
+    background-color: #fff;
+  }
+
+  .shop_tab {
+    border-bottom: 1px solid #eee;
+  }
+
+  .shop_tab_product {
+    border-radius: 0px !important;
+    border: 0px !important;
+    border-right: 1px solid #eee !important;
+    margin: 7px 0px 7px 0px;
+  }
+
+  .shop_tab_info {
+    border-radius: 0px; 
+    border: 0px; 
+    font-size: 20px
+  }
+
+  .segment-ios-primary .segment-button{
+    border: 0px;
+    background-color: transparent; 
+    color: #999 !important;
+    height: 45px;
+  }
+
+  .segment-ios-primary .segment-button.segment-activated{
+    background-color: transparent;
+    color:#488aff !important;
   }
 
   .about-info p {
@@ -24,8 +66,7 @@ app-shop {
     width: 20px;
   }
 
-  .md,
-  .wp {
+  .md, .wp {
     .about-info [text-right] {
       margin-right: 0;
     }
@@ -53,10 +94,11 @@ app-shop {
     color:blue;
   }
 
-  .txtTitle{
+  .shop_tab_title{
     clear: both;
-    margin-top: -19px;
-    font-size: 15px;
+    margin-top: -12px;
+    text-transform: uppercase;
+    font-size: 12px;
   }
 
    #tabIconProduct{
@@ -82,8 +124,14 @@ app-shop {
   }
 
   .iconSubTab{
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 18px;
+    height: auto;
+    margin-right: 7px;
+  }
+
+  .shop_action_title {
+    color: #999;
+    text-transform: capitalize;
+    font-size: 13px;
   }
 }
