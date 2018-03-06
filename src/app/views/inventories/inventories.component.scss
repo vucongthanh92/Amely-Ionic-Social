@@ -10,6 +10,9 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
+            color: #488aff;
+            border-bottom: 1px solid #488aff;
+            
             .tab-button-icon[ng-reflect-name=inventory-personal], .tab-button-icon[aria-label=inventory-personal] {
             background-image: url(../assets/imgs/ic_inventory_personal_actived.png);
             background-size: 100%;
@@ -29,6 +32,9 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
+            color: #488aff;
+            border-bottom: 1px solid #488aff;
+
             .tab-button-icon[ng-reflect-name=inventory-general], .tab-button-icon[aria-label=inventory-general] {
             background-image: url(../assets/imgs/ic_inventory_general_actived.png);
             background-size: 100%;
@@ -48,6 +54,9 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
+            color: #488aff;
+            border-bottom: 1px solid #488aff;
+
             .tab-button-icon[ng-reflect-name=inventory-history], .tab-button-icon[aria-label=inventory-history] {
             background-image: url(../assets/imgs/ic_inventory_history_actived.png);
             background-size: 100%;
@@ -59,6 +68,27 @@ app-inventories{
 
     .tabs-ios {
         top: 44px;
+    }
+
+    .tabs-ios .tab-button {
+        padding: 0px 0px 5px 0px;
+    }
+
+    .tabs-ios .tab-button-icon {
+        margin-top: 5px;
+        margin-bottom: 3px;
+        min-width: 35px;
+        height: 30px;
+        font-size: 30px;
+        color: #8c8c8c;
+    }
+
+    .inventory_tab {
+        padding: 0px 0px 5px 0px;
+    }
+
+    .inventory_action_btn {
+        margin: 0px 12px 0px 12px;
     }
 
 } 

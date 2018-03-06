@@ -4,8 +4,8 @@ app-inventory {
      display: flex;
      flex-wrap: wrap;
   }
-  .content{
-    background-color: #eee;
+  .inventory_container{
+    background-color: #efeff4;
   }
 
   // IF the browser DOES support the CSS Grid Layout specification
@@ -162,5 +162,33 @@ app-inventory {
     border-left: 1px solid;
     border-radius: 0px;
   }
+
+  .inventory_total {
+    padding: 12px 0px 0px 0px;
+    width: 100%;
+
+    .card-ios {
+      margin: 0px;
+      width: 100%;
+      border-radius: 0px;
+    }
+  }
+
+  .inventory_total_img {
+    float: left;
+    width: 25px;
+    height: auto;
+    margin: 0px 10px 0 0;
+  }
+
+  ion-footer {
+    left: 0;
+    bottom: 44px;
+    position: absolute;
+    z-index: 10;
+    display: block;
+    width: 100%;
+  }
+
 }
 
