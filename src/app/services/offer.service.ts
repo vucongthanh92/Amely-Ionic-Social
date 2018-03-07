@@ -24,7 +24,7 @@ export class OfferService {
   getOffer(offer_guid) {
     return this.api.getOffer(offer_guid);
   }
-  
+
   getListCounter() {
     return this.api.getCounterOffers({});
   }
@@ -39,5 +39,9 @@ export class OfferService {
 
   delete(offer_guid) {
     return this.api.deleteOffer(offer_guid);
+  }
+
+  getCounterOffer(guid) {
+    return this.api.getCounterOffer(guid);
   }
 }

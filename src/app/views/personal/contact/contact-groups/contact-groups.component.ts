@@ -27,6 +27,10 @@ export class ContactGroupsComponent implements OnInit {
     
   }
 
+  ionViewDidEnter(){
+   console.log(1233456);
+   
+  }
   ngOnInit() {
     // this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
     //   this.groups = data.groups;

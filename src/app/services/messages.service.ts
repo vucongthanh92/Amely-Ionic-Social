@@ -23,8 +23,8 @@ export class MessagesService {
     public userService: UserService
   ) {
   }
-  
-  
+
+
   generateKey() {
     return this.fbService.generateKey();
   }
@@ -76,7 +76,7 @@ export class MessagesService {
     return this.fbService.getGiftBySubject(subject_id, username);
   }
 
-  createNotification(username, obj) {  
+  createNotification(username, obj) {
     return this.fbService.createNotification(username, obj);
   }
 
@@ -114,7 +114,7 @@ export class MessagesService {
       let content_type = "image/jpg";
       this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
         let path = "/shared/messages/" + key_chat;
-        let attachment = { media_type: "image", url: task.downloadURL};
+        let attachment = { media_type: "image", url: task.downloadURL };
         let message = { from: owner_from, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
         this.fbService.createMessage(message, key_chat);
       });
@@ -132,9 +132,9 @@ export class MessagesService {
       }
     });
   }
-
+  
   rejectGift(username, gift_guid) {
-    this.giftsService.reject(gift_guid).subscribe( res => {
+    this.giftsService.reject(gift_guid).subscribe(res => {
       if (res.status) {
         let owner_from = this.customService.user_current.username;
         let notification_type = "gift:reject";

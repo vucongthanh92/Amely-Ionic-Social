@@ -21,4 +21,18 @@ app-notification {
             text-align: center;
         }
     }
+    ion-avatar, ion-thumbnail {
+        display: block;
+        float: left;
+        line-height: 1;
+    }
+    h2{
+        color: #404040;
+    }
+    .ladda-button:hover{
+        background: none;
+    }
+    .ladda-button{
+        background: none;
+    }
 }

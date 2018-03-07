@@ -42,6 +42,7 @@ export { QRCode } from './models/qrcode';
 export { Param_create_offer } from './models/param-_create-_offer';
 export { Services } from './models/services';
 export { Param_create_gift } from './models/param-_create-_gift';
+export { Notification } from './models/notification';
 export { body } from './models/body';
 export { body_1 } from './models/body-_1';
 export { body_2 } from './models/body-_2';

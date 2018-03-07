@@ -1,11 +1,11 @@
 <ion-content padding>
   <ion-list no-lines>
-    <ion-item *ngFor="let number of [0,1,2,3,4]">
+    <ion-item *ngFor="let n of customService.notifications" (click)="goToPage(n)">
       <ion-avatar item-start>
-        <img src="assets/imgs/logo.png">
+        <img src="{{n.from_user.avatar}}">
       </ion-avatar>
-      <h2>Thông tin tài khoản gốc</h2>
-      <p>Nov 17,2017</p>
+      <h2>{{n.title}}</h2>
+      <p>{{ convertDate(n.time_created) | date: 'H:mm dd/MM/yyyy'}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

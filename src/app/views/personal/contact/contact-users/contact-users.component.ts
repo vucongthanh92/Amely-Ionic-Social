@@ -2,27 +2,28 @@ import { MessagesService } from './../../../../services/messages.service';
 import { User } from './../../../../api/models/user';
 import { PersonalService } from './../../personal.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, ModalController } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
 import { MessageComponent } from '../../../../components/message/message.component';
 import { AddGroupComponent } from '../../../../components/add-group/add-group.component';
+import { AddFriendComponent } from '../../../../components/add-friend/add-friend.component';
 
 @Component({
   selector: 'app-contact-users',
   templateUrl: './contact-users.component.html'
 })
 export class ContactUsersComponent implements OnInit {
-  
+
   private userCurrent: User;
   private moodLocal: any;
-  public friends: Array<User>; 
+  public friends: Array<User>;
 
   constructor(
     public messagesService: MessagesService,
-    public nav: NavController, 
-    public appCtrl: App, 
-    private personalService: PersonalService) 
-    {
+    public nav: NavController,
+    public appCtrl: App,
+    public modalCtrl: ModalController,
+    private personalService: PersonalService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
   }
@@ -37,6 +38,15 @@ export class ContactUsersComponent implements OnInit {
 
   addFriend() {
     // this.appCtrl.getRootNav().push(AddGroupComponent, { callback: this.myCallbackFunction });
+    // this.appCtrl.getRootNav().push(AddFriendComponent, { position_selected: 2, callback: this.myCallbackFunction })
+    let profileModal = this.modalCtrl.create(AddFriendComponent, { position_selected: 2 });
+    profileModal.present();
+    profileModal.onDidDismiss(() => {
+      this.getFriends();
+    })
+  }
+
+  ionViewDidEnter() {
   }
 
   goToPageChat(friend, chat_type) {
@@ -46,7 +56,7 @@ export class ContactUsersComponent implements OnInit {
         this.messagesService.getKeyChat(friend.username, this.userCurrent.username, "individual").query.once('value', item => {
           if (item.val()) {
             key = item.val().key;
-            this.messagesService.createKeyChat("individual", this.userCurrent.username, friend.username, item.val()); 
+            this.messagesService.createKeyChat("individual", this.userCurrent.username, friend.username, item.val());
             friend.key = key;
             friend.chat_type = "individual";
             this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
@@ -64,7 +74,7 @@ export class ContactUsersComponent implements OnInit {
         key = snap.val().key;
         friend.key = key;
         friend.chat_type = "individual";
-        this.appCtrl.getRootNav().push(MessageComponent, { param: friend});
+        this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
       }
     });
   }
@@ -80,7 +90,7 @@ export class ContactUsersComponent implements OnInit {
       return '';
     return thought;
   }
-  getMoodIcon(moodID){
-    return this.moodLocal[moodID] ;
+  getMoodIcon(moodID) {
+    return this.moodLocal[moodID];
   }
 }

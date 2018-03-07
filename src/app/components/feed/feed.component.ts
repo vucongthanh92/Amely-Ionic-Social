@@ -1,3 +1,4 @@
+import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
@@ -30,6 +31,7 @@ export class FeedComponent {
     public menuCtrl: MenuController,
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
+    private navParams: NavParams,
     private customService: CustomService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));

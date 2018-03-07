@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar swipeBackEnabled="true">
+    <ion-title>Kết quả trao đổi</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div *ngIf="offer.offer_type!='random'">
+    <ion-card-header *ngIf="is_owner">
+      {{offer.counter_offers[0].product_snapshot.title}}
+    </ion-card-header>
+    <ion-card-header *ngIf="!is_owner">
+      {{offer.product_snapshot.title}}
+    </ion-card-header>
+  </div>
+
+  <div *ngIf="offer.offer_type=='random'">
+    <ion-card-header *ngIf="cOffer  &&(notify.item_guid != notify.subject_guid)">
+      {{cOffer.product_snapshot.title}}
+    </ion-card-header>
+    <ion-card-header *ngIf="notify.item_guid == notify.subject_guid">
+      {{offer.product_snapshot.title}}
+    </ion-card-header>
+  </div>
+
+  <div *ngIf="offer.offer_type!='random'">
+    <ion-card-content *ngIf="is_owner">
+      <img *ngIf="offer.counter_offers[0].product_snapshot.images" width=100% src="{{offer.counter_offers[0].product_snapshot.images[0]}}"> Bạn đã nhận được {{offer.counter_offers[0].quantity}} {{offer.counter_offers[0].product_snapshot.title}}
+    </ion-card-content>
+
+    <ion-card-content *ngIf="!is_owner">
+      <img *ngIf="offer.product_snapshot.images" width=100% src="{{offer.product_snapshot.images[0]}}">Bạn đã nhận được {{offer.quantity}} {{offer.product_snapshot.title}}
+    </ion-card-content>
+  </div>
+  <div *ngIf="offer.offer_type=='random'" >
+      <ion-card-content *ngIf="cOffer &&(notify.item_guid != notify.subject_guid)"  >
+        <img *ngIf="cOffer.product_snapshot.images" width=100% src="{{cOffer.product_snapshot.images[0]}}">Bạn đã nhận được {{cOffer.quantity}} {{cOffer.product_snapshot.title}}
+      </ion-card-content>
+      <ion-card-content *ngIf="notify.item_guid == notify.subject_guid"  >
+        <img *ngIf="offer.product_snapshot.images" width=100% src="{{offer.product_snapshot.images[0]}}">Bạn đã nhận được {{offer.quantity}} {{offer.product_snapshot.title}}
+      </ion-card-content>
+  </div>
+</ion-content>

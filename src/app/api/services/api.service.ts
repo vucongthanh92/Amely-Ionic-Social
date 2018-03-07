@@ -81,6 +81,7 @@ import { body_38 } from '../models/body-_38';
 import { Manufacturer } from '../models/manufacturer';
 import { body_39 } from '../models/body-_39';
 import { Mood } from '../models/mood';
+import { Notification } from '../models/notification';
 import { body_40 } from '../models/body-_40';
 import { guid } from '../models/guid';
 import { Offer } from '../models/offer';
@@ -3791,7 +3792,7 @@ export class ApiService extends BaseService {
    * get notification
    * @param guid - Global Unique IDentity
    */
-  getNotificationResponse(guid?: number): Observable<HttpResponse<DefaultResponse>> {
+  getNotificationResponse(guid?: number): Observable<HttpResponse<Notification>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -3810,9 +3811,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+        let _body: Notification = null;
+        _body = _resp.body as Notification
+        return _resp.clone({body: _body}) as HttpResponse<Notification>;
       })
     );
   }
@@ -3821,7 +3822,7 @@ export class ApiService extends BaseService {
    * get notification
    * @param guid - Global Unique IDentity
    */
-  getNotification(guid?: number): Observable<DefaultResponse> {
+  getNotification(guid?: number): Observable<Notification> {
     return this.getNotificationResponse(guid).pipe(
       map(_r => _r.body)
     );

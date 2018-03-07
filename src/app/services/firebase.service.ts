@@ -13,7 +13,7 @@ export class FirebaseService {
   generateKey() {
     return this.afDatabase.list('/users/').push({}).key;
   }
-  
+
   getListByOwner(owner_from, owner_to_type) {
     let path = "/users/" + owner_from + "/chat/" + owner_to_type;
     return this.afDatabase.list(path).query.orderByChild('last_read').startAt(1);
@@ -94,4 +94,8 @@ export class FirebaseService {
     this.afDatabase.database.ref(owner_from_type + '/' + owner_from).update({ g: geoHash, l: [lat, lng] });
   }
 
+  getNotify(owner: string) {
+    let path = "/notifications/" + owner;
+    return this.afDatabase.list(path);
+  }
 }

@@ -1,3 +1,4 @@
+import { GiftDetailComponent } from './../components/gift/gift-detail/gift-detail.component';
 import { DeliveryModule } from './../modules/delivery/delivery.module';
 import { WithdrawnModule } from './../modules/withdrawn/withdrawn.module';
 import { UserUpdateComponent } from './../components/user/user-update/user-update.component';
@@ -60,6 +61,7 @@ import { InventoryTargetGiftComponent } from '../components/inventory-target-gif
 import { UserMenuComponent } from '../components/user/user-menu/user-menu.component';
 import { GiftHistoryComponent } from '../components/gift/gift-history/gift-history.component';
 import { DepositModule } from '../modules/deposit/deposit.module';
+import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -127,7 +129,9 @@ import { DepositModule } from '../modules/deposit/deposit.module';
     CreateShopComponent,
     UserMenuComponent,
     UserUpdateComponent,
-    GiftHistoryComponent
+    GiftHistoryComponent,
+    GiftDetailComponent,
+    FeedDetailComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -177,7 +181,9 @@ import { DepositModule } from '../modules/deposit/deposit.module';
     CreateShopComponent,
     UserMenuComponent,
     UserUpdateComponent,
-    GiftHistoryComponent
+    GiftHistoryComponent,
+    GiftDetailComponent,
+    FeedDetailComponent
   ],
   exports: [
     CategoriesComponent,
@@ -227,7 +233,9 @@ import { DepositModule } from '../modules/deposit/deposit.module';
     CreateShopComponent,
     UserMenuComponent,
     UserUpdateComponent,
-    GiftHistoryComponent
+    GiftHistoryComponent,
+    GiftDetailComponent,
+    FeedDetailComponent
   ]
 })
 export class SharedModule { }

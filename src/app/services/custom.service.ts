@@ -3,6 +3,7 @@ import { ApiService } from './../api/services/api.service';
 import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
 import { ToastController, NavController } from 'ionic-angular';
+import { Notification } from '../api/models';
 
 @Injectable()
 export class CustomService {
@@ -12,7 +13,7 @@ export class CustomService {
   mood_local: any;
   public url_site = "http://helloqua.com/";
   friends: Array<User>;
-
+  notifications: Array<Notification>=[];
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
   constructor(

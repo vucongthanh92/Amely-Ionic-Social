@@ -10,6 +10,7 @@ import { MessagesModule } from './messages/messages.module';
 import { NotificationModule } from './notification/notification.module';
 import { SharedModule } from '../../shared/shared.module';
 import { MomentModule } from 'angular2-moment';
+import { LaddaModule } from 'angular2-ladda';
 
 @NgModule({
   imports: [
@@ -19,7 +20,10 @@ import { MomentModule } from 'angular2-moment';
     MessagesModule,
     NotificationModule,
     SharedModule,
-    MomentModule
+    MomentModule,
+    LaddaModule.forRoot({
+      style: "expand-left"
+    })
   ],
   declarations: [
     PersonalComponent,
