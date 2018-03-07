@@ -1,49 +1,46 @@
-<ion-content class="outer-content" style="top: 44px;">
-<ion-row>
-  <ion-col col-6 *ngFor="let offer of offers" (click)="changePage(offer)">
-    <ion-row style="position: relative;background-color: #fff; border-radius: 10px;" margin-top>
-      <img width="48px" height="48px" src="{{offer.owner.avatar}}" style="position: absolute;top: -10px;z-index: 1;" />
-      <ion-col col-12 text-right margin->
-        <strong>
-          <ion-icon name="timer"></ion-icon><app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
-        </strong>
-      </ion-col>
-    </ion-row>
-    <ion-row style="background-color: #fff;margin-top: 5px;padding: 10px;border-radius: 10px;position: relative;z-index: 0;">
-      <div style="background-color: #fff; border-radius: 10px;margin: 0 auto;">
+<ion-content class="outer-content" id="offer_search_container">
+  <ion-row class="offer_search_row">
+    <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers" (click)="changePage(offer)">
+      <ion-row class="offer_search_user_info" margin-top>
+        <img class="offer_search_avatar" src="{{offer.owner.avatar}}" />
+        <ion-col class="offer_search_datetime">
+          <strong>
+            <ion-icon name="timer"></ion-icon><app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
+          </strong>
+        </ion-col>
+        <button ion-button color="danger" outline icon-only class="offer_search_bookmark">
+          <ion-icon name='bookmark' is-active="false"></ion-icon>
+        </button>
+      </ion-row>
 
-        <p *ngIf="offer.target=='public'" style="font-size: 15px;" no-margin text-center>
-          <ion-icon class="public"></ion-icon> Xunh quanh</p>
+      <ion-row class="offer_search_content">
+        <div class="offer_search_box">
+          <p *ngIf="offer.target=='public'" class="offer_search_location">
+            <ion-icon class="public"></ion-icon> Xunh quanh</p>
+          <p *ngIf="offer.target=='location'" class="offer_search_location">
+            <ion-icon class="around"></ion-icon> Theo vị trí</p>
+          <p *ngIf="offer.target=='friends'" class="offer_search_location">
+            <ion-icon class="friend"></ion-icon> Bạn bè</p>
 
-        <p *ngIf="offer.target=='location'" style="font-size: 15px;" no-margin text-center>
-          <ion-icon class="around"></ion-icon> Theo vị trí</p>
-
-        <p *ngIf="offer.target=='friends'" style="font-size: 15px;" no-margin text-center>
-          <ion-icon class="friend"></ion-icon> Bạn bè</p>
-
-
-        <div style="padding: 0 5px" class="item-ribbon">
-          <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
-            <span>FREE</span>
-          </span>
-          <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
-            <span>RANDOM</span>
-          </span>
-          <img *ngIf="offer.product_snapshot.images[0]" width="100%" src="{{offer.product_snapshot.images[0]}}" />
-          <img *ngIf="offer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
+          <div class="item-ribbon offer_search_ribbon">
+            <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
+              <span>FREE</span>
+            </span>
+            <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
+              <span>RANDOM</span>
+            </span>
+            <div *ngIf="offer.product_snapshot.images[0]" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'" class="offer_myself_image"></div>
+            <div *ngIf="offer.product_snapshot.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+          </div>
+          <p class="offer_search_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
         </div>
-        <p style="font-size: 15px;" no-margin text-center>{{offer.product_snapshot.title}} #{{offer.guid}}</p>
-
-      </div>
-      <button ion-button color="danger" outline icon-only style="position: absolute;right: 0;bottom: -20px;border: 0px;padding: 0;margin: 0;">
-        <ion-icon name='bookmark' is-active="false"></ion-icon>
-      </button>
-    </ion-row>
-  </ion-col>
-</ion-row>
+      </ion-row>
+    </ion-col>
+  </ion-row>
 </ion-content>
+
 <ion-fab right bottom>
-  <button ion-fab color="primary" style="bottom: 50px;" (click)="doRadio()">
+  <button ion-fab color="primary" class="offer_search_button" (click)="doRadio()">
     <ion-icon name="funnel"></ion-icon>
   </button>
 </ion-fab>

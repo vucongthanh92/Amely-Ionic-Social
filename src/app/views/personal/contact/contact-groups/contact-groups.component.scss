@@ -49,8 +49,8 @@ app-contact-groups{
     }
 
     .list-ios .item-block .item-inner {
-        border-bottom: 0.55px solid #efeff4;
-        padding: 0px 9px 0px 12px;
+        border-bottom: 0.55px solid #c8c7cc;
+        padding: 5px 9px 5px 12px;
     }
 
     .contact_group_mood {
@@ -61,5 +61,15 @@ app-contact-groups{
     .contact_group_mood {
         position: absolute;
         bottom: 0px;
+        padding: 0px 0px 0px 5px;
+    }
+
+    .contact_group {
+        top: 44px;
+        background-color: white;
+    }
+
+    .contact_group_button {
+        bottom: 45px;
     }
 }

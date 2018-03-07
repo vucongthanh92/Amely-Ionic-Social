@@ -1,21 +1,23 @@
-<ion-content class="outer-content" style="top: 44px;">
-  <ion-list>
-    <ion-item-sliding *ngFor="let counterOffer of counterOffers">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img width="100%" src="{{ counterOffer.product_snapshot.images[0] }}">
-          <img *ngIf="counterOffer.product_snapshot.images[0]==''" width="100%" src="assets/imgs/image_not_found.jpg" />
-        </ion-thumbnail>
-        <h2>{{ counterOffer.product_snapshot.title }}</h2>
-        <p>{{ counterOffer.description }}</p>
-        <ion-item class="user-info">
-          <ion-avatar item-start>
-            <img width="100%" src="{{ counterOffer.offer.owner.avatar }}">
+<ion-content class="outer-content" id="offer_pending_container">
+  <ion-list class="offer_pending_main">
+    <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers">
+      <ion-item class="offer_pending_row">
+        
+        <ion-item class="offer_pending_user_info">
+          <ion-avatar class="offer_pending_avatar" item-start>
+            <img src="{{ counterOffer.offer.owner.avatar }}">
           </ion-avatar>
-          <h2>{{ counterOffer.offer.owner.username }}</h2>
+          <h2 class="offer_pending_fullname">{{ counterOffer.offer.owner.username }}</h2>
         </ion-item>
         <ion-icon name="md-arrow-back" item-end></ion-icon>
+
+        <ion-thumbnail class="offer_pending_image" [style.background]="'url(' + counterOffer.product_snapshot.images[0] + ')'" item-start></ion-thumbnail>
+        <ion-thumbnail class="offer_pending_image" style="background-image: url('assets/imgs/image_not_found.jpg')" 
+          *ngIf="counterOffer.product_snapshot.images[0]==''" item-start></ion-thumbnail>
+        <h2 class="offer_pending_title">{{ counterOffer.product_snapshot.title }}</h2>
+        <p class="offer_pending_description">{{ counterOffer.description }}</p>
       </ion-item>
+
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="detail(counterOffer)">
           <ion-icon name="eye"></ion-icon>
@@ -26,7 +28,7 @@
           Xóa
         </button>
       </ion-item-options>
+      
     </ion-item-sliding>
   </ion-list>
 </ion-content>
-

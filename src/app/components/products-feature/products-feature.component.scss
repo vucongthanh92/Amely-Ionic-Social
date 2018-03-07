@@ -20,10 +20,11 @@ app-products-feature {
   }
   
   .imgageProduct{
-    width: 45vw;
-    height: 30vh;
-    max-width: none;
-    max-height: none;
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    background-size: cover !important;
+    background-position: center !important;
   }
 
   .product_feature {
@@ -32,9 +33,9 @@ app-products-feature {
 
   .product_feature_label {
     float: left;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 5px;
     text-transform: uppercase;
     color: #333;
   }
@@ -46,7 +47,7 @@ app-products-feature {
     color: #488AFF;
     font-style: italic;
     text-align: right;
-    padding: 5px 7px 0px 0px;
+    padding: 5px 15px 0px 0px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
@@ -70,6 +71,12 @@ app-products-feature {
     color: #D9534F;
     font-size: 14px;
     text-transform: capitalize;
+  }
+
+  .product_feature_container {
+    background-color: #fff;
+    margin: 10px 0px 0px;
+    padding: 5px 0px 40px 0px;
   }
 
 }

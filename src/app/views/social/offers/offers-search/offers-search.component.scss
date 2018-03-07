@@ -1,18 +1,27 @@
 app-offers-search{
     .around {
         content: url(../assets/imgs/ic_location_actived.png);
-        width: 24px;
-        height: 24px;
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
     }
     .friend {
         content: url(../assets/imgs/ic_friend_actived.png);
-        width: 24px;
-        height: 24px;
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
     }
     .public {
         content: url(../assets/imgs/ic_member_actived.png);
-        width: 24px;
-        height: 24px;
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
     }
     // Creates a ribbon effect with the given options:
   @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
@@ -35,7 +44,7 @@ app-offers-search{
   $atletico: darken(#f4f4f4, 45%);
   $javascript: #f7e023;
 
-  .item-ribbon{
+  .item-ribbon {
     background-color: #fff;
     position: relative;
     filter: none;
@@ -101,4 +110,113 @@ app-offers-search{
   .ribbon.javascript {
     @include ribbonize($javascript, black);
   }
+
+  #offer_search_container {
+    top: 44px;
+  }
+
+  .offer_search_row {
+    margin: 0px 0px 45px 0px;
+  }
+
+  .offer_search_user_info {
+    position: relative;
+    background-color: #fff; 
+    border-radius: 10px;
+  }
+
+  .offer_search_avatar {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -21px;
+    z-index: 3;
+    border-radius: 50%;
+    left: 12px;
+  }
+
+  .offer_search_main {
+    margin: 15px 0px 0px 0px;
+  }
+
+  .offer_search_content {
+    background-color: #fff;
+    margin-top: 3px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+    box-shadow: 1px 1px #ccc;
+  }
+
+  .offer_search_box {
+    background-color: #fff; 
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .offer_search_location {
+    padding-top: 30px;
+    margin: 3px 0px 15px 0px;
+    font-size: 15px;
+    padding: 0px;
+    color: #55acee;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .offer_search_ribbon {
+    padding: 0 5px
+  }
+
+  .offer_search_title {
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0px 10px 0px;
+    font-weight: 300;
+    height: 35px;
+    text-transform: capitalize;
+  }
+
+  .offer_search_bookmark {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    border: 0px;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .offer_search_button {
+    bottom: 50px;
+  }
+
+  .offer_search_datetime {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px #ccc;
+    box-shadow: 0px 2px #ccc;
+    left: 3px;
+    right: 0;
+    padding: 3px 0px 3px 0px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    position: absolute;
+    top: -20px;
+    color: #666;
+    font-size: 14px;
+    z-index: 2;
+  }
+
+  .offer_myself_image {
+    background-position: center !important;
+    background-size: cover !important;
+    padding: 0px;
+    width: 100%;
+    height: 120px;
+    margin: 0px 0px 5px 0px;
+  }
+
 }

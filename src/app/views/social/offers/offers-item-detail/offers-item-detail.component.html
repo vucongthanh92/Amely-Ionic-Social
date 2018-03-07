@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar  swipeBackEnabled="true">
+  <ion-navbar swipeBackEnabled="true">
     <ion-title>Chi tiết trao đổi</ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,16 +18,16 @@
       </ion-avatar>
       <h2>
         {{ offer.owner.username }}
-        <span *ngIf="offer.target == 'public'" style="float: right; color: #488aff">
+        <span *ngIf="offer.target == 'public'" class="offer_detail_relation">
           <ion-icon name="globe"></ion-icon> Xung quanh</span>
-        <span *ngIf="offer.target == 'friends'" style="float: right; color: #488aff">
+        <span *ngIf="offer.target == 'friends'" class="offer_detail_relation">
           <ion-icon name="people"></ion-icon> Bạn bè</span>
-        <span *ngIf="offer.target == 'location'" style="float: right; color: #488aff">
+        <span *ngIf="offer.target == 'location'" class="offer_detail_relation">
           <ion-icon name="locate"></ion-icon> Vị trí</span>
       </h2>
       <button *ngIf="!is_counter" type="button" name="button" (click)="chosenItem(offer)" ion-button>Tham gia trao đổi</button>
     </ion-item>
-    <ion-row>
+    <ion-row class="offer_detail_info">
       <ion-col col-12>
         <img width="100%" [src]="offer.product_snapshot.images[0]">
       </ion-col>
@@ -40,8 +40,10 @@
         </ion-card-content>
       </ion-col>
       <ion-col col-12>
+        <ion-card-content>
           <p>Thông tin sản phẩm</p>
           <p>{{ offer.product_snapshot.description }}</p>
+        </ion-card-content>
       </ion-col>
     </ion-row>
     <ion-row>

@@ -14,4 +14,25 @@ app-messages {
     .message_date {
         line-height: 30px;
     }
+
+    .messages_avatar {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 10px 16px 10px 0px !important;
+    }
+
+    .messages_container_user {
+        margin: 3px 0px 12px 0px;
+    }
+
+    .messages_container_group {
+        margin: 0px 0px 45px 0px;
+    }
+
+    .messages_title {
+        line-height: 20px;
+        overflow: hidden;
+        white-space: normal;
+        font-size: 13px;
+    }
 }

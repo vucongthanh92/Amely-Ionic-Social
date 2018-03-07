@@ -4,7 +4,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content class="content">
+<ion-content class="inventory_container">
 	<ion-row>
 		<ion-col *ngIf="inventoryType=='group'" col-12 text-center style="background-color: #fff">
 			<img *ngIf="group.owner.avatar"  width="30px" height="30px" src="{{group.owner.avatar}}" />
@@ -18,7 +18,7 @@
 			</ion-card>
 		</ion-col>
 
-		<ion-col *ngIf="inventoryType=='event'" col-12 text-center style="background-color: #fff">
+		<ion-col *ngIf="inventoryType =='event'" col-12 text-center style="background-color: #fff">
 			<img width="30px" height="30px" src="{{event.owner.avatar}}" />
 			<span>{{event.owner.fullname}}</span>
 		</ion-col>
@@ -34,7 +34,7 @@
 			<img width="30px" height="30px" src="{{page.owner.avatar}}" />
 			<span>{{page.owner.fullname}}</span>
 		</ion-col>
-		<ion-col col-6 *ngIf="inventoryType=='business'">
+		<ion-col col-6 *ngIf="inventoryType =='business'">
 			<ion-card style="margin:0px; width: 100%">
 				<ion-card-header>
 				<img height="30px" width="30px" style="float: left" src="{{page.avatar}}">>{{page.title}}
@@ -43,54 +43,52 @@
 		</ion-col>
 
 
-		<ion-col *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
-			<ion-card style="margin:0px; width: 100%">
+		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
+			<ion-card>
 				<ion-card-header>
-					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
+					<img class="inventory_total_img" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
 
-		<ion-col *ngIf="inventoryType=='user'" col-12 (click)="goToPage('items','all','Tất Cả')">
-			<ion-card style="margin:0px; width: 100%">
+		<ion-col class="inventory_total" *ngIf="inventoryType=='user'" col-12 (click)="goToPage('items','all','Tất Cả')">
+			<ion-card>
 				<ion-card-header>
-					<img style="float: left;width: 17px;height:17px;margin: 0px 5px 0 0" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
+					<img class="inventory_total_img" src="assets/imgs/ic_quantity_gift.png"> TỔNG :{{totalItem}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
 	</ion-row>
 
-	<ion-grid>
+	<ion-grid class="inventory_metro_menu">
 		<ion-row>
-			<ion-col col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
+			<ion-col class="inventory_metro_box" col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
 				<div class="box inventory">
 					<div class="divImg">
-						<ion-badge item-end class="badge1">{{type.badge}}</ion-badge>
+						<ion-badge item-end class="inventory_metro_badge">{{type.badge}}</ion-badge>
 						<img width="100%" src="{{type.image}}" />
 					</div>
-					<h6 class="h3Img">{{type.title}}</h6>
+					<h6 class="inventory_metro_title">{{type.title}}</h6>
 				</div>
 			</ion-col>
-			<!-- <ion-col col-4>
+			<ion-col class="inventory_metro_box" col-4>
 				<div class="box inventory">
-					<h3 class="h3Img">...</h3>
+					<h3 class="inventory_metro_etc">...</h3>
 				</div>
-			</ion-col> -->
+			</ion-col>
 		</ion-row>
 	</ion-grid>
-
 </ion-content>
-<ion-footer>
-	<ion-toolbar class="toolbarFooter">
-		<ion-grid>
-			<ion-row>
-				<ion-col col-6>
-					<button ion-button block (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">Sắp hết hạn dùng ({{badge_near_expiry}})</button>
-				</ion-col>
-				<ion-col col-6>
-					<button ion-button block (click)="goToPage('items','nearly_stored','Sắp hết hạn lưu kho')">Sắp hết hạn lưu kho ({{badge_near_stored}})</button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-toolbar>
+
+<ion-footer class="inventory_footer">
+	<ion-grid>
+		<ion-row>
+			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">
+				Sắp hết hạn dùng <span class="inventory_footer_quantity">{{badge_near_expiry}}</span>
+			</ion-col>
+			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_stored','Sắp hết hạn lưu kho')">
+				Sắp hết hạn lưu kho <span class="inventory_footer_quantity">{{badge_near_stored}}</span>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-footer>

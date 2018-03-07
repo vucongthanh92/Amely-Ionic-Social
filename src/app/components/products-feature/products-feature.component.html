@@ -1,4 +1,4 @@
-<div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="productsMostSold.length>0">
+<div class="product_feature_container" *ngIf="productsMostSold.length>0">
   <ion-row>
     <ion-col col-8>
       <h3 class="product_feature_label">Sản phẩm bán chạy</h3>
@@ -9,8 +9,8 @@
     <div class="scroll-item" *ngIf="productsMostSold">
       <ion-col *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
         <div class="item-card">
-          <img class="imgageProduct" *ngIf="product.images[0]==''" src="assets/imgs/image_not_found.jpg">
-          <img class="imgageProduct" *ngIf="product.images[0]" src="{{product.images[0]}}">
+          <div class="imgageProduct" *ngIf="product.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
+          <div class="imgageProduct" *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'"></div>
           <div class="product_feature_info">
             <h4 class="product_feature_title">{{product.title}}</h4>
             <div class="product_feature_price">{{formatCurrency(product.price,product.currency)}}</div>

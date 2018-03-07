@@ -1,14 +1,14 @@
-<ion-content class="outer-content" style="height: 90%; top: 102px;">
-  <ion-list>
+<ion-content class="outer-content" class="events_container">
+  <ion-list class="events_list">
     <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
-        <ion-col col-3>
+        <ion-col class="events_image" col-3>
           <img width="100%" src="{{event.avatar}}" />
         </ion-col>
         <ion-col col-9>
-          {{event.title}}
-          <br> {{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}
-          <br> Chủ sự kiện :{{getFullname(event.owner_guid)}}
+          <div class="events_title">{{event.title}}</div>
+          <div class="events_date">{{getDateCreate(event.time_created) | date:'dd/MM/yyyy'}}</div>
+          <div class="events_author">Chủ sự kiện: {{getFullname(event.owner_guid)}}</div>
         </ion-col>
       </ion-row>
     </ion-item>

@@ -1,22 +1,22 @@
 <ion-content class="chats">
-  <ion-list *ngIf="individualList">
+  <ion-list class="messages_container_user" *ngIf="individualList">
     <ion-list-header>Cá Nhân</ion-list-header>
     <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual, 'individual')">
       <ion-avatar item-start>
-        <img src="{{ individual.avatar }}">
+        <img class="messages_avatar" src="{{ individual.avatar }}">
       </ion-avatar>
-      <h2>{{ individual.from }}</h2>
+      <h2 class="messages_title">{{ individual.from }}</h2>
       <p class="messages_content">{{ individual.text }}</p>
       <ion-note class="message_date" item-end>{{ individual.time | amTimeAgo }}</ion-note>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="groups">
+  <ion-list class="messages_container_group" *ngIf="groups">
     <ion-list-header>Nhóm</ion-list-header>
     <ion-item *ngFor="let group of groups" (click)="goToPage(group, 'group')">
       <ion-avatar item-start>
-        <img src="{{ group.avatar }}">
+        <img class="messages_avatar" src="{{ group.avatar }}">
       </ion-avatar>
-      <h2>{{ group.title }}</h2>
+      <h2 class="messages_title">{{ group.title }}</h2>
       <p class="messages_content">{{ group.last_message }}</p>
       <ion-note item-end class="message_date">{{ group.last_time | amTimeAgo }}</ion-note>
     </ion-item>

@@ -1,0 +1,40 @@
+app-events-history {
+    .events_container {
+        height: 90%;
+        top: 105px;
+    }
+
+    .events_item {
+        margin: 0px;
+        padding: 0px 0px 5px 12px;
+        border-bottom: 1px solid #c8c7cc;
+    }
+
+    .events_item .item-inner {
+        border-bottom: none !important;
+    }
+
+    .events_title {
+        font-size: 16px;
+        color: #333;
+        text-transform: capitalize;
+        margin: 0px 0px 0px 5px;
+    }
+
+    .events_date {
+        font-size: 14px;
+        color: #999;
+        margin: 5px 0px 5px 5px;
+    }
+
+    .events_author {
+        color: #f0ad4e;
+        font-size: 14px;
+        margin: 0px 0px 0px 5px;
+    }
+
+    .events_image {
+        max-height: 75px;
+        overflow: hidden;
+    }
+}
