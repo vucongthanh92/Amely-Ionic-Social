@@ -1,0 +1,23 @@
+app-inventory-history {
+    .inventory_history_item {
+        padding: 0px;
+
+        .item-inner {
+            padding-left: 10px;
+        }
+    }
+
+    .inventory_history_icon {
+        margin: 0px 5px 0px 0px;
+    }
+
+    .inventory_history_row {
+        font-size: 14px;
+    }
+
+    .inventory_history_datetime {
+        float: right;
+        font-size: 13px;
+        color: #666;
+    }
+}
