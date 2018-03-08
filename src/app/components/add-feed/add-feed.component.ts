@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../services/firebase.service';
 import { guid } from './../../api/models/guid';
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
@@ -5,8 +6,9 @@ import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../services/custom.service';
 import { User } from './../../api/models/user';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { App, NavController, AlertController, NavParams } from 'ionic-angular';
+import { App, NavController, AlertController, NavParams, ActionSheetController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
+import { Camera } from '@ionic-native/camera';
 
 @Component({
   selector: 'app-add-feed',
@@ -18,7 +20,7 @@ export class AddFeedComponent implements OnInit {
   @Input('content') content: string;
   @Input('privacy') privacy: string = '2';
   @ViewChild('search') searchbar;
-  
+
 
   public is_show_tag: boolean;
   public is_show_autocomplete: boolean = false;
@@ -32,9 +34,11 @@ export class AddFeedComponent implements OnInit {
   private type_feed: string;
   public isCreatingFeed = false;
   private owner_guid;
+  private image: string;
 
-  constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private userService: UserService, private customService: CustomService, public alertCtrl: AlertController,
-    private feedService: FeedsService) {
+  constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
+    private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
+    private feedService: FeedsService, private camera: Camera) {
     this.user_current = this.customService.user_current;
     this.type_feed = this.navParams.get('type')
     this.owner_guid = this.navParams.get('owner_guid')
@@ -130,7 +134,7 @@ export class AddFeedComponent implements OnInit {
 
       //type_feed va` owner guid post feed ntn
 
-      this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, null, this.owner_guid, this.type_feed).subscribe(data => {
+      this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
         if (data.status) {
           const callback = this.navParams.get('callback');
@@ -141,4 +145,59 @@ export class AddFeedComponent implements OnInit {
       })
     }
   }
+  imageAction() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Chọn tác vụ',
+      buttons: [
+        {
+          text: 'Chụp ảnh',
+          handler: () => {
+            this.takePicture();
+          }
+        }, {
+          text: 'Thư viện',
+          handler: () => {
+            this.selectFromGallery();
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  takePicture() {
+    this.camera.getPicture({
+      quality: 80,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }).then((imageData) => {
+      let captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      let owner_from = this.customService.user_current.username;
+      let extension = ".jpg";
+      let content_type = "image/jpg";
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+        this.image = task.downloadURL
+      });
+    });
+  }
+
+
+  selectFromGallery() {
+    var options = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL
+    };
+    this.camera.getPicture(options).then((imageData) => {
+      let owner_from = this.customService.user_current.username;
+      let extension = ".jpg";
+      let content_type = "image/jpg";
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+        this.image = task.downloadURL
+      });
+    }, (err) => {
+      // Handle error
+    });
+  }
+
 }

@@ -3,7 +3,7 @@ import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
@@ -18,6 +18,9 @@ export class FeedComponent {
   @Input('user') user: User;
   @Input('mood') mood: any;
   @Input('user_tag') userTag: Array<User>;
+  @Output()
+  uploaded = new EventEmitter<string>();
+
   descriptionPost: string;
   isShowMoreTag: any;
   isHideMoreTag: any;
@@ -26,7 +29,7 @@ export class FeedComponent {
   subArrUserTag: any;
   is_change_avatar: boolean;
   is_change_conver: boolean;
-
+  is_owner: boolean = false;
   constructor(
     public menuCtrl: MenuController,
     public nav: NavController, public appCtrl: App,
@@ -48,7 +51,8 @@ export class FeedComponent {
     // if (this.post.) {
 
     // }
-
+    
+    this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
     this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;
@@ -90,7 +94,7 @@ export class FeedComponent {
     return new Date(time * 1000);
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(FeedMenuComponent);
+    let popover = this.popoverCtrl.create(FeedMenuComponent, { post: this.post,callback:this.uploaded });
     popover.present({
       ev: myEvent
     });

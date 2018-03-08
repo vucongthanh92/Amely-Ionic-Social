@@ -25,7 +25,8 @@
         <span *ngIf="offer.target == 'location'" class="offer_detail_relation">
           <ion-icon name="locate"></ion-icon> Vị trí</span>
       </h2>
-      <button *ngIf="!is_counter" type="button" name="button" (click)="chosenItem(offer)" ion-button>Tham gia trao đổi</button>
+      <button *ngIf="!is_counter && offer.offer_type!='giveaway'" type="button" name="button" (click)="chosenItem(offer)" ion-button>Tham gia trao đổi</button>
+      <button *ngIf="!is_counter && offer.offer_type =='giveaway'" type="button" name="button" (click)="requestOffer(offer)" ion-button>Đề nghị nhận quà</button>
     </ion-item>
     <ion-row class="offer_detail_info">
       <ion-col col-12>
@@ -48,14 +49,14 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        
+
       </ion-col>
       <ion-col>
-        
+
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          
+
         </ion-note>
       </ion-col>
     </ion-row>
@@ -89,14 +90,14 @@
     </ion-row>
     <ion-row>
       <ion-col>
-  
+
       </ion-col>
       <ion-col>
-  
+
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-  
+
         </ion-note>
       </ion-col>
     </ion-row>

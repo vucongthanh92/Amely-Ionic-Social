@@ -6,6 +6,7 @@ import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
 import { Component, OnInit, Input } from '@angular/core';
 import { Feed } from '../../api/models/feed';
+import { FeedMenuComponent } from '../feed/feed-menu/feed-menu.component';
 
 @Component({
   selector: 'app-feeds',
@@ -29,7 +30,11 @@ export class FeedsComponent implements OnInit {
     private feedsService: FeedsService,
     private appCtrl: App,
   ) { }
-
+  someMethod(obj) {   
+    if (obj.type == 'delete') {
+      this.posts = this.posts.filter(e => e.guid != obj.feedGuid);
+    }
+  }
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
 
@@ -52,7 +57,7 @@ export class FeedsComponent implements OnInit {
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
         this.shares = data.shares;
-        if (data.posts!=null) {
+        if (data.posts != null) {
           this.offset = this.offset + data.posts.length;
         }
       });
@@ -108,6 +113,16 @@ export class FeedsComponent implements OnInit {
           this.isHasData = false;
         }
       });
+      resolve();
+    });
+  }
+  deleteFeedCallback = (_params) => {
+    return new Promise((resolve, reject) => {
+      if (_params) {
+
+        console.log('delete');
+      }
+
       resolve();
     });
   }

@@ -12,7 +12,7 @@ export class FeedsService {
     return this.api.getFeeds({ "feeds_type": feeds_type, "owner_guid": owner_guid, "offset": offset, "limit": 10 }).pipe();
   }
 
-  getFeed(guid){
+  getFeed(guid) {
     return this.api.getFeed(guid);
   }
 
@@ -31,5 +31,8 @@ export class FeedsService {
       return this.api.createFeed({ content: content, friends: friends, location: location, privacy: privacy, mood: mood, images: images, owner_guid: owner_guid, type: type });
 
     }
+  }
+  deleteFeed(guid) {
+    return this.api.deleteFeed(guid);
   }
 }

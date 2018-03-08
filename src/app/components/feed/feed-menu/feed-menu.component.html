@@ -1,11 +1,9 @@
 <ion-list>
-  <ion-item>
+  <ion-item *ngIf="is_owner" (click)="deleteFeed()">
     Xóa
   </ion-item>
-  <ion-item>
-    Sửa
-  </ion-item>
-  <ion-item>
+ 
+  <!-- <ion-item>
     Chia sẻ
-  </ion-item>
+  </ion-item> -->
 </ion-list>

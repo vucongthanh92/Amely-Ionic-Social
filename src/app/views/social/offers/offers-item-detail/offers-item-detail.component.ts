@@ -1,3 +1,5 @@
+import { OfferService } from './../../../../services/offer.service';
+import { CounterOffer } from './../../../../api/models/counter-offer';
 import { CountersOfferComponent } from './../../../../components/counters-offer/counters-offer.component';
 import { CustomService } from './../../../../services/custom.service';
 import { NavParams, NavController, App, Navbar } from 'ionic-angular';
@@ -17,20 +19,34 @@ export class OffersItemDetailComponent implements OnInit {
   product_image: any;
   is_counter = false;
   counter: Offer;
+  cOffer: CounterOffer;
   @ViewChild('navbar') navBar: Navbar;
 
   constructor(
     private customService: CustomService,
     private offersService: OffersService,
+    private offerService: OfferService,
     private navParams: NavParams,
     private nav: NavController,
     private app: App
   ) {
-    
+
   }
 
   ionViewDidEnter() {
-    this.offer = this.navParams.get('param');
+    this.cOffer = this.navParams.get('cOffer');
+    if (this.cOffer) {
+      this.offersService.getOffer(this.cOffer.offer.guid).subscribe(data => {
+        this.offer = data;
+        this.setupData();
+      })
+    } else {
+      this.offer = this.navParams.get('param');
+      this.setupData();
+    }
+  }
+
+  setupData() {
     if (typeof this.offer.owner == "undefined") {
       this.offer.owner = this.customService.user_current;
       this.is_counter = true;
@@ -50,7 +66,6 @@ export class OffersItemDetailComponent implements OnInit {
       this.offer.seconds = this.offer.time_end - data.current_time;
     });
   }
-
   ngOnInit() {
   }
 
@@ -69,8 +84,21 @@ export class OffersItemDetailComponent implements OnInit {
     });
   }
 
+  requestOffer(offer: Offer) {
+    this.offerService.createCounterOffer({ offer_guid: offer.guid, item_guid: null, quantity: 0, note: 'string' }).subscribe(data => {
+      if (data.status) {
+        let callback = this.navParams.get("callback");
+        callback("test").then(() => {
+          this.nav.pop();
+        });
+      } else {
+        this.customService.toastMessage('Bạn đã đề nghị nhận quà cho trao đổi này.', 'bottom', 2000);
+      }
+    });
+  }
+
   chosenItem(offer) {
-    this.app.getRootNav().push(CreateOfferComponent , {
+    this.app.getRootNav().push(CreateOfferComponent, {
       callback: this.myCreateOfferFunction,
       counter: true,
       param: offer
@@ -80,7 +108,6 @@ export class OffersItemDetailComponent implements OnInit {
   myCreateOfferFunction = (_params) => {
     return new Promise((resolve, reject) => {
       let callback = this.navParams.get("callback");
-      console.log('321');
       console.log(_params);
       callback("test").then(() => {
         this.nav.setRoot(this.nav.getActive().component);

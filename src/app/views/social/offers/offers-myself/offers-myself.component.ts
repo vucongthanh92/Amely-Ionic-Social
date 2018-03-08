@@ -1,8 +1,9 @@
+import { CustomService } from './../../../../services/custom.service';
 import { CreateOfferComponent } from './../../../../components/create-offer/create-offer.component';
 import { Offer } from './../../../../api/models/offer';
 import { OffersService } from './../../../../services/offers.service';
-import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { App, NavController, AlertController } from 'ionic-angular';
 import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
 
 @Component({
@@ -12,12 +13,14 @@ import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-det
 export class OffersMyselfComponent implements OnInit {
   public offers: Array<Offer> = [];
   constructor(
-    private nav: NavController, 
-    private appCtrl: App, 
+    private alertCtrl: AlertController,
+    private customService: CustomService,
+    private nav: NavController,
+    private appCtrl: App,
     private offersService: OffersService) { }
 
   ngOnInit() {
-    
+
   }
 
   ionViewDidEnter() {
@@ -49,5 +52,28 @@ export class OffersMyselfComponent implements OnInit {
       this.nav.setRoot(this.nav.getActive().component);
       resolve();
     });
+  }
+  openMenu(e, o: Offer) {
+    let prompt = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: "Xóa đề xuất trao đổi ?",
+      buttons: [
+        {
+          text: 'Từ chối',
+        },
+        {
+          text: 'Chấp nhập',
+          handler: data => {
+            this.offersService.delete(o.guid).subscribe(data => {
+              if (data.status) {
+                this.offers = this.offers.filter(e => e.guid != o.guid);
+                this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
+              }
+            })
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 }
