@@ -1,33 +1,32 @@
 <ion-content class="outer-content">
   <div *ngIf="groupPage">
-    <ion-list>
-      <ion-item *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid,group);">
+    <ion-list class="inventory_public_list">
+      <ion-item class="inventory_public_item" *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid,group);">
         <ion-row>
-          <ion-col col-2>
+          <ion-col class="inventory_public_image" col-3>
             <img *ngIf="group.avatar" src="{{group.avatar}}" alt="ionic logo" width="100%">
             <img *ngIf="group.avatar==null" src="assets/imgs/logo.png" alt="ionic logo" width="100%">
           </ion-col>
-          <ion-col col-10>
-            <h4>{{group.title}}</h4>
-            <p>
-              <ion-icon name="person"></ion-icon> {{getFullnameAdmin(group.owner_guid,'group')}}</p>
+          <ion-col col-9>
+            <div class="inventory_public_title">{{group.title}}</div>
+            <div class="inventory_public_person"><ion-icon name="person"></ion-icon> {{getFullnameAdmin(group.owner_guid,'group')}}</div>
           </ion-col>
         </ion-row>
       </ion-item>
     </ion-list>
   </div>
+
   <div *ngIf="eventPage">
-    <ion-list>
-      <ion-item *ngFor="let event of events" (click)="goToPage('gift','event',event.guid,event);">
+    <ion-list class="inventory_public_list">
+      <ion-item class="inventory_public_item" *ngFor="let event of events" (click)="goToPage('gift','event',event.guid,event);">
         <ion-row>
-          <ion-col col-2>
+          <ion-col class="inventory_public_image" col-3>
             <img src="{{event.avatar}}" alt="ionic logo" width="100%">
           </ion-col>
-          <ion-col col-10>
-            <h4>{{event.title}}</h4>
-            <p>{{event.description}}</p>
-            <p>
-              <ion-icon name="person"></ion-icon> {{getFullnameAdmin(event.owner_guid,'event')}}</p>
+          <ion-col col-9>
+            <div class="inventory_public_title">{{event.title}}</div>
+            <div class="inventory_public_description">{{event.description}}</div>
+            <div class="inventory_public_person"><ion-icon name="person"></ion-icon> {{getFullnameAdmin(event.owner_guid,'event')}}</div>
           </ion-col>
         </ion-row>
       </ion-item>
@@ -35,7 +34,7 @@
   </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer class="inventory_public_footer">
   <div class="bar bar-header bar-dark">
     <ion-segment color="primary" [(ngModel)]="inventoryPublicTab">
       <ion-segment-button value="group" class="segment-button" (click)="goToPage('group')">

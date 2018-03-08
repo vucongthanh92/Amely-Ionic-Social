@@ -1,0 +1,39 @@
+app-gift-history {
+    .gift_nav_title {
+        text-transform: capitalize;
+    }
+
+    .gift_card {
+        margin-top: 55px;
+
+        ion-card-header {
+            color: #333;
+            padding-bottom: 10px;
+        }
+    }
+
+    .gift_user_info {
+        ion-row {
+            color: #666;
+            margin: 0px 0px 5px 0px;
+        }
+    }
+
+    .gift_product {
+        ion-card-header {
+            color: #333;
+            padding-bottom: 10px;
+        }
+    }
+
+    .gift_product_info {
+        ion-row {
+            color: #666;
+            margin: 0px 0px 5px 0px;
+        }
+    }
+
+    .gift_product_img {
+        margin-top: 9px;
+    }
+}

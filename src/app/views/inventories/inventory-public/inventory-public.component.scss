@@ -1,0 +1,69 @@
+app-inventory-public {
+    .list-ios {
+        margin: 0px 0 44px;
+    }
+
+    .inventory_public_item {
+        margin: 0px;
+        padding: 3px 0px 5px 12px;
+        border-bottom: 1px solid #c8c7cc;
+    }
+
+    .inventory_public_item .item-inner {
+        border-bottom: none !important;
+    }
+
+    .inventory_public_title {
+        font-size: 16px;
+        color: #333;
+        text-transform: capitalize;
+        margin: 0px 0px 0px 5px;
+    }
+
+    .inventory_public_description {
+        font-size: 14px;
+        color: #999;
+        margin: 5px 0px 5px 5px;
+    }
+
+    .inventory_public_person {
+        color: #f0ad4e;
+        font-size: 14px;
+        margin: 6px 0px 0px 6px;
+        text-transform: capitalize;
+    }
+
+    .inventory_public_image {
+        max-height: 75px;
+        overflow: hidden;
+        border-radius: 10px;
+        padding: 0px;
+    }
+
+    .inventory_public_footer {
+        bottom: 44px;
+        height: 40px;
+        background-color: #f8f8f8;
+
+        .segment-ios-primary .segment-button.segment-activated {
+            color: #488aff;
+            border: none;
+            border-bottom: 1px solid #488aff;
+        }
+
+        .segment-ios-primary .segment-button {
+            border: none;
+            color: #666;
+            background-color: #f8f8f8;
+            border-radius: 0px !important;
+            text-transform: uppercase;
+            border-top: 1px solid #efeff4;
+            padding: 1px 0px 0px 0px;
+            padding: 0px;
+            font-size: 14px;
+            height: 100%;
+            line-height: 39px;
+        }
+    }
+
+}
