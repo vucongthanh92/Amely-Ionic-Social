@@ -73,13 +73,13 @@ export class CommentsComponent implements OnInit {
           this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
           if (this.comments == undefined) this.comments = [];
           this.comments.unshift(this.comment);
-          this.image=''
+          this.image=null;
         }
       })
     }
     this.content = '';
   }
   imageAction() {
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => this.image = url + "");
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
   }
 }
