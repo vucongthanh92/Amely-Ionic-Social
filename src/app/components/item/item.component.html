@@ -7,98 +7,82 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="product">
-  <ion-card style="position: relative;">
+<ion-content class="item_product_main" *ngIf="product">
+  <ion-card class="item_product_image">
     <img *ngIf="product.images[0]" src="{{product.images[0]}}" />
     <img *ngIf="product.images[0]==null" src="assets/imgs/logo.png" />
     <div *ngIf="!is_remove_item" style="position: absolute;right: 0;bottom: 0">
-
-
-      <button (click)="onWishList(false)" *ngIf="item.wishlist=='2'" ion-button icon-only style="background: #488aff; color: #fff;border: 1px solid #eee;border-radius: 25px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+      <button (click)="onWishList(false)" *ngIf="item.wishlist=='2'" ion-button icon-only class="item_wishlist_off">
         <ion-icon class="iconLike1" name="iconLike1"></ion-icon>
       </button>
-      <button (click)="onWishList(true)" *ngIf="item.wishlist=='1' || item.wishlist==undefined" ion-button icon-only style="background: #fff; color: #488aff;border: 1px solid #eee;border-radius: 25px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+      <button (click)="onWishList(true)" *ngIf="item.wishlist=='1' || item.wishlist==undefined" ion-button icon-only class="item_wishlist_on">
         <ion-icon class="iconLike" name="iconLike"></ion-icon>
       </button>
 
-      <button *ngIf="item.givelist=='2'" (click)="onGiveList(false)" ion-button icon-only style="background: #488aff; color: #fff;border: 1px solid #eee;border-radius: 25px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+      <button *ngIf="item.givelist=='2'" (click)="onGiveList(false)" ion-button icon-only class="item_givelist_off">
         <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
       </button>
-      <button (click)="onGiveList(true)" *ngIf="item.givelist=='1' || item.givelist==undefined" ion-button icon-only style="background: #fff; color: #488aff;border: 1px solid #eee;border-radius: 25px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">
+      <button (click)="onGiveList(true)" *ngIf="item.givelist=='1' || item.givelist==undefined" ion-button icon-only class="item_givelist_on">
         <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
       </button>
-
     </div>
   </ion-card>
+
   <ion-card>
-    <ion-card-header>
-      {{product.title}}
-    </ion-card-header>
+    <ion-card-header>{{product.title}}</ion-card-header>
   </ion-card>
+
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
   </ion-card>
+
   <ion-card>
-    <ion-card-header>
-      Thông tin cửa hàng
-    </ion-card-header>
+    <ion-card-header>Thông tin cửa hàng</ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col col-6>
-          Tên cửa hàng
-        </ion-col>
-        <ion-col col-6>
-          {{shop.title}}
-        </ion-col>
+        <ion-col col-6>Tên cửa hàng</ion-col>
+        <ion-col col-6>{{shop.title}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col col-6>
-          Chủ cửa hàng
-        </ion-col>
-        <ion-col col-6>
-          {{shop.owner_name}}
-        </ion-col>
+        <ion-col col-6>Chủ cửa hàng</ion-col>
+        <ion-col col-6>{{shop.owner_name}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col col-6>
-          Địa chỉ cửa hàng
-        </ion-col>
-        <ion-col col-6>
-          {{shop.shop_address}}
-        </ion-col>
+        <ion-col col-6>Địa chỉ cửa hàng</ion-col>
+        <ion-col col-6>{{shop.shop_address}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col col-6>
-          Số điện thoại
-        </ion-col>
-        <ion-col col-6>
-          {{shop.shop_phone}}
-        </ion-col>
+        <ion-col col-6>Số điện thoại</ion-col>
+        <ion-col col-6>{{shop.shop_phone}}</ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col col-6>
-          Mã số thuế
-        </ion-col>
-        <ion-col col-6>
-          {{shop.shop_bidn}}
-        </ion-col>
+        <ion-col col-6>Mã số thuế</ion-col>
+        <ion-col col-6>{{shop.shop_bidn}}</ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
 <ion-footer *ngIf="item">
   <ion-toolbar>
     <ion-grid>
       <ion-row>
         <ion-col col-4 *ngIf="!is_remove_item">
-          <button [ladda]="is_used" ion-button block (click)="createCode()">Su dung</button>
+          <button [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
         </ion-col>
+
         <ion-col col-4 *ngIf="!is_remove_item">
-          <button ion-button block (click)="gift()">Tang qua</button>
+          <button ion-button block (click)="gift()">tặng quà</button>
         </ion-col>
+
         <ion-col col-4 *ngIf="!is_remove_item">
-          <button  (click)="delivery()"  ion-button block>Giao hang</button>
+          <button  (click)="delivery()"  ion-button block>giao hàng</button>
         </ion-col>
+        
         <ion-col col-12 *ngIf="is_remove_item" (click)="removeItem()">
           <button ion-button block>Xóa sản phẩm</button>
         </ion-col>

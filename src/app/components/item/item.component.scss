@@ -20,5 +20,42 @@ app-item{
         width: 40px;
         content: url('../assets/imgs/ic_wanna_send_blue.png');
     }
+
+    .item_wishlist_off {
+        background: #488aff; 
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .item_wishlist_on {
+        background: #fff; 
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .item_givelist_off {
+        background: #488aff; 
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .item_givelist_on {
+        background: #fff; 
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .item_product_image {
+        position: relative;
+        margin: 50px 12px 12px 12px;
+    }
   
 }

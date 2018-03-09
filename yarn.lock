@@ -411,6 +411,10 @@ android-versions@^1.2.1:
   dependencies:
     semver "^5.4.1"
 
+angular-timer@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/angular-timer/-/angular-timer-1.3.5.tgz#7ec1d8c3a251b25edb2dcd7b5abdbeb08849d1a7"
+
 angular2-firebase@^0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/angular2-firebase/-/angular2-firebase-0.7.4.tgz#f2da63c7cf38c3a85dd2d9704669e8d29a0b9ed7"
@@ -1771,6 +1775,10 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+decode-html-entities@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/decode-html-entities/-/decode-html-entities-1.1.10.tgz#0e616b3ce64ecf2de999411e6eff982d3290d0c4"
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -3122,6 +3130,10 @@ ionic-angular@3.9.2:
 ionic-plugin-keyboard@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ionic-plugin-keyboard/-/ionic-plugin-keyboard-2.2.1.tgz#f2a9e169bbe9b5522400347c9fd6d3467ee3fa12"
+
+ionic2-super-tabs@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/ionic2-super-tabs/-/ionic2-super-tabs-4.2.2.tgz#d59fdbb0183513011c68cc2df74684e275916b08"
 
 ionicons@3.0.0:
   version "3.0.0"
@@ -6675,7 +6687,7 @@ webpack@~3.10.0:
     webpack-sources "^1.0.1"
     yargs "^8.0.2"
 
-websocket-driver@>=0.5.1:
+websocket-driver@>=0.5.1, websocket-driver@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.0.tgz#0caf9d2d755d93aee049d4bdd0d3fe2cca2a24eb"
   dependencies:

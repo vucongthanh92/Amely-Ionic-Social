@@ -189,5 +189,48 @@ app-inventory {
     font-weight: bold;
   }
 
+  .inventory_user {
+    .item-inner {
+      border-bottom: none !important;
+    }
+
+    .inventory_user_fullname {
+      color: #333;
+      text-transform: capitalize;
+      font-size: 15px;
+    }
+  }
+
+  .inventory_product {
+    padding: 10px 5px 0px 0px;
+
+    .label-ios {
+      margin: 5px 8px 5px 0;
+      text-overflow: unset;
+      white-space: normal;
+      height: 35px;
+      overflow: hidden;
+    }
+
+    .inventory_product_box {
+      margin:0px; 
+      width: 100%
+    }
+
+    ion-item {
+      padding: 0px 0px 0px 5px;
+    }
+
+    ion-thumbnail {
+      width: 46px;
+      height: 46px;
+      min-width: unset;
+      min-height: unset;
+      overflow: hidden;
+      margin: 5px 7px 5px 0px !important;
+      border-radius: 3px;
+    }
+  }
+
 }
 

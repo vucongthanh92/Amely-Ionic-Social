@@ -1,44 +1,59 @@
 <ion-header *ngIf="!hidden_header">
 	<ion-navbar>
-		<ion-title>Kho</ion-title>
+		<ion-title>Kho Quà</ion-title>
 	</ion-navbar>
 </ion-header>
 
 <ion-content class="inventory_container">
-	<ion-row>
-		<ion-col *ngIf="inventoryType=='group'" col-12 text-center style="background-color: #fff">
-			<img *ngIf="group.owner.avatar"  width="30px" height="30px" src="{{group.owner.avatar}}" />
-			<span>{{group.owner.fullname}}</span>
-		</ion-col>
-		<ion-col col-6 *ngIf="inventoryType=='group'">
-			<ion-card style="margin:0px; width: 100%">
-				<ion-card-header>
-					<img height="30px" width="30px" style="float: left" src="{{group.avatar}}">{{group.title}}
-				</ion-card-header>
+	<ion-row class="inventory_user">
+		<ion-item *ngIf="inventoryType=='group'" class="inventory_user_info">
+			<ion-avatar item-start>
+				<img *ngIf="group.owner.avatar" src="{{group.owner.avatar}}" />
+			</ion-avatar>
+			<div class="inventory_user_fullname">{{group.owner.fullname}}</div>
+		</ion-item>
+		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'group'">
+			<ion-card class="inventory_product_box">
+				<ion-item>
+					<ion-thumbnail item-start>
+						<img class="inventory_product_image" src="{{group.avatar}}">
+					</ion-thumbnail>
+					<p>{{group.title}}</p>
+				</ion-item>
 			</ion-card>
 		</ion-col>
 
-		<ion-col *ngIf="inventoryType =='event'" col-12 text-center style="background-color: #fff">
-			<img width="30px" height="30px" src="{{event.owner.avatar}}" />
-			<span>{{event.owner.fullname}}</span>
-		</ion-col>
-		<ion-col col-6 *ngIf="inventoryType=='event'">
-			<ion-card style="margin:0px; width: 100%">
-				<ion-card-header>
-				<img height="30px" width="30px" style="float: left" src="{{event.avatar}}">>{{event.title}}
-				</ion-card-header>
+		<ion-item *ngIf="inventoryType =='event'" class="inventory_user_info">
+			<ion-avatar item-start>
+				<img src="{{event.owner.avatar}}" />
+			</ion-avatar>
+			<div class="inventory_user_fullname">{{event.owner.fullname}}</div>
+		</ion-item>
+		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'event'">
+			<ion-card class="inventory_product_box">
+				<ion-item>
+					<ion-thumbnail item-start>
+						<img class="inventory_product_image" src="{{event.avatar}}">
+					</ion-thumbnail>
+					<p>{{event.title}}</p>
+				</ion-item>
 			</ion-card>
 		</ion-col>
 
-		<ion-col *ngIf="inventoryType=='business'" col-12 text-center style="background-color: #fff">
-			<img width="30px" height="30px" src="{{page.owner.avatar}}" />
-			<span>{{page.owner.fullname}}</span>
-		</ion-col>
-		<ion-col col-6 *ngIf="inventoryType =='business'">
-			<ion-card style="margin:0px; width: 100%">
-				<ion-card-header>
-				<img height="30px" width="30px" style="float: left" src="{{page.avatar}}">>{{page.title}}
-				</ion-card-header>
+		<ion-item *ngIf="inventoryType=='business'" class="inventory_user_info">
+			<ion-avatar item-start>
+				<img src="{{page.owner.avatar}}" />
+			</ion-avatar>
+			<div class="inventory_user_fullname">{{page.owner.fullname}}</div>
+		</ion-item>
+		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'business'">
+			<ion-card class="inventory_product_box">
+				<ion-item>
+					<ion-thumbnail item-start>
+						<img class="inventory_product_image" src="{{page.avatar}}">
+					</ion-thumbnail>
+					<p>{{page.title}}</p>
+				</ion-item>
 			</ion-card>
 		</ion-col>
 
