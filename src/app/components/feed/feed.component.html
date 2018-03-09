@@ -3,7 +3,7 @@
     <ion-avatar item-start>
       <img (click)="goToUserProfile(user.guid)" src="{{ user.avatar }}">
     </ion-avatar>
-    <h2 class="feed_title">{{ user.username }}</h2>
+    <h2 (click)='test()' class="feed_title">{{ user.username }}</h2>
     <ion-col class="feed_mood item-inner" *ngIf="mood">
       <span>{{mood.title}}</span>
       <img id="iconMood" src="{{mood.image}}">

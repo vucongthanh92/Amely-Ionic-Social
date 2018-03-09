@@ -29,7 +29,7 @@
               </div>
 
               <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                <h2 >{{user_current.fullname}}</h2>
+                <h2>{{user_current.fullname}}</h2>
               </div>
 
               <p>
@@ -49,13 +49,17 @@
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-row>
+
   </div>
 </ion-content>
 
 <ion-footer>
+  <ion-row *ngIf="image">
+    <img width="100px" height="100px" src="assets/imgs/logo.png">
+  </ion-row>
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button icon-right color="royal">
+      <button ion-button icon-right color="royal"  (click)="imageAction()">
         <ion-icon style="font-size: 40px; color: #9E9E9E; left: -10px; position: relative;" name="camera"></ion-icon>
       </button>
     </ion-buttons>

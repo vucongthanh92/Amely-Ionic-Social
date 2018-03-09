@@ -1,10 +1,11 @@
+import { UserService } from './../../services/user.service';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
+import { App, MenuController, NavController, PopoverController, AlertController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 
@@ -35,12 +36,17 @@ export class FeedComponent {
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
     private navParams: NavParams,
-    private customService: CustomService
+    private alertCtrl: AlertController,
+    private customService: CustomService,
+    private userService: UserService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
+
   }
 
   hasWallPhoto = true;
+
+
 
   ngOnInit() {
     // console.log(this.mood);
@@ -51,7 +57,8 @@ export class FeedComponent {
     // if (this.post.) {
 
     // }
-    
+    // this.customService.promiseCheckPassword()
+
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
@@ -94,7 +101,7 @@ export class FeedComponent {
     return new Date(time * 1000);
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(FeedMenuComponent, { post: this.post,callback:this.uploaded });
+    let popover = this.popoverCtrl.create(FeedMenuComponent, { post: this.post, callback: this.uploaded });
     popover.present({
       ev: myEvent
     });
@@ -122,4 +129,10 @@ export class FeedComponent {
     }
     this.post.liked = !this.post.liked;
   }
+
+  test() {
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => console.log('then')).catch(() => console.log('catch'))
+  }
+
 }

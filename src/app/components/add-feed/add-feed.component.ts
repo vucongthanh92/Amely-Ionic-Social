@@ -146,58 +146,60 @@ export class AddFeedComponent implements OnInit {
     }
   }
   imageAction() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Chọn tác vụ',
-      buttons: [
-        {
-          text: 'Chụp ảnh',
-          handler: () => {
-            this.takePicture();
-          }
-        }, {
-          text: 'Thư viện',
-          handler: () => {
-            this.selectFromGallery();
-          }
-        }
-      ]
-    });
-    actionSheet.present();
+    // let actionSheet = this.actionSheetCtrl.create({
+    //   title: 'Chọn tác vụ',
+    //   buttons: [
+    //     {
+    //       text: 'Chụp ảnh',
+    //       handler: () => {
+    //         this.takePicture();
+    //       }
+    //     }, {
+    //       text: 'Thư viện',
+    //       handler: () => {
+    //         this.selectFromGallery();
+    //       }
+    //     }
+    //   ]
+    // });
+    // actionSheet.present();
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
+      .then(url => { this.image = url + '' })
   }
 
-  takePicture() {
-    this.camera.getPicture({
-      quality: 80,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }).then((imageData) => {
-      let captureDataUrl = 'data:image/jpeg;base64,' + imageData;
-      let owner_from = this.customService.user_current.username;
-      let extension = ".jpg";
-      let content_type = "image/jpg";
-      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
-        this.image = task.downloadURL
-      });
-    });
-  }
+  // takePicture() {
+  //   this.camera.getPicture({
+  //     quality: 80,
+  //     destinationType: this.camera.DestinationType.DATA_URL,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE
+  //   }).then((imageData) => {
+  //     let captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+  //     let owner_from = this.customService.user_current.username;
+  //     let extension = ".jpg";
+  //     let content_type = "image/jpg";
+  //     this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+  //       this.image = task.downloadURL
+  //     });
+  //   });
+  // }
 
 
-  selectFromGallery() {
-    var options = {
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL
-    };
-    this.camera.getPicture(options).then((imageData) => {
-      let owner_from = this.customService.user_current.username;
-      let extension = ".jpg";
-      let content_type = "image/jpg";
-      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
-        this.image = task.downloadURL
-      });
-    }, (err) => {
-      // Handle error
-    });
-  }
+  // selectFromGallery() {
+  //   var options = {
+  //     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  //     destinationType: this.camera.DestinationType.DATA_URL
+  //   };
+  //   this.camera.getPicture(options).then((imageData) => {
+  //     let owner_from = this.customService.user_current.username;
+  //     let extension = ".jpg";
+  //     let content_type = "image/jpg";
+  //     this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+  //       this.image = task.downloadURL
+  //     });
+  //   }, (err) => {
+  //     // Handle error
+  //   });
+  // }
 
 }

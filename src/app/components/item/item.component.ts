@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { DeliveryItemComponent } from './../../modules/delivery/delivery-item/delivery-item.component';
 import { CustomService } from './../../services/custom.service';
 import { InventoryGiftComponent } from './../inventory-gift/inventory-gift.component';
@@ -10,6 +11,7 @@ import { App } from 'ionic-angular/components/app/app';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Product } from '../../api/models/product';
 import { InventoryTargetsGiftComponent } from '../inventory-targets-gift/inventory-targets-gift.component';
+import { AlertController } from 'ionic-angular';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html'
@@ -26,7 +28,8 @@ export class ItemComponent implements OnInit {
   callback: any;
   is_reload_before_page = false;
 
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoriesService: InventoriesService, private customService: CustomService) {
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
+    private inventoriesService: InventoriesService, private customService: CustomService, private alertCtrl: AlertController, private userService: UserService) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
   }
@@ -42,17 +45,25 @@ export class ItemComponent implements OnInit {
   }
 
   createCode() {
-    this.is_used = true;
-    this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
-      if (this.createCode) {
-        this.createdCode = data.code
-      }
-      this.is_used = false;
-    })
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.is_used = true;
+        this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
+          if (this.createCode) {
+            this.createdCode = data.code
+          }
+          this.is_used = false;
+        })
+      })
+
+
   }
 
   gift() {
-    this.nav.push(InventoryTargetsGiftComponent, { item: this.item });
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.nav.push(InventoryTargetsGiftComponent, { item: this.item });
+      })
   }
 
   ionViewWillLeave() {
@@ -66,8 +77,11 @@ export class ItemComponent implements OnInit {
     this.customService.toastMessage('Tính năng đang cập nhật', 'bottom', 2000);
   }
 
-  delivery(){
-    this.nav.push(DeliveryItemComponent, { item: this.item });
+  delivery() {
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.nav.push(DeliveryItemComponent, { item: this.item });
+      })
   }
 
   onGiveList(isLike) {

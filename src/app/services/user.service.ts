@@ -7,6 +7,9 @@ export class UserService {
 
   constructor(private api: ApiService) { }
 
+  login(username, password) {
+    return this.api.login({ username: username, password: password });
+  }
   getUser(username, guid) {
     return this.api.getProfile({ "username": username, "guid": guid }).pipe();
   }
