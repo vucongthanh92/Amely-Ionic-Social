@@ -23,4 +23,8 @@ export class InventoryHistoryComponent implements OnInit {
   openHistoryDetail(trans: Transaction) {
     this.appCtrl.getRootNav().push(GiftHistoryComponent, { trans: trans });
   }
+
+  getDateCreate(time: number) {
+    return new Date(time * 1000);
+  }
 }
