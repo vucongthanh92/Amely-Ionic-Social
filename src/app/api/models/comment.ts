@@ -9,4 +9,5 @@ export class Comment {
     subject_guid?: string;
     type?: string;
     content?: string;
+    photo?: string;
 }

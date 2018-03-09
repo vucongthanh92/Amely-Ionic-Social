@@ -2,9 +2,12 @@ import { Comment } from './../../api/models/comment';
 import { User } from './../../api/models/user';
 import { UserService } from './../../services/user.service';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { NavParams } from 'ionic-angular';
+import { NavParams, ActionSheetController } from 'ionic-angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedsService } from '../../services/feeds.service';
+import { CustomService } from '../../services/custom.service';
+import { FirebaseService } from '../../services/firebase.service';
+import { Camera } from '@ionic-native/camera';
 
 @Component({
   selector: 'app-comments',
@@ -19,8 +22,10 @@ export class CommentsComponent implements OnInit {
   private user_current: User;
   private comment: Comment
   @Input('content') content: string
+  public image: string;
 
-  constructor(private nav_params: NavParams, private nav_ctrl: NavController, private feed_service: FeedsService, private user_service: UserService) {
+  constructor(private nav_params: NavParams, private nav_ctrl: NavController, private feed_service: FeedsService, private user_service: UserService
+    , private customService: CustomService, private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera) {
     this.feed_guid = this.nav_params.get('guid');
     this.user_current = JSON.parse(localStorage.getItem('loggin_user'));
   }
@@ -63,14 +68,18 @@ export class CommentsComponent implements OnInit {
     if (this.content != '') {
       let contentTmp = this.content;
 
-      this.feed_service.putComment(this.feed_guid, this.content, null).subscribe(data => {
+      this.feed_service.putComment(this.feed_guid, this.content, this.image).subscribe(data => {
         if (data.status) {
-          this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000 };
+          this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
           if (this.comments == undefined) this.comments = [];
           this.comments.unshift(this.comment);
+          this.image=''
         }
       })
     }
     this.content = '';
+  }
+  imageAction() {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => this.image = url + "");
   }
 }
