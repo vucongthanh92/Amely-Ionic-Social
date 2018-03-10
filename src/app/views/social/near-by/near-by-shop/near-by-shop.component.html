@@ -1,4 +1,10 @@
 <ion-content class="outer-content" style="top: 44px;">
+  <ion-item>
+    <ion-input type="text" placeholder="Từ khóa tìm kiếm cửa hàng" [(ngModel)]="sFilter"></ion-input>
+  </ion-item>
+
+  <button ion-button class="login-button" type="submit" (click)="filter()">Đăng Nhập</button>
+  
   <ion-list class="nearby_friendly" no-lines *ngIf="datas">
     <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
       <ion-avatar item-start>
@@ -10,7 +16,7 @@
         <ion-col col-6 class="nearby_icon">
           <button ion-button icon-left clear small>
             <ion-icon class="nearby_icon_phone" name='ios-call'></ion-icon>
-             {{data.shop.store.phone}}
+            {{data.shop.store.phone}}
           </button>
         </ion-col>
         <ion-col col-6 class="nearby_icon">

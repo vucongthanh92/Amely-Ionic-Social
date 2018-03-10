@@ -1,21 +1,27 @@
 <ion-content class="outer-content" style="top: 44px;">
-<ion-list class="nearby_friendly" no-lines *ngIf="datas">
-  <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
-    <ion-avatar item-start>
-      <img class="nearby_image" src="{{data.user.avatar}}">
-    </ion-avatar>
-    <h2 class="nearby_title">{{data.user.fullname}}</h2>
-    <ion-row>
-      <ion-col col-6 class="nearby_icon">
-        <img class="icon" *ngIf="data.user.gender!='male'" src="assets/imgs/ic_gender_male_blue.png">
-        <img class="icon" *ngIf="data.user.gender!='female'" src="assets/imgs/ic_gender_female_pink.png">
-        <div class="nearby_icon_title">{{ countAge(data.user.birthdate) }}</div>
-      </ion-col>
-      <ion-col col-6 class="nearby_icon">
-        <img class="icon" src="assets/imgs/ic_place_blue.png">
-        <div class="nearby_icon_title">{{formatDistance(data.distance)}}</div>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
+
+  <ion-list class="nearby_friendly" no-lines *ngIf="datas">
+    <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
+      <ion-avatar item-start>
+        <img class="nearby_image" src="{{data.user.avatar}}">
+      </ion-avatar>
+      <h2 class="nearby_title">{{data.user.fullname}}</h2>
+      <ion-row>
+        <ion-col col-6 class="nearby_icon">
+          <img class="icon" *ngIf="data.user.gender=='male'" src="assets/imgs/ic_gender_male_blue.png">
+          <img class="icon" *ngIf="data.user.gender=='female'" src="assets/imgs/ic_gender_female_pink.png">
+          <div class="nearby_icon_title">{{ countAge(data.user.birthdate) }}</div>
+        </ion-col>
+        <ion-col col-6 class="nearby_icon">
+          <img class="icon" src="assets/imgs/ic_place_blue.png">
+          <div class="nearby_icon_title">{{formatDistance(data.distance)}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-fab class="feeds_button">
+  <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="settingSearch()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>

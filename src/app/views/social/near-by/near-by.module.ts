@@ -5,6 +5,7 @@ import { IonicModule } from 'ionic-angular';
 import { NearByComponent } from './near-by.component';
 import { NearByUserComponent } from './near-by-user/near-by-user.component';
 import { NearByShopComponent } from './near-by-shop/near-by-shop.component';
+import { NearByUserSettingComponent } from './near-by-user/near-by-user-setting/near-by-user-setting.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,12 @@ import { NearByShopComponent } from './near-by-shop/near-by-shop.component';
   declarations: [
   	NearByComponent, 
   	NearByUserComponent, 
-  	NearByShopComponent
+  	NearByShopComponent, NearByUserSettingComponent
   ],
   entryComponents: [
     NearByComponent, 
   	NearByUserComponent, 
-  	NearByShopComponent
+    NearByShopComponent, NearByUserSettingComponent
   ]
 })
 export class NearByModule { }

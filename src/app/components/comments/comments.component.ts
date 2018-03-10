@@ -67,13 +67,12 @@ export class CommentsComponent implements OnInit {
   onSend() {
     if (this.content != '') {
       let contentTmp = this.content;
-
       this.feed_service.putComment(this.feed_guid, this.content, this.image).subscribe(data => {
         if (data.status) {
           this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
           if (this.comments == undefined) this.comments = [];
           this.comments.unshift(this.comment);
-          this.image=null;
+          this.image = null;
         }
       })
     }

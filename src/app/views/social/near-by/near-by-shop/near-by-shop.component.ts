@@ -1,3 +1,4 @@
+import { Shop } from './../../../../api/models/shop';
 import { ShopsService } from './../../../../services/shops.service';
 import { App, NavController } from 'ionic-angular';
 import { GeolocationService } from './../../../../services/geolocation.service';
@@ -12,7 +13,8 @@ export class NearByShopComponent implements OnInit {
   private lat: number;
   private lng: number;
   public datas = [];
-
+  public datasTMP = [];
+  public sFilter: string;
   constructor(public geolocationService: GeolocationService, public nav: NavController, public appCtrl: App, private shopService: ShopsService) {
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
@@ -21,11 +23,12 @@ export class NearByShopComponent implements OnInit {
     geoQueryShop.on("key_entered", function (key, location, distance) {
       // console.log(key + " shop query at " + location + " (" + distance + " km from center)");
       let storeGuid = key.substring(key.indexOf('-') + 1, key.length);
-      let shopGuid = key.substring(0,key.indexOf('-'));
-      
+      let shopGuid = key.substring(0, key.indexOf('-'));
+
       that.shopService.getShop(shopGuid, storeGuid).subscribe(data => {
         that.datas.push({ shop: data, distance: distance });
         that.datas.sort(that.compareShop);
+        that.datasTMP = that.datas;
       })
     });
   }
@@ -49,7 +52,15 @@ export class NearByShopComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToShop(guid){
+  goToShop(guid) {
     this.nav.push(ShopComponent, { guid: guid });
+  }
+  filter() {
+    this.datas = this.datasTMP;
+    let s: Shop;
+    this.sFilter = this.sFilter.toLowerCase();
+    this.datas = this.datas.filter(e => {
+      return e.shop.introduce.toLowerCase().includes(this.sFilter) || e.shop.title.toLowerCase().includes(this.sFilter)
+    })
   }
 }

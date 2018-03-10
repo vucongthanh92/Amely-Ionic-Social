@@ -52,10 +52,10 @@ export class MainMenuComponent implements OnInit {
     //   { guid: '7733', title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
     // ]
     this.moodLocal = {
-      7723: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png' },
-      7724: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png' },
-      7732: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png' },
-      7733: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png' },
+      7723: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png', tag: 'wanna_trade', guid: '7723' },
+      7724: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png', tag: 'wanna_send', guid: '7724' },
+      7732: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png', tag: 'wanna_gift', guid: '7732' },
+      7733: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png', tag: 'wanna_date', guid: '7733' },
     }
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));

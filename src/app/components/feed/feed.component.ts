@@ -130,9 +130,4 @@ export class FeedComponent {
     this.post.liked = !this.post.liked;
   }
 
-  test() {
-    this.customService.confirmPassword(this.alertCtrl, this.userService)
-      .then(() => console.log('then')).catch(() => console.log('catch'))
-  }
-
 }

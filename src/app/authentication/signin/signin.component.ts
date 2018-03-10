@@ -48,6 +48,7 @@ export class SigninComponent implements OnInit {
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
       if (resp.status == false) {
+        this.loader.dismiss();
         const toast = this.toastCtrl.create({
           message: 'Đăng nhập thất bại!',
           position: "bottom",

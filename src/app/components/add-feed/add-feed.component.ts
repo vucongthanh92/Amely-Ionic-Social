@@ -35,6 +35,7 @@ export class AddFeedComponent implements OnInit {
   public isCreatingFeed = false;
   private owner_guid;
   private image: string;
+  private callback;
 
   constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
     private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
@@ -43,6 +44,7 @@ export class AddFeedComponent implements OnInit {
     this.type_feed = this.navParams.get('type')
     this.owner_guid = this.navParams.get('owner_guid')
     this.moods = JSON.parse(localStorage.getItem("mood_local"));
+    this.callback = this.navParams.get('callback');
 
   }
 
@@ -137,8 +139,13 @@ export class AddFeedComponent implements OnInit {
       this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
         if (data.status) {
-          const callback = this.navParams.get('callback');
-          callback().then(() => {
+          this.customService.toastMessage('Đăng bài viết thất bại.Vui lòng thử lại', 'bottom', 2000);
+          this.callback().then(() => {
+            this.nav.pop();
+          });
+        } else {
+          this.customService.toastMessage('Đăng bài viết thất bại.Vui lòng thử lại', 'bottom', 2000);
+          this.callback().then(() => {
             this.nav.pop();
           });
         }

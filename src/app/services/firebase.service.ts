@@ -29,8 +29,19 @@ export class FirebaseService {
     this.afDatabase.list(path).set(owner_to, obj);
   }
 
+  updateFindableBy(username: string, value) {
+    const path = '/users/' + username
+    let ref = this.afDatabase.list(path);
+    this.afDatabase.database.ref('/users/' + username).update({ findable_by: value });
+  }
+
   getMessages(key_chat) {
     let path = "/shared/messages/" + key_chat;
+    return this.afDatabase.list(path);
+  }
+
+  findUser(username: string) {
+    let path = "/users/" + username + "/";
     return this.afDatabase.list(path);
   }
 

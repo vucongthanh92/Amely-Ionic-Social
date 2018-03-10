@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Thông tin tìm kiếm</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="save()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <ion-card>
+    <ion-list radio-group [(ngModel)]="find">
+      <ion-list-header>
+        TÌM XUNG QUANH
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Tất cả</ion-label>
+        <ion-radio checked="true" value="all"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nam</ion-label>
+        <ion-radio value="male"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nữ</ion-label>
+        <ion-radio value="female"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label>Độ tuổi</ion-label>
+        <ion-range dualKnobs="true" pin="true" [(ngModel)]='age' color="dark">
+        </ion-range>
+      </ion-item>
+      <ion-item>
+        <ion-label>Muốn tặng quà</ion-label>
+        <ion-checkbox color="dark" [(ngModel)]="wanna_send"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Muốn nhận quà</ion-label>
+        <ion-checkbox color="dark" [(ngModel)]="wanna_gift"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Muốn trao đổi quà</ion-label>
+        <ion-checkbox color="dark" [(ngModel)]="wanna_trade"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Muốn hẹn hò</ion-label>
+        <ion-checkbox color="dark" [(ngModel)]="wanna_date"></ion-checkbox>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list radio-group [(ngModel)]="can_find">
+      <ion-list-header>
+        Ai có thể tìm thấy bạn
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Tất cả</ion-label>
+        <ion-radio checked="true" value="all"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nam</ion-label>
+        <ion-radio value="male"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nữ</ion-label>
+        <ion-radio value="female"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
