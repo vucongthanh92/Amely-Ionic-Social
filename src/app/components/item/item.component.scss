@@ -1,4 +1,9 @@
 app-item{
+
+    .scroll-content {
+        background-color: #f4f4f4;
+    }
+
     .iconLike{
         background-repeat: no-repeat;
         background-position:center;
@@ -19,6 +24,89 @@ app-item{
         font-size: 1.3em;
         width: 40px;
         content: url('../assets/imgs/ic_wanna_send_blue.png');
+    }
+
+    .item_wishlist_off {
+        background: #fff;
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin: 0px 7px 7px 0px;
+    }
+
+    .item_wishlist_on {
+        background: #fff;
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin: 0px 7px 7px 0px;
+    }
+
+    .item_givelist_off {
+        background: #fff;
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin: 0px 7px 7px 0px;
+    }
+
+    .item_givelist_on {
+        background: #fff;
+        color: #488aff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin: 0px 7px 7px 0px;
+    }
+
+    .item_product_image {
+        position: relative;
+        margin: 55px 12px 12px 12px;
+        padding: 15px;
+    }
+
+    .item_info_store {
+        margin-bottom: 75px;
+    }
+
+    .item_footer {
+        .toolbar-background-ios {
+            background: white;
+        }
+
+        .toolbar-ios {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .item_footer_row {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+
+    .item_footer_btn {
+        background-color: #f0ad4e;
+        height: 40px;
+        text-transform: capitalize;
+        font-size: 15px;
+        border-radius: 3px;
+    }
+
+    .item_footer_delete {
+        background-color: #f0ad4e;
+        text-transform: capitalize;
+    }
+
+    .item_info_store {
+        color: #666;
     }
   
 }

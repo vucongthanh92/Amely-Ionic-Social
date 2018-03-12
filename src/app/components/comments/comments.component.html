@@ -5,42 +5,34 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <div style="background-color: #fff;">
+  <div class="comment_container">
     <ion-row *ngIf="comments">
-
-      <ion-col col-12 style="text-align: left; position: relative; margin-bottom: -40px;  top: -10px;" *ngFor="let comment of comments">
+      <ion-col col-12 class="comment_main" *ngFor="let comment of comments">
         <ion-grid>
-          <ion-row style="margin-bottom: 20px;">
-            <ion-item>
-              <ion-thumbnail item-start>
-
+          <ion-row class="comment_row">
+            <ion-item class="comment_item">
+              <ion-avatar class="comment_avatar" item-start>
                 <div *ngIf="!checkUserCurrent(comment.owner_guid)">
-                  <img *ngIf="findUser(comment.owner_guid)" width="100%" src="{{findUser(comment.owner_guid).avatar}}" />
+                  <img class="comment_avatar_image" *ngIf="findUser(comment.owner_guid)" src="{{findUser(comment.owner_guid).avatar}}" />
                 </div>
-
                 <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                  <img width="100%" src="{{user_current.avatar}}" />
+                  <img class="comment_avatar_image" src="{{user_current.avatar}}" />
+                </div>
+              </ion-avatar>
+
+              <div class="comment_body">
+                <div *ngIf="!checkUserCurrent(comment.owner_guid)">
+                  <h2 class="comment_body_title" *ngIf="findUser(comment.owner_guid)">{{findUser(comment.owner_guid).fullname}}</h2>
+                </div>
+                <div *ngIf="checkUserCurrent(comment.owner_guid)">
+                  <h2 class="comment_body_title">{{user_current.fullname}}</h2>
                 </div>
 
-              </ion-thumbnail>
-
-              <div *ngIf="!checkUserCurrent(comment.owner_guid)">
-                <h2 *ngIf="findUser(comment.owner_guid)">{{findUser(comment.owner_guid).fullname}}</h2>
+                <p class="comment_body_content">{{comment.content}}</p>
               </div>
 
-              <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                <h2>{{user_current.fullname}}</h2>
-              </div>
-
-              <p>
-                <img *ngIf="comment.photo" style="max-width: 50%" src="{{comment.photo}}" />
-              </p>
-              <p>
-                <i>{{comment.content}}</i>
-              </p>
-              <p>
-                <i>{{formatDate(comment.time_created)| amTimeAgo}}</i>
-              </p>
+              <p><img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" /></p>
+              <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
             </ion-item>
           </ion-row>
         </ion-grid>
@@ -49,7 +41,6 @@
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-row>
-
   </div>
 </ion-content>
 
