@@ -6,6 +6,7 @@ import { ProductAllComponent } from '../product-all/product-all.component';
 import { ShoppingsService } from '../../services/shoppings.service';
 import { Product } from '../../api/models/product';
 import { CustomService } from '../../services/custom.service';
+import { ShopsService } from '../../services/shops.service';
 
 @Component({
   selector: 'app-products-feature',
@@ -15,10 +16,15 @@ import { CustomService } from '../../services/custom.service';
 export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
   @Input('shopGuid') shopGuid;
-  constructor(public nav: NavController, public appCtrl: App, private shoppingSerivce: ShoppingsService, private customSerice: CustomService) { }
+  @Input('is_feature') is_feature: boolean;
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private shoppingSerivce: ShoppingsService, private customSerice: CustomService) { }
 
   ngOnInit() {
-    if (this.shopGuid != undefined) {
+    if (this.is_feature) {
+      this.shoppingSerivce.getProductsFeature().subscribe(data => {
+        this.productsMostSold = data;
+      });
+    } else if (this.shopGuid != undefined) {
       this.initShopProductFeatue();
     } else {
       this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
@@ -45,10 +51,12 @@ export class ProductsFeatureComponent implements OnInit {
   goToPage(value, product: Product) {
     switch (value) {
       case 'product':
+        if (this.is_feature) this.shopService.clickAdv(product.advertise_guid).subscribe(data => {
+        });
         this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       case 'view_all':
-        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product:'feature'});
+        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature' });
         break;
       default:
         break;

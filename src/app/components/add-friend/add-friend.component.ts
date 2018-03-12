@@ -14,6 +14,7 @@ export class AddFriendComponent implements OnInit {
   private callback: any;
   tab1Root = FindFriendComponent;
   tab2Root = NoteFriendComponent;
+  
   constructor(private navParams: NavParams, public viewCtrl: ViewController) {
     this.position_selected = this.navParams.get('position_selected');
     this.callback = this.navParams.get('callback')
@@ -26,4 +27,13 @@ export class AddFriendComponent implements OnInit {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+
+  onTabGotClosed(e){
+    if (e) {
+      this.viewCtrl.dismiss();
+    }
+    console.log(e);
+    
+  }
+
 }

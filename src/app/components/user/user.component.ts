@@ -63,9 +63,9 @@ export class UserComponent {
       this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
       this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
       this.is_hidden_phone_number = this.user.mobile_hidden == undefined || this.user.mobile_hidden == '0' ? false : true;
-      console.log(this.is_hidden_birthday);
-      console.log(this.is_hidden_friend);
-      console.log(this.is_hidden_phone_number);
+      // console.log(this.is_hidden_birthday);
+      // console.log(this.is_hidden_friend);
+      // console.log(this.is_hidden_phone_number);
       
       let date = new Date(data.birthdate);
       this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();

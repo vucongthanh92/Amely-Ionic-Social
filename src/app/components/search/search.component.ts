@@ -1,3 +1,4 @@
+import { guid } from './../../api/models/guid';
 import { App } from 'ionic-angular/components/app/app';
 import { BusinessComponent } from './../business/business.component';
 import { GroupComponent } from './../group/group.component';
@@ -13,6 +14,7 @@ import { Product } from '../../api/models/product';
 import { Event } from '../../api/models/event';
 import { Business } from '../../api/models/business';
 import { ProductComponent } from '../product/product.component';
+import { EventComponent } from '../event/event.component';
 
 @Component({
   selector: 'app-search',
@@ -110,7 +112,7 @@ export class SearchComponent implements OnInit {
   }
 
   goToEventrProfile(event: Event) {
-
+    this.appCtrl.getRootNav().push(EventComponent, { event_guid: event.guid });
   }
 
   goToBusinessProfile(business: Business) {

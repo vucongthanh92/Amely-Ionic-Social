@@ -21,4 +21,11 @@ export class ShopsService {
       owner_ssn: owner_ssn, ossn_photo: ossn_photo, approve: '2'
     });
   }
+  getBanners(){
+    return  this.api.getBanners();
+  }
+
+  clickAdv(guid:number){
+    return this.api.clickAds(guid);
+  }
 }

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
-        <ion-buttons start>
-          <button ion-button (click)="dismiss()">Back</button>
-        </ion-buttons>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Back</button>
+    </ion-buttons>
     <ion-title>Them ban</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <ion-tabs tabsPlacement="top"  primary #myTabs>
-    <ion-tab [root]="tab1Root" tabTitle="Tìm bạn" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="Gợi ý" tabIcon="information-circle"></ion-tab>
+  <ion-tabs tabsPlacement="top" primary #myTabs>
+    <ion-tab [root]="tab1Root" [rootParams]="viewCtrl" tabTitle="Tìm bạn" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="viewCtrl" tabTitle="Gợi ý" tabIcon="information-circle"></ion-tab>
   </ion-tabs>
 </ion-content>

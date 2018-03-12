@@ -31,4 +31,12 @@ export class ShoppingsService {
   putCart(product_list) {
     return this.apiService.getCarts(product_list);
   }
+
+  getProductsFeature(){
+    return this.apiService.getFeaturedProducts();
+  }
+
+  getShopFeature(){
+    return this.apiService.getFeaturedShops();
+  }
 }

@@ -47,7 +47,7 @@ export class NotificationComponent implements OnInit {
         this.feedService.getFeed(n.subject_guid).subscribe(data => {
           // this.loading.dismiss();
           if (data.post) {
-            console.log(data);
+            // console.log(data);
 
             // [post] = "post"[user] = "getPoster(post.poster_guid)"[mood] = "getMood(post.mood_guid)"[user_tag] = "getUsersTag(post.description)"
             // this.appCtrl.getRootNav().push(FeedComponent, {
@@ -71,6 +71,8 @@ export class NotificationComponent implements OnInit {
               user_tag: this.getUsersTag(data.post.description, data.users)
             })
             return;
+          }else{
+            this.customService.toastMessage('Bài viết đã bị xóa','bottom',2000);
           }
         })
         break;

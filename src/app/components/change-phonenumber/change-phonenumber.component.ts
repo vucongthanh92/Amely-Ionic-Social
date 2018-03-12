@@ -10,12 +10,13 @@ import { UserService } from '../../services/user.service';
 export class ChangePhonenumberComponent implements OnInit {
   @Input('phone_number') phone_number: string;
   constructor(private userService: UserService, private customService: CustomService,
-    private nav: NavController, private appCtrl: App, private alertCtrl: AlertController) { }
+    private nav: NavController, private appCtrl: App, private alertCtrl: AlertController) {
+  }
 
   ngOnInit() {
   }
   changePhoneNumber() {
-    if (!this.phone_number && this.phone_number.length < 8) {
+    if (!this.phone_number || this.phone_number.length < 8) {
       this.customService.toastMessage('Số điện thoại không hợp lệ', 'bottom', 2000);
     } else {
       this.customService.confirmPassword(this.alertCtrl, this.userService)

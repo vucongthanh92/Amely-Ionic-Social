@@ -493,7 +493,7 @@ export class ApiService extends BaseService {
   }
   /**
    */
-  getBannersResponse(): Observable<HttpResponse<Banner>> {
+  getBannersResponse(): Observable<HttpResponse<Banner[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -511,16 +511,16 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Banner = null;
-        _body = _resp.body as Banner
-        return _resp.clone({body: _body}) as HttpResponse<Banner>;
+        let _body: Banner[] = null;
+        _body = _resp.body as Banner[]
+        return _resp.clone({body: _body}) as HttpResponse<Banner[]>;
       })
     );
   }
 
   /**
    */
-  getBanners(): Observable<Banner> {
+  getBanners(): Observable<Banner[]> {
     return this.getBannersResponse().pipe(
       map(_r => _r.body)
     );
@@ -2184,7 +2184,7 @@ export class ApiService extends BaseService {
   }
   /**
    */
-  getFeaturedProductsResponse(): Observable<HttpResponse<Product>> {
+  getFeaturedProductsResponse(): Observable<HttpResponse<Product[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2202,23 +2202,23 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Product = null;
-        _body = _resp.body as Product
-        return _resp.clone({body: _body}) as HttpResponse<Product>;
+        let _body: Product[] = null;
+        _body = _resp.body as Product[]
+        return _resp.clone({body: _body}) as HttpResponse<Product[]>;
       })
     );
   }
 
   /**
    */
-  getFeaturedProducts(): Observable<Product> {
+  getFeaturedProducts(): Observable<Product[]> {
     return this.getFeaturedProductsResponse().pipe(
       map(_r => _r.body)
     );
   }
   /**
    */
-  getFeaturedShopsResponse(): Observable<HttpResponse<Shop>> {
+  getFeaturedShopsResponse(): Observable<HttpResponse<Shop[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2236,16 +2236,16 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Shop = null;
-        _body = _resp.body as Shop
-        return _resp.clone({body: _body}) as HttpResponse<Shop>;
+        let _body: Shop[] = null;
+        _body = _resp.body as Shop[]
+        return _resp.clone({body: _body}) as HttpResponse<Shop[]>;
       })
     );
   }
 
   /**
    */
-  getFeaturedShops(): Observable<Shop> {
+  getFeaturedShops(): Observable<Shop[]> {
     return this.getFeaturedShopsResponse().pipe(
       map(_r => _r.body)
     );

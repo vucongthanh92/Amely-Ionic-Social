@@ -1,7 +1,8 @@
+import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { User } from './../../api/models/user';
 import { CustomService } from './../../services/custom.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { NavController, App, ViewController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { UserComponent } from '../user/user.component';
 
@@ -11,8 +12,12 @@ import { UserComponent } from '../user/user.component';
 })
 export class FindFriendComponent implements OnInit {
   @Input('phone_number') phone_number: string;
+  @Output() tabGotClosed = new EventEmitter<boolean>();
   user_found: User;
-  constructor(private nav: NavController, private appCtrl: App, private userService: UserService, private customService: CustomService) { }
+  public viewCtrl: ViewController;
+  constructor(private nav: NavController, private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams) {
+    this.viewCtrl = params.data;
+  }
 
   ngOnInit() { }
 
@@ -32,5 +37,6 @@ export class FindFriendComponent implements OnInit {
 
   openUserProfile() {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.user_found.guid })
+    this.viewCtrl.dismiss();
   }
 }

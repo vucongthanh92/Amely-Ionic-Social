@@ -23,21 +23,26 @@ export class ProductComponent implements OnInit {
   // cart = [];
 
   constructor(
-    public nav: NavController, 
-    public appCtrl: App, 
-    private productsService: ProductsService, 
-    private navParam: NavParams, 
-    private customSerice:CustomService) {
+    public nav: NavController,
+    public appCtrl: App,
+    private productsService: ProductsService,
+    private navParam: NavParams,
+    private customSerice: CustomService) {
 
     this.product = this.navParam.get('product');
+    this.guid = this.navParam.get('guid');
   }
 
   ngOnInit() {
-    // this.productsService.getProduct(this.guid).subscribe(data => {
-    //   this.product = data.product;
-    //   this.categories = data.categories;
-    //   this.shop = data.shop;
-    // });
+    if (!this.product) {
+      this.productsService.getProduct(this.guid).subscribe(data => {
+        this.product = data.product;
+        this.categories = data.categories;
+        this.shop = data.shop;
+        console.log(this.product);
+        
+      });
+    }
   }
 
   changePage() {
@@ -47,24 +52,24 @@ export class ProductComponent implements OnInit {
   ionViewDidEnter() {
     this.count_product = this.customSerice.cart.length;
   }
-  
+
   formatCurrency(price, currency: string) {
     return this.customSerice.formatCurrency(price, currency);
   }
 
   putCartLocal(product) {
-    let item = this.customSerice.cart.filter( data => data.guid == product.guid);
+    let item = this.customSerice.cart.filter(data => data.guid == product.guid);
     if (item.length > 0) {
       item[0].quantity_cart = item[0].quantity_cart + 1;
     } else {
       product.quantity_cart = 1;
       this.customSerice.cart.push(product);
     }
-    
+
     this.count_product = this.customSerice.cart.length;
   }
 
-  getImage(idImage){
+  getImage(idImage) {
     return this.product.images_entities[idImage];
   }
 }

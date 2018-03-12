@@ -1,3 +1,4 @@
+import { ShopFeatureComponent } from './../components/shop-feature/shop-feature.component';
 import { GiftDetailComponent } from './../components/gift/gift-detail/gift-detail.component';
 import { DeliveryModule } from './../modules/delivery/delivery.module';
 import { WithdrawnModule } from './../modules/withdrawn/withdrawn.module';
@@ -131,7 +132,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     UserUpdateComponent,
     GiftHistoryComponent,
     GiftDetailComponent,
-    FeedDetailComponent
+    FeedDetailComponent,
+    ShopFeatureComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -183,7 +185,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     UserUpdateComponent,
     GiftHistoryComponent,
     GiftDetailComponent,
-    FeedDetailComponent
+    FeedDetailComponent,
+    ShopFeatureComponent
   ],
   exports: [
     CategoriesComponent,
@@ -235,7 +238,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     UserUpdateComponent,
     GiftHistoryComponent,
     GiftDetailComponent,
-    FeedDetailComponent
+    FeedDetailComponent,
+    ShopFeatureComponent
   ]
 })
 export class SharedModule { }
