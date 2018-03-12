@@ -3,12 +3,12 @@ app-notification {
         padding-left:0px;
 
         ion-avatar img {
-            width:55px;
-            height:55px;
+            width:50px;
+            height:50px;
         }
 
         ion-avatar[item-start]{
-            margin: 0px 30px 8px 0;
+            margin: 0px 15px 8px 0;
         }
 
         .number-circle{
@@ -26,12 +26,30 @@ app-notification {
         float: left;
         line-height: 1;
     }
-    h2{
-        color: #404040;
+    .notification_title {
+        color: #333;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 15px;
+        margin-bottom: 5px;
     }
+
+    .notification_item {
+        margin: 3px 0px 7px 0px;
+
+        ion-label {
+            margin-right: 0px;
+        }
+
+        .item-inner {
+            padding-right: 0px !important;
+        }
+    }
+
     .ladda-button:hover{
         background: none;
     }
+
     .ladda-button{
         background: none;
     }
