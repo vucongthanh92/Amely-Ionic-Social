@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title *ngIf="event">{{event.title}}</ion-title>
+    <ion-title *ngIf="event">Sự Kiện</ion-title>
     <ion-buttons end *ngIf="is_user">
       <button ion-button (click)="openPopover($event)">
         <ion-icon name="md-more"></ion-icon>
@@ -8,11 +8,13 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content" *ngIf="event">
-  <div class="about-header">
-    <img src="assets/imgs/logo.png" alt="ionic logo">
 
+<ion-content class="outer-content" *ngIf="event">
+  <div class="event_cover" [style.background]="'url(' + event.cover + ')'">
+    <img class="event_avatar" src="assets/imgs/logo.png">
+    <div class="event_cover_title">{{event.title}}</div>
   </div>
+
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-segment color="primary" [(ngModel)]="eventTab" style="border-bottom: 1px solid #eee;">
       <ion-segment-button value="newfeed" class="segment-button" style="border-radius: 0px; border: 0px; font-size: 20px; border-right: 1px solid #eee;"

@@ -3,70 +3,68 @@
     <ion-title>Cộng đồng</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content" *ngIf="page">
-  <div class="about-header">
-    <img src="{{page.avatar}}" alt="ionic logo">
-  </div>
-  <div class="bar bar-header bar-dark" style="background-color: #fff;">
-    <ion-row text-center>
-      <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goInventory();">
-          <img width="24px" height="24px" src="assets/imgs/ic_go_to_inventory.png">
-          <div>Vào kho</div>
-        </button>
-      </ion-col>
-      <ion-col col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goToPage('gift');">
-          <img width="24px" height="24px" src="assets/imgs/ic_send_gift_blue.png">
-          <div>Tặng quà</div>
-        </button>
-      </ion-col>
 
+<ion-content class="outer-content" *ngIf="page">
+  <div [style.background]="'url(' + page.cover + ')'" class="business_cover">
+    <div class="business_avatar" [style.background]="'url(' + page.avatar + ')'"></div>
+    <div class="business_cover_title">{{page.title}}</div>
+  </div>
+
+  <div class="bar bar-header bar-dark business_nav">
+    <ion-row class="business_nav_row">
+      <ion-col class="business_nav_col" col-4>
+        <button ion-button icon-left clear small color="danger" (click)="goInventory();">
+          <img class="business_nav_icon" src="assets/imgs/ic_go_to_inventory.png">
+          <div class="business_nav_text">Vào kho</div>
+        </button>
+      </ion-col>
+      <ion-col class="business_nav_col" col-4>
+        <button ion-button icon-left clear small color="danger" (click)="goToPage('gift');">
+          <img class="business_nav_icon" src="assets/imgs/ic_send_gift_blue.png">
+          <div class="business_nav_text">Tặng quà</div>
+        </button>
+      </ion-col>
 
       <ion-col col-4 *ngIf="page.followed" (click)="likePage(false)" >
         <button ion-button icon-left clear small color="danger">
-          <img width="24px" height="24px" src="assets/imgs/ic_like_actived.png">
-          <div>Đã thích</div>
+          <img class="business_nav_icon" src="assets/imgs/ic_like_actived.png">
+          <div class="business_nav_text">Đã thích</div>
         </button>
       </ion-col>
 
       <ion-col col-4 *ngIf="!page.followed" (click)="likePage(true)">
         <button ion-button icon-left clear small color="danger">
-          <img width="24px" height="24px" src="assets/imgs/ic_like.png">
-          <div>Thích</div>
+          <img class="business_nav_icon" src="assets/imgs/ic_like.png">
+          <div class="business_nav_text">Thích</div>
         </button>
       </ion-col>
     </ion-row>
   </div>
 
   <div *ngIf="newfeedsPage">
-    <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
+    <ion-card class="business_info">
       <ion-card-content>
-        <ion-row>
-          <ion-col col-12>
-            <p>
-              <img class="icon-header" src="assets/imgs/ic_info_gay.png"> {{page.category}}
-            </p>
-            <p>
-              <img class="icon-header" src="assets/imgs/ic_like_actived.png"> {{page.follow}}
-            </p>
-            <p>
-              <img class="icon-header" src="assets/imgs/ic_location_actived.png"> {{page.address}}
-            </p>
-            <p>
-              <img class="icon-header" src="assets/imgs/ic_play_actived.png">{{page.website}}
-            </p>
-          </ion-col>
-        </ion-row>
+        <ion-item class="business_info_item business_info_border">
+          <img class="business_info_image" src="assets/imgs/ic_info_gay.png"> {{page.category}}
+        </ion-item>
+        
+        <ion-item class="business_info_item">
+          <ion-icon class="business_info_icon" ios="ios-heart" md="md-heart" color="danger"></ion-icon> {{page.follow}}
+        </ion-item>
+        
+        <ion-item class="business_info_item">
+          <img class="business_info_image" src="assets/imgs/ic_location_actived.png"> {{page.address}}
+        </ion-item>
+        
+        <ion-item class="business_info_item">
+          <ion-icon class="business_info_icon" ios="ios-globe" md="md-globe"></ion-icon>{{page.website}}
+        </ion-item>
       </ion-card-content>
     </ion-card>
-    <ion-card style="margin-left: 0px; margin-right: 0px; width: 100%">
-      <ion-card-header>
-        Mô tả
-      </ion-card-header>
-      <ion-card-content>
-        {{page.description}}
-      </ion-card-content>
+
+    <ion-card class="business_description">
+      <ion-card-header>Mô tả</ion-card-header>
+      <ion-card-content>{{page.description}}</ion-card-content>
     </ion-card>
     <ion-list *ngIf="business_guid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
