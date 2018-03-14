@@ -45,4 +45,14 @@ export class UserService {
       usercurrency: usercurrency, friends_hidden: friends_hidden, mobile_hidden: mobile_hidden, birthdate_hidden: birthdate_hidden
     });
   }
+  register(username: string, firstname: string, lastname: string, email: string, email_re: string, password: string, password_re: string, mobilelogin: string, birthdate: string, gender: string) {
+    return this.api.register({
+      username: username, firstname: firstname, lastname: lastname, email: email, email_re: email_re, password: password, password_re:
+        password_re, mobilelogin: mobilelogin, birthdate: birthdate, gender: gender
+    })
+  }
+
+  activeUser(username: string, password: string, mobilelogin: string, code: string) {
+    return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code });
+  }
 }

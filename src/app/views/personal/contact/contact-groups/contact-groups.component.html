@@ -1,6 +1,6 @@
 <ion-content class="outer-content" class="contact_group">
-  <ion-list >
-    <ion-item *ngFor="let group of groupService.groups_contact" >
+  <ion-list>
+    <ion-item *ngFor="let group of groups">
       <ion-row>
         <ion-col col-2 class="contact_group_box_image" (click)="goToPage(group.guid)">
           <img class="contact_group_avatar" src="{{group.avatar}}" />
@@ -8,7 +8,7 @@
         <ion-col col-8 (click)="goToPage(group.guid)">
           <div class="contact_group_title">{{group.title}}</div>
           <div class="contact_group_mood">
-            <ion-row >
+            <ion-row>
               <ion-col class="contact_group_imageinfo" col-1>
                 <img src="assets/imgs/ic_user_admin_gray.png" />
               </ion-col>
@@ -24,20 +24,20 @@
               <ion-col *ngIf="group.has_inventory" class="contact_group_imageinfo" col-1>
                 <img src="assets/imgs/ic_gift_1.png" />
               </ion-col>
-              <ion-col  *ngIf="group.has_inventory" col-1 class="textInfo">
+              <ion-col *ngIf="group.has_inventory" col-1 class="textInfo">
                 {{group.inventory_items}}
               </ion-col>
             </ion-row>
           </div>
         </ion-col>
         <ion-col class="contact_group_chatbox" col-2>
-          <img  class="contact_group_chat" src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')"/>
+          <img class="contact_group_chat" src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')" />
         </ion-col>
       </ion-row>
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-fab right bottom  (click)="goToPage('add-group');">
+<ion-fab right bottom (click)="goToPage(null,'add-group');">
   <button ion-fab color="primary" class="contact_group_button">
     <ion-icon name="add"></ion-icon>
   </button>

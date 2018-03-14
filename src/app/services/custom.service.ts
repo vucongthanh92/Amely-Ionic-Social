@@ -17,6 +17,7 @@ export class CustomService {
   public url_site = "http://helloqua.com/";
   friends: Array<User>;
   notifications: Array<Notification> = [];
+  public url_qr = "http://helloqua.com/";
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
   constructor(
@@ -90,6 +91,14 @@ export class CustomService {
 
   getTransactions(type: string) {
     return this.api.getTransactions(type);
+  }
+
+  updateAvatar(owner_guid: number, avatar_type: string, images: string[]) {
+    return this.api.upload_avatar({ owner_guid: owner_guid, avatar_type: avatar_type, images: images });
+  }
+
+  updateCover(owner_guid: number, cover_type: string, images: string[]) {
+    return this.api.upload_cover({ owner_guid: owner_guid, cover_type: cover_type, images: images });
   }
 
   confirmPassword(alertCtrl: AlertController, userService: UserService) {

@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <ion-card>
 
     <ion-card-header>
@@ -24,7 +24,7 @@
           <!-- PHONE NUMBER -->
           <ion-col col-12>
             <ion-label>Số điện thoại :</ion-label>
-            <ion-label id="txtPhoneNumber">0909090909</ion-label>
+            <ion-label id="txtPhoneNumber">{{user.mobilelogin}}</ion-label>
           </ion-col>
         </ion-row>
         <!-- END PHONE NUMBER -->
@@ -41,7 +41,7 @@
               <ion-label>
                 <img src="assets/imgs/ic_sms.png" />
               </ion-label>
-              <ion-input type="text" placeholder="Mã xác thực"></ion-input>
+              <ion-input [(ngModel)]="code" type="text" placeholder="Mã xác thực"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

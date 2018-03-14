@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Nhom A</ion-title>
+    <ion-title *ngIf="group">{{group.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openPopover($event)">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content" *ngIf="group">

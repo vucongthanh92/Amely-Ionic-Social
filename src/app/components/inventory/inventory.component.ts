@@ -54,6 +54,8 @@ export class InventoryComponent implements OnInit {
     if (this.ownerGuid == undefined) this.ownerGuid = this.navParams.get("ownerGuid");
     if (this.inventoryType === 'group') {
       this.group = this.navParams.get("obj");
+      console.log(this.group);
+
     } else if (this.inventoryType === 'event') {
       this.event = this.navParams.get("obj");
     } else if (this.inventoryType === 'business') {
@@ -88,8 +90,8 @@ export class InventoryComponent implements OnInit {
 
           this.types.sort(this.compare);
         }
-        if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
-          this.totalItem += data.length ? data.length : 0;
+        // if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
+        //   this.totalItem += data.length ? data.length : 0;
         if (data && e.item_type == 'nearly_stored' && data.length) {
           this.badge_near_stored = data.length;
         }
@@ -100,6 +102,13 @@ export class InventoryComponent implements OnInit {
       });
     })
 
+    this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
+      if (data instanceof Array) {
+        this.totalItem = data.length;
+      } else {
+        this.totalItem = 0;
+      }
+    })
   }
 
   compare(a, b) {
@@ -130,5 +139,8 @@ export class InventoryComponent implements OnInit {
       }
       resolve();
     });
+  }
+  openInventory() {
+
   }
 }

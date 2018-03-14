@@ -3,5 +3,6 @@
 /**
  */
 export class body_4 {
-    user_guid?: number;
+    username: string;
+    password: string;
 }

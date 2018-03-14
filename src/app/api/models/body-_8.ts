@@ -3,7 +3,10 @@
 /**
  */
 export class body_8 {
-    owner_guid?: number;
-    offset?: number;
-    limit?: number;
+    name?: string;
+    description?: string;
+    category?: string;
+    phone?: string;
+    address?: string;
+    website?: string;
 }

@@ -3,6 +3,6 @@
 /**
  */
 export class body_43 {
-    guid?: number;
-    status?: number;
+    offer_guid?: number;
+    counter_offer_guid?: number;
 }

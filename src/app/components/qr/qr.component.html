@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Mã QR
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="code_qr">
+    <ngx-qrcode item-width="300px" item-height="300px" [qrc-value]="code_qr"></ngx-qrcode>
+  </ion-card>
+</ion-content>

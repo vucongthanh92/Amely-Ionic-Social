@@ -28,7 +28,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="text" placeholder="Họ"></ion-input>
+          <ion-input [(ngModel)]="firstname" type="text" placeholder="Họ"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END FIRSTNAME  -->
@@ -39,7 +39,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="text" placeholder="Tên"></ion-input>
+          <ion-input [(ngModel)]="lastname" type="text" placeholder="Tên"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END LASTNAME -->
@@ -50,15 +50,24 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Ngày sinh"></ion-datetime>
+          <ion-datetime (ionChange)='onChangeTime($event)' [(ngModel)]="birthdate" displayFormat="YYYY-MM-DD" placeholder="Ngày sinh"></ion-datetime>
         </ion-item>
+      </ion-col>
+
+      <ion-col col-12 *ngIf="is_show_privacy">
+        <ion-list>
+          <ion-item class="edtLogin">
+            <ion-checkbox [(ngModel)]="privacy"></ion-checkbox>
+            <p>Với tài khoản dưới 13 tuổi cần có sự đồng ý của người giám hộ</p>
+          </ion-item>
+        </ion-list>
       </ion-col>
       <!-- END BIRTHDAY -->
 
       <!-- GENDER -->
       <ion-col col-12>
 
-        <ion-segment color="white" class="edtLogin" id="segmentGender" color="secondary">
+        <ion-segment [(ngModel)]="gender" color="white" class="edtLogin" id="segmentGender" color="secondary">
           <ion-label>Giới Tính </ion-label>
 
           <ion-segment-button value="male" checked>
@@ -79,7 +88,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="text" placeholder="Tài khoản đăng nhập"></ion-input>
+          <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END USERNAME -->
@@ -90,7 +99,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="password" placeholder="Mật khẩu"></ion-input>
+          <ion-input [(ngModel)]="password" type="password" placeholder="Mật khẩu"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END PASSWORD -->
@@ -102,7 +111,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="password" placeholder="Nhập lại mật khẩu"></ion-input>
+          <ion-input [(ngModel)]="password_re" type="password" placeholder="Nhập lại mật khẩu"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END REPASSWORD -->
@@ -114,7 +123,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="email" placeholder="Email"></ion-input>
+          <ion-input [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END EMAIL -->
@@ -126,7 +135,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="email" placeholder="Nhập lại email"></ion-input>
+          <ion-input [(ngModel)]="email_re" type="email" placeholder="Nhập lại email"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END REEMAIL -->
@@ -138,7 +147,7 @@
           <ion-label>
             <img width="25vw" height="25vw" src="assets/imgs/logo.png" />
           </ion-label>
-          <ion-input type="number" placeholder="Số điện thoại"></ion-input>
+          <ion-input type="tel" [(ngModel)]="mobilelogin" placeholder="Số điện thoại"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END REEMAIL -->

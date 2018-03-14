@@ -3,5 +3,7 @@
 /**
  */
 export class body_19 {
-    mobiles?: string[];
+    post_guid: string;
+    comment: string;
+    images: string;
 }

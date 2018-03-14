@@ -3,6 +3,7 @@
 /**
  */
 export class body_42 {
-    offer_guid?: number;
-    counter_offer_guid?: number;
+    offset?: number;
+    limit?: number;
+    target?: string;
 }

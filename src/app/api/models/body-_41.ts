@@ -3,7 +3,5 @@
 /**
  */
 export class body_41 {
-    offset?: number;
-    limit?: number;
-    target?: string;
+    owner_guid: number;
 }

@@ -63,7 +63,7 @@ export class AddGroupComponent implements OnInit {
           this.afDatabase.list(path).set(data.group_guid + '', obj);
           let callback = this.navParams.get("callback");
 
-          callback().then(() => {
+          callback({ type: 'reload' }).then(() => {
             this.nav.pop();
           });
         }

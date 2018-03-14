@@ -5,16 +5,17 @@ import { Shop } from './shop';
 /**
  */
 export class User {
-    usercurrency?: string;
+    mobilelogin?: string;
     guid?: number;
     last_name?: string;
+    password?: string;
     first_name?: string;
     email?: string;
     fullname?: string;
     birthdate?: string;
     gender?: string;
-    mobilelogin?: string;
     username?: string;
+    usercurrency?: string;
     address?: string;
     avatar?: string;
     cover?: string;

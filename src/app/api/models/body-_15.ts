@@ -3,12 +3,9 @@
 /**
  */
 export class body_15 {
-    category_guid?: number;
-    title?: string;
-    description?: string;
-    friendly_url?: string;
-    sort_order?: number;
-    enabled?: string;
-    parent_guid?: number;
-    image?: string;
+    offset?: number;
+    limit?: number;
+    shop_guid?: number;
+    type?: number;
+    get_all?: number;
 }

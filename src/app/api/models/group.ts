@@ -4,8 +4,10 @@ import { User } from './user';
 /**
  */
 export class Group {
-    membInvite?: string;
+    membership?: string;
     guid?: number;
+    candidate?: User;
+    voted?: string;
     title?: string;
     members?: User[];
     time_created?: number;
@@ -13,8 +15,8 @@ export class Group {
     description?: string;
     type?: string;
     subtype?: string;
-    membership?: string;
     owner?: User;
+    membInvite?: string;
     groupMembership?: string;
     has_inventory?: string;
     thought?: string;

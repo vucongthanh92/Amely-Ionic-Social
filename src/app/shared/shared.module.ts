@@ -1,3 +1,5 @@
+import { QrComponent } from './../components/qr/qr.component';
+import { GroupMenuComponent } from './../components/group/group-menu/group-menu.component';
 import { ShopFeatureComponent } from './../components/shop-feature/shop-feature.component';
 import { GiftDetailComponent } from './../components/gift/gift-detail/gift-detail.component';
 import { DeliveryModule } from './../modules/delivery/delivery.module';
@@ -133,7 +135,9 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     GiftHistoryComponent,
     GiftDetailComponent,
     FeedDetailComponent,
-    ShopFeatureComponent
+    ShopFeatureComponent,
+    GroupMenuComponent,
+    QrComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -186,7 +190,9 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     GiftHistoryComponent,
     GiftDetailComponent,
     FeedDetailComponent,
-    ShopFeatureComponent
+    ShopFeatureComponent,
+    GroupMenuComponent,
+    QrComponent
   ],
   exports: [
     CategoriesComponent,
@@ -239,7 +245,9 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     GiftHistoryComponent,
     GiftDetailComponent,
     FeedDetailComponent,
-    ShopFeatureComponent
+    ShopFeatureComponent,
+    GroupMenuComponent,
+    QrComponent
   ]
 })
 export class SharedModule { }

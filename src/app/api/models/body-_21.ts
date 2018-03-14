@@ -3,6 +3,8 @@
 /**
  */
 export class body_21 {
-    offset?: number;
-    limit?: number;
+    offer_guid?: number;
+    item_guid?: number;
+    quantity?: number;
+    note?: string;
 }

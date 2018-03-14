@@ -3,5 +3,6 @@
 /**
  */
 export class body_30 {
-    item_guid: number;
+    owner_guid?: number;
+    type?: string;
 }

@@ -1,3 +1,4 @@
+import { VerifycodeComponent } from './../verifycode/verifycode.component';
 import { CustomService } from './../../services/custom.service';
 import { TimerComponent } from './../../components/timer/timer.component';
 import { GeolocationService } from './../../services/geolocation.service';
@@ -9,6 +10,7 @@ import { ToastController } from 'ionic-angular';
 import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ApiService } from '../../api/services';
+import { User } from '@firebase/auth-types';
 
 @Component({
   selector: 'app-signin',
@@ -16,8 +18,8 @@ import { ApiService } from '../../api/services';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string = 'admin';
-  @Input('password') password: string = 'dfm2010@';
+  @Input('username') username: string = 'quannm';
+  @Input('password') password: string = '123456';
 
   latitude: any;
   longitude: any;
@@ -37,6 +39,7 @@ export class SigninComponent implements OnInit {
     this.loader = this.loadingCtrl.create({
       content: "Please wait..."
     });
+    
   }
 
   ngOnInit() {
@@ -44,20 +47,30 @@ export class SigninComponent implements OnInit {
 
   onLogin() {
     this.is_logging = true;
-    this.loader.present();
+    // this.loader.present();
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
+      console.log(resp);
+     
       if (resp.status == false) {
-        this.loader.dismiss();
-        const toast = this.toastCtrl.create({
-          message: 'Đăng nhập thất bại!',
-          position: "bottom",
-          duration: 3000
-        });
-        toast.present();
+        // this.loader.dismiss();
+        if (resp.validation) {
+          let u = resp.validation;
+          u.password = this.password;
+          console.log(213213);
+          
+          this.nav.push(VerifycodeComponent, { user: u });
+        } else {
+          const toast = this.toastCtrl.create({
+            message: 'Đăng nhập thất bại!',
+            position: "bottom",
+            duration: 3000
+          });
+          toast.present();
+        }
       } else {
         this.api.getProfile({}).subscribe(data => {
-          this.loader.dismiss();
+          // this.loader.dismiss();
           localStorage.setItem('loggin_user', JSON.stringify(data));
           this.customService.user_current = data;
           this.authenticationService.setSession(resp);

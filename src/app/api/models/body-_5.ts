@@ -3,6 +3,5 @@
 /**
  */
 export class body_5 {
-    item_guid?: number;
-    bookmark_type?: string;
+    user_guid?: number;
 }

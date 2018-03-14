@@ -1,3 +1,5 @@
+import { guid } from './../../../../api/models/guid';
+import { AddGroupComponent } from './../../../../components/add-group/add-group.component';
 import { Group } from './../../../../api/models/group';
 import { User } from './../../../../api/models/user';
 import { GroupService } from './../../../../services/group.service';
@@ -15,8 +17,8 @@ import { MessagesService } from '../../../../services/messages.service';
 export class ContactGroupsComponent implements OnInit {
 
   @Input('callback') callback;
-  // private groups: Group[];
-  // private users: User[];
+  private groups: Group[];
+  private users: User[];
   private userCurrent: User;
   constructor(
     public messagesService: MessagesService,
@@ -24,27 +26,42 @@ export class ContactGroupsComponent implements OnInit {
     public appCtrl: App,
     public groupService: GroupService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    
+
   }
 
-  ionViewDidEnter(){
-   console.log(1233456);
-   
+  ionViewDidEnter() {
+
+  }
+
+  loadData() {
+    this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
+      this.groups = data.groups;
+      this.users = data.owners;
+    })
   }
   ngOnInit() {
-    // this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
-    //   this.groups = data.groups;
-    //   this.users = data.owners;
-    // })
-
+    this.loadData();
   }
 
   getOwner(userGuid) {
-    return this.groupService.groups_user[userGuid];
+    return this.users[userGuid];
   }
 
-  goToPage(guid) {
-    this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: guid });
+  reloadCallback = (_params) => {
+    return new Promise((resolve, reject) => {
+      if (_params.type = 'reload') {
+        this.loadData();
+      } else if (_params.type == 'remove') {
+        this.groups = this.groups.filter(e => e.guid != _params.group.guid)
+      }
+      resolve();
+    });
+  }
+
+  goToPage(guid, type) {
+    if (type == 'add-group') {
+      this.appCtrl.getRootNav().push(AddGroupComponent, { callback: this.reloadCallback })
+    } else this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: guid, reloadCallback: this.reloadCallback });
   }
 
   goToPageChat(group, chat_type) {

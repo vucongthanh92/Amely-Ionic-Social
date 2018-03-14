@@ -3,5 +3,15 @@
 /**
  */
 export class body_67 {
-    item_guid?: number;
+    note?: string;
+    action?: string;
+    step?: string;
+    payment_method?: string;
+    paypal_email?: string;
+    amount?: string;
+    bank_branch_name?: string;
+    bank_name?: string;
+    bank_account_name?: string;
+    bank_account_number?: string;
+    bankcode?: string;
 }

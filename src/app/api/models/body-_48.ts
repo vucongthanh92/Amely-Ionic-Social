@@ -3,9 +3,13 @@
 /**
  */
 export class body_48 {
-    title?: string;
-    description?: string;
-    time_start?: string;
-    time_end?: string;
-    status?: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+    gender: string;
+    birthdate: string;
+    usercurrency: string;
+    friends_hidden: string;
+    mobile_hidden?: string;
+    birthdate_hidden?: string;
 }

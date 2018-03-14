@@ -3,7 +3,12 @@
 /**
  */
 export class body_16 {
-    old_password?: string;
-    new_password?: string;
-    confirm_password?: string;
+    category_guid?: number;
+    title?: string;
+    description?: string;
+    friendly_url?: string;
+    sort_order?: number;
+    enabled?: string;
+    parent_guid?: number;
+    image?: string;
 }
