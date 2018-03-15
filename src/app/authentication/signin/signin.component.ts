@@ -18,8 +18,8 @@ import { User } from '@firebase/auth-types';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string = 'quannm';
-  @Input('password') password: string = '123456';
+  @Input('username') username: string = 'quan5000';
+  @Input('password') password: string = '12345678';
 
   latitude: any;
   longitude: any;

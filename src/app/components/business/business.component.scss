@@ -1,38 +1,135 @@
 app-business {
-  .about-header {
-    background-color: #434954;
-    padding: 16px;
+
+  .feeds_button {
+    bottom: 15px !important;
+    right: 10px !important;
+  }
+
+  .business_cover {
+    padding: 21px 0px 0px 0px;
     width: 100%;
-    min-height: 150px;
+    min-height: 180px;
     text-align: center;
+    background-size: cover !important;
+    margin: 44px 0px 0px 0px;
+    background-position: center !important;
+    position: relative;
   }
 
-  .about-header img {
-    max-width: 200px;
-    min-height: 115px;
-    margin-left: -15px;
-    padding: 25px 0 20px 0;
+  .business_avatar {
+    background-size: cover !important;
+    background-position: center !important;
+    width: 85px;
+    height: 95px;
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin: 0px auto 0px;
   }
 
-  .icon-header {
-    display: initial;
-    width: 30px;
+  .business_cover_title {
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+    font-size: 21px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 2px 1px #333;
   }
-  .about-info p {
-    color: #697072;
-    text-align: left;
+
+  .business_nav {
+    background-color: white;
+  }
+
+  .business_nav_icon {
+    width: 18px;
+    height: 17px;
+  }
+
+  .business_nav_text {
+    color: #999;
+    font-size: 14px;
+    padding: 0px 0px 0px 6px;
+    line-height: 20px;
+    text-transform: capitalize;
+  }
+
+  .business_nav_row {
+    text-align: center;
+    border-bottom: 1px solid #efeff4
+  }
+
+  .business_nav_col {
+    border-right: 1px solid #efeff4;
+  }
+
+  .business_info {
+    margin-left: 0px; 
+    margin-right: 0px; 
+    width: 100%
+  }
+
+  .business_info {
+    margin: 0px;
+
+    .card-content {
+      padding: 0px 0px 5px 0px;
+      border-bottom: 1px solid #efeff4;
+    }
+
+    .business_info_border {
+      border-bottom: 1px solid #efeff4;
+      margin: 0px 0px 15px 0px;
+      padding-top: 10px;
+    }
+
+    .business_info_item {
+      font-size: 14px;
+      color: #666666;
+      padding-left: 21px;
+      min-height: unset;
+      padding-bottom: 9px;
+
+      ion-label {
+        margin: 0px;
+        line-height: 20px;
+      }
+
+      .business_info_image {
+        width: 21px;
+        height: auto;
+        float: left;
+        margin: 0px 7px 0px 0px;
+      }
+
+      .business_info_icon {
+        width: 21px;
+        height: auto;
+        margin: 0px 8px 0px 3px;
+      }
+    }
+  }
+
+  .business_description {
+    width: 100%;
+    margin: 0px 0px 3px 0px;
+    padding: 0px 7px 3px 10px;
+
+    ion-card-header {
+      color: #333;
+      padding-bottom: 7px;
+    }
+
+    ion-card-content {
+      color: #666;
+      line-height: 18px;
+    }
   }
 
   .about-info ion-icon {
     color: color($colors, primary);
     width: 20px;
-  }
-
-  .md,
-  .wp {
-    .about-info [text-right] {
-      margin-right: 0;
-    }
   }
 
   .ios .about-info {
@@ -47,4 +144,5 @@ app-business {
   .segment-button {
     border: 0px;
   }
+  
 }
