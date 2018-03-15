@@ -3,4 +3,25 @@
     <ion-icon name="person"></ion-icon> Cập nhật thông tin
   </ion-item>
  
+  
+  <ion-item (click)="blockList()" *ngIf="is_user_current">
+    <ion-icon name="person"></ion-icon> Danh sách chặn
+  </ion-item>
+ 
+  <ion-item (click)="changeCoverAvatar(false)" *ngIf="is_user_current">
+    <ion-icon name="person"></ion-icon>Thay đổi ảnh bìa  </ion-item>
+ 
+  <ion-item (click)="changeCoverAvatar(true)" *ngIf="is_user_current">
+    <ion-icon name="person"></ion-icon> Thay đổi ảnh đại diện
+  </ion-item>
+ 
+  <ion-item (click)="report()" *ngIf="!is_user_current">
+    <ion-icon name="person"></ion-icon> Report
+  </ion-item>
+ 
+  <ion-item (click)="block()" *ngIf="!is_user_current">
+    <ion-icon name="person"></ion-icon> Chặn
+  </ion-item>
+ 
+
 </ion-list>

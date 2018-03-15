@@ -157,6 +157,8 @@ export class GroupMenuComponent implements OnInit {
           if (data.status) {
             this.group.avatar = url + "";
             this.callback(this.group).then(() => { })
+          } else {
+            this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 2000);
           }
         })
       } else {
@@ -165,6 +167,8 @@ export class GroupMenuComponent implements OnInit {
           if (data.status) {
             this.group.cover = url + "";
             this.callback(this.group).then(() => { })
+          } else {
+            this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 2000);
           }
         })
       }

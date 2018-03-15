@@ -101,6 +101,41 @@ export class CustomService {
     return this.api.upload_cover({ owner_guid: owner_guid, cover_type: cover_type, images: images });
   }
 
+  report(alertCtrl: AlertController, report_type: string, guid: number) {
+    return new Promise((resolve, reject) => {
+      let report = alertCtrl.create({
+        title: 'Xác nhận',
+        message: "Nội dung phản hồi sẽ được ban quản trị xem xét và có biện pháp xử lý",
+        inputs: [
+          {
+            name: 'data',
+            placeholder: 'Nhập nội dung tố cáo'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Hủy bỏ',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Gửi',
+            handler: data => {
+              this.api.report({ report_type: report_type, guid: guid, reason: data.data }).subscribe(data => {
+                if (data.status) {
+                  resolve();
+                } else reject();
+              })
+            }
+          }
+        ]
+      });
+      report.present();
+    });
+
+  }
+
   confirmPassword(alertCtrl: AlertController, userService: UserService) {
     return new Promise((resolve, reject) => {
       let alert = alertCtrl.create({

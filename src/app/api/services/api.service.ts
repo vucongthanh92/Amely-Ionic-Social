@@ -566,7 +566,7 @@ export class ApiService extends BaseService {
   }
   /**
    */
-  getBlocksResponse(): Observable<HttpResponse<User>> {
+  getBlocksResponse(): Observable<HttpResponse<User[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -584,16 +584,16 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: User = null;
-        _body = _resp.body as User
-        return _resp.clone({body: _body}) as HttpResponse<User>;
+        let _body: User[] = null;
+        _body = _resp.body as User[]
+        return _resp.clone({body: _body}) as HttpResponse<User[]>;
       })
     );
   }
 
   /**
    */
-  getBlocks(): Observable<User> {
+  getBlocks(): Observable<User[]> {
     return this.getBlocksResponse().pipe(
       map(_r => _r.body)
     );

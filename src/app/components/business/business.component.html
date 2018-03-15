@@ -9,7 +9,7 @@
   </div>
   <div class="bar bar-header bar-dark" style="background-color: #fff;">
     <ion-row text-center>
-      <ion-col col-4>
+      <ion-col col-4 *ngIf="is_owner" >
         <button ion-button icon-left clear small color="danger" (click)="goInventory();">
           <img width="24px" height="24px" src="assets/imgs/ic_go_to_inventory.png">
           <div>Vào kho</div>

@@ -4,7 +4,7 @@ import { Shop } from './shop';
 /**
  */
 export class Product {
-    is_special?: string;
+    product_group?: string;
     guid?: number;
     type?: string;
     time_created?: string;
@@ -24,8 +24,8 @@ export class Product {
     enabled?: string;
     sku?: string;
     storage_duration?: string;
+    is_special?: string;
     owner_guid?: number;
-    product_group?: string;
     creator_guid?: string;
     custom_attributes?: string;
     number_sold?: number;
@@ -45,4 +45,5 @@ export class Product {
     images?: string;
     shop?: Shop;
     images_entities?: string[];
+    unit?: string;
 }

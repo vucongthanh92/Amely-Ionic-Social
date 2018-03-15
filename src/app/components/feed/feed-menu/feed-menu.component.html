@@ -2,7 +2,10 @@
   <ion-item *ngIf="is_owner" (click)="deleteFeed()">
     Xóa
   </ion-item>
- 
+  <ion-item *ngIf="!is_owner" (click)="report()">
+    Gửi phản hồi
+  </ion-item>
+
   <!-- <ion-item>
     Chia sẻ
   </ion-item> -->

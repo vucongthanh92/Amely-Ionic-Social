@@ -139,12 +139,12 @@ export class AddFeedComponent implements OnInit {
       this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
         if (data.status) {
-          this.customService.toastMessage('Đăng bài viết thất bại.Vui lòng thử lại', 'bottom', 2000);
+          this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
           this.callback().then(() => {
             this.nav.pop();
           });
         } else {
-          this.customService.toastMessage('Đăng bài viết thất bại.Vui lòng thử lại', 'bottom', 2000);
+          this.customService.toastMessage('Đăng bài viết thất bại.Vui lòng thử lại', 'bottom', 3000);
           this.callback().then(() => {
             this.nav.pop();
           });

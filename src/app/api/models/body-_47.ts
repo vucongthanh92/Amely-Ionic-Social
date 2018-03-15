@@ -3,7 +3,7 @@
 /**
  */
 export class body_47 {
-    end_day?: string;
+    friendly_url?: string;
     product_guid?: number;
     title?: string;
     description?: string;
@@ -18,8 +18,8 @@ export class body_47 {
     expiry?: number;
     duration?: number;
     begin_day?: string;
+    end_day?: string;
     sku?: string;
-    friendly_url?: string;
     origin?: string;
     order?: string;
     weight?: number;
@@ -34,4 +34,5 @@ export class body_47 {
     custom_attribute_values?: string[];
     images?: string[];
     unit?: string;
+    enabled?: string;
 }

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Danh sách chặn</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        Close
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content" style="top: 44px;">
+  <ion-list class="contact_user" *ngIf="blockList">
+    <ion-item *ngFor="let friend of blockList">
+      <ion-row>
+        <ion-col col-10>
+          <ion-row>
+            <ion-col class="contact_user_image_box" col-8>
+              <img width="100%" src="{{ friend.avatar }}" />
+            </ion-col>
+            <ion-col col-4> {{friend.fullname}}</ion-col>
+            <ion-col class="contact_user_info" col-4>
+              <button ion-button (click)="unblock(friend)">Bỏ chặn</button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
