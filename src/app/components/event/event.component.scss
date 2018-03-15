@@ -1,93 +1,116 @@
 app-event {
-    .about-header {
-    background-color: #434954;
+  .event_cover {
     padding: 16px;
     width: 100%;
     min-height: 150px;
     text-align: center;
+    background-position: center !important;
+    background-size: cover !important;
+    margin: 44px 0px 0px 0px;
   }
 
-  .about-header img {
-    max-width: 200px;
-    min-height: 115px;
-    margin-left: -15px;
-    padding: 25px 0 20px 0;
+  .event_avatar {
+    width: 90px;
+    height: auto;
+    padding: 10px 0 10px 0;
   }
 
-  .about-info p {
-    color: #697072;
-    text-align: left;
+  .event_cover_title {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #333;
+    text-transform: capitalize;
   }
 
-  .about-info ion-icon {
-    color: color($colors, primary);
-    width: 20px;
-  }
+  .event_tab {
+    background-color: #fff;
 
-  .md,
-  .wp {
-    .about-info [text-right] {
-      margin-right: 0;
+    .event_tab_box {
+      border-bottom: 1px solid #eee;
+      padding: 2px 0px 2px 0px;
+    }
+
+    .event_tab_btn {
+      border-radius: 0px !important; 
+      border: 0px !important;
+      border-right: 1px solid #eee !important;
+      margin: 7px 0px 7px 0px;
     }
   }
 
-  .ios .about-info {
-    text-align: center;
-  }
-
-  .ios .about-info ion-icon {
-    width: auto;
-    margin-right: 10px;
-  } 
-
-
-  
   .segment-ios-primary .segment-button{
     border: 0px;
     background-color: transparent; 
-    color: black;
+    color: #999;
     height: 45px;
   }
 
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
-    color:blue;
+    color:#488aff;
+  }
+
+  .event_give_gift_title {
+    color: #666;
+    text-transform: capitalize;
+    font-size: 14px;
+  }
+
+  .event_give_gift {
+    width: 20px;
+    height: 19px;
+    margin: 0px 5px 0px 0px;
+  }
+
+  .event_inventory {
+    padding: 3px 0px 3px 1px;
+  }
+
+  .event_info {
+    width: 100%;
+    margin: 1px 0px 5px 0px;
+
+    .event_info_row {
+      margin: 3px 0px 10px 0px;
+    }
   }
   
-  .txtTitle{
+  .event_tab_title{
     clear: both;
     font-size: 14px;
     margin-top: -14px;
   }
 
-  #tabIconFeeds{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_feed.png);
-  }
-
-  .segment-activated img#tabIconFeeds {
-    content:url(./../../assets/imgs/ic_feed_actived.png);
-  }
-
-  
-
-  #tabIconMember{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_friend.png);
-  }
-
-  .segment-activated img#tabIconMember {
-    content:url(./../../assets/imgs/ic_friend_actived.png);
-  }
-
-  .iconGroup{
+  .event_info_icon{
     width: 20px;
-    height: 20px;
+    height: auto;
     float: left;
     margin-right: 5px;
   }
+
+  .no-margin {
+    margin: 0px;
+  }
+
+  .feeds_button {
+    bottom: 10px !important;
+    right: 10px !important;
+  }
+
+  .members_container {
+    background-color: white;
+    border-top: 1px solid #c8c7cc;
+
+    ion-list-header {
+      color: #666;
+    }
+
+    .members_row {
+      color: #666;
+      text-transform: capitalize;
+      padding: 5px 0px 5px 15px;
+    }
+  }
+
 }
