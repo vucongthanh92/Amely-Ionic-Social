@@ -5,7 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ShopsComponent } from './shops/shops.component';
 import { VouchersComponent } from './vouchers/vouchers.component';
 import { ShopsFriendlyComponent } from './shops-friendly/shops-friendly.component';
-import { App, NavController, NavParams} from 'ionic-angular';
+import { App, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { ShoppingMenuComponent } from './shopping-menu/shopping-menu.component';
 
 @Component({
   selector: 'app-shopping',
@@ -18,15 +19,20 @@ export class ShoppingComponent implements OnInit {
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
 
-  constructor(public nav: NavController, public appCtrl: App,public navParams:NavParams, public customService: CustomService) { }
+  constructor(public nav: NavController, public appCtrl: App, public navParams: NavParams, public customService: CustomService, public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
   }
 
   changePage() {
-    this.appCtrl.getRootNav().push(CartItemsComponent);
+    this.appCtrl.getRootNav().push(ShoppingMenuComponent);
   }
-
+  openPopover(myEvent) {
+    let popover = this.popoverCtrl.create(ShoppingMenuComponent);
+    popover.present({
+      ev: myEvent
+    });
+  }
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {

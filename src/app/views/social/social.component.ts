@@ -1,5 +1,5 @@
 import { SearchComponent } from './../../components/search/search.component';
-import { MenuController } from 'ionic-angular';
+import { MenuController, PopoverController } from 'ionic-angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { OffersComponent } from './offers/offers.component';
@@ -7,6 +7,7 @@ import { NearByComponent } from './near-by/near-by.component';
 import { EventsComponent } from './events/events.component';
 import { CustomService } from '../../services/custom.service';
 import { App, NavController, NavParams } from 'ionic-angular';
+import { SocialMenuComponent } from './social-menu/social-menu.component';
 
 @Component({
   selector: 'app-social',
@@ -26,13 +27,21 @@ export class SocialComponent implements OnInit {
   constructor(
     public nav: NavController, public appCtrl: App, public navParams: NavParams,
     public menuCtrl: MenuController,
-    public customService: CustomService
+    public customService: CustomService,
+    private popoverCtrl: PopoverController
   ) {
     // this.menuCtrl.enable(true, 'mainMenu');
     // this.abcdef = "dasdfas";
 
   }
   ngOnInit() {
+  }
+
+  openPopover(myEvent) {
+    let popover = this.popoverCtrl.create(SocialMenuComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   search() {

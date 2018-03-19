@@ -38,4 +38,8 @@ export class WalletsService {
       action: 'deposit', step: 'payment_option', payment_method: payment_method, bankcode: bankcode, amount: amount
     })
   }
+
+  getCartFromQR(code: string) {
+    return this.api.getTempOrderFromQR(code);
+  }
 }

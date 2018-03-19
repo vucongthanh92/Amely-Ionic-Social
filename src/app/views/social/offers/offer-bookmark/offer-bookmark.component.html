@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bookmark trao đổi</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openMenu()">
+        <ion-icon name="md-more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content" id="offer_search_container">
+  <ion-row class="offer_search_row" *ngIf="offers.length>0">
+    <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers">
+      <div (click)="changePage(offer)">
+        <ion-row class="offer_search_user_info" margin-top>
+          <img class="offer_search_avatar" src="{{users[offer.owner_guid].avatar}}" />
+          <ion-col class="offer_search_datetime">
+            <strong>
+              <ion-icon name="timer"></ion-icon>
+              <app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
+            </strong>
+          </ion-col>
+          <button ion-button color="danger" outline icon-only class="offer_search_bookmark">
+            <ion-icon name='bookmark' is-active="false"></ion-icon>
+          </button>
+        </ion-row>
+
+        <ion-row class="offer_search_content">
+          <div class="offer_search_box">
+            <p *ngIf="offer.target=='public'" class="offer_search_location">
+              <ion-icon class="public"></ion-icon> Xunh quanh</p>
+            <p *ngIf="offer.target=='location'" class="offer_search_location">
+              <ion-icon class="around"></ion-icon> Theo vị trí</p>
+            <p *ngIf="offer.target=='friends'" class="offer_search_location">
+              <ion-icon class="friend"></ion-icon> Bạn bè</p>
+
+            <div class="item-ribbon offer_search_ribbon">
+              <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
+                <span>FREE</span>
+              </span>
+              <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
+                <span>RANDOM</span>
+              </span>
+              <div *ngIf="offer.product_snapshot.images[0]" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'" class="offer_myself_image"></div>
+              <div *ngIf="offer.product_snapshot.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+            </div>
+            <p class="offer_search_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
+          </div>
+        </ion-row>
+      </div>
+    </ion-col>
+    <ion-row class="offer_search_row" *ngIf="offers.length==0">
+      Chưa có trao đổi được bookmark
+    </ion-row>
+  </ion-row>
+</ion-content>

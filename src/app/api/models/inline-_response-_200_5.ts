@@ -5,6 +5,6 @@ import { Shop } from './shop';
 /**
  */
 export class inline_response_200_5 {
-    dos?: Delivery_order;
-    shops?: Shop;
+    dos?: Delivery_order[];
+    shops?: Shop[];
 }

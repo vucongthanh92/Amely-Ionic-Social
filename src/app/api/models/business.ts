@@ -1,4 +1,5 @@
 /* tslint:disable */
+import { User } from './user';
 
 /**
  */
@@ -19,7 +20,7 @@ export class Business {
     cover_left?: string;
     avatar?: string;
     cover?: string;
-    owner?: string;
+    owner?: User;
     follow?: string;
     followed?: boolean;
     thought?: string;

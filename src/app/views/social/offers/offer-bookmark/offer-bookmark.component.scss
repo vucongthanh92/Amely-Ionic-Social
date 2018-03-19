@@ -1,0 +1,222 @@
+app-offer-bookmark{
+    .around {
+        content: url(../assets/imgs/ic_location_actived.png);
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
+    }
+    .friend {
+        content: url(../assets/imgs/ic_friend_actived.png);
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
+    }
+    .public {
+        content: url(../assets/imgs/ic_member_actived.png);
+        width: auto;
+        height: 14px;
+        min-height: unset;
+        margin: 0px 2px 0px 0px !important;
+        min-width: unset !important;
+    }
+    // Creates a ribbon effect with the given options:
+  @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
+    span {
+      color: $text-color;
+      background: $ribbon-color;
+      &::before {
+        border-left: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+      &::after {
+        border-right: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+    }
+  }
+
+  $default: #f53d3d;
+  $cruzeiro: #387ef5;
+  $atletico: darken(#f4f4f4, 45%);
+  $javascript: #f7e023;
+
+  .item-ribbon {
+    background-color: #fff;
+    position: relative;
+    filter: none;
+    opacity: 1;
+    .ribbon {
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      z-index: 2;
+      overflow: hidden;
+      width: 75px;
+      height: 75px;
+      text-align: right;
+      span {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 20px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        width: 100px;
+        display: block;
+        background: $default;
+        position: absolute;
+        top: 19px;
+        right: -21px;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 100%;
+          z-index: -1;
+          border-left: 3px solid $default;
+          border-right: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid $default;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 100%;
+          z-index: -1;
+          border-left: 3px solid transparent;
+          border-right: 3px solid $default;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid $default;
+        }
+      }
+    }
+  }
+
+  .ribbon.cruzeiro {
+    @include ribbonize($cruzeiro);
+  }
+
+  .ribbon.atletico {
+    @include ribbonize($atletico);
+  }
+
+  .ribbon.javascript {
+    @include ribbonize($javascript, black);
+  }
+
+  #offer_search_container {
+    top: 0;
+  }
+
+  .offer_search_row {
+    margin: 0px 0px 45px 0px;
+  }
+
+  .offer_search_user_info {
+    position: relative;
+    background-color: #fff; 
+    border-radius: 10px;
+  }
+
+  .offer_search_avatar {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -21px;
+    z-index: 3;
+    border-radius: 50%;
+    left: 12px;
+  }
+
+  .offer_search_main {
+    margin: 15px 0px 0px 0px;
+  }
+
+  .offer_search_content {
+    background-color: #fff;
+    margin-top: 3px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+    box-shadow: 1px 1px #ccc;
+  }
+
+  .offer_search_box {
+    background-color: #fff; 
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .offer_search_location {
+    padding-top: 30px;
+    margin: 3px 0px 15px 0px;
+    font-size: 15px;
+    padding: 0px;
+    color: #55acee;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .offer_search_ribbon {
+    padding: 0 5px
+  }
+
+  .offer_search_title {
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0px 10px 0px;
+    font-weight: 300;
+    height: 35px;
+    text-transform: capitalize;
+  }
+
+  .offer_search_bookmark {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    border: 0px;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .offer_search_button {
+    bottom: 50px;
+  }
+
+  .offer_search_datetime {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px #ccc;
+    box-shadow: 0px 2px #ccc;
+    left: 3px;
+    right: 0;
+    padding: 3px 0px 3px 0px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    position: absolute;
+    top: -20px;
+    color: #666;
+    font-size: 14px;
+    z-index: 2;
+  }
+
+  .offer_myself_image {
+    background-position: center !important;
+    background-size: cover !important;
+    padding: 0px;
+    width: 100%;
+    height: 120px;
+    margin: 0px 0px 5px 0px;
+  }
+
+}

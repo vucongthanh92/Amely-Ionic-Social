@@ -16,6 +16,7 @@ export class Product {
     quantity?: number;
     weight?: number;
     expiry_type?: number;
+    qty?: number;
     advertise_guid?: number;
     friendly_url?: string;
     currency?: string;
@@ -45,4 +46,5 @@ export class Product {
     images?: string;
     shop?: Shop;
     images_entities?: string[];
+    unit?: string;
 }

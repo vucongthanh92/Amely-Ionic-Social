@@ -12,6 +12,8 @@ import { NewsFeedModule } from './news-feed/news-feed.module';
 import { OffersModule } from './offers/offers.module';
 import { SharedModule } from '../../shared/shared.module';
 import { IonicPageModule } from 'ionic-angular';
+import { SocialMenuComponent } from './social-menu/social-menu.component';
+import { OfferBookmarkComponent } from './offers/offer-bookmark/offer-bookmark.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,13 +23,15 @@ import { IonicPageModule } from 'ionic-angular';
     NewsFeedModule,
     OffersModule,
     SharedModule,
-    IonicModule.forRoot(SocialComponent, {  swipeBackEnabled: true })
+    IonicModule.forRoot(SocialComponent, { swipeBackEnabled: true })
   ],
   declarations: [
-    SocialComponent
+    SocialComponent,
+    SocialMenuComponent
   ],
   entryComponents: [
-    SocialComponent
+    SocialComponent,
+    SocialMenuComponent
   ],
   providers: [
     SocialService

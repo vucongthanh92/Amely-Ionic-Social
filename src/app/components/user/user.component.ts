@@ -3,7 +3,7 @@ import { guid } from './../../api/models/guid';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
 import { Component, Input } from '@angular/core';
-import { App, NavController, Refresher, NavParams, PopoverController } from 'ionic-angular';
+import { App, NavController, Refresher, NavParams, PopoverController, AlertController, ModalController } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
@@ -36,13 +36,15 @@ export class UserComponent {
   is_hidden_birthday: boolean;
   is_hidden_phone_number: boolean;
   from = 'user';
+  is_failed: boolean;
   constructor(
     public messagesService: MessagesService,
     public nav: NavController,
     public appCtrl: App,
     public navParams: NavParams,
     private customService: CustomService, public popoverCtrl: PopoverController,
-    public userService: UserService) {
+    public userService: UserService,
+    private modalCtrl: ModalController) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
@@ -55,25 +57,28 @@ export class UserComponent {
   loadData() {
     this.userGuid = this.navParams.get('userGuid');
     this.userService.getUser(null, this.userGuid).subscribe(data => {
-      this.user = data;
-      this.is_user_current = this.user.guid == this.userCurrent.guid;
-      this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
-      this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
-      this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
-      this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
-      this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
-      this.is_hidden_phone_number = this.user.mobile_hidden == undefined || this.user.mobile_hidden == '0' ? false : true;
-      // console.log(this.is_hidden_birthday);
-      // console.log(this.is_hidden_friend);
-      // console.log(this.is_hidden_phone_number);
-      
-      let date = new Date(data.birthdate);
-      this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
-      if (this.user.mood != null) {
-        // this.iconMood= this.moodLocal.find(e=>e.guid===data.mood.guid).image;
-        this.iconMood = this.moodLocal[this.user.mood.guid].image;
-      }
+      if (data.guid == null) {
+        this.is_failed = true;
+      } else {
+        this.user = data;
+        this.is_user_current = this.user.guid == this.userCurrent.guid;
+        this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
+        this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
+        this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
+        this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
+        this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
+        this.is_hidden_phone_number = this.user.mobile_hidden == undefined || this.user.mobile_hidden == '0' ? false : true;
+        // console.log(this.is_hidden_birthday);
+        // console.log(this.is_hidden_friend);
+        // console.log(this.is_hidden_phone_number);
 
+        let date = new Date(data.birthdate);
+        this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
+        if (this.user.mood != null) {
+          // this.iconMood= this.moodLocal.find(e=>e.guid===data.mood.guid).image;
+          this.iconMood = this.moodLocal[this.user.mood.guid].image;
+        }
+      }
     });
   }
 
@@ -191,7 +196,8 @@ export class UserComponent {
     }
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(UserMenuComponent, { user: this.user, callback: this.myCallbackFunction });
+    let popover = this.popoverCtrl.create(UserMenuComponent, { user: this.user, callback: this.myCallbackFunction, nav: this.nav, appCtrl: this.appCtrl,
+       modalCtrl: this.modalCtrl });
     popover.present({
       ev: myEvent
     });

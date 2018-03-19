@@ -9,10 +9,10 @@
     <div class="business_avatar" [style.background]="'url(' + page.avatar + ')'"></div>
     <div class="business_cover_title">{{page.title}}</div>
   </div>
-
   <div class="bar bar-header bar-dark business_nav">
     <ion-row class="business_nav_row">
-      <ion-col class="business_nav_col" col-4>
+      <ion-col class="business_nav_col" col-4 *ngIf="is_owner">
+
         <button ion-button icon-left clear small color="danger" (click)="goInventory();">
           <img class="business_nav_icon" src="assets/imgs/ic_go_to_inventory.png">
           <div class="business_nav_text">Vào kho</div>
@@ -25,7 +25,7 @@
         </button>
       </ion-col>
 
-      <ion-col col-4 *ngIf="page.followed" (click)="likePage(false)" >
+      <ion-col col-4 *ngIf="page.followed" (click)="likePage(false)">
         <button ion-button icon-left clear small color="danger">
           <img class="business_nav_icon" src="assets/imgs/ic_like_actived.png">
           <div class="business_nav_text">Đã thích</div>
@@ -47,15 +47,15 @@
         <ion-item class="business_info_item business_info_border">
           <img class="business_info_image" src="assets/imgs/ic_info_gay.png"> {{page.category}}
         </ion-item>
-        
+
         <ion-item class="business_info_item">
           <ion-icon class="business_info_icon" ios="ios-heart" md="md-heart" color="danger"></ion-icon> {{page.follow}}
         </ion-item>
-        
+
         <ion-item class="business_info_item">
           <img class="business_info_image" src="assets/imgs/ic_location_actived.png"> {{page.address}}
         </ion-item>
-        
+
         <ion-item class="business_info_item">
           <ion-icon class="business_info_icon" ios="ios-globe" md="md-globe"></ion-icon>{{page.website}}
         </ion-item>
@@ -68,7 +68,7 @@
     </ion-card>
     <ion-list *ngIf="business_guid">
       <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-      <app-feeds  [type]="'businesspage'" [feed_type]="'business'" [owner_guid]="business_guid"></app-feeds>
+      <app-feeds [type]="'businesspage'" [feed_type]="'business'" [owner_guid]="business_guid"></app-feeds>
       <!-- </ion-item> -->
     </ion-list>
   </div>

@@ -1,6 +1,6 @@
 import { User } from './../../../api/models/user';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { UserComponent } from '../../../components/user/user.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserComponent } from '../../../components/user/user.component';
 export class PersonalMenuComponent implements OnInit {
 
   public userCurrent: User;
-  constructor(public nav: NavController) {
+  constructor(public nav: NavController, private appCtrl: App) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -19,7 +19,8 @@ export class PersonalMenuComponent implements OnInit {
   }
 
   changePage() {
-    this.nav.push(UserComponent, { userGuid:this.userCurrent.guid});
+    this.nav.pop();
+    this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.userCurrent.guid });
   }
 
 }

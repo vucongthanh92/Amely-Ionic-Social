@@ -33,4 +33,5 @@ export class body_45 {
     custom_attribute_values?: string[];
     images?: string[];
     unit?: string;
+    enabled?: string;
 }

@@ -1,3 +1,4 @@
+import { HistoryService } from './services/history.service';
 import { WalletsService } from './services/wallets.service';
 import { InvitationService } from './services/invitation.service';
 import { FirebaseService } from './services/firebase.service';
@@ -52,9 +53,6 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
-import { ShopFeatureComponent } from './components/shop-feature/shop-feature.component';
-import { GroupMenuComponent } from './components/group/group-menu/group-menu.component';
-import { QrComponent } from './components/qr/qr.component';
 
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 
@@ -120,6 +118,7 @@ export const firebaseConfig = {
     FirebaseService,
     InvitationService,
     WalletsService,
+    HistoryService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

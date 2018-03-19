@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Chi tiết giao hàng
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-card *ngIf="offer">
+    <ion-card-header>
+      Người tạo
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <img *ngIf="offer.product_snapshot.images" style="width: 100px;height:100px;float: left" src="{{offer.product_snapshot.images[0]}}">
+        <div>
+          <h2>{{offer.product_snapshot.title}}</h2>
+          <img style="width: 50px;height: 50px; float: left;margin-top: 10px;" src="{{offer.owner.avatar}}">
+          <h2 style="margin-top: 10px;">{{offer.owner.fullname}}</h2>
+          <div *ngIf="offer.owner.gender=='male'">
+            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
+          </div>
+          <div *ngIf="offer.owner.gender=='female'">
+            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
+          </div>
+        </div>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="offer && offer.offer_type!='giveaway'">
+    <ion-card-header>
+      Người trao đổi
+    </ion-card-header>
+    <ion-card-content *ngIf="offer.counter_offers">
+      <ion-list>
+        <img *ngIf="offer.counter_offers[0].product_snapshot.images" style="width: 100px;height:100px;float: left" src="{{offer.counter_offers[0].product_snapshot.images[0]}}">
+        <div>
+          <h2>{{offer.counter_offers[0].product_snapshot.title}}</h2>
+          <img style="width: 50px;height: 50px; float: left;margin-top: 10px;" src="{{offer.counter_offers[0].owner.avatar}}">
+          <h2 style="margin-top: 10px;">{{offer.counter_offers[0].owner.fullname}}</h2>
+          <div *ngIf="offer.counter_offers[0].owner.gender=='male'">
+            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
+          </div>
+          <div *ngIf="offer.counter_offers[0].owner.gender=='female'">
+            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
+          </div>
+        </div>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="offer && offer.offer_type=='giveaway'">
+    <ion-card-header>
+      Người nhận
+    </ion-card-header>
+    <ion-card-content *ngIf="offer.counter_offers">
+      <ion-list>
+        <img style="width: 70px;height: 70px; float: left;margin-top: 10px;" src="{{offer.counter_offers[0].owner.avatar}}">
+        <h2 style="margin-top: 10px;">{{offer.counter_offers[0].owner.fullname}}</h2>
+
+        <div *ngIf="offer.counter_offers[0].owner.gender=='male'">
+          <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
+        </div>
+        <div *ngIf="offer.counter_offers[0].owner.gender=='female'">
+          <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
+        </div>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

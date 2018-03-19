@@ -1,3 +1,5 @@
+import { HistoryModule } from './../modules/history/history.module';
+import { UserBlockListComponent } from './../components/user/user-block-list/user-block-list.component';
 import { QrComponent } from './../components/qr/qr.component';
 import { GroupMenuComponent } from './../components/group/group-menu/group-menu.component';
 import { ShopFeatureComponent } from './../components/shop-feature/shop-feature.component';
@@ -80,6 +82,7 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     DepositModule,
     WithdrawnModule,
     DeliveryModule,
+    HistoryModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -137,7 +140,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     FeedDetailComponent,
     ShopFeatureComponent,
     GroupMenuComponent,
-    QrComponent
+    QrComponent,
+    UserBlockListComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -192,7 +196,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     FeedDetailComponent,
     ShopFeatureComponent,
     GroupMenuComponent,
-    QrComponent
+    QrComponent,
+    UserBlockListComponent
   ],
   exports: [
     CategoriesComponent,
@@ -247,7 +252,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     FeedDetailComponent,
     ShopFeatureComponent,
     GroupMenuComponent,
-    QrComponent
+    QrComponent,
+    UserBlockListComponent
   ]
 })
 export class SharedModule { }

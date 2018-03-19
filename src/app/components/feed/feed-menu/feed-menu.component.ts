@@ -23,8 +23,16 @@ export class FeedMenuComponent implements OnInit {
 
   ngOnInit() {
   }
-  deleteFeed() {
 
+  report() {
+    this.nav.pop();
+    this.customService.report(this.alertCtrl, 'post', this.post.guid)
+      .then(() => this.customService.toastMessage('Đã gửi phản hổi', 'bottom', 3000))
+      .catch(() => this.customService.toastMessage('Phản hổi thất bại', 'bottom', 3000))
+  }
+
+
+  deleteFeed() {
     let alert = this.alertCtrl.create({
       title: 'Xác nhận xóa bài viết !',
       buttons: [

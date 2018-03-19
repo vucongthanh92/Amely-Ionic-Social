@@ -33,4 +33,16 @@ export class OffersService {
   delete(offer_guid) {
     return this.api.deleteOffer(offer_guid);
   }
+
+  bookmarkOffer(item_guid: number) {
+    return this.api.createBookmark({ item_guid: item_guid, bookmark_type: "offer" });
+  }
+
+  getBookmarks() {
+    return this.api.getBookmarks({ owner_guid: null, bookmark_type: 'offer', offset: 0, limit: 9999});
+  }
+
+  deleteBookmark(){
+    return this.api.deleteBookmark('offer');
+  }
 }

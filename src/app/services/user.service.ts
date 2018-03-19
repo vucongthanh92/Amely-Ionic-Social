@@ -55,4 +55,15 @@ export class UserService {
   activeUser(username: string, password: string, mobilelogin: string, code: string) {
     return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code });
   }
+
+  blockUser(guid) {
+    return this.api.createBlock({ user_guid: guid })
+  }
+
+  blockList() {
+    return this.api.getBlocks();
+  }
+  unblock(guid) {
+    return this.api.deleteBlock(guid);
+  }
 }

@@ -7,6 +7,7 @@ import { ShopsComponent } from './shops/shops.component';
 import { ShopsFriendlyComponent } from './shops-friendly/shops-friendly.component';
 import { VouchersComponent } from './vouchers/vouchers.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ShoppingMenuComponent } from './shopping-menu/shopping-menu.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,15 @@ import { SharedModule } from '../../shared/shared.module';
     ShoppingComponent,
     ShopsComponent,
     ShopsFriendlyComponent,
-    VouchersComponent
+    VouchersComponent,
+    ShoppingMenuComponent
   ],
   entryComponents: [
     ShoppingComponent,
     ShopsComponent,
     ShopsFriendlyComponent,
-    VouchersComponent
+    VouchersComponent,
+    ShoppingMenuComponent
   ]
 })
 export class ShoppingModule { }
