@@ -45,6 +45,9 @@ export class MessageComponent implements OnInit {
     public appCtrl: App) 
     {
       this.param = this.navParams.get("param");
+      console.log(this.param);
+      console.log('1234');
+      
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       if (this.param.chat_type == "individual") {
         this.getMessagesIndividual();
@@ -65,7 +68,7 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                let owner_gift = [this.userCurrent.username, this.param.from].filter(data => data != object.from);
+                let owner_gift = [this.param.from, this.param.to].filter(data => data != object.from);
                 this.messagesService.getGift(object.attachment.url, owner_gift[0]).on('value', gift => {
                   gift.forEach(g => {
                     object.gift = g.val();

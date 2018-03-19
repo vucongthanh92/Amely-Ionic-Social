@@ -133,6 +133,10 @@ export class UserComponent {
         break;
       case 'gift':
         value.chat_type = "individual";
+        value.from = this.userCurrent.username;
+        value.to = value.username;
+        console.log(value);
+        console.log('123');
         this.nav.push(GiftComponent, { param: value });
         break;
       case 'chat':
