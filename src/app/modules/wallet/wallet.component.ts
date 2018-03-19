@@ -12,6 +12,7 @@ import { NavController, LoadingController, App } from 'ionic-angular';
 import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
 import { WalletWithdrawnComponent } from './wallet-withdrawn/wallet-withdrawn.component';
 import { Transaction } from '../../api/models';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 // import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-wallet',
@@ -29,6 +30,7 @@ export class WalletComponent implements OnInit {
     private customService: CustomService,
     private walletService: WalletsService,
     private paymentService: PaymentService,
+    private barcodeScanner: BarcodeScanner,
     private loadingCtrl: LoadingController) {
   }
 
@@ -61,21 +63,26 @@ export class WalletComponent implements OnInit {
   }
 
   payment() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present();
-    this.walletService.getCartFromQR('VXVkbThQRHQzYWNHT3VXQUh3bndzR0s2c09pRC92Nzg0UU41WUhDYWZnMD0').subscribe(data => {
-      this.paymentService.items.products = (<any>Object).values(data.products);
-      this.paymentService.items.sub_total = data.sub_total;
-      this.paymentService.items.tax = data.tax;
-      this.paymentService.items.total = data.total;
-      this.paymentService.items.currency = data.shop.currency;
-      this.paymentService.items.to_guid = data.to_guid;
-      this.paymentService.param_create_order.to_guid = data.to_guid;
-      this.loading.dismiss();
-      this.appCtrl.getRootNav().push(PaymentItemsComponent);
-    }, err => {
-      this.loading.dismiss();
-    })
+    this.barcodeScanner.scan().then((barcodeData) => {
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+      this.walletService.getCartFromQR(barcodeData.text).subscribe(data => {
+        this.paymentService.items.products = (<any>Object).values(data.products);
+        this.paymentService.items.sub_total = data.sub_total;
+        this.paymentService.items.tax = data.tax;
+        this.paymentService.items.total = data.total;
+        this.paymentService.items.currency = data.shop.currency;
+        this.paymentService.items.to_guid = data.to_guid;
+        this.paymentService.param_create_order.to_guid = data.to_guid;
+        this.loading.dismiss();
+        this.appCtrl.getRootNav().push(PaymentItemsComponent);
+      }, err => {
+        this.loading.dismiss();
+      })
+    }, (err) => {
+      this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
+    });
+
   }
 
   showTransactionDescription(trans: Transaction) {

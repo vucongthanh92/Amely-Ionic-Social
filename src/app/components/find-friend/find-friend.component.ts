@@ -5,6 +5,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NavController, App, ViewController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { UserComponent } from '../user/user.component';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @Component({
   selector: 'app-find-friend',
@@ -15,7 +16,7 @@ export class FindFriendComponent implements OnInit {
   @Output() tabGotClosed = new EventEmitter<boolean>();
   user_found: User;
   public viewCtrl: ViewController;
-  constructor(private nav: NavController, private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams) {
+  constructor(private nav: NavController, private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams, private barcodeScanner: BarcodeScanner) {
     this.viewCtrl = params.data;
   }
 
@@ -38,5 +39,14 @@ export class FindFriendComponent implements OnInit {
   openUserProfile() {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.user_found.guid })
     this.viewCtrl.dismiss();
+  }
+
+  scanQR() {
+    this.barcodeScanner.scan().then((barcodeData) => {
+      const userID = barcodeData.text.substr(barcodeData.text.indexOf('/user/') + 6);
+      this.appCtrl.getRootNav().push(UserComponent, { userGuid: userID })
+    }, (err) => {
+      this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
+    });
   }
 }
