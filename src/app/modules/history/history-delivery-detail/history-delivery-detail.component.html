@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Chi tiết giao hàng
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-card>
+    <ion-card-content>
+
+      <ion-list>
+        <h2>
+          <b>
+            <b>Sản phẩm :</b>
+          </b>
+        </h2>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img *ngIf="do.product.images"  src="{{do.product.images[0]}}">
+          </ion-thumbnail>
+          <h2>{{do.product.title}}</h2>
+          <p>Số lượng : {{do.quantity}}</p>
+          <button ion-button clear item-right></button>
+        </ion-item>
+
+        <h2>
+          <b>Cửa hàng :</b>
+        </h2>
+        <ion-item>
+          <ion-thumbnail item-left>
+            <img src="assets/imgs/logog.png">
+          </ion-thumbnail>
+          <h2>{{do.product.shop.title}}</h2>
+          <p>Số điện thoại : {{do.product.shop.shop_phone}}</p>
+          <button ion-button clear item-right></button>
+        </ion-item>
+
+        <ion-item>
+          <p *ngIf="do.shipping_method=='sq/standard'">
+            <b>Phương thức</b> : Giao hàng thường</p>
+          <p *ngIf="do.shipping_method!='sq/standard'">
+            <b>Phương thức</b> : Giao hàng nhanh</p>
+          <button ion-button clear item-right></button>
+        </ion-item>
+
+        <h2>
+          <b>Gửi đến</b>
+        </h2>
+        <ion-item>
+          <p>
+            <b> {{do.shipping_fullname}}</b>
+          </p>
+          <p>
+            <b>Địa chỉ :</b>{{address}}</p>
+          <p>Số điện thoại : {{do.shipping_phone}}</p>
+          <button ion-button clear item-right></button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

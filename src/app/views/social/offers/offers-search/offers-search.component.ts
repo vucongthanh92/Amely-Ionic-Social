@@ -85,13 +85,15 @@ export class OffersSearchComponent implements OnInit {
             })
             break;
           case 'public':
-            
+            console.log('public');
+            console.log(this.lat + "  " + this.lng);
+
             this.geoQueryOffer = this.geolocationService.getOffers(this.lat, this.lng);
             var that = this;
             that.offers = [];
             this.geoQueryOffer.on("key_entered", function (key, location, distance) {
-              // console.log(key);
-              // console.log(key + " user query at " + location + " (" + distance + " km from center)");
+              console.log(key);
+              console.log(key + " user query at " + location + " (" + distance + " km from center)");
               that.offersServie.getOffer(key).subscribe(data => {
                 if (data.owner.guid != that.customService.user_current.guid) {
                   that.offers.push(data);
@@ -130,4 +132,13 @@ export class OffersSearchComponent implements OnInit {
     });
   }
 
+  bookmarkOffer(offer: Offer) {
+    this.offersServie.bookmarkOffer(offer.guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Bookmark thành công', 'bottom', 3000);
+      } else {
+        this.customService.toastMessage('Trao đổi đã bookmark', 'bottom', 3000);
+      }
+    });
+  }
 }

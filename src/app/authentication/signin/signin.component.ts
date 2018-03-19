@@ -36,9 +36,7 @@ export class SigninComponent implements OnInit {
     private customService: CustomService,
     public loadingCtrl: LoadingController
   ) {
-    this.loader = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
+  
     
   }
 
@@ -47,13 +45,13 @@ export class SigninComponent implements OnInit {
 
   onLogin() {
     this.is_logging = true;
-    // this.loader.present();
+    this.loader = this.loadingCtrl.create();
+    this.loader.present();
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
       console.log(resp);
-     
+      this.loader.dismiss();
       if (resp.status == false) {
-        // this.loader.dismiss();
         if (resp.validation) {
           let u = resp.validation;
           u.password = this.password;

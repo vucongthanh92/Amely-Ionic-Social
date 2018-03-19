@@ -126,6 +126,7 @@ import { ShopShipping } from '../models/shop-shipping';
 import { body_61 } from '../models/body-_61';
 import { inline_response_200_23 } from '../models/inline-_response-_200_23';
 import { body_62 } from '../models/body-_62';
+import { Temp_order } from '../models/temp-_order';
 import { Transaction } from '../models/transaction';
 import { body_63 } from '../models/body-_63';
 import { body_64 } from '../models/body-_64';
@@ -5574,6 +5575,43 @@ export class ApiService extends BaseService {
    */
   updateShop(body: body_62): Observable<DefaultResponse> {
     return this.updateShopResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * @param qrcode - Global Unique IDentity
+   */
+  getTempOrderFromQRResponse(qrcode: string): Observable<HttpResponse<Temp_order>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (qrcode != null) __params = __params.set("qrcode", qrcode.toString());
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/temp_order`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Temp_order = null;
+        _body = _resp.body as Temp_order
+        return _resp.clone({body: _body}) as HttpResponse<Temp_order>;
+      })
+    );
+  }
+
+  /**
+   * @param qrcode - Global Unique IDentity
+   */
+  getTempOrderFromQR(qrcode: string): Observable<Temp_order> {
+    return this.getTempOrderFromQRResponse(qrcode).pipe(
       map(_r => _r.body)
     );
   }

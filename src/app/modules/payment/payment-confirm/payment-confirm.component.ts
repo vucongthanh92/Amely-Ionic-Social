@@ -7,7 +7,7 @@ import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Platform, NavController, App } from 'ionic-angular';
+import { Platform, NavController, App, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-payment-confirm',
@@ -22,21 +22,22 @@ export class PaymentConfirmComponent implements OnInit {
   provinces: any;
   payment_method: any;
   shipping_method: any;
-
+  private loading;
   constructor(
     private appCtrl: App,
     private nav: NavController,
     private platform: Platform,
     private iab: InAppBrowser,
     private customService: CustomService,
-    private paymentService: PaymentService
-  ) { 
-    
+    private paymentService: PaymentService,
+    private loadingCtrl: LoadingController
+  ) {
+
     this.confirm = this.paymentService.param_create_order;
     this.items = this.paymentService.items;
     this.payment_method = this.paymentService.payment_methods.payment_methods[this.paymentService.param_create_order.payment].displayname;
     this.shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].displayname;
-    
+
     if (this.confirm.province && this.confirm.district && this.confirm.ward) {
       this.customer_address = this.confirm.address + " " + this.getDisplayname(this.confirm.ward, 'ward') + " " + this.getDisplayname(this.confirm.district, 'district') + " " + this.getDisplayname(this.confirm.province, 'province');
     } else {
@@ -69,19 +70,22 @@ export class PaymentConfirmComponent implements OnInit {
   ngOnInit() {
   }
 
-  changePage() { 
+  changePage() {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
     this.paymentService.createOrder().subscribe(data => {
-        const browser = this.iab.create(data.url);
-        browser.on('loadstop').subscribe(data => {
-          this.paymentService.items = false;
-          this.customService.cart = [];
-          this.nav.popToRoot();
-        });
-        browser.on('exit').subscribe(data => {
-          this.paymentService.items = false;
-          this.customService.cart = [];
-          this.nav.popToRoot();
-        });
+      this.loading.dismiss();
+      const browser = this.iab.create(data.url);
+      browser.on('loadstop').subscribe(data => {
+        this.paymentService.items = false;
+        this.customService.cart = [];
+        this.nav.popToRoot();
+      });
+      browser.on('exit').subscribe(data => {
+        this.paymentService.items = false;
+        this.customService.cart = [];
+        this.nav.popToRoot();
+      });
     })
   }
 

@@ -1,3 +1,4 @@
+import { HistoryDeliveryComponent } from './../../../modules/history/history-delivery/history-delivery.component';
 import { WalletComponent } from './../../../modules/wallet/wallet.component';
 import { InventoriesService } from './../../../services/inventories.service';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
@@ -17,16 +18,22 @@ export class InventoryMenuComponent implements OnInit {
   ngOnInit() {
   }
   openWallet() {
+
     this.is_press_wallet = true;
     this.inventoryService.getWallet().subscribe(data => {
       this.is_press_wallet = false;
-      if (data.guid!=null) {
+      if (data.guid != null) {
         // this.nav.push()
-        this.nav.push(WalletComponent)
-      }else{
-        this.nav.push(CreateWalletComponent)
+        this.appCtrl.getRootNav().push(WalletComponent)
+      } else {
+        this.appCtrl.getRootNav().push(CreateWalletComponent)
       }
     })
-    
+    this.nav.pop();
+  }
+
+  historyDelivery() {
+    this.appCtrl.getRootNav().push(HistoryDeliveryComponent)
+    this.nav.pop();
   }
 }

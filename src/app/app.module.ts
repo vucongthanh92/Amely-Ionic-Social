@@ -1,3 +1,4 @@
+import { HistoryService } from './services/history.service';
 import { WalletsService } from './services/wallets.service';
 import { InvitationService } from './services/invitation.service';
 import { FirebaseService } from './services/firebase.service';
@@ -117,6 +118,7 @@ export const firebaseConfig = {
     FirebaseService,
     InvitationService,
     WalletsService,
+    HistoryService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Lịch sử giao hàng
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list *ngIf="dos">
+    <ion-item *ngFor="let do of dos " (click)="openDetail(do)">
+      <ion-thumbnail item-left>
+        <img *ngIf="do.product.images" src="{{do.product.images[0]}}">
+      </ion-thumbnail>
+      <h2>
+        <img *ngIf='do.shipping_method=="sq/standard"' width='30px' height='30px' src="assets/imgs/ic_gender_female_pink.png">
+        <img *ngIf='do.shipping_method!="sq/standard"' width='30px' height='30px' src="assets/imgs/ic_gender_male_blue.png"> {{do.product.title}}
+      </h2>
+      <p (click)="openShop(do.product.shop)">
+        <b>Cửa hàng </b>
+        <span style="color: #ffa346">{{do.product.shop.title}}</span>
+      </p>
+      <p>
+        <p>
+          <b>Ngày tạo </b>{{convertDate(+do.time_created) | date:'dd/MM/yyyy'}}</p>
+        <p>
+          <b>Trạng thái </b>
+          <span *ngIf="do.status=='new'" style="color: #ffa346">Chờ duyệt</span>
+          <span *ngIf="do.status=='approved'" style="color: #ffa346">Đã duyệt</span>
+        </p>
+        <button ion-button clear item-right></button>
+    </ion-item>
+  </ion-list>
+</ion-content>

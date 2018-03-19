@@ -3,7 +3,7 @@
 /**
  */
 export class Transaction {
-    status?: string;
+    quantity?: number;
     guid?: number;
     owner_guid?: number;
     description?: string;
@@ -11,9 +11,14 @@ export class Transaction {
     type?: string;
     subtype?: string;
     transaction_type?: string;
-    time_created?: number;
+    status?: string;
     currency?: string;
-    quantity?: number;
+    time_created?: number;
+    tax?: number;
+    sub_total?: number;
+    shipping_fee?: number;
+    commission_price?: number;
+    commission_percent?: number;
     related_guid?: number;
     payment_method?: string;
     bank_account_name?: string;

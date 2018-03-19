@@ -1,3 +1,6 @@
+import { PaymentItemsComponent } from './../payment/payment-items/payment-items.component';
+import { PaymentService } from './../../services/payment.service';
+import { WalletsService } from './../../services/wallets.service';
 import { DepositPaymentMethodComponent } from './../deposit/deposit-payment-method/deposit-payment-method.component';
 import { WithdrawnPaymentMethodComponent } from './../withdrawn/withdrawn-payment-method/withdrawn-payment-method.component';
 import { logger } from '@firebase/database/dist/esm/src/core/util/util';
@@ -5,7 +8,7 @@ import { CustomService } from './../../services/custom.service';
 import { Wallet } from './../../api/models/wallet';
 import { InventoriesService } from './../../services/inventories.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController, App } from 'ionic-angular';
 import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
 import { WalletWithdrawnComponent } from './wallet-withdrawn/wallet-withdrawn.component';
 import { Transaction } from '../../api/models';
@@ -15,15 +18,21 @@ import { Transaction } from '../../api/models';
   templateUrl: './wallet.component.html'
 })
 export class WalletComponent implements OnInit {
-  public wallet: Wallet;
+  public wallet: Wallet; private loading;
   public transactions: Array<Transaction>;
   private PURCHASEORDER = "PurchaseOrder"; private CREATEADVERTISE = "CreateAdvertise";
   private DELETEADVERTISE = "DeleteAdvertise"; private CHANGEADVERTISE = "ChangeAdvertise";
   constructor(
+    private appCtrl: App,
     private nav: NavController,
     private inventoryService: InventoriesService,
-    private customService: CustomService
-  ) { }
+    private customService: CustomService,
+    private walletService: WalletsService,
+    private paymentService: PaymentService,
+    private loadingCtrl: LoadingController) {
+  }
+
+
 
   ngOnInit() {
     this.inventoryService.getWallet().subscribe(data => {
@@ -50,6 +59,25 @@ export class WalletComponent implements OnInit {
     const dateTime = new Date(time);
     return (dateTime.getDate() + 1) + "/" + (dateTime.getMonth() + 1) + "/" + dateTime.getFullYear();
   }
+
+  payment() {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+    this.walletService.getCartFromQR('VXVkbThQRHQzYWNHT3VXQUh3bndzR0s2c09pRC92Nzg0UU41WUhDYWZnMD0').subscribe(data => {
+      this.paymentService.items.products = (<any>Object).values(data.products);
+      this.paymentService.items.sub_total = data.sub_total;
+      this.paymentService.items.tax = data.tax;
+      this.paymentService.items.total = data.total;
+      this.paymentService.items.currency = data.shop.currency;
+      this.paymentService.items.to_guid = data.to_guid;
+      this.paymentService.param_create_order.to_guid = data.to_guid;
+      this.loading.dismiss();
+      this.appCtrl.getRootNav().push(PaymentItemsComponent);
+    }, err => {
+      this.loading.dismiss();
+    })
+  }
+
   showTransactionDescription(trans: Transaction) {
     let desc: string;
     switch (trans.description) {

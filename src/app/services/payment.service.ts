@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PaymentService {
-  
+
   payment_methods: any;
   param_create_order: Param_create_order = {};
-  items: any;
+  items: any = {};
 
   constructor(
     private api: ApiService

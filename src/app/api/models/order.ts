@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { Order_item } from './order-_item';
+import { Product } from './product';
 
 /**
  */
@@ -8,5 +8,5 @@ export class Order {
     process_status?: string;
     shipping_method?: string;
     payment_method?: string;
-    order_item?: Order_item;
+    order_item?: Product[];
 }

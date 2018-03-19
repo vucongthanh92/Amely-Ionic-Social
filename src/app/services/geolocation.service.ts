@@ -13,7 +13,7 @@ export class GeolocationService {
   constructor(
     private fbService: FirebaseService,
     public af: AngularFireDatabase
-  ) { 
+  ) {
     this.geoFireUsers = new GeoFire(this.af.list('/users').query.ref);
     this.geoFireShops = new GeoFire(this.af.list('/shops').query.ref);
     this.geoFireOffers = new GeoFire(this.af.list('/offers').query.ref);
@@ -61,7 +61,7 @@ export class GeolocationService {
 
   encodeGeohash = function (location, precision) {
     var g_BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";
-    
+
     this.validateLocation(location);
     if (typeof precision !== "undefined") {
       if (typeof precision !== "number" || isNaN(precision)) {
@@ -142,7 +142,7 @@ export class GeolocationService {
   getOffers(lat, lng) {
     var geoQuery = this.geoFireOffers.query({
       center: [lat, lng],
-      radius: 5
+      radius: 25
     });
     return geoQuery;
   }

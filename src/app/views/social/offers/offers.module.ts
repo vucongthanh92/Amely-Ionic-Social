@@ -8,6 +8,7 @@ import { OffersPendingComponent } from './offers-pending/offers-pending.componen
 import { OffersSearchComponent } from './offers-search/offers-search.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { OfferResultComponent } from './offer-result/offer-result.component';
+import { OfferBookmarkComponent } from './offer-bookmark/offer-bookmark.component';
 
 @NgModule({
   imports: [
@@ -20,14 +21,16 @@ import { OfferResultComponent } from './offer-result/offer-result.component';
     OffersMyselfComponent,
     OffersPendingComponent,
     OffersSearchComponent,
-    OfferResultComponent
+    OfferResultComponent,
+    OfferBookmarkComponent
   ],
   entryComponents: [
     OffersComponent,
     OffersMyselfComponent,
     OffersPendingComponent,
     OffersSearchComponent,
-    OfferResultComponent
+    OfferResultComponent,
+    OfferBookmarkComponent
   ]
 })
 
