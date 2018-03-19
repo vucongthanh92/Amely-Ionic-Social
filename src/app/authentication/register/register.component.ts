@@ -12,7 +12,7 @@ import { User } from '../../api/models';
 export class RegisterComponent implements OnInit {
   public birthdate: string;
   public email: string;
-  public email_re: string;
+  // public email_re: string;
   public firstname: string;
   public gender: string = 'male';
   public lastname: string;
@@ -57,16 +57,16 @@ export class RegisterComponent implements OnInit {
       this.customService.toastMessage('Mật khẩu không trùng khớp', 'bottom', 2000);
     } else if (!this.email) {
       this.customService.toastMessage('Email không được để trống', 'bottom', 2000);
-    } else if (!this.email_re) {
-      this.customService.toastMessage('Nhập lại email', 'bottom', 2000);
-    } else if (this.email != this.email_re) {
-      this.customService.toastMessage('Email không trùng khớp', 'bottom', 2000);
+    // } else if (!this.email_re) {
+    //   this.customService.toastMessage('Nhập lại email', 'bottom', 2000);
+    // } else if (this.email != this.email_re) {
+    //   this.customService.toastMessage('Email không trùng khớp', 'bottom', 2000);
     } else if (!this.mobilelogin) {
       this.customService.toastMessage('Số điện thoại không được phép để trống', 'bottom', 2000);
     } else if (this.is_show_privacy && !this.privacy) {
       this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
     } else {
-      this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email_re, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(data => {
+      this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(data => {
         if (data.status) {
           let u: User = new User();
           u.username = this.username;
