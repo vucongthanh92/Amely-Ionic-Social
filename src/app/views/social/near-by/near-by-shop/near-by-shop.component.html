@@ -1,12 +1,13 @@
-<ion-content class="outer-content" style="top: 44px;">
+<ion-content class="outer-content" id="nearby_shop_container">
   <ion-item>
     <ion-input type="text" placeholder="Từ khóa tìm kiếm cửa hàng" [(ngModel)]="sFilter"></ion-input>
+    <ion-label end><ion-icon ios="ios-search" md="md-search" (click)="filter()"></ion-icon></ion-label>
   </ion-item>
-
-  <button ion-button class="login-button" type="submit" (click)="filter()">Đăng Nhập</button>
   
-  <ion-list class="nearby_friendly" no-lines *ngIf="datas">
-    <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
+  <!-- <button ion-button class="login-button" type="submit" (click)="filter()">Đăng Nhập</button> -->
+  
+  <ion-list class="nearby_shop" no-lines *ngIf="datas">
+    <ion-item class="nearby_shop_item" *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
       <ion-avatar item-start>
         <img class="nearby_image" src="{{data.shop.avatar}}">
       </ion-avatar>

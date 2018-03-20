@@ -8,19 +8,20 @@
       </div>
       
       <div class="offer_myself_main">
-        <ion-item *ngIf="offer.target=='public'" class="offer_myself_location">
+
+        <p *ngIf="offer.target=='public'" class="offer_myself_location">
           <ion-icon item-start class="public"></ion-icon> Xung quanh
-        </ion-item>
-        <ion-item *ngIf="offer.target=='location'" class="offer_myself_location">
+        </p>
+        <p *ngIf="offer.target=='location'" class="offer_myself_location">
           <ion-icon item-start class="around"></ion-icon> Theo vị trí
-        </ion-item>
-        <ion-item *ngIf="offer.target=='friends'" class="offer_myself_location">
+        </p>
+        <p *ngIf="offer.target=='friends'" class="offer_myself_location">
           <ion-icon item-start class="friend"></ion-icon> Bạn bè
-        </ion-item>
+        </p>
 
         <div class="offer_myself_image" *ngIf="offer.product_snapshot.images[0]" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'"></div>
         <div class="offer_myself_image" *ngIf="offer.product_snapshot.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')" ></div>
-        <p class="offer_myself_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
+        <p class="offer_myself_title">#{{offer.guid}} {{offer.product_snapshot.title}}</p>
       </div>
   
       <div *ngIf="offer.offer_type=='random'" class="offer_myself_counter">
