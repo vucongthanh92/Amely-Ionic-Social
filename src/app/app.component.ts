@@ -21,7 +21,7 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
     public keyboard: Keyboard
     // private cordova: cordova
   ) {
