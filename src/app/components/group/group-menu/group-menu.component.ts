@@ -106,8 +106,8 @@ export class GroupMenuComponent implements OnInit {
     this.nav.pop();
     this.showDialogChooseMember();
   }
+
   showDialogChooseMember() {
-    this.nav.pop();
     let alert = this.alertCtrl.create();
     alert.setTitle('Chọn thành viên');
 

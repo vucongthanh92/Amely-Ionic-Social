@@ -2,13 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-// import { Keyboard } from '@ionic-native/keyboard';
+import { Keyboard } from '@ionic-native/keyboard';
 import { SigninComponent } from './authentication/signin/signin.component';
 
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [Keyboard]
 })
 
 export class MyApp {
@@ -22,7 +23,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
-    // private keyboard: Keyboard
+    private keyboard: Keyboard
     // private cordova: cordova
   ) {
     this.initializeApp();
@@ -33,7 +34,7 @@ export class MyApp {
   initializeApp() {
     // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     this.platform.ready().then(() => {
-      // this.keyboard.hideKeyboardAccessoryBar(false)
+      this.keyboard.hideKeyboardAccessoryBar(false)
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

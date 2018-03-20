@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { App, MenuController, NavController, PopoverController, AlertController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
+import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 
 @Component({
   selector: 'app-feed',
@@ -18,6 +19,7 @@ export class FeedComponent {
   @Input('post') post: Feed;
   @Input('user') user: User;
   @Input('mood') mood: any;
+  @Input('isShowMoreContent') isShowMoreContent: boolean = false;
   @Input('user_tag') userTag: Array<User>;
   @Output()
   uploaded = new EventEmitter<string>();
@@ -31,6 +33,7 @@ export class FeedComponent {
   is_change_avatar: boolean;
   is_change_conver: boolean;
   is_owner: boolean = false;
+  is_show_detail: boolean = false;
   constructor(
     public menuCtrl: MenuController,
     public nav: NavController, public appCtrl: App,
@@ -77,6 +80,13 @@ export class FeedComponent {
       }
       this.descriptionPost = description.post;
 
+      if (this.isShowMoreContent) {
+        if (this.descriptionPost.length > 1000) {
+          this.descriptionPost = this.descriptionPost.substring(0, 1000) + " ...";
+          this.is_show_detail = true;
+        }
+      }
+
       switch (this.post.item_type) {
         case 'profile:photo':
           this.descriptionPost = "Đã thay đổi hình đại diện";
@@ -95,6 +105,17 @@ export class FeedComponent {
 
   changePage() {
     this.appCtrl.getRootNav().push(CommentsComponent, { guid: this.post.guid });
+  }
+
+  openFeedDetail() {
+    if (this.isShowMoreContent && this.is_show_detail) {
+      this.appCtrl.getRootNav().push(FeedDetailComponent, {
+        post: this.post,
+        user: this.user,
+        mood: this.mood,
+        user_tag: this.userTag
+      })
+    }
   }
 
   convertDate(time: number) {

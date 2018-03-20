@@ -36,8 +36,8 @@ export class SigninComponent implements OnInit {
     private customService: CustomService,
     public loadingCtrl: LoadingController
   ) {
-  
-    
+
+
   }
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class SigninComponent implements OnInit {
           let u = resp.validation;
           u.password = this.password;
           console.log(213213);
-          
+
           this.nav.push(VerifycodeComponent, { user: u });
         } else {
           const toast = this.toastCtrl.create({
