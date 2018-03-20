@@ -16,6 +16,7 @@ app-vouchers {
 
   .card-ios {
     box-shadow: none;
+    margin-bottom: 65px;
   }
   
   .item-card {
@@ -84,8 +85,17 @@ app-vouchers {
   }
 
   .vouchers_button {
-    bottom: 44px;
+    bottom: 64px;
     background-color: #ffb76b;
+  }
+
+  .scroll-content {
+    padding-top: 0px !important;
+  }
+
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
   }
 
 }

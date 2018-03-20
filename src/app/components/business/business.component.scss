@@ -144,5 +144,10 @@ app-business {
   .segment-button {
     border: 0px;
   }
+
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
+  }
   
 }

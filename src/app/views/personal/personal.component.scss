@@ -1,4 +1,5 @@
 app-personal {
+
     .searchbar-search-icon 
     { 
         display:none; 
@@ -9,12 +10,15 @@ app-personal {
     .tabs-ios .tabbar {
         padding: 2px 0px 0px 0px;
     }
+
     .tab-button-text {
         padding: 3px 0px 0px 0px;
     }
+
     .tabs-ios .tab-button {
         padding: 0px 0px 5px 0px;
     }
+
     .tabs-ios .tab-button[aria-selected=true] {
         border-bottom: 1px solid #488aff;
     }
@@ -76,10 +80,23 @@ app-personal {
         }
     }
     .tabs-ios {
-        top: 44px;
+        top: 64px;
     }
 
     .tabs-md {
         top: 50px;
+    }
+
+    .scroll-content {
+        padding-top: 0px !important;
+    }
+
+    .personal_event {
+        margin: 0px 10px 0px 10px;
+    }
+
+    ::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        display: none;
     }
 }

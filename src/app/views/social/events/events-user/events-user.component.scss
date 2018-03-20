@@ -1,7 +1,12 @@
 app-events-user {
+
+    .scroll-content {
+        padding-top: 0px !important;
+    }
+
     .events_container {
         height: 90%;
-        top: 105px;
+        top: 124px;
     }
 
     .events_item {
@@ -36,5 +41,16 @@ app-events-user {
     .events_image {
         max-height: 75px;
         overflow: hidden;
+    }
+
+    .event_user_status {
+        font-size: 15px;
+        color: #666;
+        text-align: center;
+        font-style: italic;
+    }
+
+    .events_user_fab {
+        bottom: 50px
     }
 }

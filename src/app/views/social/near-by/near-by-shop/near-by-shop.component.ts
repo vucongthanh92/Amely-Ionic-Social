@@ -56,6 +56,8 @@ export class NearByShopComponent implements OnInit {
     this.nav.push(ShopComponent, { guid: guid });
   }
   filter() {
+    console.log(1231231);
+    
     this.datas = this.datasTMP;
     let s: Shop;
     this.sFilter = this.sFilter.toLowerCase();
