@@ -7,7 +7,7 @@ import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
 
-import { Nav, MenuController } from 'ionic-angular';
+import { Nav, MenuController, AlertController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 
@@ -47,7 +47,8 @@ export class MainMenuComponent implements OnInit {
     private business: BusinessService,
     private giftService: GiftsService,
     private offerService: OfferService,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private alertCtrl:AlertController
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
@@ -111,14 +112,14 @@ export class MainMenuComponent implements OnInit {
               case 'like:post':
                 notify.title = data.fullname + 'đã thích bài viết của bạn';
                 this.customService.notifications.push(notify);
-                this.showNotify(notify.title);
+                this.showNotify(notify.subject_guid, notify.title);
                 // console.log('like: post');
                 break;
               case "comments:post":
                 // console.log("comments:post");
                 notify.title = data.fullname + 'đã bình luận viết của bạn';
                 this.customService.notifications.push(notify);
-                this.showNotify(notify.title);
+                this.showNotify(notify.subject_guid, notify.title);
                 break;
               case 'group:inviterequest':
                 this.initNotifyGroup(notify, data);
@@ -127,7 +128,7 @@ export class MainMenuComponent implements OnInit {
                 // console.log("friend:request");
                 notify.title = data.fullname + 'đã gửi lời mời kết bạn';
                 this.customService.notifications.push(notify);
-                this.showNotify(notify.title);
+                this.showNotify(notify.subject_guid, notify.title);
                 break;
               case "gift:request":
                 // console.log("gift:request");
@@ -197,7 +198,7 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã tặng " + data.item.title + " đến bạn"
             }
             this.customService.notifications.push(notify);
-            this.showNotify(notify.title);
+            this.showNotify(notify.subject_guid, notify.title);
           }
           break;
         case 'gift:accept':
@@ -212,7 +213,7 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã đồng ý nhận " + data.item.title + " từ bạn";
             }
             this.customService.notifications.push(notify);
-            this.showNotify(notify.title);
+            this.showNotify(notify.subject_guid, notify.title);
           }
           break;
         case 'gift:reject':
@@ -227,7 +228,7 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã từ chối nhận " + data.item.title + " từ bạn";
             }
             this.customService.notifications.push(notify);
-            this.showNotify(notify.title);
+            this.showNotify(notify.subject_guid, notify.title);
           }
           break;
       }
@@ -239,7 +240,7 @@ export class MainMenuComponent implements OnInit {
       try {
         notify.title = user.fullname + " đã mời bạn tham gia sự kiện " + data.events.title;
         this.customService.notifications.push(notify);
-        this.showNotify(notify.title);
+        this.showNotify(notify.subject_guid, notify.title);
       } catch (e) {
       }
     })
@@ -280,18 +281,29 @@ export class MainMenuComponent implements OnInit {
             break;
         }
         this.customService.notifications.push(notify);
-        this.showNotify(notify.title);
+        this.showNotify(notify.subject_guid, notify.title);
       }
 
     })
   }
 
-  showNotify(txt: string) {
+  showNotify(id, txt: string) {
     return new Promise((resolve, reject) => {
-      this.localNotifications.schedule({
-        id: 1,
+      this.localNotifications.schedule([{
+        id: id,
         text: txt
-      });
-    });
+      }]);
+
+      this.localNotifications.on('click', (notification, state) => {
+        let json = JSON.parse(notification.data);
+
+        let alert = this.alertCtrl.create({
+          title: '1111',
+          subTitle: "2232132"
+        });
+        alert.present();
+      })
+    })
+    
   }
 }
