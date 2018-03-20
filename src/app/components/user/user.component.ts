@@ -57,6 +57,7 @@ export class UserComponent {
   loadData() {
     this.userGuid = this.navParams.get('userGuid');
     this.userService.getUser(null, this.userGuid).subscribe(data => {
+
       if (data.guid == null) {
         this.is_failed = true;
       } else {

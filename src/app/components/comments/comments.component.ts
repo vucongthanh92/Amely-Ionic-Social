@@ -67,7 +67,8 @@ export class CommentsComponent implements OnInit {
   onSend() {
     if (this.content != '') {
       let contentTmp = this.content;
-      this.feed_service.putComment(this.feed_guid, this.content, this.image).subscribe(data => {
+      let images= [this.image]
+      this.feed_service.putComment(this.feed_guid, this.content, images).subscribe(data => {
         if (data.status) {
           this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
           if (this.comments == undefined) this.comments = [];
@@ -79,6 +80,7 @@ export class CommentsComponent implements OnInit {
     this.content = '';
   }
   imageAction() {
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
   }
 }

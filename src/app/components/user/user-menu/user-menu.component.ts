@@ -22,11 +22,13 @@ export class UserMenuComponent implements OnInit {
 
   constructor(private customService: CustomService, private navParams: NavParams, private appCtrl: App, private nav: NavController, private userService: UserService
     , private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera, private modalCtrl: ModalController, private alertCtrl: AlertController) {
-    this.is_user_current = this.customService.user_current.guid == this.navParams.get('user').guid;
-    this.callback = this.navParams.get('callback');
-    this.user = this.navParams.get('user');
-    this.navUser = this.navParams.get('nav');
-    this.appCtrlUser = this.navParams.get('appCtrl');
+    if (this.navParams.get('user')) {
+      this.is_user_current = this.customService.user_current.guid == this.navParams.get('user').guid;
+      this.callback = this.navParams.get('callback');
+      this.user = this.navParams.get('user');
+      this.navUser = this.navParams.get('nav');
+      this.appCtrlUser = this.navParams.get('appCtrl');
+    }
     // this.modalCtrl = this.navParams.get('modalCtrl');
   }
 
@@ -58,12 +60,11 @@ export class UserMenuComponent implements OnInit {
 
   changeCoverAvatar(isAvatar) {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
-      let images: string[];
-      images.push(url + "");
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+      let images = [url + ''];
+
       if (isAvatar) {
         this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
-          this.customService.toastMessage(data.status + " avatar", 'bottom', 10000)
           if (data.status) {
             this.callback(true).then(() => { });
           } else {
@@ -72,7 +73,6 @@ export class UserMenuComponent implements OnInit {
         })
       } else {
         this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
-          this.customService.toastMessage(data.status + " avatar", 'bottom', 10000)
           if (data.status) {
             this.callback(true).then(() => { });
           } else {

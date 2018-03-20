@@ -217,4 +217,31 @@ export class CustomService {
       actionSheet.present();
     });
   }
+
+  imageActionTest(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+    return new Promise((resolve, reject) => {
+      let actionSheet = actionSheetCtrl.create({
+        title: 'Chọn tác vụ',
+        buttons: [
+          {
+            text: 'Chụp ảnh',
+            handler: () => {
+
+              setTimeout(() => {
+                resolve('https://3.bp.blogspot.com/-sjAcMgrZh9o/WlHGQ0DYxVI/AAAAAAAAEb8/jhaf0CWg01YvZn88t-Mi3mLh2NYm_FvtACLcBGAs/s1600/gai-xinh-1.jpg')
+              }, 2000);
+            }
+          }, {
+            text: 'Thư viện',
+            handler: () => {
+              setTimeout(() => {
+                resolve('http://lh5.googleusercontent.com/-zy_KX582Mdc/V8LTrevKr6I/AAAAAAAA2t0/q8x01QLcZGw2nSuA7bDM1USujYHBMbBvwCLcB/s1600/ohgai.net-0074280816.jpg')
+              }, 2000);
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    });
+  }
 }

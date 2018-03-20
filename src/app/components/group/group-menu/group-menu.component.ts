@@ -103,6 +103,7 @@ export class GroupMenuComponent implements OnInit {
   }
 
   requestChangeAdmin() {
+    this.nav.pop();
     this.showDialogChooseMember();
   }
   showDialogChooseMember() {
@@ -147,9 +148,10 @@ export class GroupMenuComponent implements OnInit {
     this.appCtrl.getRootNav().push(InventoryComponent, { type: 'group', ownerGuid: this.group.guid, obj: this.group });
   }
   changeAvatarCover(isAvatar: string) {
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
-      let images: string[];
-      images.push(url + "");
+    this.nav.pop();
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+      let images = [url + ''];
+      console.log(images);
 
       if (isAvatar) {
         this.customService.updateAvatar(this.group.guid, 'group', images).subscribe(data => {
