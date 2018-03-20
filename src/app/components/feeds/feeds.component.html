@@ -1,7 +1,13 @@
 <div>
   <ion-card *ngIf="isHasData">
     <ion-item   *ngFor="let post of posts">
-      <app-feed  (uploaded)="someMethod($event)" *ngIf="post"  [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)" [user_tag]="getUsersTag(post.description)"></app-feed>
+      <app-feed 
+        (uploaded)="someMethod($event)" 
+        *ngIf="post" [post]="post" 
+        [user]="getPoster(post.poster_guid)" 
+        [mood]="getMood(post.mood_guid)" 
+        [user_tag]="getUsersTag(post.description)">
+      </app-feed>
     </ion-item>
   </ion-card>
 
@@ -11,7 +17,7 @@
 </div>
 
 <ion-fab class="feeds_button">
-  <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()">
+  <button ion-fab (click)="addNewFeed()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>

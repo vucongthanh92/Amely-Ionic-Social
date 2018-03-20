@@ -71,7 +71,6 @@ app-social{
         }
     }
 
-    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=event], .tab-button-icon[aria-label=event] {
@@ -93,14 +92,16 @@ app-social{
     }
 
      
-  .tabs-ios {
-    top: 44px;
-  }
+    .tabs-ios {
+        top: 64px;
+    }
 
-  .tabs-md {
-    top: 50px;
-  }
+    .tabs-md {
+        top: 50px;
+    }
 
-  
+    ::-webkit-scrollbar, *::-webkit-scrollbar {
+        display: none;
+    }
 
 }

@@ -51,7 +51,7 @@ app-offers-search{
     opacity: 1;
     .ribbon {
       position: absolute;
-      right: -5px;
+      right: 0px;
       top: -5px;
       z-index: 2;
       overflow: hidden;
@@ -112,7 +112,7 @@ app-offers-search{
   }
 
   #offer_search_container {
-    top: 44px;
+    top: 62px;
   }
 
   .offer_search_row {
@@ -157,7 +157,7 @@ app-offers-search{
 
   .offer_search_location {
     padding-top: 30px;
-    margin: 3px 0px 15px 0px;
+    margin: 5px 0px 18px 0px;
     font-size: 15px;
     padding: 0px;
     color: #55acee;
@@ -176,6 +176,7 @@ app-offers-search{
     font-weight: 300;
     height: 35px;
     text-transform: capitalize;
+    line-height: 18px;
   }
 
   .offer_search_bookmark {
@@ -217,6 +218,14 @@ app-offers-search{
     width: 100%;
     height: 120px;
     margin: 0px 0px 5px 0px;
+  }
+
+  .offer_search_icon_offer {
+    width: 20px;
+    height: 18px;
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
   }
 
 }

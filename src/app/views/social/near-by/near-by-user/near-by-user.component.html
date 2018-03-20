@@ -1,5 +1,4 @@
-<ion-content class="outer-content" style="top: 44px;">
-
+<ion-content class="outer-content" id="nearby_user_container">
   <ion-list class="nearby_friendly" no-lines *ngIf="datas">
     <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
       <ion-avatar item-start>
@@ -20,6 +19,7 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
 <ion-fab class="feeds_button">
   <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="settingSearch()">
     <ion-icon name="add"></ion-icon>
