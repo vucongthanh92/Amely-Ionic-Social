@@ -149,7 +149,7 @@ export class GroupMenuComponent implements OnInit {
   }
   changeAvatarCover(isAvatar: string) {
     this.nav.pop();
-    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       console.log(images);
 
