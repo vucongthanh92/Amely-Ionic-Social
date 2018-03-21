@@ -1,18 +1,16 @@
-
-
 <ion-content class="outer-content">
-  <ion-list>
-    <ion-item (click)="changeLanguage()">
-      <b>Ngôn Ngữ</b>
-      <p>{{languageResult}}</p>
+  <ion-list class="setting_general_list">
+    <ion-item class="setting_general_item" (click)="changeLanguage()">
+      <div class="setting_general_title">Ngôn Ngữ</div>
+      <div class="setting_general_description">{{languageResult}}</div>
     </ion-item>
-    <ion-item (click)="logout()">
-      <b>Đăng xuất tài khoản</b>
-      <p>Đăng xuất tài khoản liên quan đến số điện thoại cụ <br> thể </p>
+    <ion-item class="setting_general_item" (click)="logout()">
+      <div class="setting_general_title">Đăng xuất tài khoản</div>
+      <div class="setting_general_description">Đăng xuất tài khoản liên quan đến số điện thoại cụ thể</div>
     </ion-item>
-    <ion-item>
-      <b>Thông tin ứng dụng</b>
-      <p>Version 1.0</p>
+    <ion-item class="setting_general_item">
+      <div class="setting_general_title">Thông tin ứng dụng</div>
+      <div class="setting_general_description">Version 1.0</div>
     </ion-item>
   </ion-list>
 </ion-content>
