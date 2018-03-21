@@ -310,10 +310,18 @@ export class MainMenuComponent implements OnInit {
         id: id,
         text: txt
       }]);
-      let that=this;
+      let that = this;
       this.plt.ready().then((readySource) => {
         this.localNotifications.on('click', (notification, state) => {
-          that.customService.toastMessage('click notify','bottom',2000)
+
+          let alert = that.alertCtrl.create({
+            title: 'Low battery',
+            subTitle: notification + "  " + state,
+            buttons: ['Dismiss']
+          });
+          alert.present();
+
+          that.customService.toastMessage('click ' + id, 'bottom', 2000)
         })
       });
     })

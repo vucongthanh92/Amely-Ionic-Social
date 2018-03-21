@@ -44,12 +44,22 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   goToPage() {
-    this.appCtrl.getRootNav().push(CreateOfferComponent);
+    this.appCtrl.getRootNav().push(CreateOfferComponent, { callback: this.reloadCallback});
   }
 
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
       this.nav.setRoot(this.nav.getActive().component);
+      resolve();
+    });
+  }
+  reloadCallback = () => {
+    return new Promise((resolve, reject) => {
+      this.offersService.getOffers(0, 9999, null).subscribe(data => {
+        if (data instanceof Array) {
+          this.offers = data;
+        }
+      })
       resolve();
     });
   }
