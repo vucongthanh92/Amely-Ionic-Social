@@ -2,15 +2,6 @@ app-shops-friendly {
     .item-md,.item-ios {
         padding-left:0px;
 
-        ion-avatar img {
-            width:55px;
-            height:55px;
-        }
-
-        ion-avatar[item-start]{
-            margin: 0px 30px 8px 0;
-        }
-
         .number-circle{
             color:white;
             font-weight: 700;
@@ -33,16 +24,72 @@ app-shops-friendly {
 
     .shops_friendly_item {
         margin: 5px 0px 12px 0px;
-        border-bottom: 1px solid #efeff4 !important;
-        padding: 0px 0px 5px 0px;
+        border-bottom: 1px solid #c8c7cc !important;
+        padding: 0px 10px 12px 15px;
+
+        .label-ios {
+            margin: 0px;
+            overflow: unset;
+            width: 100%;
+        }
+
+        ion-avatar[item-start]{
+            margin: 0px 0px 0px 0;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            overflow: hidden;
+            z-index: 1;
+
+            .shops_friendly_image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .item-inner {
+            overflow: unset;
+            z-index: 0;
+
+            .input-wrapper {
+                overflow: unset;
+            }
+
+            .shops_friendly_title {
+                font-size: 14px;
+                color: #666;
+                text-transform: capitalize;
+                background-color: #efeff4;
+                padding: 8px 0px 7px 20px;
+                border-bottom-right-radius: 15px;
+                border-top-right-radius: 15px;
+                margin: 0px 0px 0px -15px;
+            }
+
+            .shops_friendly_description {
+                overflow: hidden;
+                font-size: 13px;
+                text-overflow: clip;
+                color: #8e9093;
+                max-width: 100%;
+                white-space: normal;
+                height: 18px;
+                line-height: 18px;
+                margin: 3px 0px 0px 0px;
+            }
+        }
     }
 
-    .shops_friendly_title {
-        font-size: 15px;
-        color: #666;
+    .scroll-content {
+        padding: 10px 0px 0px 0px !important;
     }
 
-    .shops_friendly_image {
-        border: 1px solid #efeff4;
+    .list-ios {
+        margin: 0px 0 65px 0px;
     }
+
+    ::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
 }

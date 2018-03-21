@@ -35,7 +35,7 @@ app-notification {
     }
 
     .notification_item {
-        margin: 3px 0px 7px 0px;
+        margin: 10px 0px 10px 0px;
 
         ion-label {
             margin-right: 0px;
@@ -52,5 +52,9 @@ app-notification {
 
     .ladda-button{
         background: none;
+    }
+
+    .scroll-content {
+        margin-top: 70px;
     }
 }

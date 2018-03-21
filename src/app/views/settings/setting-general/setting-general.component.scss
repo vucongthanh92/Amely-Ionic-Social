@@ -13,4 +13,27 @@ app-setting-general{
         color: #808080 ; margin: 0px 8px 11px 0;
         font-style: italic;
     }
+
+    .setting_general_item {
+        padding: 0px;
+
+        .label-ios {
+            margin: 12px 0px 12px 15px;
+        }
+
+        .setting_general_title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #333;
+            text-transform: capitalize;
+            margin: 0px 0px 3px 0px;
+        }
+
+        .setting_general_description {
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            white-space: normal;
+        }
+    }
 }

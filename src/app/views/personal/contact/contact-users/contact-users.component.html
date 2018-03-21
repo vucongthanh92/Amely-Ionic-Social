@@ -1,4 +1,4 @@
-<ion-content class="outer-content" style="top: 44px;">
+<ion-content class="outer-content" id="contact_user_container">
   <ion-list class="contact_user">
     <ion-item *ngFor="let friend of friends">
       <ion-row>
@@ -24,7 +24,7 @@
   </ion-list>
 </ion-content>
 <ion-fab right bottom (click)="addFriend();">
-  <button ion-fab color="danger" style="bottom: 50px;">
+  <button ion-fab color="danger" class="contact_user_fab">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>

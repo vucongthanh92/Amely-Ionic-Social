@@ -58,6 +58,24 @@ app-settings{
     }
 
     .tabs-ios {
-    top: 44px;
-  }
+        top: 64px;
+    }
+
+    .scroll-content {
+        padding-top: 0px !important;
+    }
+
+    .tabs-ios .tab-button-text {
+        margin: 5px 0px 5px 0px;
+        min-height: 11px;
+    }
+
+    ::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    .bar-button-ios {
+        padding: 0 15px 0px 5px;
+    }
 }

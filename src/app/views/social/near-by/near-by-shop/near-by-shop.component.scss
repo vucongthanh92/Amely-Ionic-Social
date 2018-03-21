@@ -1,5 +1,9 @@
 app-near-by-shop {
 
+    .scroll-content {
+        padding-top: 2px !important;
+    }
+
     #nearby_shop_container {
         top: 60px;
     }
@@ -7,7 +11,7 @@ app-near-by-shop {
     .nearby_shop {
         background-color: white;
         margin: 0px;
-        padding: 0px 0px 25px 0px;
+        padding: 0px 0px 45px 0px;
     }
 
     .icon{
@@ -90,8 +94,28 @@ app-near-by-shop {
 
     .login-button {
         position: absolute;
-    z-index: 1;
-    top: 0px;
-    right: 0px;
+        z-index: 1;
+        top: 0px;
+        right: 0px;
     }
+
+    .nearby_shop_search {
+        position: relative;
+    }
+
+    .nearby_search_text {
+        font-size: 15px;
+        color: #333;
+        padding: 0px 40px 0px 10px;
+    }
+
+    .nearby_search_icon {
+        margin: 0px 0px 0px 30px;
+        color: #666;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        font-size: 20px;
+    }
+
 }

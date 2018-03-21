@@ -1,4 +1,9 @@
 app-contact-users {
+
+    #contact_user_container {
+        top: 62px;
+    }
+
     .contact_user_image_box {
         padding: 0px;
         border-radius: 50%;
@@ -10,7 +15,7 @@ app-contact-users {
     }
 
     .list-ios .item-block .item-inner {
-        border-bottom: 0.55px solid #efeff4;
+        border-bottom: 0.55px solid #c8c7cc;
         padding: 0px 10px 0px 12px;
     }
 
@@ -70,6 +75,10 @@ app-contact-users {
     }
 
     .contact_user {
-        margin-bottom: 27px;
+        margin-bottom: 42px;
+    }
+
+    .contact_user_fab {
+        bottom: 45px;
     }
 }

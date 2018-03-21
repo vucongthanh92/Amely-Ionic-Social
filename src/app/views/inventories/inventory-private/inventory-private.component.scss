@@ -120,7 +120,12 @@ app-inventory-private {
   }
 
   .inventory_footer {
-    bottom: 44px;
+    bottom: 64px;
+  }
+
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
   }
 }
 

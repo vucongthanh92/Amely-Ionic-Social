@@ -1,8 +1,14 @@
 <ion-content class="outer-content" id="nearby_shop_container">
-  <ion-item>
-    <ion-input type="text" placeholder="Từ khóa tìm kiếm cửa hàng" [(ngModel)]="sFilter"></ion-input>
-    <ion-label end><ion-icon ios="ios-search" md="md-search" (click)="filter()"></ion-icon></ion-label>
-  </ion-item>
+  
+  <div class="nearby_shop_search">
+    <ion-item>
+      <ion-input class="nearby_search_text" type="text" placeholder="Từ khóa tìm kiếm cửa hàng..." [(ngModel)]="sFilter"></ion-input>
+    </ion-item>
+
+    <ion-label class="nearby_search_icon" (click)="filter()">
+      <ion-icon ios="ios-search" md="md-search"></ion-icon>
+    </ion-label>
+  </div>
   
   <!-- <button ion-button class="login-button" type="submit" (click)="filter()">Đăng Nhập</button> -->
   

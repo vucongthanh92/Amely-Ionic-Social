@@ -11,8 +11,8 @@
           <div class="events_author">Chủ sự kiện: {{getFullname(event.owner_guid)}}</div>
         </ion-col>
         <ion-col col-3>
-          <div *ngIf="event.published=='2'">Đang mở</div>
-          <div *ngIf="event.published=='1' || !event.published ||event.published=='0'">Đang đóng</div>
+          <div class="event_user_status" *ngIf="event.published=='2'">Đang mở</div>
+          <div class="event_user_status" *ngIf="event.published=='1' || !event.published ||event.published=='0'">Đang đóng</div>
         </ion-col>
       </ion-row>
     </ion-item>
@@ -20,7 +20,7 @@
 </ion-content>
 
 <ion-fab right bottom (click)="createEvent()">
-  <button ion-fab color="danger" style="bottom: 50px">
+  <button ion-fab color="danger" class="events_user_fab">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>
