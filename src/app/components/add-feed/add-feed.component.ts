@@ -45,7 +45,8 @@ export class AddFeedComponent implements OnInit {
     this.owner_guid = this.navParams.get('owner_guid')
     this.moods = JSON.parse(localStorage.getItem("mood_local"));
     this.callback = this.navParams.get('callback');
-
+    console.log(this.user_current);
+    console.log(this.usersTag);
   }
 
   ngOnInit() {

@@ -1,3 +1,87 @@
 app-add-feed {
-	
+	#addfeed_container {
+        background-color: #fff;
+    }
+
+    app-add-feed .addfeed_main {
+        padding: 5px 0px 3px 5px;
+    }
+
+    .addfeed_avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding: 0px;
+        overflow: hidden;
+        max-width: unset;
+        max-height: unset;
+        margin: auto;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .addfeed_main {
+        padding: 0px;
+        margin: -1px 0 5px;
+    }
+
+    .addfeed_icon_mood {
+        font-size: 25px;
+        color: #f0ad4e;
+    }
+
+    .addfeed_status {
+        border: 1px solid #aaa !important; 
+        border-radius: 10px;
+    }
+
+    .addfeed_status {
+        .item-inner {
+            padding: 0px;
+        }
+    }
+
+    .addfeed_item {
+        padding-left: 12px;
+
+        .label-ios {
+            white-space: normal;
+        }
+    }
+
+    .addfeed_description {
+        ion-textarea {
+            font-size: 16px;
+            color: #333;
+            margin: 3px 0px 5px 7px;
+        }
+    }
+
+    .addfeed_showmood {
+        padding: 0px;
+        color: #666;
+        font-style: inherit;
+        text-transform: capitalize;
+        font-size: 14px;
+        display: inline;
+    }
+
+    .addfeed_fullname {
+        font-size: 14px;
+        color: #333;
+        margin: 0px;
+        font-weight: bold;
+        display: inline;
+    }
+
+    .addfeed_tag, .addfeed_tag_item {
+        display: inline;
+    }
+
+    .addfeed_mood_title {
+        display: inline;
+    }
 }
