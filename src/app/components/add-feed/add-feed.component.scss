@@ -1,3 +1,100 @@
 app-add-feed {
-	
+	#addfeed_container {
+        background-color: #fff;
+    }
+
+    app-add-feed .addfeed_main {
+        padding: 5px 0px 3px 5px;
+    }
+
+    .addfeed_main {
+        padding: 0px;
+        margin: -1px 0 5px;
+    }
+
+    .addfeed_icon_mood {
+        font-size: 25px;
+        color: #f0ad4e;
+    }
+
+    .addfeed_status {
+        padding: 0px;
+
+        .item-inner {
+            padding: 0px;
+        }
+
+        .input-wrapper {
+            display: inherit;
+            flex: none;
+        }
+    }
+
+    .addfeed_item {
+        padding-left: 12px;
+
+        .label-ios {
+            white-space: normal;
+        }
+
+        ion-avatar {
+            margin: 0px 16px 8px 0 !important;
+        }
+    }
+
+    .addfeed_description {
+        ion-textarea {
+            font-size: 16px;
+            color: #333;
+            margin: 3px 0px 5px 7px;
+        }
+    }
+
+    .addfeed_showmood {
+        padding: 0px;
+        color: #666;
+        font-style: inherit;
+        text-transform: capitalize;
+        font-size: 14px;
+        display: inline;
+    }
+
+    .addfeed_fullname {
+        font-size: 14px;
+        color: #333;
+        margin: 0px;
+        font-weight: bold;
+        display: inline;
+    }
+
+    .addfeed_tag, .addfeed_tag_item {
+        display: inline;
+    }
+
+    .addfeed_mood_title {
+        display: inline;
+    }
+
+    .addfeed_select {
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 13px;
+        padding: 8px 12px 7px 10px;
+        color: #666;
+    }
+
+    .addfeed_bottom_nav {
+        background-color: #f8f8f8;
+        border-top: 1px solid #eee;
+
+        button {
+            margin: 0px;
+        }
+    }
+
+    .addfeed_bottom_nav_icon {
+        font-size: 24px;
+    }
 }
