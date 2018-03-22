@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
   }
 
   ionViewDidLoad() {
-    
+
   }
   loadMap() {
 
@@ -46,11 +46,11 @@ export class MapComponent implements OnInit {
       }
     };
 
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
+    this.map = GoogleMaps.create('map', mapOptions);
     // this.map = new GoogleMap('map');
     // Wait the MAP_READY before using any methods.
     console.log(12321);
-    
+
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
         console.log('Map is ready!');
@@ -70,8 +70,14 @@ export class MapComponent implements OnInit {
               .subscribe(() => {
                 alert('clicked');
               });
+            marker.on(GoogleMapsEvent.MAP_CLICK).subscribe((a,b) => {
+              alert(a)
+              alert(b)
+            })
           });
 
       });
+
+
   }
 }
