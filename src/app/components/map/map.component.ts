@@ -16,7 +16,7 @@ declare var google;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  providers:[
+  providers: [
     NativeGeocoder
   ]
 })
@@ -32,13 +32,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nativeGeocoder.reverseGeocode(52.5072095, 13.1452818)
-      .then((result: NativeGeocoderReverseResult) => console.log(JSON.stringify(result)))
-      .catch((error: any) => console.log(error));
 
-    this.nativeGeocoder.forwardGeocode('Berlin')
-      .then((coordinates: NativeGeocoderForwardResult) => console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude))
-      .catch((error: any) => console.log(error));
+
+
   }
 
   ionViewDidLoad() {
@@ -68,22 +64,19 @@ export class MapComponent implements OnInit {
         .then(() => {
           console.log('Map is ready!');
 
-          // Now you can use all methods safely.
-          this.map.addMarker({
-            title: 'Ionic',
-            icon: 'blue',
-            animation: 'DROP',
-            position: {
-              lat: 43.0741904,
-              lng: -89.3809802
-            }
-          })
-
           // click
           this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
             (data) => {
               console.log("Click MAP");
-              console.log(data);
+              console.log(data.lat);
+              console.log(data.lng);
+              this.nativeGeocoder.reverseGeocode(data.lat, data.lng)
+                .then((result: NativeGeocoderReverseResult) => {
+                  console.log(JSON.stringify(result));
+                  console.log(result.locality + " " + result.subAdministrativeArea + " " + result.countryName);
+
+                })
+                .catch((error: any) => console.log(error));
             }
           );
 
