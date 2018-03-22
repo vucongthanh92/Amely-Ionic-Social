@@ -14,13 +14,15 @@ import {
 declare var google;
 @Component({
   selector: 'app-map',
-  templateUrl: './map.component.html'
+  templateUrl: './map.component.html',
+ 
 })
 export class MapComponent implements OnInit {
-
+  @ViewChild('map') element;
   map: GoogleMap;
 
-  constructor(public navCtrl: NavController, private ngZone: NgZone, private geolocation: Geolocation, public navParams: NavParams, platform: Platform) {
+  constructor(public navCtrl: NavController, private ngZone: NgZone, private geolocation: Geolocation,
+    public navParams: NavParams, platform: Platform, public plt: Platform) {
     platform.ready().then(() => {
       this.loadMap();
     });
@@ -46,7 +48,8 @@ export class MapComponent implements OnInit {
       }
     };
 
-    this.map = GoogleMaps.create('map', mapOptions);
+    // this.map = GoogleMaps.create('map', mapOptions);map: GoogleMap = this.googleMaps.create(this.element.nativeElement);
+    this. map = GoogleMaps.create(this.element.nativeElement);
     // this.map = new GoogleMap('map');
     // Wait the MAP_READY before using any methods.
     console.log(12321);
@@ -70,7 +73,7 @@ export class MapComponent implements OnInit {
               .subscribe(() => {
                 alert('clicked');
               });
-            marker.on(GoogleMapsEvent.MAP_CLICK).subscribe((a,b) => {
+            marker.on(GoogleMapsEvent.MAP_CLICK).subscribe((a, b) => {
               alert(a)
               alert(b)
             })
