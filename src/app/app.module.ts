@@ -53,6 +53,7 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
+import { MapComponent } from './components/map/map.component';
 
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 

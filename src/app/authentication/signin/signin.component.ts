@@ -1,3 +1,4 @@
+import { MapComponent } from './../../components/map/map.component';
 import { VerifycodeComponent } from './../verifycode/verifycode.component';
 import { CustomService } from './../../services/custom.service';
 import { TimerComponent } from './../../components/timer/timer.component';
@@ -88,6 +89,7 @@ export class SigninComponent implements OnInit {
   }
 
   onRegister() {
-    this.nav.push(RegisterComponent);
+    this.nav.push(MapComponent);
+    // this.nav.push(RegisterComponent);
   }
 }

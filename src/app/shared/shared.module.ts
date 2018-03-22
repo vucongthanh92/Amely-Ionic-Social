@@ -67,6 +67,7 @@ import { UserMenuComponent } from '../components/user/user-menu/user-menu.compon
 import { GiftHistoryComponent } from '../components/gift/gift-history/gift-history.component';
 import { DepositModule } from '../modules/deposit/deposit.module';
 import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.component';
+import { MapComponent } from '../components/map/map.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -141,7 +142,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    MapComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -197,7 +199,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    MapComponent
   ],
   exports: [
     CategoriesComponent,
@@ -253,7 +256,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    MapComponent
   ]
 })
 export class SharedModule { }
