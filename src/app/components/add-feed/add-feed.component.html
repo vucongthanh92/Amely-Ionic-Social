@@ -33,7 +33,7 @@
       </ion-row>
 
       <ion-item class="addfeed_status">
-        <ion-select [(ngModel)]="privacy" no-padding style="width: 100%;max-width: 100%">
+        <ion-select class="addfeed_select" [(ngModel)]="privacy">
           <ion-option selected value="2">Mọi người</ion-option>
           <ion-option value="3">Bạn bè</ion-option>
           <ion-option value="1">Chỉ mình tôi</ion-option>
@@ -63,20 +63,21 @@
     </ion-list>
     <ion-searchbar #searchbar placeholder="Với" [(ngModel)]="search" (ionInput)="getItems($event)"></ion-searchbar>
   </ion-row>
-  <ion-row style="background-color: #fff;border-top: 1px solid #eee">
+
+  <ion-row class="addfeed_bottom_nav">
     <ion-col col-4>
       <button ion-button full clear>
-        <ion-icon name="people" (click)="showTagFriend()"></ion-icon>
+        <ion-icon class="addfeed_bottom_nav_icon" name="people" (click)="showTagFriend()"></ion-icon>
       </button>
     </ion-col>
     <ion-col col-4>
       <button ion-button full clear>
-        <ion-icon name="flag"></ion-icon>
+        <ion-icon class="addfeed_bottom_nav_icon" name="flag"></ion-icon>
       </button>
     </ion-col>
     <ion-col col-4>
       <button ion-button full clear (click)='imageAction()'>
-        <ion-icon name="images"></ion-icon>
+        <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
       </button>
     </ion-col>
   </ion-row>
