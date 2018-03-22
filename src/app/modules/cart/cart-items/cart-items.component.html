@@ -5,35 +5,35 @@
 </ion-header>
 
 <ion-content class="outer-content" >
-  <div style="background-color: #fff;" *ngIf="items">
+  <div class="cart_items_container" *ngIf="items">
     <ion-row>
     	<ion-col col-12 *ngFor="let item of items">
-        <ion-grid>
+        <ion-grid class="cart_items_product">
           <ion-row>
             <ion-col col-3>
-              <img width="100%" src="{{ item.images[0] }}" />
+              <img src="{{ item.images[0] }}" />
             </ion-col>
             <ion-col col-7>
-              <h4>{{ item.title }}</h4>
-              <h4 style="color: red; top: -10px; position: relative;">{{ customService.formatCurrency( item.price, item.currency) }}</h4>
-              <ion-row>
-                <ion-col col-4>
-                  <button ion-button block icon-only (click)="decrease(item.guid)">
+              <h4 class="cart_items_product_title">{{ item.title }}</h4>
+              <h4 class="cart_items_product_price">{{ customService.formatCurrency( item.price, item.currency) }}</h4>
+              <ion-row class="cart_items_quantity">
+                <ion-col col-3>
+                  <button class="cart_items_product_decrease" ion-button block icon-only (click)="decrease(item.guid)">
                     <ion-icon name="remove"></ion-icon>
                   </button>
                 </ion-col>
-                <ion-col col-4 text-center>
+                <ion-col col-3 class="cart_items_product_number">
                   {{ item.quantity_cart }}
                 </ion-col>
-                <ion-col col-4>
-                  <button ion-button block icon-only (click)="increase(item.guid)">
+                <ion-col col-3>
+                  <button class="cart_items_product_increase" ion-button block icon-only (click)="increase(item.guid)">
                     <ion-icon name="add"></ion-icon>
                   </button>
                 </ion-col>
               </ion-row>
             </ion-col>
             <ion-col col-2>
-              <button ion-button block icon-only color="danger" (click)="remove(item.guid)">
+              <button class="cart_items_delete" ion-button block icon-only color="danger" (click)="remove(item.guid)">
                 <ion-icon name="trash"></ion-icon>
               </button>
             </ion-col>
@@ -44,27 +44,19 @@
   </div>
 </ion-content>
 
-<ion-footer style="background-color: #ffffff;">
+<ion-footer class="cart_items_payment">
     <div padding-horizontal>
       <ion-item>
         Tổng sản phẩm
-        <ion-note class="ionNote" item-end>
-        {{ number_items }}
-        </ion-note>
+        <ion-note class="ionNote" item-end>{{ number_items }}</ion-note>
       </ion-item>
-      <!-- <ion-item>
-        <ion-label>Tổng tiền : </ion-label>
-        <h4 style="color: red; ">300,000 đ</h4>
-      </ion-item> -->
       <ion-item>
         Tổng tiền
-        <ion-note class="ionNote" item-end>
-         {{ customService.formatCurrency( total, "VND") }}
-        </ion-note>
+        <ion-note class="ionNote" item-end>{{ customService.formatCurrency( total, "VND") }}</ion-note>
       </ion-item>
-    <div class="divVAT">
-      <ion-label><i>(Đã bao gồm VAT)</i></ion-label>
+      <div class="divVAT">
+        <ion-label><i>(Đã bao gồm VAT)</i></ion-label>
+      </div>
     </div>
-    </div>
-    <button type="button" name="button" ion-button full no-margin (click)="payment()">THANH TOÁN</button>
+  <button type="button" name="button" ion-button full no-margin (click)="payment()">THANH TOÁN</button>
 </ion-footer>
