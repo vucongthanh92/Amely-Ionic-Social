@@ -1,18 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
 } from '@ionic-native/google-maps';
 
-declare var google;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -27,7 +23,7 @@ export class MapComponent implements OnInit {
   lat: number;
   lng: number;
   title: string;
-  constructor(public navCtrl: NavController, private nav: NavController, private ngZone: NgZone, public geolocation: Geolocation,
+  constructor(public navCtrl: NavController, private nav: NavController, public geolocation: Geolocation,
     public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder) {
     this.callback = this.navParams.get('callback');
     platform.ready().then(() => {
