@@ -4,7 +4,7 @@ import { SearchComponent } from './../components/search/search.component';
 import { ApiService } from './../api/services/api.service';
 import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
-import { ToastController, NavController, AlertController, ActionSheetController } from 'ionic-angular';
+import { ToastController, NavController, AlertController, ActionSheetController, LoadingController } from 'ionic-angular';
 import { Notification } from '../api/models';
 import { Camera } from '@ionic-native/camera';
 
@@ -18,11 +18,15 @@ export class CustomService {
   friends: Array<User>;
   notifications: Array<Notification> = [];
   public url_qr = "http://helloqua.com/";
+  public content_change_avatar ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard";
+  public content_change_cover ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen";
+
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
   constructor(
     private api: ApiService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public loadingCtrl: LoadingController
   ) {
     this.currencies = [
       { isoCode: 'VND', displayName: 'VND', rightSymbol: '₫', leftSymbol: '', decimals: 0, decPoints: ',', thousandSeparator: '.' },
@@ -171,6 +175,7 @@ export class CustomService {
   }
 
   imageAction(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+
     return new Promise((resolve, reject) => {
       let actionSheet = actionSheetCtrl.create({
         title: 'Chọn tác vụ',
@@ -178,6 +183,8 @@ export class CustomService {
           {
             text: 'Chụp ảnh',
             handler: () => {
+              let loading = this.loadingCtrl.create();
+              loading.present();
               camera.getPicture({
                 quality: 80,
                 destinationType: camera.DestinationType.DATA_URL,
@@ -189,6 +196,7 @@ export class CustomService {
                 let extension = ".jpg";
                 let content_type = "image/jpg";
                 fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+                  loading.dismiss();
                   resolve(task.downloadURL)
                 });
               });
@@ -196,6 +204,8 @@ export class CustomService {
           }, {
             text: 'Thư viện',
             handler: () => {
+              let loading = this.loadingCtrl.create();
+              loading.present();
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
                 destinationType: camera.DestinationType.DATA_URL
@@ -205,6 +215,7 @@ export class CustomService {
                 let extension = ".jpg";
                 let content_type = "image/jpg";
                 fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+                  loading.dismiss();
                   resolve(task.downloadURL)
                 });
               }, (err) => {
@@ -226,15 +237,23 @@ export class CustomService {
           {
             text: 'Chụp ảnh',
             handler: () => {
+              let loading = this.loadingCtrl.create();
+
+              loading.present();
 
               setTimeout(() => {
+
+                loading.dismiss();
                 resolve('https://3.bp.blogspot.com/-sjAcMgrZh9o/WlHGQ0DYxVI/AAAAAAAAEb8/jhaf0CWg01YvZn88t-Mi3mLh2NYm_FvtACLcBGAs/s1600/gai-xinh-1.jpg')
               }, 2000);
             }
           }, {
             text: 'Thư viện',
             handler: () => {
+              let loading = this.loadingCtrl.create();
+              loading.present();
               setTimeout(() => {
+                loading.dismiss();
                 resolve('http://lh5.googleusercontent.com/-zy_KX582Mdc/V8LTrevKr6I/AAAAAAAA2t0/q8x01QLcZGw2nSuA7bDM1USujYHBMbBvwCLcB/s1600/ohgai.net-0074280816.jpg')
               }, 2000);
             }

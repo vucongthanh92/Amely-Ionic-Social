@@ -1,3 +1,5 @@
+import { FeedsService } from './../../../services/feeds.service';
+import { FeedComponent } from './../../feed/feed.component';
 import { UserBlockListComponent } from './../user-block-list/user-block-list.component';
 import { guid } from './../../../api/models/guid';
 import { UserService } from './../../../services/user.service';
@@ -21,7 +23,8 @@ export class UserMenuComponent implements OnInit {
   private appCtrlUser: App;
 
   constructor(private customService: CustomService, private navParams: NavParams, private appCtrl: App, private nav: NavController, private userService: UserService
-    , private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+    , private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera,
+    private modalCtrl: ModalController, private alertCtrl: AlertController, private feedService: FeedsService) {
     if (this.navParams.get('user')) {
       this.is_user_current = this.customService.user_current.guid == this.navParams.get('user').guid;
       this.callback = this.navParams.get('callback');
@@ -60,13 +63,14 @@ export class UserMenuComponent implements OnInit {
 
   changeCoverAvatar(isAvatar) {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
-
       if (isAvatar) {
+
         this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
           if (data.status) {
             this.callback(true).then(() => { });
+            this.feedService.putFeed(this.customService.content_change_avatar, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
           } else {
             this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 3000);
           }
@@ -75,6 +79,7 @@ export class UserMenuComponent implements OnInit {
         this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
           if (data.status) {
             this.callback(true).then(() => { });
+            this.feedService.putFeed(this.customService.content_change_cover, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
           } else {
             this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 3000);
           }

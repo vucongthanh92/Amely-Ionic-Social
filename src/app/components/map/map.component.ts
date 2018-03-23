@@ -23,9 +23,13 @@ declare var google;
 export class MapComponent implements OnInit {
   @ViewChild('map') element;
   map: GoogleMap;
-
-  constructor(public navCtrl: NavController, private ngZone: NgZone, public geolocation: Geolocation,
+  callback: any;
+  lat: number;
+  lng: number;
+  title: string;
+  constructor(public navCtrl: NavController, private nav: NavController, private ngZone: NgZone, public geolocation: Geolocation,
     public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder) {
+    this.callback = this.navParams.get('callback');
     platform.ready().then(() => {
       this.loadMap();
     });
@@ -72,9 +76,12 @@ export class MapComponent implements OnInit {
               console.log(data.lng);
               this.nativeGeocoder.reverseGeocode(data.lat, data.lng)
                 .then((result: NativeGeocoderReverseResult) => {
-                  console.log(JSON.stringify(result));
-                  console.log(result.locality + " " + result.subAdministrativeArea + " " + result.countryName);
+                  const title = result.locality + " " + result.subAdministrativeArea + " " + result.countryName;
+                  console.log(title);
 
+                  this.callback({ title: title, lat: data.lat, lng: data.lng }).then(() => {
+                    this.nav.pop();
+                  });
                 })
                 .catch((error: any) => console.log(error));
             }

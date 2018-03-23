@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Photo } from '../../api/models/photo';
@@ -16,20 +17,19 @@ export class AlbumComponent implements OnInit {
   public photos: Array<Photo>;
 
   public isShowAvatar: boolean;
-  public isFirstTime: boolean=true;
+  public isFirstTime: boolean = true;
   public isShowCover: boolean;
-  public isShowFeed: boolean;
+  public isShowFeed: boolean = true;
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private customService: CustomService) { }
 
   ngOnInit() {
     this.service.getAlbum().subscribe(data => {
-      this.photos = data.filter(e =>  e.type === this.type && e.owner_guid === this.guid );
-      
-      this.photosAvatar = this.photos.filter(e => e.description.indexOf("_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard") != -1);
-      this.photosCover = this.photos.filter(e => e.description.indexOf("-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen") != -1);
-      this.photosFeeds = this.photos.filter(e => e.description.indexOf("_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard") == -1
-        && e.description.indexOf("- _tln$@ttonh!i~tki ^ abg * la_0@896428_ = -!75@-=_ = -ahihi=)) amen") == -1)
+      this.photos = data.filter(e => e.owner_guid === this.guid);
+      this.photosAvatar = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_avatar);
+      this.photosCover = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_cover);
+      this.photosFeeds = this.photos.filter(e => JSON.parse(e.description).post != this.customService.content_change_cover
+        || JSON.parse(e.description).post != this.customService.content_change_avatar)
     });
   }
 
@@ -40,7 +40,7 @@ export class AlbumComponent implements OnInit {
     this.isShowFeed = false;
     switch (value) {
       case 'avatar':
-        this.isShowAvatar=true;
+        this.isShowAvatar = true;
         break;
       case 'cover':
         this.isShowCover = true;

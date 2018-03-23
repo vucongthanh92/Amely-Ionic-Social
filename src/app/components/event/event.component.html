@@ -79,7 +79,7 @@
     <ion-list class="members_box">
       <ion-list-header>chủ sự kiện</ion-list-header>
       <ion-item class="members_row" *ngIf="getUser(event.creator.guid)">
-        <ion-avatar item-start><img src="{{getUser(event.creator.guid).avatar}}"></ion-avatar>
+        <ion-avatar item-start><img (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}"></ion-avatar>
         {{getUser(event.creator.guid).fullname}}
       </ion-item>
     </ion-list>
@@ -87,7 +87,7 @@
     <ion-list class="members_box">
       <ion-list-header>đồng tổ chức</ion-list-header>
       <ion-item class="members_row" *ngFor="let guid of string_members">
-        <ion-avatar item-start><img *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}"></ion-avatar> 
+        <ion-avatar item-start><img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}"></ion-avatar> 
         {{getUser(guid).fullname}}
       </ion-item>
     </ion-list>
@@ -96,7 +96,7 @@
       <ion-list-header>khách mời</ion-list-header>
       <div *ngFor="let guid of string_guests">
         <ion-item class="members_row" *ngIf="getUser(guid)">
-          <ion-avatar item-start><img *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}"></ion-avatar>
+          <ion-avatar item-start><img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}"></ion-avatar>
           {{getUser(guid).fullname}}
         </ion-item>
       </div>

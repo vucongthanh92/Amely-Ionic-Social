@@ -14,7 +14,7 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'group'">
 			<ion-card class="inventory_product_box">
-				<ion-item>
+				<ion-item (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" src="{{group.avatar}}">
 					</ion-thumbnail>
@@ -31,7 +31,7 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'event'">
 			<ion-card class="inventory_product_box">
-				<ion-item>
+				<ion-item (click)="openEventProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" src="{{event.avatar}}">
 					</ion-thumbnail>
@@ -48,7 +48,7 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'business'">
 			<ion-card class="inventory_product_box">
-				<ion-item>
+				<ion-item (click)="openOAProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" src="{{page.avatar}}">
 					</ion-thumbnail>
