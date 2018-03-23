@@ -13,12 +13,12 @@
 <ion-content class="outer-content" *ngIf="product">
   <ion-row>
     <ion-col col-12 *ngIf="product.images_entities">
-      <img *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}" alt="ionic logo"
+      <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}" alt="ionic logo"
         width="100%">
     </ion-col>
     <ion-col col-12 *ngIf="!product.images_entities">
-      <img *ngIf="product.images[0]" src="{{ product.images[0] }}" alt="ionic logo" width="100%">
-      <img *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
+      <img imageViewer *ngIf="product.images[0]" src="{{ product.images[0] }}" alt="ionic logo" width="100%">
+      <img imageViewer *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
     </ion-col>
   </ion-row>
   <ion-card>

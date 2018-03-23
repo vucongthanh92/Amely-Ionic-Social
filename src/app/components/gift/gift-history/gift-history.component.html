@@ -25,7 +25,7 @@
     <ion-card-content class="gift_product_info">
       <ion-row>{{gift.item.title}}</ion-row>
       <ion-row>{{convertCurrency(gift.item.price,gift.item.currency)}}</ion-row>
-      <img *ngIf="gift.item" class="gift_product_img" [src]='sanitizer.bypassSecurityTrustResourceUrl(gift.item.images[0])'>
+      <img *ngIf="gift.item" class="gift_product_img" [src]='sanitizer.bypassSecurityTrustResourceUrl(gift.item.images[0])' imageViewer>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,3 +1,5 @@
+import { CategoriesAllComponent } from './../components/categories-all/categories-all.component';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { HistoryModule } from './../modules/history/history.module';
 import { UserBlockListComponent } from './../components/user/user-block-list/user-block-list.component';
 import { QrComponent } from './../components/qr/qr.component';
@@ -84,6 +86,7 @@ import { MapComponent } from '../components/map/map.component';
     WithdrawnModule,
     DeliveryModule,
     HistoryModule,
+    IonicImageViewerModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -143,7 +146,8 @@ import { MapComponent } from '../components/map/map.component';
     GroupMenuComponent,
     QrComponent,
     UserBlockListComponent,
-    MapComponent
+    MapComponent,
+    CategoriesAllComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -200,7 +204,8 @@ import { MapComponent } from '../components/map/map.component';
     GroupMenuComponent,
     QrComponent,
     UserBlockListComponent,
-    MapComponent
+    MapComponent,
+    CategoriesAllComponent
   ],
   exports: [
     CategoriesComponent,
@@ -257,7 +262,8 @@ import { MapComponent } from '../components/map/map.component';
     GroupMenuComponent,
     QrComponent,
     UserBlockListComponent,
-    MapComponent
+    MapComponent,
+    CategoriesAllComponent
   ]
 })
 export class SharedModule { }

@@ -18,7 +18,7 @@
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto">
     <ion-item *ngFor="let wallphoto of post.wallphoto">
-      <img width="100%" src="{{ wallphoto }}">
+      <img width="100%" src="{{ wallphoto }}" imageViewer>
     </ion-item>
   </ion-list>
 

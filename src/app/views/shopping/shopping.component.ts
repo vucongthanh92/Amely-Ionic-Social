@@ -25,7 +25,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   changePage() {
-    this.appCtrl.getRootNav().push(ShoppingMenuComponent);
+    this.appCtrl.getRootNav().push(CartItemsComponent);
   }
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create(ShoppingMenuComponent);

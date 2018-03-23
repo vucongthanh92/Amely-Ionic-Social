@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+       Danh mục
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categoriesParent">
+    <ion-row *ngIf="categoriesParent">
+      <ion-col col-4 style="text-align: center" *ngFor="let category of categoriesParent" (click)="goToPage(category);">
+        <div class="categories_images" [style.background]="'url(' + category.logo + ')'"></div>
+        <h4 class="categories_title">{{category.title}}</h4>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
