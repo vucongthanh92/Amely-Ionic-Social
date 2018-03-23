@@ -1,3 +1,4 @@
+import { UserComponent } from './../user/user.component';
 import { CustomService } from './../../services/custom.service';
 import { EventsService } from './../../services/events.service';
 import { EventMenuComponent } from './event-menu/event-menu.component';
@@ -88,5 +89,7 @@ export class EventComponent implements OnInit {
   countMember() {
     return this.event.members.split(',').length + this.event.invites.split(',').length;
   }
-
+  openUserProfile(u: User) {
+    this.appCtrl.getRootNav().push(UserComponent, { userGuid: u.guid })
+  }
 }

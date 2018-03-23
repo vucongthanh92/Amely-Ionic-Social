@@ -89,7 +89,7 @@ export class SigninComponent implements OnInit {
   }
 
   onRegister() {
-    this.nav.push(MapComponent);
-    // this.nav.push(RegisterComponent);
+    // this.nav.push(MapComponent);
+    this.nav.push(RegisterComponent);
   }
 }

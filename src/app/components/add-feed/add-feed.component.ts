@@ -1,3 +1,4 @@
+import { MapComponent } from './../map/map.component';
 import { FirebaseService } from './../../services/firebase.service';
 import { guid } from './../../api/models/guid';
 import { FeedsService } from './../../services/feeds.service';
@@ -36,6 +37,7 @@ export class AddFeedComponent implements OnInit {
   private owner_guid;
   private image: string;
   private callback;
+  private location;
 
   constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
     private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
@@ -135,10 +137,10 @@ export class AddFeedComponent implements OnInit {
 
       //type_feed va` owner guid post feed ntn
 
-      this.feedService.putFeed(this.content, friends, null, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
+      this.feedService.putFeed(this.content, friends, this.location, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
         console.log(data);
-        
+
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
           this.callback().then(() => {
@@ -161,4 +163,33 @@ export class AddFeedComponent implements OnInit {
       .then(url => { this.image = url + '' })
   }
 
+  onLocation() {
+    this.appCtrl.getRootNav().push(MapComponent, { callback: this.callbackLocation })
+  }
+
+  callbackLocation = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log('add-feed');
+      console.log(_params);
+
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận vị trí',
+        message: _params.title,
+        buttons: [
+          {
+            text: 'Từ chối',
+            role: 'cancel'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              this.location = _params.title;
+            }
+          }
+        ]
+      });
+      alert.present();
+      resolve();
+    });
+  }
 }

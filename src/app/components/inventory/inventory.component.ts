@@ -1,3 +1,7 @@
+import { BusinessComponent } from './../business/business.component';
+import { EventComponent } from './../event/event.component';
+import { GroupComponent } from './../group/group.component';
+import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Event } from './../../api/models/event';
 import { Group } from './../../api/models/group';
@@ -142,5 +146,19 @@ export class InventoryComponent implements OnInit {
   }
   openInventory() {
 
+  }
+  openOAProfile() {
+    this.appCtrl.getRootNav().push(BusinessComponent, { guid: this.page.guid })
+  }
+  openEventProfile() {
+    this.appCtrl.getRootNav().push(EventComponent, { event_guid: this.event.guid })
+  }
+  openGroupProfile() {
+    this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: this.group.guid, reloadCallback: this.reloadCallback })
+  }
+  reloadCallback = (_params) => {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
 }
