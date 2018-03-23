@@ -37,7 +37,7 @@ export class AddFeedComponent implements OnInit {
   private owner_guid;
   private image: string;
   private callback;
-  private location;
+  private location="Ho chi minh";
 
   constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
     private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,

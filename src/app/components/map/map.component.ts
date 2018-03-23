@@ -91,7 +91,7 @@ export class MapComponent implements OnInit {
                   this.title = title;
                   this.lat = data[0].lat;
                   this.lng = data[0].lng;
-
+                  this.map.clear();
                   this.map.addMarker({
                     title: title,
                     icon: 'blue',
