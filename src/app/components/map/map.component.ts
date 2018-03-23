@@ -11,6 +11,7 @@ import {
   MarkerOptions,
   Marker
 } from '@ionic-native/google-maps';
+import { CustomService } from '../../services/custom.service';
 
 declare var google;
 @Component({
@@ -28,7 +29,7 @@ export class MapComponent implements OnInit {
   lng: number;
   title: string;
   constructor(public navCtrl: NavController, private nav: NavController, private ngZone: NgZone, public geolocation: Geolocation,
-    public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder) {
+    public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder, private customSerive: CustomService) {
     this.callback = this.navParams.get('callback');
     platform.ready().then(() => {
       this.loadMap();
@@ -79,13 +80,30 @@ export class MapComponent implements OnInit {
               console.log(data[0].lat);
               console.log(data[0].lng);
               this.nativeGeocoder.reverseGeocode(data[0].lat, data[0].lng)
-                .then((result: NativeGeocoderReverseResult) => {
-                  const title = result.locality + " " + result.subAdministrativeArea + " " + result.countryName;
+                .then((result) => {
+                  // { "subAdministrativeArea": "Quận Gò Vấp", "locality": "Hồ Chí Minh", "subLocality": "Phường 8", 
+                  // "postalCode": "", "subThoroughfare": "7/2G", "administrativeArea": "Thành Phố Hồ Chí Minh", 
+                  // "countryCode": "VN", "countryName": "Việt Nam", "thoroughfare": "Hẻm 23 Đường Số 21" }
+                  const title = result[0].subThoroughfare + " " + result[0].thoroughfare + ", " + result[0].subLocality + " "
+                    + result[0].subAdministrativeArea + ", " + result[0].administrativeArea + ", " + result[0].countryName;
                   console.log(title);
 
-                  this.callback({ title: title, lat: data.lat, lng: data.lng }).then(() => {
-                    this.nav.pop();
-                  });
+                  this.title = title;
+                  this.lat = data[0].lat;
+                  this.lng = data[0].lng;
+
+                  this.map.addMarker({
+                    title: title,
+                    icon: 'blue',
+                    animation: 'DROP',
+                    position: {
+                      lat: data[0].lat,
+                      lng: data[0].lng
+                    }
+                  }).then(marker => { });
+
+
+
                 })
                 .catch((error: any) => console.log(error));
             }
@@ -96,5 +114,15 @@ export class MapComponent implements OnInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+  }
+
+  confirm() {
+    if (!this.title || !this.lat || !this.lng) {
+      this.customSerive.toastMessage("Bạn chưa chọn vị trí", 'bottom', 3000)
+    } else {
+      this.callback({ title: this.title, lat: this.lat, lng: this.lng }).then(() => {
+        this.nav.pop();
+      });
+    }
   }
 }

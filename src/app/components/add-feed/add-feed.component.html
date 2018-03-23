@@ -18,14 +18,14 @@
 
       <h2 class="addfeed_fullname">{{user_current.fullname}}</h2>
       <div class="addfeed_showmood">
-        <div class="addfeed_tag" *ngIf="usersTag.length > 0"> - cùng với 
+        <div class="addfeed_tag" *ngIf="usersTag.length > 0"> - cùng với
           <div class="addfeed_tag_item" *ngFor="let user of usersTag">
             <a (click)="removeUserTag(user)">{{user.fullname}}, </a>
           </div>
         </div>
 
         <div class="addfeed_mood_title" *ngIf="mood_result">
-           - đang {{moods[mood_result].title}}
+          - đang {{moods[mood_result].title}}
         </div>
       </div>
       <ion-row *ngIf="image">
@@ -46,7 +46,11 @@
       </ion-item>
     </ion-item>
   </ion-list>
-  
+
+  <ion-row *ngIf="location" >
+    {{location}} 
+  </ion-row>
+
   <ion-row>
     <ion-col class="addfeed_description" col-12>
       <ion-textarea [(ngModel)]="content" placeholder="Bạn đang nghĩ gì ?" rows="10" name="description"></ion-textarea>
