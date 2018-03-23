@@ -1,0 +1,45 @@
+app-categories-all {
+    .ion-page > .content {
+		background-color: #fff;
+	}
+
+	#divTitle {
+		position: relative;
+		left: 0px;
+	}
+	
+	.categories_label {
+		float: left;
+		font-size: 16px;
+		font-weight: normal;
+		margin: 10px 0px 5px 0px;
+		text-transform: uppercase;
+		color: #333;
+	}
+
+	.categories_readmore{
+		padding: 0px 5px 0px 0px;
+		font-size: 14px;
+		font-weight: 400;
+		color: #488AFF;
+		font-style: italic;
+		margin: 12px 0px 0px 0px;
+	}
+
+	.categories_title {
+		font-size: 13px;
+		font-weight: 400;
+		height: 45px;
+		line-height: 20px;
+		margin: 7px 3px 7px 3px;
+		color: #333;
+		text-transform: capitalize;
+	}
+
+	.categories_images {
+		width: 100%;
+		height: 85px;
+		background-position: center !important;
+		background-size: cover !important;
+	}
+}

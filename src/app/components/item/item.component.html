@@ -9,8 +9,8 @@
 
 <ion-content class="item_product_main" *ngIf="product">
   <ion-card class="item_product_image">
-    <img *ngIf="product.images[0]" src="{{product.images[0]}}" />
-    <img *ngIf="product.images[0]==null" src="assets/imgs/logo.png" />
+    <img imageViewer *ngIf="product.images[0]" src="{{product.images[0]}}" />
+    <img imageViewer *ngIf="product.images[0]==null" src="assets/imgs/logo.png" />
     <div *ngIf="!is_remove_item" style="position: absolute;right: 0;bottom: 0">
       <button (click)="onWishList(false)" *ngIf="item.wishlist=='2'" ion-button icon-only class="item_wishlist_off">
         <ion-icon class="iconLike1" name="iconLike1"></ion-icon>

@@ -30,13 +30,13 @@ export class GiftItemDetailComponent implements OnInit {
 
   onMinus() {
     if (this.quantitySend > 1) {
-      this.quantitySend = this.quantitySend - 1;
+      this.quantitySend = +this.quantitySend - 1;
     }
   }
 
   onAdd() {
     if (this.quantitySend < (+this.item.quantity)) {
-      this.quantitySend = this.quantitySend + 1;
+      this.quantitySend = +this.quantitySend + 1;
     }
   }
 

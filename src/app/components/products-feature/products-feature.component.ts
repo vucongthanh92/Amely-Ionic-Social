@@ -55,7 +55,7 @@ export class ProductsFeatureComponent implements OnInit {
         });
         this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
-      case 'view_all':
+      case 'all':
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature' });
         break;
       default:

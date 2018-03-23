@@ -1,3 +1,5 @@
+import { CategoriesAllComponent } from './../components/categories-all/categories-all.component';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { HistoryModule } from './../modules/history/history.module';
 import { UserBlockListComponent } from './../components/user/user-block-list/user-block-list.component';
 import { QrComponent } from './../components/qr/qr.component';
@@ -83,6 +85,7 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     WithdrawnModule,
     DeliveryModule,
     HistoryModule,
+    IonicImageViewerModule,
     LaddaModule.forRoot({
       style: "contract"
     })
@@ -141,7 +144,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    CategoriesAllComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -197,7 +201,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    CategoriesAllComponent
   ],
   exports: [
     CategoriesComponent,
@@ -253,7 +258,8 @@ import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.
     ShopFeatureComponent,
     GroupMenuComponent,
     QrComponent,
-    UserBlockListComponent
+    UserBlockListComponent,
+    CategoriesAllComponent
   ]
 })
 export class SharedModule { }
