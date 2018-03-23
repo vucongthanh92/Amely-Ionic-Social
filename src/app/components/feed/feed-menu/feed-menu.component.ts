@@ -1,7 +1,7 @@
 import { FeedsService } from './../../../services/feeds.service';
 import { CustomService } from './../../../services/custom.service';
 import { NavParams, AlertController, App, NavController } from 'ionic-angular';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Feed } from '../../../api/models';
 
 @Component({
@@ -13,7 +13,7 @@ export class FeedMenuComponent implements OnInit {
   public is_owner: boolean = true;
   private uploaded;
   constructor(private navParams: NavParams, private customService: CustomService, private feedService: FeedsService,
-    private alertCtrl: AlertController, private app: App, private nav: NavController) {
+    private alertCtrl: AlertController, private nav: NavController) {
     this.post = this.navParams.get('post');
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
     this.uploaded = this.navParams.get('callback');

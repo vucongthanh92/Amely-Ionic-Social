@@ -1,5 +1,5 @@
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Feed, User } from '../../../api/models';
 import { ViewController } from 'ionic-angular';
 

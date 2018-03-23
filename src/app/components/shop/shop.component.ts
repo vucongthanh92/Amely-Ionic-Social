@@ -1,6 +1,6 @@
 import { CustomService } from './../../services/custom.service';
 import { Shop } from './../../api/models/shop';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShopsService } from '../../services/shops.service';
 import { App, NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';

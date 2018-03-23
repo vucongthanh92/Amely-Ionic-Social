@@ -24,8 +24,7 @@ export class CommentsComponent implements OnInit {
   @Input('content') content: string
   public image: string;
 
-  constructor(private nav_params: NavParams, private nav_ctrl: NavController, private feed_service: FeedsService, private user_service: UserService
-    , private customService: CustomService, private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera) {
+  constructor(private nav_params: NavParams, private feed_service: FeedsService, private customService: CustomService, private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera) {
     this.feed_guid = this.nav_params.get('guid');
     this.user_current = JSON.parse(localStorage.getItem('loggin_user'));
   }

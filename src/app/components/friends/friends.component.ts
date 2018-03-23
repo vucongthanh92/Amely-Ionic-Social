@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { User } from './../../api/models/user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';

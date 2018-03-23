@@ -1,7 +1,6 @@
 import { FeedsService } from './../../../services/feeds.service';
 import { FeedComponent } from './../../feed/feed.component';
 import { UserBlockListComponent } from './../user-block-list/user-block-list.component';
-import { guid } from './../../../api/models/guid';
 import { UserService } from './../../../services/user.service';
 import { UserUpdateComponent } from './../user-update/user-update.component';
 import { NavParams, App, NavController, ActionSheetController, ModalController, AlertController } from 'ionic-angular';

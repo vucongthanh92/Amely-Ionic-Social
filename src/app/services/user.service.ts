@@ -1,4 +1,3 @@
-import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
 import { ApiService } from './../api/services/api.service';
 

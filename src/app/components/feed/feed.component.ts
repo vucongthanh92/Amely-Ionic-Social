@@ -38,10 +38,7 @@ export class FeedComponent {
     public menuCtrl: MenuController,
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
-    private navParams: NavParams,
-    private alertCtrl: AlertController,
     private customService: CustomService,
-    private userService: UserService
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
 
