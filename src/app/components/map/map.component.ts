@@ -72,8 +72,12 @@ export class MapComponent implements OnInit {
           this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(
             (data) => {
               console.log("Click MAP");
+              console.log(data);
               console.log(data.lat);
               console.log(data.lng);
+              console.log(data[0]);
+              console.log(data[0].lat);
+              console.log(data[0].lng);
               this.nativeGeocoder.reverseGeocode(data.lat, data.lng)
                 .then((result: NativeGeocoderReverseResult) => {
                   const title = result.locality + " " + result.subAdministrativeArea + " " + result.countryName;

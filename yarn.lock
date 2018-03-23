@@ -268,6 +268,10 @@
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.5.3.tgz#18624b1f0fea844a61e668472b0ec51bb0511883"
 
+"@ionic-native/google-maps@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/google-maps/-/google-maps-4.6.0.tgz#5287060644d61ce29d5ed6713535abd11266c7d8"
+
 "@ionic-native/image-picker@^4.5.3":
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@ionic-native/image-picker/-/image-picker-4.5.3.tgz#ff10f073a5b71ce591b903efac902231a19c6ef6"
@@ -283,6 +287,10 @@
 "@ionic-native/local-notifications@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/local-notifications/-/local-notifications-4.6.0.tgz#5d4b378c4dfe594bf1b9885773a4edaaa3ad950c"
+
+"@ionic-native/native-geocoder@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/native-geocoder/-/native-geocoder-4.6.0.tgz#39bcefd55654185ba90633c369bee8fb82545e48"
 
 "@ionic-native/splash-screen@4.4.0":
   version "4.4.0"
@@ -1535,6 +1543,12 @@ cordova-plugin-geolocation@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/cordova-plugin-geolocation/-/cordova-plugin-geolocation-4.0.1.tgz#4703fa649d2405d25a9a732c99ebf868754a2c04"
 
+cordova-plugin-googlemaps@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-googlemaps/-/cordova-plugin-googlemaps-2.2.8.tgz#97b7d4f70f39f270dc5d490d77108575969680d2"
+  dependencies:
+    xml2js "~0.4.19"
+
 cordova-plugin-image-picker@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-image-picker/-/cordova-plugin-image-picker-1.1.3.tgz#3862015d98c2e248399991459462e1e381378171"
@@ -1550,6 +1564,10 @@ cordova-plugin-ionic-webview@^1.1.16:
 cordova-plugin-local-notification@^0.9.0-beta.2:
   version "0.9.0-beta.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-local-notification/-/cordova-plugin-local-notification-0.9.0-beta.2.tgz#e3a0b4a35d11f95bb4f1e367d9baee9909cca695"
+
+cordova-plugin-nativegeocoder@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-nativegeocoder/-/cordova-plugin-nativegeocoder-3.1.1.tgz#b089369fcd54bdd4f31cdd9b771876481dfe005b"
 
 cordova-plugin-splashscreen@^4.1.0:
   version "4.1.0"
@@ -3156,6 +3174,10 @@ invert-kv@^1.0.0:
 ionic-angular@3.9.2:
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-3.9.2.tgz#75053e4a422aaae7d7cd668cc92cfd5cb29d38cc"
+
+ionic-img-viewer@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/ionic-img-viewer/-/ionic-img-viewer-2.9.0.tgz#184b578131103f9de2817f106c3eeb1dd56378b7"
 
 ionic-plugin-keyboard@^2.2.1:
   version "2.2.1"
@@ -6816,7 +6838,7 @@ xml-escape@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/xml-escape/-/xml-escape-1.1.0.tgz#3904c143fa8eb3a0030ec646d2902a2f1b706c44"
 
-xml2js@^0.4.19:
+xml2js@^0.4.19, xml2js@~0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
   dependencies:
