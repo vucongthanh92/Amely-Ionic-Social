@@ -37,7 +37,11 @@ export class FeedsComponent implements OnInit {
   }
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
+    this.refreshView();
+    
+  }
 
+  refreshView() {
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
         if (data.posts) {
@@ -52,9 +56,8 @@ export class FeedsComponent implements OnInit {
       },
       err => {
         console.log(err);
-
-      },
-      () => {
+        
+        this.refreshView();
 
       }
     );
