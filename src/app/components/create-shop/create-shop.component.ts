@@ -71,13 +71,17 @@ export class CreateShopComponent implements OnInit {
       this.customService.toastMessage('SSN không được để trống', 'bottom', 2000);
     } else {
       this.shopService.createShop(this.shipping_method, this.name, this.address, this.BIDN, this.price, this.friend_url, this.phone, this.owner_name,
-        this.owner_phone_number, this.owner_address, this.ssn, null).subscribe(data => {
-          if (data.status) {
-            this.appCtrl.getRootNav().pop();
-          } else {
+        this.owner_phone_number, this.owner_address, this.ssn, null).subscribe(
+          data => {
+            if (data.status) {
+              this.appCtrl.getRootNav().pop();
+            } else {
+              this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+            }
+          },
+          err => {
             this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
-          }
-        })
+          })
     }
   }
 }

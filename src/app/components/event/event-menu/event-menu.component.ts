@@ -26,14 +26,17 @@ export class EventMenuComponent implements OnInit {
     this.eventSerive.publicEvent(this.event.guid).subscribe(data => {
       if (data.status) {
         this.eventSerive.publish = 2;
-      }
-    })
+      } else this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+    },
+      err => {
+        this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+      })
   }
   closeOpenEvent() {
 
     // if (this.event) {
     //   console.log(this.event);
-      
+
     // }
     if (this.eventSerive.publish == 1 || this.eventSerive.publish == 2) {
       // close

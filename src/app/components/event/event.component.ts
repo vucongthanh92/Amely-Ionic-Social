@@ -25,29 +25,39 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.eventService.getEvent(this.event_guid).subscribe(data => {
-      if (data.events.guid != null) {
-        this.is_user = this.customService.user_current.guid == data.events.owner_user;
-        this.event = data.events;
-        this.users = data.users;
-        this.string_guests = this.event.invites.split(',');
-        this.string_members = this.event.members.split(',');
-
-        if (this.event.status == "1" && this.event.published == "1") {
-          this.eventService.publish = 0;
-        } else if (this.event.status == "2" && this.event.published == "1") {
-          this.eventService.publish = 1;
-        } else if (this.event.status == "2" && this.event.published == "2") {
-          this.eventService.publish = 2;
-        } else if (this.event.status == "1" && this.event.published == "2") {
-          this.eventService.publish = 3;
-        }
-
-      }
-    })
+    this.loadData(5)
   }
 
+  loadData(retry) {
+    if(retry==0){
+      this.customService.toastMessage("Kết nối máy chủ thất bại. Vui lòng thử lại", 'bottom', 4000);
+      return;
+    }
+    this.eventService.getEvent(this.event_guid).subscribe(
+      data => {
+        if (data.events.guid != null) {
+          this.is_user = this.customService.user_current.guid == data.events.owner_user;
+          this.event = data.events;
+          this.users = data.users;
+          this.string_guests = this.event.invites.split(',');
+          this.string_members = this.event.members.split(',');
 
+          if (this.event.status == "1" && this.event.published == "1") {
+            this.eventService.publish = 0;
+          } else if (this.event.status == "2" && this.event.published == "1") {
+            this.eventService.publish = 1;
+          } else if (this.event.status == "2" && this.event.published == "2") {
+            this.eventService.publish = 2;
+          } else if (this.event.status == "1" && this.event.published == "2") {
+            this.eventService.publish = 3;
+          }
+
+        }
+      },
+      err => {
+        this.loadData(--retry);
+      })
+  }
   newfeedsPage = true;
   membersPage = false;
   eventTab = 'newfeed';

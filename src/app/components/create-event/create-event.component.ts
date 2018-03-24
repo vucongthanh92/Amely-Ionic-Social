@@ -162,6 +162,8 @@ export class CreateEventComponent implements OnInit {
           } else {
             this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
           }
+        },err=>{
+          this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
         });
     }
 

@@ -17,9 +17,17 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.shopService.getShop(this.shopGuid, null).subscribe(data => {
       this.shop = data;
-    })
+    }, err => this.loadData(--retry))
   }
 
   shopTab = 'products';

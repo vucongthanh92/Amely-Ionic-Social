@@ -28,7 +28,10 @@ export class ChangePhonenumberComponent implements OnInit {
               this.customService.toastMessage('Số điện thoại đã được đổi .', 'bottom', 2000);
               this.nav.pop();
             }
-          });
+          }
+        ,err=>{
+          this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.",'bottom',4000)
+        });
         })
     }
   }

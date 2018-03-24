@@ -53,6 +53,8 @@ export class FeedMenuComponent implements OnInit {
               } else {
                 this.customService.toastMessage('Xóa bài viết thất bại. Vui lòng thử lại !!', 'bottom', 2000);
               }
+            }, err => {
+              this.customService.toastMessage('Xóa bài viết thất bại. Vui lòng thử lại !!', 'bottom', 2000);
             });
           }
         }

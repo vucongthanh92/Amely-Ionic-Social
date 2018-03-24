@@ -24,6 +24,7 @@ export class FeedsComponent implements OnInit {
   moods: Mood[];
   shares: any;
   offset = 0;
+
   private isHasData: boolean;
   constructor(
     private customService: CustomService,
@@ -37,11 +38,16 @@ export class FeedsComponent implements OnInit {
   }
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
-    this.refreshView();
-    
+    this.refreshView(5);
+
   }
 
-  refreshView() {
+  refreshView(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
         if (data.posts) {
@@ -56,8 +62,7 @@ export class FeedsComponent implements OnInit {
       },
       err => {
         console.log(err);
-        
-        this.refreshView();
+        this.refreshView(--retry);
 
       }
     );

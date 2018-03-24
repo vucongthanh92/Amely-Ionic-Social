@@ -21,7 +21,8 @@ export class ProductCategoryComponent implements OnInit {
   private limit: number = 10;
   public title: string;
 
-  constructor(private navParams: NavParams, private nav: NavController, private appCtrl: App, private shopping_service: ShoppingsService, public custom_service: CustomService) {
+  constructor(private navParams: NavParams, private nav: NavController, private appCtrl: App, private shopping_service: ShoppingsService,
+    public custom_service: CustomService) {
     this.categories = navParams.get('arr');
     this.category_id = navParams.get('guid');
     this.shop_guid = navParams.get('shop_guid');
@@ -33,12 +34,21 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData(5)
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.custom_service.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
       if (data.products instanceof Array) {
         this.products = data.products;
       }
-    });
+    }, err => this.loadData(--retry));
   }
+
   goToSubCat(category) {
     this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories });
   }

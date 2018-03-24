@@ -20,19 +20,28 @@ export class PaymentItemsComponent implements OnInit {
     private paymentService: PaymentService,
     private customService: CustomService,
     private navParams: NavParams,
-    public nav: NavController, 
-    public appCtrl: App) { 
-      this.param = this.paymentService.items;
-      this.products = this.param.products;
-      this.products = (<any>Object).values(this.products);
-      this.sub_total = this.param.sub_total;
-      this.tax = this.param.tax;
-      this.total = this.param.total;
-      this.currency = this.param.currency;
-      this.paymentService.getPaymentMethods().subscribe(data => {
-        this.paymentService.payment_methods = data;
-      });
+    public nav: NavController,
+    public appCtrl: App) {
+    this.param = this.paymentService.items;
+    this.products = this.param.products;
+    this.products = (<any>Object).values(this.products);
+    this.sub_total = this.param.sub_total;
+    this.tax = this.param.tax;
+    this.total = this.param.total;
+    this.currency = this.param.currency;
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      this.nav.pop();
+      return;
     }
+    this.paymentService.getPaymentMethods().subscribe(data => {
+      this.paymentService.payment_methods = data;
+    }, err => this.loadData(--retry));
+  }
 
   ngOnInit() {
   }

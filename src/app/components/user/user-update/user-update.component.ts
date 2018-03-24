@@ -32,7 +32,7 @@ export class UserUpdateComponent implements OnInit {
     console.log(this.mobile_hidden);
     console.log(this.birthdate_hidden);
     console.log(this.friend_hidden);
-    
+
     this.callback = this.navParams.get('callback');
   }
 
@@ -66,7 +66,7 @@ export class UserUpdateComponent implements OnInit {
           } else {
             this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
           }
-        })
+        }, err => this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại sau', 'bottom', 4000));
     }
   }
 }

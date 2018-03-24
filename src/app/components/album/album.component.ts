@@ -24,13 +24,26 @@ export class AlbumComponent implements OnInit {
   constructor(private service: UserService, private customService: CustomService) { }
 
   ngOnInit() {
-    this.service.getAlbum().subscribe(data => {
-      this.photos = data.filter(e => e.owner_guid === this.guid);
-      this.photosAvatar = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_avatar);
-      this.photosCover = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_cover);
-      this.photosFeeds = this.photos.filter(e => JSON.parse(e.description).post != this.customService.content_change_cover
-        || JSON.parse(e.description).post != this.customService.content_change_avatar)
-    });
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+
+    this.service.getAlbum().subscribe(
+      data => {
+        this.photos = data.filter(e => e.owner_guid === this.guid);
+        this.photosAvatar = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_avatar);
+        this.photosCover = this.photos.filter(e => JSON.parse(e.description).post == this.customService.content_change_cover);
+        this.photosFeeds = this.photos.filter(e => JSON.parse(e.description).post != this.customService.content_change_cover
+          || JSON.parse(e.description).post != this.customService.content_change_avatar)
+      },
+      err => {
+        this.loadData(--retry)
+      });
   }
 
   onShowImage(value) {

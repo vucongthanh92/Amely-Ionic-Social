@@ -24,13 +24,17 @@ export class FindFriendComponent implements OnInit {
 
   findUser() {
     if (this.phone_number && this.phone_number.length > 7) {
-      this.userService.findUser(this.phone_number).subscribe(data => {
-        if (data.guid != null) {
-          this.user_found = data;
-        } else {
-          this.user_found = null;
-        }
-      });
+      this.userService.findUser(this.phone_number).subscribe(
+        data => {
+          if (data.guid != null) {
+            this.user_found = data;
+          } else {
+            this.user_found = null;
+          }
+        },
+        err => {
+          this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+        });
     } else {
       this.customService.toastMessage('Số điện thoại không hợp lệ', 'bottom', 2000);
     }

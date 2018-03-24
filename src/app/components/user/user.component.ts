@@ -51,13 +51,16 @@ export class UserComponent {
   }
 
   ngOnInit() {
-    this.loadData();
+    this.userGuid = this.navParams.get('userGuid');
+    this.loadData(5);
   }
 
-  loadData() {
-    this.userGuid = this.navParams.get('userGuid');
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.userService.getUser(null, this.userGuid).subscribe(data => {
-
       if (data.guid == null) {
         this.is_failed = true;
       } else {
@@ -80,7 +83,7 @@ export class UserComponent {
           this.iconMood = this.moodLocal[this.user.mood.guid].image;
         }
       }
-    });
+    },err=>this.loadData(--retry));
   }
 
   getUser() {
@@ -206,7 +209,7 @@ export class UserComponent {
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
       if (_params) {
-        this.loadData()
+        this.loadData(5)
       }
       resolve();
     });
