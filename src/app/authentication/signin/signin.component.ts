@@ -42,6 +42,9 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
+    let a='20/3/2014'
+    console.log(new Date(a));
+    
   }
 
   onLogin() {

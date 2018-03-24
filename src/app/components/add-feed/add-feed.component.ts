@@ -1,9 +1,6 @@
 import { MapComponent } from './../map/map.component';
 import { FirebaseService } from './../../services/firebase.service';
-import { guid } from './../../api/models/guid';
 import { FeedsService } from './../../services/feeds.service';
-import { Mood } from './../../api/models/mood';
-import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../services/custom.service';
 import { User } from './../../api/models/user';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
@@ -37,7 +34,7 @@ export class AddFeedComponent implements OnInit {
   private owner_guid;
   private image: string;
   private callback;
-  private location="Ho chi minh";
+  private location;
 
   constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
     private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
@@ -139,7 +136,6 @@ export class AddFeedComponent implements OnInit {
 
       this.feedService.putFeed(this.content, friends, this.location, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
-        console.log(data);
 
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
