@@ -15,7 +15,7 @@ export class CustomService {
   user_current: User;
   mood_local: any;
   public url_site = "http://helloqua.com/";
-  friends: Array<User>;
+  friends: Array<User>=[];
   notifications: Array<Notification> = [];
   public url_qr = "http://helloqua.com/";
   public content_change_avatar ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard";

@@ -66,8 +66,6 @@ export class FeedComponent {
       }
       this.descriptionPost = description.post;
       this.location = description.location;
-      console.log(description);
-
       if (this.isShowMoreContent) {
         if (this.descriptionPost.length > 1000) {
           this.descriptionPost = this.descriptionPost.substring(0, 1000) + " ...";

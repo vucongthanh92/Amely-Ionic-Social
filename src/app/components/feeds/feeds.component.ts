@@ -30,7 +30,7 @@ export class FeedsComponent implements OnInit {
     private feedsService: FeedsService,
     private appCtrl: App,
   ) { }
-  someMethod(obj) {   
+  someMethod(obj) {
     if (obj.type == 'delete') {
       this.posts = this.posts.filter(e => e.guid != obj.feedGuid);
     }
@@ -38,17 +38,26 @@ export class FeedsComponent implements OnInit {
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
 
-    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-      if (data.posts) {
-        this.offset = this.offset + data.posts.length;
-        this.posts = data.posts;
-        this.users = data.users;
-        this.shares = data.shares;
-        this.isHasData = true;
-      } else {
-        this.isHasData = false;
+    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
+      data => {
+        if (data.posts) {
+          this.offset = this.offset + data.posts.length;
+          this.posts = data.posts;
+          this.users = data.users;
+          this.shares = data.shares;
+          this.isHasData = true;
+        } else {
+          this.isHasData = false;
+        }
+      },
+      err => {
+        console.log(err);
+
+      },
+      () => {
+
       }
-    });
+    );
   }
 
   doInfinite(infiniteScroll) {
