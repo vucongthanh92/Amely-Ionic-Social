@@ -1,4 +1,4 @@
-import { App } from 'ionic-angular/components/app/app';
+import { CustomService } from './../../services/custom.service';
 import { BusinessComponent } from './../business/business.component';
 import { GroupComponent } from './../group/group.component';
 import { ShopComponent } from './../shop/shop.component';
@@ -6,7 +6,7 @@ import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Shop } from './../../api/models/shop';
 import { Component, OnInit } from '@angular/core'; 
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { SearchService } from '../../services/search.service';
 import { Group } from '../../api/models/group';
 import { Product } from '../../api/models/product';
@@ -35,11 +35,20 @@ export class SearchComponent implements OnInit {
     private navParams: NavParams,
     public nav: NavController,
     private appCtrl: App,
-    private searchService: SearchService) {
+    private searchService: SearchService,
+    private customService: CustomService) {
     this.contentSearch = this.navParams.get('param');
   }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.searchService.searchValues(this.contentSearch).subscribe(data => {
       if (data.business) {
         this.business = data.business;
@@ -75,9 +84,8 @@ export class SearchComponent implements OnInit {
         this.is_has_data = true;
         this.search = 'peoples';
       }
-    })
+    }, err => this.loadData(--retry))
   }
-
   formatCurrency(amount: string, currency: string) {
     let result: string;
     switch (currency) {

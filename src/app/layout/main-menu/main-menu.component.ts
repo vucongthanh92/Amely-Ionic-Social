@@ -78,7 +78,9 @@ export class MainMenuComponent implements OnInit {
         { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
       ];
       this.api.getFriends(data.guid).subscribe(d => {
-        this.customService.friends = d;
+        if (d instanceof Array) {
+          this.customService.friends = d;
+        }
       })
       this.notifyFirebase();
     });

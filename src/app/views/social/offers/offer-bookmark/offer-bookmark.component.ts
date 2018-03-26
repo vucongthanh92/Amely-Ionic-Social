@@ -17,11 +17,20 @@ export class OfferBookmarkComponent implements OnInit {
     private customService: CustomService, private nav: NavController) { }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.offerService.getBookmarks().subscribe(data => {
       this.offers = data.offer;
       this.users = data.users;
-    })
+    }, err => this.loadData(--retry))
   }
+
   openMenu() {
     let actionSheet = this.actionSheetCtrl.create({
       buttons: [

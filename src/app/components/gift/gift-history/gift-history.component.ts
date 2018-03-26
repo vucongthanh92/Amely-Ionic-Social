@@ -22,13 +22,22 @@ export class GiftHistoryComponent implements OnInit {
     this.transaction = this.navParams.get('trans');
     console.log(this.transaction);
 
-    this.giftService.getGift(this.transaction.related_guid).subscribe(data => {
-      this.gift = data;
-      console.log(this.gift);
 
-    })
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.giftService.getGift(this.transaction.related_guid).subscribe(
+      data => {
+        this.gift = data;
+      },
+      err => {
+        this.loadData(--retry)
+      })
+  }
   convertDate(time) {
     return new Date(time * 1000);
   }

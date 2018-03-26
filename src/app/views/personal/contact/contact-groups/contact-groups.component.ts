@@ -1,3 +1,4 @@
+import { CustomService } from './../../../../services/custom.service';
 import { AddGroupComponent } from './../../../../components/add-group/add-group.component';
 import { Group } from './../../../../api/models/group';
 import { User } from './../../../../api/models/user';
@@ -23,7 +24,9 @@ export class ContactGroupsComponent implements OnInit {
     public messagesService: MessagesService,
     public nav: NavController,
     public appCtrl: App,
-    public groupService: GroupService) {
+    public groupService: GroupService,
+    private customService: CustomService
+  ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
 
   }
@@ -32,14 +35,18 @@ export class ContactGroupsComponent implements OnInit {
 
   }
 
-  loadData() {
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
       this.groups = data.groups;
       this.users = data.owners;
-    })
+    }, err => this.loadData(--retry))
   }
   ngOnInit() {
-    this.loadData();
+    this.loadData(5);
   }
 
   getOwner(userGuid) {
@@ -49,7 +56,7 @@ export class ContactGroupsComponent implements OnInit {
   reloadCallback = (_params) => {
     return new Promise((resolve, reject) => {
       if (_params.type = 'reload') {
-        this.loadData();
+        this.loadData(5);
       } else if (_params.type == 'remove') {
         this.groups = this.groups.filter(e => e.guid != _params.group.guid)
       }

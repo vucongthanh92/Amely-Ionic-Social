@@ -35,14 +35,23 @@ export class OffersItemDetailComponent implements OnInit {
   ionViewDidEnter() {
     this.cOffer = this.navParams.get('cOffer');
     if (this.cOffer) {
-      this.offersService.getOffer(this.cOffer.offer.guid).subscribe(data => {
-        this.offer = data;
-        this.setupData();
-      })
+      this.getOffer(5);
     } else {
       this.offer = this.navParams.get('param');
       this.setupData();
     }
+  }
+
+  getOffer(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      this.nav.pop();
+      return;
+    }
+    this.offersService.getOffer(this.cOffer.offer.guid).subscribe(data => {
+      this.offer = data;
+      this.setupData();
+    }, err => this.getOffer(--retry))
   }
 
   setupData() {

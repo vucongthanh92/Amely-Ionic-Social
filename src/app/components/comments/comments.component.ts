@@ -28,14 +28,25 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
-      if (data.comments instanceof Array) {
-        this.comments = data.comments;
-        this.users = data.users;
-      }
-    })
+    this.loadData(5);
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(
+      data => {
+        if (data.comments instanceof Array) {
+          this.comments = data.comments;
+          this.users = data.users;
+        }
+      }
+      , err => {
+        this.loadData(--retry)
+      })
+  }
   checkUserCurrent(owner_guid) {
     return this.user_current.guid == owner_guid;
   }
@@ -64,7 +75,7 @@ export class CommentsComponent implements OnInit {
   onSend() {
     if (this.content != '') {
       let contentTmp = this.content;
-      let images= [this.image]
+      let images = [this.image]
       this.feed_service.putComment(this.feed_guid, this.content, images).subscribe(data => {
         if (data.status) {
           this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };

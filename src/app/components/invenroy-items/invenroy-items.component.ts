@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { Item } from './../../api/models/item';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController, NavParams } from 'ionic-angular';
@@ -18,7 +19,7 @@ export class InvenroyItemsComponent implements OnInit {
   private is_reload_before_page = false;
   private callback: any;
 
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService) {
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService, private customService: CustomService) {
     this.ownerGuid = this.navParams.get('ownerGuid');
     this.itemType = this.navParams.get('itemType');
     this.inventoryType = this.navParams.get('inventoryType');
@@ -31,22 +32,39 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.loadData(5);
+
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     if (this.itemType === 'all') {
-      this.inventoryService.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
-        if (data instanceof Array) {
-          this.inventoriesItem = data;
-        } else {
-          this.inventoriesItem = [];
-        }
-      })
+      this.inventoryService.getInventory(this.ownerGuid, this.inventoryType).subscribe(
+        data => {
+          if (data instanceof Array) {
+            this.inventoriesItem = data;
+          } else {
+            this.inventoriesItem = [];
+          }
+        },
+        err => {
+          this.loadData(--retry)
+        })
     } else {
-      this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(data => {
-        if (data instanceof Array) {
-          this.inventoriesItem = data;
-        } else {
-          this.inventoriesItem = [];
-        }
-      })
+      this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(
+        data => {
+          if (data instanceof Array) {
+            this.inventoriesItem = data;
+          } else {
+            this.inventoriesItem = [];
+          }
+        },
+        err => {
+          this.loadData(--retry)
+        })
     }
   }
 

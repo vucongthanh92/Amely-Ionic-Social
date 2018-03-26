@@ -1,3 +1,4 @@
+import { CustomService } from './../../../../services/custom.service';
 import { EventComponent } from './../../../../components/event/event.component';
 import { User } from './../../../../api/models/user';
 import { Event } from './../../../../api/models/event';
@@ -12,16 +13,23 @@ import { App } from 'ionic-angular';
 export class EventsGuestComponent implements OnInit {
   public events: Array<Event>;
   public users: Array<User>;
-  constructor(private eventsService: EventsService, private app: App) { }
+  constructor(private eventsService: EventsService, private app: App, private customService: CustomService) { }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.eventsService.getEvents(0, 9999, 'guest').subscribe(data => {
       if (data.events instanceof Array) {
         this.events = data.events;
       }
       this.users = data.users;
-
-    })
+    }, err => this.loadData(--retry))
   }
 
   getDateCreate(time: number) {

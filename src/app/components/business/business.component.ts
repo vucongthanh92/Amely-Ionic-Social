@@ -21,10 +21,22 @@ export class BusinessComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getBusinessPage(this.business_guid).subscribe(data => {
-      this.page = data;
-      this.is_owner = this.customService.user_current.guid == data.owner.guid;      
-    })
+    this.loadData(5);
+
+  }
+  loadData(retry) {
+    if (retry == 0) {
+      alert("Kết nối máy chủ thất bại");
+      return;
+    }
+    this.service.getBusinessPage(this.business_guid).subscribe(
+      data => {
+        this.page = data;
+        this.is_owner = this.customService.user_current.guid == data.owner.guid;
+      },
+      err => {
+        this.loadData(--retry)
+      })
   }
 
   likePage(isLike: boolean) {

@@ -1,14 +1,16 @@
+import { CustomService } from './../../../services/custom.service';
 import { EventsService } from './../../../services/events.service';
 import { Component, OnInit } from '@angular/core'; ``
 import { NavParams } from 'ionic-angular';
 import { Event } from '../../../api/models';
+
 @Component({
   selector: 'app-event-menu',
   templateUrl: './event-menu.component.html'
 })
 export class EventMenuComponent implements OnInit {
   private event: Event;
-  constructor(private navParams: NavParams, public eventSerive: EventsService) {
+  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService) {
     this.event = this.navParams.get('event');
   }
 
@@ -25,14 +27,17 @@ export class EventMenuComponent implements OnInit {
     this.eventSerive.publicEvent(this.event.guid).subscribe(data => {
       if (data.status) {
         this.eventSerive.publish = 2;
-      }
-    })
+      } else this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+    },
+      err => {
+        this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+      })
   }
   closeOpenEvent() {
 
     // if (this.event) {
     //   console.log(this.event);
-      
+
     // }
     if (this.eventSerive.publish == 1 || this.eventSerive.publish == 2) {
       // close

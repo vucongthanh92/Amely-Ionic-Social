@@ -43,7 +43,10 @@ export class ChosenItemComponent implements OnInit {
             this.inventoriesItem = this.inventoriesItem.concat(data);
           }
         }
-      });
+      }
+    ,err=>{
+      this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge:0 })
+    });
     })
   }
 

@@ -21,15 +21,22 @@ export class DepositPaymentOptionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData(5)
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      this.nav.pop();
+      return;
+    }
     this.walletService.confirmOptionDeposit(this.paymentMethod, this.amount).subscribe(data => {
-      console.log(data);
       if (data.bankcode) {
         if (data.bankcode.options)
           this.options = data.bankcode.options;
       }
-    })
+    }, err => this.loadData(--retry))
   }
-
   changePage() {
 
     if (this.paymentMethod == 'ngl/atm' || this.paymentMethod == 'ngl/creditcard') {
@@ -52,7 +59,7 @@ export class DepositPaymentOptionComponent implements OnInit {
 
     this.walletService.deposit(this.paymentMethod, this.option_selected, this.amount).subscribe(data => {
       console.log(data);
-      
+
       const browser = this.iab.create(data.url);
       browser.on('loadstop').subscribe(data => {
         this.nav.popToRoot();

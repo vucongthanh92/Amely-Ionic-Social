@@ -1,3 +1,4 @@
+import { CustomService } from './../../../../services/custom.service';
 import { OffersItemDetailComponent } from './../offers-item-detail/offers-item-detail.component';
 import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,17 +11,25 @@ import { App } from 'ionic-angular';
 })
 export class OffersPendingComponent implements OnInit {
   counterOffers: Array<CounterOffer> = [];
-  constructor(private offerService: OffersService, private app: App) { }
+  constructor(private offerService: OffersService, private app: App, private customService: CustomService) { }
 
   ngOnInit() {
   }
 
   ionViewDidEnter() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.offerService.getCounterOffers(0, 9999).subscribe(data => {
       if (data instanceof Array) {
         this.counterOffers = data;
       }
-    });
+    }, err => this.loadData(--retry));
   }
 
   getTimeString(time: number) {

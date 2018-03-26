@@ -24,11 +24,22 @@ export class GiftDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.giftService.getGift(this.gift_id).subscribe(data => {
-      this.gift = data;
-    })
+    this.loadData(5);
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.giftService.getGift(this.gift_id).subscribe(
+      data => {
+        this.gift = data;
+      },
+      err => {
+        this.loadData(--retry);
+      })
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -36,8 +47,8 @@ export class GiftDetailComponent implements OnInit {
     this.messageService.acceptGift(this.customService.user_current.username, this.gift_id);
     this.customService.notifications = this.customService.notifications.filter((e) =>
       !(e.time_created == this.notify.time_created && this.notify.subject_guid == e.subject_guid));
-    this.notify.notification_type ='gift:accept';
-    this.customService.notifications.unshift(this.notify)    
+    this.notify.notification_type = 'gift:accept';
+    this.customService.notifications.unshift(this.notify)
     this.customService.toastMessage('Đã đồng ý nhận quà', 'bottom', 2000);
     this.viewCtrl.dismiss();
   }
@@ -49,6 +60,6 @@ export class GiftDetailComponent implements OnInit {
     this.customService.notifications = this.customService.notifications.filter((e) =>
       !(e.time_created == this.notify.time_created && this.notify.subject_guid == e.subject_guid));
     this.notify.notification_type = 'gift:reject';
-    this.customService.notifications.unshift(this.notify)      
+    this.customService.notifications.unshift(this.notify)
   }
 }

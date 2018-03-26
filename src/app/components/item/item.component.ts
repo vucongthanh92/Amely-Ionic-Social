@@ -34,15 +34,26 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inventoriesService.getItemInventory(this.itemGuid).subscribe(data => {
-      this.item = data;
-      this.product = data.product_snapshot;
-      this.shop = data.product_snapshot.shop;
-      this.is_remove_item = this.item.stored_expried || this.item.used;
-
-    })
+    this.loadData(5)
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
+      data => {
+        this.item = data;
+        this.product = data.product_snapshot;
+        this.shop = data.product_snapshot.shop;
+        this.is_remove_item = this.item.stored_expried || this.item.used;
+
+      },
+      err => {
+        this.loadData(--retry)
+      })
+  }
   createCode() {
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {

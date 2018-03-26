@@ -136,7 +136,6 @@ export class AddFeedComponent implements OnInit {
 
       this.feedService.putFeed(this.content, friends, this.location, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
-        console.log(data);
 
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);

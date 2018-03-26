@@ -9,7 +9,7 @@
       <img id="iconMood" src="{{mood.image}}">
     </ion-col>
     <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-
+    <p class="feed_date" *ngIf="location">{{location}}</p>
     <ion-col class="feed_event" col-2>
       <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
     </ion-col>

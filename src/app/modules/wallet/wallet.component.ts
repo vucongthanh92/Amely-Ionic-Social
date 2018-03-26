@@ -34,12 +34,21 @@ export class WalletComponent implements OnInit {
 
 
   ngOnInit() {
-    this.inventoryService.getWallet().subscribe(data => {
-      this.wallet = data;
-    });
+    this.loadData(5)
     this.customService.getTransactions('wallet').subscribe(data => {
       this.transactions = data;
     });
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      this.nav.pop();
+      return;
+    }
+    this.inventoryService.getWallet().subscribe(data => {
+      this.wallet = data;
+    }, err => this.loadData(--retry));
   }
 
   formatCurrency(amount: string, currency: string) {
@@ -72,7 +81,7 @@ export class WalletComponent implements OnInit {
         this.paymentService.items.to_guid = data.to_guid;
         this.paymentService.param_create_order.to_guid = data.to_guid;
         this.loading.dismiss();
-        this.customService.toastMessage('quet ok','bottom',2000)
+        this.customService.toastMessage('quet ok', 'bottom', 2000)
         this.appCtrl.getRootNav().push(PaymentItemsComponent);
       })
     }, (err) => {

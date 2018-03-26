@@ -24,31 +24,48 @@ export class FeedsComponent implements OnInit {
   moods: Mood[];
   shares: any;
   offset = 0;
+
   private isHasData: boolean;
   constructor(
     private customService: CustomService,
     private feedsService: FeedsService,
     private appCtrl: App,
   ) { }
-  someMethod(obj) {   
+  someMethod(obj) {
     if (obj.type == 'delete') {
       this.posts = this.posts.filter(e => e.guid != obj.feedGuid);
     }
   }
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
+    this.refreshView(5);
 
-    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-      if (data.posts) {
-        this.offset = this.offset + data.posts.length;
-        this.posts = data.posts;
-        this.users = data.users;
-        this.shares = data.shares;
-        this.isHasData = true;
-      } else {
-        this.isHasData = false;
+  }
+
+  refreshView(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+
+    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
+      data => {
+        if (data.posts) {
+          this.offset = this.offset + data.posts.length;
+          this.posts = data.posts;
+          this.users = data.users;
+          this.shares = data.shares;
+          this.isHasData = true;
+        } else {
+          this.isHasData = false;
+        }
+      },
+      err => {
+        console.log(err);
+        this.refreshView(--retry);
+
       }
-    });
+    );
   }
 
   doInfinite(infiniteScroll) {

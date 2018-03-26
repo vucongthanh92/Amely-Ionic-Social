@@ -1,3 +1,4 @@
+import { CustomService } from './../../../services/custom.service';
 import { EventComponent } from './../../../components/event/event.component';
 import { ProductComponent } from './../../../components/product/product.component';
 import { GroupComponent } from './../../../components/group/group.component';
@@ -17,13 +18,21 @@ import { App, NavController } from 'ionic-angular';
 export class ShopsComponent implements OnInit {
 
   banners: Array<Banner>
-  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private iab: InAppBrowser) { }
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private iab: InAppBrowser, private customService: CustomService) { }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.shopService.getBanners().subscribe(data => {
       this.banners = data;
       this.banners = this.banners.filter(e => !(e.type == null && e.link == ''))
-    })
+    }, err => this.loadData(--retry))
   }
 
   openBanner(banner: Banner) {

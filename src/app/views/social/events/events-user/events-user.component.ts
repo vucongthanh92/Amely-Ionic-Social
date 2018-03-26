@@ -1,3 +1,4 @@
+import { CustomService } from './../../../../services/custom.service';
 import { EventComponent } from './../../../../components/event/event.component';
 import { User } from './../../../../api/models/user';
 import { Event } from './../../../../api/models/event';
@@ -15,19 +16,24 @@ export class EventsUserComponent implements OnInit {
   public users: Array<User>;
   constructor(
     private app: App,
-    private eventsService: EventsService) { }
+    private eventsService: EventsService,
+    private customService: CustomService) { }
 
   ngOnInit() {
-    this.loadEvent();
+    this.loadEvent(5);
   }
 
-  loadEvent() {
+  loadEvent(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.eventsService.getEvents(0, 9999, 'member').subscribe(data => {
       if (data.events instanceof Array) {
         this.events = data.events;
       }
       this.users = data.users;
-    })
+    }, err => this.loadEvent(--retry))
   }
 
   getDateCreate(time: number) {
@@ -39,7 +45,7 @@ export class EventsUserComponent implements OnInit {
   }
 
   goToPage(event_guid) {
-    this.app.getRootNav().push(EventComponent, { is_user: true, event_guid: event_guid});
+    this.app.getRootNav().push(EventComponent, { is_user: true, event_guid: event_guid });
   }
   createEvent() {
     this.app.getRootNav().push(CreateEventComponent, { callback: this.myCallbackFunction });
@@ -47,7 +53,7 @@ export class EventsUserComponent implements OnInit {
 
   myCallbackFunction = () => {
     return new Promise((resolve, reject) => {
-      this.loadEvent();
+      this.loadEvent(5);
       resolve();
     });
   }

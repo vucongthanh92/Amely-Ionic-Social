@@ -37,6 +37,8 @@ export class ChangePasswordComponent implements OnInit {
        }else{
          this.customService.toastMessage('Thất bại','bottom',2000);
        }
+     },err=>{
+       alert('Không thể kết nối máy chủ, vui lòng thử lại.')
      })
     }
   }

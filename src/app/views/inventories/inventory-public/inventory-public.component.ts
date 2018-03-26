@@ -1,3 +1,4 @@
+import { CustomService } from './../../../services/custom.service';
 import { Event } from './../../../api/models/event';
 import { Group } from './../../../api/models/group';
 import { User } from './../../../api/models/user';
@@ -18,11 +19,19 @@ export class InventoryPublicComponent implements OnInit {
   public groups: Array<Group> = [];
   public userCurrent: User;
 
-  constructor(public nav: NavController, public appCtrl: App, private groupService: GroupService, private eventsService: EventsService) {
+  constructor(public nav: NavController, public appCtrl: App, private groupService: GroupService, private eventsService: EventsService, private customService: CustomService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
   ngOnInit() {
+    this.loadData(15);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
       if (data.groups) {
         this.groups = data.groups.filter(e => e.has_inventory === '2')
@@ -30,7 +39,7 @@ export class InventoryPublicComponent implements OnInit {
       if (data.owners) {
         this.usersGroup = data.owners;
       }
-    });
+    }, err => this.loadData(--retry));
 
     this.eventsService.getEvents(0, 9999, 'all').subscribe(data => {
       if (data.events) {
@@ -40,7 +49,7 @@ export class InventoryPublicComponent implements OnInit {
       if (data.users) {
         this.usersEvent = data.users;
       }
-    });
+    }, err => this.loadData(--retry));
   }
 
   getFullnameAdmin(guid, type) {
@@ -71,9 +80,9 @@ export class InventoryPublicComponent implements OnInit {
       case 'gift':
         if (type == 'event') {
           obj.owner = this.usersEvent[obj.owner_guid];
-        }else if (type=="group") {
+        } else if (type == "group") {
           obj.owner = this.usersGroup[obj.owner_guid];
-          
+
         }
         this.appCtrl.getRootNav().push(InventoryComponent, { type: type, ownerGuid: guid, obj: obj });
         break;

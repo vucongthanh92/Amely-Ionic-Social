@@ -3,6 +3,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { UserComponent } from '../user/user.component';
+import { CustomService } from '../../services/custom.service';
 
 @Component({
   selector: 'app-friends',
@@ -19,11 +20,20 @@ export class FriendsComponent implements OnInit {
   public isUserCurrent: boolean;
   public friendsUserCurrent: Array<User> = [];
   constructor(public nav: NavController, public appCtrl: App,
-    private userService: UserService) {
+    private userService: UserService, private customService: CustomService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    this.userService.getFriends(this.userCurrent.guid).subscribe(data => this.friendsUserCurrent = data);
+
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.userService.getFriends(this.userCurrent.guid).subscribe(
+      data => { this.friendsUserCurrent = data },
+      err => { this.loadData(--retry) });
+  }
   ngOnInit() {
     switch (this.from) {
       case 'user':

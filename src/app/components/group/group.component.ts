@@ -30,7 +30,21 @@ export class GroupComponent implements OnInit {
 
   loadData(g: Group) {
     if (!g) {
-      this.groupService.getGroup(this.groupGuid).subscribe(data => {
+      this.getGroup(5);
+    } else {
+      this.group = g;
+      this.is_admin = this.group.owner_guid == this.customService.user_current.guid;
+      this.group.owner = this.group.members.find(e => e.guid == this.group.owner_guid);
+    }
+  }
+
+  getGroup(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.groupService.getGroup(this.groupGuid).subscribe(
+      data => {
         this.groups.push(data);
         this.group = data;
         this.dateCreated = new Date(this.group.time_created * 1000);
@@ -38,12 +52,10 @@ export class GroupComponent implements OnInit {
         if (!this.group.voted) this.showVoteAdmin();
         this.group.owner = this.group.members.find(e => e.guid == this.group.owner_guid);
 
+      },
+      err => {
+        this.getGroup(--retry)
       })
-    } else {
-      this.group = g;
-      this.is_admin = this.group.owner_guid == this.customService.user_current.guid;
-      this.group.owner = this.group.members.find(e => e.guid == this.group.owner_guid);
-    }
   }
   ngOnInit() {
   }

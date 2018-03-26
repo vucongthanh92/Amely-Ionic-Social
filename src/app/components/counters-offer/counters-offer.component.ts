@@ -24,13 +24,22 @@ export class CountersOfferComponent implements OnInit {
     private navParams: NavParams
   ) {
     this.offer = this.navParams.get('param');
-    this.offersService.getOffer(this.offer.guid).subscribe(data => {
-      this.counters = data.counter_offers;
-      
-
-    });
+    this.loadData(5);
   }
 
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.offersService.getOffer(this.offer.guid).subscribe(
+      data => {
+        this.counters = data.counter_offers;
+      },
+      err => {
+        this.loadData(--retry)
+      });
+  }
   ngOnInit() {
   }
 
@@ -78,7 +87,7 @@ export class CountersOfferComponent implements OnInit {
           handler: () => {
             let callback = this.navParams.get("callback");
 
-            
+
             switch (key) {
               case 0:
                 this.offersService.rejectCounter(counter_guid).subscribe(data => {

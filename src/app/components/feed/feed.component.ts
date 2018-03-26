@@ -23,6 +23,7 @@ export class FeedComponent {
   uploaded = new EventEmitter<string>();
 
   descriptionPost: string;
+  location: string;
   isShowMoreTag: any;
   isHideMoreTag: any;
   moodLocal: any;
@@ -47,16 +48,6 @@ export class FeedComponent {
 
 
   ngOnInit() {
-    // console.log(this.mood);
-    // if (this.mood) {
-    //   this.moodIcon = this.moodLocal[this.mood.guid]
-    // }
-
-    // if (this.post.) {
-
-    // }
-    // this.customService.promiseCheckPassword()
-
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
 
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
@@ -68,13 +59,11 @@ export class FeedComponent {
     if (this.post) {
       let description = JSON.parse(this.post.description);
 
-      // this.post.time_created = new Date(this.post.time_created * 1000);
-
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
       }
       this.descriptionPost = description.post;
-
+      this.location = description.location;
       if (this.isShowMoreContent) {
         if (this.descriptionPost.length > 1000) {
           this.descriptionPost = this.descriptionPost.substring(0, 1000) + " ...";

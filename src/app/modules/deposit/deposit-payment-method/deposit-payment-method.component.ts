@@ -17,16 +17,26 @@ export class DepositPaymentMethodComponent implements OnInit {
   private min: number;
   private max: number;
   wallet:Wallet;
+  
   constructor(private navParams: NavParams, private nav: NavController, private walletService: WalletsService, private customService: CustomService) { 
     this.wallet = this.navParams.get('wallet')
   }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.walletService.confirmDeposit().subscribe(data => {
       this.payment_methods = (<any>Object).values(data.payment_method);
       this.limit = data.limit;
-    })
+    }, err => this.loadData(--retry))
   }
+
   changePage() {
     if (!this.payment_selected) {
       this.customService.toastMessage('Chưa chọn phương thức thanh toán', 'bottom', 2000)

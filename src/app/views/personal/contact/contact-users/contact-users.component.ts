@@ -1,3 +1,4 @@
+import { CustomService } from './../../../../services/custom.service';
 import { MessagesService } from './../../../../services/messages.service';
 import { User } from './../../../../api/models/user';
 import { PersonalService } from './../../personal.service';
@@ -22,13 +23,14 @@ export class ContactUsersComponent implements OnInit {
     public nav: NavController,
     public appCtrl: App,
     public modalCtrl: ModalController,
+    private customService: CustomService,
     private personalService: PersonalService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
   }
 
   ngOnInit() {
-    this.getFriends();
+    this.getFriends(5);
   }
 
   goToPage(friend: any) {
@@ -41,7 +43,7 @@ export class ContactUsersComponent implements OnInit {
     let profileModal = this.modalCtrl.create(AddFriendComponent, { position_selected: 2 });
     profileModal.present();
     profileModal.onDidDismiss(() => {
-      this.getFriends();
+      this.getFriends(5);
     })
   }
 
@@ -80,10 +82,14 @@ export class ContactUsersComponent implements OnInit {
     });
   }
 
-  getFriends() {
+  getFriends(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.personalService.getFriends(this.userCurrent.guid).subscribe(data => {
       this.friends = data;
-    });
+    }, err => this.getFriends(--retry));
   }
 
   getThought(thought: string) {

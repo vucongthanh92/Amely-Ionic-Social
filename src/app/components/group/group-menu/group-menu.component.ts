@@ -87,7 +87,6 @@ export class GroupMenuComponent implements OnInit {
           text: 'Đồng ý',
           handler: () => {
             this.groupSerive.outGroup(this.group.guid).subscribe(data => {
-
               if (data.status) {
                 this.customService.toastMessage('Rời nhóm thành công', 'bottom', 2000);
                 this.reloadCallback({ type: 'remove', group: this.group }).then(() => {

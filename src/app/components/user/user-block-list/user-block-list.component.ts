@@ -13,13 +13,21 @@ export class UserBlockListComponent implements OnInit {
   constructor(private userService: UserService, private customService: CustomService, private alertCtrl: AlertController, public viewCtrl: ViewController) { }
 
   ngOnInit() {
+    this.loadData(5);
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.userService.blockList().subscribe(data => {
       this.blockList = data;
-    })
+    }, err => this.loadData(--retry))
   }
   dismiss() {
     console.log(2134123);
-    
+
     this.viewCtrl.dismiss();
   }
 

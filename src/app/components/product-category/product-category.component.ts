@@ -1,9 +1,8 @@
 import { CustomService } from './../../services/custom.service';
 import { ShoppingsService } from './../../services/shoppings.service';
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Category } from '../../api/models/category';
-import { App } from 'ionic-angular';
+import { App, NavParams } from 'ionic-angular';
 import { Product } from '../../api/models/product';
 
 @Component({
@@ -33,12 +32,21 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadData(5)
+  }
+
+  loadData(retry) {
+    if (retry == 0) {
+      this.custom_service.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
       if (data.products instanceof Array) {
         this.products = data.products;
       }
-    });
+    }, err => this.loadData(--retry));
   }
+
   goToSubCat(category) {
     this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories });
   }

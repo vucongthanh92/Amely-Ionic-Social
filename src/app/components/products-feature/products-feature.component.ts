@@ -16,24 +16,39 @@ export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
   @Input('shopGuid') shopGuid;
   @Input('is_feature') is_feature: boolean;
-  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private shoppingSerivce: ShoppingsService, private customSerice: CustomService) { }
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private shoppingSerivce: ShoppingsService, private customService: CustomService) { }
 
   ngOnInit() {
     if (this.is_feature) {
-      this.shoppingSerivce.getProductsFeature().subscribe(data => {
-        this.productsMostSold = data;
-      });
+      this.getProductsFeature(5);
     } else if (this.shopGuid != undefined) {
       this.initShopProductFeatue();
     } else {
-      this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
-        if (data instanceof Array) {
-          this.productsMostSold = data;
-        }
-      })
+      this.getMostSold(5);
     }
   }
 
+  getProductsFeature(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.shoppingSerivce.getProductsFeature().subscribe(data => {
+      this.productsMostSold = data;
+    }, err => this.getProductsFeature(--retry));
+  }
+
+  getMostSold(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
+      if (data instanceof Array) {
+        this.productsMostSold = data;
+      }
+    }, err => this.getMostSold(--retry))
+  }
   initShopProductFeatue() {
     // "default" "feature"
     this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
@@ -44,7 +59,7 @@ export class ProductsFeatureComponent implements OnInit {
   }
 
   formatCurrency(price, currency: string) {
-    return this.customSerice.formatCurrency(price, currency);
+    return this.customService.formatCurrency(price, currency);
   }
 
   goToPage(value, product: Product) {

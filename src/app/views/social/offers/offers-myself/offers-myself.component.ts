@@ -24,11 +24,19 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.getOffers(5);
+  }
+
+  getOffers(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
       if (data instanceof Array) {
         this.offers = data;
       }
-    })
+    }, err => this.getOffers(--retry))
   }
 
   changePage(offer) {
@@ -44,7 +52,7 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   goToPage() {
-    this.appCtrl.getRootNav().push(CreateOfferComponent, { callback: this.reloadCallback});
+    this.appCtrl.getRootNav().push(CreateOfferComponent, { callback: this.reloadCallback });
   }
 
   myCallbackFunction = (_params) => {
@@ -55,13 +63,21 @@ export class OffersMyselfComponent implements OnInit {
   }
   reloadCallback = () => {
     return new Promise((resolve, reject) => {
-      this.offersService.getOffers(0, 9999, null).subscribe(data => {
-        if (data instanceof Array) {
-          this.offers = data;
-        }
-      })
+      this.reloadOffers(5);
       resolve();
     });
+  }
+
+  reloadOffers(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.offersService.getOffers(0, 9999, null).subscribe(data => {
+      if (data instanceof Array) {
+        this.offers = data;
+      }
+    }, err => this.getOffers(--retry))
   }
   openMenu(e, o: Offer) {
     let prompt = this.alertCtrl.create({

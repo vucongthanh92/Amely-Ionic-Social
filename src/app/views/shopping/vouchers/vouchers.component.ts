@@ -20,18 +20,26 @@ export class VouchersComponent implements OnInit {
   constructor(public nav: NavController, public appCtrl: App, private shoppingsService: ShoppingsService, public customService: CustomService) { }
 
   ngOnInit() {
-    this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      this.vouchers = data;
-    });
-    this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
-      this.categories = data;
-    })
+    this.loadData(15);
   }
 
-  goToPage(value, voucher: Product,category:Category) {
+  loadData(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
+      this.vouchers = data;
+    }, err => this.loadData(--retry));
+    
+    this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
+      this.categories = data;
+    }, err => this.loadData(--retry))
+  }
+  goToPage(value, voucher: Product, category: Category) {
     switch (value) {
       case 'category':
-          this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
+        this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
         break;
       case 'product':
         this.appCtrl.getRootNav().push(ProductComponent, { guid: voucher.guid });
