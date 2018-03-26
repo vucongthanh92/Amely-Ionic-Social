@@ -26,7 +26,7 @@ export class CreateOfferComponent implements OnInit {
   target: string;
   duration: number;
   limit_counter: number;
-  giveaway_approval: any;
+  giveaway_approval: boolean = true;
 
   limit_counter_select: any;
   offer_type_select: any;
@@ -45,7 +45,7 @@ export class CreateOfferComponent implements OnInit {
   ) {
     this.counter = this.params.get('counter');
     this.offer_target = this.params.get('param');
-    
+
     this.offer_type_select = {
       title: "Hình thức trao đổi"
     }
@@ -64,8 +64,9 @@ export class CreateOfferComponent implements OnInit {
   }
 
   offer() {
+
     if (this.counter) {
-      let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity};
+      let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
       console.log(obj);
       this.offerService.createCounterOffer(obj).subscribe(data => {
         if (data.status) {
@@ -75,37 +76,51 @@ export class CreateOfferComponent implements OnInit {
         }
       });
     } else {
-      let obj: Param_create_offer = {};
-      obj.offer_type = this.offer_type;
-      obj.duration = this.duration;
-      obj.target = this.target;
-      obj.limit_counter = this.limit_counter;
-      obj.giveaway_approval = this.giveaway_approval;
-      obj.random_expiration = false;
-      obj.item_guid = this.item.guid;
-      obj.quantity = this.item.quantity;
-      obj.note = this.description;
-      obj.location_lat = "100";
-      obj.location_lng = "100";
-  
-      this.offerService.createOffer(obj).subscribe(data => {
-        if (data.offer_guid) {
-          let owner_from = data.offer_guid;
-          this.geolocation.getCurrentPosition().then((resp) => {
-            let lat = resp.coords.latitude;
-            let lng = resp.coords.longitude;
-            let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
-            this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
-          });
-          let callback = this.params.get("callback");
-          callback("test").then(() => {
-            this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
-            this.nav.pop();
-          });
-        } else {
-          this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
-        }
-      })
+      if (!this.offer_type) {
+        this.customService.toastMessage('Chưa chọn hình thức trao đổi', 'bottom', 3000);
+      } else if (!this.target) {
+        this.customService.toastMessage('Chưa chọn đối tượng trao đổi', 'bottom', 3000);
+      } else if (!this.duration) {
+        this.customService.toastMessage('Chưa chọn thời gian trao đổi', 'bottom', 3000);
+      } else if (this.offer_type =='random' && !this.limit_counter) {
+        this.customService.toastMessage('Chưa chọn giới hạn thành viên tham gia', 'bottom', 3000);
+      } else if (!this.item) {
+        this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
+      }else{
+        let obj: Param_create_offer = {};
+        obj.offer_type = this.offer_type;
+        obj.duration = this.duration;
+        obj.target = this.target;
+        obj.limit_counter = this.limit_counter;
+        obj.giveaway_approval = this.giveaway_approval;
+        obj.random_expiration = false;
+        obj.item_guid = this.item.guid;
+        obj.quantity = this.item.quantity;
+        obj.note = this.description;
+        obj.location_lat = "100";
+        obj.location_lng = "100";
+
+        console.log(obj);
+
+        this.offerService.createOffer(obj).subscribe(data => {
+          if (data.offer_guid) {
+            let owner_from = data.offer_guid;
+            this.geolocation.getCurrentPosition().then((resp) => {
+              let lat = resp.coords.latitude;
+              let lng = resp.coords.longitude;
+              let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
+              this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
+            });
+            let callback = this.params.get("callback");
+            callback("test").then(() => {
+              this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
+              this.nav.pop();
+            });
+          } else {
+            this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
+          }
+        })
+      }      
     }
   }
 

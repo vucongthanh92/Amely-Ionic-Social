@@ -14,79 +14,79 @@
     <ion-grid>
       <div *ngIf="!counter">
 
-      
-      <ion-row class="marginRow">
-        <ion-col col-4>
-          <div class="divSize">
-            <ion-label fixed>Hình thức</ion-label>
-          </div>
-        </ion-col>
-        <ion-col col-7>
-          <ion-select [(ngModel)]="offer_type" name="offer_type" placeholder="Chọn hình thức trao đổi" [selectOptions]="offer_type_select">
-            <ion-option value="normal">Trao đổi thông thường </ion-option>
-            <ion-option value="giveaway">Tặng quà miễn phí </ion-option>
-            <ion-option value="random">Trao đổi ngẫu nhiên </ion-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-icon class="iconSize" name="md-bulb"></ion-icon>
-        </ion-col>
-      </ion-row>
-      <ion-list radio-group *ngIf="offer_type == 'giveaway'" [(ngModel)]="giveaway_approval">
-        <ion-item>
-          <ion-label>Chờ duyệt trao đổi</ion-label>
-          <ion-toggle (ionChange)="isDisabled = !isDisabled"></ion-toggle>
-        </ion-item>
-      </ion-list>
-      <ion-row class="marginRow" *ngIf="offer_type == 'random'">
-        <ion-col col-4>
-          <div class="divSize">
-            <ion-label fixed>Số người tham gia</ion-label>
-          </div>
-        </ion-col>
-        <ion-col col-7>
-          <ion-select [(ngModel)]="limit_counter" name="limit_counter" placeholder="Số người tham gia" [selectOptions]="limit_counter_select">
-            <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}"> {{ number }} người</ion-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-icon class="iconSize" name="md-bulb"></ion-icon>
-        </ion-col>
-      </ion-row>
 
-      <ion-row class="marginRow">
-        <ion-col col-4>
-          <div class="divSize">
-            <ion-label fixed>Đối tượng</ion-label>
-          </div>
-        </ion-col>
-        <ion-col col-7>
-          <ion-select [(ngModel)]="target" name="target" placeholder="Chọn hình thức trao đổi" [selectOptions]="target_select">
-            <ion-option value="public">Người xung quanh bạn</ion-option>
-            <ion-option value="friends">Bạn bè trong danh bạ</ion-option>
-            <ion-option value="location">Xung quanh 1 địa điểm</ion-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-icon class="iconSize" name="md-person"></ion-icon>
-        </ion-col>
-      </ion-row>
+        <ion-row class="marginRow">
+          <ion-col col-4>
+            <div class="divSize">
+              <ion-label fixed>Hình thức</ion-label>
+            </div>
+          </ion-col>
+          <ion-col col-7>
+            <ion-select [(ngModel)]="offer_type" name="offer_type" placeholder="Chọn hình thức trao đổi" [selectOptions]="offer_type_select">
+              <ion-option value="normal">Trao đổi thông thường </ion-option>
+              <ion-option value="giveaway">Tặng quà miễn phí </ion-option>
+              <ion-option value="random">Trao đổi ngẫu nhiên </ion-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <ion-icon class="iconSize" name="md-bulb"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-list radio-group *ngIf="offer_type == 'giveaway'" [(ngModel)]="giveaway_approval">
+          <ion-item>
+            <ion-label>Chờ duyệt trao đổi</ion-label>
+            <ion-toggle [(ngModel)]='giveaway_approval'></ion-toggle>
+          </ion-item>
+        </ion-list>
+        <ion-row class="marginRow" *ngIf="offer_type == 'random'">
+          <ion-col col-4>
+            <div class="divSize">
+              <ion-label fixed>Số người tham gia</ion-label>
+            </div>
+          </ion-col>
+          <ion-col col-7>
+            <ion-select [(ngModel)]="limit_counter" name="limit_counter" placeholder="Số người tham gia" [selectOptions]="limit_counter_select">
+              <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}"> {{ number }} người</ion-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <ion-icon class="iconSize" name="md-bulb"></ion-icon>
+          </ion-col>
+        </ion-row>
 
-      <ion-row class="marginRow">
-        <ion-col col-4>
-          <div class="divSize">
-            <ion-label fixed>Thời gian</ion-label>
-          </div>
-        </ion-col>
-        <ion-col col-7>
-          <ion-select [(ngModel)]="duration" name="duration" placeholder="Thời gian hiệu lực" [selectOptions]="duration_select">
-            <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}">{{ number }} ngày</ion-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-icon class="iconSize" name="md-calendar"></ion-icon>
-        </ion-col>
-      </ion-row>
+        <ion-row class="marginRow">
+          <ion-col col-4>
+            <div class="divSize">
+              <ion-label fixed>Đối tượng</ion-label>
+            </div>
+          </ion-col>
+          <ion-col col-7>
+            <ion-select [(ngModel)]="target" name="target" placeholder="Chọn hình thức trao đổi" [selectOptions]="target_select">
+              <ion-option value="public">Người xung quanh bạn</ion-option>
+              <ion-option value="friends">Bạn bè trong danh bạ</ion-option>
+              <ion-option value="location">Xung quanh 1 địa điểm</ion-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <ion-icon class="iconSize" name="md-person"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="marginRow">
+          <ion-col col-4>
+            <div class="divSize">
+              <ion-label fixed>Thời gian</ion-label>
+            </div>
+          </ion-col>
+          <ion-col col-7>
+            <ion-select [(ngModel)]="duration" name="duration" placeholder="Thời gian hiệu lực" [selectOptions]="duration_select">
+              <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}">{{ number }} ngày</ion-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <ion-icon class="iconSize" name="md-calendar"></ion-icon>
+          </ion-col>
+        </ion-row>
       </div>
       <ion-row class="marginRow">
         <ion-col col-12>
