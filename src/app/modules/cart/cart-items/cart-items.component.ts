@@ -1,7 +1,7 @@
 import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, AlertController } from 'ionic-angular';
 import { PaymentItemsComponent } from '../../payment/payment-items/payment-items.component';
 import { ShoppingsService } from '../../../services/shoppings.service';
 
@@ -20,6 +20,7 @@ export class CartItemsComponent implements OnInit {
     private shoppingsService: ShoppingsService,
     private customService: CustomService,
     public nav: NavController, 
+    public alertCtrl: AlertController,
     public appCtrl: App) { }
 
   ngOnInit() {
@@ -51,8 +52,27 @@ export class CartItemsComponent implements OnInit {
   }
 
   remove(guid) {
-    this.customService.cart = this.items = this.items.filter(data => data.guid != guid);
-    this.update();
+    let alert = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: 'Bạn có muốn xóa sản phẩm khỏi giỏ hàng?',
+      buttons: [
+        {
+          text: 'Từ chối',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Chấp nhận',
+          handler: () => {
+            this.customService.cart = this.items = this.items.filter(data => data.guid != guid);
+            this.update();
+          }
+        }
+      ]
+    });
+    alert.present();
+   
   }
 
   update() {
@@ -75,6 +95,8 @@ export class CartItemsComponent implements OnInit {
         this.paymentService.items = data;
         this.appCtrl.getRootNav().push(PaymentItemsComponent);
       });
+    } else {
+      this.customService.toastMessage('Giỏ hàng đang trống, xin hãy chọn sản phẩm !', 'bottom', 3000);
     }
   }
 

@@ -71,7 +71,7 @@ export class CreateOfferComponent implements OnInit {
         if (data.status) {
           this.nav.pop();
         } else {
-          this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 5000);
+          this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
         }
       });
     } else {
@@ -99,10 +99,11 @@ export class CreateOfferComponent implements OnInit {
           });
           let callback = this.params.get("callback");
           callback("test").then(() => {
+            this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
             this.nav.pop();
           });
         } else {
-          this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 5000);
+          this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
         }
       })
     }

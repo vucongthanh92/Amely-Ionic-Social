@@ -1,6 +1,6 @@
 import { ProductCategoryComponent } from './../product-category/product-category.component';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
 import { ShoppingsService } from '../../services/shoppings.service';
 import { Product } from '../../api/models/product';
@@ -16,7 +16,9 @@ export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
   @Input('shopGuid') shopGuid;
   @Input('is_feature') is_feature: boolean;
-  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private shoppingSerivce: ShoppingsService, private customService: CustomService) { }
+
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, 
+    private shoppingSerivce: ShoppingsService, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     if (this.is_feature) {
@@ -63,13 +65,20 @@ export class ProductsFeatureComponent implements OnInit {
   }
 
   goToPage(value, product: Product) {
-    switch (value) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+    switch (value) {      
       case 'product':
+        loading.dismiss();      
         if (this.is_feature) this.shopService.clickAdv(product.advertise_guid).subscribe(data => {
         });
         this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       case 'all':
+        loading.dismiss();
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature' });
         break;
       default:
