@@ -10,7 +10,7 @@ export class DepositConfirmComponent implements OnInit {
   paymentMethod;
   amount;
   paymentOption;
-  constructor(private navParams: NavParams, private appCtrl: App, private nav: NavController, private walletService: WalletsService, private customService: CustomService) {
+  constructor(private navParams: NavParams) {
     this.paymentMethod = this.navParams.get('paymentMethod');
     this.amount = this.navParams.get('amount');
     this.paymentOption = this.navParams.get('paymentOption');

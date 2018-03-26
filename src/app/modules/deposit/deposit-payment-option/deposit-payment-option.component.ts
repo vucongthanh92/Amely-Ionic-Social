@@ -1,5 +1,3 @@
-import { Options } from './../../../api/models/options';
-import { DepositConfirmComponent } from './../deposit-confirm/deposit-confirm.component';
 import { Component, OnInit } from '@angular/core';
 import { NavParams, App, NavController } from 'ionic-angular';
 import { WalletsService } from '../../../services/wallets.service';
@@ -16,7 +14,7 @@ export class DepositPaymentOptionComponent implements OnInit {
   option_selected: string;
   paymentMethod: string;
   amount: string;
-  constructor(private navParams: NavParams, private appCtrl: App, private nav: NavController,
+  constructor(private navParams: NavParams, private nav: NavController,
     private walletService: WalletsService, private customService: CustomService, private iab: InAppBrowser) {
     this.paymentMethod = this.navParams.get('paymentMethod');
     this.amount = this.navParams.get('amount');

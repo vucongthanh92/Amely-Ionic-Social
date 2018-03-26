@@ -3,7 +3,7 @@ import { QrComponent } from './../../qr/qr.component';
 import { GroupService } from './../../../services/group.service';
 import { CustomService } from './../../../services/custom.service';
 import { NavParams, AlertController, NavController, App, ActionSheetController } from 'ionic-angular';
-import { Component, OnInit, group } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User, Group } from '../../../api/models';
 import { FirebaseService } from '../../../services/firebase.service';
 import { Camera } from '@ionic-native/camera';

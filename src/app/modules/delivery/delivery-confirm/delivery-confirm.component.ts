@@ -1,5 +1,4 @@
 import { CustomService } from './../../../services/custom.service';
-import { guid } from './../../../api/models/guid';
 import { InventoriesService } from './../../../services/inventories.service';
 import { DISTRICTS } from './../../../districts';
 import { WARDS } from './../../../wards';

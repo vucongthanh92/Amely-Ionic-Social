@@ -1,11 +1,9 @@
-import { guid } from './../../../api/models/guid';
 import { User } from './../../../api/models/user';
 import { Item } from './../../../api/models/item';
 import { InventoriesService } from './../../../services/inventories.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController, ModalController, NavParams } from 'ionic-angular';
 import { GiftItemDetailComponent } from '../gift-item-detail/gift-item-detail.component';
-import { GiftComponent } from '../gift.component';
 
 @Component({
   selector: 'app-choose-item',

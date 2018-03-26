@@ -2,7 +2,7 @@ import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
 import { ModalCounterOfferComponent } from './modal-counter-offer/modal-counter-offer.component';
 import { OffersService } from './../../services/offers.service';
-import { NavParams, ModalController, ItemSliding, Item, AlertController, NavController } from 'ionic-angular';
+import { NavParams, ModalController, ItemSliding, AlertController, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../api/models/counter-offer';
 

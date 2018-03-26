@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController, ModalController } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
 import { MessageComponent } from '../../../../components/message/message.component';
-import { AddGroupComponent } from '../../../../components/add-group/add-group.component';
 import { AddFriendComponent } from '../../../../components/add-friend/add-friend.component';
 
 @Component({

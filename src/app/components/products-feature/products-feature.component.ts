@@ -2,7 +2,6 @@ import { ProductCategoryComponent } from './../product-category/product-category
 import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { ProductComponent } from '../product/product.component';
-import { ProductAllComponent } from '../product-all/product-all.component';
 import { ShoppingsService } from '../../services/shoppings.service';
 import { Product } from '../../api/models/product';
 import { CustomService } from '../../services/custom.service';

@@ -1,9 +1,6 @@
 import { MapComponent } from './../map/map.component';
 import { FirebaseService } from './../../services/firebase.service';
-import { guid } from './../../api/models/guid';
 import { FeedsService } from './../../services/feeds.service';
-import { Mood } from './../../api/models/mood';
-import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../services/custom.service';
 import { User } from './../../api/models/user';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';

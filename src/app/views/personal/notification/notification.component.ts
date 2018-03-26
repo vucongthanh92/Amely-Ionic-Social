@@ -1,14 +1,13 @@
 import { OfferResultComponent } from './../../social/offers/offer-result/offer-result.component';
 import { FeedDetailComponent } from './../../../components/feed/feed-detail/feed-detail.component';
-import { FeedComponent } from './../../../components/feed/feed.component';
 import { FeedsService } from './../../../services/feeds.service';
 import { GiftDetailComponent } from './../../../components/gift/gift-detail/gift-detail.component';
 import { Notification } from './../../../api/models/notification';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController, App, ModalController, LoadingController } from 'ionic-angular';
+import { App, ModalController, LoadingController } from 'ionic-angular';
 import { AddFriendComponent } from '../../../components/add-friend/add-friend.component';
-import { Feed, User } from '../../../api/models';
+import { User } from '../../../api/models';
 
 @Component({
   selector: 'app-notification',
@@ -17,7 +16,7 @@ import { Feed, User } from '../../../api/models';
 export class NotificationComponent implements OnInit {
   loading: any;
 
-  constructor(public customService: CustomService, private nav: NavController, private appCtrl: App,
+  constructor(public customService: CustomService, private appCtrl: App,
     public modalCtrl: ModalController, private feedService: FeedsService, public loadingCtrl: LoadingController) {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'

@@ -43,9 +43,6 @@ export class OffersSearchComponent implements OnInit {
   }
 
   doRadio() {
-    let lat = Number(localStorage.getItem("lat"));
-    let lng = Number(localStorage.getItem("lng"));
-
     const alert = this.alertCtrl.create();
     alert.setTitle('Lightsaber color');
 

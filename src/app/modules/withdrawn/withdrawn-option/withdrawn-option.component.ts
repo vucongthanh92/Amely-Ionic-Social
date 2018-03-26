@@ -17,7 +17,7 @@ export class WithdrawnOptionComponent implements OnInit {
   account_name: string;
   bank_name: string;
   bank_branch_name: string;
-  constructor(private navParams: NavParams, private appCtrl: App, private customService: CustomService, private nav: NavController, private walletService: WalletsService) {
+  constructor(private navParams: NavParams, private customService: CustomService, private nav: NavController, private walletService: WalletsService) {
     this.paymentMethod = this.navParams.get('paymentMethod');
     this.amount = this.navParams.get('amount');
     console.log(this.paymentMethod);

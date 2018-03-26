@@ -1,7 +1,6 @@
 import { BusinessComponent } from './../business/business.component';
 import { EventComponent } from './../event/event.component';
 import { GroupComponent } from './../group/group.component';
-import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Event } from './../../api/models/event';
 import { Group } from './../../api/models/group';

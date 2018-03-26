@@ -30,7 +30,6 @@ export class FirebaseService {
   }
 
   updateFindableBy(username: string, value) {
-    const path = '/users/' + username
     this.afDatabase.database.ref('/users/' + username).update({ findable_by: value });
   }
 

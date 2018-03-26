@@ -1,7 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { DeliveryItemComponent } from './../../modules/delivery/delivery-item/delivery-item.component';
 import { CustomService } from './../../services/custom.service';
-import { InventoryGiftComponent } from './../inventory-gift/inventory-gift.component';
 import { Shop } from './../../api/models/shop';
 import { InventoriesService } from './../../services/inventories.service';
 import { Item } from './../../api/models/item';

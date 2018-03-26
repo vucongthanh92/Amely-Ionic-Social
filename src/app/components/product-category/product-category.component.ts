@@ -3,7 +3,7 @@ import { ShoppingsService } from './../../services/shoppings.service';
 import { Component, OnInit } from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Category } from '../../api/models/category';
-import { App, NavController } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { Product } from '../../api/models/product';
 
 @Component({
@@ -21,7 +21,7 @@ export class ProductCategoryComponent implements OnInit {
   private limit: number = 10;
   public title: string;
 
-  constructor(private navParams: NavParams, private nav: NavController, private appCtrl: App, private shopping_service: ShoppingsService, public custom_service: CustomService) {
+  constructor(private navParams: NavParams, private appCtrl: App, private shopping_service: ShoppingsService, public custom_service: CustomService) {
     this.categories = navParams.get('arr');
     this.category_id = navParams.get('guid');
     this.shop_guid = navParams.get('shop_guid');

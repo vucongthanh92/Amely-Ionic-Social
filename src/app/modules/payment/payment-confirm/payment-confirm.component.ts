@@ -1,5 +1,3 @@
-import { MainMenuComponent } from './../../../layout/main-menu/main-menu.component';
-import { InventoriesComponent } from './../../../views/inventories/inventories.component';
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
@@ -24,9 +22,7 @@ export class PaymentConfirmComponent implements OnInit {
   shipping_method: any;
   private loading;
   constructor(
-    private appCtrl: App,
     private nav: NavController,
-    private platform: Platform,
     private iab: InAppBrowser,
     private customService: CustomService,
     private paymentService: PaymentService,

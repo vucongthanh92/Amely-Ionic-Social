@@ -18,8 +18,6 @@ export class PaymentItemsComponent implements OnInit {
 
   constructor(
     private paymentService: PaymentService,
-    private customService: CustomService,
-    private navParams: NavParams,
     public nav: NavController, 
     public appCtrl: App) { 
       this.param = this.paymentService.items;

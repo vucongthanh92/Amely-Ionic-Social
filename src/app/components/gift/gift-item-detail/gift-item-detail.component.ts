@@ -1,7 +1,6 @@
 import { Item } from './../../../api/models/item';
 import { Component, OnInit, Input } from '@angular/core';
 import { App, NavController, NavParams, ViewController } from 'ionic-angular';
-import { GiftComponent } from '../gift.component';
 
 @Component({
   selector: 'app-gift-item-detail',

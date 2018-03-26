@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { InventoryComponent } from './../inventory/inventory.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Component, OnInit } from '@angular/core';

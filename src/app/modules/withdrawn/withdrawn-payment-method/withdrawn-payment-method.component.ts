@@ -17,7 +17,7 @@ export class WithdrawnPaymentMethodComponent implements OnInit {
   amount: string;
   private min: number;
   private max: number;
-  constructor(private navParams: NavParams, private appCtrl: App, private nav: NavController, private walletService: WalletsService, private customService: CustomService) {
+  constructor(private navParams: NavParams, private nav: NavController, private walletService: WalletsService, private customService: CustomService) {
     this.wallet = this.navParams.get('wallet');
   }
 

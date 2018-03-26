@@ -4,12 +4,12 @@ import { Param_create_gift } from './../../api/models/param-_create-_gift';
 import { NavParams, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../api/models/item';
-import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-inventory-confirm-gift',
   templateUrl: './inventory-confirm-gift.component.html'
 })
+
 export class InventoryConfirmGiftComponent implements OnInit {
 
   title: any;

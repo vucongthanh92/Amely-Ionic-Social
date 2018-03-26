@@ -1,5 +1,5 @@
 import { CustomService } from './../../../services/custom.service';
-import { App, NavController } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { PaymentConfirmComponent } from './../payment-confirm/payment-confirm.component';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';

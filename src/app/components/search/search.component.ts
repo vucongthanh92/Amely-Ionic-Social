@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { App } from 'ionic-angular/components/app/app';
 import { BusinessComponent } from './../business/business.component';
 import { GroupComponent } from './../group/group.component';
@@ -6,7 +5,7 @@ import { ShopComponent } from './../shop/shop.component';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Shop } from './../../api/models/shop';
-import { Component, OnInit, group } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core'; 
 import { NavController, NavParams } from 'ionic-angular';
 import { SearchService } from '../../services/search.service';
 import { Group } from '../../api/models/group';

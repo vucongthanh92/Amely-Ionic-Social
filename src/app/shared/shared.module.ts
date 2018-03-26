@@ -9,7 +9,6 @@ import { GiftDetailComponent } from './../components/gift/gift-detail/gift-detai
 import { DeliveryModule } from './../modules/delivery/delivery.module';
 import { WithdrawnModule } from './../modules/withdrawn/withdrawn.module';
 import { UserUpdateComponent } from './../components/user/user-update/user-update.component';
-import { MyApp } from './../app.component';
 import { CreateShopComponent } from './../components/create-shop/create-shop.component';
 import { EventMenuComponent } from './../components/event/event-menu/event-menu.component';
 import { EventComponent } from './../components/event/event.component';

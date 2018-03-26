@@ -17,7 +17,7 @@ export class DepositPaymentMethodComponent implements OnInit {
   private min: number;
   private max: number;
   wallet:Wallet;
-  constructor(private navParams: NavParams, private appCtrl: App, private nav: NavController, private walletService: WalletsService, private customService: CustomService) { 
+  constructor(private navParams: NavParams, private nav: NavController, private walletService: WalletsService, private customService: CustomService) { 
     this.wallet = this.navParams.get('wallet')
   }
 

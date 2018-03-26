@@ -2,7 +2,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { User } from './../../api/models/user';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { NavController, App, ViewController } from 'ionic-angular';
+import { App, ViewController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { UserComponent } from '../user/user.component';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -16,7 +16,7 @@ export class FindFriendComponent implements OnInit {
   @Output() tabGotClosed = new EventEmitter<boolean>();
   user_found: User;
   public viewCtrl: ViewController;
-  constructor(private nav: NavController, private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams, private barcodeScanner: BarcodeScanner) {
+  constructor(private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams, private barcodeScanner: BarcodeScanner) {
     this.viewCtrl = params.data;
   }
 

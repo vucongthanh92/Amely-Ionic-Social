@@ -2,7 +2,6 @@ import { CustomService } from './../../../../services/custom.service';
 import { FirebaseService } from './../../../../services/firebase.service';
 import { UserComponent } from './../../../../components/user/user.component';
 import { UserService } from './../../../../services/user.service';
-import { User } from './../../../../api/models/user';
 import { GeolocationService } from './../../../../services/geolocation.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';

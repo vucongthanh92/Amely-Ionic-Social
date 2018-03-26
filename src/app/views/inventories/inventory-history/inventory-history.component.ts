@@ -10,7 +10,7 @@ import { App, NavController } from 'ionic-angular';
 })
 export class InventoryHistoryComponent implements OnInit {
   public transactions: Array<Transaction>;
-  constructor(private transactionService: TransactionsService, private appCtrl: App, private nav: NavController) { }
+  constructor(private transactionService: TransactionsService, private appCtrl: App) { }
 
   ngOnInit() {
     this.transactionService.getTransactions('gift').subscribe(data => {

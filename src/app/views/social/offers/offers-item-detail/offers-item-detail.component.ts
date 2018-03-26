@@ -6,7 +6,6 @@ import { NavParams, NavController, App, Navbar } from 'ionic-angular';
 import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OffersService } from '../../../../services/offers.service';
-import { OffersComponent } from '../offers.component';
 import { CreateOfferComponent } from '../../../../components/create-offer/create-offer.component';
 
 @Component({

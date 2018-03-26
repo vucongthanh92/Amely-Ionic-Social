@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
-import { CreateOfferComponent } from '../../../components/create-offer/create-offer.component';
 import { OffersMyselfComponent } from './offers-myself/offers-myself.component';
 import { OffersPendingComponent } from './offers-pending/offers-pending.component';
 import { OffersSearchComponent } from './offers-search/offers-search.component';

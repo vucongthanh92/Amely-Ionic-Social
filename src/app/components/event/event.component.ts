@@ -5,7 +5,6 @@ import { EventMenuComponent } from './event-menu/event-menu.component';
 import { NavController, App, NavParams, PopoverController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Event, User } from '../../api/models';
-import { logger } from '@firebase/database/dist/esm/src/core/util/util';
 
 @Component({
   selector: 'app-event',

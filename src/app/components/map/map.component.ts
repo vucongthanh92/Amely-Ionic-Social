@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {
   GoogleMaps,
   GoogleMap,

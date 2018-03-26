@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { CartItemsComponent } from '../../modules/cart/cart-items/cart-items.component';
 import { ProductsService } from '../../services/products.service';
-import { inline_response_200_3 } from '../../api/models/inline-_response-_200_3';
 import { CustomService } from '../../services/custom.service';
 
 @Component({

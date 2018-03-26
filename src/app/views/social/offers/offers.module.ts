@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, IonicPageModule } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 
 import { OffersComponent } from './offers.component';
 import { OffersMyselfComponent } from './offers-myself/offers-myself.component';

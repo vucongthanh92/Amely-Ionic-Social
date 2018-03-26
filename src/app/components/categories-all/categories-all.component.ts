@@ -12,7 +12,7 @@ export class CategoriesAllComponent implements OnInit {
   @Input('shopGuid') shopGuid;
   public categories: Array<Category>;
   public categoriesParent: Array<Category>;
-  constructor(public nav: NavController, public appCtrl: App, private shoppingService: ShoppingsService, private navParams: NavParams) { 
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams) { 
     this.categories = navParams.get('arr');
     this.categoriesParent = this.categories.filter(e => e.parent_guid == null || e.parent_guid == "0" || e.parent_guid.length == 0);
   }

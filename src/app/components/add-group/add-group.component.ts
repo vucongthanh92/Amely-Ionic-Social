@@ -1,4 +1,3 @@
-import { ApiService } from './../../api/services/api.service';
 import { MessagesService } from './../../services/messages.service';
 import { User } from './../../api/models/user';
 import { UserService } from './../../services/user.service';
@@ -7,7 +6,6 @@ import { App, NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CustomService } from '../../services/custom.service';
 import { GroupService } from '../../services/group.service';
-import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
@@ -23,7 +21,7 @@ export class AddGroupComponent implements OnInit {
   public users_choosed: Array<User> = [];
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private user_serive: UserService, private custom_service: CustomService
-    , private group_service: GroupService, private messagesService: MessagesService, private api: ApiService, public afDatabase: AngularFireDatabase) { }
+    , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase) { }
 
   ngOnInit() {
     this.user_serive.getFriends(null).subscribe(data => {

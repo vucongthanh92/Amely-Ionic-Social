@@ -1,5 +1,4 @@
 import { FeedsService } from './../../../services/feeds.service';
-import { FeedComponent } from './../../feed/feed.component';
 import { UserBlockListComponent } from './../user-block-list/user-block-list.component';
 import { UserService } from './../../../services/user.service';
 import { UserUpdateComponent } from './../user-update/user-update.component';

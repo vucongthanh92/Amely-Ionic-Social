@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 export class ChangePhonenumberComponent implements OnInit {
   @Input('phone_number') phone_number: string;
   constructor(private userService: UserService, private customService: CustomService,
-    private nav: NavController, private appCtrl: App, private alertCtrl: AlertController) {
+    private nav: NavController, private alertCtrl: AlertController) {
   }
 
   ngOnInit() {

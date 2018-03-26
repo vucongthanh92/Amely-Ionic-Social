@@ -1,6 +1,6 @@
 import { FeedsService } from './../../../services/feeds.service';
 import { CustomService } from './../../../services/custom.service';
-import { NavParams, AlertController, App, NavController } from 'ionic-angular';
+import { NavParams, AlertController, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Feed } from '../../../api/models';
 

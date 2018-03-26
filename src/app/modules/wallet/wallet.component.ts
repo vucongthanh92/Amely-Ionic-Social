@@ -3,14 +3,11 @@ import { PaymentService } from './../../services/payment.service';
 import { WalletsService } from './../../services/wallets.service';
 import { DepositPaymentMethodComponent } from './../deposit/deposit-payment-method/deposit-payment-method.component';
 import { WithdrawnPaymentMethodComponent } from './../withdrawn/withdrawn-payment-method/withdrawn-payment-method.component';
-import { logger } from '@firebase/database/dist/esm/src/core/util/util';
 import { CustomService } from './../../services/custom.service';
 import { Wallet } from './../../api/models/wallet';
 import { InventoriesService } from './../../services/inventories.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, App } from 'ionic-angular';
-import { WalletDepositComponent } from './wallet-deposit/wallet-deposit.component';
-import { WalletWithdrawnComponent } from './wallet-withdrawn/wallet-withdrawn.component';
 import { Transaction } from '../../api/models';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 // import { DatePipe } from '@angular/common'
@@ -85,7 +82,6 @@ export class WalletComponent implements OnInit {
   }
 
   showTransactionDescription(trans: Transaction) {
-    let desc: string;
     switch (trans.description) {
       case "":
         let content;

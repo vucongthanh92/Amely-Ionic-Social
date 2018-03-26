@@ -2,7 +2,7 @@ import { CustomService } from './../../../../services/custom.service';
 import { CreateOfferComponent } from './../../../../components/create-offer/create-offer.component';
 import { Offer } from './../../../../api/models/offer';
 import { OffersService } from './../../../../services/offers.service';
-import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { App, NavController, AlertController } from 'ionic-angular';
 import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
 

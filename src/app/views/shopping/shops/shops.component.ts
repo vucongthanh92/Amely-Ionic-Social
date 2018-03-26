@@ -1,4 +1,3 @@
-import { guid } from './../../../api/models/guid';
 import { EventComponent } from './../../../components/event/event.component';
 import { ProductComponent } from './../../../components/product/product.component';
 import { GroupComponent } from './../../../components/group/group.component';
@@ -9,7 +8,6 @@ import { Banner } from './../../../api/models/banner';
 import { ShopsService } from './../../../services/shops.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
-import { CartItemsComponent } from '../../../modules/cart/cart-items/cart-items.component';
 
 
 @Component({

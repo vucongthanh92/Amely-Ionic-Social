@@ -1,17 +1,14 @@
-import { MapComponent } from './../../components/map/map.component';
 import { VerifycodeComponent } from './../verifycode/verifycode.component';
 import { CustomService } from './../../services/custom.service';
-import { TimerComponent } from './../../components/timer/timer.component';
 import { GeolocationService } from './../../services/geolocation.service';
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, MenuController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { ToastController } from 'ionic-angular';
 import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ApiService } from '../../api/services';
-import { User } from '@firebase/auth-types';
 
 @Component({
   selector: 'app-signin',

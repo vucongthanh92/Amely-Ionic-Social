@@ -1,10 +1,7 @@
 import { User } from './../api/models/user';
 import { Camera } from '@ionic-native/camera';
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase/app';
 import { FirebaseApp } from 'angularfire2';
-import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 
 @Injectable()
@@ -17,8 +14,6 @@ export class PhotosService {
   constructor(
     public camera: Camera,
     public storage: AngularFireStorage,
-    private afDatabase: AngularFireDatabase,
-    private toastCtrl: ToastController,
     public firebaseApp: FirebaseApp,
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));

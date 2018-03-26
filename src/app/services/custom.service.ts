@@ -1,6 +1,5 @@
 import { FirebaseService } from './firebase.service';
 import { UserService } from './user.service';
-import { SearchComponent } from './../components/search/search.component';
 import { ApiService } from './../api/services/api.service';
 import { User } from './../api/models/user';
 import { Injectable } from '@angular/core';
@@ -191,7 +190,6 @@ export class CustomService {
                 encodingType: camera.EncodingType.JPEG,
                 mediaType: camera.MediaType.PICTURE
               }).then((imageData) => {
-                let captureDataUrl = 'data:image/jpeg;base64,' + imageData;
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";

@@ -1,11 +1,9 @@
-import { UserService } from './../../services/user.service';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { App, MenuController, NavController, PopoverController, AlertController } from 'ionic-angular';
+import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeedDetailComponent } from './feed-detail/feed-detail.component';

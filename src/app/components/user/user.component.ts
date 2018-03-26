@@ -1,15 +1,13 @@
 import { UserMenuComponent } from './user-menu/user-menu.component';
-import { guid } from './../../api/models/guid';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
-import { Component, Input } from '@angular/core';
-import { App, NavController, Refresher, NavParams, PopoverController, AlertController, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { App, NavController, Refresher, NavParams, PopoverController, ModalController } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
 import { ShopComponent } from '../shop/shop.component';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
-import { ChooseItemComponent } from '../gift/choose-item/choose-item.component';
 import { CustomService } from '../../services/custom.service';
 import { User } from '../../api/models';
 

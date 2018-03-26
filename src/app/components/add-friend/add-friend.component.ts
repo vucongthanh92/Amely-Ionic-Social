@@ -1,5 +1,5 @@
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FindFriendComponent } from '../find-friend/find-friend.component';
 import { NoteFriendComponent } from '../note-friend/note-friend.component';
 import { Tabs, ViewController } from 'ionic-angular';

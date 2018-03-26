@@ -1,4 +1,3 @@
-import { Shop } from './../../../../api/models/shop';
 import { ShopsService } from './../../../../services/shops.service';
 import { App, NavController } from 'ionic-angular';
 import { GeolocationService } from './../../../../services/geolocation.service';
@@ -59,7 +58,6 @@ export class NearByShopComponent implements OnInit {
     console.log(1231231);
     
     this.datas = this.datasTMP;
-    let s: Shop;
     this.sFilter = this.sFilter.toLowerCase();
     this.datas = this.datas.filter(e => {
       return e.shop.introduce.toLowerCase().includes(this.sFilter) || e.shop.title.toLowerCase().includes(this.sFilter)

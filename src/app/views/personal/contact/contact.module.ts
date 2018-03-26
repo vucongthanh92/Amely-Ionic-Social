@@ -1,4 +1,3 @@
-import { LaddaModule } from 'angular2-ladda';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';

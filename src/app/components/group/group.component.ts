@@ -1,9 +1,8 @@
 import { GroupMenuComponent } from './group-menu/group-menu.component';
-import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../services/custom.service';
 import { Group } from './../../api/models/group';
 import { GroupService } from './../../services/group.service';
-import { Component, OnInit, group } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { App, NavController, NavParams, AlertController, PopoverController } from 'ionic-angular';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';

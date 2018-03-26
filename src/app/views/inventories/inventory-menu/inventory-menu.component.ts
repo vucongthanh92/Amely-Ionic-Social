@@ -3,7 +3,7 @@ import { WalletComponent } from './../../../modules/wallet/wallet.component';
 import { InventoriesService } from './../../../services/inventories.service';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
-import { NavController, App, Popover } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

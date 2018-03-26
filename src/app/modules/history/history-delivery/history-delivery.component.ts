@@ -1,5 +1,4 @@
 import { HistoryDeliveryDetailComponent } from './../history-delivery-detail/history-delivery-detail.component';
-import { ShopComponent } from './../../../components/shop/shop.component';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { HistoryService } from './../../../services/history.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +13,7 @@ export class HistoryDeliveryComponent implements OnInit {
   dos: Delivery_order[];
   shops: Shop[];
 
-  constructor(private historyService: HistoryService, private nav: NavController, private appCtrl: App) { }
+  constructor(private historyService: HistoryService, private appCtrl: App) { }
 
   ngOnInit() {
     this.historyService.deliveryHistory().subscribe(data => {

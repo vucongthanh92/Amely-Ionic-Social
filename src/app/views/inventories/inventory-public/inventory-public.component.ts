@@ -3,8 +3,8 @@ import { Group } from './../../../api/models/group';
 import { User } from './../../../api/models/user';
 import { EventsService } from './../../../services/events.service';
 import { GroupService } from './../../../services/group.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, Refresher } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
 import { InventoryComponent } from '../../../components/inventory/inventory.component';
 
 @Component({

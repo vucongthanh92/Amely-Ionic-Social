@@ -1,4 +1,3 @@
-import { guid } from './../../../../api/models/guid';
 import { AddGroupComponent } from './../../../../components/add-group/add-group.component';
 import { Group } from './../../../../api/models/group';
 import { User } from './../../../../api/models/user';

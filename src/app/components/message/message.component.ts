@@ -1,6 +1,5 @@
 import { GiftsService } from './../../services/gifts.service';
 import { Camera } from '@ionic-native/camera';
-import { PhotosService } from './../../services/photos.service';
 import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -9,10 +8,8 @@ import { GiftComponent } from '../gift/gift.component';
 import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
 import { FirebaseApp } from 'angularfire2';
-import { AngularFireDatabase } from 'angularfire2/database';
 import 'firebase/storage';
 import { Item } from '../../api/models/item';
-import { Gift } from '../../api/models/gift';
 
 @Component({
   selector: 'app-message',
@@ -37,7 +34,6 @@ export class MessageComponent implements OnInit {
     public giftsService: GiftsService,
     public firebase: FirebaseApp,
     public cameraPlugin: Camera,
-    private photosService: PhotosService,
     private toastCtrl: ToastController,
     public messagesService: MessagesService,
     public navParams: NavParams,

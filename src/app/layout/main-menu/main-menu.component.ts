@@ -1,5 +1,4 @@
 import { OfferService } from './../../services/offer.service';
-import { guid } from './../../api/models/guid';
 import { GiftsService } from './../../services/gifts.service';
 import { BusinessService } from './../../services/business.service';
 import { EventsService } from './../../services/events.service';

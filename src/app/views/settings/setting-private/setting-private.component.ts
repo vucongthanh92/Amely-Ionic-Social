@@ -1,10 +1,8 @@
 import { ShopsService } from './../../../services/shops.service';
 import { CreateShopComponent } from './../../../components/create-shop/create-shop.component';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
-import { Wallet } from './../../../api/models/wallet';
 import { InventoriesService } from './../../../services/inventories.service';
-import { guid } from './../../../api/models/guid';
-import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
 import { UserComponent } from '../../../components/user/user.component';
@@ -17,7 +15,7 @@ export class SettingPrivateComponent implements OnInit {
 
   is_qr: boolean = false;
   code_qr: string;
-  constructor(private customService: CustomService, private nav: NavController, private appCtrl: App,
+  constructor(private customService: CustomService, private appCtrl: App,
     private inventoriesService: InventoriesService, private shopService: ShopsService) { }
 
   ngOnInit() {

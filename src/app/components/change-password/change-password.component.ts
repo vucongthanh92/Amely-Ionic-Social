@@ -13,7 +13,7 @@ export class ChangePasswordComponent implements OnInit {
   @Input('new_pass') new_pass: string;
   @Input('renew_pass') renew_pass: string;
 
-  constructor(private userService: UserService, private customService: CustomService, private nav: NavController, private appCtrl: App) { }
+  constructor(private userService: UserService, private customService: CustomService, private nav: NavController) { }
 
   ngOnInit() {
   }

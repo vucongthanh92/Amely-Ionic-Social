@@ -1,7 +1,6 @@
-import { CustomService } from './../../../services/custom.service';
 import { EventsService } from './../../../services/events.service';
 import { Component, OnInit } from '@angular/core'; ``
-import { NavController, App, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Event } from '../../../api/models';
 @Component({
   selector: 'app-event-menu',
@@ -9,7 +8,7 @@ import { Event } from '../../../api/models';
 })
 export class EventMenuComponent implements OnInit {
   private event: Event;
-  constructor(private nav: NavController, private appCtrl: App, private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService) {
+  constructor(private navParams: NavParams, public eventSerive: EventsService) {
     this.event = this.navParams.get('event');
   }
 
