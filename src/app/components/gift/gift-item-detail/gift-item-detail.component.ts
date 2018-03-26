@@ -41,7 +41,7 @@ export class GiftItemDetailComponent implements OnInit {
   }
 
   choosenItem() {
-    this.item.quantity = this.quantity;
+    this.item.quantity = this.quantitySend;
     this.viewCtrl.dismiss({ item: this.item });
   }
 
