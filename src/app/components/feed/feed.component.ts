@@ -1,3 +1,6 @@
+import { BusinessComponent } from './../business/business.component';
+import { GroupComponent } from './../group/group.component';
+import { EventComponent } from './../event/event.component';
 import { CustomService } from './../../services/custom.service';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
@@ -19,6 +22,7 @@ export class FeedComponent {
   @Input('mood') mood: any;
   @Input('isShowMoreContent') isShowMoreContent: boolean = false;
   @Input('user_tag') userTag: Array<User>;
+  @Input('type') type: string;
   @Output()
   uploaded = new EventEmitter<string>();
 
@@ -134,5 +138,18 @@ export class FeedComponent {
     }
     this.post.liked = !this.post.liked;
   }
+  openOwner() {
+    switch (this.post.type) {
+      case 'event':
+        this.appCtrl.getRootNav().push(EventComponent, { event_guid: this.post.owner_guid })
+        break;
+      case 'group':
+        this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: this.post.owner_guid })
+        break;
+      case 'businesspage':
+        this.appCtrl.getRootNav().push(BusinessComponent, { guid: this.post.owner_guid })
+        break;
+    }
 
+  }
 }

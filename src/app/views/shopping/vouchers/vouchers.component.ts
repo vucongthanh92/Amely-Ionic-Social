@@ -29,11 +29,17 @@ export class VouchersComponent implements OnInit {
       return;
     }
     this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      this.vouchers = data;
+      console.log(data);
+      
+      if (data instanceof Array) {
+        this.vouchers = data;
+      }
     }, err => this.loadData(--retry));
     
     this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
-      this.categories = data;
+      if (data instanceof Array) {
+        this.categories = data;
+      }
     }, err => this.loadData(--retry))
   }
   goToPage(value, voucher: Product, category: Category) {

@@ -16,8 +16,8 @@ import { ApiService } from '../../api/services';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string = 'quan5000';
-  @Input('password') password: string = '12345678';
+  @Input('username') username: string = 'quannm';
+  @Input('password') password: string = 'Amely123';
 
   latitude: any;
   longitude: any;
@@ -39,9 +39,9 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    let a='20/3/2014'
+    let a = '20/3/2014'
     console.log(new Date(a));
-    
+
   }
 
   onLogin() {
@@ -85,6 +85,9 @@ export class SigninComponent implements OnInit {
           this.nav.setRoot(MainMenuComponent);
         })
       }
+    }, err => {
+      this.loader.dismiss();
+      this.customService.toastMessage('Kết nối thất bại. Vui lòng thử lại','bottom',2000)
     });
   }
 

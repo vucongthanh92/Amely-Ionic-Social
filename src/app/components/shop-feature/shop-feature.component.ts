@@ -12,7 +12,7 @@ import { App } from 'ionic-angular';
 })
 export class ShopFeatureComponent implements OnInit {
 
-  shops: Array<Shop>
+  shops: Array<Shop> = [];
   constructor(private shoppingService: ShoppingsService, private shopService: ShopsService, private appCtrl: App,
     private customService: CustomService) { }
 
@@ -26,7 +26,9 @@ export class ShopFeatureComponent implements OnInit {
       return;
     }
     this.shoppingService.getShopFeature().subscribe(data => {
-      this.shops = data;
+      if (data instanceof Array) {
+        this.shops = data;
+      }
     }, err => this.loadData(--retry))
   }
 

@@ -24,7 +24,9 @@ export class InventoryHistoryComponent implements OnInit {
       return;
     }
     this.transactionService.getTransactions('gift').subscribe(data => {
-      this.transactions = data;
+      if (data instanceof Array) {
+        this.transactions = data;
+      }
     }, err => this.loadData(--retry))
   }
   openHistoryDetail(trans: Transaction) {

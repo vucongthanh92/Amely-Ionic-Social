@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = "https://dev.helloqua.com/ws/v1";
+  rootUrl: string = "https://amely.com/ws/v1";
 }

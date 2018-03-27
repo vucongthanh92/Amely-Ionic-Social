@@ -43,7 +43,6 @@ export class MainMenuComponent implements OnInit {
     private fbService: FirebaseService,
     private groupService: GroupService,
     private eventService: EventsService,
-    private business: BusinessService,
     private giftService: GiftsService,
     private offerService: OfferService,
     private localNotifications: LocalNotifications,
@@ -57,10 +56,10 @@ export class MainMenuComponent implements OnInit {
     //   { guid: '7733', title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
     // ]
     this.moodLocal = {
-      7723: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png', tag: 'wanna_trade', guid: '7723' },
-      7724: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png', tag: 'wanna_send', guid: '7724' },
-      7732: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png', tag: 'wanna_gift', guid: '7732' },
-      7733: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png', tag: 'wanna_date', guid: '7733' },
+      451: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png', tag: 'wanna_trade', guid: '451' },
+      452: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png', tag: 'wanna_send', guid: '451' },
+      453: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png', tag: 'wanna_gift', guid: '453' },
+      454: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png', tag: 'wanna_date', guid: '454' },
     }
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
