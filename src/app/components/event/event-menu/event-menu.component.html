@@ -8,4 +8,8 @@
     <div *ngIf="eventSerive.publish==0 ||eventSerive.publish==3">
       <ion-icon name="person"></ion-icon> Mở sự kiện</div>
   </ion-item>
+  <ion-item (click)="openQR()">
+  <div *ngIf="event.has_inventory=='1'" (click)="openQR()">
+    <ion-icon name="person"></ion-icon>Mã QR</div>
+  </ion-item>
 </ion-list>

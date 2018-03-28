@@ -13,10 +13,10 @@ export class CustomService {
   cart = [];
   user_current: User;
   mood_local: any;
-  public url_site = "http://helloqua.com/";
+  public url_site = "http://amely.com/";
   friends: Array<User>=[];
   notifications: Array<Notification> = [];
-  public url_qr = "http://helloqua.com/";
+  public url_qr = "http://amely.com/";
   public content_change_avatar ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard";
   public content_change_cover ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen";
 

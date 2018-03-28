@@ -54,6 +54,7 @@ export class InventoryTargetGiftComponent implements OnInit {
   ngOnInit() {
   }
 
+  // changePageConfirm(group, 'group')
   changePageConfirm(obj, type) {
     this.nav.push(InventoryConfirmGiftComponent, { param: obj, type: type, item: this.navParams.get('item') });
   }

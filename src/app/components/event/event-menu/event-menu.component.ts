@@ -1,8 +1,9 @@
 import { CustomService } from './../../../services/custom.service';
 import { EventsService } from './../../../services/events.service';
 import { Component, OnInit } from '@angular/core'; ``
-import { NavParams } from 'ionic-angular';
+import { NavParams, App } from 'ionic-angular';
 import { Event } from '../../../api/models';
+import { QrComponent } from '../../qr/qr.component';
 
 @Component({
   selector: 'app-event-menu',
@@ -10,7 +11,8 @@ import { Event } from '../../../api/models';
 })
 export class EventMenuComponent implements OnInit {
   private event: Event;
-  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService) {
+
+  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App) {
     this.event = this.navParams.get('event');
   }
 
@@ -64,5 +66,9 @@ export class EventMenuComponent implements OnInit {
           }
         })
     }
+  }
+
+  openQR() {
+    this.appCtrl.getRootNav().push(QrComponent, { code: this.customService.url_qr + "event/" + this.event.guid })
   }
 }
