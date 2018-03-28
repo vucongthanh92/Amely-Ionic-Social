@@ -1,3 +1,4 @@
+import { SigninComponent } from './../../authentication/signin/signin.component';
 import { OfferService } from './../../services/offer.service';
 import { GiftsService } from './../../services/gifts.service';
 import { BusinessService } from './../../services/business.service';
@@ -18,6 +19,9 @@ import { SettingsComponent } from './../../views/settings/settings.component';
 import { UserService } from '../../services/user.service';
 import { Notification, User } from '../../api/models';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { GeolocationService } from '../../services/geolocation.service';
+import { AuthenticationService } from '../../authentication/authentication.service';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'app-main-menu',
@@ -47,7 +51,10 @@ export class MainMenuComponent implements OnInit {
     private offerService: OfferService,
     private localNotifications: LocalNotifications,
     private alertCtrl: AlertController,
-    private plt: Platform
+    private plt: Platform,
+    public geolocationService: GeolocationService,
+    public geolocation: Geolocation,
+    private authenticationService: AuthenticationService,
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
@@ -89,8 +96,29 @@ export class MainMenuComponent implements OnInit {
       this.notifyFirebase();
     });
 
+    this.getUserProfile();
   }
 
+  getUserProfile() {
+    this.api.getProfile({}).subscribe(data => {
+      if (data.guid) {
+        localStorage.setItem('loggin_user', JSON.stringify(data));
+        this.customService.user_current = data;
+        this.geolocation.getCurrentPosition().then((resp) => {
+          const latitude = resp.coords.latitude;
+          const longitude = resp.coords.longitude;
+          localStorage.setItem("lat", latitude + '');
+          localStorage.setItem("lng", longitude + '');
+          this.geolocationService.setLocation(data.username, latitude, longitude);
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+      } else {
+        this.customService.toastMessage('Thông tin tài khoản đã bị thay đổi. Vui lòng đăng nhập lại', 'bottom', 3000);
+        this.nav.setRoot(SigninComponent);
+      }
+    })
+  }
   openPage(page) {
     this.nav.setRoot(page.component);
     this.menuCtrl.close();

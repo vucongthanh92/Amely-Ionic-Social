@@ -34,8 +34,6 @@ export class SigninComponent implements OnInit {
     private customService: CustomService,
     public loadingCtrl: LoadingController
   ) {
-
-
   }
 
   ngOnInit() {
@@ -50,14 +48,11 @@ export class SigninComponent implements OnInit {
     this.loader.present();
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
-      console.log(resp);
       this.loader.dismiss();
       if (resp.status == false) {
         if (resp.validation) {
           let u = resp.validation;
           u.password = this.password;
-          console.log(213213);
-
           this.nav.push(VerifycodeComponent, { user: u });
         } else {
           const toast = this.toastCtrl.create({
@@ -68,11 +63,16 @@ export class SigninComponent implements OnInit {
           toast.present();
         }
       } else {
+      
+        
         this.api.getProfile({}).subscribe(data => {
           // this.loader.dismiss();
           localStorage.setItem('loggin_user', JSON.stringify(data));
           this.customService.user_current = data;
           this.authenticationService.setSession(resp);
+          localStorage.setItem('baer', JSON.stringify(resp));
+          console.log(resp);
+          console.log(localStorage.getItem('baer'));
           this.geolocation.getCurrentPosition().then((resp) => {
             this.latitude = resp.coords.latitude;
             this.longitude = resp.coords.longitude;
@@ -87,7 +87,7 @@ export class SigninComponent implements OnInit {
       }
     }, err => {
       this.loader.dismiss();
-      this.customService.toastMessage('Kết nối thất bại. Vui lòng thử lại','bottom',2000)
+      this.customService.toastMessage('Kết nối thất bại. Vui lòng thử lại', 'bottom', 2000)
     });
   }
 

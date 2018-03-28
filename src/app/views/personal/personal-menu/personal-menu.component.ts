@@ -58,6 +58,8 @@ export class PersonalMenuComponent implements OnInit {
           contacts.forEach(e => {
             phoneNumbers.push(e.phoneNumbers[0].value.replace(/\s/g, ''));
           });
+          console.log(phoneNumbers);
+
           this.userService.updateContact(phoneNumbers).subscribe(data => {
             if (data.status) {
               this.customService.toastMessage('Đã gửi lời mời kết bạn đến tất cả danh sách số điện thoại trong danh bạ', 'bottom', 5000);

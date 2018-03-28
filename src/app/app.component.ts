@@ -1,9 +1,12 @@
+import { DefaultResponse } from './api/models/default-response';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from '@ionic-native/keyboard';
 import { SigninComponent } from './authentication/signin/signin.component';
+import { MainMenuComponent } from './layout/main-menu/main-menu.component';
+import { AuthenticationService } from './authentication/authentication.service';
 
 
 
@@ -14,7 +17,7 @@ import { SigninComponent } from './authentication/signin/signin.component';
 
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = SigninComponent;
+  rootPage: any;
 
   pages: Array<{ title: string, component: any, image: string }>;
 
@@ -23,9 +26,11 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
-    private keyboard: Keyboard
+    private keyboard: Keyboard,
+    private authenticationService: AuthenticationService
     // private cordova: cordova
   ) {
+    this.checkLogin();
     this.initializeApp();
   }
 
@@ -40,5 +45,20 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  checkLogin() {
+    try {
+      const dr: DefaultResponse = JSON.parse(localStorage.getItem('baer'));
+      if (dr.token) {
+        this.rootPage = MainMenuComponent;
+        this.authenticationService.setSession(dr);
+      } else this.rootPage = SigninComponent;
+    } catch (error) {
+      console.log(error);
+
+      this.rootPage = SigninComponent;
+    }
+
   }
 }
