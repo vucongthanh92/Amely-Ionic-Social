@@ -69,6 +69,12 @@ export class MainMenuComponent implements OnInit {
     this.api.getProfile({}).subscribe(data => {
       localStorage.setItem('loggin_user', JSON.stringify(data));
       this.customService.user_current = data;
+      const year = new Date(data.birthdate).getFullYear() + '';
+      console.log(year);
+
+      if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
+      else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
+
       this.pages = [
         { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
         { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },

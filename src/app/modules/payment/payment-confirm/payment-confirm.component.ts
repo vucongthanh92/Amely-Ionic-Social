@@ -5,7 +5,7 @@ import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Platform, NavController, App, LoadingController } from 'ionic-angular';
+import {  NavController, App, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-payment-confirm',

@@ -91,6 +91,13 @@ export class FirebaseService {
     });
   }
 
+  syncProfileFirebase(yob: string, gender: string, moodId: string, username: string) {
+    let path = "/users/" + username;
+    let info = { gender: gender, mood: moodId, yob: yob };
+    let ref = this.afDatabase.list(path);
+    this.afDatabase.database.ref(path).update(info);
+  }
+
   /**
    * @param owner_from 
    * @param owner_from_type users | offers | shops
