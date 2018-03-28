@@ -65,4 +65,8 @@ export class UserService {
   unblock(guid) {
     return this.api.deleteBlock(guid);
   }
+
+  updateContact(contacts: string[]) {
+    return this.api.contact_update({ mobiles: contacts })
+  }
 }
