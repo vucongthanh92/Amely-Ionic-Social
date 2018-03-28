@@ -1,7 +1,7 @@
 import { GiftsService } from './../../services/gifts.service';
 import { CustomService } from './../../services/custom.service';
 import { Param_create_gift } from './../../api/models/param-_create-_gift';
-import { NavParams, NavController } from 'ionic-angular';
+import { NavParams, NavController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../api/models/item';
 
@@ -24,7 +24,8 @@ export class InventoryConfirmGiftComponent implements OnInit {
     private nav: NavController,
     private giftsService: GiftsService,
     private customService: CustomService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController
   ) {
     let type = this.navParams.get('type');
     let info = this.navParams.get('param');
@@ -80,7 +81,13 @@ export class InventoryConfirmGiftComponent implements OnInit {
     this.param_create_gift.item_quantity = this.quantitySend;
     this.param_create_gift.message = "";
 
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
     this.giftsService.gift(this.param_create_gift).subscribe(data => {
+      loading.dismiss();
       if (data.status) {
         this.nav.popToRoot();
       } else {

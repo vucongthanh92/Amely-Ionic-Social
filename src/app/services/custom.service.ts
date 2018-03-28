@@ -14,11 +14,11 @@ export class CustomService {
   user_current: User;
   mood_local: any;
   public url_site = "http://amely.com/";
-  friends: Array<User>=[];
+  friends: Array<User> = [];
   notifications: Array<Notification> = [];
   public url_qr = "http://amely.com/";
-  public content_change_avatar ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard";
-  public content_change_cover ="_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen";
+  public content_change_avatar = "_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard";
+  public content_change_cover = "_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen";
 
   private currencies: Array<{ isoCode: string, displayName: string, rightSymbol: string, leftSymbol: string, decimals: number, decPoints: string, thousandSeparator: string }>;
 
@@ -161,7 +161,13 @@ export class CustomService {
           {
             text: 'Login',
             handler: data => {
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...'
+              });
+
+              loading.present();
               userService.login(this.user_current.username, data.password).subscribe(data => {
+                loading.dismiss();
                 if (data.token != null) resolve();
                 else { this.toastMessage('Mật khẩu không hợp lệ', 'bottom', 2000) }
               })

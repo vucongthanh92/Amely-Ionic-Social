@@ -70,7 +70,6 @@ export class MainMenuComponent implements OnInit {
       localStorage.setItem('loggin_user', JSON.stringify(data));
       this.customService.user_current = data;
       const year = new Date(data.birthdate).getFullYear() + '';
-      console.log(year);
 
       if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
       else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
