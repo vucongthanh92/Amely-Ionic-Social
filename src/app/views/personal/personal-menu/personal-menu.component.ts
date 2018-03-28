@@ -28,29 +28,8 @@ export class PersonalMenuComponent implements OnInit {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.userCurrent.guid });
   }
 
-  //   [{
-  //   "_objectInstance":
-  //     {
-  //       "id": 1, "rawId": null, "displayName": null,
-  //       "name": { "givenName": null, "honorificSuffix": null, "formatted": "Phuc", "middleName": null, "familyName": "Phuc", "honorificPrefix": null },
-  //       "nickname": null,
-  //       "phoneNumbers": [{ "value": "0120 4439003", "pref": false, "id": 0, "type": "home" }],
-  //       "emails": null, "addresses": null, "ims": null, "organizations": null, "birthday": null, "note": null, "photos": null, "categories": null, "urls": null
-  //     },
-  //   "rawId": null
-  // },
-  // {
-  //   "_objectInstance":
-  //     {
-  //       "id": 2, "rawId": null, "displayName": null,
-  //       "name": { "givenName": "vi", "honorificSuffix": null, "formatted": "pham vi", "middleName": null, "familyName": "pham", "honorificPrefix": null },
-  //       "nickname": null,
-  //       "phoneNumbers": [{ "value": "098 7476321", "pref": false, "id": 0, "type": "home" }],
-  //       "emails": null, "addresses": null, "ims": null, "organizations": null, "birthday": null, "note": null, "photos": null, "categories": null, "urls": null
-  //     }
-  //   , "rawId": null
-  // }];
   updateContacts() {
+    this.nav.pop();
     this.contacts.find(["name", "phoneNumbers"],
       { multiple: true }).then((contacts) => {
         if (contacts.length != 0) {

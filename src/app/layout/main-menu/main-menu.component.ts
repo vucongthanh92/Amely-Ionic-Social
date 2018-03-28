@@ -73,28 +73,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getProfile({}).subscribe(data => {
-      localStorage.setItem('loggin_user', JSON.stringify(data));
-      this.customService.user_current = data;
-      const year = new Date(data.birthdate).getFullYear() + '';
 
-      if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
-      else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
-
-      this.pages = [
-        { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
-        { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
-        { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
-        { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
-        { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
-      ];
-      this.api.getFriends(data.guid).subscribe(d => {
-        if (d instanceof Array) {
-          this.customService.friends = d;
-        }
-      })
-      this.notifyFirebase();
-    });
 
     this.getUserProfile();
   }
@@ -104,6 +83,24 @@ export class MainMenuComponent implements OnInit {
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
         this.customService.user_current = data;
+
+        const year = new Date(data.birthdate).getFullYear() + '';
+        if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
+        else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
+        
+        this.pages = [
+          { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
+          { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
+          { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
+          { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
+          { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
+        ];
+        this.api.getFriends(data.guid).subscribe(d => {
+          if (d instanceof Array) {
+            this.customService.friends = d;
+          }
+        })
+        this.notifyFirebase();
         this.geolocation.getCurrentPosition().then((resp) => {
           const latitude = resp.coords.latitude;
           const longitude = resp.coords.longitude;
