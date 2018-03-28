@@ -102,4 +102,5 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
     </plugin>
     <plugin name="cordova-plugin-nativegeocoder" spec="^3.1.1" />
+    <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
 </widget>
