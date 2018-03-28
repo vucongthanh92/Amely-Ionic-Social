@@ -1,5 +1,5 @@
 <ion-content class="outer-content">
-  <ion-slides loop="true" style="height: 150px">
+  <ion-slides *ngIf="banners"  loop="true" style="height: 150px">
     <ion-slide *ngFor="let b of banners" (click)='openBanner(b)'>
       <img src="{{b.banner_url}}">
     </ion-slide>

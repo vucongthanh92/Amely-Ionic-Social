@@ -36,7 +36,9 @@ export class WalletComponent implements OnInit {
   ngOnInit() {
     this.loadData(5)
     this.customService.getTransactions('wallet').subscribe(data => {
-      this.transactions = data;
+      if (data instanceof Array) {
+        this.transactions = data;
+      }
     });
   }
 
