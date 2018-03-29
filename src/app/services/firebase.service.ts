@@ -114,4 +114,8 @@ export class FirebaseService {
     let path = "/notifications/" + owner;
     return this.afDatabase.list(path);
   }
+
+  deleteOffer(guid){
+    this.afDatabase.object('/offers/' + guid).remove();
+  }
 }

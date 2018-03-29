@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../../../services/firebase.service';
 import { CustomService } from './../../../../services/custom.service';
 import { CreateOfferComponent } from './../../../../components/create-offer/create-offer.component';
 import { Offer } from './../../../../api/models/offer';
@@ -17,6 +18,7 @@ export class OffersMyselfComponent implements OnInit {
     private customService: CustomService,
     private nav: NavController,
     private appCtrl: App,
+    private fbService: FirebaseService,
     private offersService: OffersService) { }
 
   ngOnInit() {
@@ -79,6 +81,7 @@ export class OffersMyselfComponent implements OnInit {
       }
     }, err => this.getOffers(--retry))
   }
+
   openMenu(e, o: Offer) {
     let prompt = this.alertCtrl.create({
       title: 'Xác nhận',
@@ -94,6 +97,9 @@ export class OffersMyselfComponent implements OnInit {
               if (data.status) {
                 this.offers = this.offers.filter(e => e.guid != o.guid);
                 this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
+                if (o.target != 'friends') {
+                  this.fbService.deleteOffer(o.guid)
+                }
               }
             })
           }

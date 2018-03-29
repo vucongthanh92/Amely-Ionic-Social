@@ -1,3 +1,4 @@
+
 import { CustomService } from './../../../../services/custom.service';
 import { App, AlertController, NavController } from 'ionic-angular';
 import { GeolocationService } from './../../../../services/geolocation.service';
@@ -5,6 +6,7 @@ import { OffersService } from './../../../../services/offers.service';
 import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit } from '@angular/core';
 import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
+import { MapComponent } from '../../../../components/map/map.component';
 
 @Component({
   selector: 'app-offers-search',
@@ -99,7 +101,7 @@ export class OffersSearchComponent implements OnInit {
             });
             break;
           case 'location':
-
+            this.app.getRootNav().push(MapComponent, { callback: this.callbackLocation })
             break;
           default:
             break;
@@ -108,6 +110,43 @@ export class OffersSearchComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  callbackLocation = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log('add-feed');
+      console.log(_params);
+
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận vị trí',
+        message: _params.title,
+        buttons: [
+          {
+            text: 'Từ chối',
+            role: 'cancel'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              this.geoQueryOffer = this.geolocationService.getOffers(_params.lat, _params.lng);
+              var that = this;
+              that.offers = [];
+              this.geoQueryOffer.on("key_entered", function (key, location, distance) {
+                console.log(key);
+                console.log(key + " user query at " + location + " (" + distance + " km from center)");
+                that.offersServie.getOffer(key).subscribe(data => {
+                  if (data.owner.guid != that.customService.user_current.guid) {
+                    that.offers.push(data);
+                  }
+                });
+              });
+            }
+          }
+        ]
+      });
+      alert.present();
+      resolve();
+    });
   }
 
   changePage(offer) {

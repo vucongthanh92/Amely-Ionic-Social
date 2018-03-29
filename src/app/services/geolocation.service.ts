@@ -142,7 +142,7 @@ export class GeolocationService {
   getOffers(lat, lng) {
     var geoQuery = this.geoFireOffers.query({
       center: [lat, lng],
-      radius: 25
+      radius: 5
     });
     return geoQuery;
   }

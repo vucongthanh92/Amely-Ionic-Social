@@ -61,7 +61,7 @@
             </div>
           </ion-col>
           <ion-col col-7>
-            <ion-select [(ngModel)]="target" name="target" placeholder="Chọn hình thức trao đổi" [selectOptions]="target_select">
+            <ion-select [(ngModel)]="target" name="target" placeholder="Chọn hình thức trao đổi" [selectOptions]="target_select" (ionChange)="onChangeTarget()">
               <ion-option value="public">Người xung quanh bạn</ion-option>
               <ion-option value="friends">Bạn bè trong danh bạ</ion-option>
               <ion-option value="location">Xung quanh 1 địa điểm</ion-option>

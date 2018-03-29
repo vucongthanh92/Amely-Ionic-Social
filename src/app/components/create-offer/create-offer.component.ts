@@ -4,11 +4,13 @@ import { CustomService } from './../../services/custom.service';
 import { OfferService } from './../../services/offer.service';
 import { ChosenItemComponent } from './../chosen-item/chosen-item.component';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, App, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, App, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Item } from '../../api/models/item';
 import { Param_create_offer } from '../../api/models/param-_create-_offer';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { logger } from '@firebase/database/dist/esm/src/core/util/util';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   selector: 'app-create-offer',
@@ -33,6 +35,9 @@ export class CreateOfferComponent implements OnInit {
   target_select: any;
   duration_select: any;
 
+  lng_custom;
+  lat_custom;
+
   constructor(
     private geolocationService: GeolocationService,
     private geolocation: Geolocation,
@@ -42,7 +47,8 @@ export class CreateOfferComponent implements OnInit {
     private appCtrl: App,
     private nav: NavController,
     private params: NavParams,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
     this.counter = this.params.get('counter');
     this.offer_target = this.params.get('param');
@@ -70,7 +76,7 @@ export class CreateOfferComponent implements OnInit {
     });
     loading.present();
     if (this.counter) {
-      loading.dismiss();                  
+      loading.dismiss();
       let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
       console.log(obj);
       this.offerService.createCounterOffer(obj).subscribe(data => {
@@ -82,22 +88,22 @@ export class CreateOfferComponent implements OnInit {
       });
     } else {
       if (!this.offer_type) {
-        loading.dismiss();                    
+        loading.dismiss();
         this.customService.toastMessage('Chưa chọn hình thức trao đổi', 'bottom', 3000);
       } else if (!this.target) {
-        loading.dismiss(); 
+        loading.dismiss();
         this.customService.toastMessage('Chưa chọn đối tượng trao đổi', 'bottom', 3000);
       } else if (!this.duration) {
-        loading.dismiss(); 
+        loading.dismiss();
         this.customService.toastMessage('Chưa chọn thời gian trao đổi', 'bottom', 3000);
-      } else if (this.offer_type =='random' && !this.limit_counter) {
-        loading.dismiss(); 
+      } else if (this.offer_type == 'random' && !this.limit_counter) {
+        loading.dismiss();
         this.customService.toastMessage('Chưa chọn giới hạn thành viên tham gia', 'bottom', 3000);
       } else if (!this.item) {
-        loading.dismiss(); 
+        loading.dismiss();
         this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
-      }else{
-        
+      } else {
+
         let obj: Param_create_offer = {};
         obj.offer_type = this.offer_type;
         obj.duration = this.duration;
@@ -115,14 +121,25 @@ export class CreateOfferComponent implements OnInit {
 
         this.offerService.createOffer(obj).subscribe(data => {
           if (data.offer_guid) {
-            loading.dismiss();            
+            loading.dismiss();
             let owner_from = data.offer_guid;
-            this.geolocation.getCurrentPosition().then((resp) => {
-              let lat = resp.coords.latitude;
-              let lng = resp.coords.longitude;
-              let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
-              this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
-            });
+            if (this.target != 'friends') {
+              this.geolocation.getCurrentPosition().then((resp) => {
+                let lat = resp.coords.latitude;
+                let lng = resp.coords.longitude;
+                if (this.target == 'location') {
+                  if (this.lat_custom && this.lng_custom) {
+                    lat = this.lat_custom;
+                    lng = this.lng_custom;
+                    console.log('lat_custom && lng_custom != null , not empty');
+                  }else{
+                    this.target ='public';
+                  }
+                }
+                let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
+                this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
+              });
+            }
             let callback = this.params.get("callback");
             callback("test").then(() => {
               this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
@@ -132,10 +149,42 @@ export class CreateOfferComponent implements OnInit {
             this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
           }
         })
-      }      
+      }
+    }
+  }
+  onChangeTarget() {
+    console.log(this.target);
+    if (this.target == 'location') {
+      this.appCtrl.getRootNav().push(MapComponent, { callback: this.callbackLocation })
     }
   }
 
+  callbackLocation = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log('add-feed');
+      console.log(_params);
+
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận vị trí',
+        message: _params.title,
+        buttons: [
+          {
+            text: 'Từ chối',
+            role: 'cancel'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              this.lng_custom = _params.lng;
+              this.lat_custom = _params.lat;
+            }
+          }
+        ]
+      });
+      alert.present();
+      resolve();
+    });
+  }
   chosenItem() {
     this.appCtrl.getRootNav().push(ChosenItemComponent, {
       callback: this.myCallbackFunction
