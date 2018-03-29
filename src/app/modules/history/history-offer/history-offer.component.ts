@@ -24,7 +24,13 @@ export class HistoryOfferComponent implements OnInit {
       return;
     }
     this.historyService.transactionHistory('offer').subscribe(data => {
-      this.trans = data;
+      if (!data) {
+        this.trans = data;        
+      } else {
+        this.customService.toastMessage('Không có lịch sử giao dịch !!', 'bottom', 4000);
+      }
+      
+      
     }, err => this.loadData(--retry))
   }
 

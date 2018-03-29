@@ -35,7 +35,7 @@
 	<ion-row class="images_box" *ngIf="isShowFeed">
 		<div class="images_title">Ảnh Trên Dòng Thời Gian</div>
 		<ion-col class="images_layout" col-4 *ngFor="let photo of photos">
-			<img src="{{photo.value}}" />
+			<img src="{{photo.value}}"  imageViewer/>
 		</ion-col>
 	</ion-row>
 
