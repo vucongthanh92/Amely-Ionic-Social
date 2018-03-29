@@ -4,7 +4,7 @@ import { CustomService } from './../../services/custom.service';
 import { OfferService } from './../../services/offer.service';
 import { ChosenItemComponent } from './../chosen-item/chosen-item.component';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, App, NavParams } from 'ionic-angular';
+import { NavController, App, NavParams, LoadingController } from 'ionic-angular';
 import { Item } from '../../api/models/item';
 import { Param_create_offer } from '../../api/models/param-_create-_offer';
 import { GeolocationService } from '../../services/geolocation.service';
@@ -41,7 +41,8 @@ export class CreateOfferComponent implements OnInit {
     private offerService: OfferService,
     private appCtrl: App,
     private nav: NavController,
-    private params: NavParams
+    private params: NavParams,
+    public loadingCtrl: LoadingController
   ) {
     this.counter = this.params.get('counter');
     this.offer_target = this.params.get('param');
@@ -64,8 +65,12 @@ export class CreateOfferComponent implements OnInit {
   }
 
   offer() {
-
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if (this.counter) {
+      loading.dismiss();                  
       let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
       console.log(obj);
       this.offerService.createCounterOffer(obj).subscribe(data => {
@@ -77,16 +82,22 @@ export class CreateOfferComponent implements OnInit {
       });
     } else {
       if (!this.offer_type) {
+        loading.dismiss();                    
         this.customService.toastMessage('Chưa chọn hình thức trao đổi', 'bottom', 3000);
       } else if (!this.target) {
+        loading.dismiss(); 
         this.customService.toastMessage('Chưa chọn đối tượng trao đổi', 'bottom', 3000);
       } else if (!this.duration) {
+        loading.dismiss(); 
         this.customService.toastMessage('Chưa chọn thời gian trao đổi', 'bottom', 3000);
       } else if (this.offer_type =='random' && !this.limit_counter) {
+        loading.dismiss(); 
         this.customService.toastMessage('Chưa chọn giới hạn thành viên tham gia', 'bottom', 3000);
       } else if (!this.item) {
+        loading.dismiss(); 
         this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
       }else{
+        
         let obj: Param_create_offer = {};
         obj.offer_type = this.offer_type;
         obj.duration = this.duration;
@@ -104,6 +115,7 @@ export class CreateOfferComponent implements OnInit {
 
         this.offerService.createOffer(obj).subscribe(data => {
           if (data.offer_guid) {
+            loading.dismiss();            
             let owner_from = data.offer_guid;
             this.geolocation.getCurrentPosition().then((resp) => {
               let lat = resp.coords.latitude;

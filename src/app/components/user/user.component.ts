@@ -76,7 +76,7 @@ export class UserComponent {
 
         let date = new Date(data.birthdate);
         this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
-        if (this.user.mood != null) {
+        if (this.user.mood && this.user.mood.guid != null) {
           // this.iconMood= this.moodLocal.find(e=>e.guid===data.mood.guid).image;
           this.iconMood = this.moodLocal[this.user.mood.guid].image;
         }

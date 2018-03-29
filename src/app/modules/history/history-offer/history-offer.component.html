@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list>
+  <ion-list *ngIf="trans">
     <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
       <a *ngIf="transaction.description==='Requested'" class="inventory_history_row" style="color: #666">
         <ion-icon ios="download" class="inventory_history_icon" md="md-archive"></ion-icon>Yêu cầu trao đổi #{{transaction.guid}}</a>
