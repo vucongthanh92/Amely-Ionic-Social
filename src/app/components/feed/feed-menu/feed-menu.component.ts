@@ -34,7 +34,6 @@ export class FeedMenuComponent implements OnInit {
 
 
   deleteFeed() {
-    this.nav.pop();
     let alert = this.alertCtrl.create({
       title: 'Xác nhận xóa bài viết !',
       buttons: [
