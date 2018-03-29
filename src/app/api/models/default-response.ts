@@ -8,4 +8,5 @@ export class DefaultResponse {
     error?: string;
     status?: boolean;
     validation?: User;
+    code?: string;
 }

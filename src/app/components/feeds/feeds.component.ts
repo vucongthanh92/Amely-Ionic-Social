@@ -7,6 +7,7 @@ import { User } from './../../api/models/user';
 import { Component, OnInit, Input } from '@angular/core';
 import { Feed } from '../../api/models/feed';
 import { FeedMenuComponent } from '../feed/feed-menu/feed-menu.component';
+import { Share } from '../../api/models';
 
 @Component({
   selector: 'app-feeds',
@@ -22,7 +23,7 @@ export class FeedsComponent implements OnInit {
   posts: Feed[];
   users: User[];
   moods: Mood[];
-  shares: any;
+  shares: Share;
   offset = 0;
 
   private isHasData: boolean;
@@ -55,6 +56,8 @@ export class FeedsComponent implements OnInit {
           this.posts = data.posts;
           this.users = data.users;
           this.shares = data.shares;
+          console.log(data.shares);
+          
           this.isHasData = true;
         } else {
           this.isHasData = false;

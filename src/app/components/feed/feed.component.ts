@@ -10,6 +10,7 @@ import { App, MenuController, NavController, PopoverController } from 'ionic-ang
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeedDetailComponent } from './feed-detail/feed-detail.component';
+import { Share } from '../../api/models';
 
 @Component({
   selector: 'app-feed',
@@ -18,6 +19,8 @@ import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 export class FeedComponent {
 
   @Input('post') post: Feed;
+  @Input('users') users: User[];
+  @Input('shares') shares: Share;
   @Input('user') user: User;
   @Input('mood') mood: any;
   @Input('isShowMoreContent') isShowMoreContent: boolean = false;
@@ -26,7 +29,9 @@ export class FeedComponent {
   @Output()
   uploaded = new EventEmitter<string>();
 
+  postShare: Feed;
   descriptionPost: string;
+  descriptionPostShare: string;
   location: string;
   isShowMoreTag: any;
   isHideMoreTag: any;
@@ -45,15 +50,24 @@ export class FeedComponent {
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
 
+
   }
 
   hasWallPhoto = true;
 
-
-
   ngOnInit() {
-    this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
 
+    if (this.post && this.post.item_guid) {
+      try {
+        this.postShare = this.shares.posts[this.post.item_guid];
+        console.log(this.postShare);
+        this.descriptionPostShare = JSON.parse(this.postShare.description).post;
+      } catch (error) {
+
+      }
+    }
+
+    this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
     this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
     this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;
 
@@ -115,9 +129,11 @@ export class FeedComponent {
       ev: myEvent
     });
   }
-  goToUserProfile(guid) {
-    this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
-  }
+  // goToUserProfile(guid) {
+  //   console.log(guid);
+    
+  //   this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
+  // }
 
   likeFeed() {
     this.post.likes = this.post.liked ? +this.post.likes - 1 : +this.post.likes + 1;
@@ -138,17 +154,20 @@ export class FeedComponent {
     }
     this.post.liked = !this.post.liked;
   }
-  openOwner() {
-    switch (this.post.type) {
+  openOwner(type: string, guid) {
+    switch (type) {
       case 'event':
-        this.appCtrl.getRootNav().push(EventComponent, { event_guid: this.post.owner_guid })
+        this.appCtrl.getRootNav().push(EventComponent, { event_guid: guid })
         break;
       case 'group':
-        this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: this.post.owner_guid })
+        this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: guid })
         break;
       case 'businesspage':
-        this.appCtrl.getRootNav().push(BusinessComponent, { guid: this.post.owner_guid })
+        this.appCtrl.getRootNav().push(BusinessComponent, { guid: guid })
         break;
+      case 'user':
+        this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
+      break;
     }
 
   }

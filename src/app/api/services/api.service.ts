@@ -127,6 +127,7 @@ import { body_61 } from '../models/body-_61';
 import { inline_response_200_23 } from '../models/inline-_response-_200_23';
 import { body_62 } from '../models/body-_62';
 import { Temp_order } from '../models/temp-_order';
+import { Param_create_TempOrder } from '../models/param-_create-_temp-order';
 import { Transaction } from '../models/transaction';
 import { body_63 } from '../models/body-_63';
 import { body_64 } from '../models/body-_64';
@@ -1893,13 +1894,13 @@ export class ApiService extends BaseService {
     );
   }
   /**
-   * @param entities_guid - Global Unique IDentity
+   * @param entity_guid - Global Unique IDentity
    */
-  deleteImageProductResponse(entitiesGuid: number): Observable<HttpResponse<DefaultResponse>> {
+  deleteImageProductResponse(entityGuid: number): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (entitiesGuid != null) __params = __params.set("entities_guid", entitiesGuid.toString());
+    if (entityGuid != null) __params = __params.set("entity_guid", entityGuid.toString());
     let req = new HttpRequest<any>(
       "DELETE",
       this.rootUrl + `/delete_image_product`,
@@ -1922,10 +1923,10 @@ export class ApiService extends BaseService {
   }
 
   /**
-   * @param entities_guid - Global Unique IDentity
+   * @param entity_guid - Global Unique IDentity
    */
-  deleteImageProduct(entitiesGuid: number): Observable<DefaultResponse> {
-    return this.deleteImageProductResponse(entitiesGuid).pipe(
+  deleteImageProduct(entityGuid: number): Observable<DefaultResponse> {
+    return this.deleteImageProductResponse(entityGuid).pipe(
       map(_r => _r.body)
     );
   }
@@ -5612,6 +5613,43 @@ export class ApiService extends BaseService {
    */
   getTempOrderFromQR(qrcode: string): Observable<Temp_order> {
     return this.getTempOrderFromQRResponse(qrcode).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * @param body - undefined
+   */
+  createTempOrderFromQRResponse(body: Param_create_TempOrder): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "PUT",
+      this.rootUrl + `/temp_order`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * @param body - undefined
+   */
+  createTempOrderFromQR(body: Param_create_TempOrder): Observable<DefaultResponse> {
+    return this.createTempOrderFromQRResponse(body).pipe(
       map(_r => _r.body)
     );
   }

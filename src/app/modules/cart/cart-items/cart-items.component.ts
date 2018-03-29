@@ -1,7 +1,7 @@
 import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, AlertController } from 'ionic-angular';
+import { App, NavController, AlertController, LoadingController } from 'ionic-angular';
 import { PaymentItemsComponent } from '../../payment/payment-items/payment-items.component';
 import { ShoppingsService } from '../../../services/shoppings.service';
 
@@ -10,7 +10,7 @@ import { ShoppingsService } from '../../../services/shoppings.service';
   templateUrl: './cart-items.component.html'
 })
 export class CartItemsComponent implements OnInit {
-  
+
   items: any;
   number_items = 0;
   total = 0;
@@ -19,15 +19,16 @@ export class CartItemsComponent implements OnInit {
     private paymentService: PaymentService,
     private shoppingsService: ShoppingsService,
     private customService: CustomService,
-    public nav: NavController, 
+    public nav: NavController,
     public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
     public appCtrl: App) { }
 
   ngOnInit() {
   }
 
   ionViewDidEnter() {
-    this.items = this.customService.cart; 
+    this.items = this.customService.cart;
     this.update();
   }
 
@@ -72,7 +73,7 @@ export class CartItemsComponent implements OnInit {
       ]
     });
     alert.present();
-   
+
   }
 
   update() {
@@ -85,16 +86,23 @@ export class CartItemsComponent implements OnInit {
   }
 
   payment() {
+   
     if (this.items.length > 0) {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+
+      loading.present();
       let carts = [];
-      this.items.forEach( e => {
+      this.items.forEach(e => {
         let obj = { guid: e.guid, quantity: e.quantity_cart };
         carts.push(obj);
       });
-      this.shoppingsService.putCart({ items: carts }).subscribe( data => {
+      this.shoppingsService.putCart({ items: carts }).subscribe(data => {
+        loading.dismiss();
         this.paymentService.items = data;
         this.appCtrl.getRootNav().push(PaymentItemsComponent);
-      });
+      }, err => loading.dismiss());
     } else {
       this.customService.toastMessage('Giỏ hàng đang trống, xin hãy chọn sản phẩm !', 'bottom', 3000);
     }

@@ -10,5 +10,5 @@ export class inline_response_200_9 {
     posts?: Feed[];
     users?: User[];
     moods?: Mood[];
-    shares?: Share[];
+    shares?: Share;
 }

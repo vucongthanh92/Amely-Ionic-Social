@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,6 +20,8 @@ export class PaymentPaymentMethodComponent implements OnInit {
     public nav: NavController, 
     public appCtrl: App) {
     this.payment_methods = (<any>Object).values(this.paymentService.payment_methods.payment_methods );
+    console.log(this.payment_methods);
+    this.payment_methods = this.payment_methods.filter(e => e.filename != 'ngl/atm' && e.filename != 'ngl/creditcard')
     // this.payment_methods = this.payment_methods.filter(data => data.filename != "onepay/opatm" && data.filename != "onepay/opcreditcard");
     }
 

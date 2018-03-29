@@ -267,4 +267,7 @@ export class CustomService {
       actionSheet.present();
     });
   }
+  share(share_type: string, subject_guid: number, post: string) {
+    return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
+  }
 }

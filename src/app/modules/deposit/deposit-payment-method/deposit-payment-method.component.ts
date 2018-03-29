@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators/filter';
 import { Wallet } from './../../../api/models/wallet';
 import { DepositPaymentOptionComponent } from './../deposit-payment-option/deposit-payment-option.component';
 import { WalletsService } from './../../../services/wallets.service';
@@ -34,6 +35,9 @@ export class DepositPaymentMethodComponent implements OnInit {
     this.walletService.confirmDeposit().subscribe(data => {
       this.payment_methods = (<any>Object).values(data.payment_method);
       this.limit = data.limit;
+      console.log(this.payment_methods);
+      this.payment_methods = this.payment_methods.filter(e => e.filename != 'ngl/atm' && e.filename !='ngl/creditcard')
+      
     }, err => this.loadData(--retry))
   }
 

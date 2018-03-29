@@ -4,7 +4,7 @@ import { Product } from './product';
 /**
  */
 export class Item {
-    quantity?: number;
+    quantity_redeem?: number;
     guid?: number;
     type?: string;
     time_created?: number;
@@ -12,6 +12,7 @@ export class Item {
     description?: string;
     subtype?: string;
     inventory_type?: string;
+    quantity?: number;
     owner_guid?: number;
     product_snapshot?: Product;
     expiry_type?: string;

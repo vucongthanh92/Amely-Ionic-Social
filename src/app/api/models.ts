@@ -36,6 +36,8 @@ export { ShopOrder } from './models/shop-order';
 export { ShopShipping } from './models/shop-shipping';
 export { Delivery_order } from './models/delivery-_order';
 export { Param_create_order } from './models/param-_create-_order';
+export { Param_create_TempOrder } from './models/param-_create-_temp-order';
+export { Param_item_temporder } from './models/param-_item-_temporder';
 export { Comment } from './models/comment';
 export { QRCode } from './models/qrcode';
 export { Param_create_offer } from './models/param-_create-_offer';

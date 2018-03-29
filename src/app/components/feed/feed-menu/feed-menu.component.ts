@@ -1,3 +1,4 @@
+import { guid } from './../../../api/models/guid';
 import { FeedsService } from './../../../services/feeds.service';
 import { CustomService } from './../../../services/custom.service';
 import { NavParams, AlertController, NavController } from 'ionic-angular';
@@ -33,6 +34,7 @@ export class FeedMenuComponent implements OnInit {
 
 
   deleteFeed() {
+    this.nav.pop();
     let alert = this.alertCtrl.create({
       title: 'Xác nhận xóa bài viết !',
       buttons: [
@@ -63,4 +65,12 @@ export class FeedMenuComponent implements OnInit {
     alert.present();
   }
 
+  share() {
+    this.nav.pop();
+    this.customService.share('post', this.post.guid, null).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Bài viết đã chia sẻ thành công', 'bottom', 3000)
+      } else this.customService.toastMessage('Chia sẻ thất bại', 'bottom', 3000)
+    }, err => this.customService.toastMessage('Chia sẻ thất bại, vui lòng kiểm tra lại kết nối mạng', 'bottom', 3000));
+  }
 }
