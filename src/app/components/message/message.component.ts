@@ -47,7 +47,7 @@ export class MessageComponent implements OnInit {
       this.param = this.navParams.get("param");
       console.log(this.param);
       console.log('1234');
-
+      this.param = this.navParams.get("param");
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       if (this.param.chat_type == "individual") {
         this.getMessagesIndividual();
@@ -56,7 +56,9 @@ export class MessageComponent implements OnInit {
         this.getMessagesGroup();
         this.usernameChat = this.param.title;
       }
-    }
+
+  }
+
 
   getMessagesIndividual() {
     this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
