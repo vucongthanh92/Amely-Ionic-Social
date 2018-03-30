@@ -17,7 +17,7 @@ export class ProductsFeatureComponent implements OnInit {
   @Input('shopGuid') shopGuid;
   @Input('is_feature') is_feature: boolean;
 
-  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, 
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService,
     private shoppingSerivce: ShoppingsService, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -31,17 +31,33 @@ export class ProductsFeatureComponent implements OnInit {
   }
 
   getProductsFeature(retry) {
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
+
     if (retry == 0) {
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingSerivce.getProductsFeature().subscribe(data => {
+      // loading.dismiss();
       this.productsMostSold = data;
     }, err => this.getProductsFeature(--retry));
   }
 
   getMostSold(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -50,11 +66,20 @@ export class ProductsFeatureComponent implements OnInit {
         this.productsMostSold = data;
       }
     }, err => this.getMostSold(--retry))
+    loading.dismiss();
+    
   }
   initShopProductFeatue() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     // "default" "feature"
     this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
       if (data.products instanceof Array) {
+        loading.dismiss();
         this.productsMostSold = data.products;
       }
     })
@@ -66,20 +91,21 @@ export class ProductsFeatureComponent implements OnInit {
 
   goToPage(value, product: Product) {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
 
     loading.present();
-    switch (value) {      
+    switch (value) {
       case 'product':
-        loading.dismiss();      
+        loading.dismiss();
         if (this.is_feature) this.shopService.clickAdv(product.advertise_guid).subscribe(data => {
         });
         this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       case 'all':
         loading.dismiss();
-        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature' });
+        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature', product: product });
         break;
       default:
         break;

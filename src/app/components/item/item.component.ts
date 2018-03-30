@@ -10,7 +10,7 @@ import { App } from 'ionic-angular/components/app/app';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Product } from '../../api/models/product';
 import { InventoryTargetsGiftComponent } from '../inventory-targets-gift/inventory-targets-gift.component';
-import { AlertController } from 'ionic-angular';
+import { AlertController, LoadingController } from 'ionic-angular';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html'
@@ -28,7 +28,8 @@ export class ItemComponent implements OnInit {
   is_reload_before_page = false;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
-    private inventoriesService: InventoriesService, private customService: CustomService, private alertCtrl: AlertController, private userService: UserService) {
+    private inventoriesService: InventoriesService, private customService: CustomService,
+    private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
   }
@@ -38,7 +39,15 @@ export class ItemComponent implements OnInit {
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -48,13 +57,20 @@ export class ItemComponent implements OnInit {
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
-
+        loading.dismiss();
       },
       err => {
         this.loadData(--retry)
       })
   }
   createCode() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
         this.is_used = true;
@@ -63,6 +79,7 @@ export class ItemComponent implements OnInit {
             this.createdCode = data.code
           }
           this.is_used = false;
+          loading.dismiss();
         })
       })
 

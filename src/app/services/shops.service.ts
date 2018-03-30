@@ -27,5 +27,5 @@ export class ShopsService {
 
   clickAdv(guid:number){
     return this.api.clickAds(guid);
-  }
+  } 
 }

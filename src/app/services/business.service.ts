@@ -12,5 +12,5 @@ export class BusinessService {
 
   getBusinessPage(guid:number){
     return this.api.getBusinessPage(guid);
-  }
+  } 
 }

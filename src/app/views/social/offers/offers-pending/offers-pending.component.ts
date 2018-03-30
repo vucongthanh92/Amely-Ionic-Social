@@ -3,7 +3,7 @@ import { OffersItemDetailComponent } from './../offers-item-detail/offers-item-d
 import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../../../api/models/counter-offer';
-import { App } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-offers-pending',
@@ -11,7 +11,7 @@ import { App } from 'ionic-angular';
 })
 export class OffersPendingComponent implements OnInit {
   counterOffers: Array<CounterOffer> = [];
-  constructor(private offerService: OffersService, private app: App, private customService: CustomService) { }
+  constructor(private offerService: OffersService, private app: App, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
@@ -21,7 +21,15 @@ export class OffersPendingComponent implements OnInit {
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -29,6 +37,7 @@ export class OffersPendingComponent implements OnInit {
       if (data instanceof Array) {
         this.counterOffers = data;
       }
+      loading.dismiss();
     }, err => this.loadData(--retry));
   }
 

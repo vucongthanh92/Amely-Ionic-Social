@@ -4,7 +4,7 @@ import { User } from './../../../../api/models/user';
 import { Event } from './../../../../api/models/event';
 import { EventsService } from './../../../../services/events.service';
 import { Component, OnInit } from '@angular/core';
-import { App } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-events-history',
@@ -13,14 +13,20 @@ import { App } from 'ionic-angular';
 export class EventsHistoryComponent implements OnInit {
   public events: Array<Event>;
   public users: Array<User>;
-  constructor(private eventsService: EventsService, private app: App, private customService: CustomService) { }
+  constructor(private eventsService: EventsService, private app: App, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadData(5);
   }
 
   loadData(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -28,6 +34,7 @@ export class EventsHistoryComponent implements OnInit {
       if (data.events instanceof Array) {
         this.events = data.events;
       }
+      loading.dismiss();
       this.users = data.users;
     }, err => this.loadData(--retry))
   }

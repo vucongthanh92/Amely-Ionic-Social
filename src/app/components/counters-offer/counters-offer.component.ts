@@ -2,7 +2,7 @@ import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
 import { ModalCounterOfferComponent } from './modal-counter-offer/modal-counter-offer.component';
 import { OffersService } from './../../services/offers.service';
-import { NavParams, ModalController, ItemSliding, AlertController, NavController } from 'ionic-angular';
+import { NavParams, ModalController, ItemSliding, AlertController, NavController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../api/models/counter-offer';
 
@@ -21,19 +21,29 @@ export class CountersOfferComponent implements OnInit {
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
     private offersService: OffersService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    public loadingCtrl: LoadingController
   ) {
     this.offer = this.navParams.get('param');
     this.loadData(5);
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.offersService.getOffer(this.offer.guid).subscribe(
       data => {
+        loading.dismiss();
         this.counters = data.counter_offers;
       },
       err => {

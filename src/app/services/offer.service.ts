@@ -43,5 +43,5 @@ export class OfferService {
 
   getCounterOffer(guid) {
     return this.api.getCounterOffer(guid);
-  }
+  } 
 }

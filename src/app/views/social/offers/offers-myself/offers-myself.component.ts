@@ -3,7 +3,7 @@ import { CreateOfferComponent } from './../../../../components/create-offer/crea
 import { Offer } from './../../../../api/models/offer';
 import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, AlertController } from 'ionic-angular';
+import { App, NavController, AlertController, LoadingController } from 'ionic-angular';
 import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
 
 @Component({
@@ -17,7 +17,8 @@ export class OffersMyselfComponent implements OnInit {
     private customService: CustomService,
     private nav: NavController,
     private appCtrl: App,
-    private offersService: OffersService) { }
+    private offersService: OffersService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
 
@@ -28,14 +29,24 @@ export class OffersMyselfComponent implements OnInit {
   }
 
   getOffers(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
       if (data instanceof Array) {
+        
         this.offers = data;
       }
+      loading.dismiss();
     }, err => this.getOffers(--retry))
   }
 
@@ -90,10 +101,17 @@ export class OffersMyselfComponent implements OnInit {
         {
           text: 'Chấp nhập',
           handler: data => {
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...',
+              enableBackdropDismiss: true
+            });
+            loading.present();
+            
             this.offersService.delete(o.guid).subscribe(data => {
               if (data.status) {
                 this.offers = this.offers.filter(e => e.guid != o.guid);
                 this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
+                loading.dismiss();
               }
             })
           }

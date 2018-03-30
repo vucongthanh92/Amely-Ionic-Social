@@ -1,6 +1,6 @@
 import { CustomService } from './../../services/custom.service';
 import { AddFeedComponent } from './../add-feed/add-feed.component';
-import { App } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
@@ -31,6 +31,7 @@ export class FeedsComponent implements OnInit {
     private customService: CustomService,
     private feedsService: FeedsService,
     private appCtrl: App,
+    public loadingCtrl: LoadingController,
   ) { }
   someMethod(obj) {
     if (obj.type == 'delete') {
@@ -44,7 +45,15 @@ export class FeedsComponent implements OnInit {
   }
 
   refreshView(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -52,14 +61,16 @@ export class FeedsComponent implements OnInit {
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
         if (data.posts) {
+          loading.dismiss();
           this.offset = this.offset + data.posts.length;
           this.posts = data.posts;
           this.users = data.users;
           this.shares = data.shares;
           console.log(data.shares);
-          
+
           this.isHasData = true;
         } else {
+          loading.dismiss();
           this.isHasData = false;
         }
       },
@@ -72,6 +83,13 @@ export class FeedsComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     setTimeout(() => {
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
         this.posts = this.posts.concat(data.posts);
@@ -79,6 +97,7 @@ export class FeedsComponent implements OnInit {
         this.shares = data.shares;
         if (data.posts != null) {
           this.offset = this.offset + data.posts.length;
+          loading.dismiss();
         }
       });
 
@@ -119,6 +138,12 @@ export class FeedsComponent implements OnInit {
   }
 
   myCallbackFunction = () => {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     return new Promise((resolve, reject) => {
       this.offset = 0;
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
@@ -132,6 +157,7 @@ export class FeedsComponent implements OnInit {
         } else {
           this.isHasData = false;
         }
+        loading.dismiss();
       });
       resolve();
     });

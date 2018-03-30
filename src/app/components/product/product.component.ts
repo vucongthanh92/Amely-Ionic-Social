@@ -3,7 +3,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Category } from './../../api/models/category';
 import { Product } from './../../api/models/product';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { CartItemsComponent } from '../../modules/cart/cart-items/cart-items.component';
 import { ProductsService } from '../../services/products.service';
 import { CustomService } from '../../services/custom.service';
@@ -26,7 +26,8 @@ export class ProductComponent implements OnInit {
     public appCtrl: App,
     private productsService: ProductsService,
     private navParam: NavParams,
-    private customService: CustomService) {
+    private customService: CustomService,
+    public loadingCtrl: LoadingController) {
 
     this.product = this.navParam.get('product');
     this.guid = this.navParam.get('guid');
@@ -39,11 +40,20 @@ export class ProductComponent implements OnInit {
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.productsService.getProduct(this.guid).subscribe(data => {
+      loading.dismiss();
       this.product = data.product;
       this.categories = data.categories;
       this.shop = data.shop;

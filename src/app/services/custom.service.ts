@@ -162,7 +162,8 @@ export class CustomService {
             text: 'Login',
             handler: data => {
               let loading = this.loadingCtrl.create({
-                content: 'Please wait...'
+                content: 'Please wait...',
+                enableBackdropDismiss: true
               });
 
               loading.present();
@@ -188,7 +189,10 @@ export class CustomService {
           {
             text: 'Chụp ảnh',
             handler: () => {
-              let loading = this.loadingCtrl.create();
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...',
+                enableBackdropDismiss: true
+              });
               loading.present();
               camera.getPicture({
                 quality: 80,
@@ -208,7 +212,10 @@ export class CustomService {
           }, {
             text: 'Thư viện',
             handler: () => {
-              let loading = this.loadingCtrl.create();
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...',
+                enableBackdropDismiss: true
+              });
               loading.present();
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
@@ -241,7 +248,10 @@ export class CustomService {
           {
             text: 'Chụp ảnh',
             handler: () => {
-              let loading = this.loadingCtrl.create();
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...',
+                enableBackdropDismiss: true
+              });
 
               loading.present();
 
@@ -254,7 +264,10 @@ export class CustomService {
           }, {
             text: 'Thư viện',
             handler: () => {
-              let loading = this.loadingCtrl.create();
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...',
+                enableBackdropDismiss: true
+              });
               loading.present();
               setTimeout(() => {
                 loading.dismiss();

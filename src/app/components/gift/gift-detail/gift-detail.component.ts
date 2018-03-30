@@ -3,7 +3,7 @@ import { GiftsService } from './../../../services/gifts.service';
 import { CustomService } from './../../../services/custom.service';
 import { MessagesService } from './../../../services/messages.service';
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams, LoadingController } from 'ionic-angular';
 import { Gift } from '../../../api/models';
 
 @Component({
@@ -17,7 +17,7 @@ export class GiftDetailComponent implements OnInit {
   notify: Notification;
   gift: Gift;
   constructor(private viewCtrl: ViewController, private navParams: NavParams, private messageService: MessagesService, private customService: CustomService,
-    private giftService: GiftsService) {
+    private giftService: GiftsService, public loadingCtrl: LoadingController) {
     this.status = this.navParams.get('status');
     this.gift_id = this.navParams.get('gift_id');
     this.notify = this.navParams.get('notify')
@@ -28,7 +28,15 @@ export class GiftDetailComponent implements OnInit {
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -39,11 +47,17 @@ export class GiftDetailComponent implements OnInit {
       err => {
         this.loadData(--retry);
       })
+    loading.dismiss();
   }
   dismiss() {
     this.viewCtrl.dismiss();
   }
   acceptGift() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     this.messageService.acceptGift(this.customService.user_current.username, this.gift_id);
     this.customService.notifications = this.customService.notifications.filter((e) =>
       !(e.time_created == this.notify.time_created && this.notify.subject_guid == e.subject_guid));
@@ -51,9 +65,15 @@ export class GiftDetailComponent implements OnInit {
     this.customService.notifications.unshift(this.notify)
     this.customService.toastMessage('Đã đồng ý nhận quà', 'bottom', 2000);
     this.viewCtrl.dismiss();
+    loading.dismiss();
   }
 
   rejecttGift() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     this.messageService.rejectGift(this.customService.user_current.username, this.gift_id);
     this.customService.toastMessage('Đã từ chối', 'bottom', 2000);
     this.viewCtrl.dismiss();
@@ -61,5 +81,6 @@ export class GiftDetailComponent implements OnInit {
       !(e.time_created == this.notify.time_created && this.notify.subject_guid == e.subject_guid));
     this.notify.notification_type = 'gift:reject';
     this.customService.notifications.unshift(this.notify)
+    loading.dismiss();
   }
 }

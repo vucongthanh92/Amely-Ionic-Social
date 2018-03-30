@@ -8,5 +8,5 @@ export class SearchService {
 
   searchValues(content: string) {
     return this.api.search(content);
-  }
+  } 
 }

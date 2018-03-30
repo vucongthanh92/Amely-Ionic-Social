@@ -1,5 +1,5 @@
 import { ShopsService } from './../../services/shops.service';
-import { NavParams, App } from 'ionic-angular';
+import { NavParams, App, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Shop } from '../../api/models';
 import { CustomService } from '../../services/custom.service';
@@ -22,7 +22,8 @@ export class CreateShopComponent implements OnInit {
   public shipping_method: string = 'Self';
   public ssn: string;
 
-  constructor(private nav: NavParams, private appCtrl: App, private customService: CustomService, private shopService: ShopsService) {
+  constructor(private nav: NavParams, private appCtrl: App, private customService: CustomService, private shopService: ShopsService,
+    public loadingCtrl: LoadingController) {
     this.shop = nav.get('shop');
     if (this.shop.guid != null) {
       this.name = this.shop.title;
@@ -49,39 +50,58 @@ export class CreateShopComponent implements OnInit {
   ngOnInit() {
   }
   createShop() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (!this.name) {
+      loading.dismiss();
       this.customService.toastMessage('Tên cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.phone) {
+      loading.dismiss();
       this.customService.toastMessage('Số điện thoại cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.address) {
+      loading.dismiss();
       this.customService.toastMessage('Địa chỉ cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.BIDN) {
+      loading.dismiss();
       this.customService.toastMessage('Mã doanh nghiệp không được để trống', 'bottom', 2000);
     } else if (!this.friend_url) {
+      loading.dismiss();
       this.customService.toastMessage('Friend url không được để trống', 'bottom', 2000);
     } else if (!this.owner_name) {
+      loading.dismiss();
       this.customService.toastMessage('Tên chủ cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.owner_phone_number) {
+      loading.dismiss();
       this.customService.toastMessage('Số điện thoại chủ cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.owner_address) {
+      loading.dismiss();
       this.customService.toastMessage('Địa chỉ chủ cửa hàng không được để trống', 'bottom', 2000);
     } else if (!this.shipping_method) {
+      loading.dismiss();
       this.customService.toastMessage('Chưa chọn phương thức vận chuyển', 'bottom', 2000);
     } else if (!this.ssn) {
+      loading.dismiss();
       this.customService.toastMessage('SSN không được để trống', 'bottom', 2000);
     } else {
+
       this.shopService.createShop(this.shipping_method, this.name, this.address, this.BIDN, this.price, this.friend_url, this.phone, this.owner_name,
         this.owner_phone_number, this.owner_address, this.ssn, null).subscribe(
-          data => {
-            if (data.status) {
-              this.appCtrl.getRootNav().pop();
-            } else {
-              this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
-            }
-          },
-          err => {
+        data => {
+          if (data.status) {
+            this.appCtrl.getRootNav().pop();
+          } else {
             this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
-          })
+          }
+          loading.dismiss();
+        },
+        err => {
+          this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+        })
     }
   }
 }

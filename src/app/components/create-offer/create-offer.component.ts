@@ -66,7 +66,8 @@ export class CreateOfferComponent implements OnInit {
 
   offer() {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
     loading.present();
     if (this.counter) {

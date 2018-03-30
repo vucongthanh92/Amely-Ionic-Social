@@ -2,7 +2,7 @@ import { OfferService } from './../../../../services/offer.service';
 import { CounterOffer } from './../../../../api/models/counter-offer';
 import { CountersOfferComponent } from './../../../../components/counters-offer/counters-offer.component';
 import { CustomService } from './../../../../services/custom.service';
-import { NavParams, NavController, App, Navbar } from 'ionic-angular';
+import { NavParams, NavController, App, Navbar, LoadingController } from 'ionic-angular';
 import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OffersService } from '../../../../services/offers.service';
@@ -27,6 +27,7 @@ export class OffersItemDetailComponent implements OnInit {
     private offerService: OfferService,
     private navParams: NavParams,
     private nav: NavController,
+    public loadingCtrl: LoadingController,
     private app: App
   ) {
 
@@ -43,12 +44,20 @@ export class OffersItemDetailComponent implements OnInit {
   }
 
   getOffer(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       this.nav.pop();
       return;
     }
     this.offersService.getOffer(this.cOffer.offer.guid).subscribe(data => {
+      loading.dismiss();
       this.offer = data;
       this.setupData();
     }, err => this.getOffer(--retry))

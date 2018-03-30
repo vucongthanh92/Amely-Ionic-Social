@@ -6,7 +6,7 @@ import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Shop } from './../../api/models/shop';
 import { Component, OnInit } from '@angular/core'; 
-import { App, NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { SearchService } from '../../services/search.service';
 import { Group } from '../../api/models/group';
 import { Product } from '../../api/models/product';
@@ -36,7 +36,8 @@ export class SearchComponent implements OnInit {
     public nav: NavController,
     private appCtrl: App,
     private searchService: SearchService,
-    private customService: CustomService) {
+    private customService: CustomService,
+    public loadingCtrl: LoadingController) {
     this.contentSearch = this.navParams.get('param');
   }
 
@@ -45,41 +46,55 @@ export class SearchComponent implements OnInit {
   }
 
   loadData(retry) {
+    
+ let loading = this.loadingCtrl.create({
+  content: 'Please wait...',
+  enableBackdropDismiss: true
+});
+loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.searchService.searchValues(this.contentSearch).subscribe(data => {
       if (data.business) {
+        loading.dismiss();
         this.business = data.business;
         this.is_has_data = true;
         this.search = 'business';
       }
       if (data.events) {
+        loading.dismiss();
         this.events = data.events;
         this.is_has_data = true;
         this.search = 'event';
       }
 
       if (data.groups) {
+        loading.dismiss();
         this.groups = data.groups;
         this.is_has_data = true;
         this.search = 'group';
       }
 
       if (data.shops) {
+        loading.dismiss();
         this.shops = data.shops;
         this.is_has_data = true;
         this.search = 'store';
       }
 
       if (data.products) {
+        loading.dismiss();
         this.products = data.products;
         this.is_has_data = true;
         this.search = 'product';
       }
 
       if (data.users) {
+        loading.dismiss();
         this.users = data.users
         this.is_has_data = true;
         this.search = 'peoples';

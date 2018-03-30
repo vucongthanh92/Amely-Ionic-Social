@@ -1,6 +1,6 @@
 import { PersonalService } from './../personal.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 
 import { AddFriendComponent } from '../../../components/add-friend/add-friend.component';
 import { AddGroupComponent } from '../../../components/add-group/add-group.component';
@@ -26,21 +26,29 @@ export class ContactComponent implements OnInit {
   tab1Root = ContactUsersComponent;
   tab2Root = ContactGroupsComponent;
   tab3Root = ContactBusinessComponent;
-  
+
   constructor(
     public nav: NavController,
     public appCtrl: App,
-    public personalService: PersonalService, private groupService:GroupService,private customService:CustomService
+    public personalService: PersonalService, private groupService: GroupService, private customService: CustomService, public loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
     this.initGroupsContact();
   }
 
-  initGroupsContact(){
+  initGroupsContact() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     this.groupService.getGroups(this.customService.user_current.guid).subscribe(data => {
       this.groupService.groups_contact = data.groups;
       this.groupService.groups_user = data.owners;
+      loading.dismiss();
+
     })
   }
 
@@ -48,7 +56,7 @@ export class ContactComponent implements OnInit {
     switch (value) {
       case 'add-group':
         // this.nav.push(AddGroupComponent);
-        this.appCtrl.getRootNav().push(AddGroupComponent, { callback: this.myCallbackFunction});
+        this.appCtrl.getRootNav().push(AddGroupComponent, { callback: this.myCallbackFunction });
         break;
       case 'add-friend':
         this.appCtrl.getRootNav().push(AddFriendComponent);
