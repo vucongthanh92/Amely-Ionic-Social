@@ -141,7 +141,7 @@ export class MainMenuComponent implements OnInit {
 
             switch (notify.notification_type) {
               case 'like:post':
-                notify.title = data.fullname + 'đã thích bài viết của bạn';
+                notify.title = data.fullname + ' đã thích bài viết của bạn';
                 this.customService.notifications.push(notify);
                 if (!notify.viewed) {
                   this.showNotify(notify.subject_guid, notify.title);
@@ -150,7 +150,7 @@ export class MainMenuComponent implements OnInit {
                 break;
               case "comments:post":
                 // console.log("comments:post");
-                notify.title = data.fullname + 'đã bình luận viết của bạn';
+                notify.title = data.fullname + ' đã bình luận bài viết của bạn';
                 this.customService.notifications.push(notify);
                 if (!notify.viewed) {
                   this.showNotify(notify.subject_guid, notify.title);
@@ -161,7 +161,7 @@ export class MainMenuComponent implements OnInit {
                 break;
               case "friend:request":
                 // console.log("friend:request");
-                notify.title = data.fullname + 'đã gửi lời mời kết bạn';
+                notify.title = data.fullname + ' đã gửi lời mời kết bạn';
                 this.customService.notifications.push(notify);
                 if (!notify.viewed) {
                   this.showNotify(notify.subject_guid, notify.title);

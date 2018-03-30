@@ -8,7 +8,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Banner } from './../../../api/models/banner';
 import { ShopsService } from './../../../services/shops.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -18,18 +18,28 @@ import { App, NavController } from 'ionic-angular';
 export class ShopsComponent implements OnInit {
 
   banners: Array<Banner>
-  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private iab: InAppBrowser, private customService: CustomService) { }
+  constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private iab: InAppBrowser, private customService: CustomService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadData(5);
   }
 
   loadData(retry) {
+
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
+
     if (retry == 0) {
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shopService.getBanners().subscribe(data => {
+      // loading.dismiss();
       this.banners = data;
       this.banners = this.banners.filter(e => !(e.type == null && e.link == ''))
     }, err => this.loadData(--retry))

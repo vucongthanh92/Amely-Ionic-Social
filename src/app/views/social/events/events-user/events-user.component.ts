@@ -4,7 +4,7 @@ import { User } from './../../../../api/models/user';
 import { Event } from './../../../../api/models/event';
 import { EventsService } from './../../../../services/events.service';
 import { Component, OnInit } from '@angular/core';
-import { App } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 import { CreateEventComponent } from '../../../../components/create-event/create-event.component';
 
 @Component({
@@ -17,14 +17,21 @@ export class EventsUserComponent implements OnInit {
   constructor(
     private app: App,
     private eventsService: EventsService,
-    private customService: CustomService) { }
+    private customService: CustomService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadEvent(5);
   }
 
   loadEvent(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -32,6 +39,7 @@ export class EventsUserComponent implements OnInit {
       if (data.events instanceof Array) {
         this.events = data.events;
       }
+      loading.dismiss();
       this.users = data.users;
     }, err => this.loadEvent(--retry))
   }

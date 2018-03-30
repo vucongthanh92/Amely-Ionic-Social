@@ -50,6 +50,6 @@ export class InventoriesService {
       shipping_district: shipping_district, shipping_fullname: shipping_fullname, shipping_note: shipping_note, shipping_method: shipping_method,
       shipping_fee: shipping_fee, item: item, quantity: quantity, shop_guid: shop_guid
     })
-  }
+  } 
 
 }

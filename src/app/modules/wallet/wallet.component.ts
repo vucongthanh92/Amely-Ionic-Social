@@ -43,13 +43,21 @@ export class WalletComponent implements OnInit {
   }
 
   loadData(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       this.nav.pop();
       return;
     }
     this.inventoryService.getWallet().subscribe(data => {
       this.wallet = data;
+      loading.dismiss();
     }, err => this.loadData(--retry));
   }
 

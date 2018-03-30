@@ -38,5 +38,5 @@ export class ShoppingsService {
 
   getShopFeature(){
     return this.apiService.getFeaturedShops();
-  }
+  } 
 }

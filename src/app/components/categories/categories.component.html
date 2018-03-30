@@ -1,7 +1,7 @@
 <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categoriesParent" >
   <ion-row>
     <ion-col col-8>
-      <h3 class="categories_label">Danh mục</h3>
+      <h3 class="categories_label" style="font-weight: bold;">Danh mục</h3>
     </ion-col>
     <ion-col *ngIf="categoriesParent" col-4 style="text-align: right">
       <h5 class="categories_readmore" *ngIf="categoriesParent.length>6" (click)="goToPageAll(categories);">Xem tất cả</h5>

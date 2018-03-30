@@ -4,7 +4,7 @@ import { Camera } from '@ionic-native/camera';
 import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, NavParams, AlertController } from 'ionic-angular';
+import { App, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
@@ -42,20 +42,21 @@ export class MessageComponent implements OnInit {
     public navParams: NavParams,
     public nav: NavController,
     private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     public appCtrl: App) {
-    this.param = this.navParams.get("param");
-    console.log(this.param);
-    console.log('1234');
+      this.param = this.navParams.get("param");
+      console.log(this.param);
+      console.log('1234');
 
-    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    if (this.param.chat_type == "individual") {
-      this.getMessagesIndividual();
-      this.usernameChat = this.param.from;
-    } else {
-      this.getMessagesGroup();
-      this.usernameChat = this.param.title;
+      this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+      if (this.param.chat_type == "individual") {
+        this.getMessagesIndividual();
+        this.usernameChat = this.param.from;
+      } else {
+        this.getMessagesGroup();
+        this.usernameChat = this.param.title;
+      }
     }
-  }
 
   getMessagesIndividual() {
     this.messagesService.getMessages(this.param.key).query.on("value", itemsSnapshot => {
@@ -189,6 +190,12 @@ export class MessageComponent implements OnInit {
   }
 
   sendMessage() {
+    
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
@@ -201,17 +208,30 @@ export class MessageComponent implements OnInit {
         position: "bottom",
         duration: 1000
       });
+      loading.dismiss();      
       toast.present();
     }
     this.messageText = null;
   }
 
   acceptGift(gift_guid) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     this.messagesService.acceptGift(this.userCurrent.username, gift_guid);
+    loading.dismiss();
   }
 
   rejectGift(gift_guid) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     this.messagesService.rejectGift(this.userCurrent.username, gift_guid);
+    loading.dismiss();    
   }
 
   newfeedsPage = true;

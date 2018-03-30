@@ -41,15 +41,19 @@ export class UserUpdateComponent implements OnInit {
   }
 
   updateInfo() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (!this.first_name || !this.last_name) {
+      loading.dismiss(); 
       this.customService.toastMessage('Họ tên không được để trống', 'bottom', 2000)
     } else {
       console.log(this.friend_hidden);
-      let loading = this.loadingCtrl.create();
-      loading.present();
+     
       this.userService.updateProfile(this.first_name, this.last_name, null, this.gender, this.birthdate, null, this.friend_hidden == true ? '1' : '0'
         , this.mobile_hidden == true ? '1' : '0', this.birthdate_hidden == true ? '1' : '0').subscribe(data => {
-          loading.dismiss();
           if (data.status) {
             this.customService.toastMessage('Cập nhật thông tin thành công', 'bottom', 2000);
             this.customService.user_current.first_name = this.first_name;
@@ -66,6 +70,7 @@ export class UserUpdateComponent implements OnInit {
           } else {
             this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
           }
+          loading.dismiss();          
         }, err => this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại sau', 'bottom', 4000));
     }
   }

@@ -16,6 +16,6 @@ export class InvitationService {
 
   deleteApproval(invitation_type: string, from_guid: number, to_guid: number) {
     return this.apiService.deleteApproval({ toGuid: to_guid, invitationType: invitation_type, fromGuid: from_guid });
-  }
+  } 
 
 }

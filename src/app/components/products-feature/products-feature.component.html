@@ -1,10 +1,10 @@
 <div class="product_feature_container" *ngIf="productsMostSold.length>0">
   <ion-row>
     <ion-col col-8>
-      <h3 *ngIf="!is_feature" class="product_feature_label">Sản phẩm bán chạy</h3>
-      <h3 *ngIf="is_feature" class="product_feature_label">Sản phẩm tiêu biểu</h3>
+      <h3 *ngIf="!is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm bán chạy</h3>
+      <h3 *ngIf="is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm tiêu biểu</h3>
     </ion-col>
-    <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);">Xem tất cả</ion-col>
+    <!-- <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);">Xem tất cả</ion-col> -->
   </ion-row>
   <ion-scroll scrollX class="product_feature">
     <div class="scroll-item" *ngIf="productsMostSold">

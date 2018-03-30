@@ -89,7 +89,8 @@ export class CartItemsComponent implements OnInit {
    
     if (this.items.length > 0) {
       let loading = this.loadingCtrl.create({
-        content: 'Please wait...'
+        content: 'Please wait...',
+        enableBackdropDismiss: true
       });
 
       loading.present();

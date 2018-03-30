@@ -39,5 +39,5 @@ export class EventsService {
       location: location, event_guid: event_guid, description: description, start_date: start_date, end_date: end_date, country: country, title: title,
       template: template, has_inventory: has_inventory, status: status, event_type: event_type, owner_guid: owner_guid, invites: invites
     });
-  }
+  } 
 }

@@ -2,7 +2,7 @@ import { CustomService } from './../../../services/custom.service';
 import { Shop } from './../../../api/models/shop';
 import { User } from './../../../api/models/user';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { ShopComponent } from '../../../components/shop/shop.component';
 import { ShoppingsService } from '../../../services/shoppings.service';
 
@@ -13,18 +13,28 @@ import { ShoppingsService } from '../../../services/shoppings.service';
 export class ShopsFriendlyComponent implements OnInit {
   public users: Array<User>;
   public shops: Array<Shop>;
-  constructor(public nav: NavController, public appCtrl: App, public shoppingsService: ShoppingsService, private customService: CustomService) { }
+  constructor(public nav: NavController, public appCtrl: App, public shoppingsService: ShoppingsService, private customService: CustomService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-   this.loadData(5);
+    this.loadData(5);
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingsService.getFriendlyShop().subscribe(data => {
+      loading.dismiss();
       this.shops = data.shops;
       this.users = data.owners;
     }, err => this.loadData(--retry));

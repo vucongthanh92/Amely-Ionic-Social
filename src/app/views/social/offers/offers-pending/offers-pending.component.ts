@@ -23,7 +23,15 @@ export class OffersPendingComponent implements OnInit {
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -31,6 +39,7 @@ export class OffersPendingComponent implements OnInit {
       if (data instanceof Array) {
         this.counterOffers = data;
       }
+      loading.dismiss();
     }, err => this.loadData(--retry));
   }
 

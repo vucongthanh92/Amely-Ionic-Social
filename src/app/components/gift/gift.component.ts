@@ -3,7 +3,7 @@ import { MessagesService } from './../../services/messages.service';
 import { User } from './../../api/models/user';
 import { GiftsService } from './../../services/gifts.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { App, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { ChooseItemComponent } from './choose-item/choose-item.component';
 import { Item } from '../../api/models/item';
 import { Gift } from '../../api/models/gift';
@@ -34,6 +34,7 @@ export class GiftComponent implements OnInit {
     private alertCtrl: AlertController,
     private customService: CustomService,
     private userService: UserService,
+    public loadingCtrl: LoadingController,
     public appCtrl: App) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.param = this.params.get('param');
@@ -78,7 +79,15 @@ export class GiftComponent implements OnInit {
   }
 
   createGift() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    
     if (!this.item) {
+      loading.dismiss();
       this.customService.toastMessage('Chưa chọn quà', 'bottom', 2000);
     } else {
       this.customService.confirmPassword(this.alertCtrl, this.userService)
@@ -111,7 +120,7 @@ export class GiftComponent implements OnInit {
                 position: "bottom",
                 duration: 2000
               });
-
+              loading.dismiss();
               toast.present();
             }
           });

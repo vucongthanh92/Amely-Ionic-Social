@@ -34,5 +34,5 @@ export class FeedsService {
   }
   deleteFeed(guid) {
     return this.api.deleteFeed(guid);
-  }
+  } 
 }

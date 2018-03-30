@@ -8,5 +8,5 @@ export class ProductsService {
 
   getProduct(guid: number) {
     return this.apiService.getProduct(guid);
-  }
+  } 
 }

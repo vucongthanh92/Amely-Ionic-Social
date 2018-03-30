@@ -1,6 +1,6 @@
 
 import { CustomService } from './../../../../services/custom.service';
-import { App, AlertController, NavController } from 'ionic-angular';
+import { App, AlertController, NavController, LoadingController } from 'ionic-angular';
 import { GeolocationService } from './../../../../services/geolocation.service';
 import { OffersService } from './../../../../services/offers.service';
 import { Offer } from './../../../../api/models/offer';
@@ -26,7 +26,8 @@ export class OffersSearchComponent implements OnInit {
     private alertCtrl: AlertController,
     private geolocationService: GeolocationService,
     private offersServie: OffersService,
-    private customService: CustomService
+    private customService: CustomService,
+    public loadingCtrl: LoadingController
   ) {
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
@@ -73,6 +74,13 @@ export class OffersSearchComponent implements OnInit {
     alert.addButton({
       text: 'Tìm kiếm',
       handler: (data: any) => {
+
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          enableBackdropDismiss: true
+        });
+        loading.present();
+
         this.checked = data;
         switch (data) {
           case 'friends':
@@ -82,6 +90,7 @@ export class OffersSearchComponent implements OnInit {
                 this.offers = data;
               }
             })
+            loading.dismiss();
             break;
           case 'public':
             console.log('public');
@@ -99,11 +108,14 @@ export class OffersSearchComponent implements OnInit {
                 }
               });
             });
+            loading.dismiss();
             break;
           case 'location':
+            loading.dismiss();
             this.app.getRootNav().push(MapComponent, { callback: this.callbackLocation })
             break;
           default:
+            loading.dismiss();
             break;
         }
       }

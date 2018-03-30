@@ -1,7 +1,7 @@
 import { WalletComponent } from './../wallet.component';
 import { CustomService } from './../../../services/custom.service';
 import { InventoriesService } from './../../../services/inventories.service';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,17 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateWalletComponent implements OnInit {
 
-  constructor(private nav: NavController, private inventoryService: InventoriesService,private customService:CustomService) { }
+  constructor(private nav: NavController, private inventoryService: InventoriesService, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
 
   onAccept() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.inventoryService.createWallet().subscribe(data => {
       if (data.status) {
+        loading.dismiss();
         this.nav.push(WalletComponent)
-      }else{
-        this.customService.toastMessage('Tạo ví thất bại. Vui lòng thử lại !','bottom',2000)
+      } else {
+        loading.dismiss();
+        this.customService.toastMessage('Tạo ví thất bại. Vui lòng thử lại !', 'bottom', 2000)
       }
     })
   }
