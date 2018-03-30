@@ -50,6 +50,7 @@ export class UserComponent {
 
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
+    this.username = this.navParams.get('username');
     this.loadData(5);
   }
 
@@ -58,11 +59,13 @@ export class UserComponent {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.userService.getUser(null, this.userGuid).subscribe(data => {
+    this.getUser().subscribe(data => {
       if (data.guid == null) {
         this.is_failed = true;
       } else {
         this.user = data;
+        console.log(data);
+        
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
         this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
@@ -81,14 +84,14 @@ export class UserComponent {
           this.iconMood = this.moodLocal[this.user.mood.guid].image;
         }
       }
-    },err=>this.loadData(--retry));
+    }, err => this.loadData(--retry));
   }
 
   getUser() {
     if (this.userGuid) {
       return this.userService.getUser(null, this.userGuid);
     } else if (this.username) {
-      return this.userService.getUser(null, this.userGuid);
+      return this.userService.getUser(this.username, null);
     }
   }
   changePageAlbum() {
@@ -198,8 +201,10 @@ export class UserComponent {
     }
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(UserMenuComponent, { user: this.user, callback: this.myCallbackFunction, nav: this.nav, appCtrl: this.appCtrl,
-       modalCtrl: this.modalCtrl });
+    let popover = this.popoverCtrl.create(UserMenuComponent, {
+      user: this.user, callback: this.myCallbackFunction, nav: this.nav, appCtrl: this.appCtrl,
+      modalCtrl: this.modalCtrl
+    });
     popover.present({
       ev: myEvent
     });

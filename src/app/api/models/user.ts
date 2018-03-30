@@ -24,4 +24,6 @@ export class User {
     friends_hidden?: string;
     mood?: Mood;
     shop?: Shop;
+    offer_count: number
+    gift_count: number
 }

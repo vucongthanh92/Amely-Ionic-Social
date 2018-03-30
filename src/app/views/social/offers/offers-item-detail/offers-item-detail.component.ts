@@ -117,9 +117,14 @@ export class OffersItemDetailComponent implements OnInit {
     return new Promise((resolve, reject) => {
       let callback = this.navParams.get("callback");
       console.log(_params);
-      callback("test").then(() => {
-        this.nav.setRoot(this.nav.getActive().component);
-      });
+      if (_params == 'back') {
+        this.nav.pop()
+      }
+      if (_params == 'test') {
+        callback("test").then(() => {
+          this.nav.setRoot(this.nav.getActive().component);
+        });
+      }
       resolve();
     });
   }

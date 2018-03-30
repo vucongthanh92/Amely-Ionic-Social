@@ -1,15 +1,18 @@
+import { MapComponent } from './../map/map.component';
 import { GiftsService } from './../../services/gifts.service';
 import { Camera } from '@ionic-native/camera';
 import { User } from './../../api/models/user';
 import { MessagesService } from './../../services/messages.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams, AlertController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { ToastController } from 'ionic-angular';
 import { Content } from 'ionic-angular';
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
 import { Item } from '../../api/models/item';
+import { LocationComponent } from '../location/location.component';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-message',
@@ -37,21 +40,21 @@ export class MessageComponent implements OnInit {
     private toastCtrl: ToastController,
     public messagesService: MessagesService,
     public navParams: NavParams,
-    public nav: NavController, 
-    public appCtrl: App) 
-    {
-      this.param = this.navParams.get("param");
-      console.log(this.param);
-      console.log('1234');
-      
-      this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-      if (this.param.chat_type == "individual") {
-        this.getMessagesIndividual();
-        this.usernameChat = this.param.from;
-      } else {
-        this.getMessagesGroup();
-        this.usernameChat = this.param.title;
-      }
+    public nav: NavController,
+    private alertCtrl: AlertController,
+    public appCtrl: App) {
+    this.param = this.navParams.get("param");
+    console.log(this.param);
+    console.log('1234');
+
+    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    if (this.param.chat_type == "individual") {
+      this.getMessagesIndividual();
+      this.usernameChat = this.param.from;
+    } else {
+      this.getMessagesGroup();
+      this.usernameChat = this.param.title;
+    }
   }
 
   getMessagesIndividual() {
@@ -93,7 +96,7 @@ export class MessageComponent implements OnInit {
             }
             checkAvatarSender = object.from;
           }
-          
+
           object.time = new Date(object.time);
           object.chat_type = "individual";
           this.messages.push(object);
@@ -109,7 +112,7 @@ export class MessageComponent implements OnInit {
     this.messagesService.getMessages(this.param.guid).query.on("value", itemsSnapshot => {
       this.messages = [];
       let checkAvatarSender = "";
-      itemsSnapshot.forEach( items => {
+      itemsSnapshot.forEach(items => {
         if (items.hasChildren()) {
           let object = items.val();
           if (object.attachment) {
@@ -133,7 +136,7 @@ export class MessageComponent implements OnInit {
                 break;
             }
           }
-          
+
           if (object.from == this.userCurrent.username) {
             object.isSender = true;
           } else {
@@ -182,9 +185,9 @@ export class MessageComponent implements OnInit {
     this.messagesService.takePicture(this.param.key);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
-  
+
   sendMessage() {
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
@@ -225,4 +228,52 @@ export class MessageComponent implements OnInit {
     }
   }
 
+  sendLocation() {
+    this.appCtrl.getRootNav().push(MapComponent, { callback: this.callbackLocation })
+  }
+
+  callbackLocation = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log(_params);
+
+      const title = _params.title;
+      const lat = _params.lat;
+      const lng = _params.lng;
+      const attachment = { media_type: 'LOCATION', url: lat + "-" + lng }
+      let message = { from: this.userCurrent.username, status: "Đang gửi", text: title, time: Date.now(), attachment: attachment };
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận gửi vị trí của bạn',
+        message: title,
+        buttons: [
+          {
+            text: 'Từ chối',
+            role: 'cancel'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              this.messagesService.sendMessage(message, this.param.key);
+            }
+          }
+        ]
+      });
+      alert.present();
+      resolve();
+    });
+  }
+
+  clickMessage(message) {
+    if (message.attachment && message.attachment.media_type == 'LOCATION') {
+      const lat = +message.attachment.url.substring(0, message.attachment.url.indexOf("-"));
+      const lng = +message.attachment.url.substring(message.attachment.url.indexOf("-") + 1);
+      console.log(lat);
+      console.log(lng);
+      this.appCtrl.getRootNav().push(LocationComponent, { title: message.text, lat: lat, lng: lng });
+    }
+  }
+
+  openProfile(message){
+    console.log(message);
+    this.appCtrl.getRootNav().push(UserComponent, { username:message.from})
+  }
 }

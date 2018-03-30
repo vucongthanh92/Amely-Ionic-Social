@@ -1,16 +1,16 @@
-<ion-header >
+<ion-header>
 
-    <ion-navbar >
-        <ion-title>{{ usernameChat }}</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>{{ usernameChat }}</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content has-header="false" padding="true" has-tabs="false" hide-nav-bar="true">
   <div class="message-wrap">
     <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
-      <img *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}" alt="ionic logo">
-      <div class="msg-detail">
+      <img (click)="openProfile(message)" *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}" alt="ionic logo">
+      <div class="msg-detail" (click)="clickMessage(message)">
         <div class="msg-info">
           <p>{{ message.from }}</p>
         </div>
@@ -29,7 +29,17 @@
               </ion-col>
             </ion-row>
             <img width="100%" src="{{ message.gift.item_image }}" />
-            <p class="line-breaker ">{{ message.text }}</p>
+            <!-- <p class="line-breaker">{{ message.text }}</p> -->
+
+            <p style="font-weight: bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+              Đã gửi vị trí : {{ message.text }}
+            </p>
+            <ng-template #other_content>
+              <p>
+                {{ message.text }}
+              </p>
+            </ng-template>
+
             <div *ngIf="message.chat_type == 'group'">
               <ion-row *ngIf="message.gift.owner">
                 <ion-col col-6>
@@ -45,7 +55,7 @@
               </ion-row>
             </div>
             <ion-row *ngIf="!message.isSender">
-              <ion-col col-6 >
+              <ion-col col-6>
                 <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
                   <ion-icon name="close-circle"></ion-icon>
                 </button>
@@ -60,9 +70,20 @@
           <div *ngIf="message.attachment">
             <img *ngIf="message.attachment.media_type == 'image'" width="100%" src="{{ message.attachment.url }}" />
           </div>
-          <p class="line-breaker" *ngIf="!message.gift">{{ message.text }}</p>
+          <div *ngIf="!message.gift">
+
+            <p style="font-weight: bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+              Đã gửi vị trí {{ message.text }}
+            </p>
+            <ng-template #other_content>
+              <p>
+                {{ message.text }}
+              </p>
+            </ng-template>
+
+          </div>
           <p [ngClass]="message.isSender? 'text-left' : 'text-right'">
-            <time style="font-size: 10px; color: #000;" >{{ message.time | amTimeAgo }}</time>
+            <time style="font-size: 10px; color: #000;">{{ message.time | amTimeAgo }}</time>
           </p>
         </div>
       </div>
@@ -79,12 +100,12 @@
     </ion-col>
     <ion-col col-4 style="border-right: 1px solid #eee">
       <button ion-button icon-left clear small (click)="selectFromGallery()">
-          <img class="iconMenu" src="assets/imgs/ic_image_grey.png">
+        <img class="iconMenu" src="assets/imgs/ic_image_grey.png">
       </button>
     </ion-col>
     <ion-col col-4>
-      <button ion-button icon-left clear small>
-          <img class="iconMenu"src="assets/imgs/ic_place_grey.png">
+      <button ion-button icon-left clear small (click)="sendLocation()">
+        <img class="iconMenu" src="assets/imgs/ic_place_grey.png">
       </button>
     </ion-col>
   </ion-row>
@@ -100,7 +121,7 @@
     </ion-col>
     <ion-col col-2>
       <button ion-button clear icon-only item-right (click)="sendMessage()">
-          <img src="assets/imgs/ic_send_blue.png">
+        <img src="assets/imgs/ic_send_blue.png">
         <!-- <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon> -->
       </button>
     </ion-col>

@@ -78,7 +78,7 @@
                 <img src="{{genderIcon}}" /> {{genderLabel}}
               </p>
               <p *ngIf="is_user_current" class="iconPage">
-                <img src="assets/imgs/ic_send_mail_gray.png" /> 0/20 (chưa có icon)
+                <img src="assets/imgs/ic_send_mail_gray.png" /> {{user.gift_count?user.gift_count:0}}/20 (chưa có icon)
               </p>
 
               <!-- Show birthday -->
@@ -116,7 +116,7 @@
                 <img src="{{iconMood}}" />{{user.mood.title}}
               </p>
               <p *ngIf="is_user_current" class="iconPage">
-                <img src="assets/imgs/ic_send_mail_gray.png" /> 0/10 (chưa có icon)
+                <img src="assets/imgs/ic_send_mail_gray.png" /> {{user.offer_count ?user.offer_count: '0'}}/10 (chưa có icon)
               </p>
             </ion-col>
           </ion-row>

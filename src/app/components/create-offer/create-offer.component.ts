@@ -81,7 +81,10 @@ export class CreateOfferComponent implements OnInit {
       console.log(obj);
       this.offerService.createCounterOffer(obj).subscribe(data => {
         if (data.status) {
-          this.nav.pop();
+          let callback = this.params.get("callback");
+          callback("back").then(() => {
+            this.nav.pop();
+          });
         } else {
           this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
         }
@@ -185,6 +188,7 @@ export class CreateOfferComponent implements OnInit {
       resolve();
     });
   }
+  
   chosenItem() {
     this.appCtrl.getRootNav().push(ChosenItemComponent, {
       callback: this.myCallbackFunction

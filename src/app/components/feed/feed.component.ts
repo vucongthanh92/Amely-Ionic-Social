@@ -56,11 +56,10 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-
+    
     if (this.post && this.post.item_guid) {
       try {
         this.postShare = this.shares.posts[this.post.item_guid];
-        console.log(this.postShare);
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
           this.descriptionPostShare = 'Đã thay đổi ảnh bìa'
@@ -160,6 +159,9 @@ export class FeedComponent {
     this.post.liked = !this.post.liked;
   }
   openOwner(type: string, guid) {
+    console.log(guid);
+    console.log(type);
+    
     switch (type) {
       case 'event':
         this.appCtrl.getRootNav().push(EventComponent, { event_guid: guid })

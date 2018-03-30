@@ -1,9 +1,10 @@
+import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../../../services/custom.service';
 import { OffersItemDetailComponent } from './../offers-item-detail/offers-item-detail.component';
 import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../../../api/models/counter-offer';
-import { App } from 'ionic-angular';
+import { App, AlertController, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-offers-pending',
@@ -11,7 +12,8 @@ import { App } from 'ionic-angular';
 })
 export class OffersPendingComponent implements OnInit {
   counterOffers: Array<CounterOffer> = [];
-  constructor(private offerService: OffersService, private app: App, private customService: CustomService) { }
+  constructor(private offerService: OffersService, private app: App, private customService: CustomService, private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
@@ -48,5 +50,35 @@ export class OffersPendingComponent implements OnInit {
     return new Promise((resolve, reject) => {
       resolve();
     });
+  }
+
+  openMenu(e, counterOffer: CounterOffer) {
+    let prompt = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: "Xóa đề xuất trao đổi ?",
+      buttons: [
+        {
+          text: 'Từ chối',
+        },
+        {
+          text: 'Chấp nhập',
+          handler: data => {
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...',
+              enableBackdropDismiss: true
+            });
+
+            loading.present();
+            this.offerService.deleteCounterOffer(counterOffer.guid).subscribe(data => {
+              loading.dismiss();
+              if (data.status) {
+                this.counterOffers = this.counterOffers.filter(e => e.guid != counterOffer.guid);
+              } else this.customService.toastMessage('Thất bại. Vui lòng thử lại', 'bottom', 3000);
+            })
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 }

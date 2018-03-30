@@ -69,6 +69,7 @@ import { GiftHistoryComponent } from '../components/gift/gift-history/gift-histo
 import { DepositModule } from '../modules/deposit/deposit.module';
 import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.component';
 import { MapComponent } from '../components/map/map.component';
+import { LocationComponent } from '../components/location/location.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -146,7 +147,8 @@ import { MapComponent } from '../components/map/map.component';
     QrComponent,
     UserBlockListComponent,
     MapComponent,
-    CategoriesAllComponent
+    CategoriesAllComponent,
+    LocationComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -204,7 +206,8 @@ import { MapComponent } from '../components/map/map.component';
     QrComponent,
     UserBlockListComponent,
     MapComponent,
-    CategoriesAllComponent
+    CategoriesAllComponent,
+    LocationComponent
   ],
   exports: [
     CategoriesComponent,
@@ -262,7 +265,8 @@ import { MapComponent } from '../components/map/map.component';
     QrComponent,
     UserBlockListComponent,
     MapComponent,
-    CategoriesAllComponent
+    CategoriesAllComponent,
+    LocationComponent
   ]
 })
 export class SharedModule { }

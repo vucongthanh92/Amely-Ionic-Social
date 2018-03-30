@@ -39,10 +39,14 @@ export class OffersService {
   }
 
   getBookmarks() {
-    return this.api.getBookmarks({ owner_guid: null, bookmark_type: 'offer', offset: 0, limit: 9999});
+    return this.api.getBookmarks({ owner_guid: null, bookmark_type: 'offer', offset: 0, limit: 9999 });
   }
 
-  deleteBookmark(){
+  deleteBookmark() {
     return this.api.deleteBookmark('offer');
+  }
+
+  deleteCounterOffer(guid) {
+    return this.api.deleteCounterOffer(guid);
   }
 }

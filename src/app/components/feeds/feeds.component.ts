@@ -55,9 +55,7 @@ export class FeedsComponent implements OnInit {
           this.offset = this.offset + data.posts.length;
           this.posts = data.posts;
           this.users = data.users;
-          this.shares = data.shares;
-          console.log(data.shares);
-          
+          this.shares = data.shares;          
           this.isHasData = true;
         } else {
           this.isHasData = false;

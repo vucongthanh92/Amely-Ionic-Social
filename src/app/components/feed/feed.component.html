@@ -88,10 +88,10 @@
   <ion-card *ngIf="postShare">
     <ion-item>
       <ion-avatar item-start>
-        <img (click)="openOwner(postShare.type,postShare.owner_guid)" src="{{ users[postShare.owner_guid].avatar }}">
+        <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}">
       </ion-avatar>
       <h2 class="feed_title">
-        <span (click)="openOwner(postShare.type,postShare.owner_guid)"> {{users[postShare.owner_guid].fullname}}</span>
+        <span (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
       </h2>
       <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
         <span>{{mood.title}}</span>

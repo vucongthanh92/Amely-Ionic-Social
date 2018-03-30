@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   lat: number;
   lng: number;
   title: string;
-  constructor(public navCtrl: NavController, private nav: NavController, public geolocation: Geolocation,
+  constructor(private nav: NavController, public geolocation: Geolocation,
     public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder, private customSerive: CustomService) {
     this.callback = this.navParams.get('callback');
     platform.ready().then(() => {

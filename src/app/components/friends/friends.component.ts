@@ -16,7 +16,7 @@ export class FriendsComponent implements OnInit {
   @Input('dontShow') dontShow: boolean;
 
   public users: Array<User>;
-  public userCurrent: User = {};
+  public userCurrent: User = new User();
   public isUserCurrent: boolean;
   public friendsUserCurrent: Array<User> = [];
   constructor(public nav: NavController, public appCtrl: App,

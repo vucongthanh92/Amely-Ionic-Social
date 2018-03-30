@@ -1,6 +1,6 @@
 <ion-content class="outer-content" id="offer_pending_container">
   <ion-list class="offer_pending_main">
-    <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers">
+    <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers" (press)="openMenu($event,counterOffer)">
       <ion-item class="offer_pending_row">
 
         <ion-item class="offer_pending_user_info">
