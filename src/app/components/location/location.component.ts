@@ -23,7 +23,7 @@ export class LocationComponent implements OnInit {
   title: string;
 
   constructor(public geolocation: Geolocation,
-    public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder) {
+    public navParams: NavParams, platform: Platform, private nativeGeocoder: NativeGeocoder) {
     this.lat = this.navParams.get('lat');
     this.lat = this.navParams.get('lng');
     this.title = this.navParams.get('title');
@@ -35,40 +35,40 @@ export class LocationComponent implements OnInit {
   ngOnInit() {
   }
   loadMap() {
+    console.log('vao loadmap');
 
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: this.lat,
+          lng: this.lng
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };
 
-    this.geolocation.getCurrentPosition().then((resp) => {
-      let mapOptions: GoogleMapOptions = {
-        camera: {
-          target: {
+    
+
+    this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
+
+    this.map.one(GoogleMapsEvent.MAP_READY)
+      .then(() => {
+        console.log('Map is ready!');
+        this.map.clear();
+        this.map.addMarker({
+          title: this.title,
+          icon: 'blue',
+          animation: 'DROP',
+          position: {
             lat: this.lat,
             lng: this.lng
-          },
-          zoom: 18,
-          tilt: 30
-        }
-      };
+          }
+        }).then(marker => { });
+      })
+      .catch(e => console.log(e));
 
-      this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
 
-      this.map.one(GoogleMapsEvent.MAP_READY)
-        .then(() => {
-          console.log('Map is ready!');
-          this.map.clear();
-          this.map.addMarker({
-            title: this.title,
-            icon: 'blue',
-            animation: 'DROP',
-            position: {
-              lat: this.lat,
-              lng: this.lng
-            }
-          }).then(marker => { });
-        });
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
   }
 
 
