@@ -1,5 +1,5 @@
 import { ShopsService } from './../../../../services/shops.service';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { GeolocationService } from './../../../../services/geolocation.service';
 import { Component, OnInit } from '@angular/core';
 import { ShopComponent } from '../../../../components/shop/shop.component';
@@ -14,7 +14,15 @@ export class NearByShopComponent implements OnInit {
   public datas = [];
   public datasTMP = [];
   public sFilter: string;
-  constructor(public geolocationService: GeolocationService, public nav: NavController, public appCtrl: App, private shopService: ShopsService) {
+  constructor(public geolocationService: GeolocationService, public nav: NavController, public appCtrl: App, private shopService: ShopsService,
+    public loadingCtrl: LoadingController) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
     var that = this;
@@ -30,6 +38,7 @@ export class NearByShopComponent implements OnInit {
         that.datasTMP = that.datas;
       })
     });
+    loading.dismiss();
   }
 
   formatDistance(km: number) {
@@ -56,7 +65,7 @@ export class NearByShopComponent implements OnInit {
   }
   filter() {
     console.log(1231231);
-    
+
     this.datas = this.datasTMP;
     this.sFilter = this.sFilter.toLowerCase();
     this.datas = this.datas.filter(e => {

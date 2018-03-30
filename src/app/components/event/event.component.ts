@@ -2,7 +2,7 @@ import { UserComponent } from './../user/user.component';
 import { CustomService } from './../../services/custom.service';
 import { EventsService } from './../../services/events.service';
 import { EventMenuComponent } from './event-menu/event-menu.component';
-import { NavController, App, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, App, NavParams, PopoverController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Event, User } from '../../api/models';
 
@@ -18,7 +18,8 @@ export class EventComponent implements OnInit {
   public users: User[];
   public string_members: Array<string>;
   public string_guests: Array<string>;
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, public popoverCtrl: PopoverController, public eventService: EventsService, private customService: CustomService) {
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, public popoverCtrl: PopoverController,
+    public eventService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
     // this.is_user = navParams.get('is_user');
     this.event_guid = navParams.get('event_guid');
   }
@@ -28,7 +29,13 @@ export class EventComponent implements OnInit {
   }
 
   loadData(retry) {
-    if(retry==0){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Kết nối máy chủ thất bại. Vui lòng thử lại", 'bottom', 4000);
       return;
     }
@@ -50,6 +57,7 @@ export class EventComponent implements OnInit {
           } else if (this.event.status == "1" && this.event.published == "2") {
             this.eventService.publish = 3;
           }
+          loading.dismiss();
 
         }
       },

@@ -34,7 +34,13 @@ export class CommentsComponent implements OnInit {
   }
 
   loadData(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (retry == 0) {
+      loading.dismiss();      
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -44,6 +50,7 @@ export class CommentsComponent implements OnInit {
           this.comments = data.comments;
           this.users = data.users;
         }
+        loading.dismiss();        
       }
       , err => {
         this.loadData(--retry)
@@ -62,6 +69,11 @@ export class CommentsComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     setTimeout(() => {
       this.offset = this.offset + this.limit;
       this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
@@ -69,6 +81,7 @@ export class CommentsComponent implements OnInit {
           this.comments = this.comments.concat(data.comments);
           this.users = Object.assign(this.users, data.users);
         }
+        loading.dismiss();        
       })
       infiniteScroll.complete();
     }, 500);
@@ -76,7 +89,8 @@ export class CommentsComponent implements OnInit {
 
   onSend() {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
     if (this.content) {
       loading.present();

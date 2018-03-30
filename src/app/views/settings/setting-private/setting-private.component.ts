@@ -2,7 +2,7 @@ import { ShopsService } from './../../../services/shops.service';
 import { CreateShopComponent } from './../../../components/create-shop/create-shop.component';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
 import { InventoriesService } from './../../../services/inventories.service';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
 import { UserComponent } from '../../../components/user/user.component';
@@ -16,7 +16,7 @@ export class SettingPrivateComponent implements OnInit {
   is_qr: boolean = false;
   code_qr: string;
   constructor(private customService: CustomService, private appCtrl: App,
-    private inventoriesService: InventoriesService, private shopService: ShopsService) { }
+    public loadingCtrl: LoadingController, private inventoriesService: InventoriesService, private shopService: ShopsService) { }
 
   ngOnInit() {
 
@@ -26,12 +26,18 @@ export class SettingPrivateComponent implements OnInit {
   }
 
   openShop() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.inventoriesService.getWallet().subscribe(data => {
-
-
       if (data.guid == null) {
+        loading.dismiss();
         this.appCtrl.getRootNav().push(CreateWalletComponent);
       } else {
+        loading.dismiss();
         this.getRequestShop();
       }
     })
@@ -44,15 +50,25 @@ export class SettingPrivateComponent implements OnInit {
   // define('SHOP_SUSPENDED', 4);
   // define('SHOP_UNPUBLISHED', 5);
   getRequestShop() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.shopService.getRequestShop().subscribe(data => {
       if (data.status == '3') {
+        loading.dismiss();
         this.customService.toastMessage('Đã tạo cửa hàng .', 'bottom', 2000)
       } else if (data.status == '4') {
+        loading.dismiss();
         this.customService.toastMessage('Cửa hàng đã bị khóa .', 'bottom', 2000)
       } else if (data.status == '5') {
+        loading.dismiss();
         this.customService.toastMessage('Cửa hàng đã đóng .', 'bottom', 2000)
       } else
-        this.appCtrl.getRootNav().push(CreateShopComponent, { shop: data })
+        loading.dismiss();
+      this.appCtrl.getRootNav().push(CreateShopComponent, { shop: data })
     })
 
   }

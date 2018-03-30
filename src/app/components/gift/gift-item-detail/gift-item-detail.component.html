@@ -51,10 +51,11 @@
           </button>
         </div> -->
 
-        <ion-range min="0" max="{{item.quantity}}" pin="true" [(ngModel)]="quantitySend" color="secondary">
-          <ion-icon range-left small name="remove"></ion-icon>
-          <ion-icon range-right name="add"></ion-icon>
-        </ion-range>
+          <ion-range min="1" max="{{item.quantity}}" pin="true" [(ngModel)]="quantitySend" color="secondary">
+            <ion-icon style="font-size: 3.4rem;" range-left name="remove" (click)="onMinus()"></ion-icon>
+            <ion-icon style="font-size: 3.4rem;" range-right name="add" (click)="onAdd()"></ion-icon>
+          </ion-range>
+        
 
       </ion-col>
     </ion-row>

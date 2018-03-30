@@ -82,7 +82,8 @@ export class InventoryConfirmGiftComponent implements OnInit {
     this.param_create_gift.message = "";
 
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
 
     loading.present();

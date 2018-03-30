@@ -6,7 +6,7 @@ import { Event } from './../../api/models/event';
 import { Group } from './../../api/models/group';
 import { InventoriesService } from './../../services/inventories.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Business } from '../../api/models/business';
@@ -40,7 +40,8 @@ export class InventoryComponent implements OnInit {
   badge_near_expiry: number = 0;
   public totalItem: number = 0;
 
-  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams) {
+  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams,
+    public loadingCtrl: LoadingController) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -106,9 +107,18 @@ export class InventoryComponent implements OnInit {
     })
 
     this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
+
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss: true
+      });
+      loading.present();
+      
       if (data instanceof Array) {
+        loading.dismiss();
         this.totalItem = data.length;
       } else {
+        loading.dismiss();
         this.totalItem = 0;
       }
     })

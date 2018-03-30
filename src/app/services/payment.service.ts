@@ -20,5 +20,5 @@ export class PaymentService {
   createOrder() {
     return this.api.createOrder(this.param_create_order);
   }
-
+ 
 }

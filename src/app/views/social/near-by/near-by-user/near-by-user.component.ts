@@ -4,7 +4,7 @@ import { UserComponent } from './../../../../components/user/user.component';
 import { UserService } from './../../../../services/user.service';
 import { GeolocationService } from './../../../../services/geolocation.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { NearByUserSettingComponent } from './near-by-user-setting/near-by-user-setting.component';
 
 @Component({
@@ -27,12 +27,21 @@ export class NearByUserComponent implements OnInit {
   private geoQueryUser;
   private user_fb: { findable_by: string, gender: string, mood: string, yob: string };
 
+  
+
   constructor(public geolocationService: GeolocationService, private userserive: UserService, public nav: NavController,
-    public appCtrl: App, private fbService: FirebaseService, private customSerive: CustomService) {
+    public appCtrl: App, private fbService: FirebaseService, private customSerive: CustomService, public loadingCtrl: LoadingController) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
     this.geoQueryUser = this.geolocationService.getUsers(this.lat, this.lng);
     this.findUser();
+    loading.dismiss();
 
   }
 

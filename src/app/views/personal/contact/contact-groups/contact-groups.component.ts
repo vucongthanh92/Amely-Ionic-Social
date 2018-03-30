@@ -4,7 +4,7 @@ import { Group } from './../../../../api/models/group';
 import { User } from './../../../../api/models/user';
 import { GroupService } from './../../../../services/group.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { GroupComponent } from '../../../../components/group/group.component';
 import { MessageComponent } from '../../../../components/message/message.component';
 import { MessagesService } from '../../../../services/messages.service';
@@ -25,7 +25,8 @@ export class ContactGroupsComponent implements OnInit {
     public nav: NavController,
     public appCtrl: App,
     public groupService: GroupService,
-    private customService: CustomService
+    private customService: CustomService,
+    public loadingCtrl: LoadingController
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
 
@@ -36,13 +37,22 @@ export class ContactGroupsComponent implements OnInit {
   }
 
   loadData(retry) {
+    
+ let loading = this.loadingCtrl.create({
+    content: 'Please wait...',
+    enableBackdropDismiss: true
+  });
+  loading.present();
+  
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
       this.groups = data.groups;
       this.users = data.owners;
+      loading.dismiss();
     }, err => this.loadData(--retry))
   }
   ngOnInit() {

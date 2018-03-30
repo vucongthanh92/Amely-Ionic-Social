@@ -1,7 +1,7 @@
 import { CustomService } from './../../../services/custom.service';
 import { EventsService } from './../../../services/events.service';
 import { Component, OnInit } from '@angular/core'; ``
-import { NavParams, App } from 'ionic-angular';
+import { NavParams, App, LoadingController } from 'ionic-angular';
 import { Event } from '../../../api/models';
 import { QrComponent } from '../../qr/qr.component';
 
@@ -12,7 +12,8 @@ import { QrComponent } from '../../qr/qr.component';
 export class EventMenuComponent implements OnInit {
   private event: Event;
 
-  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App) {
+  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App, 
+    public loadingCtrl: LoadingController) {
     this.event = this.navParams.get('event');
   }
 
@@ -26,10 +27,17 @@ export class EventMenuComponent implements OnInit {
       * 3: close and publish
     **/
   publicEvent() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.eventSerive.publicEvent(this.event.guid).subscribe(data => {
       if (data.status) {
+        loading.dismiss();
         this.eventSerive.publish = 2;
-      } else this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+      } else loading.dismiss(); this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
     },
       err => {
         this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)

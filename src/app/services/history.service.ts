@@ -16,5 +16,5 @@ export class HistoryService {
 
   getOrder(guid) {
     return this.apiService.getOrder(guid);
-  }
+  } 
 }

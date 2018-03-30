@@ -6,6 +6,7 @@ import { User } from './../../api/models/user';
 import { InvitationService } from './../../services/invitation.service';
 import { Component, OnInit } from '@angular/core';
 import { DefaultResponse } from '../../api/models';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-note-friend',
@@ -16,19 +17,29 @@ export class NoteFriendComponent implements OnInit {
   groups: Array<Group>;
   events: Array<Event>
 
-  constructor(private invitationService: InvitationService, private customService: CustomService, private fbService: FirebaseService) { }
+  constructor(private invitationService: InvitationService, private customService: CustomService, private fbService: FirebaseService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadData(5);
   }
 
   loadData(retry) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.invitationService.getInvatitions().subscribe(
       data => {
+        loading.dismiss();
         if (data.users && data.users.length > 0) this.users = data.users;
         if (data.groups && data.groups.length > 0) this.groups = data.groups;
         if (data.events && data.events.length > 0) this.events = data.events;
@@ -39,14 +50,29 @@ export class NoteFriendComponent implements OnInit {
   }
 
   accept(type, to_guid) {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.invitationService.putApproval(type, null, to_guid).subscribe(data => {
+      loading.dismiss();
       this.hanldeAcceptOrCancelRequest(true, data, type, to_guid);
     })
 
   }
 
   cancel(type, to_guid) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     this.invitationService.deleteApproval(type, null, to_guid).subscribe(data => {
+      loading.dismiss();
       this.hanldeAcceptOrCancelRequest(false, data, type, to_guid);
     })
   }

@@ -1,6 +1,6 @@
 import { User } from './../../api/models/user';
 import { InventoriesService } from './../../services/inventories.service';
-import { App, NavController, NavParams, ModalController } from 'ionic-angular';
+import { App, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../api/models/item';
 import { GiftItemDetailComponent } from '../gift/gift-item-detail/gift-item-detail.component';
@@ -21,11 +21,18 @@ export class ChosenItemComponent implements OnInit {
     public modalCtrl: ModalController,
     public nav: NavController,
     public appCtrl: App,
-    public inventorySerive: InventoriesService) {
+    public inventorySerive: InventoriesService,
+    public loadingCtrl: LoadingController) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
   ngOnInit() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
       { item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
@@ -36,7 +43,9 @@ export class ChosenItemComponent implements OnInit {
       { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' }];
 
     this.arrTagBadge.forEach(e => {
+      
       this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
+        
         if (data) {
           this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
           if (data instanceof Array) {
@@ -48,6 +57,7 @@ export class ChosenItemComponent implements OnInit {
       this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge:0 })
     });
     })
+    loading.dismiss();
   }
 
   presentItemDetail(item) {

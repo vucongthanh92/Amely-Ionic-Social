@@ -1,7 +1,7 @@
 import { CustomService } from './../../services/custom.service';
 import { Item } from './../../api/models/item';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ItemComponent } from '../item/item.component';
 import { InventoriesService } from '../../services/inventories.service';
 
@@ -19,7 +19,8 @@ export class InvenroyItemsComponent implements OnInit {
   private is_reload_before_page = false;
   private callback: any;
 
-  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService, private customService: CustomService) {
+  constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService, 
+    private customService: CustomService, public loadingCtrl: LoadingController) {
     this.ownerGuid = this.navParams.get('ownerGuid');
     this.itemType = this.navParams.get('itemType');
     this.inventoryType = this.navParams.get('inventoryType');
@@ -37,7 +38,15 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   loadData(retry) {
+    
+ let loading = this.loadingCtrl.create({
+  content: 'Please wait...',
+  enableBackdropDismiss: true
+});
+loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -49,6 +58,7 @@ export class InvenroyItemsComponent implements OnInit {
           } else {
             this.inventoriesItem = [];
           }
+          loading.dismiss();
         },
         err => {
           this.loadData(--retry)
@@ -61,6 +71,7 @@ export class InvenroyItemsComponent implements OnInit {
           } else {
             this.inventoriesItem = [];
           }
+          loading.dismiss();
         },
         err => {
           this.loadData(--retry)

@@ -5,7 +5,7 @@ import { User } from './../../../api/models/user';
 import { EventsService } from './../../../services/events.service';
 import { GroupService } from './../../../services/group.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { InventoryComponent } from '../../../components/inventory/inventory.component';
 
 @Component({
@@ -19,7 +19,8 @@ export class InventoryPublicComponent implements OnInit {
   public groups: Array<Group> = [];
   public userCurrent: User;
 
-  constructor(public nav: NavController, public appCtrl: App, private groupService: GroupService, private eventsService: EventsService, private customService: CustomService) {
+  constructor(public nav: NavController, public appCtrl: App, private groupService: GroupService, 
+    private eventsService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -28,11 +29,18 @@ export class InventoryPublicComponent implements OnInit {
   }
 
   loadData(retry) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+
     if (retry == 0) {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
+      
       if (data.groups) {
         this.groups = data.groups.filter(e => e.has_inventory === '2')
       }
@@ -44,12 +52,13 @@ export class InventoryPublicComponent implements OnInit {
     this.eventsService.getEvents(0, 9999, 'all').subscribe(data => {
       if (data.events) {
         this.events = data.events.filter(e => e.has_inventory === '1');
-
       }
       if (data.users) {
         this.usersEvent = data.users;
       }
     }, err => this.loadData(--retry));
+    loading.dismiss();
+    
   }
 
   getFullnameAdmin(guid, type) {

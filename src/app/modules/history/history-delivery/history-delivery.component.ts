@@ -3,7 +3,7 @@ import { HistoryDeliveryDetailComponent } from './../history-delivery-detail/his
 import { HistoryService } from './../../../services/history.service';
 import { Component, OnInit } from '@angular/core';
 import { Delivery_order, Shop } from '../../../api/models';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-history-delivery',
@@ -13,14 +13,23 @@ export class HistoryDeliveryComponent implements OnInit {
   dos: Delivery_order[];
   shops: Shop[];
 
-  constructor(private historyService: HistoryService, private nav: NavController, private appCtrl: App, private customService: CustomService) { }
+  constructor(private historyService: HistoryService, private nav: NavController, private appCtrl: App, private customService: CustomService,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadData(5);
   }
 
   loadData(retry) {
+    
+ let loading = this.loadingCtrl.create({
+  content: 'Please wait...',
+  enableBackdropDismiss: true
+});
+loading.present();
+
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       this.nav.pop();
       return;
@@ -30,6 +39,7 @@ export class HistoryDeliveryComponent implements OnInit {
 
       this.dos = data.dos;
       this.shops = data.shops;
+      loading.dismiss();
     }, err => this.loadData(--retry))
   }
   convertDate(time) {

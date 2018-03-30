@@ -122,7 +122,8 @@ export class CreateEventComponent implements OnInit {
 
   createEvent() {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
     loading.present();
 
@@ -171,6 +172,7 @@ export class CreateEventComponent implements OnInit {
         this.location, this.description, this.has_inventory ? "1" : "", status, 'user', this.customSerivce.user_current.guid,
         this.members_chosen, this.guests_chosen).subscribe(data => {
           if (data.status) {
+            loading.dismiss();
             this.customSerivce.toastMessage('Thành công', 'bottom', 2000);
             let callback = this.params.get("callback");
             callback().then(() => {
@@ -178,9 +180,11 @@ export class CreateEventComponent implements OnInit {
             });
 
           } else {
+            loading.dismiss();
             this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
           }
         },err=>{
+          loading.dismiss();
           this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
         });
     }

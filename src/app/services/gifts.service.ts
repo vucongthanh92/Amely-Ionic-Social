@@ -30,5 +30,5 @@ export class GiftsService {
 
   getGift(guid) {
    return  this.api.getGift(guid);
-  }
+  } 
 }

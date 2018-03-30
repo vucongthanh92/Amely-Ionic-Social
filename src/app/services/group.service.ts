@@ -40,5 +40,5 @@ export class GroupService {
 
   deleteGroup(guid: number) {
     return this.apiService.deleteGroup(guid);
-  }
+  } 
 }
