@@ -21,7 +21,7 @@ export class EventComponent implements OnInit {
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, public popoverCtrl: PopoverController,
     public eventService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
     // this.is_user = navParams.get('is_user');
-    this.event_guid = navParams.get('event_guid');
+    this.event_guid = this.navParams.get('event_guid');
   }
 
   ngOnInit() {

@@ -22,11 +22,11 @@ export class ProductCategoryComponent implements OnInit {
 
   constructor(private navParams: NavParams, private appCtrl: App, private shopping_service: ShoppingsService, public custom_service: CustomService,
     public loadingCtrl: LoadingController) {
-    this.categories = navParams.get('arr');
-    this.category_id = navParams.get('guid');
-    this.shop_guid = navParams.get('shop_guid');
-    this.type_product = navParams.get('type_product');
-    this.title = navParams.get('title');
+    this.categories = this.navParams.get('arr');
+    this.category_id = this.navParams.get('guid');
+    this.shop_guid = this.navParams.get('shop_guid');
+    this.type_product = this.navParams.get('type_product');
+    this.title = this.navParams.get('title');
     if (this.categories)
       this.categories_parent = this.categories.filter(e => +e.parent_guid == this.category_id);
 

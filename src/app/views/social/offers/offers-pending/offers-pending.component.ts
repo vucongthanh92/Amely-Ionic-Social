@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../../../services/custom.service';
 import { OffersItemDetailComponent } from './../offers-item-detail/offers-item-detail.component';
 import { OffersService } from './../../../../services/offers.service';

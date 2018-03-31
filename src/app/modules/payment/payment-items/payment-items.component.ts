@@ -1,7 +1,7 @@
 import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { PaymentCustomerInfoComponent } from '../payment-customer-info/payment-customer-info.component';
 @Component({
   selector: 'app-payment-items',
@@ -19,7 +19,6 @@ export class PaymentItemsComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private customService: CustomService,
-    private navParams: NavParams,
     public nav: NavController,
     public appCtrl: App,
     public loadingCtrl: LoadingController) {

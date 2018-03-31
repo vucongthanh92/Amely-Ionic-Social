@@ -22,9 +22,9 @@ export class CreateShopComponent implements OnInit {
   public shipping_method: string = 'Self';
   public ssn: string;
 
-  constructor(private nav: NavParams, private appCtrl: App, private customService: CustomService, private shopService: ShopsService,
+  constructor(private navParams: NavParams, private appCtrl: App, private customService: CustomService, private shopService: ShopsService,
     public loadingCtrl: LoadingController) {
-    this.shop = nav.get('shop');
+    this.shop = this.navParams.get('shop');
     if (this.shop.guid != null) {
       this.name = this.shop.title;
       this.phone = this.shop.shop_phone;

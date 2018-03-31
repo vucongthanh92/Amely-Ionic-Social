@@ -6,7 +6,6 @@ import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
 import { Component, OnInit, Input } from '@angular/core';
 import { Feed } from '../../api/models/feed';
-import { FeedMenuComponent } from '../feed/feed-menu/feed-menu.component';
 import { Share } from '../../api/models';
 
 @Component({

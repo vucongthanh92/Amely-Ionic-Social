@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, App, NavController } from 'ionic-angular';
-import { WalletsService } from '../../../services/wallets.service';
-import { CustomService } from '../../../services/custom.service';
+import { NavParams } from 'ionic-angular';
+
 @Component({
   selector: 'app-deposit-confirm',
   templateUrl: './deposit-confirm.component.html'

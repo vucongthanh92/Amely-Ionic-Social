@@ -23,7 +23,7 @@ export class LocationComponent implements OnInit {
   title: string;
 
   constructor(public geolocation: Geolocation,
-    public navParams: NavParams, platform: Platform, public plt: Platform, private nativeGeocoder: NativeGeocoder) {
+    public navParams: NavParams, platform: Platform, public plt: Platform) {
     this.lat = this.navParams.get('lat');
     this.lat = this.navParams.get('lng');
     this.title = this.navParams.get('title');

@@ -2,7 +2,7 @@ import { ShopsService } from './../../../services/shops.service';
 import { CreateShopComponent } from './../../../components/create-shop/create-shop.component';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
 import { InventoriesService } from './../../../services/inventories.service';
-import { App, NavController, LoadingController } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
 import { UserComponent } from '../../../components/user/user.component';
