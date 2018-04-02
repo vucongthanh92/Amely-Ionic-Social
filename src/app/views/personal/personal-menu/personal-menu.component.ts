@@ -4,7 +4,7 @@ import { User } from './../../../api/models/user';
 import { Component, OnInit } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { UserComponent } from '../../../components/user/user.component';
-import { Contacts, Contact } from '@ionic-native/contacts';
+import { Contacts } from '@ionic-native/contacts';
 
 @Component({
   selector: 'app-personal-menu',

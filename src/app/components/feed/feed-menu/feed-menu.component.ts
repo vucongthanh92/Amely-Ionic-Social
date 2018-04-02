@@ -1,4 +1,3 @@
-import { guid } from './../../../api/models/guid';
 import { FeedsService } from './../../../services/feeds.service';
 import { CustomService } from './../../../services/custom.service';
 import { NavParams, AlertController, NavController } from 'ionic-angular';

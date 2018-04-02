@@ -1,16 +1,13 @@
 import { SigninComponent } from './../../authentication/signin/signin.component';
 import { OfferService } from './../../services/offer.service';
 import { GiftsService } from './../../services/gifts.service';
-import { BusinessService } from './../../services/business.service';
 import { EventsService } from './../../services/events.service';
 import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
-
 import { Nav, MenuController, AlertController, Platform } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
-
 import { PersonalComponent } from './../../views/personal/personal.component';
 import { SocialComponent } from './../../views/social/social.component';
 import { ShoppingComponent } from './../../views/shopping/shopping.component';
@@ -20,7 +17,6 @@ import { UserService } from '../../services/user.service';
 import { Notification, User } from '../../api/models';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { GeolocationService } from '../../services/geolocation.service';
-import { AuthenticationService } from '../../authentication/authentication.service';
 import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
@@ -54,7 +50,6 @@ export class MainMenuComponent implements OnInit {
     private plt: Platform,
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,
-    private authenticationService: AuthenticationService,
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },

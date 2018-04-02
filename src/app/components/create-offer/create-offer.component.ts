@@ -9,7 +9,6 @@ import { Item } from '../../api/models/item';
 import { Param_create_offer } from '../../api/models/param-_create-_offer';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
-import { logger } from '@firebase/database/dist/esm/src/core/util/util';
 import { MapComponent } from '../map/map.component';
 
 @Component({

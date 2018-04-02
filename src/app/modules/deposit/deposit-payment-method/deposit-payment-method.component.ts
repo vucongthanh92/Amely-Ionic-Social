@@ -1,9 +1,8 @@
-import { filter } from 'rxjs/operators/filter';
 import { Wallet } from './../../../api/models/wallet';
 import { DepositPaymentOptionComponent } from './../deposit-payment-option/deposit-payment-option.component';
 import { WalletsService } from './../../../services/wallets.service';
 import { Component, OnInit } from '@angular/core';
-import { NavParams, App, NavController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 
 @Component({

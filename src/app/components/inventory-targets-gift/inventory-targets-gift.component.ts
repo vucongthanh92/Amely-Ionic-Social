@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { CustomService } from './../../services/custom.service';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';

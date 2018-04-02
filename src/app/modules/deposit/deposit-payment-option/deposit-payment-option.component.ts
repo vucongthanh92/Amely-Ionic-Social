@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, App, NavController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { WalletsService } from '../../../services/wallets.service';
 import { CustomService } from '../../../services/custom.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';

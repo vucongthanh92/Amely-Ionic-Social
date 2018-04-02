@@ -1,4 +1,4 @@
-import { NavController, App } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';

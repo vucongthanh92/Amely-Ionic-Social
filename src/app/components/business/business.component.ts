@@ -1,7 +1,6 @@
 import { InventoryComponent } from './../inventory/inventory.component';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavParams, NavController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { BusinessService } from '../../services/business.service';
 import { Business } from '../../api/models/business';
@@ -17,7 +16,7 @@ export class BusinessComponent implements OnInit {
   is_owner: boolean;
   constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService
     , private customService: CustomService) {
-    this.business_guid = nav_param.get('guid');
+    this.business_guid = this.nav_param.get('guid');
   }
 
   ngOnInit() {

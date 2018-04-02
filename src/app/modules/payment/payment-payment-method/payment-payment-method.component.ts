@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators/filter';
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';

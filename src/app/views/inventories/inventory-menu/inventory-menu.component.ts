@@ -1,7 +1,6 @@
 import { HistoryDeliveryComponent } from './../../../modules/history/history-delivery/history-delivery.component';
 import { WalletComponent } from './../../../modules/wallet/wallet.component';
 import { InventoriesService } from './../../../services/inventories.service';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
 import { NavController, App, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryMenuComponent implements OnInit {
   is_press_wallet: boolean = false;
-  constructor(private nav: NavController, private appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService,
+  constructor(private nav: NavController, private appCtrl: App, private inventoryService: InventoriesService,
     public loadingCtrl: LoadingController) {
   }
 

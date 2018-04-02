@@ -1,6 +1,6 @@
 import { WalletsService } from './../../../services/wallets.service';
 import { CustomService } from './../../../services/custom.service';
-import { NavParams, App, NavController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

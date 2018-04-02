@@ -1,7 +1,6 @@
 import { Comment } from './../../api/models/comment';
 import { User } from './../../api/models/user';
-import { UserService } from './../../services/user.service';
-import { NavParams, ActionSheetController, LoadingController, NavController } from 'ionic-angular';
+import { NavParams, ActionSheetController, LoadingController } from 'ionic-angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedsService } from '../../services/feeds.service';
 import { CustomService } from '../../services/custom.service';
