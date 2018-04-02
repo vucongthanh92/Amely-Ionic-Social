@@ -1,3 +1,4 @@
+import { PaymentWebviewComponent } from './../payment-webview/payment-webview.component';
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
@@ -71,6 +72,7 @@ export class PaymentConfirmComponent implements OnInit {
     this.loading.present();
     this.paymentService.createOrder().subscribe(data => {
       this.loading.dismiss();
+      // this.nav.push(PaymentWebviewComponent, { url: data.url });
       const browser = this.iab.create(data.url);
       browser.on('loadstop').subscribe(data => {
         this.paymentService.items = false;
@@ -82,9 +84,10 @@ export class PaymentConfirmComponent implements OnInit {
         this.customService.cart = [];
         this.nav.popToRoot();
       });
-      browser.executeScript({ code: 'setResult' }).then(e => console.log(e)).catch(e => console.log(e));
-      browser.executeScript({ code: 'approved' }).then(e => console.log(e)).catch(e => console.log(e));
-
+      browser.on('setResult').subscribe(data => {
+       console.log(data);
+       
+      });
     })
   }
 

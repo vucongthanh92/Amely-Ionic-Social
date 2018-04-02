@@ -13,6 +13,7 @@ import { PaymentOptionsWalletComponent } from './payment-payment-options/payment
 import { PaymentOptionsVisaComponent } from './payment-payment-options/payment-options-visa/payment-options-visa.component';
 import { PaymentOptionsAtmComponent } from './payment-payment-options/payment-options-atm/payment-options-atm.component';
 import { PaymentComponent } from './payment.component';
+import { PaymentWebviewComponent } from './payment-webview/payment-webview.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { PaymentComponent } from './payment.component';
     PaymentOptionsVisaComponent,
     PaymentOptionsWalletComponent,
     PaymentConfirmComponent,
-    PaymentPaymentOptionsComponent
+    PaymentPaymentOptionsComponent,
+    PaymentWebviewComponent
   ],
   entryComponents: [
     PaymentComponent,
@@ -45,7 +47,8 @@ import { PaymentComponent } from './payment.component';
     PaymentOptionsVisaComponent,
     PaymentOptionsWalletComponent,
     PaymentConfirmComponent,
-    PaymentPaymentOptionsComponent
+    PaymentPaymentOptionsComponent,
+    PaymentWebviewComponent
   ],
   exports: [
   
