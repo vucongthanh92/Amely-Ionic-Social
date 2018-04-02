@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import {
   GoogleMaps,
   GoogleMap,
@@ -10,10 +9,7 @@ import {
 } from '@ionic-native/google-maps';
 @Component({
   selector: 'app-location',
-  templateUrl: './location.component.html',
-  providers: [
-    NativeGeocoder
-  ]
+  templateUrl: './location.component.html'
 })
 export class LocationComponent implements OnInit {
   @ViewChild('map') element;
@@ -23,9 +19,9 @@ export class LocationComponent implements OnInit {
   title: string;
 
   constructor(public geolocation: Geolocation,
-    public navParams: NavParams, platform: Platform, private nativeGeocoder: NativeGeocoder) {
+    public navParams: NavParams, platform: Platform) {
     this.lat = this.navParams.get('lat');
-    this.lat = this.navParams.get('lng');
+    this.lng = this.navParams.get('lng');
     this.title = this.navParams.get('title');
     platform.ready().then(() => {
       this.loadMap();
@@ -35,7 +31,6 @@ export class LocationComponent implements OnInit {
   ngOnInit() {
   }
   loadMap() {
-    console.log('vao loadmap');
 
     let mapOptions: GoogleMapOptions = {
       camera: {
@@ -48,14 +43,11 @@ export class LocationComponent implements OnInit {
       }
     };
 
-    
-
     this.map = GoogleMaps.create(this.element.nativeElement, mapOptions);
 
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(() => {
         console.log('Map is ready!');
-        this.map.clear();
         this.map.addMarker({
           title: this.title,
           icon: 'blue',
