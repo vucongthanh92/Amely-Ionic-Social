@@ -84,9 +84,10 @@ export class PaymentConfirmComponent implements OnInit {
         this.customService.cart = [];
         this.nav.popToRoot();
       });
-      browser.on('setResult').subscribe(data => {
-       console.log(data);
-       
+      browser.on('loadstart').subscribe((e) => {
+        console.log('loadstart');
+        console.log(e.url);
+     
       });
     })
   }
