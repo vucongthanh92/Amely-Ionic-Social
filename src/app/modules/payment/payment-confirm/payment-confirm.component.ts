@@ -79,8 +79,7 @@ export class PaymentConfirmComponent implements OnInit {
         this.customService.cart = [];
         this.nav.popToRoot();
         console.log('loadstop');
-
-
+        
       });
       browser.on('exit').subscribe(data => {
         this.paymentService.items = false;
@@ -91,7 +90,9 @@ export class PaymentConfirmComponent implements OnInit {
 
       browser.on('loadstart').subscribe(e => {
         console.log('loadstart');
-        alert(e.url);
+        console.log(e);
+        console.log(e.url);
+        
       });
 
     })
