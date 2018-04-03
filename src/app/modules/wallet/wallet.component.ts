@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, App } from 'ionic-angular';
 import { Transaction } from '../../api/models';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { HistoryOrderDetailComponent } from '../history/history-order-detail/history-order-detail.component';
 // import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-wallet',
@@ -100,17 +101,31 @@ export class WalletComponent implements OnInit {
 
   }
 
+  orderDetail(trans: Transaction) {
+    if (trans.order_guid) {
+      this.appCtrl.getRootNav().push(HistoryOrderDetailComponent, { guid: trans.order_guid })
+    }
+  }
+
   showTransactionDescription(trans: Transaction) {
     switch (trans.description) {
       case "":
         let content;
-        if (trans.quantity < 0) {
+        if (trans.order_guid) {
+          return `<ion-thumbnail item-start>
+                  <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
+                  </ion-thumbnail>
+                  <h2>Sử dụng tiền trong ví</h2>
+                  <p>Bạn đã sử dụng <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) +
+            `</strong> để thanh toán hóa đơn <strong>` + trans.order_guid + `</strong> </p>`
+
+        } else if (trans.quantity < 0) {
           if (trans.payment_method == 'sq/bankaccount') {
-            content = 'Bạn đã rút về tài khoản ' + trans.bank_account_name + " : " + trans.bank_account_number
-              + ' số tiền ' + this.formatCurrency(trans.quantity + '', trans.currency);
+            content = 'Bạn đã rút về tài khoản <strong>' + trans.bank_account_name + "</strong> : <strong>" + trans.bank_account_number
+              + '</strong> số tiền <strong>' + this.formatCurrency(trans.quantity + '', trans.currency) + "</strong>";
           } else if (trans.payment_method == 'paypal/standard') {
-            content = 'Bạn đã rút về tài khoản ' + "Paypal: " + trans.paypal_email +
-              ' số tiền ' + this.formatCurrency(trans.quantity + '', trans.currency);
+            content = 'Bạn đã rút về tài khoản ' + "Paypal: <strong>" + trans.paypal_email +
+              '</strong> số tiền <strong>' + this.formatCurrency(trans.quantity + '', trans.currency) + "</strong>";
           }
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
@@ -118,38 +133,39 @@ export class WalletComponent implements OnInit {
                   <h2>Rút tiền khỏi ví</h2>
                   <p>`+ content + `</p>`
         } else {
+
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_inventory_new.png">
                   </ion-thumbnail>
                   <h2>Nạp tiền vào ví</h2>
-                  <p>Bạn đã nạp `+ this.formatCurrency(trans.quantity + '', trans.currency) + `vào ngày ` + this.formatDateTime(trans.time_created * 1000) + `</p>`
+                  <p>Bạn đã nạp <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong> </p>`
         }
       case this.PURCHASEORDER:
         return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>
                   <h2>Thanh toán hóa đơn</h2>
-                  <p>Bạn đã thanh toán hóa đơn với `+ this.formatCurrency(trans.quantity + '', trans.currency) + `vào ngày ` + this.formatDateTime(trans.time_created * 1000) + `</p>`
+                  <p>Bạn đã thanh toán hóa đơn với <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
       case this.CREATEADVERTISE:
         return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>
                   <h2>Tạo mới quảng cáo</h2>
-                  <p>Tạo quảng cáo với ngân sách `+ this.formatCurrency(trans.quantity + '', trans.currency) + `vào ngày ` + this.formatDateTime(trans.time_created * 1000) + `</p>`
+                  <p>Tạo quảng cáo với ngân sách <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
 
       case this.DELETEADVERTISE:
         return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_inventory_new.png">
                   </ion-thumbnail>
                   <h2>Xóa quảng cáo</h2>
-                  <p>Quảng cáo đã xóa được cộng dồn vào ví `+ this.formatCurrency(trans.quantity + '', trans.currency) + `vào ngày ` + this.formatDateTime(trans.time_created * 1000) + `</p>`
+                  <p>Quảng cáo đã xóa được cộng dồn vào ví <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
 
       case this.CHANGEADVERTISE:
         return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_voucher_actived.png">
                   </ion-thumbnail>
                   <h2>Chỉnh sửa quảng cáo</h2>
-                  <p>Chỉnh sửa quảng cáo `+ this.formatCurrency(trans.quantity + '', trans.currency) + `vào ngày ` + this.formatDateTime(trans.time_created * 1000) + `</p>`
+                  <p>Chỉnh sửa quảng cáo <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong>vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
 
       default:
         return "Chưa định nghĩa";

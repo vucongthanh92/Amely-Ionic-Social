@@ -12,6 +12,7 @@ import { User } from '../../../api/models';
 })
 export class HistoryOrderDetailComponent implements OnInit {
   order: Order;
+  order_guid: number;
   tran: Transaction;
   totalItem: number = 0;
   totalAmount: number = 0;
@@ -19,6 +20,7 @@ export class HistoryOrderDetailComponent implements OnInit {
 
   constructor(private navParams: NavParams, private historyService: HistoryService, private customService: CustomService, private nav: NavController) {
     this.tran = this.navParams.get('transaction');
+    this.order_guid = this.navParams.get('guid');
     this.user_current = this.customService.user_current;
   }
 
@@ -32,7 +34,7 @@ export class HistoryOrderDetailComponent implements OnInit {
       this.nav.pop();
       return;
     }
-    this.historyService.getOrder(this.tran.related_guid).subscribe(data => {
+    this.historyService.getOrder(this.order_guid ? this.order_guid : this.tran.related_guid).subscribe(data => {
       this.order = data;
       this.order.order_item
       this.order.order_item.forEach(e => {

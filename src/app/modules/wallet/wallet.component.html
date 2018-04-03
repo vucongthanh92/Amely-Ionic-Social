@@ -21,7 +21,7 @@
     </ion-col>
   </ion-row>
   <ion-list *ngIf="transactions">
-    <ion-item *ngFor="let trans of transactions">
+    <ion-item *ngFor="let trans of transactions" (click)="orderDetail(trans)">
       <div [innerHTML]=showTransactionDescription(trans)></div>
     </ion-item>
   </ion-list>

@@ -80,7 +80,10 @@
           </ion-col>
           <ion-col col-7>
             <ion-select [(ngModel)]="duration" name="duration" placeholder="Thời gian hiệu lực" [selectOptions]="duration_select">
-              <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9]" value="{{ number }}">{{ number }} ngày</ion-option>
+              <ion-option *ngFor="let number of [0.25,0.5,0.75,1,2,3,4,5,6,7,8,9]" value="{{ number }}">
+                <span *ngIf="number==0.25 ||number==0.5||number==0.75;else other_content ">{{ 24*number }} giờ</span>
+                <ng-template #other_content>{{ number }} ngày</ng-template>
+              </ion-option>
             </ion-select>
           </ion-col>
           <ion-col>

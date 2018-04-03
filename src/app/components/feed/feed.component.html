@@ -18,11 +18,37 @@
 
   </ion-item>
 
-  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto">
-    <ion-item *ngFor="let wallphoto of post.wallphoto">
-      <img width="100%" src="{{ wallphoto }}" imageViewer>
-    </ion-item>
+
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
+    <img width="100%" src="{{ post.wallphoto[0] }}" imageViewer>
   </ion-list>
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
+    <img width="50%" src="{{ post.wallphoto[0] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[1] }}" imageViewer style="float: left;">
+  </ion-list>
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==3">
+    <img width="50%" src="{{ post.wallphoto[0] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[1] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[2] }}" imageViewer style="float: left;">
+  </ion-list>
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==4">
+    <img width="50%" src="{{ post.wallphoto[0] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[1] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[2] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[3] }}" imageViewer style="float: left;">
+  </ion-list>
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4">
+    <img width="50%" src="{{ post.wallphoto[0] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[1] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[2] }}" imageViewer style="float: left;">
+    <img width="50%" src="{{ post.wallphoto[3] }}" imageViewer style="float: left;"> {{post.wallphoto.length-4}}
+  </ion-list>
+
 
   <ion-card-content (click)="openFeedDetail()">
     <p>{{ descriptionPost }}</p>
@@ -102,11 +128,47 @@
 
     </ion-item>
 
-    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto">
-      <ion-item *ngFor="let wallphoto of postShare.wallphoto">
-        <img width="100%" src="{{ wallphoto }}" imageViewer>
-      </ion-item>
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
+      <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
+      <img width="100%" src="{{ postShare.wallphoto[0] }}" imageViewer>
+      <!-- </ion-item> -->
     </ion-list>
+
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==2">
+      <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
+      <img width="50%" src="{{ postShare.wallphoto[0] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[1] }}" imageViewer style="float: left;">
+      <!-- </ion-item> -->
+    </ion-list>
+
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==3">
+      <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
+      <img width="50%" src="{{ postShare.wallphoto[0] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[1] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[2] }}" imageViewer style="float: left;">
+      <!-- </ion-item> -->
+    </ion-list>
+
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==4">
+      <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
+      <img width="50%" src="{{ postShare.wallphoto[0] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[1] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[2] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[3] }}" imageViewer style="float: left;">
+      <!-- </ion-item> -->
+    </ion-list>
+
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4">
+      <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
+      <img width="50%" src="{{ postShare.wallphoto[0] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[1] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[2] }}" imageViewer style="float: left;">
+      <img width="50%" src="{{ postShare.wallphoto[3] }}" imageViewer style="float: left;">{{postShare.wallphoto.length-4}}
+      <!-- </ion-item> -->
+    </ion-list>
+
+
+
 
     <ion-card-content (click)="openFeedDetail()">
       <p>{{ descriptionPostShare }}</p>
