@@ -74,11 +74,16 @@ export class PaymentConfirmComponent implements OnInit {
       this.loading.dismiss();
       this.nav.push(PaymentWebviewComponent, { url: data.url });
       const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
-      browser.on('loadstop').subscribe(data => {
-        this.paymentService.items = false;
-        this.customService.cart = [];
-        this.nav.popToRoot();
-        console.log('loadstop');
+      browser.on('loadstop').subscribe(e => {
+        if (e.url.indexOf('https://amely.com/m/temp_order/') > -1) {
+          setTimeout(() => {
+            this.paymentService.items = false;
+            this.customService.cart = [];
+            this.nav.popToRoot();
+            console.log('loadstop');
+            browser.close();
+          }, 3000);
+        }
 
       });
       browser.on('exit').subscribe(data => {
@@ -89,12 +94,7 @@ export class PaymentConfirmComponent implements OnInit {
       });
 
       browser.on('loadstart').subscribe(e => {
-        console.log('loadstart');
-        console.log(e);
-        console.log(e.url);
-        if (e.url.indexOf('https://amely.com') > -1) {
-          setTimeout(() => { browser.close; }, 5000);
-        }
+      
       });
 
     })
