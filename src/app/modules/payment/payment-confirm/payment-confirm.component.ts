@@ -72,14 +72,14 @@ export class PaymentConfirmComponent implements OnInit {
     this.loading.present();
     this.paymentService.createOrder().subscribe(data => {
       this.loading.dismiss();
-      // this.nav.push(PaymentWebviewComponent, { url: data.url });
-      const browser = this.iab.create(data.url);
+      this.nav.push(PaymentWebviewComponent, { url: data.url });
+      const browser = this.iab.create(data.url, '_blank', { location: 'no' });
       browser.on('loadstop').subscribe(data => {
         this.paymentService.items = false;
         this.customService.cart = [];
         this.nav.popToRoot();
         console.log('loadstop');
-        
+
       });
       browser.on('exit').subscribe(data => {
         this.paymentService.items = false;
@@ -87,7 +87,8 @@ export class PaymentConfirmComponent implements OnInit {
         this.nav.popToRoot();
         console.log('exit');
       });
-   
+
+
     })
   }
 
