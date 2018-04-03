@@ -79,7 +79,7 @@ export class PaymentConfirmComponent implements OnInit {
         this.customService.cart = [];
         this.nav.popToRoot();
         console.log('loadstop');
-        
+
       });
       browser.on('exit').subscribe(data => {
         this.paymentService.items = false;
@@ -92,7 +92,9 @@ export class PaymentConfirmComponent implements OnInit {
         console.log('loadstart');
         console.log(e);
         console.log(e.url);
-        
+        if (e.url.indexOf('https://amely.com') > -1) {
+          setTimeout(() => { browser.close; }, 5000);
+        }
       });
 
     })
