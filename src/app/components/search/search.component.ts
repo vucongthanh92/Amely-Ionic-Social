@@ -5,7 +5,7 @@ import { ShopComponent } from './../shop/shop.component';
 import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Shop } from './../../api/models/shop';
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { App, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { SearchService } from '../../services/search.service';
 import { Group } from '../../api/models/group';
@@ -46,12 +46,12 @@ export class SearchComponent implements OnInit {
   }
 
   loadData(retry) {
-    
- let loading = this.loadingCtrl.create({
-  content: 'Please wait...',
-  enableBackdropDismiss: true
-});
-loading.present();
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
 
     if (retry == 0) {
       loading.dismiss();
@@ -101,17 +101,17 @@ loading.present();
       }
     }, err => this.loadData(--retry))
   }
-  formatCurrency(amount: string, currency: string) {
+  formatCurrency(product: Product, currency: string) {
     let result: string;
     switch (currency) {
       case 'VND':
-        result = (+amount).toLocaleString('vi-VN', { style: 'decimal', currency: 'VND' }) + ' ₫';
+        result = (this.customService.netPrice(product)).toLocaleString('vi-VN', { style: 'decimal', currency: 'VND' }) + ' ₫';
         break;
       case 'USD':
-        result = (+amount).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        result = (this.customService.netPrice(product)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         break;
       default:
-        result = amount + ' ' + currency;
+        result = this.customService.netPrice(product) + ' ' + currency;
         break;
     }
     return result;

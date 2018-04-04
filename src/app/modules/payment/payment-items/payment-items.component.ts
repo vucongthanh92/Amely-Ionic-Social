@@ -30,6 +30,8 @@ export class PaymentItemsComponent implements OnInit {
     this.total = this.param.total;
     this.currency = this.param.currency;
     this.loadData(5);
+    console.log(this.products);
+
   }
 
   loadData(retry) {
@@ -57,5 +59,9 @@ export class PaymentItemsComponent implements OnInit {
 
   changePage() {
     this.appCtrl.getRootNav().push(PaymentCustomerInfoComponent);
+  }
+
+  formatCurrency(item) {
+    return this.customService.formatCurrency(+(item.display_price + (+(item.display_price * (item.tax / 100)))) + "", item.currency);
   }
 }

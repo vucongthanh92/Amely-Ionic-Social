@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="!is_search_show">Xã Hội</ion-title>
+    <ion-title *ngIf="!is_search_show">Thiết lập</ion-title>
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
     <ion-buttons end>
       <button ion-button (click)="search()" style="font-size: 18px;">

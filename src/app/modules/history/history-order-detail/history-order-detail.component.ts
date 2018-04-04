@@ -4,7 +4,7 @@ import { HistoryService } from './../../../services/history.service';
 import { Transaction } from './../../../api/models/transaction';
 import { NavParams, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../api/models';
+import { User, Product } from '../../../api/models';
 
 @Component({
   selector: 'app-history-order-detail',
@@ -37,14 +37,22 @@ export class HistoryOrderDetailComponent implements OnInit {
     this.historyService.getOrder(this.order_guid ? this.order_guid : this.tran.related_guid).subscribe(data => {
       this.order = data;
       this.order.order_item
-      this.order.order_item.forEach(e => {
-        this.totalItem = this.totalItem + e.qty;
-        this.totalAmount = this.totalAmount + ((+e.price + (+e.price * (+e.tax / 100))) * e.qty);
-      })
+      if (this.order.order_item) {
+        this.order.order_item.forEach(e => {
+          this.totalItem = this.totalItem + e.qty;
+          this.totalAmount = this.totalAmount + ((+e.price + (+e.price * (+e.tax / 100))) * e.qty);
+        })
+      } else {
+        this.totalItem = 0;
+        this.totalAmount = 0;
+      }
     }, err => this.loadData(--retry))
   }
 
-  formatCurrency(price, currency) {
-    return this.customService.formatCurrency(price, currency);
+  formatCurrency(item: Product) {
+    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+  }
+  formatTotalPrive(amount: number, usercurrency) {
+    return this.customService.formatCurrency(amount + "", usercurrency);
   }
 }

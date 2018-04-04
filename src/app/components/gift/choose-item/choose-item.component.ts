@@ -33,14 +33,17 @@ export class ChooseItemComponent implements OnInit {
       { item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
       { item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
       { item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png' },
-      { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' }];
+      { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' }
+    ];
 
     this.arrTagBadge.forEach(e => {
       this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
         if (data) {
           this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
           if (data instanceof Array) {
-            this.inventoriesItem = this.inventoriesItem.concat(data);
+            if (e.item_type != 'wishlist' && e.item_type != 'givelist' && e.item_type != 'new') {
+              this.inventoriesItem = this.inventoriesItem.concat(data);
+            }
           }
         }
       });

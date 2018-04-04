@@ -33,7 +33,7 @@
                 <h4>{{ product.title }}</h4>
               </div>
               <div class="">
-                <h4 style="color: red; top: -10px; position: relative;">{{ customService.formatCurrency(product.display_price, product.display_currency) }}<i style="color: #9e9e9e;">x {{ product.display_quantity }}</i></h4>
+                <h4 style="color: red; top: -10px; position: relative;">{{ formatCurrency(product) }}<i style="color: #9e9e9e;">x {{ product.display_quantity }}</i></h4>
               </div>
             </ion-col>
             <ion-col col-2>
@@ -47,7 +47,7 @@
     </ion-row>
   </div>
   <div style="position: absolute; bottom: 0px; width: 100%">
-    <ion-item>
+    <!-- <ion-item>
       Tổng tiền trước thuế :
       <ion-note class="ionNote" item-end>
          {{ customService.formatCurrency(sub_total, currency) }}
@@ -58,7 +58,7 @@
       <ion-note class="ionNote" item-end>
          {{ customService.formatCurrency(tax, currency) }}
       </ion-note>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       Tổng tiền :
       <ion-note class="ionNote" item-end>

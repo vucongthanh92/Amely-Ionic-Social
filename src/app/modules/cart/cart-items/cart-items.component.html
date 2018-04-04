@@ -4,10 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" >
+<ion-content class="outer-content">
   <div class="cart_items_container" *ngIf="items">
     <ion-row>
-    	<ion-col col-12 *ngFor="let item of items">
+      <ion-col col-12 *ngFor="let item of items">
         <ion-grid class="cart_items_product">
           <ion-row>
             <ion-col col-3>
@@ -15,7 +15,7 @@
             </ion-col>
             <ion-col col-7>
               <h4 class="cart_items_product_title">{{ item.title }}</h4>
-              <h4 class="cart_items_product_price">{{ customService.formatCurrency( item.price, item.currency) }}</h4>
+              <h4 class="cart_items_product_price">{{ formartCurrency( item) }}</h4>
               <ion-row class="cart_items_quantity">
                 <ion-col col-3>
                   <button class="cart_items_product_decrease" ion-button block icon-only (click)="decrease(item.guid)">
@@ -39,24 +39,26 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-    	</ion-col>
+      </ion-col>
     </ion-row>
   </div>
 </ion-content>
 
 <ion-footer class="cart_items_payment">
-    <div padding-horizontal>
-      <ion-item>
-        Tổng sản phẩm
-        <ion-note class="ionNote" item-end>{{ number_items }}</ion-note>
-      </ion-item>
-      <ion-item>
-        Tổng tiền
-        <ion-note class="ionNote" item-end>{{ customService.formatCurrency( total, "VND") }}</ion-note>
-      </ion-item>
-      <div class="divVAT">
-        <ion-label><i>(Đã bao gồm VAT)</i></ion-label>
-      </div>
+  <div padding-horizontal>
+    <ion-item>
+      Tổng sản phẩm
+      <ion-note class="ionNote" item-end>{{ number_items }}</ion-note>
+    </ion-item>
+    <ion-item>
+      Tổng tiền
+      <ion-note class="ionNote" item-end>{{ customService.formatCurrency( total, "VND") }}</ion-note>
+    </ion-item>
+    <div class="divVAT">
+      <ion-label>
+        <i>(Đã bao gồm VAT)</i>
+      </ion-label>
     </div>
+  </div>
   <button type="button" name="button" ion-button full no-margin (click)="payment()">THANH TOÁN</button>
 </ion-footer>

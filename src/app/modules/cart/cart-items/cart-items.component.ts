@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController, AlertController, LoadingController } from 'ionic-angular';
 import { PaymentItemsComponent } from '../../payment/payment-items/payment-items.component';
 import { ShoppingsService } from '../../../services/shoppings.service';
+import { Product } from '../../../api/models';
 
 @Component({
   selector: 'app-cart-items',
@@ -18,7 +19,7 @@ export class CartItemsComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private shoppingsService: ShoppingsService,
-    private customService: CustomService,
+    public customService: CustomService,
     public nav: NavController,
     public alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
@@ -34,6 +35,8 @@ export class CartItemsComponent implements OnInit {
 
   increase(guid) {
     let item = this.items.filter(data => data.guid == guid);
+    console.log(item[0].quantity);
+    
     if (item.length > 0) {
       if (item[0].quantity_cart <= item[0].quantity) {
         item[0].quantity_cart = item[0].quantity_cart + 1;
@@ -81,12 +84,12 @@ export class CartItemsComponent implements OnInit {
     this.total = 0;
     this.items.forEach(e => {
       this.number_items = this.number_items + e.quantity_cart;
-      this.total = this.total + (e.quantity_cart * e.price);
+      this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));
     });
   }
 
   payment() {
-   
+
     if (this.items.length > 0) {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
@@ -109,4 +112,7 @@ export class CartItemsComponent implements OnInit {
     }
   }
 
+  formartCurrency(item: Product) {
+    this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+  }
 }

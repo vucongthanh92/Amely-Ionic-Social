@@ -1,9 +1,11 @@
 <ion-content class="outer-content">
-  <ion-slides *ngIf="banners == null" loop="true" style="height: 150px">
+  
+  <ion-slides  *ngIf="banners && banners.length" autoplay="4000" speed="2000"  loop="true" style="height: 150px">
     <ion-slide *ngFor="let b of banners" (click)='openBanner(b)'>
       <img src="{{b.banner_url}}">
     </ion-slide>
   </ion-slides>
+
   <app-products-feature [is_feature]=true></app-products-feature>
   <app-categories></app-categories>
   <app-shop-feature></app-shop-feature>

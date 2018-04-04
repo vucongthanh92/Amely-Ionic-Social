@@ -67,7 +67,7 @@ export class ProductsFeatureComponent implements OnInit {
       }
     }, err => this.getMostSold(--retry))
     loading.dismiss();
-    
+
   }
   initShopProductFeatue() {
     let loading = this.loadingCtrl.create({
@@ -85,8 +85,8 @@ export class ProductsFeatureComponent implements OnInit {
     })
   }
 
-  formatCurrency(price, currency: string) {
-    return this.customService.formatCurrency(price, currency);
+  formatCurrency(product: Product, currency: string) {
+    return this.customService.formatCurrency(this.customService.netPrice(product) + '', currency);
   }
 
   goToPage(value, product: Product) {

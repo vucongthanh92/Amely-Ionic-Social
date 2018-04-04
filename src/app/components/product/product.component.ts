@@ -67,8 +67,8 @@ export class ProductComponent implements OnInit {
     this.count_product = this.customService.cart.length;
   }
 
-  formatCurrency(price, currency: string) {
-    return this.customService.formatCurrency(price, currency);
+  formatCurrency(product: Product, currency: string) {
+    return this.customService.formatCurrency(this.customService.netPrice(product)+"", currency);
   }
 
   putCartLocal(product) {

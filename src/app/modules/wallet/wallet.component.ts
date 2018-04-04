@@ -92,7 +92,6 @@ export class WalletComponent implements OnInit {
         this.paymentService.items.to_guid = data.to_guid;
         this.paymentService.param_create_order.to_guid = data.to_guid;
         this.loading.dismiss();
-        this.customService.toastMessage('quet ok', 'bottom', 2000)
         this.appCtrl.getRootNav().push(PaymentItemsComponent);
       })
     }, (err) => {

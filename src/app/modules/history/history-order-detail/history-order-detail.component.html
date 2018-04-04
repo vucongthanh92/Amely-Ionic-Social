@@ -16,10 +16,10 @@
             <ion-col col-7>
               <h6> {{item.title}} </h6>
               <p style="top:-10px; position: relative;">
-                <a style="color: red;  position: relative;">{{formatCurrency(item.price,item.currency)}} </a>
+                <a style="color: red;  position: relative;">{{formatCurrency(item)}} </a>
                 x {{item.qty}}
               </p>
-              <p style="top:-10px; position: relative;">Thuế : {{item.tax}}%</p>
+              <!-- <p style="top:-10px; position: relative;">Thuế : {{item.tax}}%</p> -->
             </ion-col>
 
           </ion-row>
@@ -44,7 +44,7 @@
     <ion-item>
       Tổng tiền
       <ion-note class="ionNote" item-end *ngIf="user_current" >
-        {{formatCurrency(totalAmount,user_current.usercurrency)}}
+        {{formatTotalPrive(totalAmount,user_current.usercurrency)}}
       </ion-note>
     </ion-item>
     <div class="divVAT">

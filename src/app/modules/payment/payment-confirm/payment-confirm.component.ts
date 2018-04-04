@@ -7,6 +7,7 @@ import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NavController, LoadingController } from 'ionic-angular';
+import { Product } from '../../../api/models';
 
 @Component({
   selector: 'app-payment-confirm',
@@ -94,10 +95,13 @@ export class PaymentConfirmComponent implements OnInit {
       });
 
       browser.on('loadstart').subscribe(e => {
-      
+
       });
 
     })
   }
 
+  formatCurrency(item: Product) {
+    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+  }
 }

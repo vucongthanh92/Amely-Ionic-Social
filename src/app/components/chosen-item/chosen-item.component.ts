@@ -32,7 +32,7 @@ export class ChosenItemComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
-    
+
     this.arrTagBadge = [
       { item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
       { item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
@@ -43,9 +43,8 @@ export class ChosenItemComponent implements OnInit {
       { item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' }];
 
     this.arrTagBadge.forEach(e => {
-      
+
       this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
-        
         if (data) {
           this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
           if (data instanceof Array) {
@@ -53,9 +52,9 @@ export class ChosenItemComponent implements OnInit {
           }
         }
       }
-    ,err=>{
-      this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge:0 })
-    });
+        , err => {
+          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: 0 })
+        });
     })
     loading.dismiss();
   }
@@ -67,7 +66,7 @@ export class ChosenItemComponent implements OnInit {
     profileModal.onDidDismiss(item => {
       if (typeof (item) != "undefined") {
         let callback = this.params.get("callback");
-  
+
         callback(item.item).then(() => {
           this.nav.pop();
         });

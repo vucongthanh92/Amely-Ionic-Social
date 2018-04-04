@@ -51,7 +51,7 @@
           <img width="100%" *ngIf="product.images[0]" src="{{product.images[0]}}" />
         </ion-thumbnail>
         <h2>{{product.title}}</h2>
-        <h2 style="color: red; font-weight: bold;">{{formatCurrency(product.price,product.currency)}}</h2>
+        <h2 style="color: red; font-weight: bold;">{{formatCurrency(product,product.currency)}}</h2>
       </ion-item>
     </ion-list>
 

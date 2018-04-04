@@ -28,7 +28,7 @@
       <ion-col col-8>
         <ion-row>{{product.title}}</ion-row>
         <ion-row>{{showDescription(product.description)}}</ion-row>
-        <ion-row>{{ this.custom_service.formatCurrency(product.price,product.currency)}}</ion-row>
+        <ion-row>{{ formatCurrency(product.price)}}</ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>

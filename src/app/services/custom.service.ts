@@ -1,3 +1,4 @@
+import { Product } from './../api/models/product';
 import { FirebaseService } from './firebase.service';
 import { UserService } from './user.service';
 import { ApiService } from './../api/services/api.service';
@@ -84,6 +85,8 @@ export class CustomService {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
+
+
   getCurrentTime() {
     return this.api.getServices();
   }
@@ -102,6 +105,12 @@ export class CustomService {
 
   updateCover(owner_guid: number, cover_type: string, images: string[]) {
     return this.api.upload_cover({ owner_guid: owner_guid, cover_type: cover_type, images: images });
+  }
+
+  netPrice(product: Product): number {
+    if (product.tax) {
+      return +product.price + (+(product.price * (product.tax / 100)));
+    } else return product.price;
   }
 
   report(alertCtrl: AlertController, report_type: string, guid: number) {
