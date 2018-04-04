@@ -149,7 +149,7 @@
 
   <!-- INFO SHARE -->
   <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
-  <ion-card *ngIf="postShare">
+  <ion-card *ngIf="postShare" padding>
     <ion-item>
       <ion-avatar item-start>
         <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}">
@@ -232,7 +232,7 @@
       </div>
       <div class="wallphoto_quantity_5">
         <img src="{{ postShare.wallphoto[3] }}" imageViewer>
-        <div class="wallphoto_col_more"  (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
+        <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
       </div>
       <!-- </ion-item> -->
     </ion-list>

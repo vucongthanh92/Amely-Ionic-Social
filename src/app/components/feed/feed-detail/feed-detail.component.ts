@@ -1,6 +1,6 @@
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Component, OnInit } from '@angular/core';
-import { Feed, User } from '../../../api/models';
+import { Feed, User, Share } from '../../../api/models';
 import { ViewController } from 'ionic-angular';
 
 @Component({
@@ -10,7 +10,8 @@ import { ViewController } from 'ionic-angular';
 export class FeedDetailComponent implements OnInit {
   post: Feed;
   user: User;
-  shares: Feed;
+  users: User[];
+  shares: Share;
   mood: any;
   is_open_from_detail: boolean;
   userTag: Array<User>;
@@ -23,9 +24,13 @@ export class FeedDetailComponent implements OnInit {
       this.mood = this.navParams.get('mood')
     if (!this.userTag)
       this.userTag = this.navParams.get('user_tag')
-      this.mood = this.navParams.get('mood')
-    if (!this.shares)
-      this.shares = this.navParams.get('shares')
+    this.mood = this.navParams.get('mood')
+
+    this.shares = this.navParams.get('shares')
+    this.users = this.navParams.get('users')
+
+    console.log('FeedDetailComponent');
+    console.log(this.shares);
 
     this.is_open_from_detail = this.navParams.get('is_open_from_detail')
   }

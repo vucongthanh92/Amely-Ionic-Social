@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Tạo Shop</ion-title>
+    <ion-title>Chi tiết bài viết</ion-title>
     <!-- <ion-buttons start>
       <button ion-button (click)="dismiss()">Close</button>
     </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <app-feed *ngIf="post" [post]="post" [user]="user" [mood]="mood" [user_tag]="userTag" [is_open_from_detail]="is_open_from_detail" [shares]="shares"></app-feed>
+  <app-feed *ngIf="post" [users]="users" [post]="post" [user]="user" [mood]="mood" [user_tag]="userTag" [is_open_from_detail]="is_open_from_detail" [shares]="shares"></app-feed>
 </ion-content>
