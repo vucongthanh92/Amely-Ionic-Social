@@ -10,6 +10,7 @@ import { ViewController } from 'ionic-angular';
 export class FeedDetailComponent implements OnInit {
   post: Feed;
   user: User;
+  shares: Feed;
   mood: any;
   is_open_from_detail: boolean;
   userTag: Array<User>;
@@ -22,6 +23,9 @@ export class FeedDetailComponent implements OnInit {
       this.mood = this.navParams.get('mood')
     if (!this.userTag)
       this.userTag = this.navParams.get('user_tag')
+      this.mood = this.navParams.get('mood')
+    if (!this.shares)
+      this.shares = this.navParams.get('shares')
 
     this.is_open_from_detail = this.navParams.get('is_open_from_detail')
   }

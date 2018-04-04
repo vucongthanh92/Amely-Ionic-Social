@@ -148,7 +148,7 @@
   </ion-item>
 
   <!-- INFO SHARE -->
-  <ion-card *ngIf="!postShare">Bài viết đã được xóa</ion-card>
+  <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
   <ion-card *ngIf="postShare">
     <ion-item>
       <ion-avatar item-start>
@@ -170,41 +170,70 @@
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <img src="{{ postShare.wallphoto[0] }}" class="wallphoto_quantity_1" imageViewer>
+      <div class="wallphoto_quantity_1">
+        <img src="{{ postShare.wallphoto[0] }}" imageViewer>
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==2">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <img src="{{ postShare.wallphoto[0] }}" imageViewer class="wallphoto_quantity_2">
-      <img src="{{ postShare.wallphoto[1] }}" imageViewer class="wallphoto_quantity_2">
+      <div class="wallphoto_quantity_2">
+        <img src="{{ postShare.wallphoto[0] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_2">
+        <img src="{{ postShare.wallphoto[1] }}" imageViewer>
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==3">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <img src="{{ postShare.wallphoto[0] }}" imageViewer class="wallphoto_quantity_3">
-      <img src="{{ postShare.wallphoto[1] }}" imageViewer class="wallphoto_quantity_3">
-      <img src="{{ postShare.wallphoto[2] }}" imageViewer class="wallphoto_quantity_3">
+      <div class="wallphoto_quantity_3">
+        <img src="{{ postShare.wallphoto[0] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_3">
+        <img src="{{ postShare.wallphoto[1] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_3">
+        <img src="{{ postShare.wallphoto[2] }}" imageViewer>
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==4">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <img src="{{ postShare.wallphoto[0] }}" imageViewer class="wallphoto_quantity_4">
-      <img src="{{ postShare.wallphoto[1] }}" imageViewer class="wallphoto_quantity_4">
-      <img src="{{ postShare.wallphoto[2] }}" imageViewer class="wallphoto_quantity_4">
-      <img src="{{ postShare.wallphoto[3] }}" imageViewer class="wallphoto_quantity_4">
+      <div class="wallphoto_quantity_4">
+        <img src="{{ postShare.wallphoto[0] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_4">
+        <img src="{{ postShare.wallphoto[1] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_4">
+        <img src="{{ postShare.wallphoto[2] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_4">
+        <img src="{{ postShare.wallphoto[3] }}" imageViewer>
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4  && !is_open_from_detail">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <img src="{{ postShare.wallphoto[0] }}" imageViewer class="wallphoto_quantity_5">
-      <img src="{{ postShare.wallphoto[1] }}" imageViewer class="wallphoto_quantity_5">
-      <img src="{{ postShare.wallphoto[2] }}" imageViewer class="wallphoto_quantity_5">
-      <img src="{{ postShare.wallphoto[3] }}" imageViewer class="wallphoto_quantity_5">
-      <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">{{postShare.wallphoto.length-4}}</div>
+
+      <div class="wallphoto_quantity_5">
+        <img src="{{ postShare.wallphoto[0] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_5">
+        <img src="{{ postShare.wallphoto[1] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_5">
+        <img src="{{ postShare.wallphoto[2] }}" imageViewer>
+      </div>
+      <div class="wallphoto_quantity_5">
+        <img src="{{ postShare.wallphoto[3] }}" imageViewer>
+        <div class="wallphoto_col_more"  (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
