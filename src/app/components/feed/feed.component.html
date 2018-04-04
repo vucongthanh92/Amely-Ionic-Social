@@ -61,7 +61,8 @@
     </div>
   </ion-list>
 
-  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4">
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4  && !is_open_from_detail">
     <div class="wallphoto_quantity_5">
       <img width="50%" src="{{ post.wallphoto[0] }}" imageViewer style="float: left;">
     </div>
@@ -73,9 +74,18 @@
     </div>
     <div class="wallphoto_quantity_5">
       <img width="50%" src="{{ post.wallphoto[3] }}" imageViewer style="float: left;">
-      <div class="wallphoto_col_more">+{{post.wallphoto.length-4}}</div>
+      <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{post.wallphoto.length-4}}</div>
     </div>
   </ion-list>
+
+  <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4 && is_open_from_detail">
+    <ion-item *ngFor="let wallphoto of post.wallphoto">
+      <img src="{{wallphoto }}" imageViewer>
+    </ion-item>
+  </ion-list>
+
+
+
   <div class="clearfix"></div>
 
   <ion-card-content (click)="openFeedDetail()">
@@ -147,10 +157,12 @@
       <h2 class="feed_title">
         <span (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
       </h2>
+
       <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
         <span>{{mood.title}}</span>
         <img id="iconMood" src="{{mood.image}}">
       </ion-col> -->
+
       <p class="feed_date">{{ convertDate(postShare.time_created) | amTimeAgo }}</p>
       <p class="feed_date" *ngIf="location">{{location}}</p>
 
@@ -186,16 +198,21 @@
       <!-- </ion-item> -->
     </ion-list>
 
-    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4">
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4  && !is_open_from_detail">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
       <img src="{{ postShare.wallphoto[0] }}" imageViewer class="wallphoto_quantity_5">
       <img src="{{ postShare.wallphoto[1] }}" imageViewer class="wallphoto_quantity_5">
       <img src="{{ postShare.wallphoto[2] }}" imageViewer class="wallphoto_quantity_5">
       <img src="{{ postShare.wallphoto[3] }}" imageViewer class="wallphoto_quantity_5">
-      <div class="wallphoto_col_more">{{postShare.wallphoto.length-4}}</div>
+      <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">{{postShare.wallphoto.length-4}}</div>
       <!-- </ion-item> -->
     </ion-list>
 
+    <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4 && is_open_from_detail">
+      <ion-item *ngFor="let wallphoto of postShare.wallphoto">
+        <img src="{{wallphoto }}" imageViewer>
+      </ion-item>
+    </ion-list>
 
 
 

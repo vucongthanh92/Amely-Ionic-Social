@@ -11,6 +11,7 @@ export class FeedDetailComponent implements OnInit {
   post: Feed;
   user: User;
   mood: any;
+  is_open_from_detail: boolean;
   userTag: Array<User>;
   constructor(private navParams: NavParams, private viewCtrl: ViewController) {
     if (!this.post)
@@ -21,9 +22,11 @@ export class FeedDetailComponent implements OnInit {
       this.mood = this.navParams.get('mood')
     if (!this.userTag)
       this.userTag = this.navParams.get('user_tag')
+
+    this.is_open_from_detail = this.navParams.get('is_open_from_detail')
   }
 
-  dismiss(){
+  dismiss() {
     this.viewCtrl.dismiss();
   }
   ngOnInit() {

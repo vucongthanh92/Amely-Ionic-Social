@@ -26,6 +26,8 @@ export class FeedComponent {
   @Input('isShowMoreContent') isShowMoreContent: boolean = false;
   @Input('user_tag') userTag: Array<User>;
   @Input('type') type: string;
+  // open from feed detail component
+  @Input('is_open_from_detail') is_open_from_detail: boolean;
   @Output()
   uploaded = new EventEmitter<string>();
 
@@ -41,6 +43,7 @@ export class FeedComponent {
   is_change_avatar: boolean;
   is_change_conver: boolean;
   is_owner: boolean = false;
+  //content lenght than 1000 character =true
   is_show_detail: boolean = false;
   constructor(
     public menuCtrl: MenuController,
@@ -56,7 +59,7 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    
+
     if (this.post && this.post.item_guid) {
       try {
         this.postShare = this.shares.posts[this.post.item_guid];
@@ -119,7 +122,8 @@ export class FeedComponent {
         post: this.post,
         user: this.user,
         mood: this.mood,
-        user_tag: this.userTag
+        user_tag: this.userTag,
+        is_open_from_detail: true
       })
     }
   }
@@ -135,7 +139,7 @@ export class FeedComponent {
   }
   // goToUserProfile(guid) {
   //   console.log(guid);
-    
+
   //   this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
   // }
 
@@ -161,7 +165,7 @@ export class FeedComponent {
   openOwner(type: string, guid) {
     console.log(guid);
     console.log(type);
-    
+
     switch (type) {
       case 'event':
         this.appCtrl.getRootNav().push(EventComponent, { event_guid: guid })
@@ -174,8 +178,18 @@ export class FeedComponent {
         break;
       case 'user':
         this.appCtrl.getRootNav().push(UserComponent, { userGuid: guid })
-      break;
+        break;
     }
 
+  }
+
+  openFeedDetailFromImage() {
+    this.appCtrl.getRootNav().push(FeedDetailComponent, {
+      post: this.post,
+      user: this.user,
+      mood: this.mood,
+      user_tag: this.userTag,
+      is_open_from_detail: true
+    })
   }
 }
