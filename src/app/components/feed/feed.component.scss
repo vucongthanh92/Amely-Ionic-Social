@@ -73,4 +73,112 @@ app-feed{
         padding: 0px !important;
     }
 
+    .clearfix {
+        clear: both;
+    }
+
+    .wallphoto_quantity_1 {
+        max-height: 450px;
+        overflow: hidden;
+    }
+
+    .wallphoto_quantity_2 {
+        width: 50%;
+        float: left;
+        padding: 0px 2px 0px 2px;
+        overflow: hidden;
+        height: 200px;
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: none;
+        }
+    }
+
+    .wallphoto_quantity_3:first-child {
+        float: left;
+        width: 50%;
+        padding: 0px 2px 0px 2px;
+        overflow: hidden;
+        height: 200px;
+    }
+    
+    .wallphoto_quantity_3 {
+        float: left;
+        width: 50%;
+        padding: 0px 2px 0px 2px;
+        overflow: hidden;
+        height: 99px;
+        margin: 0px 0px 2px 0px;
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: none;
+        }
+    }
+
+    .wallphoto_quantity_4:first-child {
+        width: 100%;
+        height: 200px;
+        clear: both;
+        float: none;
+        overflow: hidden;
+        margin: 0px 0px 2px 0px;
+    }
+
+    .wallphoto_quantity_4 {
+        width: 33.3%;
+        height: 100px;
+        float: left;
+        overflow: hidden;
+        padding: 0px 2px 0px 2px;
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: none;
+        }
+    }
+
+    .wallphoto_quantity_5:first-child {
+        width: 100%;
+        height: 200px;
+        clear: both;
+        float: none;
+        overflow: hidden;
+        margin: 0px 0px 2px 0px;
+    }
+
+    .wallphoto_quantity_5 {
+        width: 33.3%;
+        height: 100px;
+        float: left;
+        overflow: hidden;
+        padding: 0px 2px 0px 2px;
+        position: relative;
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: none;
+        }
+
+        .wallphoto_col_more {
+            position: absolute; 
+            top: 0px; 
+            left: 0px; 
+            width: 100%; 
+            height: 100%; 
+            color: #fff; 
+            text-align: center; 
+            z-index: 1; 
+            font-size: 25px; 
+            font-weight: bold; 
+            padding: 30% 0px 0px 0px; 
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
 }
