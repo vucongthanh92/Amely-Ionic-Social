@@ -1,9 +1,10 @@
 import { CustomService } from './../../../../services/custom.service';
-import { ActionSheetController, AlertController, NavController } from 'ionic-angular';
+import { ActionSheetController, AlertController, NavController, App } from 'ionic-angular';
 import { User } from './../../../../api/models/user';
 import { Offer } from './../../../../api/models/offer';
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../../../../services/offers.service';
+import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-detail.component';
 
 @Component({
   selector: 'app-offer-bookmark',
@@ -14,7 +15,7 @@ export class OfferBookmarkComponent implements OnInit {
   offers: Offer[] = [];
   users: User[] = [];
   constructor(private offerService: OffersService, private actionSheetCtrl: ActionSheetController, private alertCtrl: AlertController,
-    private customService: CustomService, private nav: NavController) { }
+    private customService: CustomService, private nav: NavController, private appCtrl: App) { }
 
   ngOnInit() {
     this.loadData(5);
@@ -29,6 +30,20 @@ export class OfferBookmarkComponent implements OnInit {
       this.offers = data.offer;
       this.users = data.users;
     }, err => this.loadData(--retry))
+  }
+
+  changePage(offer: Offer) {
+    this.appCtrl.getRootNav().push(OffersItemDetailComponent, {
+      callback: this.myCallbackFunction,
+      param: offer
+    });
+  }
+
+  myCallbackFunction = (_params) => {
+    return new Promise((resolve, reject) => {
+      this.nav.setRoot(this.nav.getActive().component);
+      resolve();
+    });
   }
 
   openMenu() {

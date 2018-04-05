@@ -2,7 +2,7 @@ import { CustomService } from './../../services/custom.service';
 import { ShoppingsService } from './../../services/shoppings.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../api/models/category';
-import { App, NavParams, LoadingController } from 'ionic-angular';
+import { NavParams, LoadingController } from 'ionic-angular';
 import { Product } from '../../api/models/product';
 
 @Component({
@@ -19,9 +19,12 @@ export class ProductCategoryComponent implements OnInit {
   private offset: number = 0;
   private limit: number = 10;
   public title: string;
+  public category_selected: Category;
+  public search_content: string;
+  public is_search: boolean;
 
-  constructor(private navParams: NavParams, private appCtrl: App, private shopping_service: ShoppingsService, public custom_service: CustomService,
-    public loadingCtrl: LoadingController) {
+  constructor(private navParams: NavParams, private shopping_service: ShoppingsService, public custom_service: CustomService,
+    private customService: CustomService, public loadingCtrl: LoadingController) {
     this.categories = this.navParams.get('arr');
     this.category_id = this.navParams.get('guid');
     this.shop_guid = this.navParams.get('shop_guid');
@@ -62,8 +65,12 @@ export class ProductCategoryComponent implements OnInit {
     }, err => this.loadData(--retry));
   }
 
-  goToSubCat(category) {
-    this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories });
+  goToSubCat() {
+    console.log(this.category_selected);
+    this.category_id = this.category_selected.guid;
+    this.products = [];
+    this.loadData(5)
+    // this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories });
   }
   showDescription(desc: string) {
     return desc.length > 50 ? desc.substring(0, 50) + " ..." : desc;
@@ -86,5 +93,18 @@ export class ProductCategoryComponent implements OnInit {
       });
       infiniteScroll.complete();
     }, 500);
+  }
+
+  search() {
+    console.log(this.search_content);
+    this.is_search = !this.is_search;
+    if (!this.is_search) {
+      if (this.search_content != undefined && this.search_content.length > 3) {
+        // this.customService.goToPageSearch(this.search_content,this.nav);
+        alert(this.search_content)
+      } else {
+        this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
+      }
+    }
   }
 }

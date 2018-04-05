@@ -59,23 +59,16 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    console.log(this.post);
-    console.log(this.shares);
     if (this.post && this.post.item_guid) {
       try {
         this.postShare = this.shares.posts[this.post.item_guid];
-
-
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
           this.descriptionPostShare = 'Đã thay đổi ảnh đại diện'
         } else if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen') {
           this.descriptionPostShare = 'Đã thay đổi ảnh bìa'
         }
-      } catch (error) {
-        console.log(error);
-
-      }
+      } catch (error) { }
     }
 
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
@@ -193,7 +186,7 @@ export class FeedComponent {
       post: this.post,
       user: this.user,
       mood: this.mood,
-      users:this.users,
+      users: this.users,
       shares: this.shares,
       user_tag: this.userTag,
       is_open_from_detail: true

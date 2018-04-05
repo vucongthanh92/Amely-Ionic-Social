@@ -38,8 +38,6 @@ export class VouchersComponent implements OnInit {
       return;
     }
     this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      console.log(data);
-
       if (data instanceof Array) {
         this.vouchers = data;
       } loading.dismiss();
@@ -53,7 +51,7 @@ export class VouchersComponent implements OnInit {
   }
   goToPage(value, voucher: Product, category: Category) {
     switch (value) {
-      case 'category':
+      case 'category':     
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
         break;
       case 'product':

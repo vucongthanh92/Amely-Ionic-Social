@@ -122,7 +122,7 @@
     <ion-row class="marginRowBottom">
       <ion-col class="marginColBottom1">
         <ion-input [(ngModel)]="location" class="inputBottom" type="text" placeholder="Địa điểm"></ion-input>
-        <button class="buttonLocation">
+        <button class="buttonLocation" (click)="chooseLocation()">
           <ion-label class="marginLabel">Bản đồ </ion-label>
           <ion-icon class="iconLocation" id="iconPlace"></ion-icon>
         </button>

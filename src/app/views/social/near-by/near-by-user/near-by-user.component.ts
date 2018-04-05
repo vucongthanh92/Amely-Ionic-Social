@@ -27,7 +27,7 @@ export class NearByUserComponent implements OnInit {
   private geoQueryUser;
   private user_fb: { findable_by: string, gender: string, mood: string, yob: string };
 
-  
+
 
   constructor(public geolocationService: GeolocationService, private userserive: UserService, public nav: NavController,
     public appCtrl: App, private fbService: FirebaseService, private customSerive: CustomService, public loadingCtrl: LoadingController) {
@@ -36,7 +36,7 @@ export class NearByUserComponent implements OnInit {
     //   enableBackdropDismiss: true
     // });
     // loading.present();
-    
+
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
     this.geoQueryUser = this.geolocationService.getUsers(this.lat, this.lng);
@@ -47,7 +47,7 @@ export class NearByUserComponent implements OnInit {
 
   findUser() {
     var that = this;
-   
+
     that.wanna = [];
     if (that.wanna_date) that.wanna.push('wanna_date');
     if (that.wanna_gift) that.wanna.push('wanna_gift');
@@ -59,7 +59,7 @@ export class NearByUserComponent implements OnInit {
       that.fbService.findUser(key).query.on('value', snap => {
         that.user_fb = snap.val();
         if (that.checkUser(that.user_fb, key)) {
-          
+
           that.userserive.getUser(key, null).subscribe(data => {
             if (!that.datas) {
               that.datas = [];
@@ -99,7 +99,7 @@ export class NearByUserComponent implements OnInit {
           // console.log(userFB.yob);
           // console.log(age);
           // console.log(this.year_current);
-          
+
           if (userFB.findable_by == 'all' || userFB.findable_by == this.customSerive.user_current.gender) {
             // console.log('4 findable')
             if (this.find == 'all' || this.find == userFB.gender) {
@@ -184,6 +184,7 @@ export class NearByUserComponent implements OnInit {
       this.wanna_send = _params.wanna_send;
       this.wanna_trade = _params.wanna_trade;
       this.find = _params.find;
+      this.datas = [];
       this.findUser();
       resolve();
     });

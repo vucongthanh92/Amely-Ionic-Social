@@ -3,20 +3,21 @@
     <ion-title *ngIf="product">{{product.title}}</ion-title>
     <ion-buttons end>
       <button ion-button clear (click)="changePage()">
-      <ion-icon style="font-size: 35px;" name="cart">
-        <ion-badge style="position: relative; bottom: 20px; right: 11px; font-size: 12px;" color="danger" *ngIf="count_product">
-        {{ count_product }}</ion-badge>
-      </ion-icon>
+        <ion-icon style="font-size: 35px;" name="cart">
+          <ion-badge style="position: relative; bottom: 20px; right: 11px; font-size: 12px;" color="danger" *ngIf="count_product">
+            {{ count_product }}</ion-badge>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content" *ngIf="product">
   <ion-row>
-    <ion-col col-12 *ngIf="product.images_entities">
-      <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}" alt="ionic logo"
-        width="100%">
+
+    <ion-col col-12 *ngIf="product.images_entities">      
+      <img imageViewer src="{{ product.images_entities[product.images[0]] }}" alt="ionic logo" width="100%">
     </ion-col>
+
     <ion-col col-12 *ngIf="!product.images_entities">
       <img imageViewer *ngIf="product.images[0]" src="{{ product.images[0] }}" alt="ionic logo" width="100%">
       <img imageViewer *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
@@ -25,8 +26,7 @@
   <ion-card>
     <ion-card-content>
       <ion-row>
-        <ion-col col-12>
-          {{product.title}}
+        <ion-col col-12>{{product.title}}
         </ion-col>
         <ion-col col-12>
           {{formatCurrency(product,product.currency)}}

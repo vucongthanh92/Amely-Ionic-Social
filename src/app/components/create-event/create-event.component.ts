@@ -1,3 +1,4 @@
+import { MapComponent } from './../map/map.component';
 import { EventsService } from './../../services/events.service';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
@@ -120,6 +121,34 @@ export class CreateEventComponent implements OnInit {
     }
   }
 
+  chooseLocation() {
+    this.appCtrl.getRootNav().push(MapComponent, { callback: this.callbackLocation })
+  }
+
+  callbackLocation = (_params) => {
+    return new Promise((resolve, reject) => {
+     
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận vị trí',
+        message: _params.title,
+        buttons: [
+          {
+            text: 'Từ chối',
+            role: 'cancel'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              this.location = _params.title;
+            }
+          }
+        ]
+      });
+      alert.present();
+      resolve();
+    });
+  }
+
   createEvent() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -134,38 +163,38 @@ export class CreateEventComponent implements OnInit {
     const datetime_end = new Date(Date.parse(string_datetime_end)).getTime();
 
     if (!this.name) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Tên sự kiện không được để trống !', 'bottom', 2000);
     } else if (!this.description) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Mô tả không được để trống !', 'bottom', 2000);
     } else if (!this.date_start) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Chưa chọn ngày bắt đầu !', 'bottom', 2000);
     } else if (!this.time_start) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Chưa chọn giờ bắt đầu !', 'bottom', 2000);
     } else if (Date.now() > datetime_start) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Thời gian bắt đầu phải lớn hơn thời gian hiện tại.', 'bottom', 3000);
     } else if (!this.date_end) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Chưa chọn ngày kết thúc !', 'bottom', 2000);
     } else if (!this.time_end) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Chưa chọn giờ kết thúc !', 'bottom', 2000);
     } else if (datetime_end <= datetime_start) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Thời gian kết thúc phải lớn hơn thời gian bắt đầu.', 'bottom', 3000);
     } else if (!this.location) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customSerivce.toastMessage('Địa điểm không được để trống !', 'bottom', 2000);
     } else {
       // template: string, title: string, start_date: string, end_date: string,
       //   country: string, location: string, description: string, has_inventory: string, status: string,
       //     event_type: string, owner_guid: number, members: string[], invites: string[]
       loading.dismiss();
-  
+
 
       const status = this.is_open ? "2" : "1";
       this.eventService.createEvent(this.type, this.name, (datetime_start / 1000) + "", (datetime_end / 1000) + "", "",
@@ -183,7 +212,7 @@ export class CreateEventComponent implements OnInit {
             loading.dismiss();
             this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
           }
-        },err=>{
+        }, err => {
           loading.dismiss();
           this.customSerivce.toastMessage('Thất bại. Vui lòng thử lại !', 'bottom', 2000);
         });

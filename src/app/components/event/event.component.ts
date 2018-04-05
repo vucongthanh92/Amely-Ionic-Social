@@ -12,7 +12,8 @@ import { Event, User } from '../../api/models';
 })
 
 export class EventComponent implements OnInit {
-  public is_user: boolean = false;;
+  //intent form event user ,guest =true , history = false
+  public type: string;;
   public event_guid: number;
   public event: Event;
   public users: User[];
@@ -42,11 +43,15 @@ export class EventComponent implements OnInit {
     this.eventService.getEvent(this.event_guid).subscribe(
       data => {
         if (data.events.guid != null) {
-          this.is_user = this.customService.user_current.guid == data.events.owner_user;
           this.event = data.events;
           this.users = data.users;
-          this.string_guests = this.event.invites.split(',');
-          this.string_members = this.event.members.split(',');
+          this.string_guests = this.event.invites_accepted.split(',');
+          this.string_members = this.event.members_accepted.split(',');
+          console.log(this.string_guests);
+          console.log(this.string_members);
+          
+          this.type = this.setShowMenu(data.events);
+          console.log(this.type);
 
           if (this.event.status == "1" && this.event.published == "1") {
             this.eventService.publish = 0;
@@ -90,7 +95,7 @@ export class EventComponent implements OnInit {
     }
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event });
+    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event, type: this.type });
     popover.present({
       ev: myEvent
     });
@@ -104,9 +109,25 @@ export class EventComponent implements OnInit {
     return this.users[guid];
   }
   countMember() {
-    return this.event.members.split(',').length + this.event.invites.split(',').length;
+    return this.event.members_accepted.split(',').length + this.event.invites_accepted.split(',').length;
   }
   openUserProfile(u: User) {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: u.guid })
+  }
+
+  setShowMenu(event: Event) {
+    const guests: string[] = JSON.parse("[" + event.invites_accepted + "]");
+    const members: string[] = JSON.parse("[" + event.members_accepted + "]");
+    const usercurrent: User = this.customService.user_current;
+    if (new Date().getTime() > event.end_date * 1000) {
+      return 'history';
+    } else if (guests.some(e => e == this.customService.user_current.guid + "")) {
+      return "guest";
+    } else if (members.some(e => e == this.customService.user_current.guid + "") || this.event.creator.guid == this.customService.user_current.guid) {
+      return "member";
+    } else {
+      return "visitor";
+    }
+
   }
 }

@@ -161,14 +161,14 @@ export class CustomService {
         ],
         buttons: [
           {
-            text: 'Cancel',
+            text: 'Từ chối',
             role: 'cancel',
             handler: data => {
               console.log('Cancel clicked');
             }
           },
           {
-            text: 'Login',
+            text: 'Chấp nhận',
             handler: data => {
               let loading = this.loadingCtrl.create({
                 content: 'Please wait...',

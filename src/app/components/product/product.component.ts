@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     if (!this.product) {
-
+      this.loadData(5);
     }
   }
 
@@ -57,6 +57,7 @@ export class ProductComponent implements OnInit {
       this.product = data.product;
       this.categories = data.categories;
       this.shop = data.shop;
+      
     }, err => this.loadData(--retry));
   }
   changePage() {

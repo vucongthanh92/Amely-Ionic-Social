@@ -1,6 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{title}}</ion-title>
+    <ion-title *ngIf="!is_search">{{title}}</ion-title>
+    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button (click)="search()" style="font-size: 18px;">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
@@ -12,10 +18,16 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-4 style="text-align: center" *ngFor="let category of categories_parent" (click)="goToSubCat(category)">
+      <!-- <ion-col col-4 style="text-align: center" *ngFor="let category of categories_parent" (click)="goToSubCat(category)">
         <img width="70%" src="{{category.logo}}" />
         <h4>{{category.title}}</h4>
-      </ion-col>
+      </ion-col> -->
+      <ion-item>
+        <ion-label>Danh mục</ion-label>
+        <ion-select [(ngModel)]="category_selected" (ionChange)="goToSubCat()">
+          <ion-option *ngFor="let cat of categories_parent" [value]="cat">{{cat.title}}</ion-option>
+        </ion-select>
+      </ion-item>
     </ion-row>
   </div>
 
@@ -28,7 +40,7 @@
       <ion-col col-8>
         <ion-row>{{product.title}}</ion-row>
         <ion-row>{{showDescription(product.description)}}</ion-row>
-        <ion-row>{{ formatCurrency(product.price)}}</ion-row>
+        <ion-row>{{ formatCurrency(product)}}</ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>

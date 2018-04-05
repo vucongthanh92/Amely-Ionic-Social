@@ -12,9 +12,18 @@ import { QrComponent } from '../../qr/qr.component';
 export class EventMenuComponent implements OnInit {
   private event: Event;
 
-  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App, 
+  //"history"  "guest" "member" "visitor"
+  public type: string;
+  public is_user_current: boolean = false;
+  constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App,
     public loadingCtrl: LoadingController) {
     this.event = this.navParams.get('event');
+    this.type = this.navParams.get('type');
+
+    this.is_user_current = this.customService.user_current.guid == this.event.creator.guid;
+    console.log(this.customService.user_current.guid);
+    console.log(this.event.creator.guid);
+    
   }
 
   ngOnInit() {
