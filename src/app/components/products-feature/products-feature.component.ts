@@ -50,14 +50,14 @@ export class ProductsFeatureComponent implements OnInit {
 
   getMostSold(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -66,20 +66,21 @@ export class ProductsFeatureComponent implements OnInit {
         this.productsMostSold = data;
       }
     }, err => this.getMostSold(--retry))
-    loading.dismiss();
 
+    // loading.dismiss();
+    
   }
   initShopProductFeatue() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     // "default" "feature"
     this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
       if (data.products instanceof Array) {
-        loading.dismiss();
+        // loading.dismiss();
         this.productsMostSold = data.products;
       }
     })
@@ -90,21 +91,21 @@ export class ProductsFeatureComponent implements OnInit {
   }
 
   goToPage(value, product: Product) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
 
-    loading.present();
+    // loading.present();
     switch (value) {
       case 'product':
-        loading.dismiss();
+        // loading.dismiss();
         if (this.is_feature) this.shopService.clickAdv(product.advertise_guid).subscribe(data => {
         });
         this.appCtrl.getRootNav().push(ProductComponent, { product: product });
         break;
       case 'all':
-        loading.dismiss();
+        // loading.dismiss();
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature', product: product });
         break;
       default:

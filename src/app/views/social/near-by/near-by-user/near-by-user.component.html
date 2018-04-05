@@ -18,7 +18,21 @@
       </ion-row>
     </ion-item>
   </ion-list>
-</ion-content>
+
+  <ion-list *ngIf="!datas">
+    <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+      <ion-row>
+        <ion-col col-3>
+          <div class="divCustom"></div>
+        </ion-col>
+        <ion-col col-9>
+          <h2></h2>
+          <h3></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  </ion-content>
 
 <ion-fab class="feeds_button">
   <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="settingSearch()">

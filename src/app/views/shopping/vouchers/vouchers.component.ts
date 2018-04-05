@@ -41,16 +41,14 @@ export class VouchersComponent implements OnInit {
       console.log(data);
 
       if (data instanceof Array) {
-        loading.dismiss();
         this.vouchers = data;
-      }
+      } loading.dismiss();
     }, err => this.loadData(--retry));
 
     this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
       if (data instanceof Array) {
-        loading.dismiss();
         this.categories = data;
-      }
+      } loading.dismiss();
     }, err => this.loadData(--retry))
   }
   goToPage(value, voucher: Product, category: Category) {

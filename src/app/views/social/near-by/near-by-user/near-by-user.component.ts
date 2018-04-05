@@ -12,7 +12,7 @@ import { NearByUserSettingComponent } from './near-by-user-setting/near-by-user-
   templateUrl: './near-by-user.component.html'
 })
 export class NearByUserComponent implements OnInit {
-
+  fakeUsers: Array<any> = new Array(5);
   age: { lower: number, upper: number } = { lower: 16, upper: 80 };
   wanna_send: boolean = false;
   wanna_date: boolean = false;
@@ -23,7 +23,7 @@ export class NearByUserComponent implements OnInit {
   year_current: number = (new Date()).getFullYear();
   private lat: number;
   private lng: number;
-  public datas = [];
+  public datas;
   private geoQueryUser;
   private user_fb: { findable_by: string, gender: string, mood: string, yob: string };
 
@@ -31,23 +31,23 @@ export class NearByUserComponent implements OnInit {
 
   constructor(public geolocationService: GeolocationService, private userserive: UserService, public nav: NavController,
     public appCtrl: App, private fbService: FirebaseService, private customSerive: CustomService, public loadingCtrl: LoadingController) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     
     this.lat = Number(localStorage.getItem("lat"));
     this.lng = Number(localStorage.getItem("lng"));
     this.geoQueryUser = this.geolocationService.getUsers(this.lat, this.lng);
     this.findUser();
-    loading.dismiss();
+    // loading.dismiss();
 
   }
 
   findUser() {
     var that = this;
-    that.datas = [];
+   
     that.wanna = [];
     if (that.wanna_date) that.wanna.push('wanna_date');
     if (that.wanna_gift) that.wanna.push('wanna_gift');
@@ -59,7 +59,11 @@ export class NearByUserComponent implements OnInit {
       that.fbService.findUser(key).query.on('value', snap => {
         that.user_fb = snap.val();
         if (that.checkUser(that.user_fb, key)) {
+          
           that.userserive.getUser(key, null).subscribe(data => {
+            if (!that.datas) {
+              that.datas = [];
+            }
             that.datas.push({ user: data, distance: distance });
             that.datas.sort(that.compareUser);
           })
