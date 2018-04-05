@@ -193,11 +193,11 @@ export class MessageComponent implements OnInit {
 
   sendMessage() {
     
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
       this.messagesService.sendMessage(message, this.param.key);
@@ -210,7 +210,7 @@ export class MessageComponent implements OnInit {
         position: "bottom",
         duration: 1000
       });
-      loading.dismiss();      
+      // loading.dismiss();      
       toast.present();
     }
     this.messageText = null;

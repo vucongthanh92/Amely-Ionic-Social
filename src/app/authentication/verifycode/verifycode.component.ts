@@ -2,7 +2,7 @@ import { CustomService } from './../../services/custom.service';
 import { UserService } from './../../services/user.service';
 import { User } from './../../api/models/user';
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { SigninComponent } from "./../signin/signin.component";
 
@@ -13,7 +13,8 @@ import { SigninComponent } from "./../signin/signin.component";
 export class VerifycodeComponent implements OnInit {
   user: User;
   code: string;
-  constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService) {
+  constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService,
+    public loadingCtrl: LoadingController) {
     this.user = this.navParams.get('user');
   }
 
@@ -25,14 +26,22 @@ export class VerifycodeComponent implements OnInit {
   }
 
   sendVerifyCode() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (!this.code) {
+      loading.dismiss();
       this.customService.toastMessage('Chưa nhập mã kích hoạt', 'bottom', 2000);
     }else{
     this.userService.activeUser(this.user.username,this.user.password,this.user.mobilelogin,this.code).subscribe(data=>{
       if (data.status) {
+        loading.dismiss();
         this.nav.setRoot(SigninComponent);
         this.customService.toastMessage('Kích hoạt thành công', 'bottom', 2000);
       }else{
+        loading.dismiss();
         this.customService.toastMessage('Kích hoạt thất bại', 'bottom', 2000);
       }
     })

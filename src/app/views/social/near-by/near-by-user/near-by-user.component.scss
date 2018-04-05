@@ -75,4 +75,50 @@ app-near-by-user{
         bottom: 55px;
         right: 10px;
     }
+
+    .fakeItem {
+     h2, h3, p {
+         background: linear-gradient(to right, lightgray, white, lightgray);
+         animation: skeleton 2s infinite;
+         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+         background-repeat: no-repeat;
+         background-position-x: -300px;
+         background-position-y: 0;
+         background-color: lightgray;
+         opacity: 0.5;
+         height: 1em;
+         margin-top: 10px;
+    }
+     h2 {
+         max-width: 150px;
+    }
+     h3 {
+         max-width: 200px;
+    }
+     p {
+         max-width: 250px;
+    }
+  }
+ .divCustom{
+     background: linear-gradient(to right, lightgray, white, lightgray);
+     animation: skeleton 2s infinite;
+     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+     background-repeat: no-repeat;
+     background-position-x: -300px;
+     background-position-y: 0;
+     background-color: lightgray;
+     opacity: 0.5;
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+  }
+ @keyframes skeleton {
+     0% {
+         background-position-x: -150px;
+    }
+     100% {
+         background-position-x: 150px;
+    }
+  }
+  
 }

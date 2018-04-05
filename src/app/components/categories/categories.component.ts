@@ -23,21 +23,21 @@ export class CategoriesComponent implements OnInit {
 
   initShopCategories(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.shoppingService.getCategories(0, 9999, this.shopGuid, 1, 0).subscribe(
       data => {
         if (data instanceof Array) {
-          loading.dismiss();
+          // loading.dismiss();
           this.categories = data;
           this.categoriesParent = this.categories.filter(e => e.parent_guid == null || e.parent_guid == "0" || e.parent_guid.length == 0);
         }

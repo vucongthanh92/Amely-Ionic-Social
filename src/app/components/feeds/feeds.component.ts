@@ -89,13 +89,14 @@ export class FeedsComponent implements OnInit {
 
     setTimeout(() => {
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
+        
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
         this.shares = data.shares;
         if (data.posts != null) {
           this.offset = this.offset + data.posts.length;
-          loading.dismiss();
         }
+        loading.dismiss();        
       });
 
       infiniteScroll.complete();

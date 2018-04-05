@@ -23,21 +23,21 @@ export class ShopComponent implements OnInit {
 
   loadData(retry) {
 
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
 
     if (retry == 0) {
-      // loading.dismiss();
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shopService.getShop(this.shopGuid, null).subscribe(data => {
       this.shop = data;
     }, err => this.loadData(--retry))
-    // loading.dismiss();
+    loading.dismiss();
     
   }
 
