@@ -12,6 +12,7 @@ import { CreateEventComponent } from '../../../../components/create-event/create
   templateUrl: './events-user.component.html'
 })
 export class EventsUserComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(5);
   public events: Array<Event>;
   public users: Array<User>;
   constructor(
@@ -25,21 +26,22 @@ export class EventsUserComponent implements OnInit {
   }
 
   loadEvent(retry) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.eventsService.getEvents(0, 9999, 'member').subscribe(data => {
+      this.events = []
       if (data.events instanceof Array) {
         this.events = data.events;
       }
-      loading.dismiss();
+      // loading.dismiss();
       this.users = data.users;
     }, err => this.loadEvent(--retry))
   }

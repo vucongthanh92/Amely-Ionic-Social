@@ -12,7 +12,8 @@ import { OffersItemDetailComponent } from '../offers-item-detail/offers-item-det
   templateUrl: './offers-myself.component.html'
 })
 export class OffersMyselfComponent implements OnInit {
-  public offers: Array<Offer> = [];
+  fakeUsers: Array<any> = new Array(10);
+  public offers: Array<Offer>;
   constructor(
     private alertCtrl: AlertController,
     private customService: CustomService,
@@ -32,23 +33,24 @@ export class OffersMyselfComponent implements OnInit {
 
   getOffers(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
+      this.offers = []
       if (data instanceof Array) {
         
         this.offers = data;
       }
-      loading.dismiss();
+      // loading.dismiss();
     }, err => this.getOffers(--retry))
   }
 
@@ -87,6 +89,7 @@ export class OffersMyselfComponent implements OnInit {
       return;
     }
     this.offersService.getOffers(0, 9999, null).subscribe(data => {
+      this.offers = []
       if (data instanceof Array) {
         this.offers = data;
       }
@@ -104,20 +107,21 @@ export class OffersMyselfComponent implements OnInit {
         {
           text: 'Chấp nhập',
           handler: data => {
-            let loading = this.loadingCtrl.create({
-              content: 'Please wait...',
-              enableBackdropDismiss: true
-            });
-            loading.present();
+            // let loading = this.loadingCtrl.create({
+            //   content: 'Please wait...',
+            //   enableBackdropDismiss: true
+            // });
+            // loading.present();
             
             this.offersService.delete(o.guid).subscribe(data => {
+              this.offers = []
               if (data.status) {
                 this.offers = this.offers.filter(e => e.guid != o.guid);
                 this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
                 if (o.target != 'friends') {
                   this.fbService.deleteOffer(o.guid)
                 }
-                loading.dismiss();
+                // loading.dismiss();
               }
             })
           }

@@ -2,7 +2,7 @@ import { MessagesService } from './../../services/messages.service';
 import { User } from './../../api/models/user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { CustomService } from '../../services/custom.service';
 import { GroupService } from '../../services/group.service';
@@ -21,7 +21,7 @@ export class AddGroupComponent implements OnInit {
   public users_choosed: Array<User> = [];
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private user_serive: UserService, private custom_service: CustomService
-    , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase) { }
+    , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.user_serive.getFriends(null).subscribe(data => {
@@ -43,9 +43,16 @@ export class AddGroupComponent implements OnInit {
     }
   }
   createAGroup() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
     if (!this.group_name) {
+      loading.dismiss();
       this.custom_service.toastMessage('Tên nhóm không hợp lệ !', 'bottom', 2000)
     } else {
+      loading.dismiss();
       let user_guids = [];
       let usernames = [this.custom_service.user_current.username];
       this.users_choosed.forEach(e => {
@@ -64,6 +71,7 @@ export class AddGroupComponent implements OnInit {
           callback({ type: 'reload' }).then(() => {
             this.nav.pop();
           });
+          loading.dismiss();
         }
       });
 
