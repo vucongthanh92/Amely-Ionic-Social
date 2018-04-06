@@ -7,6 +7,7 @@ import { App, NavController, LoadingController } from 'ionic-angular';
 import { CartItemsComponent } from '../../modules/cart/cart-items/cart-items.component';
 import { ProductsService } from '../../services/products.service';
 import { CustomService } from '../../services/custom.service';
+import { ShopComponent } from '../shop/shop.component';
 
 @Component({
   selector: 'app-product',
@@ -57,7 +58,7 @@ export class ProductComponent implements OnInit {
       this.product = data.product;
       this.categories = data.categories;
       this.shop = data.shop;
-      
+
     }, err => this.loadData(--retry));
   }
   changePage() {
@@ -69,7 +70,7 @@ export class ProductComponent implements OnInit {
   }
 
   formatCurrency(product: Product, currency: string) {
-    return this.customService.formatCurrency(this.customService.netPrice(product)+"", currency);
+    return this.customService.formatCurrency(this.customService.netPrice(product) + "", currency);
   }
 
   putCartLocal(product) {
@@ -86,5 +87,9 @@ export class ProductComponent implements OnInit {
 
   getImage(idImage) {
     return this.product.images_entities[idImage];
+  }
+
+  openShop() {
+    this.appCtrl.getRootNav().push(ShopComponent, { guid: this.shop.guid });
   }
 }

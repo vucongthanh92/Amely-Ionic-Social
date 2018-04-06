@@ -76,19 +76,23 @@ export class CreateOfferComponent implements OnInit {
     });
     loading.present();
     if (this.counter) {
-      loading.dismiss();
-      let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
-      console.log(obj);
-      this.offerService.createCounterOffer(obj).subscribe(data => {
-        if (data.status) {
-          let callback = this.params.get("callback");
-          callback("back").then(() => {
-            this.nav.pop();
-          });
-        } else {
-          this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
-        }
-      });
+      if (this.item) {
+        let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
+        this.offerService.createCounterOffer(obj).subscribe(data => {
+          loading.dismiss();
+          if (data.status) {
+            let callback = this.params.get("callback");
+            callback("back").then(() => {
+              this.nav.pop();
+            });
+          } else {
+            this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
+          }
+        });
+      }else{
+        loading.dismiss();
+        this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
+      }
     } else {
       if (!this.offer_type) {
         loading.dismiss();
@@ -135,8 +139,8 @@ export class CreateOfferComponent implements OnInit {
                     lat = this.lat_custom;
                     lng = this.lng_custom;
                     console.log('lat_custom && lng_custom != null , not empty');
-                  }else{
-                    this.target ='public';
+                  } else {
+                    this.target = 'public';
                   }
                 }
                 let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
@@ -188,7 +192,7 @@ export class CreateOfferComponent implements OnInit {
       resolve();
     });
   }
-  
+
   chosenItem() {
     this.appCtrl.getRootNav().push(ChosenItemComponent, {
       callback: this.myCallbackFunction

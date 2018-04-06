@@ -69,4 +69,8 @@ export class UserService {
   updateContact(contacts: string[]) {
     return this.api.contact_update({ mobiles: contacts })
   }
+
+  deleteFriend(guid) {
+    return this.api.deleteFriend(guid);
+  }
 }

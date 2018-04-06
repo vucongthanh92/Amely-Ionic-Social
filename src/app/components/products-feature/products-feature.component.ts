@@ -68,7 +68,7 @@ export class ProductsFeatureComponent implements OnInit {
     }, err => this.getMostSold(--retry))
 
     // loading.dismiss();
-    
+
   }
   initShopProductFeatue() {
     // let loading = this.loadingCtrl.create({
@@ -102,7 +102,8 @@ export class ProductsFeatureComponent implements OnInit {
         // loading.dismiss();
         if (this.is_feature) this.shopService.clickAdv(product.advertise_guid).subscribe(data => {
         });
-        this.appCtrl.getRootNav().push(ProductComponent, { product: product });
+        // this.appCtrl.getRootNav().push(ProductComponent, { product: product });
+        this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid });
         break;
       case 'all':
         // loading.dismiss();

@@ -1,9 +1,10 @@
+import { UserService } from './../../../../services/user.service';
 import { CustomService } from './../../../../services/custom.service';
 import { MessagesService } from './../../../../services/messages.service';
 import { User } from './../../../../api/models/user';
 import { PersonalService } from './../../personal.service';
 import { Component, OnInit } from '@angular/core';
-import { App, NavController, ModalController } from 'ionic-angular';
+import { App, NavController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
 import { MessageComponent } from '../../../../components/message/message.component';
 import { AddFriendComponent } from '../../../../components/add-friend/add-friend.component';
@@ -24,6 +25,9 @@ export class ContactUsersComponent implements OnInit {
     public appCtrl: App,
     public modalCtrl: ModalController,
     private customService: CustomService,
+    private userService: UserService,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
     private personalService: PersonalService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
@@ -99,5 +103,38 @@ export class ContactUsersComponent implements OnInit {
   }
   getMoodIcon(moodID) {
     return this.moodLocal[moodID];
+  }
+
+  removeFriend(u: User) {
+    let alert = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: 'Xóa liên hệ này ra khỏi danh bạ?',
+      buttons: [
+        {
+          text: 'Từ chối',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Chấp nhận',
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...',
+              enableBackdropDismiss: true
+            });
+            loading.present();
+            this.userService.deleteFriend(u.guid).subscribe(data => {
+              loading.dismiss();
+              if (data.status) {
+                this.friends = this.friends.filter(e => e.guid != u.guid);
+              } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+
   }
 }
