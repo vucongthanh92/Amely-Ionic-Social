@@ -1,5 +1,5 @@
 <ion-content class="outer-content">
-  <ion-card>
+  <ion-card *ngIf="vouchers">
     <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
       <ion-card class="voucher_image_box">
         <img width="100%" *ngIf="voucher.images[0]" src="{{voucher.images[0]}}" />
@@ -10,6 +10,17 @@
       <div class="voucher_price">{{formatCurrency(voucher)}}</div>
     </ion-item>
   </ion-card>
+  
+  <ion-card *ngIf="!vouchers">
+    <ion-item *ngFor="let fake of fakeUsers" class="fakeItem">
+      <ion-card class="voucher_image_box">
+        <div class="divCustom"></div>
+      </ion-card>
+      <h2 class="voucher_title"></h2>
+      <div class="voucher_price"><h3></h3></div>
+    </ion-item>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer class="vouchers_button">

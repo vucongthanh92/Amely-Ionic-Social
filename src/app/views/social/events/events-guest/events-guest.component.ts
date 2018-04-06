@@ -11,6 +11,7 @@ import { App, LoadingController } from 'ionic-angular';
   templateUrl: './events-guest.component.html'
 })
 export class EventsGuestComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(5);
   public events: Array<Event>;
   public users: Array<User>;
   constructor(private eventsService: EventsService, private app: App, private customService: CustomService, public loadingCtrl: LoadingController) { }
@@ -20,22 +21,23 @@ export class EventsGuestComponent implements OnInit {
   }
 
   loadData(retry) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     if (retry == 0) {
-      loading.dismiss();      
+      // loading.dismiss();      
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.eventsService.getEvents(0, 9999, 'guest').subscribe(data => {
+      this.events = []
       if (data.events instanceof Array) {
-        loading.dismiss();
+        // loading.dismiss();
         this.events = data.events;
       }
-      loading.dismiss();            
+      // loading.dismiss();            
       this.users = data.users;
     }, err => this.loadData(--retry))
   }

@@ -33,6 +33,22 @@
   
     </ion-col>
   </ion-row>
+
+  <ion-row class="offer_myself_row" *ngIf="!offers" >
+    <ion-col col-6 class="offer_myself_box" *ngFor='let fake of fakeUsers' class='fakeItem'>
+      
+      <div class="offer_myself_main">
+
+        <p class="offer_myself_location"></p>
+        
+
+        <div class="divCustom"></div>
+        <p class="offer_myself_title"></p>
+      </div>
+
+    </ion-col>
+  </ion-row>
+
 </ion-content>
 <ion-fab right bottom (click)="goToPage()">
   <button ion-fab color="danger" class="offer_myself_button">

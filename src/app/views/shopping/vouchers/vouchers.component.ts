@@ -13,7 +13,8 @@ import { CustomService } from '../../../services/custom.service';
 })
 
 export class VouchersComponent implements OnInit {
-  public vouchers: Array<Product> = [];
+  fakeUsers: Array<any> = new Array(5);
+  public vouchers: Array<Product>;
   public categories: Array<Category>;
   public offset: number = 0;
   public limit: number = 20;
@@ -26,27 +27,28 @@ export class VouchersComponent implements OnInit {
 
   loadData(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
+      this.vouchers = []
       if (data instanceof Array) {
         this.vouchers = data;
-      } loading.dismiss();
+      } 
     }, err => this.loadData(--retry));
 
     this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
       if (data instanceof Array) {
         this.categories = data;
-      } loading.dismiss();
+      } 
     }, err => this.loadData(--retry))
   }
   goToPage(value, voucher: Product, category: Category) {

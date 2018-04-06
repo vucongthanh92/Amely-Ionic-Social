@@ -68,11 +68,11 @@ export class CommentsComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     setTimeout(() => {
       this.offset = this.offset + this.limit;
       this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
@@ -80,7 +80,7 @@ export class CommentsComponent implements OnInit {
           this.comments = this.comments.concat(data.comments);
           this.users = Object.assign(this.users, data.users);
         }
-        loading.dismiss();        
+        // loading.dismiss();        
       })
       infiniteScroll.complete();
     }, 500);
@@ -91,8 +91,9 @@ export class CommentsComponent implements OnInit {
       content: 'Please wait...',
       enableBackdropDismiss: true
     });
+    loading.present();
     if (this.content) {
-      loading.present();
+      
       loading.dismiss();      
       let contentTmp = this.content;
       let images = [this.image]
