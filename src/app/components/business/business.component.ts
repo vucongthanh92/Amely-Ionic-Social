@@ -59,10 +59,13 @@ export class BusinessComponent implements OnInit {
     this.appCtrl.getRootNav().push(InventoryComponent, { type: 'business', ownerGuid: this.business_guid, obj: this.page });
   }
 
-  goToPage(value) {
+  goToPage(value, page) {
     switch (value) {
       case 'gift':
-        this.appCtrl.getRootNav().push(GiftComponent);
+        page.chat_type = "business";
+        page.from = this.customService.user_current.fullname;
+        page.to = page.title;
+        this.nav.push(GiftComponent, { param: page });
         break;
       default:
         break;

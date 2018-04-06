@@ -29,7 +29,7 @@
 
     <ion-row class="event_inventory" *ngIf="event.has_inventory=='1'">
       <ion-col col-12>
-        <button ion-button icon-left clear small (click)="goToPage('gift')">
+        <button ion-button icon-left clear small (click)="goToPage('gift',event)">
           <img class="event_give_gift" src="assets/imgs/ic_send_gift_blue.png">
           <div class="event_give_gift_title">Tặng quà</div>
         </button>

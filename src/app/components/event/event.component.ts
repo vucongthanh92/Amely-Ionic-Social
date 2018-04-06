@@ -5,6 +5,7 @@ import { EventMenuComponent } from './event-menu/event-menu.component';
 import { NavController, App, NavParams, PopoverController, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { Event, User } from '../../api/models';
+import { GiftComponent } from '../gift/gift.component';
 
 @Component({
   selector: 'app-event',
@@ -49,7 +50,7 @@ export class EventComponent implements OnInit {
           this.string_members = this.event.members_accepted.split(',');
           console.log(this.string_guests);
           console.log(this.string_members);
-          
+
           this.type = this.setShowMenu(data.events);
           console.log(this.type);
 
@@ -85,10 +86,11 @@ export class EventComponent implements OnInit {
         this.membersPage = true;
         break;
       case 'gift':
-
-        break;
-      case 'chat':
-
+        value.chat_type = "event";
+        value.from = this.customService.user_current.username;
+        value.to = this.event.title;
+        console.log(value);
+        this.nav.push(GiftComponent, { param: value });
         break;
       default:
         break;
@@ -118,7 +120,7 @@ export class EventComponent implements OnInit {
   setShowMenu(event: Event) {
     const guests: string[] = JSON.parse("[" + event.invites_accepted + "]");
     const members: string[] = JSON.parse("[" + event.members_accepted + "]");
-    const usercurrent: User = this.customService.user_current;
+    // const usercurrent: User = this.customService.user_current;
     if (new Date().getTime() > event.end_date * 1000) {
       return 'history';
     } else if (guests.some(e => e == this.customService.user_current.guid + "")) {

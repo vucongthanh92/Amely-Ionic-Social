@@ -80,18 +80,13 @@ export class GiftComponent implements OnInit {
 
   createGift() {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
-    
+
     if (!this.item) {
-      loading.dismiss();
       this.customService.toastMessage('Chưa chọn quà', 'bottom', 2000);
     } else {
       this.customService.confirmPassword(this.alertCtrl, this.userService)
         .then(() => {
+
           let obj = {
             from_guid: this.userCurrent.guid,
             to_guid: this.param.guid,
@@ -107,11 +102,27 @@ export class GiftComponent implements OnInit {
             case 'group':
               obj.to_type = "group";
               break;
-            default:
+            case 'event':
+              obj.to_type = "event";
               break;
+            case 'business':
+              obj.to_type = "business";
+              break;
+            default:
+              this.customService.toastMessage('Lỗi tặng quà !!!', 'bottom', 3000);
+              return;
+
           }
 
+          
+
+          let loading = this.loadingCtrl.create({
+            content: 'Please wait...',
+            enableBackdropDismiss: true
+          });
+          loading.present();
           this.giftsService.gift(obj).subscribe(res => {
+            loading.dismiss();
             if (res.status) {
               this.nav.pop();
             } else {
@@ -120,7 +131,7 @@ export class GiftComponent implements OnInit {
                 position: "bottom",
                 duration: 2000
               });
-              loading.dismiss();
+             
               toast.present();
             }
           });
