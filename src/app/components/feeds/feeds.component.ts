@@ -18,12 +18,14 @@ export class FeedsComponent implements OnInit {
   @Input('feed_type') feed_type: string;
   @Input('owner_guid') owner_guid: string;
   @Input('type') type: string;
+  @Input('admin_guid') admin_guid: number;
 
   posts: Feed[];
   users: User[];
   moods: Mood[];
   shares: Share;
   offset = 0;
+  is_show_btn_add_feed: boolean = false;
 
   private isHasData: boolean;
   constructor(
@@ -40,7 +42,36 @@ export class FeedsComponent implements OnInit {
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
     this.refreshView(5);
+    console.log(this.feed_type);
+    console.log(this.owner_guid);
+    console.log(this.type);
+    this.setShowBtnAddFeed();
 
+  }
+
+  setShowBtnAddFeed() {
+    switch (this.type) {
+      case 'user':
+        if (this.owner_guid) {
+          if (+this.owner_guid == this.customService.user_current.guid) {
+            this.is_show_btn_add_feed = true;
+          }
+        } else this.is_show_btn_add_feed = true;
+        break;
+      case 'event':
+        this.is_show_btn_add_feed = true;
+        break;
+      case 'group':
+        this.is_show_btn_add_feed = true;
+        break;
+      case 'businesspage':
+        if (this.admin_guid == this.customService.user_current.guid) {
+          this.is_show_btn_add_feed = true;
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   refreshView(retry) {
@@ -64,7 +95,7 @@ export class FeedsComponent implements OnInit {
           this.offset = this.offset + data.posts.length;
           this.posts = data.posts;
           this.users = data.users;
-          this.shares = data.shares;          
+          this.shares = data.shares;
           this.isHasData = true;
         } else {
           loading.dismiss();
@@ -73,6 +104,7 @@ export class FeedsComponent implements OnInit {
       },
       err => {
         console.log(err);
+        loading.dismiss();
         this.refreshView(--retry);
 
       }
@@ -89,14 +121,14 @@ export class FeedsComponent implements OnInit {
 
     setTimeout(() => {
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-        
+
         if (data.posts != null) {
-        this.posts = this.posts.concat(data.posts);
-        this.users = Object.assign(this.users, data.users);
-        this.shares = data.shares;
+          this.posts = this.posts.concat(data.posts);
+          this.users = Object.assign(this.users, data.users);
+          this.shares = data.shares;
           this.offset = this.offset + data.posts.length;
         }
-        loading.dismiss();        
+        loading.dismiss();
       });
 
       infiniteScroll.complete();

@@ -33,8 +33,14 @@
 
 
   <ion-grid>
+    
     <ion-row *ngFor="let product of products">
       <ion-col col-4>
+        <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
+          <span class="ribbon cruzeiro">
+            <span>VOUCHER</span>
+          </span>
+        </div>
         <img *ngIf="product.images[0]" src="{{product.images[0]}}">
       </ion-col>
       <ion-col col-8>

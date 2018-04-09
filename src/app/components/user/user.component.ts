@@ -63,9 +63,7 @@ export class UserComponent {
       if (data.guid == null) {
         this.is_failed = true;
       } else {
-        this.user = data;
-        console.log(data);
-        
+        this.user = data;        
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
         this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';

@@ -61,7 +61,7 @@ export class UserMenuComponent implements OnInit {
 
   changeCoverAvatar(isAvatar) {
     this.nav.pop();
-    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       if (isAvatar) {
 

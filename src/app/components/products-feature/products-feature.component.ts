@@ -21,6 +21,8 @@ export class ProductsFeatureComponent implements OnInit {
     private shoppingSerivce: ShoppingsService, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
+    console.log(this.shopGuid);
+    
     if (this.is_feature) {
       this.getProductsFeature(5);
     } else if (this.shopGuid != undefined) {

@@ -96,7 +96,6 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   search() {
-    console.log(this.search_content);
     this.is_search = !this.is_search;
     if (!this.is_search) {
       if (this.search_content != undefined && this.search_content.length > 3) {

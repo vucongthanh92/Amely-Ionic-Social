@@ -2,6 +2,11 @@
   <ion-card *ngIf="vouchers">
     <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
       <ion-card class="voucher_image_box">
+        <div class="item-ribbon offer_search_ribbon">
+          <span class="ribbon cruzeiro">
+            <span>VOUCHER</span>
+          </span>
+        </div>
         <img width="100%" *ngIf="voucher.images[0]" src="{{voucher.images[0]}}" />
         <img width="100%" *ngIf="voucher.images[0]==''" src="assets/imgs/image_not_found.jpg" />
         <div class="voucher_limit"> * không giới hạn</div>
@@ -10,14 +15,16 @@
       <div class="voucher_price">{{formatCurrency(voucher)}}</div>
     </ion-item>
   </ion-card>
-  
+
   <ion-card *ngIf="!vouchers">
     <ion-item *ngFor="let fake of fakeUsers" class="fakeItem">
       <ion-card class="voucher_image_box">
         <div class="divCustom"></div>
       </ion-card>
       <h2 class="voucher_title"></h2>
-      <div class="voucher_price"><h3></h3></div>
+      <div class="voucher_price">
+        <h3></h3>
+      </div>
     </ion-item>
   </ion-card>
 

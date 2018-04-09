@@ -4,12 +4,17 @@
       <h3 *ngIf="!is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm bán chạy</h3>
       <h3 *ngIf="is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm tiêu biểu</h3>
     </ion-col>
-    <!-- <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);">Xem tất cả</ion-col> -->
+    <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);" *ngIf="shopGuid" >Xem tất cả</ion-col>
   </ion-row>
   <ion-scroll scrollX class="product_feature">
     <div class="scroll-item" *ngIf="productsMostSold">
       <ion-col *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
         <div class="item-card">
+          <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'" >
+            <span class="ribbon cruzeiro">
+              <span>VOUCHER</span>
+            </span>
+          </div>
           <div class="imgageProduct" *ngIf="product.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
           <div class="imgageProduct" *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'"></div>
           <div class="product_feature_info">

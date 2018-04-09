@@ -70,7 +70,7 @@
 
     <ion-list class="no-margin">
       <ion-list class="no-margin" *ngIf="event_guid">
-        <app-feeds [type]="'event'" [feed_type]="event" [owner_guid]="event_guid"></app-feeds>
+        <app-feeds [type]="'event'" [feed_type]="event" [owner_guid]="event_guid" [admin_guid]="event.creator.guid"></app-feeds>
       </ion-list>
     </ion-list>
   </div>

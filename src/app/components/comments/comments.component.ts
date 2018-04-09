@@ -96,7 +96,10 @@ export class CommentsComponent implements OnInit {
       
       loading.dismiss();      
       let contentTmp = this.content;
-      let images = [this.image]
+     let images;
+      if (this.image) {
+        images = [this.image]
+      }
       this.feed_service.putComment(this.feed_guid, this.content, images).subscribe(data => {
         if (data.status) {
           loading.dismiss();      
@@ -112,7 +115,7 @@ export class CommentsComponent implements OnInit {
     this.content = '';
   }
   imageAction() {
-    // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
-    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    // this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
   }
 }
