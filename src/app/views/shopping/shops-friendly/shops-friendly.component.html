@@ -1,5 +1,5 @@
 <ion-content padding>
-  <ion-list no-lines>
+  <ion-list no-lines *ngIf="shops">
     <ion-item class="shops_friendly_item" *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
       <ion-avatar item-start>
         <img class="shops_friendly_image" *ngIf="shop.avatar" src="{{shop.avatar}}">
@@ -8,4 +8,14 @@
       <p class="shops_friendly_description" *ngIf="shop.introduce">{{shop.introduce}}</p>
     </ion-item>
   </ion-list>
+
+  <ion-list no-lines *ngIf="!shops">
+    <ion-item *ngFor="let fake of fakeUsers" class="fakeItem">
+      <ion-avatar item-start>
+        <div class="divCustom"></div>
+      </ion-avatar>
+      <h2></h2>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

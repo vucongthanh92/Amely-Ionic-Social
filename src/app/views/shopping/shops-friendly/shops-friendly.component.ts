@@ -11,6 +11,7 @@ import { ShoppingsService } from '../../../services/shoppings.service';
   templateUrl: './shops-friendly.component.html'
 })
 export class ShopsFriendlyComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(10);
   public users: Array<User>;
   public shops: Array<Shop>;
   constructor(public nav: NavController, public appCtrl: App, public shoppingsService: ShoppingsService, private customService: CustomService,
@@ -22,22 +23,25 @@ export class ShopsFriendlyComponent implements OnInit {
 
   loadData(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.shoppingsService.getFriendlyShop().subscribe(data => {
-      loading.dismiss();
-      this.shops = data.shops;
-      this.users = data.owners;
-    }, err => this.loadData(--retry));
+    setTimeout(() => {
+      this.shoppingsService.getFriendlyShop().subscribe(data => {
+        // loading.dismiss();
+        this.shops = data.shops;
+        this.users = data.owners;
+      }, err => this.loadData(--retry));
+    }, 2500);
+   
   }
   goToPage(value, guid) {
     switch (value) {
