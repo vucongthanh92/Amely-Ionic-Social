@@ -29,8 +29,8 @@ import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-lis
 })
 export class MainMenuComponent implements OnInit {
   @ViewChild(Nav) nav: Nav;
-  rootPage = QuickPayListItemComponent;
-  // rootPage = SocialComponent;
+  // rootPage = QuickPayListItemComponent;
+  rootPage = SocialComponent;
 
   pages: Array<{ title: string, component: any, image: string }>;
   loggin_user: any;
