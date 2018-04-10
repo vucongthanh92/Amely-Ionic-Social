@@ -86,7 +86,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list class="members_box">
+    <ion-list class="members_box" *ngIf="string_members.length>0 && string_members[0]!=''" >
       <ion-list-header>đồng tổ chức</ion-list-header>
       <ion-item class="members_row" *ngFor="let guid of string_members">
         <ion-avatar item-start *ngIf="guid" >
@@ -96,14 +96,14 @@
       </ion-item>
     </ion-list>
 
-    <ion-list class="members_box">
+    <ion-list class="members_box"  *ngIf="string_guests.length>0 && string_guests[0]!=''">
       <ion-list-header>khách mời</ion-list-header>
       <div *ngFor="let guid of string_guests">
         <ion-item class="members_row" *ngIf="guid">
           <ion-avatar item-start>
             <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}">
           </ion-avatar>
-          {{getUser(guid).fullname}}
+          <!-- {{getUser(guid).fullname}} -->
         </ion-item>
       </div>
     </ion-list>

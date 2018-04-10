@@ -48,12 +48,7 @@ export class EventComponent implements OnInit {
           this.users = data.users;
           this.string_guests = this.event.invites_accepted.split(',');
           this.string_members = this.event.members_accepted.split(',');
-          console.log(this.string_guests);
-          console.log(this.string_members);
-
           this.type = this.setShowMenu(data.events);
-          console.log(this.type);
-
           if (this.event.status == "1" && this.event.published == "1") {
             this.eventService.publish = 0;
           } else if (this.event.status == "2" && this.event.published == "1") {
@@ -111,7 +106,10 @@ export class EventComponent implements OnInit {
     return this.users[guid];
   }
   countMember() {
-    return this.event.members_accepted.split(',').length + this.event.invites_accepted.split(',').length;
+    let countMembers = this.event.members_accepted.split(',')[0] == "" ? 0 : this.event.members_accepted.split(',').length;
+    let countGuest = this.event.invites_accepted.split(',')[0] == "" ? 0 : this.event.invites_accepted.split(',').length;
+    // total guest + total member + 1 (event owner)
+    return countGuest + countMembers + 1;
   }
   openUserProfile(u: User) {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: u.guid })

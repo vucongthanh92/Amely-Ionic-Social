@@ -1,3 +1,4 @@
+import { DefaultResponse } from './../../../api/models/default-response';
 import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
@@ -36,7 +37,7 @@ export class CartItemsComponent implements OnInit {
   increase(guid) {
     let item = this.items.filter(data => data.guid == guid);
     console.log(item[0].quantity);
-    
+
     if (item.length > 0) {
       if (item[0].quantity_cart <= item[0].quantity) {
         item[0].quantity_cart = item[0].quantity_cart + 1;
@@ -101,11 +102,19 @@ export class CartItemsComponent implements OnInit {
       this.items.forEach(e => {
         let obj = { guid: e.guid, quantity: e.quantity_cart };
         carts.push(obj);
+        console.log(obj);
+
       });
+      console.log(carts);
+
       this.shoppingsService.putCart({ items: carts }).subscribe(data => {
+        if (data.status!=undefined) {
+          this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
+        } else {
+          this.paymentService.items = data;
+          this.appCtrl.getRootNav().push(PaymentItemsComponent);
+        }
         loading.dismiss();
-        this.paymentService.items = data;
-        this.appCtrl.getRootNav().push(PaymentItemsComponent);
       }, err => loading.dismiss());
     } else {
       this.customService.toastMessage('Giỏ hàng đang trống, xin hãy chọn sản phẩm !', 'bottom', 3000);

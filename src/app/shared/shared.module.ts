@@ -1,3 +1,4 @@
+import { QuickPayModule } from './../modules/quick-pay/quick-pay.module';
 import { CategoriesAllComponent } from './../components/categories-all/categories-all.component';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { HistoryModule } from './../modules/history/history.module';
@@ -86,6 +87,7 @@ import { LocationComponent } from '../components/location/location.component';
     WithdrawnModule,
     DeliveryModule,
     HistoryModule,
+    QuickPayModule,
     IonicImageViewerModule,
     LaddaModule.forRoot({
       style: "contract"

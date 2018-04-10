@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      Hóa đơn cần thanh toán
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        Next
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list style="margin: 0">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+      <h2>Sieu thi abc</h2>
+      <p>
+        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> 090605074</p>
+      <p>
+        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> Quang Trung ,Go Vap</p>
+      <button ion-button clear item-right></button>
+    </ion-item>
+    <ion-item>
+      <p>
+        <strong>Thông tin chủ cửa hàng</strong>
+      </p>
+      <p>Nguyễn Văn A</p>
+      <p>
+        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> 090605074</p>
+      <p>
+        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> Quang Trung ,Go Vap</p>
+    </ion-item>
+  </ion-list>
+  <div style="background-color: #fff;">
+    <ion-list>
+      <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12] ">
+        <ion-thumbnail item-left>
+          <img src="">
+        </ion-thumbnail>
+        <h2>Trên màn hình list tin nhắn, cần giới hạn độ dài tên (cá nhân/nhóm) hơn nữa (dài quá thì thay bằng dấu 3 chấm), vì
+          nếu ko nó chèn lên phần hiển thị thời gian (vd: 21 giờ trước …)</h2>
+        <p style="color: red; position: relative;font-weight: bold">100000
+          <span style="color: black;font-weight: normal"> x {{i}}</span>
+        </p>
+        <p style="color: orange;font-size: 11px">
+          CÓ TRONG KHO CỦA TÔI
+        </p>
+        <button ion-button clear item-right (click)="showInventoryItem()">Sử dụng</button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-row>
+    <div style="position: fixed; bottom: 0px; width: 100%">
+      <ion-item>
+        Tổng tiền :
+        <ion-note class="ionNote" item-end>
+          <p style="color: red; position: relative;font-weight: bold">100000</p>
+        </ion-note>
+      </ion-item>
+    </div>
+  </ion-row>
+</ion-content>
