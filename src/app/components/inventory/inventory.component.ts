@@ -108,17 +108,17 @@ export class InventoryComponent implements OnInit {
 
     this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
 
-      let loading = this.loadingCtrl.create({
-        content: 'Please wait...',
-        enableBackdropDismiss: true
-      });
-      loading.present();
+      // let loading = this.loadingCtrl.create({
+      //   content: 'Please wait...',
+      //   enableBackdropDismiss: true
+      // });
+      // loading.present();
       
       if (data instanceof Array) {
-        loading.dismiss();
+        // loading.dismiss();
         this.totalItem = data.length;
       } else {
-        loading.dismiss();
+        // loading.dismiss();
         this.totalItem = 0;
       }
     })

@@ -92,4 +92,60 @@ app-shops-friendly {
         display: none;
     }
 
+    .fakeItem {
+     h2, h3, p {
+         background: linear-gradient(to right, lightgray, white, lightgray);
+         animation: skeleton 2s infinite;
+         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+         background-repeat: no-repeat;
+         background-position-x: -300px;
+         background-position-y: 0;
+         background-color: lightgray;
+         opacity: 0.5;
+         height: 2em;
+         margin-top: 10px;
+    }
+     h2 {
+         font-size: 14px;
+                padding: 8px 0px 7px 20px;
+                border-bottom-right-radius: 15px;
+                border-top-right-radius: 15px;
+                margin: 0px 0px 0px -15px;
+    }
+     h3 {
+        //  max-width: 95px;
+    }
+     p {
+         max-width: 250px;
+    }
+  }
+ .divCustom{
+    background: linear-gradient(to right, lightgray, white, lightgray);
+    animation: skeleton 2s infinite;
+    animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+    background-repeat: no-repeat;
+    background-position-x: -300px;
+    background-position-y: 0;
+    background-color: lightgray;
+    opacity: 0.5;
+    width: 75px;
+    height: 75px;
+    margin: 0px 0px 0px 0;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    overflow: hidden;
+    z-index: 1;
+    margin-left: 10px;
+  }
+ @keyframes skeleton {
+     0% {
+         background-position-x: -150px;
+    }
+     100% {
+         background-position-x: 150px;
+    }
+  }
+
+
+
 }

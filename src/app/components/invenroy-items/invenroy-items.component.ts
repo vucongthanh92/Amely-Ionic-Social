@@ -39,14 +39,14 @@ export class InvenroyItemsComponent implements OnInit {
 
   loadData(retry) {
     
- let loading = this.loadingCtrl.create({
-  content: 'Please wait...',
-  enableBackdropDismiss: true
-});
-loading.present();
+//  let loading = this.loadingCtrl.create({
+//   content: 'Please wait...',
+//   enableBackdropDismiss: true
+// });
+// loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -58,7 +58,7 @@ loading.present();
           } else {
             this.inventoriesItem = [];
           }
-          loading.dismiss();
+          // loading.dismiss();
         },
         err => {
           this.loadData(--retry)
@@ -71,7 +71,7 @@ loading.present();
           } else {
             this.inventoriesItem = [];
           }
-          loading.dismiss();
+          // loading.dismiss();
         },
         err => {
           this.loadData(--retry)

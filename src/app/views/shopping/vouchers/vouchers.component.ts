@@ -38,18 +38,21 @@ export class VouchersComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      this.vouchers = []
-      if (data instanceof Array) {
-        this.vouchers = data;
-      } 
-    }, err => this.loadData(--retry));
+    setTimeout(() => {
+      this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
+        this.vouchers = []
+        if (data instanceof Array) {
+          this.vouchers = data;
+        }
+      }, err => this.loadData(--retry));
 
-    this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
-      if (data instanceof Array) {
-        this.categories = data;
-      } 
-    }, err => this.loadData(--retry))
+      this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
+        if (data instanceof Array) {
+          this.categories = data;
+        }
+      }, err => this.loadData(--retry))
+    }, 2500);
+    
   }
   goToPage(value, voucher: Product, category: Category) {
     switch (value) {

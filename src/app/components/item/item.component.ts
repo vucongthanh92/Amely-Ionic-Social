@@ -40,14 +40,14 @@ export class ItemComponent implements OnInit {
 
   loadData(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -57,7 +57,7 @@ export class ItemComponent implements OnInit {
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
-        loading.dismiss();
+        // loading.dismiss();
       },
       err => {
         this.loadData(--retry)
@@ -65,11 +65,11 @@ export class ItemComponent implements OnInit {
   }
   createCode() {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
@@ -79,7 +79,7 @@ export class ItemComponent implements OnInit {
             this.createdCode = data.code
           }
           this.is_used = false;
-          loading.dismiss();
+          // loading.dismiss();
         })
       })
 
