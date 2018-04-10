@@ -2,7 +2,7 @@
   <div padding>
     <ion-row>
       <ion-col>
-        <img class="logo" src="assets/imgs/logo1.png" />
+        <img class="logo" src="assets/imgs/logo.png" />
       </ion-col>
     </ion-row>
     <form (ngSubmit)="onLogin()">
@@ -32,14 +32,16 @@
 
       <ion-row>
         <ion-col>
-          <button ion-button class="register-button" type="button" (click)="onRegister()">Đăng Ký</button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
           <div class="txtRememberRegister">
             <span>Quên Mật Khẩu</span>
+            <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon>
+          </div>
+        </ion-col>
+        
+        <ion-col>
+          <div (click)="onRegister()" class="txtRememberRegister">
+            <span>Đăng Ký</span>
+            <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon>
           </div>
         </ion-col>
       </ion-row>
