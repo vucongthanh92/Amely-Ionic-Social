@@ -6,11 +6,12 @@ import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
+import { App, MenuController, NavController, PopoverController, ModalController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 import { Share } from '../../api/models';
+import { ModalImageFeedComponent } from '../modal-image/modal-image-feed/modal-image-feed.component';
 
 @Component({
   selector: 'app-feed',
@@ -50,6 +51,7 @@ export class FeedComponent {
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
     private customService: CustomService,
+    private modalCtrl: ModalController,
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
 
@@ -106,8 +108,9 @@ export class FeedComponent {
       } else if (this.descriptionPost == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen') {
         this.descriptionPost = 'Đã thay đổi ảnh đại diện'
       }
+      // console.log(this.post.wallphoto);
     }
-  }
+    }
 
   changePage() {
     this.appCtrl.getRootNav().push(CommentsComponent, { guid: this.post.guid });
@@ -191,5 +194,18 @@ export class FeedComponent {
       user_tag: this.userTag,
       is_open_from_detail: true
     })
+  }
+
+  openModal(urlImage) {
+    let description ;
+    if (urlImage =='postShare') {
+      description=JSON.parse(this.postShare.description).post;
+      let myModal = this.modalCtrl.create(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description }); 
+      myModal.present();           
+    }else{
+      description= JSON.parse(this.post.description).post;
+      let myModal = this.modalCtrl.create(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description });      
+      myModal.present();
+    }
   }
 }

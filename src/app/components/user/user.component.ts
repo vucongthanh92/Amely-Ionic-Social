@@ -10,6 +10,8 @@ import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
 import { CustomService } from '../../services/custom.service';
 import { User } from '../../api/models';
+import { ImageViewerController } from 'ionic-img-viewer';
+import { ModalImageUserComponent } from '../modal-image/modal-image-user/modal-image-user.component';
 
 @Component({
   selector: 'app-user',
@@ -17,6 +19,7 @@ import { User } from '../../api/models';
 })
 
 export class UserComponent {
+  imageViewerCtrl: ImageViewerController;
   userGuid: string;
   username: string;
   user: User;
@@ -42,10 +45,24 @@ export class UserComponent {
     public navParams: NavParams,
     private customService: CustomService, public popoverCtrl: PopoverController,
     public userService: UserService,
-    private modalCtrl: ModalController) {
+    private modalCtrl: ModalController,
+    imageViewerCtrl: ImageViewerController,
+  ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    let urlImage = this.userCurrent.avatar;
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
+    this.imageViewerCtrl = imageViewerCtrl;
+  }
+
+  presentImage(myImage) {
+    const imageViewer = this.imageViewerCtrl.create(myImage);
+    imageViewer.present();
+  }
+
+  openModal(urlImage) {
+    let myModal = this.modalCtrl.create(ModalImageUserComponent, { urlImage: urlImage});
+    myModal.present();
   }
 
   ngOnInit() {

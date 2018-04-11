@@ -48,7 +48,7 @@
         </ion-row>
 
         <ion-row>
-          <ion-col col-4>
+          <!-- <ion-col col-4>
             <button ion-button round disabled="true">Số lượng</button>
           </ion-col>
           <ion-col col-8>
@@ -61,9 +61,17 @@
             <ion-col col-4>
               <button ion-button round (click)="onAdd()">+</button>
             </ion-col>
+          </ion-col> -->
+          <ion-col col-4>
+            <button style="width: 115px;" ion-button round disabled="true">Số lượng : {{quantitySend}}</button>
+          </ion-col>
+          <ion-col col-8>
+            <ion-range min="1" max="{{item.quantity}}" pin="true" [(ngModel)]="quantitySend" color="secondary">
+              <ion-icon style="font-size: 3.4rem;" range-left name="remove" (click)="onMinus()"></ion-icon>
+              <ion-icon style="font-size: 3.4rem;" range-right name="add" (click)="onAdd()"></ion-icon>
+            </ion-range>
           </ion-col>
         </ion-row>
-
       </ion-grid>
     </ion-card-content>
   </ion-card>

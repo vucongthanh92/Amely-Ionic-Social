@@ -71,6 +71,9 @@ import { DepositModule } from '../modules/deposit/deposit.module';
 import { FeedDetailComponent } from '../components/feed/feed-detail/feed-detail.component';
 import { MapComponent } from '../components/map/map.component';
 import { LocationComponent } from '../components/location/location.component';
+import { ModalImageUserComponent } from '../components/modal-image/modal-image-user/modal-image-user.component';
+import { ModalImageFeedComponent } from '../components/modal-image/modal-image-feed/modal-image-feed.component';
+import { ModalImageComponent } from '../components/modal-image/modal-image.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -150,7 +153,10 @@ import { LocationComponent } from '../components/location/location.component';
     UserBlockListComponent,
     MapComponent,
     CategoriesAllComponent,
-    LocationComponent
+    LocationComponent,
+    ModalImageUserComponent,
+    ModalImageFeedComponent,
+    ModalImageComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -209,7 +215,10 @@ import { LocationComponent } from '../components/location/location.component';
     UserBlockListComponent,
     MapComponent,
     CategoriesAllComponent,
-    LocationComponent
+    LocationComponent,
+    ModalImageUserComponent,
+    ModalImageFeedComponent,
+    ModalImageComponent
   ],
   exports: [
     CategoriesComponent,
@@ -268,7 +277,10 @@ import { LocationComponent } from '../components/location/location.component';
     UserBlockListComponent,
     MapComponent,
     CategoriesAllComponent,
-    LocationComponent
+    LocationComponent,
+    ModalImageUserComponent,
+    ModalImageFeedComponent,
+    ModalImageComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,26 @@
+   
+   app-modal-image-user {
+     .iconBack {
+        margin: -1px 0 0;
+        display: inherit;
+        min-width: 18px;
+        font-size: 3.4rem;
+     }
+    .scroll-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+    }
+    .toolbar-background {
+        background-color: black;
+    }
+   }
+   
