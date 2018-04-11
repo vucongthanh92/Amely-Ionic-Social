@@ -18,7 +18,6 @@ import { Notification, User } from '../../api/models';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
-import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
 
 @Component({
   selector: 'app-main-menu',

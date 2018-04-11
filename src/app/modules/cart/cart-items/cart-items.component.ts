@@ -1,4 +1,3 @@
-import { DefaultResponse } from './../../../api/models/default-response';
 import { PaymentService } from './../../../services/payment.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';

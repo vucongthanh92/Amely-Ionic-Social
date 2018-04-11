@@ -15,13 +15,15 @@
   <ion-row>
 
     <ion-col col-12 *ngIf="product.images_entities">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}" alt="ionic logo"
-        width="100%">
+      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images_entities[product.images[0]]"
+        src="{{product.images_entities[product.images[0]]}}" alt="ionic logo" width="100%">
     </ion-col>
 
     <ion-col col-12 *ngIf="!product.images_entities">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images[0]" src="{{ product.images[0] }}" alt="ionic logo" width="100%">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg" alt="ionic logo" width="100%">
+      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images[0]" src="{{ product.images[0] }}"
+        alt="ionic logo" width="100%">
+      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg"
+        alt="ionic logo" width="100%">
     </ion-col>
   </ion-row>
   <ion-card>
@@ -84,8 +86,14 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-<ion-footer>
-  <button ion-button block color="danger" (click)="putCartLocal(product)">
+<ion-footer *ngIf="product" >
+  <button ion-button block color="danger" (click)="putCartLocal(product)" *ngIf="product.quantity>0;else other_content">
     Thêm vào giỏ hàng
   </button>
+
+  <ng-template #other_content>
+    <button ion-button block color="danger" >
+      Hết hàng
+    </button>
+  </ng-template>
 </ion-footer>

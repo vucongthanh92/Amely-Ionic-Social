@@ -33,7 +33,7 @@
 
 
   <ion-grid>
-    
+
     <ion-row *ngFor="let product of products">
       <ion-col col-4>
         <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
@@ -46,9 +46,10 @@
       <ion-col col-8>
         <ion-row>{{product.title}}</ion-row>
         <!-- <ion-row>{{showDescription(product.description)}}</ion-row> -->
-        <ion-row>{{ formatCurrency(product)}}</ion-row>
+        <ion-row>{{ formatCurrency(product)}} </ion-row>
+        <ion-row *ngIf="product.quantity==0">hết hàng</ion-row>
       </ion-col>
-    </ion-row>
+      </ion-row>
   </ion-grid>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
