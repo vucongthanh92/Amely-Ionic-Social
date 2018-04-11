@@ -20,23 +20,17 @@
               <img width="100%" src="{{item.product_snapshot.images[0]}}" />
             </ion-col>
             <ion-col col-7>
-              <h4>{{item.product_snapshot.title}}</h4>
-
-              <ion-row>
-                <ion-col col-4>
-                  <button ion-button block icon-only (click)="decrease()">
-                    <ion-icon name="remove"></ion-icon>
-                  </button>
-                </ion-col>
-                <ion-col col-4 text-center>
-                  {{quantity}}
-                </ion-col>
-                <ion-col col-4 (click)="increase()">
-                  <button ion-button block icon-only>
-                    <ion-icon name="add"></ion-icon>
-                  </button>
-                </ion-col>
-              </ion-row>
+              <h4>{{item.product_snapshot.title}} x <i>{{quantity}}</i></h4>
+                <ion-row>
+                  <ion-col col-8>
+                    <ion-range class="rangeIon" min="1" max="{{item.quantity}}" pin="true" [(ngModel)]="quantity" color="secondary">
+                      <ion-icon style="font-size: 3.4rem;" range-left name="remove" (click)="decrease()"></ion-icon>
+                      <ion-icon style="font-size: 3.4rem;" range-right name="add" (click)="increase()"></ion-icon>
+                    </ion-range>
+                  </ion-col>
+                </ion-row>
+                
+              
             </ion-col>
 
           </ion-row>

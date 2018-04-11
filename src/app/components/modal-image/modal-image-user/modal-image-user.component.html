@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button style="color: white;" ion-button (click)="dismiss()"><ion-icon name="arrow-back" class="iconBack"></ion-icon> Hình ảnh</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: black">
+  <ion-slides  class="image-slider" loop="false" zoom="true" pager="false">
+    <ion-slide>
+      <img src="{{urlImage}}" class="thumb-img">
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<!-- <ion-footer style="background-color: #ffffff;">
+  <button type="button" name="button" ion-button full no-margin>Thêm vào hóa đơn</button>
+</ion-footer> -->
