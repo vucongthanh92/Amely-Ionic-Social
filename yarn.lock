@@ -304,6 +304,10 @@
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-4.4.0.tgz#35bcf2012ece652bd765a972008bec5a7f258a95"
 
+"@ionic-native/user-agent@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/user-agent/-/user-agent-4.7.0.tgz#80272d6f5940f429d1ec47ef7be4362e6da19a04"
+
 "@ionic/app-scripts@3.1.6":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@ionic/app-scripts/-/app-scripts-3.1.6.tgz#8ad84a933b6b54f4379bd5e6bac5c66e03238a43"
@@ -1584,6 +1588,10 @@ cordova-plugin-splashscreen@^4.1.0:
 cordova-plugin-telerik-imagepicker@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.1.8.tgz#e2d531db60950abeb9d9346ffd7bf1aed4799043"
+
+cordova-plugin-useragent@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-useragent/-/cordova-plugin-useragent-1.0.6.tgz#19cc4fa01f5c91b64f1ad4258547228603aec239"
 
 cordova-plugin-whitelist@^1.3.3:
   version "1.3.3"

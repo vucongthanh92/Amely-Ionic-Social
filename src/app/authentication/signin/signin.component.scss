@@ -15,11 +15,11 @@ app-signin {
 	}
 
 	.logo {
-		width: auto;
+		width: 30vw;
 		height: auto;
 		max-width: 12em;
 		margin: 0 auto;
-		padding-bottom: 40px;
+		padding: 20px 0px 40px 0px;
 	}
 
 	.no-border {
@@ -74,21 +74,36 @@ app-signin {
 		height: 25px;
 		margin: 1px 0px 0px 9px;
 	}
-
-	.login-button {
-		width: 100%;
-		font-size: 0.9em;
-		background-color: #f0ad4e;
+	
+	.signin_icon {
+		color: #fff;
+    	margin: 0px 0px 0px 3px;
 	}
 
-	.register-button {
-		width: 100%;
-		font-size: 0.9em;
-		background-color: #39acdc;
+	.login-button {
+		width: 40vw;
+		font-size: 14px;
+		background-color: #f0ad4e;
+		text-transform: uppercase;
+		border-radius: 20px;
+		font-weight: bold;
+		padding: 0px 0px 0px 0px;
+		margin: 3px 0px 15px 0px;
+	}
+
+	.label-ios {
+		margin: 9px 5px 9px 0px;
+	}
+
+	.list-ios[inset] {
+    	margin: 15px 0px 15px 0px;
+    	border-radius: 4px;
 	}
 
 	.list-ios[inset] .item {
-		border-bottom: 1px solid  rgba(255, 255, 255, 0.3);
+		border: none;
+    	margin: 0px 0px 10px 0px;
+    	border-radius: 30px;
 	}
 
 	.text-input:-ms-input-placeholder {

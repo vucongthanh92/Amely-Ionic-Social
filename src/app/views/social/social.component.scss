@@ -95,8 +95,12 @@ app-social{
         margin: 0px 10px 0px 0px;
     }
      
-    .tabs-ios {
+    #top_navigation_default {
         top: 64px;
+    }
+
+    #top_navigation_iphonex {
+        top: 100px;
     }
 
     .tabs-md {
