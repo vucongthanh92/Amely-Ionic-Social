@@ -200,12 +200,10 @@ export class FeedComponent {
     let description ;
     if (urlImage =='postShare') {
       description=JSON.parse(this.postShare.description).post;
-      let myModal = this.modalCtrl.create(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description }); 
-      myModal.present();           
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description });           
     }else{
       description= JSON.parse(this.post.description).post;
-      let myModal = this.modalCtrl.create(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description });      
-      myModal.present();
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description }); 
     }
   }
 }

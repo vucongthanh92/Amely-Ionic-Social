@@ -1,5 +1,5 @@
    
-   app-modal-image-user {
+app-modal-image-user {
      .iconBack {
         margin: -1px 0 0;
         display: inherit;
@@ -22,5 +22,8 @@
     .toolbar-background {
         background-color: black;
     }
-   }
+    .back-button.show-back-button {
+        display: none;
+    }
+}
    

@@ -61,8 +61,7 @@ export class UserComponent {
   }
 
   openModal(urlImage) {
-    let myModal = this.modalCtrl.create(ModalImageUserComponent, { urlImage: urlImage});
-    myModal.present();
+    this.appCtrl.getRootNav().push(ModalImageUserComponent, { urlImage: urlImage});
   }
 
   ngOnInit() {

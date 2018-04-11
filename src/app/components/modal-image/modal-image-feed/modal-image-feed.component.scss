@@ -23,8 +23,17 @@ app-modal-image-feed{
     }
     .swiper-slide img {
         width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 140vw;
+        max-width: 100%;
+        height: auto;
+        max-height: 140vw;
     }
+
+    .back-button.show-back-button {
+        display: none;
+    }
+
+    .thumb-img {
+        padding: 10px;
+    }
+
 }
