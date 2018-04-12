@@ -22,6 +22,7 @@ export class UserComponent {
   imageViewerCtrl: ImageViewerController;
   userGuid: string;
   username: string;
+  urlImage: string;
   user: User;
   feed_type = "user";
   userCurrent: any;
@@ -49,7 +50,7 @@ export class UserComponent {
     imageViewerCtrl: ImageViewerController,
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    let urlImage = this.userCurrent.avatar;
+    this.urlImage = this.userCurrent.avatar;
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
     this.imageViewerCtrl = imageViewerCtrl;

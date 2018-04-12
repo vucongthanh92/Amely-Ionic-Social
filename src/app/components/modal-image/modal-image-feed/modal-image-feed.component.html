@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content style="background-color: black">
-  <ion-slides class="image-slider" loop="false" zoom="true" pager="false">
-    <ion-slide   *ngFor="let img of urlImage">
+  <ion-slides class="image-slider" loop="false" zoom="true" pager="false" initialSlide="{{position}}" >
+    <ion-slide *ngFor="let img of urlImage">
       <img src="{{img}}" class="thumb-img">        
     </ion-slide>
   </ion-slides>

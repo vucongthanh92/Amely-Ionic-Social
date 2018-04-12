@@ -6,7 +6,7 @@ import { UserComponent } from './../user/user.component';
 import { User } from './../../api/models/user';
 import { Feed } from './../../api/models/feed';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { App, MenuController, NavController, PopoverController, ModalController } from 'ionic-angular';
+import { App, MenuController, NavController, PopoverController } from 'ionic-angular';
 import { FeedMenuComponent } from './feed-menu/feed-menu.component';
 import { CommentsComponent } from '../comments/comments.component';
 import { FeedDetailComponent } from './feed-detail/feed-detail.component';
@@ -51,7 +51,6 @@ export class FeedComponent {
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
     private customService: CustomService,
-    private modalCtrl: ModalController,
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
 
@@ -196,14 +195,14 @@ export class FeedComponent {
     })
   }
 
-  openModal(urlImage) {
+  openModal(urlImage, position) {
     let description ;
     if (urlImage =='postShare') {
       description=JSON.parse(this.postShare.description).post;
-      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description });           
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description, position : position });           
     }else{
       description= JSON.parse(this.post.description).post;
-      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description }); 
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description, position: position }); 
     }
   }
 }

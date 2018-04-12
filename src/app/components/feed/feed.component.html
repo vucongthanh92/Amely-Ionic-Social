@@ -21,66 +21,66 @@
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
     <div class="wallphoto_quantity_1">
-      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post', 0)">
     </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
     <div class="wallphoto_quantity_2">
-      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post', 0)">
     </div>
     <div class="wallphoto_quantity_2">
-      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post', 1)">
     </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==3">
     <div class="wallphoto_quantity_3">
-      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post', 0)">
     </div>
     <div class="wallphoto_quantity_3">
-      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post', 1)">
     </div>
     <div class="wallphoto_quantity_3">
-      <img src="{{ post.wallphoto[2] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[2] }}" (click)="openModal('post', 2)">
     </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==4">
     <div class="wallphoto_quantity_4">
-      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post', 0)">
     </div>
     <div class="wallphoto_quantity_4">
-      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post', 1)">
     </div>
     <div class="wallphoto_quantity_4">
-      <img src="{{ post.wallphoto[2] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[2] }}" (click)="openModal('post', 2)">
     </div>
     <div class="wallphoto_quantity_4">
-      <img src="{{ post.wallphoto[3] }}" (click)="openModal('post')">
+      <img src="{{ post.wallphoto[3] }}" (click)="openModal('post', 3)">
     </div>
   </ion-list>
 
 <!-- 1 -->
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4  && !is_open_from_detail"> 
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[0] }}" (click)="openModal('post')" style="float: left;">
+      <img width="50%" src="{{ post.wallphoto[0] }}" (click)="openModal('post', 0)" style="float: left;">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[1] }}" (click)="openModal('post')" style="float: left;">
+      <img width="50%" src="{{ post.wallphoto[1] }}" (click)="openModal('post', 1)" style="float: left;">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[2] }}" (click)="openModal('post')" style="float: left;">
+      <img width="50%" src="{{ post.wallphoto[2] }}" (click)="openModal('post', 2)" style="float: left;">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[3] }}" (click)="openModal('post')" style="float: left;">
+      <img width="50%" src="{{ post.wallphoto[3] }}" (click)="openModal('post', 3)" style="float: left;">
       <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{post.wallphoto.length-4}}</div>
     </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4 && is_open_from_detail">
-    <ion-item *ngFor="let wallphoto of post.wallphoto">
-      <img src="{{wallphoto }}" (click)="openModal('post')">
+    <ion-item *ngFor="let wallphoto of post.wallphoto , let i = index">
+      <img src="{{wallphoto }}" (click)="openModal('post', i)">
     </ion-item>
   </ion-list>
 
@@ -171,7 +171,7 @@
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
       <div class="wallphoto_quantity_1">
-        <img src="{{ postShare.wallphoto[0] }}"  (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[0] }}"  (click)="openModal('postShare', 0)">
       </div>
       <!-- </ion-item> -->
     </ion-list>
@@ -179,10 +179,10 @@
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==2">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
       <div class="wallphoto_quantity_2">
-        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare', 0)">
       </div>
       <div class="wallphoto_quantity_2">
-        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare', 1)">
       </div>
       <!-- </ion-item> -->
     </ion-list>
@@ -190,13 +190,13 @@
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==3">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
       <div class="wallphoto_quantity_3">
-        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare', 0)">
       </div>
       <div class="wallphoto_quantity_3">
-        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare', 1)">
       </div>
       <div class="wallphoto_quantity_3">
-        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare, 2')">
       </div>
       <!-- </ion-item> -->
     </ion-list>
@@ -204,16 +204,16 @@
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==4">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
       <div class="wallphoto_quantity_4">
-        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare', 0)">
       </div>
       <div class="wallphoto_quantity_4">
-        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare', 1)">
       </div>
       <div class="wallphoto_quantity_4">
-        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare', 2)">
       </div>
       <div class="wallphoto_quantity_4">
-        <img src="{{ postShare.wallphoto[3] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[3] }}" (click)="openModal('postShare', 3)">
       </div>
       <!-- </ion-item> -->
     </ion-list>
@@ -222,24 +222,24 @@
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
 
       <div class="wallphoto_quantity_5">
-        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[0] }}" (click)="openModal('postShare', 0)">
       </div>
       <div class="wallphoto_quantity_5">
-        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[1] }}" (click)="openModal('postShare', 1)">
       </div>
       <div class="wallphoto_quantity_5">
-        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[2] }}" (click)="openModal('postShare', 2)">
       </div>
       <div class="wallphoto_quantity_5">
-        <img src="{{ postShare.wallphoto[3] }}" (click)="openModal('postShare')">
+        <img src="{{ postShare.wallphoto[3] }}" (click)="openModal('postShare', 3)">
         <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
       </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4 && is_open_from_detail">
-      <ion-item *ngFor="let wallphoto of postShare.wallphoto">
-        <img src="{{wallphoto }}" (click)="openModal('postShare')">
+      <ion-item *ngFor="let wallphoto of postShare.wallphoto,  let i = index">
+        <img src="{{wallphoto }}" (click)="openModal('postShare', i)">
       </ion-item>
     </ion-list>
 

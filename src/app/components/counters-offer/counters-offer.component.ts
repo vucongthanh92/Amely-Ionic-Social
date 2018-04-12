@@ -83,6 +83,11 @@ export class CountersOfferComponent implements OnInit {
   }
 
   doConfirm(message, key, counter_guid) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
     const alert = this.alertCtrl.create({
       title: 'Xác nhận trao đổi',
       message: message,
@@ -106,6 +111,7 @@ export class CountersOfferComponent implements OnInit {
                     callback("callback").then(() => {
                       this.nav.pop();
                     });
+                    loading.dismiss();
                   }
                 });
                 break;
@@ -116,6 +122,7 @@ export class CountersOfferComponent implements OnInit {
                     callback("callback").then(() => {
                       this.nav.pop();
                     });
+                    loading.dismiss();
                   }
                 });
                 break;
