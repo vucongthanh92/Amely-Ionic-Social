@@ -15,11 +15,29 @@ import { InventoryHistoryComponent } from './inventory-history/inventory-history
 export class InventoriesComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
+  check_screen: string;
   tabInventoryPrivate = InventoryPrivateComponent;
   tabInventoryPublic = InventoryPublicComponent;
   tabInventoryHistory = InventoryHistoryComponent;
   popover: Popover;
-  constructor(public popoverCtrl: PopoverController, public customService: CustomService, public nav: NavController, public appCtrl: App, public navParams: NavParams) { }
+  constructor(
+    public popoverCtrl: PopoverController, 
+    public customService: CustomService, 
+    public nav: NavController, 
+    public appCtrl: App, 
+    public navParams: NavParams) {
+      var ratio = window.devicePixelRatio || 1;
+      var screen = {
+        width: window.screen.width * ratio,
+        height: window.screen.height * ratio
+      };
+      if (screen.width == 1125 && screen.height == 2436) {
+        this.check_screen = "top_navigation_iphonex";
+      }
+      else {
+        this.check_screen = "top_navigation_default"
+      }
+    }
 
   ngOnInit() {
   }
