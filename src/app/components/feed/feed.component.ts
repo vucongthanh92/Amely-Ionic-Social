@@ -86,6 +86,7 @@ export class FeedComponent {
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
       }
+      
       this.descriptionPost = description.post;
       this.location = description.location;
       if (this.isShowMoreContent) {
@@ -164,9 +165,6 @@ export class FeedComponent {
     this.post.liked = !this.post.liked;
   }
   openOwner(type: string, guid) {
-    console.log(guid);
-    console.log(type);
-
     switch (type) {
       case 'event':
         this.appCtrl.getRootNav().push(EventComponent, { event_guid: guid })
@@ -198,7 +196,7 @@ export class FeedComponent {
 
   openModal(urlImage) {
     let description ;
-    if (urlImage =='postShare') {
+    if (urlImage == 'postShare') {
       description=JSON.parse(this.postShare.description).post;
       this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description });           
     }else{

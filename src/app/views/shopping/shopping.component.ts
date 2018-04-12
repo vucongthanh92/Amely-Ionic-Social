@@ -15,11 +15,29 @@ import { ShoppingMenuComponent } from './shopping-menu/shopping-menu.component';
 export class ShoppingComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
+  check_screen: string;
   tab1Root = ShopsComponent;
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
 
-  constructor(public nav: NavController, public appCtrl: App, public navParams: NavParams, public customService: CustomService, public popoverCtrl: PopoverController) { }
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App, 
+    public navParams: NavParams, 
+    public customService: CustomService, 
+    public popoverCtrl: PopoverController) {
+      var ratio = window.devicePixelRatio || 1;
+      var screen = {
+        width: window.screen.width * ratio,
+        height: window.screen.height * ratio
+      };
+      if (screen.width == 1125 && screen.height == 2436) {
+        this.check_screen = "top_navigation_iphonex";
+      }
+      else {
+        this.check_screen = "top_navigation_default"
+      }
+    }
 
   ngOnInit() {
   }

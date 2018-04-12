@@ -64,16 +64,16 @@
 <!-- 1 -->
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4  && !is_open_from_detail"> 
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[0] }}" (click)="openModal('post')" style="float: left;">
+      <img src="{{ post.wallphoto[0] }}" (click)="openModal('post')">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[1] }}" (click)="openModal('post')" style="float: left;">
+      <img src="{{ post.wallphoto[1] }}" (click)="openModal('post')">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[2] }}" (click)="openModal('post')" style="float: left;">
+      <img src="{{ post.wallphoto[2] }}" (click)="openModal('post')">
     </div>
     <div class="wallphoto_quantity_5">
-      <img width="50%" src="{{ post.wallphoto[3] }}" (click)="openModal('post')" style="float: left;">
+      <img src="{{ post.wallphoto[3] }}" (click)="openModal('post')">
       <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{post.wallphoto.length-4}}</div>
     </div>
   </ion-list>
