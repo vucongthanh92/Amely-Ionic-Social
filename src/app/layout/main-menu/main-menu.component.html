@@ -6,7 +6,7 @@
           <div [style.background]="'url(' + customService.user_current.avatar + ')'" class="menu_images"></div>
           <p class="main_title">{{customService.user_current.fullname }}</p>
         </ion-col> -->
-        <ion-col class="main-nav" col-8 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-col class="main-nav" col-9 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
           <div [style.background]="'url(' + p.image + ')'" class="menu_images"></div>
           <p class="main_title">{{ p.title }}</p>
         </ion-col>

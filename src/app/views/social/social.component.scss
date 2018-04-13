@@ -94,14 +94,6 @@ app-social{
     .bar-button-ios {
         margin: 0px 10px 0px 0px;
     }
-     
-    #top_navigation_default {
-        top: 64px;
-    }
-
-    #top_navigation_iphonex {
-        top: 90px;
-    }
 
     .tabs-md {
         top: 50px;
@@ -109,6 +101,14 @@ app-social{
 
     ::-webkit-scrollbar, *::-webkit-scrollbar {
         display: none;
+    }
+
+    #top_navigation_default {
+        top: 64px;
+    }
+
+    #top_navigation_iphonex {
+        top: 90px;
     }
 
 }

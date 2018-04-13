@@ -37,6 +37,9 @@ export class InventoriesComponent implements OnInit {
       else {
         this.check_screen = "top_navigation_default"
       }
+
+      console.log(this.check_screen);
+
     }
 
   ngOnInit() {

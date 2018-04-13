@@ -17,8 +17,11 @@
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab> -->
-<ion-fab right bottom class="feeds_button" *ngIf="is_show_btn_add_feed">
-  <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()">
-    <ion-icon name="add"></ion-icon>
-  </button>
-</ion-fab>
+
+<ion-footer>
+  <ion-fab right bottom class="feeds_button" *ngIf="is_show_btn_add_feed">
+    <button ion-fab style="background-color:#f18b5a; color: #fff" (click)="addNewFeed()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-footer>
