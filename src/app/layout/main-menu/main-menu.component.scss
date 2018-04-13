@@ -1,6 +1,6 @@
 app-main-menu {
     .menu-inner {
-        width: 42%;
+        width: 36%;
     }
 
     .content-main {
@@ -9,8 +9,8 @@ app-main-menu {
 
     .menu_images {
         border-radius: 50%;
-        width: 70px;
-        height: 70px;
+        width: 65px;
+        height: 65px;
         background-position: center !important;
         background-size: cover !important;
         margin: auto;
@@ -27,9 +27,9 @@ app-main-menu {
         margin-top: 0px;
         color: white;
         margin: 10px 0px 0px 0px;
-        text-transform: uppercase;
         font-size: 13px;
         white-space: nowrap;
+        text-transform: capitalize;
     }
 
     ::-webkit-scrollbar,

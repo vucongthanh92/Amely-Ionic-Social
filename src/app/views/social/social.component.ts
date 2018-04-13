@@ -41,7 +41,7 @@ export class SocialComponent implements OnInit {
       this.check_screen = "top_navigation_iphonex";
     }
     else {
-      this.check_screen = "top_navigation_default"
+      this.check_screen = "top_navigation_default";
     }
   }
   ngOnInit() {
