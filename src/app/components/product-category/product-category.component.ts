@@ -1,8 +1,9 @@
+import { ProductComponent } from './../product/product.component';
 import { CustomService } from './../../services/custom.service';
 import { ShoppingsService } from './../../services/shoppings.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../api/models/category';
-import { NavParams, LoadingController } from 'ionic-angular';
+import { NavParams, LoadingController, App } from 'ionic-angular';
 import { Product } from '../../api/models/product';
 
 @Component({
@@ -24,7 +25,7 @@ export class ProductCategoryComponent implements OnInit {
   public is_search: boolean;
 
   constructor(private navParams: NavParams, private shopping_service: ShoppingsService, public custom_service: CustomService,
-    private customService: CustomService, public loadingCtrl: LoadingController) {
+    private customService: CustomService, public loadingCtrl: LoadingController, private appCtrl: App) {
     this.categories = this.navParams.get('arr');
     this.category_id = this.navParams.get('guid');
     this.shop_guid = this.navParams.get('shop_guid');
@@ -105,5 +106,8 @@ export class ProductCategoryComponent implements OnInit {
         this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
       }
     }
+  }
+  openProductDetail(product: Product) {
+    this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid })
   }
 }

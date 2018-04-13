@@ -60,45 +60,43 @@ export class SearchComponent implements OnInit {
     }
     this.searchService.searchValues(this.contentSearch).subscribe(data => {
       if (data.business) {
-        loading.dismiss();
+       
         this.business = data.business;
         this.is_has_data = true;
         this.search = 'business';
       }
       if (data.events) {
-        loading.dismiss();
+      
         this.events = data.events;
         this.is_has_data = true;
         this.search = 'event';
       }
 
       if (data.groups) {
-        loading.dismiss();
         this.groups = data.groups;
         this.is_has_data = true;
         this.search = 'group';
       }
 
       if (data.shops) {
-        loading.dismiss();
         this.shops = data.shops;
         this.is_has_data = true;
         this.search = 'store';
       }
 
       if (data.products) {
-        loading.dismiss();
         this.products = data.products;
         this.is_has_data = true;
         this.search = 'product';
       }
 
       if (data.users) {
-        loading.dismiss();
         this.users = data.users
         this.is_has_data = true;
         this.search = 'peoples';
       }
+      loading.dismiss();
+      
     }, err => this.loadData(--retry))
   }
   formatCurrency(product: Product, currency: string) {
