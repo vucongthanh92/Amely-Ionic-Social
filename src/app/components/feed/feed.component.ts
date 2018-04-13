@@ -82,9 +82,9 @@ export class FeedComponent {
     if (this.post) {
       let description = JSON.parse(this.post.description);
       
-      // if (Array.isArray(this.post.wallphoto) === false) {
-      //   this.hasWallPhoto = false;
-      // }
+      if (Array.isArray(this.post.wallphoto) === false) {
+        this.hasWallPhoto = false;
+      }
       
       this.descriptionPost = description.post;
       this.location = description.location;
