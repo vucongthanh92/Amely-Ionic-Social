@@ -62,7 +62,7 @@ export class UserComponent {
   }
 
   openModal(urlImage) {
-    this.appCtrl.getRootNav().push(ModalImageUserComponent, { urlImage: urlImage});
+    this.appCtrl.getRootNav().push(ModalImageUserComponent, { urlImage: this.is_user_current?this.userCurrent.avatar:this.user.avatar});
   }
 
   ngOnInit() {
