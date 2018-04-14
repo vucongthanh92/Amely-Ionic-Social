@@ -79,10 +79,10 @@ app-add-feed {
         width: 100%;
         max-width: 100%;
         border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 13px;
-        padding: 8px 12px 7px 10px;
+        border-radius: 3px;
+        padding: 4px 10px 4px 10px;
         color: #666;
+        font-size: 13px;
     }
 
     .addfeed_bottom_nav {
@@ -96,5 +96,13 @@ app-add-feed {
 
     .addfeed_bottom_nav_icon {
         font-size: 24px;
+    }
+
+    .add_feed_images {
+        width: auto;
+        height: 15vh;
+        float: left;
+        margin: 0px 0px 0px 5px;
+        border-radius: 3px;
     }
 }

@@ -1,6 +1,19 @@
 app-social{
 
-    
+    .toolbar-background-ios {
+        background: #00bdf2;
+        color: #fff;
+    }
+
+    .bar-button-ios {
+        margin: 0px 10px 0px 0px;
+        color: #fff;
+    }
+
+    .toolbar-title-ios {
+        color: #fff;
+        line-height: 20px;
+    }
 
     .tabs-ios .tabbar {
         padding: 2px 0px 0px 0px;
@@ -94,10 +107,6 @@ app-social{
         }
     }
 
-    .bar-button-ios {
-        margin: 0px 10px 0px 0px;
-    }
-
     .tabs-md {
         top: 50px;
     }
@@ -111,7 +120,7 @@ app-social{
     }
 
     #top_navigation_iphonex {
-        top: 90px;
+        top: 87px;
     }
 
 }

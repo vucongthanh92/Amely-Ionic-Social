@@ -28,9 +28,6 @@
           - đang {{moods[mood_result].title}}
         </div>
       </div>
-      <ion-row *ngIf="image">
-        <img src="{{image}}" width="100%">
-      </ion-row>
 
       <ion-item class="addfeed_status">
         <ion-select class="addfeed_select" [(ngModel)]="privacy">
@@ -56,6 +53,11 @@
       <ion-textarea [(ngModel)]="content" placeholder="Bạn đang nghĩ gì ?" rows="10" name="description"></ion-textarea>
     </ion-col>
   </ion-row>
+
+  <ion-row *ngIf="image">
+    <img class="add_feed_images" src="{{image}}">
+  </ion-row>
+
 </ion-content>
 
 <ion-footer>
