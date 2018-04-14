@@ -1,5 +1,20 @@
 app-personal {
 
+    .toolbar-background-ios {
+        background: #00bdf2;
+        color: #fff;
+    }
+
+    .bar-button-ios {
+        margin: 0px 10px 0px 0px;
+        color: #fff;
+    }
+
+    .toolbar-title-ios {
+        color: #fff;
+        line-height: 20px;
+    }
+
     .searchbar-search-icon 
     { 
         display:none; 
@@ -102,7 +117,7 @@ app-personal {
     }
 
     #top_navigation_iphonex {
-        top: 90px;
+        top: 87px;
     }
 
 }
