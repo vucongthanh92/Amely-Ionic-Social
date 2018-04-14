@@ -32,9 +32,8 @@ export class MyApp {
   ) {
     this.checkLogin();
     this.initializeApp();
-    this.statusBar.overlaysWebView(false);    
-    this.statusBar.backgroundColorByHexString('#f18b5a');
-    this.statusBar.backgroundColorByName("red")
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.backgroundColorByName("#4267b2")
   }
 
 
@@ -46,9 +45,6 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.statusBar.overlaysWebView(false);
-      this.statusBar.backgroundColorByHexString('#f18b5a');
-      this.statusBar.backgroundColorByName("red")
       this.splashScreen.hide();
     });
   }
