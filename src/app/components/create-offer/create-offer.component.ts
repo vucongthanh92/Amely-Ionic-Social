@@ -10,6 +10,7 @@ import { Param_create_offer } from '../../api/models/param-_create-_offer';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapComponent } from '../map/map.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-create-offer',
@@ -18,7 +19,7 @@ import { MapComponent } from '../map/map.component';
 export class CreateOfferComponent implements OnInit {
 
   @Input('description') description: string;
-
+  public is_used: boolean = false;
   offer_target: Offer;
   counter = false;
   item: Item;
@@ -47,7 +48,8 @@ export class CreateOfferComponent implements OnInit {
     private nav: NavController,
     private params: NavParams,
     public loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private userService: UserService
   ) {
     this.counter = this.params.get('counter');
     this.offer_target = this.params.get('param');
@@ -69,7 +71,11 @@ export class CreateOfferComponent implements OnInit {
   ngOnInit() {
   }
 
+  
   offer() {
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.is_used = true;
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
       enableBackdropDismiss: true
@@ -158,7 +164,9 @@ export class CreateOfferComponent implements OnInit {
         })
       }
     }
+    })
   }
+  
   onChangeTarget() {
     console.log(this.target);
     if (this.target == 'location') {
@@ -206,4 +214,6 @@ export class CreateOfferComponent implements OnInit {
       resolve();
     });
   }
+
+ 
 }
