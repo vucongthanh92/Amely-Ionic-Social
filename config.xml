@@ -104,4 +104,5 @@
     <plugin name="cordova-plugin-nativegeocoder" spec="^3.1.1" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="im.ltdev.cordova.UserAgent" spec="~1.0.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
 </widget>

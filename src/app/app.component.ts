@@ -27,11 +27,12 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
     private keyboard: Keyboard,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
     // private cordova: cordova
   ) {
     this.checkLogin();
     this.initializeApp();
+    
   }
 
 
@@ -43,6 +44,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(true);
+      this.statusBar.backgroundColorByHexString('#2083c0');
       this.splashScreen.hide();
     });
   }
