@@ -31,6 +31,7 @@ export class ShoppingMenuComponent implements OnInit {
         content: 'Please wait...',
         enableBackdropDismiss: true
       });
+      this.loading.present();
       this.walletService.getCartFromQR(barcodeData.text).subscribe(data => {
         this.paymentService.items.products = (<any>Object).values(data.products);
         this.paymentService.items.sub_total = data.sub_total;
@@ -39,15 +40,12 @@ export class ShoppingMenuComponent implements OnInit {
         this.paymentService.items.currency = data.shop.currency;
         this.paymentService.items.to_guid = data.to_guid;
         this.paymentService.param_create_order.to_guid = data.to_guid;
-        this.loading.dismiss();
-        if (data.products) {
-          this.appCtrl.getRootNav().push(PaymentItemsComponent);
-        } else {
-          this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
-        }
+        this.appCtrl.getRootNav().push(PaymentItemsComponent);
+        this.loading.dismiss();        
       })
     }, (err) => {
-      this.customService.toastMessage(err, 'bottom', 3000);
+      this.loading.dismiss();      
+      this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
 
   }
