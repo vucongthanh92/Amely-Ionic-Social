@@ -32,8 +32,6 @@ export class MyApp {
   ) {
     this.checkLogin();
     this.initializeApp();
-    this.statusBar.overlaysWebView(false);
-    this.statusBar.backgroundColorByName("#4267b2")
   }
 
 
@@ -44,7 +42,10 @@ export class MyApp {
       this.keyboard.hideKeyboardAccessoryBar(false)
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
+      this.statusBar.overlaysWebView(false);
+      this.statusBar.backgroundColorByHexString("#1d325e");
+
       this.splashScreen.hide();
     });
   }
