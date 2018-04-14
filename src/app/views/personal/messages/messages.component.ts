@@ -13,7 +13,7 @@ import { Group } from '../../../api/models/group';
   templateUrl: './messages.component.html'
 })
 export class MessagesComponent implements OnInit {
-
+  fakeUsers: Array<any> = new Array(5);
   users: User[];
   user: User;
   userCurrent: User;

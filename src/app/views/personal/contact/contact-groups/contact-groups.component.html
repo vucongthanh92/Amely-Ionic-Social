@@ -1,5 +1,5 @@
 <ion-content class="outer-content" class="contact_group">
-  <ion-list>
+  <ion-list *ngIf="groups">
     <ion-item *ngFor="let group of groups">
       <ion-row>
         <ion-col col-2 class="contact_group_box_image" (click)="goToPage(group.guid)">
@@ -32,6 +32,20 @@
         </ion-col>
         <ion-col class="contact_group_chatbox" col-2>
           <img class="contact_group_chat" src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')" />
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="!groups">
+    <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+      <ion-row>
+        <ion-col col-3>
+          <div class="divCustom"></div>
+        </ion-col>
+        <ion-col col-9>
+          <h2></h2>
+          <h3></h3>
         </ion-col>
       </ion-row>
     </ion-item>

@@ -14,7 +14,7 @@ import { AddFriendComponent } from '../../../../components/add-friend/add-friend
   templateUrl: './contact-users.component.html'
 })
 export class ContactUsersComponent implements OnInit {
-
+  fakeUsers: Array<any> = new Array(5);
   private userCurrent: User;
   private moodLocal: any;
   public friends: Array<User>;

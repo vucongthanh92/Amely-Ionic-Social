@@ -1,5 +1,5 @@
 <ion-content class="outer-content" style="top: 44px;">
-  <ion-list>
+  <ion-list *ngIf="business_pages">
     <ion-item *ngFor="let page of business_pages" (click)="goToPage(page)">
       <ion-row>
         <ion-col class="contact_business_box_image" col-3>
@@ -8,6 +8,20 @@
         <ion-col col-9>
           <div class="contact_business_title">{{page.title}}</div>
           <div class="contact_business_description">{{page.description}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="!business_pages">
+    <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+      <ion-row>
+        <ion-col col-3>
+          <div class="divCustom"></div>
+        </ion-col>
+        <ion-col col-9>
+          <h2></h2>
+          <h3></h3>
         </ion-col>
       </ion-row>
     </ion-item>

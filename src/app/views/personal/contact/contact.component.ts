@@ -39,15 +39,15 @@ export class ContactComponent implements OnInit {
 
   initGroupsContact() {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
     this.groupService.getGroups(this.customService.user_current.guid).subscribe(data => {
       this.groupService.groups_contact = data.groups;
       this.groupService.groups_user = data.owners;
-      loading.dismiss();
+      // loading.dismiss();
 
     })
   }

@@ -15,7 +15,7 @@ import { MessagesService } from '../../../../services/messages.service';
   templateUrl: './contact-groups.component.html'
 })
 export class ContactGroupsComponent implements OnInit {
-
+  fakeUsers: Array<any> = new Array(5);
   @Input('callback') callback;
   private groups: Group[];
   private users: User[];
@@ -37,22 +37,13 @@ export class ContactGroupsComponent implements OnInit {
   }
 
   loadData(retry) {
-    
- let loading = this.loadingCtrl.create({
-    content: 'Please wait...',
-    enableBackdropDismiss: true
-  });
-  loading.present();
-  
     if (retry == 0) {
-      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
       this.groups = data.groups;
       this.users = data.owners;
-      loading.dismiss();
     }, err => this.loadData(--retry))
   }
   ngOnInit() {

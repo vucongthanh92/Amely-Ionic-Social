@@ -1,7 +1,5 @@
 <ion-content class="outer-content" id="contact_user_container">
-  <ion-list class="contact_user">
-
-
+  <ion-list class="contact_user" *ngIf="friends">
     <ion-item-sliding #item  *ngFor="let friend of friends">
       <ion-item>
         <ion-row>
@@ -34,10 +32,20 @@
         <button ion-button (click)="removeFriend(friend)">Xóa bạn</button>
       </ion-item-options>
     </ion-item-sliding>
+  </ion-list>
 
-
-
-
+  <ion-list *ngIf="!friends">
+    <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+      <ion-row>
+        <ion-col col-3>
+          <div class="divCustom"></div>
+        </ion-col>
+        <ion-col col-9>
+          <h2></h2>
+          <h3></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item>
   </ion-list>
 </ion-content>
 <ion-fab right bottom (click)="addFriend();">

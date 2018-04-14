@@ -21,4 +21,17 @@
       <ion-note item-end class="message_date">{{ group.last_time | amTimeAgo }}</ion-note>
     </ion-item>
   </ion-list>
+  <ion-list *ngIf="!individualList && !groups">
+    <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+      <ion-row>
+        <ion-col col-3>
+          <div class="divCustom"></div>
+        </ion-col>
+        <ion-col col-9>
+          <h2></h2>
+          <h3></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
 </ion-content>

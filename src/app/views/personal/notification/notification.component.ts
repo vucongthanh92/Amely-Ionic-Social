@@ -14,13 +14,11 @@ import { User } from '../../../api/models';
   templateUrl: './notification.component.html'
 })
 export class NotificationComponent implements OnInit {
+  
   loading: any;
 
   constructor(public customService: CustomService, private appCtrl: App,
     public modalCtrl: ModalController, private feedService: FeedsService, public loadingCtrl: LoadingController) {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
   }
 
   ngOnInit() {

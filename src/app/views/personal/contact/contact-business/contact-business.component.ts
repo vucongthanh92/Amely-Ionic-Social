@@ -11,6 +11,7 @@ import { BusinessComponent } from '../../../../components/business/business.comp
   templateUrl: './contact-business.component.html'
 })
 export class ContactBusinessComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(5);
   public business_pages: Array<Business>;
   public users: Array<User>;
   public user_current: User;
@@ -28,15 +29,9 @@ export class ContactBusinessComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-
-    loading.present();
+   
     this.service.getBusinessPages(this.user_current.guid, 0, 9999).subscribe(data => {
       if (data.pages instanceof Array) {
-        loading.dismiss();
         this.business_pages = data.pages;
         this.users = data.users;
       }
