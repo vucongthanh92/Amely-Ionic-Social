@@ -1,5 +1,5 @@
 <ion-card *ngIf="post.item_type==null">
-  <ion-item>
+  <ion-item class="feed_item">
     <ion-avatar item-start>
       <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}">
     </ion-avatar>
@@ -17,6 +17,9 @@
     </ion-col>
   </ion-item>
 
+  <ion-card-content (click)="openFeedDetail()">
+    <p>{{ descriptionPost }}</p>
+  </ion-card-content>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
     <div class="wallphoto_quantity_1" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
@@ -55,13 +58,7 @@
     </ion-item>
   </ion-list>
 
-
-
   <div class="clearfix"></div>
-
-  <ion-card-content (click)="openFeedDetail()">
-    <p>{{ descriptionPost }}</p>
-  </ion-card-content>
 
   <ion-row *ngIf="userTag">
     <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
@@ -120,7 +117,7 @@
 
   <!-- INFO SHARE -->
   <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
-  <ion-card *ngIf="postShare" padding>
+  <ion-card *ngIf="postShare" class="feed_share_info" padding>
     <ion-item>
       <ion-avatar item-start>
         <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}">

@@ -38,7 +38,7 @@ app-feeds {
     .item-ios {
         background-color: #fff;
         margin: 1px 0px 10px 0px;
-        padding: 0px 0px 0px 0px;
+        padding: 1px 1px 0px 1px;
         box-sizing: border-box;
         width: auto;
     }
@@ -50,12 +50,13 @@ app-feeds {
         }
     }
 
-    .feeds_button {
+    .feeds_fab {
         position: fixed;
-        bottom: 75px;
-        right: 10px;
+        bottom: 12vh;
+        right: 4vw;
+        z-index: 100;
 
-        button {
+        .feeds_fab_icon {
             background-color:#f18b5a; 
             color: #fff
         }

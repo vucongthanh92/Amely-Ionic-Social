@@ -28,6 +28,10 @@ app-feed{
         text-transform: lowercase;
     }
 
+    .feed_item {
+        margin: 0px !important;
+    }
+
     #iconMood {
         width: 12px;
         height: 12px;
@@ -40,8 +44,15 @@ app-feed{
     }
 
     .card-content-ios {
-        padding: 13px 12px 14px;
+        padding: 10px 5px 3px 3px;
         white-space: normal;
+        clear: both;
+        margin: 9px 0px 0px 0px;
+        
+        p {
+            line-height: 20px;
+            color: #4a4d54;
+        }
     }
 
     .list-ios > .item-block:first-child {
@@ -49,7 +60,7 @@ app-feed{
     }
 
     .feed_wallphoto {
-        margin: 10px 0px 0px 0px;
+        margin: 5px 0px 0px 0px;
     }
 
     .feed_wallphoto .item-ios, .feed_wallphoto .label-ios {
@@ -57,8 +68,7 @@ app-feed{
     }
 
     .feed_interactive {
-        border-top: 1px solid #efeff4;
-        padding: 5px 0px 0px 0px;
+        padding: 0px;
         margin: 5px 0px 0px 0px;
     }
 
@@ -180,4 +190,9 @@ app-feed{
         }
     }
 
+    .feed_share_info {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1px 7px 7px 9px !important;
+    }
 }
