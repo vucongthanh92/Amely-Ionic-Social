@@ -32,7 +32,9 @@ export class MyApp {
   ) {
     this.checkLogin();
     this.initializeApp();
-    
+    this.statusBar.overlaysWebView(false);    
+    this.statusBar.backgroundColorByHexString('#f18b5a');
+    this.statusBar.backgroundColorByName("red")
   }
 
 
@@ -44,8 +46,9 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.statusBar.overlaysWebView(true);
-      this.statusBar.backgroundColorByHexString('#2083c0');
+      this.statusBar.overlaysWebView(false);
+      this.statusBar.backgroundColorByHexString('#f18b5a');
+      this.statusBar.backgroundColorByName("red")
       this.splashScreen.hide();
     });
   }
