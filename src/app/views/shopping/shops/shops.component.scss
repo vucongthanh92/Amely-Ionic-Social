@@ -8,4 +8,19 @@ app-shops {
         margin: 2px 7px 0px 0px;
         font-size: 26px;
     }
+
+    .scroll-content {
+        padding: 0px 0px 60px 0px !important;
+    }
+
+    .shops_slides {
+        height: 150px;
+
+        .shops_slides_image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+    }
 }
