@@ -3,5 +3,7 @@
 /**
  */
 export class body_56 {
-    mobile?: string;
+    report_type?: string;
+    guid?: number;
+    reason?: string;
 }

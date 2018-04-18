@@ -34,7 +34,7 @@ export class UserService {
   }
 
   findUser(mobile) {
-    return this.api.searchs({ mobile: mobile });
+    return this.api.searchs({ mobile: mobile, text_search: null, category: null, type: null });
   }
 
   updateProfile(firstname: string, lastname: string, email: string, gender: string, birthdate: string, usercurrency: string,

@@ -3,6 +3,7 @@
 /**
  */
 export class body_65 {
-    offset?: number;
-    limit?: number;
+    owner_guid?: number;
+    cover_type?: string;
+    images?: string[];
 }

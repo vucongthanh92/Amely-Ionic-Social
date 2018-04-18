@@ -26,8 +26,8 @@ export class FindFriendComponent implements OnInit {
     if (this.phone_number && this.phone_number.length > 7) {
       this.userService.findUser(this.phone_number).subscribe(
         data => {
-          if (data.guid != null) {
-            this.user_found = data;
+          if (data.user.guid != null) {
+            this.user_found = data.user;
           } else {
             this.user_found = null;
           }
