@@ -1,11 +1,6 @@
 import { ProductComponent } from './../product/product.component';
 import { Product } from './../../api/models/product';
-import { guid } from './../../api/models/guid';
 import { UserComponent } from './../user/user.component';
-import { BusinessComponent } from './../business/business.component';
-import { GroupComponent } from './../group/group.component';
-import { EventComponent } from './../event/event.component';
-import { User } from './../../api/models/user';
 import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
 import { ModalCounterOfferComponent } from './modal-counter-offer/modal-counter-offer.component';
@@ -36,8 +31,6 @@ export class CountersOfferComponent implements OnInit {
     public appCtrl: App
   ) {
     this.offer = this.navParams.get('param');
-    this.guidOwner = this.offer.product_snapshot.owner_guid;
-    
     this.loadData(5);
   }
 
@@ -58,7 +51,6 @@ export class CountersOfferComponent implements OnInit {
       data => {
         loading.dismiss();
         this.counters = data.counter_offers;
-        this.guidProduct = this.counters[0].product_snapshot.guid;
       },
       err => {
         this.loadData(--retry)
@@ -151,24 +143,11 @@ export class CountersOfferComponent implements OnInit {
     alert.present();
   }
 
-  openOwner(type: string, guid) {
-    switch (type) {
-      case 'event':
-        this.appCtrl.getRootNav().push(EventComponent, { event_guid: this.guidOwner })
-        break;
-      case 'group':
-        this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: this.guidOwner })
-        break;
-      case 'businesspage':
-        this.appCtrl.getRootNav().push(BusinessComponent, { guid: this.guidOwner })
-        break;
-      case 'user':
-        this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.guidOwner })
-        break;
-    }
+  openOwner(guidOwner, username) {
+    this.appCtrl.getRootNav().push(UserComponent, { userGuid: guidOwner, username: username })
   }
 
-  goToPage(product: Product) {
-    this.appCtrl.getRootNav().push(ProductComponent, { guid: this.guidProduct });
+  openProduct(guidProduct) {
+    this.appCtrl.getRootNav().push(ProductComponent, { guid: guidProduct });
   }
 }

@@ -10,13 +10,13 @@
       <ion-item-sliding *ngFor="let counter of counters">
         <ion-item>
           <ion-thumbnail item-start>
-            <img width="100%" src="{{ counter.product_snapshot.images[0] }}" (click)="goToPage('product')">
+            <img width="100%" src="{{ counter.product_snapshot.images[0] }}" (click)="openProduct(counter.product_snapshot.guid)">
           </ion-thumbnail>
           <h2>{{ counter.product_snapshot.title }}</h2>
           <p>{{ counter.description }}</p>
           <ion-item class="user-info">
             <ion-avatar item-start>
-              <img width="100%" src="{{ counter.owner.avatar }}" (click)="openOwner('user')">
+              <img width="100%" src="{{ counter.owner.avatar }}" (click)="openOwner(counter.owner.guid, counter.owner.username)">
             </ion-avatar>
             <h2>{{ counter.owner.username }}</h2>
           </ion-item>
