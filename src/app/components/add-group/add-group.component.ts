@@ -52,7 +52,6 @@ export class AddGroupComponent implements OnInit {
       loading.dismiss();
       this.custom_service.toastMessage('Tên nhóm không hợp lệ !', 'bottom', 2000)
     } else {
-      loading.dismiss();
       let user_guids = [];
       let usernames = [this.custom_service.user_current.username];
       this.users_choosed.forEach(e => {
@@ -71,7 +70,7 @@ export class AddGroupComponent implements OnInit {
           callback({ type: 'reload' }).then(() => {
             this.nav.pop();
           });
-          loading.dismiss();
+          loading.dismiss();                  
         }
       });
 

@@ -77,7 +77,7 @@ export class OffersItemDetailComponent implements OnInit {
     }
 
     this.offer.seconds = 0;
-    console.log(this.offer);
+    // console.log(this.offer);
     // this.product_image = this.offer.product_snapshot.images[0];
     this.customService.getCurrentTime().subscribe(data => {
       this.offer.seconds = this.offer.time_end - data.current_time;

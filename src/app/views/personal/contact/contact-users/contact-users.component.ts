@@ -125,10 +125,10 @@ export class ContactUsersComponent implements OnInit {
             });
             loading.present();
             this.userService.deleteFriend(u.guid).subscribe(data => {
-              loading.dismiss();
               if (data.status) {
                 this.friends = this.friends.filter(e => e.guid != u.guid);
               } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
+              loading.dismiss();              
             });
           }
         }

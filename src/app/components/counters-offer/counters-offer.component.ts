@@ -1,8 +1,16 @@
+import { ProductComponent } from './../product/product.component';
+import { Product } from './../../api/models/product';
+import { guid } from './../../api/models/guid';
+import { UserComponent } from './../user/user.component';
+import { BusinessComponent } from './../business/business.component';
+import { GroupComponent } from './../group/group.component';
+import { EventComponent } from './../event/event.component';
+import { User } from './../../api/models/user';
 import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
 import { ModalCounterOfferComponent } from './modal-counter-offer/modal-counter-offer.component';
 import { OffersService } from './../../services/offers.service';
-import { NavParams, ModalController, ItemSliding, AlertController, NavController, LoadingController } from 'ionic-angular';
+import { NavParams, ModalController, ItemSliding, AlertController, NavController, LoadingController, App } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../api/models/counter-offer';
 
@@ -14,6 +22,8 @@ export class CountersOfferComponent implements OnInit {
 
   counters: CounterOffer[];
   offer: Offer
+  guidOwner: number;
+  guidProduct: number;
 
   constructor(
     private nav: NavController,
@@ -22,9 +32,12 @@ export class CountersOfferComponent implements OnInit {
     private modalCtrl: ModalController,
     private offersService: OffersService,
     private navParams: NavParams,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public appCtrl: App
   ) {
     this.offer = this.navParams.get('param');
+    this.guidOwner = this.offer.product_snapshot.owner_guid;
+    
     this.loadData(5);
   }
 
@@ -45,6 +58,7 @@ export class CountersOfferComponent implements OnInit {
       data => {
         loading.dismiss();
         this.counters = data.counter_offers;
+        this.guidProduct = this.counters[0].product_snapshot.guid;
       },
       err => {
         this.loadData(--retry)
@@ -135,5 +149,26 @@ export class CountersOfferComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  openOwner(type: string, guid) {
+    switch (type) {
+      case 'event':
+        this.appCtrl.getRootNav().push(EventComponent, { event_guid: this.guidOwner })
+        break;
+      case 'group':
+        this.appCtrl.getRootNav().push(GroupComponent, { groupGuid: this.guidOwner })
+        break;
+      case 'businesspage':
+        this.appCtrl.getRootNav().push(BusinessComponent, { guid: this.guidOwner })
+        break;
+      case 'user':
+        this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.guidOwner })
+        break;
+    }
+  }
+
+  goToPage(product: Product) {
+    this.appCtrl.getRootNav().push(ProductComponent, { guid: this.guidProduct });
   }
 }

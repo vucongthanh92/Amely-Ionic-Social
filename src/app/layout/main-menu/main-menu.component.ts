@@ -338,17 +338,17 @@ export class MainMenuComponent implements OnInit {
       }]);
       let that = this;
       this.plt.ready().then((readySource) => {
-        this.localNotifications.on('click', (notification, state) => {
+        // this.localNotifications.on('click', (notification, state) => {
 
-          let alert = that.alertCtrl.create({
-            title: 'Low battery',
-            subTitle: notification + "  " + state,
-            buttons: ['Dismiss']
-          });
-          alert.present();
+        //   let alert = that.alertCtrl.create({
+        //     title: 'Low battery',
+        //     subTitle: notification + "  " + state,
+        //     buttons: ['Dismiss']
+        //   });
+        //   alert.present();
 
-          that.customService.toastMessage('click ' + id, 'bottom', 2000)
-        })
+        //   that.customService.toastMessage('click ' + id, 'bottom', 2000)
+        // })
       });
     })
 
