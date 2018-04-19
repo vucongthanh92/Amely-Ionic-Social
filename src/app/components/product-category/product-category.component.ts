@@ -11,6 +11,7 @@ import { Product } from '../../api/models/product';
   templateUrl: './product-category.component.html'
 })
 export class ProductCategoryComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(10);
   private category_id: number;
   private categories: Array<Category>;
   private shop_guid: number;
@@ -47,19 +48,19 @@ export class ProductCategoryComponent implements OnInit {
 
   loadData(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     if (retry == 0) {
-      loading.dismiss();
+      // loading.dismiss();
       this.custom_service.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
-      loading.dismiss();
+      // loading.dismiss();
       if (data.products instanceof Array) {
         this.products = data.products;
       }
@@ -88,11 +89,12 @@ export class ProductCategoryComponent implements OnInit {
       this.offset = this.offset + this.limit;
       this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
         if (data.products instanceof Array) {
-          loading.dismiss();
           this.products = this.products.concat(data.products);
         }
       });
       infiniteScroll.complete();
+      loading.dismiss();
+      
     }, 500);
   }
 

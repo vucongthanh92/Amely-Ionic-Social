@@ -105,7 +105,7 @@ export class OffersMyselfComponent implements OnInit {
           text: 'Từ chối',
         },
         {
-          text: 'Chấp nhập',
+          text: 'Chấp nhận',
           handler: data => {
             // let loading = this.loadingCtrl.create({
             //   content: 'Please wait...',

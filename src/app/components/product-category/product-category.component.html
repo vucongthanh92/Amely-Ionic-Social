@@ -33,23 +33,41 @@
 
 
   <ion-grid>
+    <ion-list *ngIf='products'>
+      <ion-item *ngFor="let product of products" (click)="openProductDetail(product)">
+        <ion-row >
+          <ion-col col-4>
+            <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
+              <span class="ribbon cruzeiro">
+                <span>VOUCHER</span>
+              </span>
+            </div>
+            <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="offer_myself_image"></div>
+            <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+          </ion-col>
+          <ion-col col-8>
+            <ion-row>{{product.title}}</ion-row>
+            <ion-row>{{ formatCurrency(product)}} </ion-row>
+            <ion-row *ngIf="product.quantity==0">hết hàng</ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
 
-    <ion-row *ngFor="let product of products" (click)="openProductDetail(product)">
-      <ion-col col-4>
-        <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
-          <span class="ribbon cruzeiro">
-            <span>VOUCHER</span>
-          </span>
-        </div>
-        <img *ngIf="product.images[0]" src="{{product.images[0]}}">
-      </ion-col>
-      <ion-col col-8>
-        <ion-row>{{product.title}}</ion-row>
-        <!-- <ion-row>{{showDescription(product.description)}}</ion-row> -->
-        <ion-row>{{ formatCurrency(product)}} </ion-row>
-        <ion-row *ngIf="product.quantity==0">hết hàng</ion-row>
-      </ion-col>
-      </ion-row>
+    <ion-list *ngIf='!products'>
+      <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+        <ion-row>
+          <ion-col col-3>
+            <div class="divCustom"></div>
+          </ion-col>
+          <ion-col col-9>
+            <h2></h2>
+            <h3></h3>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
   </ion-grid>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

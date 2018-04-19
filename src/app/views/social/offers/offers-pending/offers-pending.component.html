@@ -3,14 +3,14 @@
     <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers" (press)="openMenu($event,counterOffer)">
       <ion-item class="offer_pending_row">
 
-        <ion-item class="offer_pending_user_info">
+        <ion-item class="offer_pending_user_info" (click)="openOwner(counterOffer.offer.owner.guid, counterOffer.offer.owner.username)">
           <ion-avatar class="offer_pending_avatar" item-start>
-            <img src="{{ counterOffer.offer.owner.avatar }}">
+            <img src="{{ counterOffer.offer.owner.avatar }}" >
           </ion-avatar>
           <h2 class="offer_pending_fullname">{{ counterOffer.offer.owner.username }}</h2>
         </ion-item>
 
-        <ion-thumbnail class="offer_pending_image" [style.background]="'url(' + counterOffer.product_snapshot.images[0] + ')'" item-start></ion-thumbnail>
+        <ion-thumbnail class="offer_pending_image" [style.background]="'url(' + counterOffer.product_snapshot.images[0] + ')'" item-start (click)="openProduct(counterOffer.product_snapshot.guid)"></ion-thumbnail>
         <ion-thumbnail class="offer_pending_image" style="background-image: url('assets/imgs/image_not_found.jpg')" *ngIf="counterOffer.product_snapshot.images[0]==''"
           item-start></ion-thumbnail>
         <h2 class="offer_pending_title">{{ counterOffer.product_snapshot.title }}</h2>

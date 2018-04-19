@@ -1,5 +1,4 @@
 import { ProductComponent } from './../product/product.component';
-import { Product } from './../../api/models/product';
 import { UserComponent } from './../user/user.component';
 import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';

@@ -31,7 +31,7 @@
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=store], .tab-button-icon[aria-label=store] {
-                background-image: url(../assets/imgs/ic_tab_store.png);
+                background-image: url(../assets/imgs/amelymall-off.png);
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -39,7 +39,7 @@
         }
         a[aria-selected=true] {
             .tab-button-icon[ng-reflect-name=store], .tab-button-icon[aria-label=store] {
-                background-image: url(../assets/imgs/ic_tab_store_actived.png);
+                background-image: url(../assets/imgs/amelymall-on.png);
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: center;

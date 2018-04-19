@@ -10,6 +10,7 @@ import { InventoriesService } from '../../services/inventories.service';
   templateUrl: './invenroy-items.component.html'
 })
 export class InvenroyItemsComponent implements OnInit {
+  fakeUsers: Array<any> = new Array(30);
   private ownerGuid: number;
   private itemType: string;
   private inventoryType: string;

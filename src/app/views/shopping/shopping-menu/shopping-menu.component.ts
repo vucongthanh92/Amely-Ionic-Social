@@ -1,6 +1,6 @@
 import { CustomService } from './../../../services/custom.service';
 import { HistoryOrderComponent } from './../../../modules/history/history-order/history-order.component';
-import { NavController, App, LoadingController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { WalletsService } from '../../../services/wallets.service';
@@ -12,9 +12,8 @@ import { PaymentItemsComponent } from '../../../modules/payment/payment-items/pa
   templateUrl: './shopping-menu.component.html'
 })
 export class ShoppingMenuComponent implements OnInit {
-  private loading;
-  constructor(private nav: NavController, private appCtrl: App, private barcodeScanner: BarcodeScanner, private loadingCtrl: LoadingController
-    , private walletService: WalletsService, private paymentService: PaymentService, private customService: CustomService) { }
+  constructor(private nav: NavController, private appCtrl: App, private barcodeScanner: BarcodeScanner, 
+    private walletService: WalletsService, private paymentService: PaymentService, private customService: CustomService) { }
 
   ngOnInit() {
   }

@@ -13,7 +13,7 @@
     <ion-col class="items_nav_title" col-4>{{title}}</ion-col>
   </ion-row>
   
-  <ion-row>
+  <ion-row *ngIf="inventoriesItem">
       <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" class="items_box">
         <div class="items_box_main">
           <div class="items_box_image" *ngIf="item.product_snapshot.images" [style.background]="'url(' + item.product_snapshot.images[0] + ')'"></div>
@@ -25,7 +25,18 @@
         </div>
       </ion-col>
   </ion-row>
-</ion-content>
+    <!-- <ion-row>
+        <ion-col col-4 *ngFor='let fake of fakeUsers' style="width: 110px;" class='fakeItem'>
+          <div class="items_box_main">
+            <div class="divCustom"></div>
+            <div style="padding: 5px">
+              <h2></h2>
+              <p></p>
+            </div>
+          </div>
+        </ion-col>
+    </ion-row>
+</ion-content> -->
 
 <!-- <ion-footer>
   <ion-toolbar class="toolbarFooter">
