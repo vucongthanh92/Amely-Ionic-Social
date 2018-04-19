@@ -4,6 +4,8 @@ import { OffersService } from './../../../../services/offers.service';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../../../api/models/counter-offer';
 import { App, AlertController, LoadingController } from 'ionic-angular';
+import { UserComponent } from '../../../../components/user/user.component';
+import { ProductComponent } from '../../../../components/product/product.component';
 
 @Component({
   selector: 'app-offers-pending',
@@ -37,6 +39,8 @@ export class OffersPendingComponent implements OnInit {
     this.offerService.getCounterOffers(0, 9999).subscribe(data => {
       if (data instanceof Array) {
         this.counterOffers = data;
+        console.log(this.counterOffers);
+        
       }
       loading.dismiss();
     }, err => this.loadData(--retry));
@@ -69,7 +73,7 @@ export class OffersPendingComponent implements OnInit {
           text: 'Từ chối',
         },
         {
-          text: 'Chấp nhập',
+          text: 'Chấp nhận',
           handler: data => {
             let loading = this.loadingCtrl.create({
               content: 'Please wait...',
@@ -88,5 +92,13 @@ export class OffersPendingComponent implements OnInit {
       ]
     });
     prompt.present();
+  }
+
+  openOwner(guidOwner, username) {
+    this.app.getRootNav().push(UserComponent, { userGuid: guidOwner, username: username })
+  }
+
+  openProduct(guidProduct) {
+    this.app.getRootNav().push(ProductComponent, { guid: guidProduct });
   }
 }

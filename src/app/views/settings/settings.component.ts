@@ -5,6 +5,7 @@ import { SettingPrivateComponent } from './setting-private/setting-private.compo
 import { Component, OnInit, Input } from '@angular/core';
 import { SettingGeneralComponent } from './setting-general/setting-general.component';
 import { App, NavController, NavParams } from 'ionic-angular';
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html'

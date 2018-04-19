@@ -1,6 +1,6 @@
 import { QuickPayListItemComponent } from './../../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
 import { HistoryOrderComponent } from './../../../modules/history/history-order/history-order.component';
-import { NavController, App, LoadingController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PaymentService } from '../../../services/payment.service';
@@ -10,7 +10,9 @@ import { PaymentService } from '../../../services/payment.service';
   templateUrl: './shopping-menu.component.html'
 })
 export class ShoppingMenuComponent implements OnInit {
-  constructor(private nav: NavController, private appCtrl: App, private barcodeScanner: BarcodeScanner, private paymentService: PaymentService, private loadingCtrl: LoadingController) { }
+
+  constructor(private nav: NavController, private appCtrl: App, private barcodeScanner: BarcodeScanner, 
+    private walletService: WalletsService, private paymentService: PaymentService, private customService: CustomService, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }

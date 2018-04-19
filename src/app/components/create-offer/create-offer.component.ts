@@ -28,7 +28,7 @@ export class CreateOfferComponent implements OnInit {
   target: string;
   duration: number;
   limit_counter: number;
-  giveaway_approval: boolean = true;
+  giveaway_approval: boolean = false;
 
   limit_counter_select: any;
   offer_type_select: any;
