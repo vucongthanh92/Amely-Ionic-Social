@@ -25,7 +25,7 @@ export class QuickPayListItemComponent implements OnInit {
     this.shop = this.paymentService.payment_qr_data.shop;
 
     this.products.forEach(e => {
-      this.total_price += this.customService.netPrice(e);
+      this.total_price += (this.customService.netPrice(e) * e.display_quantity);
     });
   }
 
@@ -35,14 +35,16 @@ export class QuickPayListItemComponent implements OnInit {
     const inventoryItem = this.paymentService.payment_qr_data.items[+product.guid];
     let total = 0;
     inventoryItem.forEach(e => {
-      total += +e.quantity_temp;
+      total = +total + +e.quantity;
     })
+
     let alert = this.alertCtrl.create({
       title: 'Xử dụng sản phẩm trong kho',
       inputs: [
         {
           name: 'quantity',
-          placeholder: 'Tối đa ' + total + ' sản phẩm'
+          placeholder: 'Tối đa ' + total + ' sản phẩm',
+          type: 'number'
         }
       ],
       buttons: [
@@ -56,37 +58,30 @@ export class QuickPayListItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
-            this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
-              // this.products = data.products;
-              // data.products.forEach(e => {
-              //   if (e.redeem_quantity && e.redeem_quantity > 0) {
-              //     this.products.push(e);
-              //     e.hasInventory = 2;
-              //     this.products.push(e);
-              //   } else {
-              //     this.products.push(e)
-              //   }
-              // });
-              // // this.products = this.products.concat(data.products);
-              // console.log(this.products);
-
-              if (data && data.products && data.products instanceof Array) {
-              this.products = JSON.parse(JSON.stringify(data.products));
-                let productsTMP = [];
-                data.products.forEach(element => {
-                  if (element.redeem_quantity && element.redeem_quantity > 0) {
-                    element.hasInventory = 2;
-                    productsTMP.push(element);
-                  }
-                });
-                this.products = this.products.concat(productsTMP)
-                this.products.forEach(e => {
-                  if (!e.hasInventory || e.hasInventory != 2) {
-                    this.total_price += this.customService.netPrice(e);
-                  }
-                });
-              }
-            })
+            if (+data.quantity > total || +data.quantity > product.display_quantity) {
+              this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000)
+            } else {
+              this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
+                if (data && data.products && data.products instanceof Array) {
+                  // this.products = JSON.parse(JSON.stringify(data.products));
+                  // let productsTMP = [];
+                  // data.products.forEach(element => {
+                  //   if (element.redeem_quantity && element.redeem_quantity > 0) {
+                  //     element.hasInventory = 2;
+                  //     productsTMP.push(element);
+                  //   }
+                  // });
+                  // this.products = this.products.concat(productsTMP)
+                  // this.products.forEach(e => {
+                  //   if (!e.hasInventory || e.hasInventory != 2) {
+                  //     this.total_price += this.customService.netPrice(e);
+                  //   }
+                  // });
+                  this.total_price = +data.total
+                  this.products = data.products;
+                }
+              })
+            }
           }
         }
       ]

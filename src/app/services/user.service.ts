@@ -38,10 +38,11 @@ export class UserService {
   }
 
   updateProfile(firstname: string, lastname: string, email: string, gender: string, birthdate: string, usercurrency: string,
-    friends_hidden: string, mobile_hidden: string, birthdate_hidden: string) {
+    friends_hidden: string, mobile_hidden: string, birthdate_hidden: string, province: string, district: string, ward: string, address: string) {
     return this.api.updateProfile({
       firstname: firstname, lastname: lastname, email: email, gender: gender, birthdate: birthdate,
-      usercurrency: usercurrency, friends_hidden: friends_hidden, mobile_hidden: mobile_hidden, birthdate_hidden: birthdate_hidden
+      usercurrency: usercurrency, friends_hidden: friends_hidden, mobile_hidden: mobile_hidden, birthdate_hidden: birthdate_hidden, province: province,
+      district: district, ward: ward, address: address
     });
   }
   register(username: string, firstname: string, lastname: string, email: string, email_re: string, password: string, password_re: string, mobilelogin: string, birthdate: string, gender: string) {

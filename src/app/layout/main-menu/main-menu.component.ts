@@ -5,7 +5,7 @@ import { EventsService } from './../../services/events.service';
 import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
-import { Nav, MenuController, AlertController, Platform } from 'ionic-angular';
+import { Nav, MenuController, AlertController, Platform, App } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 import { PersonalComponent } from './../../views/personal/personal.component';
@@ -18,6 +18,7 @@ import { Notification, User } from '../../api/models';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { UserUpdateComponent } from '../../components/user/user-update/user-update.component';
 
 @Component({
   selector: 'app-main-menu',
@@ -51,6 +52,7 @@ export class MainMenuComponent implements OnInit {
     private plt: Platform,
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,
+    private appCtrl: App
   ) {
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
@@ -83,7 +85,7 @@ export class MainMenuComponent implements OnInit {
         const year = new Date(data.birthdate).getFullYear() + '';
         if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
         else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
-        
+
         this.pages = [
           { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
           { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
@@ -106,12 +108,27 @@ export class MainMenuComponent implements OnInit {
         }).catch((error) => {
           console.log('Error getting location', error);
         });
+
+        // check update profile        
+        if (!data.address || !data.province || !data.district || !data.ward) {
+          this.requestUpdateProfile()
+        }
       } else {
         this.customService.toastMessage('Thông tin tài khoản đã bị thay đổi. Vui lòng đăng nhập lại', 'bottom', 3000);
         this.nav.setRoot(SigninComponent);
       }
     })
   }
+
+  requestUpdateProfile() {
+    let myCallbackFunction = (_params) => {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+    }
+    this.appCtrl.getRootNav().push(UserUpdateComponent, { callback: myCallbackFunction, showError: true });
+  }
+
   openPage(page) {
     this.nav.setRoot(page.component);
     this.menuCtrl.close();

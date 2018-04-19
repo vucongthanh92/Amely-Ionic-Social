@@ -42,9 +42,6 @@ export class FeedsComponent implements OnInit {
   ngOnInit() {
     // console.log(this.feed_type + "  " + this.owner_guid + "  " + this.type);
     this.refreshView(5);
-    console.log(this.feed_type);
-    console.log(this.owner_guid);
-    console.log(this.type);
     this.setShowBtnAddFeed();
 
   }
