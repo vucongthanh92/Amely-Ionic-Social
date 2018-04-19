@@ -1,9 +1,11 @@
 import { QuickPayListItemComponent } from './../../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
 import { HistoryOrderComponent } from './../../../modules/history/history-order/history-order.component';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PaymentService } from '../../../services/payment.service';
+import { WalletsService } from '../../../services/wallets.service';
+import { CustomService } from '../../../services/custom.service';
 
 @Component({
   selector: 'app-shopping-menu',
