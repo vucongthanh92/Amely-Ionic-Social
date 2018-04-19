@@ -8,5 +8,9 @@ export class ProductsService {
 
   getProduct(guid: number) {
     return this.apiService.getProduct(guid);
-  } 
+  }
+
+  searchProduct(text_search, category, type) {
+    return this.apiService.searchs({ mobile: null, text_search: text_search, category: category, type: type })
+  }
 }

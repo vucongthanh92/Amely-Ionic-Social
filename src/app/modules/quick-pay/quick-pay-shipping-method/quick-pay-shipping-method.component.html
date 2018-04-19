@@ -13,23 +13,11 @@
 <ion-content class="outer-content">
   <div style="background-color: #fff;">
     <ion-list>
-      <ion-item (click)="confirmBill()">
+      <ion-item *ngFor="let method of shipping_methods" (click)="confirmBill(method)">
         <ion-thumbnail item-start>
           <img width="100%" src="assets/imgs/logo.png" />
         </ion-thumbnail>
-        <ion-label>Chuyển vào kho</ion-label>
-      </ion-item>
-      <ion-item (click)="confirmBill()">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-label>Nhận tại cửa hàng</ion-label>
-      </ion-item>
-      <ion-item (click)="shipping()">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-label>Vận chuyển</ion-label>
+        <ion-label>{{method.displayname}}</ion-label>
       </ion-item>
     </ion-list>
   </div>

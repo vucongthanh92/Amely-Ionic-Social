@@ -4,7 +4,7 @@ import { Store } from './store';
 /**
  */
 export class Shop {
-    contact?: string;
+    lat?: number;
     guid?: number;
     owner_guid?: number;
     description?: string;
@@ -19,8 +19,8 @@ export class Shop {
     owner_address?: string;
     owner_ssn?: string;
     cover?: string;
+    contact?: string;
     time_created?: number;
-    lat?: number;
     lng?: number;
     introduce?: string;
     featured?: string;
@@ -31,6 +31,8 @@ export class Shop {
     avatar_url?: string;
     cover_url?: string;
     reason?: string;
+    coverurl?: string;
+    avatarurl?: string;
     liked?: boolean;
     advertise_guid?: number;
     stores?: Store[];

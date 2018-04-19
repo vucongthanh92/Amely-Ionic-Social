@@ -1,15 +1,14 @@
 /* tslint:disable */
+import { Product } from './product';
 import { Shop } from './shop';
-import { Item } from './item';
 
 /**
  */
-export class Temp_order {
-    products?: {};
+export class Order_redeem {
+    products?: Product[];
     shop?: Shop;
     total?: number;
     tax?: number;
     sub_total?: number;
     to_guid?: number;
-    items?: Item[][];
 }

@@ -3,7 +3,8 @@
 /**
  */
 export class body_57 {
-    share_type?: string;
-    subject_guid?: number;
-    post?: string;
+    mobile?: string;
+    text_search?: string;
+    category?: string;
+    type?: string;
 }

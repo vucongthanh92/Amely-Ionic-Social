@@ -26,7 +26,7 @@
         <ion-icon name='contacts' item-start></ion-icon>
         Họ tên
         <ion-note item-end>
-          NGUYEN VAN A
+          {{userCurrent.fullname}}
         </ion-note>
       </ion-item>
 
@@ -34,15 +34,15 @@
         <ion-icon name='call' item-start></ion-icon>
         Số điện thoại
         <ion-note item-end>
-          09090909
+          {{userCurrent.mobilelogin}}
         </ion-note>
       </ion-item>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon name='navigate' item-start></ion-icon>
         Địa chỉ:
         <p>123/321 Quang Trung,Go Vap</p>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </div>
   <div class="">
@@ -55,7 +55,7 @@
         <ion-icon name='contacts' item-start></ion-icon>
         Cửa hàng
         <ion-note item-end>
-          DFM
+          {{shop.title}}
         </ion-note>
       </ion-item>
 
@@ -63,15 +63,15 @@
         <ion-icon name='call' item-start></ion-icon>
         Số điện thoại
         <ion-note item-end>
-          0905050560
+          {{shop.shop_phone}}
         </ion-note>
       </ion-item>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon name='navigate' item-start></ion-icon>
         Địa chỉ:
         <p>123/123/123 To ky, Quan 12</p>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </div>
   <div class="">
@@ -84,36 +84,36 @@
         <ion-icon name='card' item-start></ion-icon>
         Tổng tiền
         <ion-note item-end style="color: red;">
-          2000000
+          {{ formartTotalPrice() }}
         </ion-note>
       </ion-item>
 
       <ion-item>
         <ion-icon name='cash' item-start></ion-icon>
         Phương thức thanh toán
-        <p>-- COD COS .... --</p>
+        <p>{{payment_method.displayname}}</p>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='basket' item-start></ion-icon>
         Nhận hàng
-        <p>-- ATM - VISA/MASTER .... - --</p>
+        <p>{{shipping.displayname}}</p>
       </ion-item>
 
-      <ion-item>
+      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='locate' item-start></ion-icon>
         Địa chỉ giao
-        <p>123/123/123/123</p>
+        <p>{{getAddress()}}</p>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='contacts' item-start></ion-icon>
         Người nhận
-        <p>NGUYEN VAN A</p>
+        <p>{{shipping.shipping_fullname}}</p>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='call' item-start></ion-icon>
         Số điện thoại
-        <p>1234567890</p>
+        <p>{{shipping.shipping_phone}}</p>
       </ion-item>
 
     </ion-list>

@@ -21,41 +21,42 @@
   <ion-list style="margin: 0">
     <ion-item>
       <ion-thumbnail item-left>
-        <img src="assets/imgs/logo.png">
+        <img src="{{shop.avatarurl}}">
       </ion-thumbnail>
-      <h2>Sieu thi abc</h2>
+      <h2>{{shop.title}}</h2>
       <p>
-        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> 090605074</p>
+        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> {{shop.shop_phone}}</p>
       <p>
-        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> Quang Trung ,Go Vap</p>
+        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> {{shop.shop_address}}</p>
       <button ion-button clear item-right></button>
     </ion-item>
     <ion-item>
       <p>
         <strong>Thông tin chủ cửa hàng</strong>
       </p>
-      <p>Nguyễn Văn A</p>
+      <p>{{shop.owner_name}}</p>
       <p>
-        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> 090605074</p>
+        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> {{shop.owner_phone}}</p>
       <p>
-        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> Quang Trung ,Go Vap</p>
+        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> {{shop.owner_address}}</p>
     </ion-item>
   </ion-list>
   <div style="background-color: #fff;">
     <ion-list>
-      <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12] ">
+      <ion-item *ngFor="let product of products">
         <ion-thumbnail item-left>
-          <img src="">
+          <img *ngIf="product.images" src="{{product.images[0]}}">
         </ion-thumbnail>
-        <h2>Trên màn hình list tin nhắn, cần giới hạn độ dài tên (cá nhân/nhóm) hơn nữa (dài quá thì thay bằng dấu 3 chấm), vì
-          nếu ko nó chèn lên phần hiển thị thời gian (vd: 21 giờ trước …)</h2>
-        <p style="color: red; position: relative;font-weight: bold">100000
-          <span style="color: black;font-weight: normal"> x {{i}}</span>
+        <h2>{{product.title}}</h2>
+        <p style="color: red; position: relative;font-weight: bold">{{formatCurrency(product,product.currency)}}
+          <span *ngIf="product.hasInventory==null || product.hasInventory==1"  style="color: black;font-weight: normal"> x {{product.display_quantity}}</span>
+          <span *ngIf="product.hasInventory==2" style="color: black;font-weight: normal"> x {{product.redeem_quantity}}</span>
         </p>
-        <p style="color: orange;font-size: 11px">
+        <p *ngIf="product.hasInventory && product.hasInventory==1" style="color: orange;font-size: 11px">
           CÓ TRONG KHO CỦA TÔI
         </p>
-        <button ion-button clear item-right (click)="showInventoryItem()">Sử dụng</button>
+        <button *ngIf="product.hasInventory && product.hasInventory==1" ion-button clear item-right (click)="showInventoryItem(product)">Sử dụng</button>
+        <button *ngIf="product.hasInventory && product.hasInventory==2" ion-button clear item-right>Đã sử dụng</button>
       </ion-item>
     </ion-list>
   </div>
@@ -65,7 +66,7 @@
       <ion-item>
         Tổng tiền :
         <ion-note class="ionNote" item-end>
-          <p style="color: red; position: relative;font-weight: bold">100000</p>
+          <p style="color: red; position: relative;font-weight: bold">{{formatTotalPrice()}}</p>
         </ion-note>
       </ion-item>
     </div>
