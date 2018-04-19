@@ -6,7 +6,7 @@
     Gửi phản hồi
   </ion-item>
 
-  <ion-item *ngIf="!is_owner" (click)="share()">
+  <ion-item *ngIf="(is_owner || !is_owner) && post.item_type!= 'post:share:post'" (click)="share()">
      Chia sẻ
   </ion-item>
 

@@ -1,11 +1,53 @@
 app-wallet{
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: 5.6rem !important;
-        margin-bottom: 1rem;
-        font-weight: 500;
-        line-height: 1.2;
-        /* margin-top: 50px; */
+
+    .scroll-content {
+        margin: 0px !important;
     }
+
+    .wallet_container {
+        background-color: #fff;
+    }
+
+    .wallet_balance {
+        text-align: center;
+        color: #2faf44;
+        font-size: 2.5rem;
+        border-bottom: 1px solid #c8c7cc;
+        margin: 70px 0px 0px 0px;
+        padding: 10px 0px 12px 0px;
+    }
+
+    .wallet_deposit {
+        text-align: center;
+        color: #4a8bfc;
+        border-right: 1px solid #c8c7cc;
+
+        ion-icon {
+            font-size: 4rem;
+            margin: 9px 0px 0px 0px;
+        }
+
+        .wallet_deposit_title {
+            font-size: 1.5rem;
+            margin: 5px 0px 10px 0px;
+        }
+    }
+
+    .wallet_withdrawn {
+        text-align: center;
+        color: #4a8bfc;
+
+        ion-icon {
+            font-size: 4rem;
+            margin: 9px 0px 0px 0px;
+        }
+
+        .wallet_withdrawn_title {
+            font-size: 1.5rem;
+            margin: 5px 0px 10px 0px;
+        }
+    }
+
     ion-label {
         margin: 0;
         display: block;
@@ -18,10 +60,27 @@ app-wallet{
         text-overflow: ellipsis;
         white-space: normal;
     }
-    .iconTransaction{
-        width: 50px;
-        height: 50px;
-        float: left;
-        margin-right: 10px;
+
+    .list-ios {
+        margin: 0px 0 0px;
+    }
+
+    .transactions_item {
+        padding: 0px;
+
+        .item-inner {
+            padding: 3px 8px 3px 10px;
+        }
+
+        .iconTransaction{
+            width: 48px;
+            height: 48px;
+            float: left;
+            margin: 0px 12px 0px 7px;
+        }
+
+        p {
+            line-height: 20px;
+        }
     }
 }

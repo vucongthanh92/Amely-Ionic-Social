@@ -3,30 +3,25 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Xã Hội</ion-title>
-
+    <ion-title>Ví Của Tôi</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" *ngIf="wallet">
-  <h1>{{ formatCurrency(wallet.balance,wallet.currency)}}</h1>
+<ion-content class="wallet_container" *ngIf="wallet">
+  <h1 class="wallet_balance">{{ formatCurrency(wallet.balance,wallet.currency)}}</h1>
   <ion-row>
-
-
-    <ion-col col-6>
-      <button (click)="deposit()">Nạp Tiền</button>
+    <ion-col col-6 (click)="deposit()" class="wallet_deposit">
+      <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+      <div class="wallet_deposit_title">Nạp Tiền</div>
     </ion-col>
-    <ion-col col-6>
-      <button (click)="withdrawn()">Rút Tiền</button>
+    <ion-col col-6 (click)="withdrawn()" class="wallet_withdrawn">
+      <ion-icon ios="ios-share-alt" md="md-share-alt"></ion-icon>
+      <div class="wallet_withdrawn_title">Rút Tiền</div>
     </ion-col>
   </ion-row>
   <ion-list *ngIf="transactions">
-    <ion-item *ngFor="let trans of transactions" (click)="orderDetail(trans)">
+    <ion-item class="transactions_item" *ngFor="let trans of transactions" (click)="orderDetail(trans)">
       <div [innerHTML]=showTransactionDescription(trans)></div>
     </ion-item>
   </ion-list>
 </ion-content>
-
-<!-- <ion-footer>
-  <button ion-button full (click)="payment()">Thanh toán</button>
-</ion-footer> -->
