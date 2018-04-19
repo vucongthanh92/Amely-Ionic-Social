@@ -14,6 +14,7 @@ export class Item {
     inventory_type?: string;
     quantity?: number;
     owner_guid?: number;
+    quantity_temp?: number;
     product_snapshot?: Product;
     expiry_type?: string;
     is_special?: string;

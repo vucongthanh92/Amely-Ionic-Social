@@ -4,7 +4,7 @@ import { Shop } from './shop';
 /**
  */
 export class Product {
-    is_special?: string;
+    creator_guid?: string;
     guid?: number;
     type?: string;
     time_created?: string;
@@ -25,11 +25,12 @@ export class Product {
     enabled?: string;
     sku?: string;
     storage_duration?: string;
-    owner_guid?: number;
+    is_special?: string;
     product_group?: string;
-    creator_guid?: string;
+    owner_guid?: number;
     custom_attributes?: string;
     number_sold?: number;
+    redeem_quantity?: number;
     download?: number;
     featured?: number;
     sale_price?: number;
@@ -40,6 +41,8 @@ export class Product {
     approved?: string;
     current_snapshot?: number;
     voucher_category?: number;
+    hasInventory?: number;
+    display_quantity?: number;
     ticket_category?: number;
     shop_categories?: string;
     market_categories?: string;

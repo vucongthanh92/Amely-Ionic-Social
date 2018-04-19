@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Phương thức thanh toán</ion-title>
-    
+
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -14,7 +14,7 @@
       </button>
       <section #accordionContent [style.background]="contentColor" [class.active]="expanded" class="accordion-content">
         <ion-list>
-          <ion-item (click)="confirmBill()"> 
+          <ion-item (click)="confirmBill('WAP')">
             <ion-list>
               <ion-item>
                 <ion-thumbnail item-left>
@@ -25,7 +25,7 @@
             </ion-list>
           </ion-item>
 
-          <ion-item (click)="confirmBill()">
+          <ion-item (click)="confirmBill('COD')">
             <ion-list>
               <ion-item>
                 <ion-thumbnail item-left>
@@ -36,7 +36,7 @@
             </ion-list>
           </ion-item>
 
-          <ion-item (click)="confirmBill()">
+          <ion-item (click)="confirmBill('COS')">
             <ion-list>
               <ion-item>
                 <ion-thumbnail item-left>
@@ -63,27 +63,17 @@
         </button>
         <section #accordionContentPayment [style.background]="contentColor" [class.active]="expandedPayment" class="accordion-content">
           <ion-list>
-            <ion-item (click)="onPayment()">
+            <ion-item *ngFor="let payment of payment_methods"  (click)="onPayment(payment)">
               <ion-list>
                 <ion-item>
                   <ion-thumbnail item-left>
                     <img src="">
                   </ion-thumbnail>
-                  <h2>Paypal</h2>
+                  <h2>{{payment.displayname}}</h2>
                 </ion-item>
               </ion-list>
             </ion-item>
 
-            <ion-item  (click)="onPayment()">
-              <ion-list>
-                <ion-item>
-                  <ion-thumbnail item-left>
-                    <img src="">
-                  </ion-thumbnail>
-                  <h2>ATM</h2>
-                </ion-item>
-              </ion-list>
-            </ion-item>
           </ion-list>
         </section>
       </ion-list-header>

@@ -8,22 +8,17 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let i of [1,2,3,4,5] ">
+    <ion-item *ngFor="let item of inventoryItem ">
       <ion-thumbnail item-left>
-        <img src="">
+        <img *ngIf="product.images" src="{{product.images[0]}}">
       </ion-thumbnail>
-      <h2>A Modal is a content pane that goes over the user's current page. Usually it is used for making a choice or editing
-        an item. A modal uses the NavController to present itself in the root nav stack. It is added to the stack similar
-        to how NavController.push works.
+      <h2>{{product.title}}
       </h2>
-      <p>When a modal (or any other overlay such as an alert or actionsheet) is "presented" to a nav controller, the overlay
-        is added to the app's root nav. After the modal has been presented, from within the component instance The modal
-        can later be closed or "dismissed" by using the ViewController's dismiss method. Additionally, you can dismiss any
-        overlay by using pop on the root nav controller. Modals are not reusable. When a modal is dismissed it is destroyed.</p>
+      <p>{{product.description}}</p>
 
-      <ion-icon style="font-size: 4.4rem;" range-left name="remove" (click)="onMinus()"></ion-icon>
-      <button style="font-size: 2.0rem;margin: -32px  50px 0px;" ion-button disabled="true">{{quantityRedeem}}</button>
-      <ion-icon style="font-size: 4.4rem;" range-right name="add" (click)="onAdd()"></ion-icon>
+      <ion-icon style="font-size: 4.4rem;" range-left name="remove" (click)="onMinus(item.guid)"></ion-icon>
+      <button style="font-size: 2.0rem;margin: -32px  50px 0px;" ion-button disabled="true">{{item.quantity_temp}}/{{item.quantity}}</button>
+      <ion-icon style="font-size: 4.4rem;" range-right name="add" (click)="onAdd(item.guid)"></ion-icon>
 
     </ion-item>
   </ion-list>
