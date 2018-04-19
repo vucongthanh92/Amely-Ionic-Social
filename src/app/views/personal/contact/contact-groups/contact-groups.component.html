@@ -2,9 +2,7 @@
   <ion-list *ngIf="groups">
     <ion-item *ngFor="let group of groups">
       <ion-row>
-        <ion-col col-2 class="contact_group_box_image" (click)="goToPage(group.guid)">
-          <img class="contact_group_avatar" src="{{group.avatar}}" />
-        </ion-col>
+        <div class="contact_group_box_image" (click)="goToPage(group.guid)" [style.background]="'url(' + group.avatar + ')'"></div>
         <ion-col col-8 (click)="goToPage(group.guid)">
           <div class="contact_group_title">{{group.title}}</div>
           <div class="contact_group_mood">
@@ -12,7 +10,7 @@
               <ion-col class="contact_group_imageinfo" col-1>
                 <img src="assets/imgs/ic_user_admin_gray.png" />
               </ion-col>
-              <ion-col col-7 class="textInfo">
+              <ion-col col-6 class="textInfo">
                 {{getOwner(group.owner_guid).fullname}}
               </ion-col>
               <ion-col class="contact_group_imageinfo" col-1>
@@ -30,7 +28,7 @@
             </ion-row>
           </div>
         </ion-col>
-        <ion-col class="contact_group_chatbox" col-2>
+        <ion-col class="contact_group_chatbox">
           <img class="contact_group_chat" src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')" />
         </ion-col>
       </ion-row>

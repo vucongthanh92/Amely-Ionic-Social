@@ -1,17 +1,38 @@
 app-group {
-  .about-header {
-    background-color: #434954;
-    padding: 16px;
+  .group_cover {
+    padding: 64px 10px 10px 10px;
     width: 100%;
     min-height: 150px;
     text-align: center;
+    background-position: center !important;
+    background-size: cover !important;
   }
 
-  .about-header img {
-    max-width: 200px;
-    min-height: 115px;
-    margin-left: -15px;
-    padding: 25px 0 20px 0;
+  .group_avatar {
+    width: 90px;
+    height: 90px;
+    padding: 0px;
+    margin: 20px auto 0px;
+    overflow: hidden;
+    border-radius: 9px;
+    border: 1px solid #999;
+
+    img {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+    }
+  }
+
+  .group_cover_title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin: 15px 0px 10px 0px;
+    text-shadow: 0px 1px 6px #000;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .about-info p {
@@ -24,8 +45,7 @@ app-group {
     width: 20px;
   }
 
-  .md,
-  .wp {
+  .md, .wp {
     .about-info [text-right] {
       margin-right: 0;
     }
@@ -40,44 +60,13 @@ app-group {
     margin-right: 10px;
   } 
 
-
-  
-  .segment-ios-primary .segment-button{
-    border: 0px;
-    background-color: transparent; 
-    color: black;
-    height: 45px;
-  }
-
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
     color:blue;
   }
-  
-  .txtTitle{
-    clear: both;
-    font-size: 14px;
-    margin-top: -14px;
-  }
-
-  #tabIconFeeds{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_feed.png);
-  }
 
   .segment-activated img#tabIconFeeds {
     content:url(./../../assets/imgs/ic_feed_actived.png);
-  }
-
-  
-
-  #tabIconMember{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_friend.png);
   }
 
   .segment-activated img#tabIconMember {
@@ -85,15 +74,92 @@ app-group {
   }
 
   .iconGroup{
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: auto;
     float: left;
     margin-right: 5px;
   }
 
-   .iconSubTab{
-    width: 20px;
+   .group_bar_icon{
+    width: auto;
     height: 20px;
-    margin-right: 5px;
+    margin-right: 1px;
   }
+
+  .group_bar_title {
+    color: #999;
+    text-transform: capitalize;
+  }
+
+  .group_bar_button {
+    padding: 0px;
+  }
+
+  .group_navigation {
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .segment-ios-primary .segment-button.segment-activated {
+    background-color: transparent;
+    color: #488aff;
+  }
+
+  .group_tab {
+    border-bottom: 1px solid #eee;
+
+    .group_tab_box{
+      border: 0px;
+      background-color: transparent; 
+      color: #999;
+      height: 45px;
+    }
+
+    ion-icon {
+      margin: 10px 0px 0px 0px;
+    }
+
+    .tab_border {
+      border-right: 1px solid #ddd;
+    }
+
+    .group_tab_title{
+      font-size: 12px;
+      display: inline;
+      text-transform: uppercase;
+      margin: 10px 0px 0px 5px;
+      vertical-align: super;
+    }
+  }
+
+  .group_bar {
+    ion-col {
+      padding: 7px 0px 7px 0px;
+    }
+  }
+
+  .group_info {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+
+    .card-content-ios {
+        padding: 10px 16px 10px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+  }
+
+  .group_info_row {
+    margin: 5px 0px 12px 0px;
+  }
+
+  .list-ios {
+      margin: 0px !important;
+  }
+
+  ion-infinite-scroll-content {
+    min-height: 0px;
+  }
+  
 }

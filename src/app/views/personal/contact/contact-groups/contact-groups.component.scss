@@ -8,8 +8,10 @@ app-contact-groups{
     }
 
     .contact_group_box_image {
-        width: 70px;
-        height: 60px;
+        background-position: center !important;
+        background-size: cover !important;
+        width: 65px;
+        height: 65px;
         border-radius: 10px;
         overflow: hidden;
         margin: 0px;
@@ -19,11 +21,13 @@ app-contact-groups{
 
     .contact_group_imageinfo {
         padding: 5px 0px 0px 0px;
+        margin: 0px 0px 0px 3px;
     }
 
     .contact_group_chatbox {
         text-align: right;
         padding: 0px;
+        width: 20vw;
     }
 
     .contact_group_info {
@@ -36,12 +40,14 @@ app-contact-groups{
     }
 
     .contact_group_title {
-        white-space: normal;
-        font-size: 16px;
+        white-space: nowrap;
+        font-size: 15px;
         max-height: 40px;
         overflow: hidden;
         text-transform: capitalize;
         padding: 3px 0px 0px 7px;
+        text-overflow: ellipsis;
+        color: #333;
     }
 
     .item-ios {

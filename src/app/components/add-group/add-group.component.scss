@@ -1,28 +1,49 @@
   app-add-group {
-    .divContent {
+
+    .add_group_chooce {
+      min-height: 160px;
+      margin-top: 5px;
+    }
+
+    .add_group_content {
       text-align: center;
       background-color: #ffffff;
       margin-top: 10px;
-      height: 125px;
+      height: 145px;
+      overflow-y: hidden;
+      overflow-x: hidden;
     }
     .iconContent {
       font-size: 70px;
       margin-bottom: -10px;
     }
     .checkboxIcon {
-      position: relative;
-      top: -40px;
-      left: 75px;
+      position: absolute;
+      top: 0px;
+      left: 52px;
     }
-    .divIcon {
-      text-align: center;
-      position: relative;
-      right: 17px;
+
+    .add_group_user_images {
+      background-position: center !important;
+      background-size: cover !important;
+      margin: auto;
+      height: 65px;
+      width: 65px;
+      border-radius: 50%;
+      border: 1px solid #efeff4;
     }
-    .divCenter {
+
+    .add_group_user_name {
+      font-size: 14px;
+      color: #4a4d54;
+    }
+
+    .add_group_center {
       background-color: #ffffff;
-      margin-top: 145px;
-      height: 125px;
+      margin-top: 165px;
+      height: 145px;
+      overflow-y: hidden;
+      overflow-x: hidden;
     }
     .labelCenter {
       margin-left: 10px;
@@ -33,14 +54,27 @@
       top: 3px;
       left: 66px;
     }
-    .divBottom {
+    .add_group_fillname {
       background-color: #ffffff;
-      margin-top: 280px;
+      margin-top: 320px;
       height: 60px;
+
+      .item-ios.item-block .item-inner {
+        border-bottom: none;
+      }
+
+      .text-input-ios {
+        margin: 12px 8px 10px 0;
+        padding: 0px 0px 5px 1px;
+        width: calc(100% - 8px);
+        border-bottom: 0.55px solid #c8c7cc;
+        font-size: 15px;
+      }
     }
-    .divFooter {
+    
+    .add_group_regulation {
       background-color: #efeff4;
-      margin-top: 340px;
+      margin-top: 375px;
       height: 280px;
     }
     .divFooterCheckbox {
@@ -70,18 +104,39 @@
       border-radius: 30px;
       width: 125px;
     }
+
     ion-scroll[scrollX] {
     white-space: nowrap;
     .scroll-item {
       display: inline-block;
       }
     }
+
     .item-card {
       display: inline-block;
       position: relative;
-      width: 15%;
     }
+
+    .add_group_center_card {
+      display: inline-block;
+      position: relative;
+
+      ion-col {
+        padding: 0px;
+      }
+    }
+
     #row-scroll-item{
         display: block !important;
     }
+
+    .add_group_center_box {
+      min-height: 110px;
+      margin: 0px;
+    }
+
+    .add_group_center_icon_user {
+      position: relative;
+    }
+
   }
