@@ -4,12 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="!is_search_show">Xã Hội</ion-title>
-    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="social_searchbar"></ion-searchbar>
     <ion-buttons end>
-      <button ion-button (click)="search()" style="font-size: 18px;">
+      <button ion-button (click)="search()" class="search_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button ion-button  (click)="openPopover($event)" style="font-size: 18px;">
+      <button ion-button (click)="openPopover($event)" class="social_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
     </ion-buttons>
@@ -32,7 +32,7 @@
   <ion-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="SỰ KIỆN" tabIcon="event"></ion-tab>
 </ion-tabs>
-<ion-tabs tabsPlacement="bottom" primary>
+<ion-tabs tabsPlacement=search_box"bottom" primary>
   <ion-tab [root]="tab5Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
   <ion-tab [root]="tab6Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
 </ion-tabs> -->
