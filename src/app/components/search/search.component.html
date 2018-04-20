@@ -32,7 +32,7 @@
 
 <ion-content>
 
-  <div [ngSwitch]="search" *ngIf="is_has_data">
+  <div [ngSwitch]="search" *ngIf="is_has_data == 1">
     <ion-list *ngSwitchCase="'peoples'">
       <ion-item *ngFor="let user of users" (click)="goToUserProfile(user)">
         <ion-thumbnail item-start>
@@ -96,7 +96,7 @@
 
   </div>
 
-  <div *ngIf="!is_has_data">
+  <div *ngIf="is_has_data == 2">
 
     <h1>Không tìm thấy dữ liệu tìm kiếm</h1>
 

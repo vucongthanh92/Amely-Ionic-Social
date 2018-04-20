@@ -52,7 +52,7 @@ export class PersonalComponent implements OnInit {
   toggleDetails() {
     this.isOn = !this.isOn;
     if (!this.isOn) {
-      if (this.search != undefined && this.search.length > 3) {
+      if (this.search != undefined && this.search.length >= 3) {
         // this.customService.goToPageSearch(this.search, this.nav);
         this.nav.push(SearchComponent, { param: this.search, service: this })
       } else {

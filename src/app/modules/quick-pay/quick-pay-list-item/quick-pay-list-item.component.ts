@@ -2,8 +2,7 @@ import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Product } from './../../../api/models/product';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController, AlertController } from 'ionic-angular';
-import { QuickPayRedeemComponent } from '../quick-pay-redeem/quick-pay-redeem.component';
+import { NavController, AlertController } from 'ionic-angular';
 import { QuickPayMethodComponent } from '../quick-pay-method/quick-pay-method.component';
 import { Shop } from '../../../api/models';
 
@@ -17,7 +16,7 @@ export class QuickPayListItemComponent implements OnInit {
   shop: Shop;
   total_price: number = 0;
 
-  constructor(private modalCtrl: ModalController, private nav: NavController, private paymentService: PaymentService, private customService: CustomService
+  constructor(private nav: NavController, private paymentService: PaymentService, private customService: CustomService
     , private alertCtrl: AlertController) { }
 
   ngOnInit() {

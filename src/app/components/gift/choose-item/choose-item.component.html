@@ -8,7 +8,7 @@
   <div id="divContent">
     <ion-row>
       <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;" (click)="presentItemDetail(item)">
-        <div>
+        <div *ngIf="item.product_snapshot.approved != 'new' && item.product_snapshot.approved != 'suspended'">
           <img width="100%" *ngIf="item.product_snapshot.images[0]" src="{{item.product_snapshot.images[0]}}" />
           <img width="100%" *ngIf="item.product_snapshot.images[0]=='' " src="assets/imgs/image_not_found.jpg">
           <div style="padding: 5px">

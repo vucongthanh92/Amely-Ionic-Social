@@ -57,7 +57,7 @@ export class SocialComponent implements OnInit {
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {
-      if (this.search_content != undefined && this.search_content.length > 3) {
+      if (this.search_content != undefined && this.search_content.length >= 3) {
         // this.customService.goToPageSearch(this.search_content,this.nav);
         this.nav.push(SearchComponent, { param: this.search_content, service: this })
       } else {
