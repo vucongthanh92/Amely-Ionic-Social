@@ -118,7 +118,7 @@ export class FirebaseService {
     this.afDatabase.object('/offers/' + guid).remove();
   }
 
-  getOrder(guid) {
-    return this.afDatabase.list('/orders/' + guid);
+  getOrder(shopguid, guid) {
+    return this.afDatabase.list('/orders/' + shopguid + "/" + guid);
   }
 }
