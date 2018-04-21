@@ -7,15 +7,30 @@
 <ion-content style="background-color: #57bde3;height: 100%;position: relative">
   <div id="divContent">
     <ion-row>
-      <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;" (click)="presentItemDetail(item)">
-        <div *ngIf="item.product_snapshot.approved != 'new' && item.product_snapshot.approved != 'suspended'">
-          <img width="100%" *ngIf="item.product_snapshot.images[0]" src="{{item.product_snapshot.images[0]}}" />
-          <img width="100%" *ngIf="item.product_snapshot.images[0]=='' " src="assets/imgs/image_not_found.jpg">
-          <div style="padding: 5px">
-            <p no-margin>{{item.product_snapshot.title}}</p>
-            <p no-margin>SL: {{item.quantity}}</p>
-          </div>
+      <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;" >
+        <div *ngIf="item.product_snapshot.approved != 'new' && item.product_snapshot.approved != 'suspended'; else other_content" style="width: 110px;">
+          <div (click)="presentItemDetail(item)">
+            <div *ngIf="item.product_snapshot.images[0]" [style.background]="'url(' + item.product_snapshot.images[0] + ')'" class="offer_myself_image"></div>
+            <div *ngIf="item.product_snapshot.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+            <div style="padding: 5px">
+              <p no-margin>{{item.product_snapshot.title}}</p>
+              <p no-margin>SL: {{item.quantity}}</p>
+            </div>
+          </div>                  
         </div>
+        <ng-template #other_content>
+          <div class="item-ribbon offer_search_ribbon" style="opacity: 0.5;">
+            <span *ngIf="item.product_snapshot.approved == 'new' || item.product_snapshot.approved == 'suspended'" class="ribbon sale">
+              <span>Hết Hàng</span>
+            </span>
+            <div *ngIf="item.product_snapshot.images[0]" [style.background]="'url(' + item.product_snapshot.images[0] + ')'" class="offer_myself_image"></div>
+            <div *ngIf="item.product_snapshot.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+            <div style="padding: 5px">
+              <p no-margin>{{item.product_snapshot.title}}</p>
+              <p no-margin>SL: {{item.quantity}}</p>
+            </div>
+          </div>
+        </ng-template>
       </ion-col>
     </ion-row>
   </div>
