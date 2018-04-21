@@ -114,7 +114,11 @@ export class FirebaseService {
     return this.afDatabase.list(path);
   }
 
-  deleteOffer(guid){
+  deleteOffer(guid) {
     this.afDatabase.object('/offers/' + guid).remove();
+  }
+
+  getOrder(shopguid, guid) {
+    return this.afDatabase.list('/orders/' + shopguid + "/" + guid);
   }
 }

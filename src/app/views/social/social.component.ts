@@ -1,3 +1,4 @@
+import { PaymentService } from './../../services/payment.service';
 import { SearchComponent } from './../../components/search/search.component';
 import { MenuController, PopoverController } from 'ionic-angular';
 import { Component, OnInit, Input } from '@angular/core';
@@ -8,6 +9,7 @@ import { EventsComponent } from './events/events.component';
 import { CustomService } from '../../services/custom.service';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { SocialMenuComponent } from './social-menu/social-menu.component';
+import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
 
 @Component({
   selector: 'app-social',
@@ -24,12 +26,13 @@ export class SocialComponent implements OnInit {
   tab4Root = EventsComponent;
   tab5Root = NearByComponent;
   tab6Root = EventsComponent;
-  
+
   constructor(
     public nav: NavController, public appCtrl: App, public navParams: NavParams,
     public menuCtrl: MenuController,
     public customService: CustomService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private paymentService: PaymentService
   ) {
     // this.menuCtrl.enable(true, 'mainMenu');
     var ratio = window.devicePixelRatio || 1;
@@ -65,4 +68,43 @@ export class SocialComponent implements OnInit {
       }
     }
   }
+
+  payment() {
+    let code = "cnZSY0NwZTRmaUxtc29pU1dRb3pORGdEWTd4ZTBRemU3K2Y4alVmSG1udz0";
+    this.paymentService.getTempOrder(code).subscribe(data => {
+      // check update profile        
+
+      this.paymentService.payment_qr_data = data;
+      this.paymentService.getPaymentMethod().subscribe(data => {
+        this.paymentService.payment_order_post = data;
+        this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+      });
+
+    })
+    // this.barcodeScanner.scan().then((barcodeData) => {
+    //   let loading = this.loadingCtrl.create({
+    //     content: 'Please wait...',
+    //     enableBackdropDismiss: true
+    //   });
+
+    //   loading.present();
+    //   this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+    //     // check update profile        
+    //     if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+    //       this.requestUpdateProfile()
+    //       loading.dismiss();
+    //     } else {
+    //       this.paymentService.payment_qr_data = data;
+    //       this.paymentService.getPaymentMethod().subscribe(data => {
+    //         this.paymentService.payment_order_post = data;
+    //         loading.dismiss();
+    //         this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+    //       });
+    //     }
+    //   })
+    // }, (err) => {
+    //   this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
+    // });
+  }
+
 }

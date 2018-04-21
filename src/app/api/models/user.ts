@@ -5,7 +5,7 @@ import { Shop } from './shop';
 /**
  */
 export class User {
-    usercurrency?: string;
+    avatar?: string;
     guid?: number;
     last_name?: string;
     password?: string;
@@ -15,9 +15,9 @@ export class User {
     birthdate?: string;
     gender?: string;
     mobilelogin?: string;
-    username?: string;
+    usercurrency?: string;
     address?: string;
-    avatar?: string;
+    username?: string;
     cover?: string;
     birthdate_hidden?: string;
     mobile_hidden?: string;
@@ -26,4 +26,7 @@ export class User {
     gift_count?: number;
     mood?: Mood;
     shop?: Shop;
+    province?: string;
+    district?: string;
+    ward?: string;
 }

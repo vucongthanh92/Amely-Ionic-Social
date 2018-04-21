@@ -1,3 +1,6 @@
+import { PROVINCES } from './../../../provinces';
+import { WARDS } from './../../../wards';
+import { DISTRICTS } from './../../../districts';
 import { UserService } from './../../../services/user.service';
 import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +21,14 @@ export class UserUpdateComponent implements OnInit {
   public birthdate_hidden: boolean;
   public friend_hidden: boolean;
   public callback: any;
-
+  public provinces;
+  public wards;
+  public districts;
+  public address;
+  public province_id;
+  public ward_id;
+  public district_id;
+  public showError: boolean;
   public user_current: User;
   constructor(private customService: CustomService, private userService: UserService, private nav: NavController, private navParams: NavParams, public loadingCtrl: LoadingController) {
     this.user_current = this.customService.user_current;
@@ -26,34 +36,53 @@ export class UserUpdateComponent implements OnInit {
     this.first_name = this.user_current.first_name;
     this.last_name = this.user_current.last_name;
     this.birthdate = this.user_current.birthdate;
+    this.province_id = this.user_current.province;
+    this.district_id = this.user_current.district;
+    this.ward_id = this.user_current.ward;
+    this.address = this.user_current.address;
     this.mobile_hidden = !this.user_current.mobile_hidden || this.user_current.mobile_hidden == '0' ? false : true;
     this.birthdate_hidden = !this.user_current.birthdate_hidden || this.user_current.birthdate_hidden == '0' ? false : true;
     this.friend_hidden = !this.user_current.friends_hidden || this.user_current.friends_hidden == '0' ? false : true;
-    console.log(this.mobile_hidden);
-    console.log(this.birthdate_hidden);
-    console.log(this.friend_hidden);
-
     this.callback = this.navParams.get('callback');
+    this.showError = this.navParams.get('showError');
+    this.provinces = PROVINCES;
+    this.districts = this.province_id ? DISTRICTS.filter(data => data.provinceid == this.province_id) : undefined;
+    this.wards = this.district_id ? WARDS.filter(data => data.districtid == this.district_id) : undefined;
   }
 
   ngOnInit() {
 
   }
 
+  onProvinceChange(provinceid: string) {
+    this.districts = DISTRICTS.filter(data => data.provinceid == provinceid);
+    this.wards = false;
+    this.ward_id = null;
+    this.district_id = null;
+  }
+
+  onDistrictChange(districtid: string) {
+    this.wards = WARDS.filter(data => data.districtid == districtid);
+    this, this.ward_id = null;
+  }
+
+  onWardChange(wardid: string) {
+
+  }
+
   updateInfo() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
     if (!this.first_name || !this.last_name) {
-      loading.dismiss(); 
       this.customService.toastMessage('Họ tên không được để trống', 'bottom', 2000)
+    } else if (!this.address || !this.province_id || !this.district_id || !this.ward_id) {
+      this.customService.toastMessage('Vui lòng cập nhật địa chỉ cá nhân', 'bottom', 2000)
     } else {
-      console.log(this.friend_hidden);
-     
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss: true
+      });
+      loading.present();
       this.userService.updateProfile(this.first_name, this.last_name, null, this.gender, this.birthdate, null, this.friend_hidden == true ? '1' : '0'
-        , this.mobile_hidden == true ? '1' : '0', this.birthdate_hidden == true ? '1' : '0').subscribe(data => {
+        , this.mobile_hidden == true ? '1' : '0', this.birthdate_hidden == true ? '1' : '0', this.province_id, this.district_id, this.ward_id, this.address).subscribe(data => {
           if (data.status) {
             this.customService.toastMessage('Cập nhật thông tin thành công', 'bottom', 2000);
             this.customService.user_current.first_name = this.first_name;
@@ -64,13 +93,17 @@ export class UserUpdateComponent implements OnInit {
             this.customService.user_current.mobile_hidden = this.mobile_hidden ? '1' : '0';
             this.customService.user_current.birthdate_hidden = this.birthdate_hidden ? '1' : '0';
             this.customService.user_current.fullname = this.first_name + " " + this.last_name;
+            this.customService.user_current.province = this.province_id;
+            this.customService.user_current.district = this.district_id;
+            this.customService.user_current.ward = this.ward_id;
+            this.customService.user_current.address = this.address;
             this.callback(true).then(() => {
               this.nav.pop()
             });
           } else {
             this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
           }
-          loading.dismiss();          
+          loading.dismiss();
         }, err => this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại sau', 'bottom', 4000));
     }
   }

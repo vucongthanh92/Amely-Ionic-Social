@@ -74,7 +74,7 @@ export class QuickPayMethodComponent implements OnInit {
         payment.filename = quickpay;
         payment.displayname = 'COS, tiền mặt nhập kho';
         break;
-      case 'WAP':
+      case 'WOD':
         payment.filename = quickpay;
         payment.displayname = 'Ví của tôi, nhận hàng';
         break;
