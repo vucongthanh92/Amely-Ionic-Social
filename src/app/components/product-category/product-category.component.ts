@@ -92,10 +92,9 @@ export class ProductCategoryComponent implements OnInit {
         if (data.products instanceof Array) {
           this.products = this.products.concat(data.products);
         }
+        loading.dismiss();
       });
       infiniteScroll.complete();
-      loading.dismiss();
-      
     }, 500);
   }
 

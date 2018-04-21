@@ -127,9 +127,9 @@ export class GiftComponent implements OnInit {
               this.nav.pop();
             } else {
               const toast = this.toastCtrl.create({
-                message: 'Lỗi tặng quà !!!',
+                message: 'Hạn mức số lần tặng quà đã hết !!!',
                 position: "bottom",
-                duration: 2000
+                duration: 3000
               });
              
               toast.present();

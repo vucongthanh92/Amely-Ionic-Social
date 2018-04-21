@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   search: string = "peoples";
   isIos: boolean = false;
   contentSearch: string;
-  is_has_data: boolean;
+  is_has_data: number=0;
   public users: Array<User>;
   public groups: Array<Group>;
   public products: Array<Product>;
@@ -62,38 +62,41 @@ export class SearchComponent implements OnInit {
       if (data.business) {
        
         this.business = data.business;
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'business';
       }
       if (data.events) {
       
         this.events = data.events;
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'event';
       }
 
       if (data.groups) {
         this.groups = data.groups;
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'group';
       }
 
       if (data.shops) {
         this.shops = data.shops;
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'store';
       }
 
       if (data.products) {
         this.products = data.products;
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'product';
       }
 
       if (data.users) {
         this.users = data.users
-        this.is_has_data = true;
+        this.is_has_data = 1;
         this.search = 'peoples';
+      }
+      if (!this.users && !this.events && !this.products && !this.groups && !this.shops && !this.business) {
+        this.is_has_data = 2;
       }
       loading.dismiss();
       

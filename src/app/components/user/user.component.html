@@ -63,7 +63,7 @@
 
     <div *ngIf="newfeedsPage">
       <ion-card *ngIf="user.shop.guid" class="profile_store">
-        <ion-card-content>
+        <ion-card-content *ngIf="user.shop.status == '3' || user.shop.status == '5'">
           <ion-item (click)="goToPage(user.shop.guid, 'shop')">
             <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
           </ion-item>
