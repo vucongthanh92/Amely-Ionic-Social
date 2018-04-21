@@ -6,8 +6,6 @@ import { NavController, App, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PaymentService } from '../../../services/payment.service';
-import { WalletsService } from '../../../services/wallets.service';
-import { CustomService } from '../../../services/custom.service';
 import { UserUpdateComponent } from '../../../components/user/user-update/user-update.component';
 
 
