@@ -98,8 +98,8 @@ export class QuickPayConfirmComponent implements OnInit {
       });
 
       loading.present();
-
-      this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query.on("child_removed", snapshot => {
+      let listene = this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query;
+      listene.on("child_removed", snapshot => {
         loading.dismiss;
         switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
           case 'COS':
@@ -112,6 +112,7 @@ export class QuickPayConfirmComponent implements OnInit {
             this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng");
             break
         }
+        listene.off();
       });
     }
 
