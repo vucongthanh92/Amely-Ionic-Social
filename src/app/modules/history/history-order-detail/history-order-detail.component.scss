@@ -1,0 +1,47 @@
+app-history-order-detail {
+    .history_order {
+        background-color: #fff;
+    }
+
+    .history_order_price {
+        color: red;  
+        position: relative;
+    }
+
+    .history_order_item {
+        border-bottom: 1px solid #c8c7cc;
+    }
+
+    .history_order_images {
+        background-size: cover !important;
+        background-position: center !important;
+        width: 65px;
+        height: 60px;
+        margin: auto;
+        border-radius: 3px;
+    }
+
+    .history_order_title {
+        font-size: 1.6rem;
+        margin: 5px 0px 5px 0px;
+        text-transform: capitalize;
+        color: #333;
+    }
+
+    .history_order_description {
+        margin: 5px 0px 5px 0px;
+        color: #333;
+        font-size: 1.4rem;
+    }
+
+    .history_order_total {
+        background-color: #ffffff;
+        padding: 0px 0px 5px 0px;
+    }
+
+    .history_order_total_box {
+        ion-item, .item-inner {
+            padding: 0px !important;
+        }
+    }
+}

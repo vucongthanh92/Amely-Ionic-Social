@@ -4,15 +4,15 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="!is_search_show">Mua Sắm</ion-title>
-    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
     <ion-buttons end>
-      <button ion-button class="shopping_bar_icon" (click)="search()" style="font-size: 18px;">
+      <button ion-button class="shopping_bar_icon" (click)="search()" class="shopping_search_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button ion-button class="shopping_bar_icon" (click)="changePage()" style="font-size: 18px;">
+      <button ion-button class="shopping_bar_icon" (click)="changePage()" class="shopping_cart">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
       </button>
-      <button class="personal_event" ion-button (click)="openPopover($event)" style="font-size: 18px; margin: 0 10px;">
+      <button class="personal_event" ion-button (click)="openPopover($event)" class="shopping_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
     </ion-buttons>

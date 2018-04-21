@@ -5,23 +5,21 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <div style="background-color: #fff;">
+  <div class="history_order">
     <ion-row *ngIf="order">
-      <ion-col col-12 *ngFor="let item of order.order_item">
+      <ion-col col-12 class="history_order_item" *ngFor="let item of order.order_item">
         <ion-grid>
           <ion-row>
             <ion-col col-3>
-              <img width="100%" *ngIf="item.images" src="{{item.images[0]}}" />
+              <div *ngIf="item.images" [style.background]="'url(' + item.images[0] + ')'" class="history_order_images"></div>
             </ion-col>
             <ion-col col-7>
-              <h6> {{item.title}} </h6>
-              <p style="top:-10px; position: relative;">
-                <a style="color: red;  position: relative;">{{formatCurrency(item)}} </a>
-                x {{item.qty}}
+              <h3 class="history_order_title">{{item.title}} </h3>
+              <p class="history_order_description">
+                <a class="history_order_price">{{formatCurrency(item)}}</a> x {{item.qty}}
               </p>
               <!-- <p style="top:-10px; position: relative;">Thuế : {{item.tax}}%</p> -->
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </ion-col>
@@ -29,8 +27,8 @@
   </div>
 </ion-content>
 
-<ion-footer style="background-color: #ffffff;" *ngIf="order">
-  <div padding-horizontal>
+<ion-footer class="history_order_total" *ngIf="order">
+  <div class="history_order_total_box" padding-horizontal>
     <ion-item>
       Tổng sản phẩm
       <ion-note class="ionNote" item-end>

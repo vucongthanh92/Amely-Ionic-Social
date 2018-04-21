@@ -4,16 +4,15 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="!isOn">Của tôi</ion-title>
-    <ion-searchbar [(ngModel)]="search" *ngIf="isOn"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="search" *ngIf="isOn" class="personal_searchbar"></ion-searchbar>
     <ion-buttons end>
-      <button class="personal_search" ion-button (click)="toggleDetails()" style="font-size: 18px;">
+      <button class="personal_search" ion-button (click)="toggleDetails()" class="personal_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button class="personal_event" ion-button (click)="openPopover($event)" style="font-size: 18px;">
+      <button class="personal_event" ion-button (click)="openPopover($event)" class="personal_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
 </ion-header>
 

@@ -1,19 +1,41 @@
 app-inventory-menu{
-    .ladda-button:hover {
-    border-color: rgba(0, 0, 0, 0.07);
-     background-color: #fff;
-    }
+
     .ladda-button {
-    /* background: #666; */
-    /* border: 0; */
-    /* padding: 14px 18px; */
-    /* font-size: 18px; */
-     color: #000; 
-    border-radius: 2px;
-    border: 1px solid transparent;
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
+        background-color: #fff;
+        color: #000;
+        border-radius: 2px;
+        border-bottom: 1px solid #c8c7cc;
+
+        .item-inner {
+            border-bottom: none !important;
+        }
+    }
+
+    span {
+        vertical-align: top;
+        line-height: 25px;
+        font-size: 1.6rem;
+    }
+    
+    .ladda-button:hover {
+        background-color: #fff;
+    }
+
+    .inventory_menu_history {
+        border-bottom: none !important;
+    }
+
+    .inventory_menu_icon {
+        font-size: 2.4rem;
+        margin: 0px 5px 0px 5px;
+    }
+
+    .list-ios {
+        margin: 0px 0 7px;
+    }
+
+    .label-ios {
+        margin: 5px 0px 0px 0px;
     }
     
 }

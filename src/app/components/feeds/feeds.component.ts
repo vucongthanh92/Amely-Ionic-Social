@@ -42,7 +42,6 @@ export class FeedsComponent implements OnInit {
   ngOnInit() {
     this.refreshView(5);
     this.setShowBtnAddFeed();
-
   }
 
   setShowBtnAddFeed() {
