@@ -78,23 +78,14 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
-    <plugin name="cordova-plugin-device" spec="1.1.4" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
     <allow-navigation href="http://192.168.40.102:8100" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
-    <plugin name="cordova-plugin-filepath" spec="^1.1.0" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.2">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
-    </plugin>
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <allow-navigation href="http://192.168.40.106:8100" />
     <engine name="android" spec="~7.0.0" />
     <engine name="ios" spec="~4.5.4" />
-    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
     <plugin name="cordova-plugin-googlemaps" spec="^2.2.8">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyC0taNaVmMIfUbwRmsGToOIY21NqDtr4uo" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCajktuZ8VjlqGLU91u7JkRtifJEooHlHg" />
@@ -105,4 +96,16 @@
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="im.ltdev.cordova.UserAgent" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.2.0" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-filepath" spec="^1.3.0" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+    </plugin>
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
+    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
 </widget>

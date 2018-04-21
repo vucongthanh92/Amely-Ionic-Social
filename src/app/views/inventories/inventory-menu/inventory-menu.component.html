@@ -1,8 +1,11 @@
 <ion-list>
   <ion-item [ladda]="is_press_wallet" (click)="openWallet()">
-    <img width="24px" height="24px" src="assets/imgs/ic_quantity_gift.png">>Ví của tôi
+      <ion-icon class="inventory_menu_icon" ios="ios-card" md="md-card"></ion-icon>
+    <span>Ví của tôi</span>
   </ion-item>
-  <ion-item (click)="historyDelivery()">
-    <img width="24px" height="24px" src="assets/imgs/ic_quantity_gift.png">>Lịch sử giao hàng
+  
+  <ion-item (click)="historyDelivery()" class="inventory_menu_history">
+    <ion-icon class="inventory_menu_icon" ios="ios-timer" md="md-timer"></ion-icon>
+    <span>Lịch sử giao hàng</span>
   </ion-item>
 </ion-list>

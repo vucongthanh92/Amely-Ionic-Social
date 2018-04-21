@@ -3,7 +3,8 @@
     <ion-title>Cập nhật thông tin</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
+<ion-content class="outer-content" style="background: white">
+  <h5 *ngIf="showError"  style="color: red">Vui lòng cập nhật đầy đủ thông tin</h5>
   <ion-list>
 
     <ion-item>
@@ -41,8 +42,33 @@
       <ion-toggle [(ngModel)]="friend_hidden"></ion-toggle>
     </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Địa chỉ</ion-label>
+      <ion-input type="text" [(ngModel)]="address" name="shipping_address"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Thành phố / Tỉnh</ion-label>
+      <ion-select *ngIf="provinces" [(ngModel)]="province_id" name="province" (ionChange)="onProvinceChange($event)" >
+        <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Quận / Huyện</ion-label>
+      <ion-select *ngIf="districts" [(ngModel)]="district_id" name="district" (ionChange)="onDistrictChange($event)">
+        <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Phường / Xã</ion-label>
+      <ion-select *ngIf="wards" [(ngModel)]="ward_id" name="ward" (ionChange)="onWardChange($event)" >
+        <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+
     <div padding>
       <button (click)="updateInfo()" ion-button color="primary" block>Cập nhật</button>
     </div>
+
   </ion-list>
 </ion-content>

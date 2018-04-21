@@ -9,4 +9,5 @@ export class DefaultResponse {
     status?: boolean;
     validation?: User;
     code?: string;
+    url?: string;
 }
