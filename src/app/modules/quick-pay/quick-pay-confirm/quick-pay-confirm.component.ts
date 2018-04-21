@@ -24,6 +24,8 @@ export class QuickPayConfirmComponent implements OnInit {
   public userCurrent: User;
   public shipping_methods: any;
   private user_current: User;
+  private listener;
+  private alert;
   constructor(private paymentService: PaymentService, private customService: CustomService, private nav: NavController,
     private fbService: FirebaseService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
 
@@ -43,22 +45,22 @@ export class QuickPayConfirmComponent implements OnInit {
 
     console.log(this.paymentService.payment_qr_data.to_guid);
 
-    this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query.on("child_removed", snapshot => {
-      console.log(this.paymentService.payment_qr_data.to_guid);
-      console.log(snapshot);
-      console.log(snapshot.val());
-      switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
-        case 'COS':
-          this.createAlertConfirm("Sản phẩm đã được chuyển vào kho");
-          break;
-        case 'COD':
-          this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng");
-          break;
-        case 'WOD':
-          this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng");
-          break
-      }
-    });
+    // this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query.on("child_removed", snapshot => {
+    //   console.log(this.paymentService.payment_qr_data.to_guid);
+    //   console.log(snapshot);
+    //   console.log(snapshot.val());
+    //   switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
+    //     case 'COS':
+    //       this.createAlertConfirm("Sản phẩm đã được chuyển vào kho");
+    //       break;
+    //     case 'COD':
+    //       this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng");
+    //       break;
+    //     case 'WOD':
+    //       this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng");
+    //       break
+    //   }
+    // });
   }
 
   getTotalPrice() {
@@ -98,40 +100,47 @@ export class QuickPayConfirmComponent implements OnInit {
       });
 
       loading.present();
-      let listene = this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query;
-      listene.on("child_removed", snapshot => {
-        loading.dismiss;
+      this.listener = this.fbService.getOrder(this.paymentService.payment_qr_data.to_guid).query;
+      this.listener.on("child_removed", snapshot => {
+        // loading.dismiss();
+        console.log(this.paymentService.quick_pay_send_data.paymentMethod.filename);
+
         switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
           case 'COS':
-            this.createAlertConfirm("Sản phẩm đã được chuyển vào kho");
+            this.createAlertConfirm("Sản phẩm đã được chuyển vào kho", loading);
             break;
           case 'COD':
-            this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng");
+            this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng", loading);
             break;
           case 'WOD':
-            this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng");
+            this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng", loading);
             break
         }
-        listene.off();
+
       });
     }
 
   }
 
-  createAlertConfirm(message) {
-    let alert = this.alertCtrl.create({
-      title: 'Thông báo',
-      message: message,
-      buttons: [
-        {
-          text: 'Xác nhận',
-          handler: () => {
-            this.nav.popToRoot();
+  createAlertConfirm(message, loading) {
+    this.listener.off("child_removed", snapshot => { });
+    if (!this.alert) {
+      loading.dismiss();
+      this.alert = this.alertCtrl.create({
+        title: 'Thông báo',
+        message: message,
+        buttons: [
+          {
+            text: 'Xác nhận',
+            handler: () => {
+              this.nav.popToRoot();
+            }
           }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+      this.alert.present();
+    }
+
   }
 
 }
