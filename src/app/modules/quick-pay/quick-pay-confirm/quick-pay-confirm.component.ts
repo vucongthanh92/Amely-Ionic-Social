@@ -45,7 +45,7 @@ export class QuickPayConfirmComponent implements OnInit {
     console.log(this.paymentService.payment_qr_data.to_guid);
     console.log(this.paymentService.quick_pay_send_data.shipping_methods);
 
-    if (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage') {
+    if (this.paymentService.quick_pay_send_data.shipping_methods && (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage')) {
       this.paymentService.quick_pay_send_data.shipping = null;
     }
   }
@@ -112,7 +112,7 @@ export class QuickPayConfirmComponent implements OnInit {
           this.user_current.province, this.user_current.district, this.user_current.ward, "", this.paymentService.quick_pay_send_data.paymentMethod.filename, "",
           this.user_current.mobilelogin, this.paymentService.quick_pay_send_data.shipping.shipping_phone, this.paymentService.quick_pay_send_data.shipping.shipping_address,
           this.paymentService.quick_pay_send_data.shipping.shipping_province, this.paymentService.quick_pay_send_data.shipping.shipping_district, this.paymentService.quick_pay_send_data.shipping.shipping_ward,
-          "", this.shipping_methods.filename , "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+          "", this.shipping_methods.filename, "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
 
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
@@ -127,7 +127,7 @@ export class QuickPayConfirmComponent implements OnInit {
           });
       } else {
         this.paymentService.quickPay(null, this.user_current.fullname, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
-          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, null, null, null, null, null, "", this.shipping_methods.filename , "0",
+          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, null, null, null, null, null, "", this.shipping_methods.filename, "0",
           this.paymentService.payment_qr_data.to_guid).subscribe(data => {
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
