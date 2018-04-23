@@ -43,9 +43,10 @@ export class QuickPayConfirmComponent implements OnInit {
     console.log(this.paymentService.payment_qr_data);
     // console.log(this.paymentService.quick_pay_send_data.paymentMethod.displayname);
     console.log(this.paymentService.payment_qr_data.to_guid);
-    if (this.paymentService.quick_pay_send_data.shipping_methods.filename == 'sq/pickup' || this.paymentService.quick_pay_send_data.shipping_methods.filename == 'sq/storage') {
+    console.log(this.paymentService.quick_pay_send_data.shipping_methods);
+
+    if (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage') {
       this.paymentService.quick_pay_send_data.shipping = null;
-      this.paymentService.quick_pay_send_data.shipping_method = null;
     }
   }
 
@@ -85,7 +86,7 @@ export class QuickPayConfirmComponent implements OnInit {
         content: 'Please wait...'
       });
 
-      // loading.present();
+      loading.present();
       this.listener = this.fbService.getOrder(this.paymentService.quick_pay_send_data.shop.guid, this.paymentService.payment_qr_data.to_guid).query;
       this.listener.on("child_removed", snapshot => {
         // loading.dismiss();
@@ -106,12 +107,12 @@ export class QuickPayConfirmComponent implements OnInit {
       });
     } else {
       // payment by Onepay, Paypal
-      if (this.paymentService.quick_pay_send_data.shipping && this.paymentService.quick_pay_send_data.shipping_method) {
+      if (this.paymentService.quick_pay_send_data.shipping) {
         this.paymentService.quickPay(this.paymentService.quick_pay_send_data.shipping.shipping_fullname, this.user_current.fullname, this.user_current.address,
           this.user_current.province, this.user_current.district, this.user_current.ward, "", this.paymentService.quick_pay_send_data.paymentMethod.filename, "",
           this.user_current.mobilelogin, this.paymentService.quick_pay_send_data.shipping.shipping_phone, this.paymentService.quick_pay_send_data.shipping.shipping_address,
           this.paymentService.quick_pay_send_data.shipping.shipping_province, this.paymentService.quick_pay_send_data.shipping.shipping_district, this.paymentService.quick_pay_send_data.shipping.shipping_ward,
-          "", this.paymentService.quick_pay_send_data.shipping_method.filename, "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+          "", this.shipping_methods.filename , "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
 
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
@@ -126,7 +127,7 @@ export class QuickPayConfirmComponent implements OnInit {
           });
       } else {
         this.paymentService.quickPay(null, this.user_current.fullname, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
-          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, null, null, null, null, null, "", null, "0",
+          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, null, null, null, null, null, "", this.shipping_methods.filename , "0",
           this.paymentService.payment_qr_data.to_guid).subscribe(data => {
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
@@ -147,7 +148,7 @@ export class QuickPayConfirmComponent implements OnInit {
   createAlertConfirm(message, loading) {
     this.listener.off("child_removed", snapshot => { });
     if (!this.alert) {
-      // loading.dismiss();
+      loading.dismiss();
       this.alert = this.alertCtrl.create({
         title: 'Thông báo',
         message: message,
