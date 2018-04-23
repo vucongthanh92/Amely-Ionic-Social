@@ -87,11 +87,10 @@ app-create-event {
     }
 
     .create_event_time_half_col {
-        background-color: #ffffff;
-        border-radius: 10px;
         position: relative;
-        max-width: 48%;
-        margin: 0px 0px 0px 5px;
+        width: 50%;
+        margin: 0px;
+        padding: 0px 5px 0px 5px;
 
         .create_event_time_icon {
             margin-left: 36vw;
@@ -151,31 +150,20 @@ app-create-event {
         color: #289ae1;
         float: left;
     }
-
-     .endDay {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .startTime {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .endTime {
-         margin-left: 5px;
-         max-width: 48%;
-    }
     
     .location {
         margin-left: 5px;
         margin-right: 5px;
     }
 
-     .create_event_time_row {
+    .create_event_time_row {
         height: 11vw;
         margin-top: 5px;
 
         .datetime-ios {
-            padding: 8px 9px 10px 7px;
+            padding: 9px 9px 10px 10px;
+            background-color: #fff;
+            border-radius: 10px;
         }
     }
      .marginRowBottom1 {
