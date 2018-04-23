@@ -67,7 +67,6 @@ app-social{
         }
     }
 
-    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=around], .tab-button-icon[aria-label=around] {
@@ -140,4 +139,8 @@ app-social{
         font-size: 18px;
         color: #fff;
     }
+
+    // .toolbar-ios {
+    //     padding-top: calc(0px + 4px) !important;
+    // }
 }
