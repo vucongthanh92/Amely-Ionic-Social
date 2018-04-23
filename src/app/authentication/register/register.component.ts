@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   onChangeTime(e) {
     const year_reg = new Date(this.birthdate).getFullYear();
-    if (this.year_current - year_reg <= 13) {
+    if (this.year_current - year_reg <= 14) {
       this.is_show_privacy = true
     } else this.is_show_privacy = false
   }

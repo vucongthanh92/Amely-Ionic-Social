@@ -1,3 +1,4 @@
+import { guid } from './../../api/models/guid';
 import { CustomService } from './../../services/custom.service';
 import { Shop } from './../../api/models/shop';
 import { Component, OnInit } from '@angular/core';
@@ -12,9 +13,13 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 export class ShopComponent implements OnInit {
   public shop: Shop;
   public shopGuid;
+  userGuid: number;
   constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private navParams: NavParams, private customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.shopGuid = this.navParams.get('guid');
+    let userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    this.userGuid = userCurrent.guid;
+    
   }
 
   ngOnInit() {
@@ -36,6 +41,7 @@ export class ShopComponent implements OnInit {
     }
     this.shopService.getShop(this.shopGuid, null).subscribe(data => {
       this.shop = data;
+      
     }, err => this.loadData(--retry))
     loading.dismiss();
     
