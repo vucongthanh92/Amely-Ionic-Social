@@ -87,7 +87,7 @@
   </ion-card>
 </ion-content>
 <ion-footer *ngIf="product" >
-  <button ion-button block color="danger" (click)="putCartLocal(product)" *ngIf="product.quantity>0;else other_content">
+  <button ion-button block color="danger" (click)="putCartLocal(product)" *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content">
     Thêm vào giỏ hàng
   </button>
 

@@ -54,6 +54,8 @@ export class ItemComponent implements OnInit {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
+        console.log(this.item);
+        
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;

@@ -45,7 +45,6 @@ export class AddGroupComponent implements OnInit {
   createAGroup() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
-      enableBackdropDismiss: true
     });
     loading.present();
     if (!this.group_name) {
@@ -69,8 +68,9 @@ export class AddGroupComponent implements OnInit {
 
           callback({ type: 'reload' }).then(() => {
             this.nav.pop();
+            loading.dismiss();   
           });
-          loading.dismiss();                  
+                         
         }
       });
 
