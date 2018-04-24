@@ -70,13 +70,15 @@ export class SocialComponent implements OnInit {
   }
 
   payment() {
-    let code = "cnZSY0NwZTRmaUxtc29pU1dRb3pORGdEWTd4ZTBRemU3K2Y4alVmSG1udz0";
+    // 632-4744
+    let code = "bnA3M1poMWo1K3NoMlQ5U3V2cGFWZXJmeTVEbjBQUmFMNnR2Y0lxL2JXdz0";
     this.paymentService.getTempOrder(code).subscribe(data => {
       // check update profile        
-
       this.paymentService.payment_qr_data = data;
       this.paymentService.getPaymentMethod().subscribe(data => {
         this.paymentService.payment_order_post = data;
+        console.log(data);
+        
         this.appCtrl.getRootNav().push(QuickPayListItemComponent)
       });
 

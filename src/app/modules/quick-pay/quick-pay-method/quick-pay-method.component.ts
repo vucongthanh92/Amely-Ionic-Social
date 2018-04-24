@@ -1,7 +1,7 @@
 import { QuickPayShippingMethodComponent } from './../quick-pay-shipping-method/quick-pay-shipping-method.component';
 import { QuickPayConfirmComponent } from './../quick-pay-confirm/quick-pay-confirm.component';
 import { Component, OnInit, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { PaymentService } from '../../../services/payment.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class QuickPayMethodComponent implements OnInit {
   viewHeightPayment: number;
   payment_methods: Array<any>;
   // payment_methods
-  constructor(private renderer: Renderer, private nav: NavController, private paymentService: PaymentService) { }
+  constructor(private renderer: Renderer, private nav: NavController, private paymentService: PaymentService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
@@ -43,6 +43,7 @@ export class QuickPayMethodComponent implements OnInit {
 
     this.payment_methods = (<any>Object).values(this.paymentService.payment_order_post.payment_methods);
     this.payment_methods = this.payment_methods.filter(e => e.filename != 'ngl/atm' && e.filename != 'ngl/creditcard')
+
   }
 
   toggleAccordion() {
@@ -64,27 +65,63 @@ export class QuickPayMethodComponent implements OnInit {
     this.renderer.setElementStyle(this.elementViewPayment.nativeElement, 'height', newHeight);
   }
   confirmBill(quickpay) {
-    let payment:any = {}
+    let payment: any = {};
+
     switch (quickpay) {
       case 'COD':
         payment.filename = quickpay;
         payment.displayname = 'COD, tiền mặt nhận hàng';
+        this.nav.push(QuickPayConfirmComponent);
+        this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = null;
         break;
       case 'COS':
         payment.filename = quickpay;
         payment.displayname = 'COS, tiền mặt nhập kho';
+        // this.showAlertCOS(payment);
+        this.nav.push(QuickPayConfirmComponent);
+        this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = { classname: "SQ\Storage", component: "Market", displayname: "Kho của tôi", filename: "sq/storage" }
         break;
       case 'WOD':
         payment.filename = quickpay;
         payment.displayname = 'Ví của tôi, nhận hàng';
+        this.nav.push(QuickPayConfirmComponent);
+        this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = null;
         break;
-
     }
-    this.nav.push(QuickPayConfirmComponent);
-    this.paymentService.quick_pay_send_data.paymentMethod = payment;
   }
   onPayment(payment) {
     this.nav.push(QuickPayShippingMethodComponent);
     this.paymentService.quick_pay_send_data.paymentMethod = payment;
+  }
+  showAlertCOS(payment) {
+    if (this.checkItemRedeem()) {
+      let alert = this.alertCtrl.create({
+        title: 'Cảnh báo',
+        subTitle: 'Vui lòng không sử dụng sản phẩm với phương thức tiền mặt vào kho',
+        buttons: [
+          {
+            text: 'Quay về chọn sản phẩm',
+            handler: () => {
+              this.nav.pop();
+            }
+          }]
+      });
+      alert.present();
+    } else {
+      this.nav.push(QuickPayConfirmComponent);
+      this.paymentService.quick_pay_send_data.paymentMethod = payment;
+      this.paymentService.quick_pay_send_data.shipping_methods = { classname: "SQ\Storage", component: "Market", displayname: "Kho của tôi", filename: "sq/storage" }
+    }
+  }
+  checkItemRedeem() {
+    (<any>Object).values(this.paymentService.payment_qr_data.products).forEach(e => {
+      if (e.hasInventory == 2) {
+        return true;
+      }
+    });
+    return false;
   }
 }
