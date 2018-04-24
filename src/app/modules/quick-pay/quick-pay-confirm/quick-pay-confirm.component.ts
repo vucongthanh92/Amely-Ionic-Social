@@ -78,7 +78,7 @@ export class QuickPayConfirmComponent implements OnInit {
       this.paymentService.quickPay(this.user_current.fullname, this.user_current.fullname, this.user_current.address, this.user_current.province,
         this.user_current.district, this.user_current.ward, "", this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin,
         this.user_current.mobilelogin, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
-        this.paymentService.quick_pay_send_data.paymentMethod.filename, "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+        this.paymentService.quick_pay_send_data.paymentMethod.filename == "COS" ? this.paymentService.quick_pay_send_data.shipping_methods.filename : "", "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
           console.log(data);
         });
 
@@ -152,6 +152,7 @@ export class QuickPayConfirmComponent implements OnInit {
       this.alert = this.alertCtrl.create({
         title: 'Thông báo',
         message: message,
+        enableBackdropDismiss: false,
         buttons: [
           {
             text: 'Xác nhận',
