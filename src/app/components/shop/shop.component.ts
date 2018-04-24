@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { CustomService } from './../../services/custom.service';
 import { Shop } from './../../api/models/shop';
 import { Component, OnInit } from '@angular/core';
