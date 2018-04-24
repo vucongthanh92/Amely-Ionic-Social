@@ -39,6 +39,9 @@ export class UserComponent {
   is_hidden_phone_number: boolean;
   from = 'user';
   is_failed: boolean;
+  isLoadSuccess: boolean=false;
+  limitOffer: number;
+  limitGift: number;
   constructor(
     public messagesService: MessagesService,
     public nav: NavController,
@@ -54,6 +57,10 @@ export class UserComponent {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
     this.imageViewerCtrl = imageViewerCtrl;
+    this.userService.getServices().subscribe(data => {
+      this.limitOffer = data.limit_offer;
+      this.limitGift = data.limit_gift;
+    })
   }
 
   presentImage(myImage) {
@@ -80,6 +87,7 @@ export class UserComponent {
       if (data.guid == null) {
         this.is_failed = true;
       } else {
+        this.isLoadSuccess = true;
         this.user = data;        
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);

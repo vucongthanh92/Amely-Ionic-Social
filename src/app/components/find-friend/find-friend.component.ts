@@ -28,6 +28,8 @@ export class FindFriendComponent implements OnInit {
         data => {
           if (data.user.guid != null) {
             this.user_found = data.user;
+            console.log(this.user_found);
+            
           } else {
             this.user_found = null;
           }

@@ -9,22 +9,28 @@
       Cửa hàng không được phê duyệt vì {{shop.reason}}
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="name" type="text" placeholder="Tên cửa hàng"></ion-input>
+      <ion-label floating>Tên cửa hàng</ion-label>
+      <ion-input [(ngModel)]="name" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="tel" [(ngModel)]="phone" type="text" placeholder="Số điện thoại cửa hàng"></ion-input>
+      <ion-label floating>Số điện thoại cửa hàng</ion-label>
+      <ion-input type="tel" [(ngModel)]="phone" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="address" type="text" placeholder="Địa chỉ cửa hàng"></ion-input>
+      <ion-label floating>Địa chỉ cửa hàng</ion-label>
+      <ion-input [(ngModel)]="address" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="number" [(ngModel)]="BIDN" placeholder="Mã doanh nghiệp"></ion-input>
+      <ion-label floating>Mã doanh nghiệp</ion-label>
+      <ion-input type="number" [(ngModel)]="BIDN"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="number" [(ngModel)]="price" type="text" placeholder="Adjourn Price"></ion-input>
+      <ion-label floating>Giá lưu kho</ion-label>
+      <ion-input type="number" [(ngModel)]="price" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="friend_url" type="text" placeholder="Friend Url"></ion-input>
+      <ion-label floating>Friend Url</ion-label>
+      <ion-input [(ngModel)]="friend_url" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Phương thức vận chuyển</ion-label>
@@ -34,16 +40,20 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="owner_name" type="text" placeholder="Tên chủ shop"></ion-input>
+      <ion-label floating>Tên chủ shop</ion-label>
+      <ion-input [(ngModel)]="owner_name" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="tel" [(ngModel)]="owner_phone_number" type="text" placeholder="Số điện thoại của chủ shop"></ion-input>
+      <ion-label floating>Số điện thoại của chủ shop</ion-label>
+      <ion-input type="tel" [(ngModel)]="owner_phone_number" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input [(ngModel)]="owner_address" type="text" placeholder="Địa chỉ của chủ shop"></ion-input>
+      <ion-label floating>Địa chỉ của chủ shop</ion-label>
+      <ion-input [(ngModel)]="owner_address" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="number" [(ngModel)]="ssn" type="text" placeholder="SSN"></ion-input>
+      <ion-label floating>SSN</ion-label>
+      <ion-input type="number" [(ngModel)]="ssn" type="text"></ion-input>
     </ion-item>
   </ion-list>
   <div>*** In clicking submit you are agreeing to the Terms and Conditions</div>
