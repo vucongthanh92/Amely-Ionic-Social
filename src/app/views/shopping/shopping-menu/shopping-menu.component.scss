@@ -1,0 +1,28 @@
+app-shopping-menu {
+
+    .list-ios {
+        margin: 0px;
+    }
+
+    .shopping_menu_item {
+        padding: 0px !important;
+
+        ion-icon {
+            margin: 0px 5px 0px 0px;
+            font-size: 2rem;
+        }
+
+        span {
+            vertical-align: top;
+            font-size: 1.5rem;
+        }
+
+        .item-inner {
+            padding: 0px 5px 0px 12px;
+        }
+    }
+
+    .shopping_menu_item:last-child {
+        border-bottom: none !important;
+    }
+}

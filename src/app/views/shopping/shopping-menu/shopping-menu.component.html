@@ -1,9 +1,11 @@
 <ion-list>
-  <ion-item (click)="historyOrder()">
-    <ion-icon name="person"></ion-icon> Lịch sử giao dịch
+  <ion-item (click)="historyOrder()" class="shopping_menu_item">
+    <ion-icon ios="ios-cart" md="md-cart"></ion-icon> 
+    <span>Lịch sử giao dịch</span>
   </ion-item>
 
-  <ion-item (click)="payment()">
-    <ion-icon name="person"></ion-icon> Quét QR thanh toán hóa đơn từ cửa hàng
+  <ion-item (click)="payment()" class="shopping_menu_item">
+    <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon>
+    <span>Quét QR thanh toán hóa đơn từ cửa hàng</span>
   </ion-item>
 </ion-list>

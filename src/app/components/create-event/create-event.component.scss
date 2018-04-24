@@ -1,128 +1,170 @@
 app-create-event {
-    .divTop {
-         background-color: #ffffff;
-         height: 25vw;
+    .create_event_type {
+        background-color: #ffffff;
+        height: 16vh;
+        overflow: visible;
+        padding: 7px 0px 5px 0px;
     }
-     .divCenter {
-         background-color: #ffffff;
-         height: 45vw;
-         margin-top: 27vw;
+
+    .create_event_info {
+        background-color: #ffffff;
+        height: 33vh;
+        margin: 17vh 0px 7px 0px;
+        padding: 0px 5px 0px 5px;
     }
-     .divBottom {
-         height: 45vw;
-         margin-top: 91vw;
+
+    .create_event_prepare {
+        margin: 15px 0px 0px 0px;
+
+        ion-label {
+            font-size: 1.8rem;
+            margin: 10px 7px 9px 9px;
+            text-transform: capitalize;
+            color: #333;
+        }
     }
-     .divBottom1 {
+
+    .create_event_time {
          height: 65vw;
-         margin-top: 101vw;
     }
-     .divCenter2 {
-         background-color: #ffffff;
-         height: 18vw;
-         max-width: 95vw;
-         margin-top: 74vw;
-         border-radius: 10px;
-         margin-left: 2vw;
-         margin-right: 2vw;
+
+    .create_event_description {
+        background-color: #ffffff;
+        height: 10vh;
+        margin: 5px 0px 0px 0px;
+        padding: 5px 0px 0px 5px;
+        color: #333;
+
+        .text-input-ios {
+            margin: 9px 8px 10px 5px !important;
+        }
     }
-     .divSize {
-         text-align: center;
-         margin: 10px 0px 10px 0 !important;
+
+    .create_event_type_box {
+        text-align: center;
+        margin: 0px;
     }
-     .ionLabelTop {
+
+    .ionLabelTop {
          margin: 5px 0px 10px 0 !important;
     }
-     .iconTopDefault {
+
+    .iconTopDefault {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
          width: auto !important;
          color: #93ccf0;
     }
-     .iconTopWedding {
+
+    .iconTopWedding {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
          width: auto !important;
          color: #ee91a5;
     }
-     .iconTopBirthday {
+
+    .iconTopBirthday {
          font-size: 60px;
          margin-top: -10px;
          width: auto !important;
          z-index: 10px;
          color: #fbb03b;
     }
-     .iconTopFundraising {
+    
+    .iconTopFundraising {
          font-size: 60px;
          margin-top: -10px;
          z-index: 10px;
          width: auto !important;
          color: #ffe784;
     }
-     .marginCol {
-         font-size: 14px;
-         margin-left: 5px;
-         margin-top: 15px;
+
+    .create_event_title_box {
+        font-size: 14px;
+        margin: 15px 0px 0px 5px;
     }
-     .marginColBottom {
-         background-color: #ffffff;
-         border-radius: 10px;
+
+    .create_event_time_half_col {
+        position: relative;
+        width: 50%;
+        margin: 0px;
+        padding: 0px 5px 0px 5px;
+
+        .create_event_time_icon {
+            margin-left: 36vw;
+            top: -34px;
+            position: relative;
+            font-size: 30px;
+            color: #9fd2f2;
+        }
     }
-     .marginColBottom1 {
-         background-color: #ffffff;
-         border-radius: 10px;
-         margin-left: 5px;
-         margin-right: 5px;
+
+    .create_event_time_full_col {
+        background-color: #ffffff;
+        border-radius: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+
+        .create_event_time_icon {
+            margin-left: 36vw;
+            top: -34px;
+            position: relative;
+            font-size: 30px;
+            color: #9fd2f2;
+        }
     }
-     .marginCol2 {
-         font-size: 14px;
-         margin-left: 5px;
+
+    .create_event_info_row {
+        font-size: 14px;
+        margin-left: 5px;
     }
-     .marginCol3 {
-         margin-top: 5px;
+
+    .create_event_customer {
+        margin: -3px 0px 0px 6px;
     }
-     .marginCol1 {
-         padding-left: 0px !important;
+
+    .create_event_user_image {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid #efeff4;
     }
-     .marginRow {
-         margin-top: -10px;
+
+    .create_event_inventory {
+        margin-top: 9px;
     }
-     .iconCenter {
-         font-size: 2.7em;
-         color: #289ae1;
+    
+    .create_event_title {
+        margin: 0px 5px 0px 3px !important;
+        font-size: 1.5rem;
+
+        .text-input-ios {
+            margin: 10px 5px 0px 3px !important;
+        }
     }
-     .text-input-ios {
-         margin: 11px 8px 11px 5px !important;
+
+    .create_event_info_icon {
+        font-size: 2.7em;
+        color: #289ae1;
+        float: left;
     }
-     .labelBottom {
-         color: #6c6c6c;
-         margin-left: 10px;
-         font-size: 20px;
+    
+    .location {
+        margin-left: 5px;
+        margin-right: 5px;
     }
-     .startDay {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .endDay {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .startTime {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .endTime {
-         margin-left: 5px;
-         max-width: 48%;
-    }
-     .location {
-         margin-left: 5px;
-         margin-right: 5px;
-    }
-     .marginRowBottom {
-         height: 11vw;
-         margin-top: 5px;
+
+    .create_event_time_row {
+        height: 11vw;
+        margin-top: 5px;
+
+        .datetime-ios {
+            padding: 9px 9px 10px 10px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
     }
      .marginRowBottom1 {
          height: 11vw;
@@ -131,35 +173,26 @@ app-create-event {
      .iosDateTimeBottom {
          padding: 5px 8px 11px 16px;
     }
-     .inputBottom {
-         margin-left: 10px;
-         max-width: 85%;
+
+    .create_event_inner {
+        margin-left: 4px;
+        max-width: 80%;
+        position: relative;
     }
-     .ionToggleBottom {
-         top: -38px;
-         left: 80vw;
+
+    .create_event_status {
+        top: -36px;
+        left: 76vw;
     }
-     .labelBottom1 {
-         margin-left: 15px;
-         color: #9d9d9d;
-         margin-top: 9px;
-         font-size: 14px;
+
+    .labelBottom1 {
+        margin-left: 15px;
+        color: #9d9d9d;
+        margin-top: 9px;
+        font-size: 14px;
     }
-     .iconBottom {
-         margin-left: 38vw;
-         top: -38px;
-         position: relative;
-         font-size: 30px;
-         color: #9fd2f2;
-    }
-     .iconBottom1 {
-         margin-left: 87vw;
-         top: -38px;
-         position: relative;
-         font-size: 30px;
-         color: #9fd2f2;
-    }
-     .iconLocation {
+
+    .iconLocation {
          margin-right: -3px;
          margin-left: 54px;
          top: 7px;
@@ -167,18 +200,22 @@ app-create-event {
          font-size: 30px;
          color: #9fd2f2;
     }
-     .buttonLocation {
-         background-color: #ececec;
-         top: -41px;
-         position: relative;
-         margin-left: 71vw;
-         width: 89px;
-         height: 38px;
-         border-radius: 10px;
+
+    .create_event_btn_location {
+        background-color: #ececec;
+        top: 1px;
+        position: absolute;
+        right: 1px;
+        width: 90px;
+        height: 39px;
+        border-radius: 10px;
     }
-     .marginLabel{
-       margin: 0px 30px -28px 0;
-     }
+
+    .create_event_map{
+        margin: 2px 18px -29px 0px;
+        color: #333;
+        font-size: 1.3rem;
+    }
      .icon{
          width: 20px;
          display: inline-block;
@@ -186,32 +223,35 @@ app-create-event {
 
      #iconDay {
         content: url(../assets/imgs/ic_calendar_blue.png);
-        width: 31px;
-        height: 31px;
+        width: 30px;
+        height: 30px;
         background-size: contain;
         background-repeat: no-repeat;
     }
 
      #iconHour {
         content: url(../assets/imgs/ic_clock_blue.png);
-        width: 31px;
-        height: 31px;
+        width: 30px;
+        height: 30px;
         background-size: contain;
         background-repeat: no-repeat;
     }
     #iconPlace {
         content: url(../assets/imgs/ic_place_blue.png);
-        width: 31px;
-        height: 31px;
+        width: 30px;
+        height: 30px;
         background-size: contain;
         background-repeat: no-repeat;
     }
     #iconContact {
         content: url(../assets/imgs/ic_contact_blue.png);
-        width: 31px;
-        height: 31px;
+        width: 30px;
+        height: 30px;
         background-size: contain;
         background-repeat: no-repeat;
+        position: absolute;
+        top: 6px;
+        right: 2px;
     }
 
     ion-scroll[scrollX] {
