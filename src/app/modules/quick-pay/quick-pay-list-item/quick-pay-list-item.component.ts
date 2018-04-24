@@ -78,6 +78,7 @@ export class QuickPayListItemComponent implements OnInit {
                   // });
                   this.total_price = +data.total
                   this.products = data.products;
+                  this.paymentService.payment_qr_data.products = data.products;
                 }
               })
             }

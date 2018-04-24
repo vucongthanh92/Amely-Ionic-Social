@@ -4914,6 +4914,8 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   quickPayCreate(body: Param_create_order): Observable<DefaultResponse> {
+    console.log(body);
+    
     return this.quickPayCreateResponse(body).pipe(
       map(_r => _r.body)
     );
