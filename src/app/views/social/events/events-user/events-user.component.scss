@@ -20,10 +20,15 @@ app-events-user {
     }
 
     .events_title {
-        font-size: 16px;
-        color: #333;
         text-transform: capitalize;
-        margin: 0px 0px 0px 5px;
+        font-size: 18px;
+        color: #333;
+        margin: 3px 0px 5px 0px;
+        white-space: nowrap;
+        max-height: 40px;
+        overflow: hidden;
+        padding: 3px 0px 0px 7px;
+        text-overflow: ellipsis;
     }
 
     .events_date {

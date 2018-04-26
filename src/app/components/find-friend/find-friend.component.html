@@ -17,7 +17,7 @@
             </ion-col>
             <div *ngIf="user_found" (click)="openUserProfile()">
               <ion-col col-3>
-                <img width="100%" src="{{user_found.avatar}}">
+                <img width="100%" src="{{user_found.avatar}}" style="width: 50px; height: 50px; border-radius: 50%;">
               </ion-col>
               <ion-col col-9>
                 {{user_found.fullname}}
