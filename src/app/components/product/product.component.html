@@ -3,29 +3,26 @@
     <ion-title *ngIf="product">{{product.title}}</ion-title>
     <ion-buttons end>
       <button ion-button clear (click)="changePage()">
-        <ion-icon style="font-size: 35px;" name="cart">
-          <ion-badge style="position: relative; bottom: 20px; right: 11px; font-size: 12px;" color="danger" *ngIf="count_product">
+        <ion-icon class="product_topbar_cart" name="md-cart">
+          <ion-badge class="product_topbar_cart_icon" color="danger" *ngIf="count_product">
             {{ count_product }}</ion-badge>
         </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content class="outer-content" *ngIf="product">
   <ion-row>
-
-    <ion-col col-12 *ngIf="product.images_entities">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images_entities[product.images[0]]"
-        src="{{product.images_entities[product.images[0]]}}" alt="ionic logo" width="100%">
+    <ion-col col-12 *ngIf="product.images_entities" class="product_image">
+      <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}">
     </ion-col>
-
-    <ion-col col-12 *ngIf="!product.images_entities">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="product.images[0]" src="{{ product.images[0] }}"
-        alt="ionic logo" width="100%">
-      <img imageViewer style="max-width: 100%; height: 40rem; margin-top: 10px;" *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg"
-        alt="ionic logo" width="100%">
+    <ion-col col-12 *ngIf="!product.images_entities" class="product_image">
+      <img imageViewer *ngIf="product.images[0]" src="{{ product.images[0] }}">
+      <img imageViewer *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg">
     </ion-col>
   </ion-row>
+
   <ion-card>
     <ion-card-content>
       <ion-row>
@@ -37,6 +34,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+
   <ion-card *ngIf="shop">
     <ion-card-header>
       Thông tin cửa hàng
@@ -77,20 +75,17 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      Mô tả sản phẩm
-    </ion-card-header>
-    <ion-card-content>
-      {{product.description}}
-    </ion-card-content>
+  <ion-card class="product_description">
+    <ion-card-header>Mô tả sản phẩm</ion-card-header>
+    <ion-card-content>{{product.description}}</ion-card-content>
   </ion-card>
 </ion-content>
-<ion-footer *ngIf="product" >
-  <button ion-button block color="danger" (click)="putCartLocal(product)" *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content">
-    Thêm vào giỏ hàng
-  </button>
 
+<ion-footer *ngIf="product" >
+
+  <button *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content" 
+    ion-button block color="danger" (click)="putCartLocal(product)"> Thêm vào giỏ hàng
+  </button>
   <ng-template #other_content>
     <!-- <button ion-button block color="danger" >
       Hết hàng

@@ -15,14 +15,14 @@ app-events-history {
     }
 
     .events_title {
-        font-size: 16px;
+        font-size: 1.6rem;
         color: #333;
         text-transform: capitalize;
         margin: 0px 0px 0px 5px;
         white-space: nowrap;
         max-height: 40px;
-        overflow: hidden;
         padding: 3px 0px 0px 7px;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
 
