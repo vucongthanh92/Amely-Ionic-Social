@@ -214,6 +214,8 @@ export class UserComponent {
   addFriend() {
     if (this.title_add_friend === 'Kết bạn') {
       this.userService.addFriend(this.userCurrent.guid, this.user.guid, "user").subscribe(data => {
+        console.log(data);
+        
         if (data.status) {
           this.title_add_friend = "Đã gửi lời mời";
         } else {
