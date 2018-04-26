@@ -47,7 +47,7 @@ export class OffersSearchComponent implements OnInit {
 
   doRadio() {
     const alert = this.alertCtrl.create();
-    alert.setTitle('Lightsaber color');
+    alert.setTitle('Tìm kiếm');
 
     alert.addInput({
       type: 'radio',
