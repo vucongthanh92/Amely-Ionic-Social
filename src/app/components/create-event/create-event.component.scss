@@ -1,4 +1,5 @@
 app-create-event {
+
     .create_event_type {
         background-color: #ffffff;
         height: 16vh;
@@ -166,12 +167,14 @@ app-create-event {
             border-radius: 10px;
         }
     }
-     .marginRowBottom1 {
-         height: 11vw;
-         margin-top: 5px;
+    
+    .marginRowBottom1 {
+        height: 11vw;
+        margin-top: 5px;
     }
-     .iosDateTimeBottom {
-         padding: 5px 8px 11px 16px;
+    
+    .iosDateTimeBottom {
+        padding: 5px 8px 11px 16px;
     }
 
     .create_event_inner {
@@ -193,12 +196,12 @@ app-create-event {
     }
 
     .iconLocation {
-         margin-right: -3px;
-         margin-left: 54px;
-         top: 7px;
-         position: relative;
-         font-size: 30px;
-         color: #9fd2f2;
+        margin-right: -3px;
+        margin-left: 54px;
+        top: 7px;
+        position: relative;
+        font-size: 30px;
+        color: #9fd2f2;
     }
 
     .create_event_btn_location {

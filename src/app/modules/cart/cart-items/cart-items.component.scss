@@ -24,7 +24,8 @@ app-cart-items{
       font-weight: normal;
       color: #333;
       text-transform: capitalize;
-      margin: 0px 0px 0px 3px;
+      margin: 0px 0px 0px 10px;
+      text-align: left;
     }
 
     .cart_items_quantity {
@@ -91,10 +92,11 @@ app-cart-items{
     h4 {
       font-size: 1.5rem;
     }
-    .divVAT {
+    .cart_item_vat {
       position: relative;
-      top: -10px;
+      top: -3px;
       font-size: 12px;
+      color: #333;
     }
     .ionNote {
       color: red;
@@ -126,5 +128,14 @@ app-cart-items{
     ::-webkit-scrollbar,
     *::-webkit-scrollbar {
       display: none;
+    }
+
+    .cart_item_image {
+      background-position: center !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      height: 55px;
+      width: 70px;
+      border-radius: 5px;
     }
 }
