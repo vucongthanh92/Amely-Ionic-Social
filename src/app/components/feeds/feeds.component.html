@@ -1,6 +1,6 @@
 <div>
   <ion-card *ngIf="isHasData">
-    <ion-item *ngFor="let post of posts">
+    <ion-item class="feeds_item" *ngFor="let post of posts">
       <app-feed (uploaded)="someMethod($event)" *ngIf="post" [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)"
         [isShowMoreContent]=true [user_tag]="getUsersTag(post.description)" [type]="type" [shares]="shares" [users]="users">
       </app-feed>
