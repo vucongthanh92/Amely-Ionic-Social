@@ -26,6 +26,7 @@ export class ItemComponent implements OnInit {
   is_remove_item: boolean = false;
   callback: any;
   is_reload_before_page = false;
+  expiryType: number;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -55,7 +56,8 @@ export class ItemComponent implements OnInit {
       data => {
         this.item = data;
         console.log(this.item);
-        
+        this.expiryType = +this.item.is_special;
+        console.log(this.expiryType);        
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
@@ -122,6 +124,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Thêm vào danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã thêm vào danh sách muốn cho đi', 'bottom', 2000);
         }
       })
     } else {
@@ -132,6 +135,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Hủy danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000)
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã xóa khỏi danh sách muốn cho đi', 'bottom', 2000);
         }
       })
     }
@@ -146,6 +150,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Thêm vào danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã thêm vào danh sách yêu thích', 'bottom', 2000);
         }
       })
     } else {
@@ -156,6 +161,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Hủy danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã xóa khỏi danh sách yêu thích', 'bottom', 2000);
         }
       })
     }
