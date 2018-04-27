@@ -40,7 +40,6 @@ export class UserComponent {
   from = 'user';
   is_failed: boolean;
   isLoadSuccess: boolean=false;
-  dataLimit: any;
   limitOffer: number;
   limitGift: number;
   constructor(
@@ -59,9 +58,8 @@ export class UserComponent {
     this.nav.swipeBackEnabled = true;
     this.imageViewerCtrl = imageViewerCtrl;
     this.userService.getServices().subscribe(data => {
-      this.dataLimit = data;
-      this.limitOffer = this.dataLimit.limit_offer;
-      this.limitGift = this.dataLimit.limit_gift;
+      this.limitOffer = data.limit_offer;
+      this.limitGift = data.limit_gift;
     })
   }
 
