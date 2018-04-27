@@ -26,6 +26,7 @@ export class ItemComponent implements OnInit {
   is_remove_item: boolean = false;
   callback: any;
   is_reload_before_page = false;
+  expiryType: number;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -55,7 +56,8 @@ export class ItemComponent implements OnInit {
       data => {
         this.item = data;
         console.log(this.item);
-        
+        this.expiryType = +this.item.is_special;
+        console.log(this.expiryType);        
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
