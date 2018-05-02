@@ -1,0 +1,37 @@
+app-history-offer {
+    .inventory_history_requested {
+        color: #444;
+    }
+
+    .inventory_history_created {
+        color: rgb(16, 104, 53);
+    }
+
+    .inventory_history_sent {
+        color: #DC202A
+    }
+
+    .inventory_history_received {
+        color: #00A474
+    }
+
+    .inventory_history_item {
+        padding: 0px;
+
+        .item-inner {
+            padding: 1px 7px 1px 15px;
+        }
+    }
+
+    .inventory_history_row {
+        font-size: 1.6rem;
+        margin: 0px 0px 4px 0px;
+        display: block;
+        text-transform: capitalize;
+    }
+
+    .inventory_history_datetime {
+        color: #999;
+        font-size: 1.5rem;
+    }
+}

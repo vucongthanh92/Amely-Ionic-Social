@@ -21,14 +21,13 @@ app-events-user {
 
     .events_title {
         text-transform: capitalize;
-        font-size: 18px;
+        font-size: 1.6rem;
         color: #333;
-        margin: 3px 0px 5px 0px;
         white-space: nowrap;
         max-height: 40px;
         overflow: hidden;
-        padding: 3px 0px 0px 7px;
-        margin: 0px 0px 0px 5px;
+        padding: 3px 0px 0px 0px;
+        margin: 0px 0px 0px 4px;
         text-overflow: ellipsis;
     }
 
@@ -45,15 +44,20 @@ app-events-user {
     }
 
     .events_image {
-        max-height: 75px;
-        overflow: hidden;
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        width: 75px;
+        height: 75px;
+        border-radius: 5px;
     }
 
     .event_user_status {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         color: #666;
         text-align: right;
         font-style: italic;
+        margin: 3px 0px 0px 0px;
     }
 
     .events_user_fab {
