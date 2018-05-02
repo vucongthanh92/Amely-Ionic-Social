@@ -87,7 +87,7 @@ export class QuickPayConfirmComponent implements OnInit {
       });
 
       loading.present();
-      this.listener = this.fbService.getOrder(this.paymentService.quick_pay_send_data.shop.guid, this.paymentService.payment_qr_data.to_guid).query;
+      this.listener = this.fbService.getOrder(this.paymentService.quick_pay_send_data.shop.guid, this.paymentService.payment_qr_data.user.guid, this.paymentService.payment_qr_data.to_guid).query;
       this.listener.on("child_removed", snapshot => {
         // loading.dismiss();
         // console.log(this.paymentService.quick_pay_send_data.paymentMethod.filename);
@@ -126,8 +126,8 @@ export class QuickPayConfirmComponent implements OnInit {
           });
       } else {
         this.paymentService.quickPay(this.user_current.fullname, this.user_current.fullname, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
-          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin,this.user_current.mobilelogin, this.user_current.address,
-          this.user_current.province,this.user_current.district,this.user_current.ward, "", this.shipping_methods.filename, "0",
+          this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, this.user_current.mobilelogin, this.user_current.address,
+          this.user_current.province, this.user_current.district, this.user_current.ward, "", this.shipping_methods.filename, "0",
           this.paymentService.payment_qr_data.to_guid).subscribe(data => {
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
