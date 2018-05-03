@@ -38,9 +38,11 @@ export class CartItemsComponent implements OnInit {
     console.log(item[0].quantity);
 
     if (item.length > 0) {
-      if (item[0].quantity_cart <= item[0].quantity) {
+      if (item[0].quantity_cart < item[0].quantity) {
         item[0].quantity_cart = item[0].quantity_cart + 1;
         this.update();
+      }else{
+        this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
       }
     }
   }
@@ -51,6 +53,27 @@ export class CartItemsComponent implements OnInit {
       if (item[0].quantity_cart > 1) {
         item[0].quantity_cart = item[0].quantity_cart - 1;
         this.update();
+      }else {
+        let alert = this.alertCtrl.create({
+          title: 'Xác nhận',
+          message: 'Bạn có muốn xóa sản phẩm khỏi giỏ hàng?',
+          buttons: [
+            {
+              text: 'Từ chối',
+              role: 'cancel',
+              handler: () => {
+              }
+            },
+            {
+              text: 'Chấp nhận',
+              handler: () => {
+                this.customService.cart = this.items = this.items.filter(data => data.guid != guid);
+                this.update();
+              }
+            }
+          ]
+        });
+        alert.present();
       }
     }
   }

@@ -28,19 +28,17 @@
     </ion-segment>
 
     <ion-row text-center class="group_bar">
-      <ion-col col-4>
+      <ion-col col-4 *ngIf="group.has_inventory != ''">
         <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('gift', group)">
           <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
           <div class="group_bar_title">Tặng quà</div>
         </button>
       </ion-col>
-      <ion-col col-5>
-        <div *ngIf="is_admin">
+      <ion-col col-5 *ngIf="is_admin">
           <button ion-button icon-left clear small class="group_bar_button" (click)="inviteMember()">
             <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
             <div class="group_bar_title">Mời thành viên</div>
           </button>
-        </div>
       </ion-col>
       <ion-col col-3>
         <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('chat', group)">

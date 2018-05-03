@@ -1,0 +1,87 @@
+app-history-offer-detail {
+    .history_offer_detail_item {
+        padding: 0px 0px 10px 0px;
+    }
+
+    .history_offer_detail_title {
+        color: #666;
+        padding: 12px 18px 10px 18px;
+        text-transform: capitalize;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #d3d3d3;
+        margin: 0px 0px 10px 0px;
+        font-size: 1.5rem;
+    }
+
+    .history_offer_detail_info {
+        padding: 0px 5px 10px;
+    }
+
+    .history_offer_detail_img {
+        width: 75px;
+        height: 75px;
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        margin: 0px;
+        border: 1px solid #efeff4;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+    .history_offer_detail_quantity {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.5);
+        color: #fff;
+        font-size: 1.3rem;
+        line-height: 2;
+    }
+
+    .history_offer_detail_creator {
+        margin: 0px 0px 0px 5px;
+        color: #333;
+        font-size: 1.6rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .history_offer_detail_creator_img {
+        background-size: cover !important;
+        background-position: center !important;
+        width: 45px;
+        height: 45px;
+        float: left;
+        margin: 7px 7px 0px 5px;
+        border-radius: 50%;
+    }
+
+    .history_offer_detail_creator_title {
+        margin: 9px 0px 1px 6px;
+        float: left;
+        color: #8e9093;
+        width: 15rem;
+    }
+
+    .history_offer_detail_creator_gender {
+        float: left;
+        width: 15rem;
+
+        img {
+            width: 27px;
+            height: 27px;
+            float: left;
+        }
+
+        span {
+            vertical-align: -webkit-baseline-middle;
+            color: #999;
+        }
+    }
+}

@@ -18,10 +18,10 @@ app-events-history {
         font-size: 1.6rem;
         color: #333;
         text-transform: capitalize;
-        margin: 0px 0px 0px 5px;
+        margin: 0px;
         white-space: nowrap;
         max-height: 40px;
-        padding: 3px 0px 0px 7px;
+        padding: 3px 0px 0px 4px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -39,8 +39,12 @@ app-events-history {
     }
 
     .events_image {
-        max-height: 75px;
-        overflow: hidden;
+        background-position: center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        width: 75px;
+        height: 75px;
+        border-radius: 5px;
     }
 
     .events_list {

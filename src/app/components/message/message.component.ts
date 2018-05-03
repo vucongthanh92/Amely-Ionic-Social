@@ -51,7 +51,12 @@ export class MessageComponent implements OnInit {
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       if (this.param.chat_type == "individual") {
         this.getMessagesIndividual();
-        this.usernameChat = this.param.from;
+        if (this.param.from == this.userCurrent.username) {
+          this.usernameChat = this.param.fullname;
+        } else {
+          this.usernameChat = this.param.from;
+        }
+        
       } else {
         this.getMessagesGroup();
         this.usernameChat = this.param.title;

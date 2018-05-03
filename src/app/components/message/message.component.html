@@ -94,7 +94,7 @@
 <ion-footer no-border>
   <ion-row text-center style="border: 1px solid #eee;">
     <ion-col col-4 style="border-right: 1px solid #eee">
-      <button ion-button icon-left clear small (click)="goToPage('gift')">
+      <button ion-button icon-left clear small (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
         <ion-icon name="archive"></ion-icon>
       </button>
     </ion-col>

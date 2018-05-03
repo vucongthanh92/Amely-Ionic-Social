@@ -1,16 +1,5 @@
-<ion-list>
-  <ion-item *ngIf="is_owner" (click)="deleteFeed()">
-    Xóa
-  </ion-item>
-  <ion-item *ngIf="!is_owner" (click)="report()">
-    Gửi phản hồi
-  </ion-item>
-
-  <ion-item *ngIf="(is_owner || !is_owner) && post.item_type!= 'post:share:post'" (click)="share()">
-     Chia sẻ
-  </ion-item>
-
-  <!-- <ion-item>
-    Chia sẻ
-  </ion-item> -->
+<ion-list class="feed_menu_container">
+  <ion-item *ngIf="is_owner" (click)="deleteFeed()">Xóa</ion-item>
+  <ion-item *ngIf="!is_owner" (click)="report()">Gửi phản hồi</ion-item>
+  <ion-item *ngIf="(is_owner || !is_owner) && post.item_type!= 'post:share:post'" (click)="share()">Chia sẻ</ion-item>
 </ion-list>

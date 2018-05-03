@@ -74,6 +74,7 @@ import { LocationComponent } from '../components/location/location.component';
 import { ModalImageUserComponent } from '../components/modal-image/modal-image-user/modal-image-user.component';
 import { ModalImageFeedComponent } from '../components/modal-image/modal-image-feed/modal-image-feed.component';
 import { ModalImageComponent } from '../components/modal-image/modal-image.component';
+import { BusinessMenuComponent } from '../components/business/business-menu/business-menu.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -156,7 +157,8 @@ import { ModalImageComponent } from '../components/modal-image/modal-image.compo
     LocationComponent,
     ModalImageUserComponent,
     ModalImageFeedComponent,
-    ModalImageComponent
+    ModalImageComponent,
+    BusinessMenuComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -218,7 +220,8 @@ import { ModalImageComponent } from '../components/modal-image/modal-image.compo
     LocationComponent,
     ModalImageUserComponent,
     ModalImageFeedComponent,
-    ModalImageComponent
+    ModalImageComponent,
+    BusinessMenuComponent
   ],
   exports: [
     CategoriesComponent,
@@ -280,7 +283,8 @@ import { ModalImageComponent } from '../components/modal-image/modal-image.compo
     LocationComponent,
     ModalImageUserComponent,
     ModalImageFeedComponent,
-    ModalImageComponent
+    ModalImageComponent,
+    BusinessMenuComponent
   ]
 })
 export class SharedModule { }
