@@ -1,0 +1,100 @@
+app-quick-pay-list-item {
+    .quick_pay_list_container {
+        margin: 0px;
+    }
+
+    .quick_pay_list_item {
+        border-top: 1px solid #c8c7cc;
+        padding: 5px 0px 7px 10px;
+        
+        .item-inner {
+            border: none !important;
+        }
+
+        ion-thumbnail {
+            margin: 7px 10px 7px 0;
+        }
+    }
+
+    .quick_pay_list_owner {
+        border-top: 1px solid #c8c7cc;
+    }
+
+    .quick_pay_list_main {
+        margin: -1px 0 0px;
+    }
+
+    .quick_pay_list_item_img {
+        width: 55px;
+        height: 55px;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .quick_pay_list_item_title {
+        text-transform: capitalize;
+        color: #333;
+        font-size: 1.6rem;
+        margin: 0px 0px 5px 3px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .quick_pay_list_item_info {
+        color: #999;
+        font-size: 1.2rem;
+
+        span {
+            vertical-align: top;
+            margin: 0px 0px 0px 5px;
+            font-size: 1.3rem;
+        }
+    }
+
+    .quick_pay_list_product {
+        background-color: #fff;
+    }
+
+    .quick_pay_list_product_inventory {
+        color: #f0ad4e;
+        font-size: 1.1rem;
+        margin: 7px 0px 2px 0px;
+    }
+
+    .quick_pay_list_product_item {
+        text-transform: capitalize;
+        color: #333;
+        font-size: 1.6rem;
+        margin: 0px 0px 5px 1px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .quick_pay_list_product_btn {
+        background-color: #f0ad4e;
+        text-transform: capitalize;
+    }
+
+    .quick_pay_list_total_main {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+
+        .item-ios {
+            padding: 0px 10px 0px 15px;
+            background-color: #efeff4;
+        }
+    }
+
+    .quick_pay_list_total_row {
+        color: red;
+        position: relative;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+}
