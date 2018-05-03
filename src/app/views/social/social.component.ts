@@ -77,42 +77,42 @@ export class SocialComponent implements OnInit {
 
   payment() {
     // 632-4744
-    let code = "ekRDcHlSbXJ0cGp3SU4yRWEzVkpibTh3dnhHYXN4RnJsOVBKcGVpeS9rcz0";
-    this.paymentService.getTempOrder(code).subscribe(data => {
-      // check update profile        
-      this.paymentService.payment_qr_data = data;
-      this.paymentService.getPaymentMethod().subscribe(data => {
-        this.paymentService.payment_order_post = data;
-        console.log(data);
+    // let code = "ekRDcHlSbXJ0cGp3SU4yRWEzVkpibTh3dnhHYXN4RnJsOVBKcGVpeS9rcz0";
+    // this.paymentService.getTempOrder(code).subscribe(data => {
+    //   // check update profile        
+    //   this.paymentService.payment_qr_data = data;
+    //   this.paymentService.getPaymentMethod().subscribe(data => {
+    //     this.paymentService.payment_order_post = data;
+    //     console.log(data);
 
-        this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-      });
-
-    })
-    // this.barcodeScanner.scan().then((barcodeData) => {
-    //   let loading = this.loadingCtrl.create({
-    //     content: 'Please wait...'
+    //     this.appCtrl.getRootNav().push(QuickPayListItemComponent)
     //   });
 
-    //   loading.present();
-    //   this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-    //     // check update profile        
-    //     if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-    //       this.requestUpdateProfile()
-    //       loading.dismiss();
-    //     } else {
-    //       this.paymentService.payment_qr_data = data;
-    //       this.paymentService.getPaymentMethod().subscribe(data => {
-    //         this.paymentService.payment_order_post = data;
-    //         loading.dismiss();
-    //         this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-    //         this.fbService.deleteQRCode(barcodeData.text)
-    //       });
-    //     }
-    //   })
-    // }, (err) => {
-    //   this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
-    // });
+    // })
+    this.barcodeScanner.scan().then((barcodeData) => {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+
+      loading.present();
+      this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+        // check update profile        
+        if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+          this.requestUpdateProfile()
+          loading.dismiss();
+        } else {
+          this.paymentService.payment_qr_data = data;
+          this.paymentService.getPaymentMethod().subscribe(data => {
+            this.paymentService.payment_order_post = data;
+            loading.dismiss();
+            this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+            this.fbService.deleteQRCode(barcodeData.text)
+          });
+        }
+      })
+    }, (err) => {
+      this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
+    });
   }
 
   requestUpdateProfile() {
