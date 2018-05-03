@@ -1,74 +1,85 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Chi tiết trao đổi
-    </ion-title>
+    <ion-title>Chi tiết trao đổi</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-card *ngIf="offer">
-    <ion-card-header>
-      Người tạo
-    </ion-card-header>
-    <ion-card-content>
+  <ion-card class="history_offer_detail_item" *ngIf="offer">
+    <ion-card-header class="history_offer_detail_title">Người tạo</ion-card-header>
+    <ion-card-content class="history_offer_detail_info">
       <ion-list>
-        <img *ngIf="offer.product_snapshot.images" style="width: 100px;height:100px;float: left" src="{{offer.product_snapshot.images[0]}}">
-        <div>
-          <h2>{{offer.product_snapshot.title}}</h2>
-          <img style="width: 50px;height: 50px; float: left;margin-top: 10px;" src="{{offer.owner.avatar}}">
-          <h2 style="margin-top: 10px;">{{offer.owner.fullname}}</h2>
-          <div *ngIf="offer.owner.gender=='male'">
-            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
-          </div>
-          <div *ngIf="offer.owner.gender=='female'">
-            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
-          </div>
-        </div>
+        <ion-row>
+          <ion-col col-3>
+            <div *ngIf="offer.product_snapshot.images" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'" class="history_offer_detail_img">
+              <div class="history_offer_detail_quantity">x{{ offer.quantity }}</div>
+            </div>
+          </ion-col>
 
+          <ion-col col-9>
+            <h2 class="history_offer_detail_creator">{{offer.product_snapshot.title}}</h2>
+            <div *ngIf="offer.product_snapshot.images" [style.background]="'url(' + offer.owner.avatar + ')'" 
+              class="history_offer_detail_creator_img"></div>
+            <div class="history_offer_detail_creator_title">{{offer.owner.fullname}}</div>
+
+            <div class="history_offer_detail_creator_gender" *ngIf="offer.owner.gender=='male'">
+              <img src="assets/imgs/ic_gender_male_blue.png">
+              <span>Nam</span>
+            </div>
+            <div class="history_offer_detail_creator_gender" *ngIf="offer.owner.gender=='female'">
+              <img src="assets/imgs/ic_gender_female_pink.png">
+              <span>Nữ</span>
+            </div>
+          </ion-col>
+        </ion-row>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="offer && offer.offer_type!='giveaway'">
-    <ion-card-header>
-      Người trao đổi
-    </ion-card-header>
-    <ion-card-content *ngIf="offer.counter_offers">
+  <ion-card class="history_offer_detail_item" *ngIf="offer && offer.offer_type!='giveaway'">
+    <ion-card-header class="history_offer_detail_title">Người trao đổi</ion-card-header>
+    <ion-card-content class="history_offer_detail_info" *ngIf="offer.counter_offers">
       <ion-list>
-        <img *ngIf="offer.counter_offers[0].product_snapshot.images" style="width: 100px;height:100px;float: left" src="{{offer.counter_offers[0].product_snapshot.images[0]}}">
-        <div>
-          <h2>{{offer.counter_offers[0].product_snapshot.title}}</h2>
-          <img style="width: 50px;height: 50px; float: left;margin-top: 10px;" src="{{offer.counter_offers[0].owner.avatar}}">
-          <h2 style="margin-top: 10px;">{{offer.counter_offers[0].owner.fullname}}</h2>
-          <div *ngIf="offer.counter_offers[0].owner.gender=='male'">
-            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
-          </div>
-          <div *ngIf="offer.counter_offers[0].owner.gender=='female'">
-            <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
-          </div>
-        </div>
+        <ion-row>
+          <ion-col col-3>
+            <div *ngIf="offer.counter_offers[0].product_snapshot.images" [style.background]="'url(' + offer.counter_offers[0].product_snapshot.images[0] + ')'" 
+              class="history_offer_detail_img" >
+              <div class="history_offer_detail_quantity">x{{ offer.counter_offers[0].quantity }}</div>
+            </div>
+          </ion-col>
 
+          <ion-col col-9>
+            <h2 class="history_offer_detail_creator">{{offer.counter_offers[0].product_snapshot.title}}</h2>
+            <div *ngIf="offer.counter_offers[0].product_snapshot.images" [style.background]="'url(' + offer.counter_offers[0].owner.avatar + ')'" 
+              class="history_offer_detail_creator_img"></div>
+            <div class="history_offer_detail_creator_title">{{offer.counter_offers[0].owner.fullname}}</div>
+
+            <div class="history_offer_detail_creator_gender" *ngIf="offer.counter_offers[0].owner.gender=='male'">
+              <img src="assets/imgs/ic_gender_male_blue.png">
+              <span>Nam</span>
+            </div>
+            <div class="history_offer_detail_creator_gender" *ngIf="offer.counter_offers[0].owner.gender=='female'">
+              <img src="assets/imgs/ic_gender_female_pink.png">
+              <span>Nữ</span>
+            </div>
+          </ion-col>
+        </ion-row>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="offer && offer.offer_type=='giveaway'">
-    <ion-card-header>
-      Người nhận
-    </ion-card-header>
+    <ion-card-header>Người nhận</ion-card-header>
     <ion-card-content *ngIf="offer.counter_offers">
       <ion-list>
         <img style="width: 70px;height: 70px; float: left;margin-top: 10px;" src="{{offer.counter_offers[0].owner.avatar}}">
         <h2 style="margin-top: 10px;">{{offer.counter_offers[0].owner.fullname}}</h2>
-
         <div *ngIf="offer.counter_offers[0].owner.gender=='male'">
           <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_male_blue.png"> Nam
         </div>
         <div *ngIf="offer.counter_offers[0].owner.gender=='female'">
           <img style="width: 30px;height: 30px; float: left;" src="assets/imgs/ic_gender_female_pink.png"> Nữ
         </div>
-
       </ion-list>
     </ion-card-content>
   </ion-card>

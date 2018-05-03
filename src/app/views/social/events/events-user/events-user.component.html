@@ -2,8 +2,8 @@
   <ion-list class="events_list" *ngIf="events">
     <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
-        <ion-col class="events_image" col-3>
-          <img width="100%" src="{{event.avatar}}" />
+        <ion-col col-3>
+          <div class="events_image" [style.background]="'url(' + event.avatar + ')'"></div>
         </ion-col>
         <ion-col col-6>
           <div class="events_title">{{event.title}}</div>
@@ -36,7 +36,7 @@
 </ion-content>
 
 <ion-fab right bottom (click)="createEvent()">
-  <button ion-fab color="danger" class="events_user_fab">
+  <button ion-fab class="events_user_fab">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>

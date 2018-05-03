@@ -15,8 +15,6 @@ export class HistoryOfferDetailComponent implements OnInit {
   offer: Offer
   constructor(private offerService: OfferService, private navParams: NavParams, private customService: CustomService, private nav: NavController) {
     this.trans = this.navParams.get('transaction')
-    console.log(this.trans);
-    
   }
 
   ngOnInit() {
@@ -32,9 +30,6 @@ export class HistoryOfferDetailComponent implements OnInit {
     this.offerService.getOffer(this.trans.related_guid).subscribe(data => {
       this.offer = data;
       console.log(this.offer);
-      console.log(this.trans.related_guid);
-      
-      
     }, err => this.loadData(--retry))
   }
 }
