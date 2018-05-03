@@ -121,4 +121,9 @@ export class FirebaseService {
   getOrder(shopguid, userGuid, guid) {
     return this.afDatabase.list('/orders/' + shopguid + "/" + userGuid + "/" + guid);
   }
+
+  deleteQRCode(qr){
+    this.afDatabase.object('/redeem/' + qr).remove();
+  }
+
 }

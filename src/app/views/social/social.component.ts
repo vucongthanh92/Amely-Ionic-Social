@@ -1,6 +1,7 @@
+import { FirebaseService } from './../../services/firebase.service';
 import { PaymentService } from './../../services/payment.service';
 import { SearchComponent } from './../../components/search/search.component';
-import { MenuController, PopoverController } from 'ionic-angular';
+import { MenuController, PopoverController, LoadingController } from 'ionic-angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { OffersComponent } from './offers/offers.component';
@@ -10,6 +11,8 @@ import { CustomService } from '../../services/custom.service';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { SocialMenuComponent } from './social-menu/social-menu.component';
 import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { UserUpdateComponent } from '../../components/user/user-update/user-update.component';
 
 @Component({
   selector: 'app-social',
@@ -32,7 +35,10 @@ export class SocialComponent implements OnInit {
     public menuCtrl: MenuController,
     public customService: CustomService,
     private popoverCtrl: PopoverController,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private barcodeScanner: BarcodeScanner,
+    private loadingCtrl: LoadingController,
+    private fbService:FirebaseService
   ) {
     // this.menuCtrl.enable(true, 'mainMenu');
     var ratio = window.devicePixelRatio || 1;
@@ -71,42 +77,50 @@ export class SocialComponent implements OnInit {
 
   payment() {
     // 632-4744
-    let code = "OFdMNmMrVUJjelpWWUs0NlkxN1dQaktyc3VIUENFWGJrWGhXck95TkRqST0";
-    this.paymentService.getTempOrder(code).subscribe(data => {
-      // check update profile        
-      this.paymentService.payment_qr_data = data;
-      this.paymentService.getPaymentMethod().subscribe(data => {
-        this.paymentService.payment_order_post = data;
-        console.log(data);
-        
-        this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-      });
+    // let code = "ekRDcHlSbXJ0cGp3SU4yRWEzVkpibTh3dnhHYXN4RnJsOVBKcGVpeS9rcz0";
+    // this.paymentService.getTempOrder(code).subscribe(data => {
+    //   // check update profile        
+    //   this.paymentService.payment_qr_data = data;
+    //   this.paymentService.getPaymentMethod().subscribe(data => {
+    //     this.paymentService.payment_order_post = data;
+    //     console.log(data);
 
-    })
-    // this.barcodeScanner.scan().then((barcodeData) => {
-    //   let loading = this.loadingCtrl.create({
-    //     content: 'Please wait...',
-    //     enableBackdropDismiss: true
+    //     this.appCtrl.getRootNav().push(QuickPayListItemComponent)
     //   });
 
-    //   loading.present();
-    //   this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-    //     // check update profile        
-    //     if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-    //       this.requestUpdateProfile()
-    //       loading.dismiss();
-    //     } else {
-    //       this.paymentService.payment_qr_data = data;
-    //       this.paymentService.getPaymentMethod().subscribe(data => {
-    //         this.paymentService.payment_order_post = data;
-    //         loading.dismiss();
-    //         this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-    //       });
-    //     }
-    //   })
-    // }, (err) => {
-    //   this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
-    // });
+    // })
+    this.barcodeScanner.scan().then((barcodeData) => {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+
+      loading.present();
+      this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+        // check update profile        
+        if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+          this.requestUpdateProfile()
+          loading.dismiss();
+        } else {
+          this.paymentService.payment_qr_data = data;
+          this.paymentService.getPaymentMethod().subscribe(data => {
+            this.paymentService.payment_order_post = data;
+            loading.dismiss();
+            this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+            this.fbService.deleteQRCode(barcodeData.text)
+          });
+        }
+      })
+    }, (err) => {
+      this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
+    });
   }
 
+  requestUpdateProfile() {
+    let myCallbackFunction = (_params) => {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+    }
+    this.appCtrl.getRootNav().push(UserUpdateComponent, { callback: myCallbackFunction, showError: true });
+  }
 }
