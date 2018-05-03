@@ -121,7 +121,7 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
+                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).limitToFirst(1).on('value', gift => {
                   gift.forEach(g => {
                     if (g.val().item_guid) {
                       object.gift = g.val();

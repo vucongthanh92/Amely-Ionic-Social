@@ -154,7 +154,7 @@ export class GroupMenuComponent implements OnInit {
 
       if (isAvatar) {
         this.customService.updateAvatar(this.group.guid, 'group', images).subscribe(data => {
-          this.customService.toastMessage(data.status + " avatar", 'bottom', 10000)
+          this.customService.toastMessage('Thay đổi ảnh đại diện thành công ', 'bottom', 10000)
           if (data.status) {
             this.group.avatar = url + "";
             this.callback(this.group).then(() => { })
@@ -164,7 +164,7 @@ export class GroupMenuComponent implements OnInit {
         })
       } else {
         this.customService.updateCover(this.group.guid, 'group', images).subscribe(data => {
-          this.customService.toastMessage(data.status + " avatar", 'bottom', 10000)
+          this.customService.toastMessage('Thay đổi ảnh bìa thành công ', 'bottom', 10000)
           if (data.status) {
             this.group.cover = url + "";
             this.callback(this.group).then(() => { })

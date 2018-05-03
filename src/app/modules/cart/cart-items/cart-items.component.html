@@ -7,11 +7,11 @@
 <ion-content class="outer-content">
   <div class="cart_items_container" *ngIf="items">
     <ion-row>
-      <ion-col col-12 *ngFor="let item of items">
+      <ion-col class="cart_items_item" col-12 *ngFor="let item of items">
         <ion-grid class="cart_items_product">
           <ion-row>
             <ion-col col-3>
-              <img src="{{ item.images[0] }}" />
+              <div class="cart_item_image" [style.background]="'url(' + item.images_entities[item.images[0]] + ')'"></div>
             </ion-col>
             <ion-col col-7>
               <h4 class="cart_items_product_title">{{ item.title }}</h4>
@@ -54,7 +54,7 @@
       Tổng tiền
       <ion-note class="ionNote" item-end>{{ customService.formatCurrency( total, "VND") }}</ion-note>
     </ion-item>
-    <div class="divVAT">
+    <div class="cart_item_vat">
       <ion-label>
         <i>(Đã bao gồm VAT)</i>
       </ion-label>

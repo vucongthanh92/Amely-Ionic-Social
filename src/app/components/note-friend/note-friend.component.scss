@@ -44,8 +44,14 @@ app-note-friend{
 
     .message_title {
         text-transform: capitalize;
+        font-size: 18px;
         color: #333;
-        margin: 0px 0px 3px 0px;
+        margin: 3px 0px 5px 0px;
+        white-space: nowrap;
+        max-height: 40px;
+        overflow: hidden;
+        padding: 3px 0px 0px 7px;
+        text-overflow: ellipsis;
     }
 
     .list-ios {

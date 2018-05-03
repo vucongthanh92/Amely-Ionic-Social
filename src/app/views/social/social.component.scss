@@ -67,7 +67,6 @@ app-social{
         }
     }
 
-    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=around], .tab-button-icon[aria-label=around] {
@@ -120,7 +119,7 @@ app-social{
     }
 
     #top_navigation_iphonex {
-        top: 87px;
+        top: 64px;
     }
 
     .social_more {
@@ -139,5 +138,13 @@ app-social{
     .search_box {
         font-size: 18px;
         color: #fff;
+    }
+
+    .toolbar-ios {
+        padding-top: calc(0px + 4px) !important;
+    }
+
+    .title-ios {
+        padding-top: 0px !important;
     }
 }

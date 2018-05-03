@@ -20,10 +20,16 @@ app-events-user {
     }
 
     .events_title {
-        font-size: 16px;
-        color: #333;
         text-transform: capitalize;
+        font-size: 18px;
+        color: #333;
+        margin: 3px 0px 5px 0px;
+        white-space: nowrap;
+        max-height: 40px;
+        overflow: hidden;
+        padding: 3px 0px 0px 7px;
         margin: 0px 0px 0px 5px;
+        text-overflow: ellipsis;
     }
 
     .events_date {
@@ -44,9 +50,9 @@ app-events-user {
     }
 
     .event_user_status {
-        font-size: 15px;
+        font-size: 1.4rem;
         color: #666;
-        text-align: center;
+        text-align: right;
         font-style: italic;
     }
 
@@ -67,33 +73,38 @@ app-events-user {
          height: 1em;
          margin-top: 10px;
     }
-     h2 {
+    
+    h2 {
          max-width: 95px;
     }
-     h3 {
+    
+    h3 {
          max-width: 125px;
     }
-     p {
+    
+    p {
          max-width: 250px;
     }
-  }
- .divCustom{
-     background: linear-gradient(to right, lightgray, white, lightgray);
-     animation: skeleton 2s infinite;
-     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-     background-repeat: no-repeat;
-     background-position-x: -300px;
-     background-position-y: 0;
-     background-color: lightgray;
-     opacity: 0.5;
-     height: 6em;
-     width: 95px;
-  }
- @keyframes skeleton {
-     0% {
+}
+
+.divCustom{
+    background: linear-gradient(to right, lightgray, white, lightgray);
+    animation: skeleton 2s infinite;
+    animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+    background-repeat: no-repeat;
+    background-position-x: -300px;
+    background-position-y: 0;
+    background-color: lightgray;
+    opacity: 0.5;
+    height: 6em;
+    width: 95px;
+}
+
+@keyframes skeleton {
+    0% {
          background-position-x: -150px;
     }
-     100% {
+    100% {
          background-position-x: 150px;
     }
   }

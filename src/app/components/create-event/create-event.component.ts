@@ -158,7 +158,6 @@ export class CreateEventComponent implements OnInit {
 
     const string_datetime_start = this.date_start + " " + this.time_start;
     const datetime_start = new Date(Date.parse(string_datetime_start)).getTime();
-
     const string_datetime_end = this.date_end + " " + this.time_end;
     const datetime_end = new Date(Date.parse(string_datetime_end)).getTime();
 
@@ -197,7 +196,7 @@ export class CreateEventComponent implements OnInit {
 
 
       const status = this.is_open ? "2" : "1";
-      this.eventService.createEvent(this.type, this.name, (datetime_start / 1000) + "", (datetime_end / 1000) + "", "",
+      this.eventService.createEvent(this.type, this.name, (+datetime_start / 1000) + "", (+datetime_end / 1000) + "", "",
         this.location, this.description, this.has_inventory ? "1" : "", status, 'user', this.customSerivce.user_current.guid,
         this.members_chosen, this.guests_chosen).subscribe(data => {
           if (data.status) {

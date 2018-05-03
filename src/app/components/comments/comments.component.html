@@ -29,10 +29,13 @@
                 </div>
 
                 <p class="comment_body_content">{{comment.content}}</p>
+                <p>
+                  <img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer />
+                </p>
+                <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
               </div>
 
-              <p><img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer /></p>
-              <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
+              
             </ion-item>
           </ion-row>
         </ion-grid>
