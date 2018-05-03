@@ -57,6 +57,8 @@ export class ContactUsersComponent implements OnInit {
   goToPageChat(friend, chat_type) {
     friend.from = this.userCurrent.username;
     friend.to = friend.username;
+    console.log(friend.to);
+    
     this.messagesService.getKeyChat(this.userCurrent.username, friend.username, "individual").query.once('value', snap => {
       let key = "";
       if (snap.val() == null) {
