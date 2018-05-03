@@ -71,7 +71,7 @@ export class SocialComponent implements OnInit {
 
   payment() {
     // 632-4744
-    let code = "bnA3M1poMWo1K3NoMlQ5U3V2cGFWZXJmeTVEbjBQUmFMNnR2Y0lxL2JXdz0";
+    let code = "OFdMNmMrVUJjelpWWUs0NlkxN1dQaktyc3VIUENFWGJrWGhXck95TkRqST0";
     this.paymentService.getTempOrder(code).subscribe(data => {
       // check update profile        
       this.paymentService.payment_qr_data = data;
