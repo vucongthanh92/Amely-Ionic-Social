@@ -1,16 +1,14 @@
-<ion-content class="bodyContent">
-  <div class="scroll-content divContent">
-    <ion-row style=" background-color: #ffffff;">
-      <ion-col col-12 class="marginCol">
+<ion-content class="find_friend_container">
+  <div class="scroll-content find_friend_main">
+    <ion-row class="find_friend_box">
+      <ion-col col-12 class="find_friend_col">
         <ion-label>Theo số điện thoại</ion-label>
       </ion-col>
       <ion-col>
         <ion-grid>
           <ion-row>
             <ion-col col-9>
-              <i>
-                <ion-input [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại"></ion-input>
-              </i>
+              <ion-input class="find_friend_input" [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại"></ion-input>
             </ion-col>
             <ion-col col-3>
               <button (click)="findUser()" class="buttonSearch" ion-button>TÌM</button>
@@ -26,16 +24,12 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-
     </ion-row>
-
   </div>
-
 </ion-content>
 
 <ion-footer>
   <ion-toolbar class="ionFooterToolbar">
-
     <ion-grid>
       <ion-row>
         <ion-col col-12 class="marginFooter">
@@ -51,7 +45,6 @@
           <button class="buttonIcon" ion-button>
             <ion-icon class="iconFooter" ios="logo-facebook" md="logo-facebook"></ion-icon>
           </button>
-
           <ion-label class="labelIconFacebook">Tìm bạn từ Facebook</ion-label>
         </ion-col>
       </ion-row>

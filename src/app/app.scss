@@ -1,1 +1,34 @@
 @import "node_modules/ladda/css/ladda-themed";
+.header-ios {
+    .toolbar-background-ios {
+        background: #00bdf2;
+        color: #fff;
+    }
+}
+
+.toolbar-ios {
+    padding-top: calc(0px + 4px) !important;
+
+    .ion_navbar_icon {
+        color: #fff;
+        font-size: 2.4rem;
+        margin: 0px 0px 0px 3px;
+    }
+
+    .ion_navbar_span {
+        font-size: 1.8rem;
+        vertical-align: 2px;
+        margin: 0px 0px 0px 5px;
+        font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+        text-transform: capitalize;
+    }
+}
+
+.title-ios {
+    padding-top: 0px !important;
+
+    .toolbar-title-ios {
+        color: #fff;
+        text-transform: capitalize;
+    }
+}

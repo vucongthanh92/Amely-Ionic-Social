@@ -1,10 +1,24 @@
   app-find-friend {
-    .bodyContent {
-      background-color: #f8f8f8;
+    .find_friend_container {
+      
     }
-    .divContent {
-      margin-top: 10px;
+
+    .find_friend_main {
+      margin: 0px;
+      padding: 0px;
+      overflow: visible;
     }
+
+    .find_friend_box {
+      background-color: #ffffff;
+    }
+
+    .find_friend_input {
+      border: 1px solid #ddd;
+      padding: 0px 0px 0px 10px;
+      border-radius: 3px;
+    }
+
     .ionFooterToolbar {
       background-color: red;
       height: 150px;
@@ -20,7 +34,7 @@
       padding: 0 1em;
     }
 
-    .marginCol {
+    .find_friend_col {
       margin-left: 10px;
       height: 30px;
     }
