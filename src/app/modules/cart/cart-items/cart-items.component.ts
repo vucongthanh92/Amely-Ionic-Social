@@ -53,27 +53,6 @@ export class CartItemsComponent implements OnInit {
       if (item[0].quantity_cart > 1) {
         item[0].quantity_cart = item[0].quantity_cart - 1;
         this.update();
-      }else {
-        let alert = this.alertCtrl.create({
-          title: 'Xác nhận',
-          message: 'Bạn có muốn xóa sản phẩm khỏi giỏ hàng?',
-          buttons: [
-            {
-              text: 'Từ chối',
-              role: 'cancel',
-              handler: () => {
-              }
-            },
-            {
-              text: 'Chấp nhận',
-              handler: () => {
-                this.customService.cart = this.items = this.items.filter(data => data.guid != guid);
-                this.update();
-              }
-            }
-          ]
-        });
-        alert.present();
       }
     }
   }
@@ -107,7 +86,12 @@ export class CartItemsComponent implements OnInit {
     this.total = 0;
     this.items.forEach(e => {
       this.number_items = this.number_items + e.quantity_cart;
-      this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));
+      if (e.sale_price == 0 || e.sale_price == null) {
+        this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));  
+      }else{
+        this.total = this.total + (e.quantity_cart * this.customService.netSalePrice(e));
+      }
+      
     });
   }
 
@@ -145,5 +129,12 @@ export class CartItemsComponent implements OnInit {
 
   formartCurrency(item: Product) {
     this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+  }
+  formartSalePrice(item: Product) {
+    this.customService.formatCurrency(this.customService.netSalePrice(item) + "", item.currency);
+  }
+
+  formatSalePriceShow(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
   }
 }
