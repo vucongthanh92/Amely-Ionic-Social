@@ -3,70 +3,69 @@
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-title>
-      Hóa đơn cần thanh toán
-    </ion-title>
-
+    <ion-title>Hóa đơn cần thanh toán</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="next()">
-        Next
+      <button ion-button icon-only (click)="next()">Next
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
-  <ion-list style="margin: 0">
-    <ion-item>
+<ion-content class="quick_pay_list_container">
+  <ion-list class="quick_pay_list_main">
+    <ion-item class="quick_pay_list_item">
       <ion-thumbnail item-left>
-        <img src="{{shop.avatarurl}}">
+        <div class="quick_pay_list_item_img" [style.background]="'url(' + shop.avatarurl + ')'" ></div>
       </ion-thumbnail>
-      <h2>{{shop.title}}</h2>
-      <p>
-        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> {{shop.shop_phone}}</p>
-      <p>
-        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> {{shop.shop_address}}</p>
-      <button ion-button clear item-right></button>
+      <h2 class="quick_pay_list_item_title">{{shop.title}}</h2>
+      <ion-row class="quick_pay_list_item_info">
+        <ion-col col-8>
+          <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.shop_phone}}</span>
+        </ion-col>
+        <ion-col col-4>
+          <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.shop_address}}</span>
+        </ion-col>
+      </ion-row>
     </ion-item>
-    <ion-item>
-      <p>
-        <strong>Thông tin chủ cửa hàng</strong>
-      </p>
-      <p>{{shop.owner_name}}</p>
-      <p>
-        <img style="width: 15px ;height: 15px;" src="assets/imgs/ic_phone_gray.png"> {{shop.owner_phone}}</p>
-      <p>
-        <img style="width: 17px ;height: 17px;" src="assets/imgs/ic_place_blue.png"> {{shop.owner_address}}</p>
+    <ion-item class="quick_pay_list_owner">
+      <div class="quick_pay_list_item_title">Thông tin chủ cửa hàng: {{shop.owner_name}}</div>
+      <ion-row class="quick_pay_list_item_info">
+        <ion-col col-9>
+          <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.owner_phone}}</span>
+        </ion-col>
+        <ion-col col-3>
+          <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.owner_address}}</span>
+        </ion-col>
+      </ion-row>
     </ion-item>
   </ion-list>
-  <div style="background-color: #fff;">
+
+  <div class="quick_pay_list_product">
     <ion-list>
-      <ion-item *ngFor="let product of products">
+      <ion-item class="quick_pay_list_product_item" *ngFor="let product of products">
         <ion-thumbnail item-left>
           <img *ngIf="product.images" src="{{product.images[0]}}">
         </ion-thumbnail>
-        <h2>{{product.title}}</h2>
+        <h2 class="quick_pay_list_product_item">{{product.title}}</h2>
         <p style="color: red; position: relative;font-weight: bold">{{formatCurrency(product,product.currency)}}
           <span *ngIf="product.hasInventory==null || product.hasInventory==1"  style="color: black;font-weight: normal"> x {{product.display_quantity}}</span>
           <span *ngIf="product.hasInventory==2" style="color: black;font-weight: normal"> x {{product.redeem_quantity}}</span>
         </p>
-        <p *ngIf="product.hasInventory && product.hasInventory==1" style="color: orange;font-size: 11px">
-          CÓ TRONG KHO CỦA TÔI
-        </p>
-        <button *ngIf="product.hasInventory && product.hasInventory==1" ion-button clear item-right (click)="showInventoryItem(product)">Sử dụng</button>
+        <div *ngIf="product.hasInventory && product.hasInventory==1" class="quick_pay_list_product_inventory">CÓ TRONG KHO CỦA TÔI</div>
+        <button class="quick_pay_list_product_btn" *ngIf="product.hasInventory && product.hasInventory==1" ion-button item-right 
+          (click)="showInventoryItem(product)">Sử dụng</button>
         <button *ngIf="product.hasInventory && product.hasInventory==2" ion-button clear item-right>Đã sử dụng</button>
       </ion-item>
     </ion-list>
   </div>
 
-  <ion-row>
-    <div style="position: fixed; bottom: 0px; width: 100%">
+  <ion-row class="quick_pay_list_total">
+    <div class="quick_pay_list_total_main">
       <ion-item>
         Tổng tiền :
         <ion-note class="ionNote" item-end>
-          <p style="color: red; position: relative;font-weight: bold">{{formatTotalPrice()}}</p>
+          <p class="quick_pay_list_total_row">{{formatTotalPrice()}}</p>
         </ion-note>
       </ion-item>
     </div>

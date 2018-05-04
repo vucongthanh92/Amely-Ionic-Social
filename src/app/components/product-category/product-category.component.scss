@@ -140,4 +140,16 @@ app-product-category{
       background-position-x: 150px;
     }
   }
+
+  .product_feature_price {
+    color: #D9534F;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  .product_sale_price {
+    color: #b6b7b7;
+    font-size: 14px;
+    text-transform: capitalize;
+    text-decoration: line-through;
+  }
 }

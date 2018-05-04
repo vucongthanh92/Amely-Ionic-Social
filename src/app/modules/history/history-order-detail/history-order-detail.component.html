@@ -16,7 +16,17 @@
             <ion-col col-7>
               <h3 class="history_order_title">{{item.title}} </h3>
               <p class="history_order_description">
-                <a class="history_order_price">{{formatCurrency(item)}}</a> x {{item.qty}}
+                <a class="history_order_price">
+                  <div *ngIf="item.sale_price == 0 || item.sale_price == null; else other_content">
+                    <div class="product_feature_price">{{ formatSalePrice( item.price, item.currency) }} <a style="color: #aeacb4">x {{item.qty}}</a> </div> 
+                  </div>
+                  <ng-template #other_content>
+                    <div class="product_feature_price">{{formatSalePrice(item.sale_price,item.currency)}} <a style="color: #aeacb4">x {{item.qty}}</a></div>
+                    <div class="product_sale_price">{{ formatSalePrice( item.price, item.currency) }}</div>
+                  </ng-template>
+                  <!-- {{formatCurrency(item)}} -->
+
+                </a> 
               </p>
               <!-- <p style="top:-10px; position: relative;">Thuế : {{item.tax}}%</p> -->
             </ion-col>

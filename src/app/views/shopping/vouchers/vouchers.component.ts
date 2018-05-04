@@ -70,4 +70,8 @@ export class VouchersComponent implements OnInit {
   formatCurrency(voucher: Product) {
     return this.customService.formatCurrency(this.customService.netPrice(voucher) + "", voucher.currency);
   }
+
+  formatSalePrice(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
+  }
 }

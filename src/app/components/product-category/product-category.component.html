@@ -46,9 +46,16 @@
             <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
           </ion-col>
           <ion-col col-8>
-            <ion-row>{{product.title}}</ion-row>
-            <ion-row>{{ formatCurrency(product)}} </ion-row>
-            <ion-row *ngIf="product.quantity==0">hết hàng</ion-row>
+            <ion-row style="font-weight: bold;">{{product.title}}</ion-row>
+            <!-- <ion-row>{{ formatCurrency(product)}} </ion-row> -->
+            <ion-row *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+              <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            </ion-row>
+            <ng-template #other_content>
+              <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
+              <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            </ng-template>
+            <ion-row *ngIf="product.quantity==0" style="color: red;">Hết hàng</ion-row>
           </ion-col>
         </ion-row>
       </ion-item>

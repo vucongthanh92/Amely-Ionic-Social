@@ -1,4 +1,5 @@
 <ion-content class="outer-content">
+
   <ion-slides  *ngIf="banners && banners.length" autoplay="4000" loop="true" class="shops_slides">
     <ion-slide *ngFor="let b of banners" (click)='openBanner(b)'>
       <div class="shops_slides_image" [style.background]="'url(' + b.banner_url + ')'"></div>

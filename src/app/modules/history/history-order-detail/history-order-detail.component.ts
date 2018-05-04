@@ -40,7 +40,11 @@ export class HistoryOrderDetailComponent implements OnInit {
       if (this.order.order_item) {
         this.order.order_item.forEach(e => {
           this.totalItem = this.totalItem + e.qty;
-          this.totalAmount = this.totalAmount + ((+e.price + (+e.price * (+e.tax / 100))) * e.qty);
+          if (e.sale_price == 0 || e.sale_price == null) {
+            this.totalAmount = this.totalAmount + ((+e.price + (+e.price * (+e.tax / 100))) * e.qty);
+          } else {
+            this.totalAmount = this.totalAmount + ((+e.sale_price + (+e.sale_price * (+e.tax / 100))) * e.qty);
+          }
         })
       } else {
         this.totalItem = 0;
@@ -54,5 +58,9 @@ export class HistoryOrderDetailComponent implements OnInit {
   }
   formatTotalPrive(amount: number, usercurrency) {
     return this.customService.formatCurrency(amount + "", usercurrency);
+  }
+
+  formatSalePrice(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
   }
 }
