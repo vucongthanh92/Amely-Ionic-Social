@@ -90,6 +90,7 @@
 
 <ion-footer *ngIf="product" >
 
+
   <button *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content" 
     ion-button block class="product_add_cart_btn" (click)="putCartLocal(product)"> Thêm vào giỏ hàng
   </button>
