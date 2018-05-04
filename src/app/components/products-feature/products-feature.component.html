@@ -19,7 +19,14 @@
           <div class="imgageProduct" *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'"></div>
           <div class="product_feature_info">
             <h4 class="product_feature_title">{{product.title}}</h4>
-            <div class="product_feature_price">{{formatCurrency(product,product.currency)}}</div>
+            <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+              <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            </div>
+            <ng-template #other_content>
+              <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
+              <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            </ng-template>
+            <!-- <div class="product_feature_price">{{formatCurrency(product,product.currency)}}</div> -->
             <!-- <div class="product_feature_price" *ngIf="product.quantity==0" >Hết hàng</div> -->
           </div>
         </div>

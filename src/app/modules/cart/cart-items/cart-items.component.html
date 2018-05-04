@@ -14,7 +14,16 @@
               <div class="cart_item_image" [style.background]="'url(' + item.images_entities[item.images[0]] + ')'"></div>
             </ion-col>
             <ion-col col-7>
-              <h4 class="cart_items_product_title">{{ item.title }}</h4>
+              <h4 class="cart_items_product_title" style="font-weight: bold;">{{ item.title }}</h4>
+              <h4 class="cart_items_product_title">
+                <div *ngIf="item.sale_price == 0 || item.sale_price == null; else other_content">
+                  <div class="product_feature_price">{{ formatSalePriceShow( item.price, item.currency) }}</div>
+                </div>
+                <ng-template #other_content>
+                  <div class="product_feature_price">{{formatSalePriceShow(item.sale_price,item.currency)}}</div>
+                  <div class="product_sale_price">{{ formatSalePriceShow( item.price, item.currency) }}</div>
+                </ng-template>
+              </h4>
               <h4 class="cart_items_product_price">{{ formartCurrency( item) }}</h4>
               <ion-row class="cart_items_quantity">
                 <ion-col col-3>
