@@ -1,6 +1,8 @@
   app-find-friend {
     .find_friend_container {
-      
+      .scroll-content {
+        overflow: unset;
+      }
     }
 
     .find_friend_main {
@@ -14,57 +16,86 @@
     }
 
     .find_friend_input {
-      border: 1px solid #ddd;
       padding: 0px 0px 0px 10px;
+      color: #666;
+    }
+
+    .find_friend_other {
+      height: auto;
+      padding: 0px 0px 5px 0px;
+    }
+
+    .find_friend_result_search {
       border-radius: 3px;
-    }
-
-    .ionFooterToolbar {
-      background-color: red;
-      height: 150px;
-    }
-
-    .buttonSearch {
-      border-radius: 8px;
-      height: 1.8em;
-      font-size: 1.6rem;
+      height: 32px;
+      font-size: 1.5rem;
       color: #fff;
       background-color: #488aff;
       margin: 0.4rem 0.2rem;
-      padding: 0 1em;
+      padding: 0px;
+      width: 90%;
+    }
+
+    .find_friend_result_box {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+
+      ion-col {
+        padding: 0px;
+        text-align: center;
+      }
     }
 
     .find_friend_col {
       margin-left: 10px;
-      height: 30px;
+      height: 32px;
+
+      ion-label {
+        color: #333;
+        text-transform: capitalize;
+        font-size: 1.4rem;
+      }
     }
-    .marginFooter {
-      top: -12px;
-      margin-left: -5px;
+
+    .find_friend_result {
+      margin: 18px 0px 0px 0px;
     }
-    .iconFooterBarcode {
+
+    .find_friend_result_img {
+      width: 50px;
+      height: 50px; 
+      border-radius: 50%;
+    }
+
+    .find_friend_result_fullname {
+      font-size: 1.6rem;
+      color: #333;
+      line-height: 4rem;
+    }
+
+    .find_friend_other_container {
+      margin: 0px 0px 0px 0px;
       text-align: center;
-      top: -30px;
-      font-size: 60px;
+      text-transform: uppercase;
+      padding: 0px;
+      position: static;
+      color: #333;
+      font-size: 1.5rem;
     }
-    .iconFooterFacebook {
+
+    .find_friend_other_col {
       text-align: center;
-      top: -25px;
-      font-size: 50px;
     }
-    .labelIconBarcode {
-      font-size: 15px !important;
-      margin: -5px 8px -5px 0;
+
+    .find_friend_other_title {
+      font-size: 1.3rem;
+      color: #666;
     }
-    .labelIconFacebook {
-      font-size: 15px !important;
-      margin: 3px 8px -5px 0;
-    }
-    .buttonIcon {
+
+    .find_friend_other_icon {
       height: 50px;
       width: 50px;
       border-radius: 100%;
-      top: -20px;
       background-color: #e06b27;
     }
     .iconFooter {
