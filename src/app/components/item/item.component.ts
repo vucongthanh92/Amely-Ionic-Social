@@ -1,3 +1,4 @@
+import { RenewalItemComponent } from './../renewal-item/renewal-item.component';
 import { UserService } from './../../services/user.service';
 import { DeliveryItemComponent } from './../../modules/delivery/delivery-item/delivery-item.component';
 import { CustomService } from './../../services/custom.service';
@@ -27,6 +28,7 @@ export class ItemComponent implements OnInit {
   callback: any;
   is_reload_before_page = false;
   expiryType: number;
+  stored_end: Date;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -55,13 +57,12 @@ export class ItemComponent implements OnInit {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
-        console.log(this.item);
         this.expiryType = +this.item.is_special;
-        console.log(this.expiryType);        
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
         // loading.dismiss();
+        this.formatStoredDate();
       },
       err => {
         this.loadData(--retry)
@@ -97,6 +98,9 @@ export class ItemComponent implements OnInit {
       })
   }
 
+  formatStoredDate() {
+    this.stored_end = new Date(+(this.item.stored_end + "000"))
+  }
   ionViewWillLeave() {
     // Unregister the custom back button action for this page
     this.callback(this.is_reload_before_page).then((values) => {
@@ -167,5 +171,17 @@ export class ItemComponent implements OnInit {
     }
   }
 
+  renewalItem() {
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.appCtrl.getRootNav().push(RenewalItemComponent, { item: this.item, callback: this.callbackRenewal })
+      })
+  }
 
+  callbackRenewal = (date: number) => {
+    return new Promise((resolve, reject) => {
+      this.stored_end = new Date(this.stored_end.setDate(this.stored_end.getDate() + date));
+      resolve();
+    });
+  }
 }

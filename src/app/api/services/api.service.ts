@@ -3422,7 +3422,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  extendDaysResponse(body: body_37): Observable<HttpResponse<Item>> {
+  extendDaysResponse(body: body_37): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -3441,9 +3441,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Item = null;
-        _body = _resp.body as Item
-        return _resp.clone({body: _body}) as HttpResponse<Item>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3451,7 +3451,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  extendDays(body: body_37): Observable<Item> {
+  extendDays(body: body_37): Observable<DefaultResponse> {
     return this.extendDaysResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -4914,9 +4914,46 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   quickPayCreate(body: Param_create_order): Observable<DefaultResponse> {
-    console.log(body);
-    
     return this.quickPayCreateResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * null
+   * @param to_guid - undefined
+   */
+  quickPayUpdateResponse(toGuid: number): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (toGuid != null) __params = __params.set("to_guid", toGuid.toString());
+    let req = new HttpRequest<any>(
+      "PATCH",
+      this.rootUrl + `/quickpay`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * null
+   * @param to_guid - undefined
+   */
+  quickPayUpdate(toGuid: number): Observable<DefaultResponse> {
+    return this.quickPayUpdateResponse(toGuid).pipe(
       map(_r => _r.body)
     );
   }

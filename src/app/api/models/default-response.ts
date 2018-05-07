@@ -10,4 +10,5 @@ export class DefaultResponse {
     validation?: User;
     code?: string;
     url?: string;
+    to_guid?: number;
 }
