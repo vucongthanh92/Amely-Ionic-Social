@@ -118,6 +118,10 @@ export class SearchComponent implements OnInit {
     return result;
   }
 
+  formatSalePrice(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
+  }
+
   formatDate(time: number) {
     return new Date(time * 1000);
   }

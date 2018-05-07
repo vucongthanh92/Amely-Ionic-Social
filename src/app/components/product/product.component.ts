@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
     public appCtrl: App,
     private productsService: ProductsService,
     private navParam: NavParams,
-    private customService: CustomService,
+    public customService: CustomService,
     public loadingCtrl: LoadingController) {
 
     this.product = this.navParam.get('product');
@@ -73,6 +73,10 @@ export class ProductComponent implements OnInit {
 
   formatCurrency(product: Product, currency: string) {
     return this.customService.formatCurrency(this.customService.netPrice(product) + "", currency);
+  }
+
+  formatSalePrice(price : number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
   }
 
   putCartLocal(product) {

@@ -72,6 +72,12 @@ app-products-feature {
     font-size: 14px;
     text-transform: capitalize;
   }
+  .product_sale_price {
+    color: #b6b7b7;
+    font-size: 14px;
+    text-transform: capitalize;
+    text-decoration: line-through;
+  }
 
   .product_feature_container {
     background-color: #fff;

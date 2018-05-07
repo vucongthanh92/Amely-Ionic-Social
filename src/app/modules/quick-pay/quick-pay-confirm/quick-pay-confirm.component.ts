@@ -72,7 +72,10 @@ export class QuickPayConfirmComponent implements OnInit {
   }
 
   submitPayment() {
-
+    let loading1 = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading1.present();
     if (this.paymentService.quick_pay_send_data.paymentMethod.filename == 'WOD' || this.paymentService.quick_pay_send_data.paymentMethod.filename == 'COD'
       || this.paymentService.quick_pay_send_data.paymentMethod.filename == 'COS') {
 
@@ -80,6 +83,7 @@ export class QuickPayConfirmComponent implements OnInit {
         this.user_current.district, this.user_current.ward, "", this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin,
         this.user_current.mobilelogin, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
         this.paymentService.quick_pay_send_data.paymentMethod.filename == "COS" ? this.paymentService.quick_pay_send_data.shipping_methods.filename : "", "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+          loading1.dismiss();
           if (data.status) {
             let loading = this.loadingCtrl.create({
               content: 'Please wait...'
@@ -116,7 +120,7 @@ export class QuickPayConfirmComponent implements OnInit {
           this.user_current.mobilelogin, this.paymentService.quick_pay_send_data.shipping.shipping_phone, this.paymentService.quick_pay_send_data.shipping.shipping_address,
           this.paymentService.quick_pay_send_data.shipping.shipping_province, this.paymentService.quick_pay_send_data.shipping.shipping_district, this.paymentService.quick_pay_send_data.shipping.shipping_ward,
           "", this.shipping_methods.filename, "0", this.paymentService.payment_qr_data.to_guid).subscribe(data => {
-
+            loading1.dismiss();
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
               if (e.url.indexOf('https://amely.com/m/temp_order/') > -1) {
@@ -133,6 +137,7 @@ export class QuickPayConfirmComponent implements OnInit {
           this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin, this.user_current.mobilelogin, this.user_current.address,
           this.user_current.province, this.user_current.district, this.user_current.ward, "", this.shipping_methods.filename, "0",
           this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+            loading1.dismiss();
             const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
             browser.on('loadstop').subscribe(e => {
               if (e.url.indexOf('https://amely.com/m/temp_order/') > -1) {
