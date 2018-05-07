@@ -4,6 +4,10 @@
         background: #00bdf2;
         color: #fff;
     }
+
+    .ion_navbar_box {
+        float: left;
+    }
 }
 
 .toolbar-ios {
@@ -14,14 +18,16 @@
         font-size: 2.4rem;
         margin: 0px 0px 0px 3px;
     }
+}
 
-    .ion_navbar_span {
-        font-size: 1.8rem;
-        vertical-align: 2px;
-        margin: 0px 0px 0px 5px;
-        font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
-        text-transform: capitalize;
-    }
+.ion_navbar_title {
+    font-size: 1.8rem;
+    vertical-align: unset;
+    margin: 5px 0px 0px 5px;
+    font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+    text-transform: capitalize;
+    float: right;
+    color: #fff;
 }
 
 .title-ios {

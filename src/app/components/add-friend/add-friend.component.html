@@ -1,11 +1,10 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back">
-          <span class="ion_navbar_span">Thêm bạn</span>
-        </ion-icon>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
+      <div class="ion_navbar_title">Thêm bạn</div>
     </ion-buttons>
     <ion-title></ion-title>
   </ion-navbar>
@@ -13,7 +12,7 @@
 
 <ion-content class="add_friend_container">
   <ion-tabs tabsPlacement="top" primary #myTabs>
-    <ion-tab [root]="tab1Root" [rootParams]="viewCtrl" tabTitle="Tìm bạn" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tab1Root" [rootParams]="viewCtrl" tabTitle="Tìm bạn" tabIcon="search"></ion-tab>
     <ion-tab [root]="tab2Root" [rootParams]="viewCtrl" tabTitle="Gợi ý" tabIcon="information-circle"></ion-tab>
   </ion-tabs>
 </ion-content>
