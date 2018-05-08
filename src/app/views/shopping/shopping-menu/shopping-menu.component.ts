@@ -32,22 +32,24 @@ export class ShoppingMenuComponent implements OnInit {
         content: 'Please wait...',
         enableBackdropDismiss: true
       });
-
-      loading.present();
-      this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-        // check update profile        
-        if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-          this.requestUpdateProfile()
-          loading.dismiss();
-        } else {
-          this.paymentService.payment_qr_data = data;
-          this.paymentService.getPaymentMethod().subscribe(data => {
-            this.paymentService.payment_order_post = data;
+      console.log(barcodeData);
+      if (!barcodeData.cancelled) {
+        loading.present();
+        this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+          // check update profile        
+          if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+            this.requestUpdateProfile()
             loading.dismiss();
-            this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-          });
-        }
-      })
+          } else {
+            this.paymentService.payment_qr_data = data;
+            this.paymentService.getPaymentMethod().subscribe(data => {
+              this.paymentService.payment_order_post = data;
+              loading.dismiss();
+              this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+            });
+          }
+        })
+      }
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
