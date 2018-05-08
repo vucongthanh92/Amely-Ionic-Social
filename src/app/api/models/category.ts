@@ -17,4 +17,5 @@ export class Category {
     creator_guid?: string;
     total_product?: number;
     logo?: string;
+    isParent?: boolean;
 }

@@ -1,6 +1,4 @@
-import { StatusBar } from '@ionic-native/status-bar';
 import { FirebaseService } from './../../../services/firebase.service';
-import { MainMenuComponent } from './../../../layout/main-menu/main-menu.component';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { DISTRICTS } from './../../../districts';
 import { WARDS } from './../../../wards';
