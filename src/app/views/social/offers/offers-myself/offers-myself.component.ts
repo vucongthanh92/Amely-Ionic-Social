@@ -44,14 +44,17 @@ export class OffersMyselfComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.offersService.getOffers(0, 9999, null).subscribe(data => {
-      this.offers = []
-      if (data instanceof Array) {
-        
-        this.offers = data;
-      }
-      // loading.dismiss();
-    }, err => this.getOffers(--retry))
+    setTimeout(() => {
+      this.offersService.getOffers(0, 9999, null).subscribe(data => {
+        this.offers = []
+        if (data instanceof Array) {
+
+          this.offers = data;
+        }
+        // loading.dismiss();
+      }, err => this.getOffers(--retry))
+    }, 2500);
+    
   }
 
   changePage(offer) {

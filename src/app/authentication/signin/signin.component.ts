@@ -91,6 +91,10 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  setUsername(username) {
+    this.username = username.toLowerCase();
+  }
+
   onRegister() {
     // this.nav.push(MapComponent);
     this.nav.push(RegisterComponent);

@@ -31,14 +31,17 @@ export class EventsHistoryComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.eventsService.getEvents(0, 9999, 'history').subscribe(data => {
-      this.events = []
-      if (data.events instanceof Array) {
-        this.events = data.events;
-      }
-      // loading.dismiss();
-      this.users = data.users;
-    }, err => this.loadData(--retry))
+    setTimeout(() => {
+      this.eventsService.getEvents(0, 9999, 'history').subscribe(data => {
+        this.events = []
+        if (data.events instanceof Array) {
+          this.events = data.events;
+        }
+        // loading.dismiss();
+        this.users = data.users;
+      }, err => this.loadData(--retry))
+    }, 2500);
+    
   }
 
   getDateCreate(time: number) {

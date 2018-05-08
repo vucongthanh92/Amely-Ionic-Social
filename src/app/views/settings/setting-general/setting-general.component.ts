@@ -16,7 +16,7 @@ export class SettingGeneralComponent implements OnInit {
   logout() {
     let alert = this.alertCtrl.create({
       title: 'Xác nhận đăng xuất',
-      message: 'Bạn có muốn đăng xuất khỏi hệ thống ?',
+      message: 'Bạn có muốn đăng xuất khỏi hệ thống?',
       buttons: [
         {
           text: 'Từ chối',
