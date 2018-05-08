@@ -2,4 +2,20 @@ app-news-feed {
     .scroll-content {
         padding: 0px !important;
     }
+    
+    .feeds_fab {
+        position: fixed;
+        bottom: 12vh;
+        right: 4vw;
+        z-index: 100;
+
+        .feeds_fab_icon {
+            background-color: #f0ad4e;
+            color: #fff;
+
+            ion-icon {
+                font-weight: bold;
+            }
+        }
+    }
 }

@@ -12,7 +12,7 @@
   </ion-infinite-scroll>
 </div>
 
-<ion-footer>
+<ion-footer *ngIf="feed_type!='friends'" >
   <ion-fab class="feeds_fab" *ngIf="is_show_btn_add_feed">
     <button ion-fab class="feeds_fab_icon" (click)="addNewFeed()">
       <ion-icon name="add"></ion-icon>
