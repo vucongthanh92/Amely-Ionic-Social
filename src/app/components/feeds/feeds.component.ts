@@ -158,6 +158,8 @@ export class FeedsComponent implements OnInit {
   }
 
   addNewFeed() {
+    console.log(this.owner_guid + "   " + this.type);
+
     this.appCtrl.getRootNav().push(AddFeedComponent, { owner_guid: this.owner_guid, type: this.type, callback: this.myCallbackFunction });
   }
 
