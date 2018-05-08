@@ -10,6 +10,7 @@ import { App, NavController, LoadingController } from 'ionic-angular';
 import { InvenroyItemsComponent } from '../invenroy-items/invenroy-items.component';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Business } from '../../api/models/business';
+import { CustomService } from '../../services/custom.service';
 
 @Component({
   selector: 'app-inventory',
@@ -39,9 +40,11 @@ export class InventoryComponent implements OnInit {
   badge_near_stored: number = 0;
   badge_near_expiry: number = 0;
   public totalItem: number = 0;
+  public totalPrice: number = 0;
+  public total: number = 0;
 
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, private customService: CustomService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
 
@@ -113,10 +116,16 @@ export class InventoryComponent implements OnInit {
       //   enableBackdropDismiss: true
       // });
       // loading.present();
-      
+
       if (data instanceof Array) {
         // loading.dismiss();
         this.totalItem = data.length;
+        data.forEach(e => {
+          this.total += +e.quantity;
+          this.totalPrice += +e.product_snapshot.display_price;
+        });
+        console.log(this.total);
+
       } else {
         // loading.dismiss();
         this.totalItem = 0;
@@ -169,5 +178,9 @@ export class InventoryComponent implements OnInit {
     return new Promise((resolve, reject) => {
       resolve();
     });
+  }
+
+  formatCurrency() {
+    return this.customService.formatCurrency(this.totalPrice + "", this.userCurrent.usercurrency);
   }
 }
