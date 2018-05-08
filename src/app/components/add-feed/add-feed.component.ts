@@ -155,7 +155,7 @@ export class AddFeedComponent implements OnInit {
     // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
     //   .then(url => { this.image = url + '' })
 
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService)
       .then(url => { this.image = url + '' })
   }
 
@@ -165,8 +165,6 @@ export class AddFeedComponent implements OnInit {
 
   callbackLocation = (_params) => {
     return new Promise((resolve, reject) => {
-      console.log('add-feed');
-      console.log(_params);
 
       let alert = this.alertCtrl.create({
         title: 'Xác nhận vị trí',
@@ -187,5 +185,24 @@ export class AddFeedComponent implements OnInit {
       alert.present();
       resolve();
     });
+  }
+
+  deleteImage() {
+    let alert = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: 'Xóa hình ảnh',
+      buttons: [
+        {
+          text: 'Hủy bỏ'
+        },
+        {
+          text: 'Chấp nhận',
+          handler: () => {
+            this.image = undefined;
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
