@@ -1,27 +1,25 @@
-<ion-list>
+<ion-list class="user_menu_list">
   <ion-item (click)="editUser()" *ngIf="is_user_current">
-    <ion-icon name="person"></ion-icon> Cập nhật thông tin
+    <ion-icon ios="ios-create" md="md-create"></ion-icon> Cập nhật thông tin
   </ion-item>
  
-  
   <ion-item (click)="blockList()" *ngIf="is_user_current">
     <ion-icon name="person"></ion-icon> Danh sách chặn
   </ion-item>
  
   <ion-item (click)="changeCoverAvatar(false)" *ngIf="is_user_current">
-    <ion-icon name="person"></ion-icon>Thay đổi ảnh bìa  </ion-item>
+    <ion-icon ios="ios-image" md="md-image"></ion-icon>Thay đổi ảnh bìa
+  </ion-item>
  
   <ion-item (click)="changeCoverAvatar(true)" *ngIf="is_user_current">
-    <ion-icon name="person"></ion-icon> Thay đổi ảnh đại diện
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
   </ion-item>
  
   <ion-item (click)="report()" *ngIf="!is_user_current">
-    <ion-icon name="person"></ion-icon> Report
+    <ion-icon ios="ios-remove-circle" md="md-remove-circle"></ion-icon> Report
   </ion-item>
  
   <ion-item (click)="block()" *ngIf="!is_user_current">
-    <ion-icon name="person"></ion-icon> Chặn
+    <ion-icon ios="ios-hand" md="md-hand"></ion-icon> Chặn
   </ion-item>
- 
-
 </ion-list>

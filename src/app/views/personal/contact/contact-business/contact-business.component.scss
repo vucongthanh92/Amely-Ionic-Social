@@ -12,9 +12,18 @@ app-contact-business {
     .contact_business_title {
         height: 22px;
         overflow: hidden;
+        white-space: nowrap;
+        max-height: 40px;
         text-transform: capitalize;
-        margin: 0px 0px 0px 0px;
-        font-size: 17px;
+        padding: 3px 0px 0px 7px;
+        text-overflow: ellipsis;
+        color: #333;
+        text-transform: capitalize;
+        margin: 0px 0px 1px 0px;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+        margin: 0px 0px 1px 0px;
+        font-size: 1.6rem;
     }
 
     .contact_business_description {

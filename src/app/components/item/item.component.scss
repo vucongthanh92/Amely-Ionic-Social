@@ -25,6 +25,13 @@ app-item{
         width: 40px;
         content: url('../assets/imgs/ic_wanna_send_blue.png');
     }
+    .iconWannaSend1{
+        background-repeat: no-repeat;
+        background-position:center;
+        font-size: 1.3em;
+        width: 40px;
+        content: url('../assets/imgs/ic_wanna_send_red.png');
+    }
 
     .item_wishlist_off {
         background: #fff;
@@ -68,12 +75,12 @@ app-item{
 
     .item_product_image {
         position: relative;
-        margin: 55px 12px 12px 12px;
-        padding: 15px;
+        margin: 70px 12px 10px 12px;
+        padding: 12px;
     }
 
     .item_info_store {
-        margin-bottom: 75px;
+        margin-bottom: 70px;
     }
 
     .item_footer {

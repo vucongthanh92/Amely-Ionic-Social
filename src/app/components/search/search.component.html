@@ -51,7 +51,16 @@
           <img width="100%" *ngIf="product.images[0]" src="{{product.images[0]}}" />
         </ion-thumbnail>
         <h2>{{product.title}}</h2>
-        <h2 style="color: red; font-weight: bold;">{{formatCurrency(product,product.currency)}}</h2>
+        <h2 style="color: red; font-weight: bold;">
+          <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+            <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+          </div>
+          <ng-template #other_content>
+            <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
+            <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+          </ng-template>
+          <!-- {{formatCurrency(product,product.currency)}} -->
+        </h2>
       </ion-item>
     </ion-list>
 

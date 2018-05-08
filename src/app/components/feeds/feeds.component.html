@@ -1,6 +1,6 @@
 <div>
   <ion-card *ngIf="isHasData">
-    <ion-item *ngFor="let post of posts">
+    <ion-item class="feeds_item" *ngFor="let post of posts">
       <app-feed (uploaded)="someMethod($event)" *ngIf="post" [post]="post" [user]="getPoster(post.poster_guid)" [mood]="getMood(post.mood_guid)"
         [isShowMoreContent]=true [user_tag]="getUsersTag(post.description)" [type]="type" [shares]="shares" [users]="users">
       </app-feed>
@@ -12,13 +12,7 @@
   </ion-infinite-scroll>
 </div>
 
-<!-- <ion-fab class="feeds_button">
-  <button ion-fab (click)="addNewFeed()">
-    <ion-icon name="add"></ion-icon>
-  </button>
-</ion-fab> -->
-
-<ion-footer>
+<ion-footer *ngIf="feed_type!='friends'" >
   <ion-fab class="feeds_fab" *ngIf="is_show_btn_add_feed">
     <button ion-fab class="feeds_fab_icon" (click)="addNewFeed()">
       <ion-icon name="add"></ion-icon>

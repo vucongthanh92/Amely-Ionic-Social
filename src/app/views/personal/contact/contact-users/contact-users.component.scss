@@ -8,15 +8,21 @@ app-contact-users {
         padding: 0px;
         border-radius: 50%;
         overflow: hidden;
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         border: 1px solid #efeff4;
         max-width: 80px;
+        -webkit-box-flex: unset;
+        -webkit-flex-grow: unset;
+        -ms-flex-positive: unset;
+        flex-grow: unset;
+        min-width: unset;
+        -webkit-flex: unset;
     }
 
     .list-ios .item-block .item-inner {
         border-bottom: 0.55px solid #c8c7cc;
-        padding: 0px 10px 0px 12px;
+        padding: 1px 10px 1px 12px;
     }
 
     .contact_user_image_box img {
@@ -37,15 +43,20 @@ app-contact-users {
 
     .contact_user_title {
         text-transform: capitalize;
-        font-size: 18px;
+        font-size: 1.6rem;
         color: #333;
         margin: 3px 0px 5px 0px;
+        white-space: nowrap;
+        max-height: 40px;
+        overflow: hidden;
+        padding: 3px 0px 0px 6px;
+        text-overflow: ellipsis;
     }
 
     .contact_user_description {
         font-size: 14px;
-        color: #444;
-        margin: 0px 0px 5px 0px;
+        color: #666;
+        margin: 0px 0px 5px 7px;
         white-space: normal;
         overflow: hidden;
         max-height: 35px;
@@ -80,6 +91,12 @@ app-contact-users {
 
     .contact_user_fab {
         bottom: 45px;
+        background-color: #f0ad4e;
+        color: #fff;
+
+        ion-icon {
+            font-weight: bold;
+        }
     }
 
     .fakeItem {

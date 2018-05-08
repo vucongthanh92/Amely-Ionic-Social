@@ -1,10 +1,4 @@
 app-social{
-
-    .toolbar-background-ios {
-        background: #00bdf2;
-        color: #fff;
-    }
-
     .bar-button-ios {
         margin: 0px 10px 0px 0px;
         color: #fff;
@@ -119,7 +113,7 @@ app-social{
     }
 
     #top_navigation_iphonex {
-        top: 87px;
+        top: 44px;
     }
 
     .social_more {
@@ -138,9 +132,5 @@ app-social{
     .search_box {
         font-size: 18px;
         color: #fff;
-    }
-
-    .toolbar-ios {
-        padding-top: calc(0px + 4px) !important;
     }
 }

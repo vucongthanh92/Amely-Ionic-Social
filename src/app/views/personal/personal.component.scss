@@ -1,10 +1,4 @@
 app-personal {
-
-    .toolbar-background-ios {
-        background: #00bdf2;
-        color: #fff;
-    }
-
     .bar-button-ios {
         margin: 0px 10px 0px 0px;
         color: #fff;
@@ -101,6 +95,7 @@ app-personal {
 
     .scroll-content {
         padding-top: 0px !important;
+        background-color: #fff;
     }
 
     .personal_event {
@@ -117,7 +112,7 @@ app-personal {
     }
 
     #top_navigation_iphonex {
-        top: 87px;
+        top: 44px;
     }
 
     .social_more {
@@ -137,5 +132,4 @@ app-personal {
         font-size: 18px;
         color: #fff;
     }
-
 }

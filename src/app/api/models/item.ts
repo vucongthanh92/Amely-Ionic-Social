@@ -14,6 +14,7 @@ export class Item {
     inventory_type?: string;
     quantity?: number;
     owner_guid?: number;
+    adjourn_price?: number;
     quantity_temp?: number;
     product_snapshot?: Product;
     expiry_type?: string;
@@ -23,4 +24,5 @@ export class Item {
     used?: boolean;
     wishlist?: string;
     givelist?: string;
+    currency?:string;
 }

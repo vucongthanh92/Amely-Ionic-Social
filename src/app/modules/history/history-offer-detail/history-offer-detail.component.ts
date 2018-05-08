@@ -29,6 +29,7 @@ export class HistoryOfferDetailComponent implements OnInit {
     }
     this.offerService.getOffer(this.trans.related_guid).subscribe(data => {
       this.offer = data;
+      console.log(this.offer);
     }, err => this.loadData(--retry))
   }
 }

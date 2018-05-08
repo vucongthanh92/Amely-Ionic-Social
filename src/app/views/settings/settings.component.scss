@@ -1,10 +1,4 @@
 app-settings{
-
-    .toolbar-background-ios {
-        background: #00bdf2;
-        color: #fff;
-    }
-
     .bar-button-ios {
         margin: 0px 10px 0px 0px;
         color: #fff;
@@ -86,16 +80,12 @@ app-settings{
         display: none;
     }
 
-    .bar-button-ios {
-        padding: 0 15px 0px 5px;
-    }
-
     #top_navigation_default {
         top: 64px;
     }
 
     #top_navigation_iphonex {
-        top: 87px;
+        top: 44px;
     }
 
     .social_more {
@@ -115,5 +105,4 @@ app-settings{
         font-size: 18px;
         color: #fff;
     }
-
 }

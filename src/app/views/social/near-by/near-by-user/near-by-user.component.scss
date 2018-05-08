@@ -74,6 +74,15 @@ app-near-by-user{
         position: fixed;
         bottom: 55px;
         right: 10px;
+
+        .feeds_button_fab {
+            background-color: #f0ad4e; 
+            color: #fff;
+
+            ion-icon {
+                font-weight: bold;
+            }
+        }
     }
 
     .fakeItem {

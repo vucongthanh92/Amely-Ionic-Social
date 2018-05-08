@@ -1,9 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title *ngIf="!is_search_show">Mua Sắm</ion-title>
+
+    <ion-buttons start>
+      <button ion-button menuToggle class="ion_navbar_box">
+        <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
+      </button>
+      <div class="ion_navbar_title" *ngIf="!is_search_show">mua sắm</div>
+    </ion-buttons>
+    
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
     <ion-buttons end>
       <button ion-button class="shopping_bar_icon" (click)="search()" class="shopping_search_box">

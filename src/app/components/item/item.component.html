@@ -20,7 +20,7 @@
       </button>
 
       <button *ngIf="item.givelist=='2'" (click)="onGiveList(false)" ion-button icon-only class="item_givelist_off">
-        <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
+        <ion-icon class="iconWannaSend1" name="iconWannaSend"></ion-icon>
       </button>
       <button (click)="onGiveList(true)" *ngIf="item.givelist=='1' || item.givelist==undefined" ion-button icon-only class="item_givelist_on">
         <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
@@ -32,6 +32,18 @@
     <ion-card-header>{{product.title}}</ion-card-header>
   </ion-card>
 
+  <ion-card>
+    <ion-card-header>
+      Thông tin sản phẩm
+    </ion-card-header>
+    <ion-row>Số lượng : {{item.quantity}}</ion-row>
+    <ion-row>
+      <span style="color:red">Ngày hết hạn lưu kho: {{stored_end | date: 'dd/MM/yyyy'}}</span>
+    </ion-row>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
   </ion-card>
@@ -70,23 +82,44 @@
 <ion-footer class="item_footer" *ngIf="item">
   <ion-toolbar>
     <ion-grid class="item_footer_row">
-      <ion-row>
-        <ion-col col-4 *ngIf="!is_remove_item">
+      <ion-row *ngIf="expiryType < 1; else other_content ">
+        <ion-col col-3 *ngIf="!is_remove_item">
           <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
         </ion-col>
 
-        <ion-col col-4 *ngIf="!is_remove_item">
+        <ion-col col-3 *ngIf="!is_remove_item">
           <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
         </ion-col>
 
-        <ion-col col-4 *ngIf="!is_remove_item">
+        <ion-col col-3 *ngIf="!is_remove_item">
           <button class="item_footer_btn" (click)="delivery()" ion-button block>giao hàng</button>
         </ion-col>
-        
+
+        <ion-col col-3 *ngIf="!is_remove_item">
+          <button class="item_footer_btn" (click)="renewalItem()" ion-button block>gia hạn</button>
+        </ion-col>
+
         <ion-col col-12 *ngIf="is_remove_item" (click)="removeItem()">
           <button class="item_footer_delete" ion-button block>Xóa sản phẩm</button>
         </ion-col>
       </ion-row>
+
+      <ng-template #other_content>
+        <ion-row>
+          <ion-col col-4 *ngIf="!is_remove_item">
+            <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
+          </ion-col>
+
+          <ion-col col-4 *ngIf="!is_remove_item">
+            <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
+          </ion-col>
+
+          <ion-col col-4 *ngIf="!is_remove_item">
+            <button class="item_footer_btn" ion-button block (click)="renewalItem()">gia hạn</button>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+
     </ion-grid>
   </ion-toolbar>
 </ion-footer>

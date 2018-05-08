@@ -1,10 +1,11 @@
 import { InventoryComponent } from './../inventory/inventory.component';
 import { Component, OnInit } from '@angular/core';
-import { App, NavParams, NavController } from 'ionic-angular';
+import { App, NavParams, NavController, PopoverController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { BusinessService } from '../../services/business.service';
 import { Business } from '../../api/models/business';
 import { CustomService } from '../../services/custom.service';
+import { BusinessMenuComponent } from './business-menu/business-menu.component';
 
 @Component({
   selector: 'app-business',
@@ -15,7 +16,7 @@ export class BusinessComponent implements OnInit {
   public page: Business;
   is_owner: boolean;
   constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService
-    , private customService: CustomService) {
+    , private customService: CustomService, public popoverCtrl: PopoverController) {
     this.business_guid = this.nav_param.get('guid');
   }
 
@@ -70,5 +71,12 @@ export class BusinessComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  openPopover(myEvent) {
+    let popover = this.popoverCtrl.create(BusinessMenuComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 }

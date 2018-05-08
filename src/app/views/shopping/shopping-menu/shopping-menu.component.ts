@@ -1,4 +1,3 @@
-import { WalletsService } from './../../../services/wallets.service';
 import { CustomService } from './../../../services/custom.service';
 import { QuickPayListItemComponent } from './../../../modules/quick-pay/quick-pay-list-item/quick-pay-list-item.component';
 import { HistoryOrderComponent } from './../../../modules/history/history-order/history-order.component';
@@ -16,8 +15,7 @@ import { UserUpdateComponent } from '../../../components/user/user-update/user-u
 export class ShoppingMenuComponent implements OnInit {
 
   constructor(private nav: NavController, private appCtrl: App, private barcodeScanner: BarcodeScanner,
-    private paymentService: PaymentService, private loadingCtrl: LoadingController, private customService: CustomService,
-    private walletService: WalletsService) { }
+    private paymentService: PaymentService, private loadingCtrl: LoadingController, private customService: CustomService) { }
 
   ngOnInit() {
   }

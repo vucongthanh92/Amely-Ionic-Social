@@ -126,6 +126,11 @@ app-offers-myself{
 
     .offer_myself_button {
         bottom: 50px;
+        background-color: #f0ad4e;
+
+        ion-icon {
+            font-weight: bold;
+        }
     }
 
     .fakeItem {

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lịch sử giao dịch
+      Lịch sử trao đổi
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,17 +9,19 @@
 <ion-content class="outer-content">
   <ion-list *ngIf="trans">
     <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
-      <a *ngIf="transaction.description==='Requested'" class="inventory_history_row" style="color: #666">
+      <a *ngIf="transaction.description==='Requested'" class="inventory_history_row inventory_history_requested">
         <ion-icon ios="download" class="inventory_history_icon" md="md-archive"></ion-icon>Yêu cầu trao đổi #{{transaction.guid}}</a>
-      <a *ngIf="transaction.description==='Created'" class="inventory_history_row" style="color: rgb(16, 104, 53)">
+
+      <a *ngIf="transaction.description==='Created'" class="inventory_history_row inventory_history_created">
         <ion-icon ios="add" class="inventory_history_icon" md="md-close-circle"></ion-icon>Tạo trao đổi #{{transaction.guid}}</a>
-      <a *ngIf="transaction.description==='Sent'" class="inventory_history_row" style="color: #DC202A">
+
+      <a *ngIf="transaction.description==='Sent'" class="inventory_history_row inventory_history_sent">
         <ion-icon ios="arrow-round-forward" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Gửi trao đổi #{{transaction.guid}}</a>
-      <a *ngIf="transaction.description==='Received'" class="inventory_history_row" style="color: #00A474">
+
+      <a *ngIf="transaction.description==='Received'" class="inventory_history_row inventory_history_received">
         <ion-icon ios="arrow-round-back" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Nhận #{{transaction.guid}}</a>
 
       <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
-
     </ion-item>
   </ion-list>
 </ion-content>

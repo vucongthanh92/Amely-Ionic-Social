@@ -90,6 +90,7 @@ export class InventoryConfirmGiftComponent implements OnInit {
     this.giftsService.gift(this.param_create_gift).subscribe(data => {
       loading.dismiss();
       if (data.status) {
+        this.customService.toastMessage("Đã tặng quà thành công!!! ", "bottom", 3000);        
         this.nav.popToRoot();
       } else {
         this.customService.toastMessage(" Lỗi tặng quà!!! ", "bottom", 3000);

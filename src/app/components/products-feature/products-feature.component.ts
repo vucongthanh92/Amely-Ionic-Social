@@ -18,7 +18,7 @@ export class ProductsFeatureComponent implements OnInit {
   @Input('is_feature') is_feature: boolean;
 
   constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService,
-    private shoppingSerivce: ShoppingsService, private customService: CustomService, public loadingCtrl: LoadingController) { }
+    private shoppingSerivce: ShoppingsService, public customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     console.log(this.shopGuid);
@@ -88,10 +88,13 @@ export class ProductsFeatureComponent implements OnInit {
     })
   }
 
-  formatCurrency(product: Product, currency: string) {
-    return this.customService.formatCurrency(this.customService.netPrice(product) + '', currency);
-  }
+  // formatCurrency(product: Product, currency: string) {
+  //   return this.customService.formatCurrency(this.customService.netPrice(product) + '', currency);
+  // }
 
+  formatSalePrice(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
+  }
   goToPage(value, product: Product) {
     // let loading = this.loadingCtrl.create({
     //   content: 'Please wait...',

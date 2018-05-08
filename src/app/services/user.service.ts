@@ -74,4 +74,8 @@ export class UserService {
   deleteFriend(guid) {
     return this.api.deleteFriend(guid);
   }
+
+  getServices(){
+    return this.api.getServices();
+  }
 }

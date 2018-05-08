@@ -1,0 +1,25 @@
+app-add-friend {
+    .tab-button:first-child {
+        border-right: 1px solid #ddd;
+    }
+
+    .add_friend_container {
+        .tabbar {
+            background-color: #fff;
+        }
+
+        .tab-button {
+            padding: 5px 0px 7px 0px;
+        }
+
+        .tab-button-text {
+            font-size: 1.2rem;
+            text-transform: capitalize;
+        }
+    }
+
+    .tabs-ios .tab-button[aria-selected=true] {
+        color: #488aff;
+        border-bottom: 1px solid #488aff;
+    }
+}

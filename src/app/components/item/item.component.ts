@@ -1,3 +1,4 @@
+import { RenewalItemComponent } from './../renewal-item/renewal-item.component';
 import { UserService } from './../../services/user.service';
 import { DeliveryItemComponent } from './../../modules/delivery/delivery-item/delivery-item.component';
 import { CustomService } from './../../services/custom.service';
@@ -26,6 +27,8 @@ export class ItemComponent implements OnInit {
   is_remove_item: boolean = false;
   callback: any;
   is_reload_before_page = false;
+  expiryType: number;
+  stored_end: Date;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -54,10 +57,12 @@ export class ItemComponent implements OnInit {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
+        this.expiryType = +this.item.is_special;
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
         // loading.dismiss();
+        this.formatStoredDate();
       },
       err => {
         this.loadData(--retry)
@@ -93,6 +98,9 @@ export class ItemComponent implements OnInit {
       })
   }
 
+  formatStoredDate() {
+    this.stored_end = new Date(+(this.item.stored_end + "000"))
+  }
   ionViewWillLeave() {
     // Unregister the custom back button action for this page
     this.callback(this.is_reload_before_page).then((values) => {
@@ -120,6 +128,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Thêm vào danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã thêm vào danh sách muốn cho đi', 'bottom', 2000);
         }
       })
     } else {
@@ -130,6 +139,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Hủy danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000)
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã xóa khỏi danh sách muốn cho đi', 'bottom', 2000);
         }
       })
     }
@@ -144,6 +154,7 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Thêm vào danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã thêm vào danh sách yêu thích', 'bottom', 2000);
         }
       })
     } else {
@@ -154,10 +165,23 @@ export class ItemComponent implements OnInit {
           this.customService.toastMessage('Hủy danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
         } else {
           this.is_reload_before_page = true;
+          this.customService.toastMessage('Đã xóa khỏi danh sách yêu thích', 'bottom', 2000);
         }
       })
     }
   }
 
+  renewalItem() {
+    this.customService.confirmPassword(this.alertCtrl, this.userService)
+      .then(() => {
+        this.appCtrl.getRootNav().push(RenewalItemComponent, { item: this.item, callback: this.callbackRenewal })
+      })
+  }
 
+  callbackRenewal = (date: number) => {
+    return new Promise((resolve, reject) => {
+      this.stored_end = new Date(this.stored_end.setDate(this.stored_end.getDate() + date));
+      resolve();
+    });
+  }
 }

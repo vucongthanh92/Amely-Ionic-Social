@@ -38,9 +38,11 @@ export class CartItemsComponent implements OnInit {
     console.log(item[0].quantity);
 
     if (item.length > 0) {
-      if (item[0].quantity_cart <= item[0].quantity) {
+      if (item[0].quantity_cart < item[0].quantity) {
         item[0].quantity_cart = item[0].quantity_cart + 1;
         this.update();
+      }else{
+        this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
       }
     }
   }
@@ -84,7 +86,12 @@ export class CartItemsComponent implements OnInit {
     this.total = 0;
     this.items.forEach(e => {
       this.number_items = this.number_items + e.quantity_cart;
-      this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));
+      if (e.sale_price == 0 || e.sale_price == null) {
+        this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));  
+      }else{
+        this.total = this.total + (e.quantity_cart * this.customService.netSalePrice(e));
+      }
+      
     });
   }
 
@@ -122,5 +129,12 @@ export class CartItemsComponent implements OnInit {
 
   formartCurrency(item: Product) {
     this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+  }
+  formartSalePrice(item: Product) {
+    this.customService.formatCurrency(this.customService.netSalePrice(item) + "", item.currency);
+  }
+
+  formatSalePriceShow(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
   }
 }

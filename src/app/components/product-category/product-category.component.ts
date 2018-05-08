@@ -47,6 +47,10 @@ export class ProductCategoryComponent implements OnInit {
     return this.custom_service.formatCurrency(this.custom_service.netPrice(product) + "", product.currency);
   }
 
+  formatSalePrice(price: number, currency: string) {
+    return this.customService.formatCurrency(price + "", currency);
+  }
+
   loadData(retry) {
 
     // let loading = this.loadingCtrl.create({

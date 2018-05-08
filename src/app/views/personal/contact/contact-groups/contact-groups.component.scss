@@ -75,8 +75,14 @@ app-contact-groups{
         background-color: white;
     }
 
-    .contact_group_button {
+    .contact_group_fab {
         bottom: 45px;
+        background-color: #f0ad4e;
+        color: #fff;
+
+        ion-icon {
+            font-weight: bold;
+        }
     }
 
     .list-ios {

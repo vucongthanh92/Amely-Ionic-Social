@@ -51,7 +51,12 @@ export class MessageComponent implements OnInit {
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       if (this.param.chat_type == "individual") {
         this.getMessagesIndividual();
-        this.usernameChat = this.param.from;
+        if (this.param.from == this.userCurrent.username) {
+          this.usernameChat = this.param.fullname;
+        } else {
+          this.usernameChat = this.param.from;
+        }
+        
       } else {
         this.getMessagesGroup();
         this.usernameChat = this.param.title;
@@ -121,7 +126,7 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).on('value', gift => {
+                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).limitToFirst(1).on('value', gift => {
                   gift.forEach(g => {
                     if (g.val().item_guid) {
                       object.gift = g.val();

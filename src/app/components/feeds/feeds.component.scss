@@ -57,8 +57,16 @@ app-feeds {
         z-index: 100;
 
         .feeds_fab_icon {
-            background-color:#f18b5a; 
-            color: #fff
+            background-color: #f0ad4e;
+            color: #fff;
+
+            ion-icon {
+                font-weight: bold;
+            }
         }
+    }
+
+    .feeds_item {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 }

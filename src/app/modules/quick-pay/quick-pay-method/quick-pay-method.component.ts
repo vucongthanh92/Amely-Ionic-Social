@@ -73,17 +73,22 @@ export class QuickPayMethodComponent implements OnInit {
         payment.displayname = 'COD, tiền mặt nhận hàng';
         this.nav.push(QuickPayConfirmComponent);
         this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = null;
         break;
       case 'COS':
         payment.filename = quickpay;
         payment.displayname = 'COS, tiền mặt nhập kho';
-        this.showAlertCOS(payment);
+        // this.showAlertCOS(payment);
+        this.nav.push(QuickPayConfirmComponent);
+        this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = { classname: "SQ\Storage", component: "Market", displayname: "Kho của tôi", filename: "sq/storage" }
         break;
       case 'WOD':
         payment.filename = quickpay;
         payment.displayname = 'Ví của tôi, nhận hàng';
         this.nav.push(QuickPayConfirmComponent);
         this.paymentService.quick_pay_send_data.paymentMethod = payment;
+        this.paymentService.quick_pay_send_data.shipping_methods = null;
         break;
     }
   }
@@ -108,6 +113,7 @@ export class QuickPayMethodComponent implements OnInit {
     } else {
       this.nav.push(QuickPayConfirmComponent);
       this.paymentService.quick_pay_send_data.paymentMethod = payment;
+      this.paymentService.quick_pay_send_data.shipping_methods = { classname: "SQ\Storage", component: "Market", displayname: "Kho của tôi", filename: "sq/storage" }
     }
   }
   checkItemRedeem() {

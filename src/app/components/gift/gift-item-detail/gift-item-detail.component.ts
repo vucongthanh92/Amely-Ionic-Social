@@ -19,6 +19,8 @@ export class GiftItemDetailComponent implements OnInit {
     public appCtrl: App, 
     private navParams: NavParams) {
     this.item = this.navParams.get('item');
+    console.log(this.item);
+    
     if (this.item.product_snapshot.images && this.item.product_snapshot.images[0]) {
       this.imageUrl = this.item.product_snapshot.images[0];
     }

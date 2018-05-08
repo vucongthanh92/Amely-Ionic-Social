@@ -11,4 +11,6 @@ export class Order_redeem {
     tax?: number;
     sub_total?: number;
     to_guid?: number;
+    process_status?: string;
+    payment?: string;
 }
