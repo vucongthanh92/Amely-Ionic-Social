@@ -156,10 +156,10 @@ export class CreateEventComponent implements OnInit {
     });
     loading.present();
 
-    const string_datetime_start = this.date_start + " " + this.time_start;
-    const datetime_start = new Date(Date.parse(string_datetime_start)).getTime();
-    const string_datetime_end = this.date_end + " " + this.time_end;
-    const datetime_end = new Date(Date.parse(string_datetime_end)).getTime();
+    const string_datetime_start = this.date_start + "T" + this.time_start+":00";
+    const datetime_start = new Date(string_datetime_start).getTime();
+    const string_datetime_end = this.date_end + "T" + this.time_end + ":00";
+    const datetime_end = new Date(string_datetime_end).getTime();
     const current_timestamp=new Date().getTime();
     
     console.log(current_timestamp);
