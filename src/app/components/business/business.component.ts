@@ -79,4 +79,9 @@ export class BusinessComponent implements OnInit {
       ev: myEvent
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

@@ -26,8 +26,12 @@
     margin: 5px 0px 0px 5px;
     font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
     text-transform: capitalize;
-    float: right;
+    float: left;
     color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 20rem;
+    white-space: nowrap;
 }
 
 .title-ios {

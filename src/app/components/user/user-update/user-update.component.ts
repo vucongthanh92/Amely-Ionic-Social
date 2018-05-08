@@ -107,4 +107,9 @@ export class UserUpdateComponent implements OnInit {
         }, err => this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại sau', 'bottom', 4000));
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

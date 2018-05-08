@@ -1,68 +1,76 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Cập nhật thông tin</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Cập nhật thông tin</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content" style="background: white">
-  <h5 *ngIf="showError"  style="color: red">Vui lòng cập nhật đầy đủ thông tin</h5>
-  <ion-list>
 
-    <ion-item>
-      <ion-label floating>Họ</ion-label>
+<ion-content class="user_update_container">
+  <h5 *ngIf="showError" class="user_update_error">Vui lòng cập nhật đầy đủ thông tin</h5>
+  <ion-list class="user_update_list">
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label" floating>Họ</ion-label>
       <ion-input [(ngModel)]="first_name" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>Tên</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label" floating>Tên</ion-label>
       <ion-input [(ngModel)]="last_name" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Giới tính</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Giới tính</ion-label>
       <ion-select [(ngModel)]="gender">
         <ion-option value="female">Female</ion-option>
         <ion-option value="male">Male</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>Ngày sinh</ion-label>
+
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Ngày sinh</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="birthdate"></ion-datetime>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Ẩn ngày tháng năm sinh</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Ẩn ngày tháng năm sinh</ion-label>
       <ion-toggle [(ngModel)]="birthdate_hidden"></ion-toggle>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Ẩn số điện thoại</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Ẩn số điện thoại</ion-label>
       <ion-toggle [(ngModel)]="mobile_hidden"></ion-toggle>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Ẩn danh sách bạn bè</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Ẩn danh sách bạn bè</ion-label>
       <ion-toggle [(ngModel)]="friend_hidden"></ion-toggle>
     </ion-item>
 
-    <ion-item>
-      <ion-label floating>Địa chỉ</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label" floating>Địa chỉ</ion-label>
       <ion-input type="text" [(ngModel)]="address" name="shipping_address"></ion-input>
     </ion-item>
   
-    <ion-item>
-      <ion-label>Thành phố / Tỉnh</ion-label>
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Thành phố / Tỉnh</ion-label>
       <ion-select *ngIf="provinces" [(ngModel)]="province_id" name="province" (ionChange)="onProvinceChange($event)" >
         <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>Quận / Huyện</ion-label>
+    
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Quận / Huyện</ion-label>
       <ion-select *ngIf="districts" [(ngModel)]="district_id" name="district" (ionChange)="onDistrictChange($event)">
         <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>Phường / Xã</ion-label>
+    
+    <ion-item class="user_update_item">
+      <ion-label class="user_update_label">Phường / Xã</ion-label>
       <ion-select *ngIf="wards" [(ngModel)]="ward_id" name="ward" (ionChange)="onWardChange($event)" >
         <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
       </ion-select>
@@ -71,6 +79,5 @@
     <div padding>
       <button (click)="updateInfo()" ion-button color="primary" block>Cập nhật</button>
     </div>
-
   </ion-list>
 </ion-content>

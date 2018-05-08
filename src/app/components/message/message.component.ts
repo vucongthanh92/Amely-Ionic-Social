@@ -303,4 +303,9 @@ export class MessageComponent implements OnInit {
     console.log(message);
     this.appCtrl.getRootNav().push(UserComponent, { username:message.from})
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
