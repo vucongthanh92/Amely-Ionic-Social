@@ -156,11 +156,16 @@ export class CreateEventComponent implements OnInit {
     });
     loading.present();
 
-    const string_datetime_start = this.date_start + " " + this.time_start;
-    const datetime_start = new Date(Date.parse(string_datetime_start)).getTime();
-    const string_datetime_end = this.date_end + " " + this.time_end;
-    const datetime_end = new Date(Date.parse(string_datetime_end)).getTime();
-
+    const string_datetime_start = this.date_start + "T" + this.time_start+":00";
+    const datetime_start = new Date(string_datetime_start).getTime();
+    const string_datetime_end = this.date_end + "T" + this.time_end + ":00";
+    const datetime_end = new Date(string_datetime_end).getTime();
+    const current_timestamp=new Date().getTime();
+    
+    console.log(current_timestamp);
+    console.log(datetime_start);
+    console.log(datetime_end);
+    
     if (!this.name) {
       loading.dismiss();
       this.customSerivce.toastMessage('Tên sự kiện không được để trống !', 'bottom', 2000);
@@ -173,7 +178,7 @@ export class CreateEventComponent implements OnInit {
     } else if (!this.time_start) {
       loading.dismiss();
       this.customSerivce.toastMessage('Chưa chọn giờ bắt đầu !', 'bottom', 2000);
-    } else if (Date.now() > datetime_start) {
+    } else if (current_timestamp > datetime_start) {
       loading.dismiss();
       this.customSerivce.toastMessage('Thời gian bắt đầu phải lớn hơn thời gian hiện tại.', 'bottom', 3000);
     } else if (!this.date_end) {

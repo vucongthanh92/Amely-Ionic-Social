@@ -53,8 +53,6 @@ export class ShoppingMenuComponent implements OnInit {
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
-
-
   }
 
   requestUpdateProfile() {

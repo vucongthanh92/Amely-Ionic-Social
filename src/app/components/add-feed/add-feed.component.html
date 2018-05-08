@@ -55,7 +55,7 @@
   </ion-row>
 
   <ion-row *ngIf="image">
-    <img class="add_feed_images" src="{{image}}">
+    <img class="add_feed_images" src="{{image}}" (click)="deleteImage()">
   </ion-row>
 
 </ion-content>
