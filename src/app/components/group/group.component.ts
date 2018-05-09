@@ -169,4 +169,9 @@ export class GroupComponent implements OnInit {
       alert.present();
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

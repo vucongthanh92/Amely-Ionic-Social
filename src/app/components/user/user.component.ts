@@ -232,6 +232,7 @@ export class UserComponent {
       ev: myEvent
     });
   }
+  
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
       if (_params) {
@@ -240,4 +241,9 @@ export class UserComponent {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
