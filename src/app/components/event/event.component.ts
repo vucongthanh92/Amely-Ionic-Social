@@ -128,6 +128,10 @@ export class EventComponent implements OnInit {
     } else {
       return "visitor";
     }
-
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

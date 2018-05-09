@@ -215,5 +215,8 @@ export class CreateOfferComponent implements OnInit {
     });
   }
 
+  dismiss() {
+    this.nav.pop();
+  }
  
 }

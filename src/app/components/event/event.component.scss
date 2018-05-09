@@ -6,13 +6,23 @@ app-event {
     text-align: center;
     background-position: center !important;
     background-size: cover !important;
-    margin: 44px 0px 0px 0px;
+    margin: 64px 0px 0px 0px;
   }
 
   .event_avatar {
     width: 90px;
-    height: auto;
-    padding: 10px 0 10px 0;
+    height: 90px;
+    padding: 0px;
+    margin: 3px auto 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+    }
   }
 
   .event_cover_title {
@@ -21,6 +31,11 @@ app-event {
     font-weight: bold;
     text-shadow: 1px 1px 1px #333;
     text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 27rem;
+    margin: 3px auto 0px auto;
   }
 
   .event_tab {
@@ -111,6 +126,11 @@ app-event {
       text-transform: capitalize;
       padding: 5px 0px 5px 15px;
     }
+  }
+
+  .event_more_icon {
+    color: #fff;
+    margin: 1px 7px 0px 0px;
   }
 
 }

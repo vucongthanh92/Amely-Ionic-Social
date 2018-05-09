@@ -41,4 +41,9 @@ export class NearByUserSettingComponent implements OnInit {
       this.nav.pop();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

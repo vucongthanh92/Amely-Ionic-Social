@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title *ngIf="event">Sự Kiện</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div *ngIf="event" class="ion_navbar_title">sự kiện</div>
+    </ion-buttons>
+
     <ion-buttons end *ngIf="event && (type=='guest' || type =='member')">
       <button ion-button (click)="openPopover($event)">
-        <ion-icon name="md-more"></ion-icon>
+        <ion-icon class="event_more_icon" name="md-more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -11,8 +17,10 @@
 
 <ion-content class="outer-content" *ngIf="event">
   <div class="event_cover" [style.background]="'url(' + event.cover + ')'">
-    <img *ngIf="event.avatar" class="event_avatar" src="{{event.avatar}}" imageViewer>
-    <img *ngIf="!event.avatar" class="event_avatar" src="assets/imgs/logo.png" imageViewer>
+    <div class="event_avatar">
+      <img *ngIf="event.avatar" src="{{event.avatar}}" imageViewer>
+      <img *ngIf="!event.avatar" src="assets/imgs/logo.png" imageViewer>
+    </div>
     <div class="event_cover_title">{{event.title}}</div>
   </div>
 
