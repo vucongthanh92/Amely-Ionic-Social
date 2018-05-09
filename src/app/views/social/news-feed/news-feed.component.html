@@ -1,3 +1,11 @@
 <ion-content class="outer-content"  >
-  <app-feeds [feed_type]="'friends'" [type]="'user'" [feed_type]="feed_type"></app-feeds>
+  <app-feeds  #feeds [feed_type]="'friends'" [type]="'user'" [feed_type]="feed_type"></app-feeds>
+  
 </ion-content>
+<ion-footer>
+  <ion-fab class="feeds_fab">
+    <button ion-fab class="feeds_fab_icon" (click)="addFeed()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-footer>
