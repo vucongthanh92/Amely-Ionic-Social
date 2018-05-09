@@ -162,9 +162,6 @@ export class CreateEventComponent implements OnInit {
     const datetime_end = new Date(string_datetime_end).getTime();
     const current_timestamp=new Date().getTime();
     
-    console.log(current_timestamp);
-    console.log(datetime_start);
-    console.log(datetime_end);
     
     if (!this.name) {
       loading.dismiss();

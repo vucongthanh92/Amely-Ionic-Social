@@ -89,7 +89,8 @@ export class CountersOfferComponent implements OnInit {
 
   doConfirm(message, key, counter_guid) {
     let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      enableBackdropDismiss: true
     });
 
     loading.present();

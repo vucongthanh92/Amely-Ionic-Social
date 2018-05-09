@@ -108,11 +108,11 @@ export class FeedsComponent implements OnInit {
 
   doInfinite(infiniteScroll) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
 
     setTimeout(() => {
       this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
@@ -122,7 +122,7 @@ export class FeedsComponent implements OnInit {
           this.shares = data.shares;
           this.offset = this.offset + data.posts.length;
         }
-        loading.dismiss();
+        // loading.dismiss();
       });
 
       infiniteScroll.complete();
