@@ -35,6 +35,8 @@ export class ItemComponent implements OnInit {
     private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
+    console.log(this.itemGuid);
+    
   }
 
   ngOnInit() {

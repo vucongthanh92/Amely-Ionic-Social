@@ -16,7 +16,7 @@
     <ion-icon name="person"></ion-icon> Mã QR
   </ion-item>
 
-  <ion-item *ngIf="has_inventory && is_owner" (click)="changeAdmin()">
+  <ion-item *ngIf="is_owner" (click)="changeAdmin()">
     <ion-icon name="person"></ion-icon> Chuyển quyền admin
   </ion-item>
 
