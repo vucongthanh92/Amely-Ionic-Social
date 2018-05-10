@@ -1,0 +1,22 @@
+app-user-update {
+    .user_update_container {
+        background: white;
+    }
+
+    .user_update_error {
+        color: red;
+    }
+
+    .user_update_label {
+        color: #999;
+    }
+
+    .user_update_item {
+        padding: 0px 15px 0px 15px;
+        font-size: 1.5rem;
+    }
+
+    .user_update_list {
+        margin: -1px 0 5px;
+    }
+}

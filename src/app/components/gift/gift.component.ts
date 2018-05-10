@@ -24,6 +24,7 @@ export class GiftComponent implements OnInit {
   gift: Gift;
   receiver: string;
   isUser: boolean;
+  usernameGift: string;
 
   constructor(
     public messagesService: MessagesService,
@@ -38,10 +39,17 @@ export class GiftComponent implements OnInit {
     public appCtrl: App) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.param = this.params.get('param');
+    console.log(this.param);
+    
     switch (this.param.chat_type) {
       case 'individual':
         this.checkKeyChat(this.userCurrent.username, this.param.from, "individual");
         this.isUser = true;
+        if (this.param.from == this.userCurrent.username) {
+          this.usernameGift = this.param.fullname;
+        } else {
+          this.usernameGift = this.param.from;
+        }
         break;
 
       default:

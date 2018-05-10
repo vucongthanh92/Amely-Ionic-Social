@@ -1,9 +1,12 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ usernameChat }}</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">{{ usernameChat }}</div>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content has-header="false" padding="true" has-tabs="false" hide-nav-bar="true">

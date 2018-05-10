@@ -1,35 +1,33 @@
-<ion-list>
-
-  <ion-item *ngIf="has_inventory" (click)="openInventory()">
-    <ion-icon name="person"></ion-icon> Vào kho
+<ion-list class="group_menu_list">
+  <ion-item *ngIf="has_inventory" (click)="openInventory()" class="group_menu_item">
+    <ion-icon ios="ios-albums" md="md-albums"></ion-icon> <span>Vào kho</span>
   </ion-item>
 
-  <ion-item *ngIf="is_owner" (click)="changeAvatarCover(true)">
-    <ion-icon name="person"></ion-icon> Đổi ảnh đại diện
+  <ion-item *ngIf="is_owner" (click)="changeAvatarCover(true)" class="group_menu_item">
+    <ion-icon ios="ios-image" md="md-image"></ion-icon> <span>Đổi ảnh đại diện</span>
   </ion-item>
 
-  <ion-item *ngIf="is_owner" (click)="changeAvatarCover(false)">
-    <ion-icon name="person"></ion-icon> Đổi ảnh nền
+  <ion-item *ngIf="is_owner" (click)="changeAvatarCover(false)" class="group_menu_item">
+    <ion-icon ios="ios-images" md="md-images"></ion-icon> <span>Đổi ảnh nền</span>
   </ion-item>
 
-  <ion-item *ngIf="has_inventory" (click)="openQR()">
-    <ion-icon name="person"></ion-icon> Mã QR
+  <ion-item *ngIf="has_inventory" (click)="openQR()" class="group_menu_item">
+    <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
   </ion-item>
 
-  <ion-item *ngIf="is_owner" (click)="changeAdmin()">
-    <ion-icon name="person"></ion-icon> Chuyển quyền admin
+  <ion-item *ngIf="has_inventory && is_owner" (click)="changeAdmin()" class="group_menu_item">
+    <ion-icon ios="ios-contact" md="md-contact"></ion-icon> <span>Chuyển quyền admin</span>
   </ion-item>
 
-  <ion-item *ngIf="is_show_request_change_admin" (click)="requestChangeAdmin()">
-    <ion-icon name="person"></ion-icon> Yêu cầu chuyển quyền admin
+  <ion-item *ngIf="is_show_request_change_admin" (click)="requestChangeAdmin()" class="group_menu_item">
+    <ion-icon ios="md-contact" md="md-contact"></ion-icon> <span>Yêu cầu chuyển quyền admin</span>
   </ion-item>
 
-  <ion-item *ngIf="!is_owner" (click)="outGroup()">
-    <ion-icon name="person"></ion-icon> Rời nhóm
+  <ion-item *ngIf="!is_owner" (click)="outGroup()" class="group_menu_item">
+    <ion-icon ios="ios-undo" md="md-undo"></ion-icon> <span>Rời nhóm</span>
   </ion-item>
 
-  <ion-item *ngIf="is_owner && group.members.length==1" (click)="deleteGroup()">
-    <ion-icon name="person"></ion-icon> Xóa nhóm
+  <ion-item *ngIf="is_owner && group.members.length==1" (click)="deleteGroup()" class="group_menu_item">
+    <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon> <span>Xóa nhóm</span>
   </ion-item>
-
 </ion-list>

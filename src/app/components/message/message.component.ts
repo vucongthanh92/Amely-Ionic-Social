@@ -47,7 +47,6 @@ export class MessageComponent implements OnInit {
       this.param = this.navParams.get("param");
       console.log(this.param);
       console.log('1234');
-      this.param = this.navParams.get("param");
       this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
       if (this.param.chat_type == "individual") {
         this.getMessagesIndividual();
@@ -303,4 +302,9 @@ export class MessageComponent implements OnInit {
     console.log(message);
     this.appCtrl.getRootNav().push(UserComponent, { username:message.from})
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

@@ -57,7 +57,7 @@ export class QuickPayListItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
-            if (+data.quantity > total || +data.quantity > product.display_quantity) {
+            if (+data.quantity > total || +data.quantity > product.display_quantity || +data.quantity < 0 || +data.quantity % 1 != 0) {
               this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000)
             } else {
               this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {

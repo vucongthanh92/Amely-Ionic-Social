@@ -1,5 +1,10 @@
 app-business {
 
+  .business_more_icon {
+    color: #fff;
+    margin: 1px 7px 0px 0px;
+  }
+
   .feeds_button {
     bottom: 15px !important;
     right: 10px !important;
@@ -113,7 +118,7 @@ app-business {
 
   .business_description {
     width: 100%;
-    margin: 0px 0px 3px 0px;
+    margin: 0px 0px 9px 0px;
     padding: 0px 7px 3px 10px;
 
     ion-card-header {
@@ -149,5 +154,5 @@ app-business {
   *::-webkit-scrollbar {
     display: none;
   }
-  
+
 }

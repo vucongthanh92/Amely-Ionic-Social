@@ -100,4 +100,8 @@ export class BusinessComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

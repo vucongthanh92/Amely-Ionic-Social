@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Cộng đồng</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">cộng đồng</div>
+    </ion-buttons>
     <ion-buttons end>
-      <button *ngIf="is_owner"  ion-button (click)="openPopover($event)">
-        <ion-icon name="md-more"></ion-icon>
+      <button *ngIf="is_owner" ion-button (click)="openPopover($event)">
+        <ion-icon class="business_more_icon" name="md-more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,6 +19,7 @@
     <div class="business_avatar" [style.background]="'url(' + page.avatar + ')'"></div>
     <div class="business_cover_title">{{page.title}}</div>
   </div>
+  
   <div class="bar bar-header bar-dark business_nav">
     <ion-row class="business_nav_row">
       <ion-col class="business_nav_col" col-4 *ngIf="is_owner">

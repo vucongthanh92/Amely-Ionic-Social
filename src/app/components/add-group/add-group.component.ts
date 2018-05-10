@@ -78,5 +78,7 @@ export class AddGroupComponent implements OnInit {
     }
   }
 
-
+  dismiss() {
+    this.nav.pop();
+  }
 }

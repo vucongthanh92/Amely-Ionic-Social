@@ -1,0 +1,26 @@
+app-group-menu {
+
+    .group_menu_list {
+        margin: 0px;
+    }
+
+    .group_menu_item {
+        padding: 0px !important;
+
+        .item-inner {
+            padding: 0px 5px 0px 10px;
+
+            span {
+                margin: 0px 0px 0px 5px;
+                font-size: 1.5rem;
+                vertical-align: text-top;
+            }
+        }
+    }
+
+    .group_menu_item:last-child {
+        .item-inner {
+            border-bottom: none;
+        }
+    }
+}

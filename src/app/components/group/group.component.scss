@@ -29,10 +29,13 @@ app-group {
     font-size: 20px;
     font-weight: bold;
     text-transform: capitalize;
-    margin: 15px 0px 10px 0px;
+    margin: 15px auto 10px auto;
     text-shadow: 0px 1px 6px #000;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    width: 30rem;
+    text-align: center;
   }
 
   .about-info p {
@@ -160,6 +163,11 @@ app-group {
 
   ion-infinite-scroll-content {
     min-height: 0px;
+  }
+
+  .group_more_icon {
+    color: #fff;
+    margin: 1px 7px 0px 0px;
   }
   
 }
