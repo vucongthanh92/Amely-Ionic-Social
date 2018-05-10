@@ -55,6 +55,15 @@ export class ContactUsersComponent implements OnInit {
   }
 
   goToPageChat(friend, chat_type) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1500);
     friend.from = this.userCurrent.username;
     friend.to = friend.username;
     console.log(friend.to);

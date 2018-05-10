@@ -133,6 +133,7 @@ export class GiftComponent implements OnInit {
             loading.dismiss();
             if (res.status) {
               this.nav.pop();
+              this.customService.toastMessage('Tặng quà thành công !!!', 'bottom', 3000);
             } else {
               const toast = this.toastCtrl.create({
                 message: 'Hạn mức số lần tặng quà đã hết !!!',
