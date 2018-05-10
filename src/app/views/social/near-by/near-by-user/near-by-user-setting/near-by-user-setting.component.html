@@ -1,34 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Thông tin tìm kiếm</ion-title>
-
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Thông tin tìm kiếm</div>
+    </ion-buttons>
     <ion-buttons end>
       <button ion-button (click)="save()">
-        <ion-icon name="send"></ion-icon>
+        <ion-icon class="nearby_user_setting" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content class="outer-content">
   <ion-card>
-    <ion-list radio-group [(ngModel)]="find">
-      <ion-list-header>
-        TÌM XUNG QUANH
-      </ion-list-header>
-
+    <ion-list radio-group [(ngModel)]="find" class="nearby_user_setting_search">
+      <ion-list-header>TÌM XUNG QUANH</ion-list-header>
       <ion-item>
         <ion-label>Tất cả</ion-label>
         <ion-radio checked="true" value="all"></ion-radio>
       </ion-item>
-
       <ion-item>
         <ion-label>Nam</ion-label>
         <ion-radio value="male"></ion-radio>
       </ion-item>
-
       <ion-item>
         <ion-label>Nữ</ion-label>
         <ion-radio value="female"></ion-radio>

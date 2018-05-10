@@ -205,4 +205,9 @@ export class AddFeedComponent implements OnInit {
     });
     alert.present();
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
