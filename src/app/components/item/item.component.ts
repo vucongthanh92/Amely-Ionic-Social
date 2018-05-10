@@ -59,6 +59,8 @@ export class ItemComponent implements OnInit {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
+        console.log(this.item);
+        
         this.expiryType = +this.item.is_special;
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
