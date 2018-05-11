@@ -104,4 +104,9 @@ export class InvenroyItemsComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

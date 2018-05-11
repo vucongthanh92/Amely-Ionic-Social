@@ -45,6 +45,7 @@ export class AddGroupComponent implements OnInit {
   createAGroup() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
+      enableBackdropDismiss: true
     });
     loading.present();
     if (!this.group_name) {

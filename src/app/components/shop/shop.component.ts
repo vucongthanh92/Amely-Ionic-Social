@@ -84,4 +84,9 @@ export class ShopComponent implements OnInit {
       this.shop.liked = true;
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

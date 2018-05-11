@@ -172,4 +172,8 @@ export class WalletComponent implements OnInit {
 
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

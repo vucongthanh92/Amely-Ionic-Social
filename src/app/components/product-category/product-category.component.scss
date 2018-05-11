@@ -59,7 +59,6 @@ app-product-category{
     }
   }
 
-
   // Creates a ribbon effect with the given options:
   @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
     span {
@@ -74,15 +73,6 @@ app-product-category{
         border-top: $border-width solid $ribbon-color;
       }
     }
-  }
-
-  .offer_myself_image {
-    background-position: center !important;
-    background-size: cover !important;
-    padding: 0px;
-    width: 100%;
-    height: 100px;
-    margin: 0px 0px 5px 0px;
   }
 
   .fakeItem {
@@ -152,4 +142,56 @@ app-product-category{
     text-transform: capitalize;
     text-decoration: line-through;
   }
+
+  .product_category_search_btn {
+    color: #fff;
+    font-size: 2rem;
+    margin: 1px 3px 0px 0px;
+  }
+
+  .product_category_main {
+    background-color: #fff; 
+  }
+
+  .product_category_label {
+    padding: 5px; 
+    margin: 10px 0px;
+  }
+
+  .product_category_container {
+    padding: 0px;
+  }
+
+  .product_category_item {
+    padding: 0px;
+
+    .item-inner {
+      padding: 0px 7px 0px 7px;
+    }
+  }
+
+  .product_category_images {
+    background-position: center !important;
+    background-size: cover !important;
+    padding: 0px;
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    border-radius: 5px;
+  }
+
+  .product_category_title {
+    font-size: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: normal;
+    text-transform: capitalize;
+    height: auto;
+    line-height: 18px;
+    margin: 1px 0px 3px 0px;
+    color: #333;
+    max-height: 40px;
+  }
+
 }

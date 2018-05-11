@@ -98,4 +98,8 @@ export class ProductComponent implements OnInit {
   openShop() {
     this.appCtrl.getRootNav().push(ShopComponent, { guid: this.shop.guid });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

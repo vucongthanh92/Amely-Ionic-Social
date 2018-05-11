@@ -1,11 +1,13 @@
 import { InventoryComponent } from './../inventory/inventory.component';
 import { Component, OnInit } from '@angular/core';
-import { App, NavParams, NavController, PopoverController } from 'ionic-angular';
+import { App, NavParams, NavController, PopoverController, ActionSheetController, LoadingController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { BusinessService } from '../../services/business.service';
 import { Business } from '../../api/models/business';
 import { CustomService } from '../../services/custom.service';
 import { BusinessMenuComponent } from './business-menu/business-menu.component';
+import { Camera } from '@ionic-native/camera';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-business',
@@ -14,9 +16,9 @@ import { BusinessMenuComponent } from './business-menu/business-menu.component';
 export class BusinessComponent implements OnInit {
   private business_guid: number;
   public page: Business;
-  is_owner: boolean;
+  public is_owner: boolean = false;
   constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService
-    , private customService: CustomService, public popoverCtrl: PopoverController) {
+    , private customService: CustomService, public popoverCtrl: PopoverController, private loadingCtrl: LoadingController) {
     this.business_guid = this.nav_param.get('guid');
   }
 
@@ -74,7 +76,7 @@ export class BusinessComponent implements OnInit {
   }
 
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(BusinessMenuComponent);
+    let popover = this.popoverCtrl.create(BusinessMenuComponent, { page: this.page, callback: this.callbackAvatarCover });
     popover.present({
       ev: myEvent
     });
@@ -84,4 +86,23 @@ export class BusinessComponent implements OnInit {
     this.nav.pop();
   }
 
+  callbackAvatarCover = (_params) => {
+    return new Promise((resolve, reject) => {
+      // const url: string = _params.url;
+      // const isAvatar: boolean = _params.isAvatar;
+      // isAvatar ? this.page.avatar = url : this.page.cover = url;
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss: true
+      });
+
+      loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+        this.loadData(5)
+      }, 4000);
+      resolve();
+    });
+  }
 }
+

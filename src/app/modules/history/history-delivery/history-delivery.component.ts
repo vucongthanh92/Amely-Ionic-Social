@@ -53,4 +53,8 @@ loading.present();
   openShop(shop: Shop) {
     // this.appCtrl.getRootNav().push(ShopComponent, { guid: shop.guid })
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

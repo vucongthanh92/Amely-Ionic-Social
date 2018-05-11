@@ -1,17 +1,23 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title *ngIf="!is_search">{{title}}</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div *ngIf="!is_search" class="ion_navbar_title">{{title}}</div>
+    </ion-buttons>
+
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search"></ion-searchbar>
     <ion-buttons end>
-      <button ion-button (click)="search()" style="font-size: 18px;">
-        <ion-icon name="ios-search"></ion-icon>
+      <button ion-button (click)="search()">
+        <ion-icon class="product_category_search_btn" name="ios-search"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="outer-content">
 
-  <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categories_parent.length>0">
+<ion-content class="product_category_main">
+  <div class="product_category_label" *ngIf="categories_parent.length>0">
     <ion-row>
       <ion-col col-8>
         <h3>Danh mục</h3>
@@ -31,22 +37,21 @@
     </ion-row>
   </div>
 
-
-  <ion-grid>
+  <ion-grid class="product_category_container">
     <ion-list *ngIf='products'>
-      <ion-item *ngFor="let product of products" (click)="openProductDetail(product)">
+      <ion-item class="product_category_item" *ngFor="let product of products" (click)="openProductDetail(product)">
         <ion-row >
-          <ion-col col-4>
+          <ion-col col-3>
             <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
               <span class="ribbon cruzeiro">
                 <span>VOUCHER</span>
               </span>
             </div>
-            <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="offer_myself_image"></div>
-            <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+            <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="product_category_images"></div>
+            <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="product_category_images"></div>
           </ion-col>
-          <ion-col col-8>
-            <ion-row style="font-weight: bold;">{{product.title}}</ion-row>
+          <ion-col col-9>
+            <ion-row class="product_category_title">{{product.title}}</ion-row>
             <!-- <ion-row>{{ formatCurrency(product)}} </ion-row> -->
             <ion-row *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
               <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>

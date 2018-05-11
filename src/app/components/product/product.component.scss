@@ -5,18 +5,20 @@ app-product {
     }
 
     .product_topbar_cart {
-        font-size: 24px;
+        font-size: 2rem;
+        color: #fff;
+        margin: 1px 2px 0px 0px;
 
         .product_topbar_cart_icon {
             position: relative;
-            bottom: 12px;
+            bottom: 9px;
             right: 9px;
             border-radius: 50%;
-            height: 20px;
-            width: 20px;
+            height: 18px;
+            width: 18px;
             text-align: center;
-            font-size: 1.2rem;
-            padding: 4px 3px 3px 3px;
+            font-size: 1rem;
+            padding: 3px 0px 0px 0px;
         }
     }
 
@@ -50,4 +52,9 @@ app-product {
     text-transform: capitalize;
     text-decoration: line-through;
   }
+
+  .product_info_label {
+    color: #666;
+  }
+
 }

@@ -1,0 +1,35 @@
+app-history-delivery {
+    .history_delivery_img {
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        width: 65px;
+        height: 65px;
+        border: 1px solid #e8e8ef;
+        border-radius: 3px;
+    }
+
+    .history_delivery_item {
+
+        border-bottom: 0.55px solid #c8c7cc;
+
+        .item-inner {
+            border: none !important;
+        }
+    }
+
+    .history_delivery_icon {
+        width: 25px;
+        height: 25px;
+        vertical-align: top;
+    }
+
+    .history_delivery_title {
+        font-weight: normal;
+        font-size: 1.4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #333;
+        text-transform: uppercase;
+    }
+}

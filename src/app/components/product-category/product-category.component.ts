@@ -6,6 +6,7 @@ import { Category } from '../../api/models/category';
 import { NavParams, LoadingController, App } from 'ionic-angular';
 import { Product } from '../../api/models/product';
 import { ProductsService } from '../../services/products.service';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 @Component({
   selector: 'app-product-category',
@@ -25,17 +26,24 @@ export class ProductCategoryComponent implements OnInit {
   public category_selected: Category;
   public search_content: string;
   public is_search: boolean;
+  private isLoadMore: boolean;
 
-  constructor(private navParams: NavParams, private shopping_service: ShoppingsService, public custom_service: CustomService,
-    private customService: CustomService, public loadingCtrl: LoadingController, private appCtrl: App, private productService: ProductsService) {
-    this.categories = this.navParams.get('arr');
-    this.category_id = this.navParams.get('guid');
-    this.shop_guid = this.navParams.get('shop_guid');
-    this.type_product = this.navParams.get('type_product');
-    this.title = this.navParams.get('title');
-    if (this.categories)
-      this.categories_parent = this.categories.filter(e => +e.parent_guid == this.category_id);
-
+  constructor(
+    private navParams: NavParams, 
+    private shopping_service: ShoppingsService, 
+    public custom_service: CustomService,
+    private customService: CustomService, 
+    public loadingCtrl: LoadingController, 
+    private appCtrl: App, 
+    private productService: ProductsService, 
+    private nav:NavController) {
+      this.categories = this.navParams.get('arr');
+      this.category_id = this.navParams.get('guid');
+      this.shop_guid = this.navParams.get('shop_guid');
+      this.type_product = this.navParams.get('type_product');
+      this.title = this.navParams.get('title');
+      if (this.categories)
+        this.categories_parent = this.categories.filter(e => +e.parent_guid == this.category_id);
   }
 
   ngOnInit() {
@@ -84,20 +92,16 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
 
     setTimeout(() => {
       this.offset = this.offset + this.limit;
-      this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
-        if (data.products instanceof Array) {
-          this.products = this.products.concat(data.products);
-        }
-        loading.dismiss();
-      });
+      if (!this.isLoadMore) {
+        this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
+          if (data.products instanceof Array) {
+            this.products = this.products.concat(data.products);
+          }
+        });
+      }
       infiniteScroll.complete();
     }, 500);
   }
@@ -107,10 +111,8 @@ export class ProductCategoryComponent implements OnInit {
     if (!this.is_search) {
       if (this.search_content != undefined && this.search_content != "") {
         // this.customService.goToPageSearch(this.search_content,this.nav);
-        alert(this.search_content)
         this.productService.searchProduct(this.search_content, this.category_id, 'product').subscribe(data => {
-          console.log(data);
-
+          this.isLoadMore = true;
           if (data.products) {
             this.products = data.products;
           } else this.custom_service.toastMessage('Không có dữ liệu', 'bottom', 3000);
@@ -123,4 +125,9 @@ export class ProductCategoryComponent implements OnInit {
   openProductDetail(product: Product) {
     this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid })
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
