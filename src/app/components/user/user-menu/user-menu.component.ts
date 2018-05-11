@@ -64,7 +64,7 @@ export class UserMenuComponent implements OnInit {
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       if (isAvatar) {
-
+        console.log("avatar");
         this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
           if (data.status) {
             this.callback(true).then(() => { });
@@ -74,6 +74,7 @@ export class UserMenuComponent implements OnInit {
           }
         })
       } else {
+        console.log("cover");
         this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
           if (data.status) {
             this.callback(true).then(() => { });
