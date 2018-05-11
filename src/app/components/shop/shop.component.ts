@@ -4,6 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { ShopsService } from '../../services/shops.service';
 import { App, NavController, LoadingController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Store } from '../../api/models';
+import { LocationComponent } from '../location/location.component';
+import { MessagesService } from '../../services/messages.service';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-shop',
@@ -14,7 +18,7 @@ export class ShopComponent implements OnInit {
   public shopGuid;
   userGuid: number;
   constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService, private navParams: NavParams, private customService: CustomService,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, private messagesService: MessagesService) {
     this.shopGuid = this.navParams.get('guid');
     let userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.userGuid = userCurrent.guid;
@@ -83,5 +87,41 @@ export class ShopComponent implements OnInit {
       });
       this.shop.liked = true;
     }
+  }
+  openStoreLocation(store:Store){
+    this.appCtrl.getRootNav().push(LocationComponent, { title: store.title, lat: store.lat, lng: store.lng });
+  }
+
+  chatOwner(){
+    let friend:any={};
+    friend.from = this.customService.user_current.username;
+    friend.to = friend.username;
+    this.messagesService.getKeyChat(this.customService.user_current.username, friend.username, "individual").query.once('value', snap => {
+      let key = "";
+      if (snap.val() == null) {
+        this.messagesService.getKeyChat(friend.username, this.customService.user_current.username, "individual").query.once('value', item => {
+          if (item.val()) {
+            key = item.val().key;
+            this.messagesService.createKeyChat("individual", this.customService.user_current.username, friend.username, item.val());
+            friend.key = key;
+            friend.chat_type = "individual";
+            this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
+          } else {
+            key = this.messagesService.generateKey();
+            let obj = { key: key, last_read: 0, unread_count: 0 };
+            this.messagesService.createKeyChat("individual", this.customService.user_current.username, friend.username, obj);
+            this.messagesService.createKeyChat("individual", friend.username, this.customService.user_current.username, obj);
+            friend.key = key;
+            friend.chat_type = "individual";
+            this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
+          }
+        });
+      } else {
+        key = snap.val().key;
+        friend.key = key;
+        friend.chat_type = "individual";
+        this.appCtrl.getRootNav().push(MessageComponent, { param: friend });
+      }
+    });
   }
 }
