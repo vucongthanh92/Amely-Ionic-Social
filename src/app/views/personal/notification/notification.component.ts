@@ -37,6 +37,15 @@ export class NotificationComponent implements OnInit {
   }
 
   goToPage(n: Notification) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1500);
     switch (n.notification_type) {
       case 'like:post':
       case "comments:post":

@@ -1,3 +1,62 @@
 app-history-delivery-detail {
-    
+    .history_delivery_main {
+
+    }
+
+    .history_delivery_label {
+        color: #3220a3;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .history_delivery_item {
+        padding: 0px 0px 7px 0px;
+        border-bottom: 1px solid #c8c7cc;
+        margin: 0px 0px 7px 0px;
+    }
+
+    .history_delivery_item:last-child {
+        border-bottom: none !important;
+    }
+
+    .history_delivery_img {
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        width: 55px;
+        height: 55px;
+        border-radius: 3px;
+        border: 1px solid #e8e8ef;
+    }
+
+    .history_delivery_row {
+        margin: 15px 0px 1px 0px;
+    }
+
+    .history_delivery_title {
+        margin: 0px 0px 5px 0px;
+        font-size: 1.5rem;
+        color: #333;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .history_delivery_icon_phone {
+        color: #00BDF2;
+        vertical-align: middle;
+        margin: 0px 3px 0px 0px;
+    }
+
+    .history_delivery_sending {
+        .label-ios {
+            margin: 5px 8px 10px 0;
+        }
+    }
+
+    .history_delivery_sending_row {
+        margin: 3px 0px 9px 1px;
+        font-size: 1.5rem;
+        color: #666;
+    }
 }

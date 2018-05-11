@@ -19,9 +19,10 @@ app-history-delivery {
     }
 
     .history_delivery_icon {
-        width: 25px;
-        height: 25px;
-        vertical-align: top;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin: -4px 0px 0px 0px;
     }
 
     .history_delivery_title {
@@ -31,5 +32,17 @@ app-history-delivery {
         overflow: hidden;
         color: #333;
         text-transform: uppercase;
+        margin: 3px 0px 1px 0px;
+        text-overflow: ellipsis;
+    }
+    
+    .history_delivery_text {
+        color: #ffa346;
+    }
+
+    .history_delivery_row {
+        margin: 0px 0px 3px 5px;
+        font-size: 1.4rem;
+        color: #333;
     }
 }

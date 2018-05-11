@@ -82,10 +82,6 @@ export class BusinessComponent implements OnInit {
     });
   }
 
-  dismiss() {
-    this.nav.pop();
-  }
-
   callbackAvatarCover = (_params) => {
     return new Promise((resolve, reject) => {
       // const url: string = _params.url;
@@ -104,5 +100,11 @@ export class BusinessComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
+
 

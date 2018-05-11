@@ -35,6 +35,8 @@ export class ItemComponent implements OnInit {
     private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
+    console.log(this.itemGuid);
+    
   }
 
   ngOnInit() {
@@ -57,6 +59,8 @@ export class ItemComponent implements OnInit {
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
+        console.log(this.item);
+        
         this.expiryType = +this.item.is_special;
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;

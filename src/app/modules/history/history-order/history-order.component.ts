@@ -49,4 +49,8 @@ export class HistoryOrderComponent implements OnInit {
   formatCurrency(price, currency) {
     return this.customService.formatCurrency(price, currency);
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

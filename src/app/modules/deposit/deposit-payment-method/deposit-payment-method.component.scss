@@ -1,0 +1,21 @@
+app-deposit-payment-method {
+    .deposit_payment_next {
+        color: #fff;
+
+        ion-icon {
+            font-size: 2.4rem !important;
+            margin: 0px 0px 0px 5px;
+        }
+    }
+
+    .deposit_payment_minmax {
+        text-align: center;
+        color: #333;
+        padding: 15px 0px 15px 0px;
+    }
+
+    .deposit_payment_balance {
+        border-top: 1px solid #c8c7cc;
+        padding: 5px 0px 5px 15px;
+    }
+}

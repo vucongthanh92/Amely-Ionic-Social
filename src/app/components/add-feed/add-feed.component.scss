@@ -83,6 +83,10 @@ app-add-feed {
         padding: 4px 10px 4px 10px;
         color: #666;
         font-size: 13px;
+
+        .item-cover {
+            width: auto;
+        }
     }
 
     .addfeed_bottom_nav {

@@ -71,6 +71,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   payment() {
+    // const test ="VnpHaEJDNDM4aUxGNkg5V1k3cWJhR3dpZTZyaldIOEQyTmdnN0EzdEpEMD0";
     this.barcodeScanner.scan().then((barcodeData) => {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
@@ -96,6 +97,19 @@ export class ShoppingComponent implements OnInit {
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
+
+    // this.paymentService.getTempOrder(test).subscribe(data => {
+    //   // check update profile        
+    //   if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+    //     this.requestUpdateProfile()
+    //   } else {
+    //     this.paymentService.payment_qr_data = data;
+    //     this.paymentService.getPaymentMethod().subscribe(data => {
+    //       this.paymentService.payment_order_post = data;
+    //       this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+    //     });
+    //   }
+    // })
   }
 
   requestUpdateProfile() {

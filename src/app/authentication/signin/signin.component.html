@@ -13,7 +13,7 @@
               <ion-label>
                 <img class="login_icon" src="assets/imgs/ic_username.png" />
               </ion-label>
-              <ion-input type="text" name="username" [(ngModel)]="username"></ion-input>
+              <ion-input type="text" name="username" [(ngModel)]="username" (ionChange)="setUsername(username)"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>
