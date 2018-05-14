@@ -55,22 +55,22 @@ export class NearByUserComponent implements OnInit {
     if (that.wanna_trade) that.wanna.push('wanna_trade');
     this.geoQueryUser.on("key_entered", function (key, location, distance) {
       // console.log(key + " user query at " + location + " (" + distance + " km from center)");
+      setTimeout(() => {
+        that.fbService.findUser(key).query.on('value', snap => {
+          that.user_fb = snap.val();
+          if (that.checkUser(that.user_fb, key)) {
 
-      that.fbService.findUser(key).query.on('value', snap => {
-        that.user_fb = snap.val();
-        if (that.checkUser(that.user_fb, key)) {
-
-          that.userserive.getUser(key, null).subscribe(data => {
-            if (!that.datas) {
-              that.datas = [];
-            }
-            that.datas.push({ user: data, distance: distance });
-            that.datas.sort(that.compareUser);
-          })
-        };
-        return false;
-      })
-
+            that.userserive.getUser(key, null).subscribe(data => {
+              if (!that.datas) {
+                that.datas = [];
+              }
+              that.datas.push({ user: data, distance: distance });
+              that.datas.sort(that.compareUser);
+            })
+          };
+          return false;
+        })
+      }, 2500);
     });
   }
   checkUser(userFB: { findable_by: string, gender: string, mood: string, yob: string }, username) {

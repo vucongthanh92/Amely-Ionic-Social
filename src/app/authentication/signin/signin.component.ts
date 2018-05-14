@@ -46,6 +46,23 @@ export class SigninComponent implements OnInit {
     this.is_logging = true;
     this.loader = this.loadingCtrl.create();
     this.loader.present();
+    this.retryLogin(5);
+  }
+
+  setUsername(username) {
+    this.username = username.toLowerCase();
+  }
+
+  onRegister() {
+    // this.nav.push(MapComponent);
+    this.nav.push(RegisterComponent);
+  }
+
+  retryLogin(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
       this.loader.dismiss();
@@ -63,36 +80,36 @@ export class SigninComponent implements OnInit {
           toast.present();
         }
       } else {
-      
-        
-        this.api.getProfile({}).subscribe(data => {
-          // this.loader.dismiss();
-          localStorage.setItem('loggin_user', JSON.stringify(data));
-          this.customService.user_current = data;
-          this.authenticationService.setSession(resp);
-          localStorage.setItem('baer', JSON.stringify(resp));
-          console.log(resp);
-          console.log(localStorage.getItem('baer'));
-          this.geolocation.getCurrentPosition().then((resp) => {
-            this.latitude = resp.coords.latitude;
-            this.longitude = resp.coords.longitude;
-            localStorage.setItem("lat", this.latitude);
-            localStorage.setItem("lng", this.longitude);
-            this.geolocationService.setLocation(this.username, this.latitude, this.longitude);
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-          this.nav.setRoot(MainMenuComponent);
-        })
+        this.retryLoadProfile(5, resp);
       }
     }, err => {
-      this.loader.dismiss();
-      this.customService.toastMessage('Kết nối thất bại. Vui lòng thử lại', 'bottom', 2000)
+      this.retryLogin(--retry);
     });
   }
 
-  onRegister() {
-    // this.nav.push(MapComponent);
-    this.nav.push(RegisterComponent);
+  retryLoadProfile(retry, resp) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.api.getProfile({}).subscribe(data => {
+      // this.loader.dismiss();
+      localStorage.setItem('loggin_user', JSON.stringify(data));
+      this.customService.user_current = data;
+      this.authenticationService.setSession(resp);
+      localStorage.setItem('baer', JSON.stringify(resp));
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
+        localStorage.setItem("lat", this.latitude);
+        localStorage.setItem("lng", this.longitude);
+        this.geolocationService.setLocation(this.username, this.latitude, this.longitude);
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
+      this.nav.setRoot(MainMenuComponent);
+    }, err => {
+      this.retryLoadProfile(--retry, resp);
+    })
   }
 }

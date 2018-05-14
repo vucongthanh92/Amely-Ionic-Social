@@ -16,6 +16,11 @@
   <ion-row *ngIf="inventoriesItem">
       <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" class="items_box">
         <div class="items_box_main">
+          <div class="item-ribbon offer_search_ribbon" *ngIf="item.is_special=='1'">
+            <span class="ribbon cruzeiro">
+              <span>VOUCHER</span>
+            </span>
+          </div>
           <div class="items_box_image" *ngIf="item.product_snapshot.images" [style.background]="'url(' + item.product_snapshot.images[0] + ')'"></div>
           <div class="items_box_image" *ngIf="item.product_snapshot.images== undefined" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
           <div style="padding: 5px">

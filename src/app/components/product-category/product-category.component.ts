@@ -25,6 +25,7 @@ export class ProductCategoryComponent implements OnInit {
   public category_selected: Category;
   public search_content: string;
   public is_search: boolean;
+  private isLoadMore: boolean;
 
   constructor(private navParams: NavParams, private shopping_service: ShoppingsService, public custom_service: CustomService,
     private customService: CustomService, public loadingCtrl: LoadingController, private appCtrl: App, private productService: ProductsService) {
@@ -84,41 +85,46 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
 
     setTimeout(() => {
       this.offset = this.offset + this.limit;
-      this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
-        if (data.products instanceof Array) {
-          this.products = this.products.concat(data.products);
-        }
-        loading.dismiss();
-      });
+      if (!this.isLoadMore) {
+        this.retryLoadMore(5);
+      }
       infiniteScroll.complete();
     }, 500);
   }
 
+  retryLoadMore(retry) {
+    if (retry == 0) {
+      return;
+    }
+    this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
+      if (data.products instanceof Array) {
+        this.products = this.products.concat(data.products);
+      }
+    }, err => this.retryLoadMore(--retry));
+  }
   search() {
     this.is_search = !this.is_search;
     if (!this.is_search) {
       if (this.search_content != undefined && this.search_content != "") {
         // this.customService.goToPageSearch(this.search_content,this.nav);
-        alert(this.search_content)
-        this.productService.searchProduct(this.search_content, this.category_id, 'product').subscribe(data => {
-          console.log(data);
-
-          if (data.products) {
-            this.products = data.products;
-          } else this.custom_service.toastMessage('Không có dữ liệu', 'bottom', 3000);
-        })
+        this.retrySearch(5);
       } else {
         this.customService.toastMessage('Nhập dữ liệu tìm kiếm', 'bottom', 3000)
       }
     }
+  }
+
+  retrySearch(retry) {
+    if (retry == 0) return;
+    this.productService.searchProduct(this.search_content, this.category_id, 'product').subscribe(data => {
+      this.isLoadMore = true;
+      if (data.products) {
+        this.products = data.products;
+      } else this.custom_service.toastMessage('Không có dữ liệu', 'bottom', 3000);
+    }, err => this.retrySearch(--retry))
   }
   openProductDetail(product: Product) {
     this.appCtrl.getRootNav().push(ProductComponent, { guid: product.guid })

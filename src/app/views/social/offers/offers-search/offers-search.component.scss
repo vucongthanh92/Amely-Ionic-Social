@@ -116,7 +116,7 @@ app-offers-search{
   }
 
   .offer_search_row {
-    margin: 0px 0px 45px 0px;
+    margin: 3px 7px 45px 7px;
   }
 
   .offer_search_user_info {
@@ -132,7 +132,7 @@ app-offers-search{
     top: -21px;
     z-index: 3;
     border-radius: 50%;
-    left: 12px;
+    left: 10px;
   }
 
   .offer_search_main {
@@ -157,7 +157,7 @@ app-offers-search{
 
   .offer_search_location {
     padding-top: 30px;
-    margin: 5px 0px 18px 0px;
+    margin: 5px 0px 12px 0px;
     font-size: 15px;
     padding: 0px;
     color: #55acee;
@@ -172,9 +172,9 @@ app-offers-search{
   .offer_search_title {
     font-size: 14px;
     text-align: center;
-    margin: 15px 0px 10px 0px;
+    margin: 12px 0px 9px 0px;
     font-weight: 300;
-    height: 35px;
+    height: auto;
     text-transform: capitalize;
     line-height: 18px;
   }
@@ -224,8 +224,8 @@ app-offers-search{
     width: 25px;
     height: 25px;
     position: absolute;
-    bottom: 7px;
-    left: 5px;
+    bottom: -5px;
+    left: 1px;
   }
 
 }

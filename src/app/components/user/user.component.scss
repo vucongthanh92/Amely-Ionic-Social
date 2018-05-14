@@ -131,8 +131,7 @@ app-user {
   .profile_info {
     margin: 0px 0px 10px 0px;
     width: 100%;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #c8c7cc;
   }
 
   .feeds_button {
@@ -155,7 +154,8 @@ app-user {
   }
 
   .user_profile_more {
-    margin-right: 10px;
+    margin: 1px 7px 0px 0px;
+    color: #fff;
   }
 
 }

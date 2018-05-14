@@ -54,13 +54,17 @@ export class FriendsComponent implements OnInit {
 
   loadFriendProfile(user_guid) {
     this.isUserCurrent = user_guid === this.userCurrent.guid;
-
     if (!this.dontShow) {
-      this.userService.getFriends(user_guid).subscribe(data => { this.users = data; });
+      this.retryLoadFriends(5, user_guid);
     }
-
   }
 
+  retryLoadFriends(retry, user_guid) {
+    if (retry == 0) return;
+    this.userService.getFriends(user_guid).subscribe(
+      data => { this.users = data; },
+      err => this.retryLoadFriends(--retry, user_guid));
+  }
   isFriend(userGuid) {
     if (userGuid === this.userCurrent.guid) return 0;
     else if (this.friendsUserCurrent.find(e => e.guid === userGuid) !== undefined) return 1;

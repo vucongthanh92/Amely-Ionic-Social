@@ -57,11 +57,19 @@ export class NoteFriendComponent implements OnInit {
     });
     loading.present();
 
+    this.retryPutApproval(5, type, to_guid, loading);
+
+  }
+
+  retryPutApproval(retry, type, to_guid, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.invitationService.putApproval(type, null, to_guid).subscribe(data => {
       loading.dismiss();
       this.hanldeAcceptOrCancelRequest(true, data, type, to_guid);
-    })
-
+    }, err => this.retryPutApproval(--retry, type, to_guid, loading))
   }
 
   cancel(type, to_guid) {
@@ -71,12 +79,19 @@ export class NoteFriendComponent implements OnInit {
     });
     loading.present();
 
+    this.retryDeleteApproval(5, type, to_guid, loading)
+  }
+
+  retryDeleteApproval(retry, type, to_guid, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.invitationService.deleteApproval(type, null, to_guid).subscribe(data => {
       loading.dismiss();
       this.hanldeAcceptOrCancelRequest(false, data, type, to_guid);
-    })
+    }, err => this.retryDeleteApproval(--retry, type, to_guid, loading))
   }
-
   hanldeAcceptOrCancelRequest(isAccept, data: DefaultResponse, type, to_guid) {
     if (data.status) {
       this.customService.toastMessage('Thành công', 'bottom', 2000);

@@ -31,7 +31,11 @@ export class SettingPrivateComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
+    this.retryWallet(5, loading);
+  }
 
+  retryWallet(retry, loading) {
+    if (retry == 0) return;
     this.inventoriesService.getWallet().subscribe(data => {
       if (data.guid == null) {
         loading.dismiss();
@@ -40,6 +44,8 @@ export class SettingPrivateComponent implements OnInit {
         loading.dismiss();
         this.getRequestShop();
       }
+    }, err => {
+      this.retryWallet(--retry, loading);
     })
   }
 
@@ -56,6 +62,11 @@ export class SettingPrivateComponent implements OnInit {
     });
     loading.present();
 
+    this.retryGetRequestShop(5, loading);
+  }
+
+  retryGetRequestShop(retry, loading) {
+    if (retry == 0) return;
     this.shopService.getRequestShop().subscribe(data => {
       if (data.status == '3') {
         loading.dismiss();
@@ -69,8 +80,7 @@ export class SettingPrivateComponent implements OnInit {
       } else
         loading.dismiss();
       this.appCtrl.getRootNav().push(CreateShopComponent, { shop: data })
-    })
-
+    }, err => this.retryGetRequestShop(--retry, loading))
   }
 
   openSQCard() {

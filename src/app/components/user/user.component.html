@@ -1,6 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Trang cá nhân</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">trang cá nhân</div>
+    </ion-buttons>
+
     <ion-buttons end>
       <button *ngIf="isLoadSuccess" ion-button (click)="openPopover($event)">
         <ion-icon class="user_profile_more" name="md-more"></ion-icon>

@@ -16,17 +16,11 @@ export class GiftHistoryComponent implements OnInit {
   gift: Gift;
   constructor(private giftService: GiftsService, private customService: CustomService, private navParams: NavParams, public sanitizer: DomSanitizer) {
     this.transaction = this.navParams.get('trans');
-    this.giftService.getGift(this.transaction.related_guid).subscribe(
-      data => {
-        this.gift = data;
-      })
+    this.loadData(5);
   }
 
   ngOnInit() {
     this.transaction = this.navParams.get('trans');
-    console.log(this.transaction);
-
-
   }
 
   loadData(retry) {

@@ -23,11 +23,15 @@
 .ion_navbar_title {
     font-size: 1.8rem;
     vertical-align: unset;
-    margin: 5px 0px 0px 5px;
+    margin: 6px 0px 0px 5px;
     font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
     text-transform: capitalize;
-    float: right;
+    float: left;
     color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 15rem;
+    white-space: nowrap;
 }
 
 .title-ios {

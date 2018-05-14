@@ -37,8 +37,8 @@ export class UserMenuComponent implements OnInit {
   }
 
   editUser() {
-    this.nav.pop();
     this.appCtrl.getRootNav().push(UserUpdateComponent, { callback: this.myCallbackFunction });
+    this.nav.pop();
 
   }
 
@@ -64,26 +64,46 @@ export class UserMenuComponent implements OnInit {
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       if (isAvatar) {
-
-        this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
-          if (data.status) {
-            this.callback(true).then(() => { });
-            this.feedService.putFeed(this.customService.content_change_avatar, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
-          } else {
-            this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 3000);
-          }
-        })
+        this.retryChangeAvatar(5, images);
       } else {
-        this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
-          if (data.status) {
-            this.callback(true).then(() => { });
-            this.feedService.putFeed(this.customService.content_change_cover, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
-          } else {
-            this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 3000);
-          }
-        })
+        this.retryChangeCover(5, images);
       }
     })
+  }
+
+  retryChangeCover(retry, images) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
+      if (data.status) {
+        this.callback(true).then(() => { });
+        this.retryPutFeed(5, this.customService.content_change_cover, images);
+      } else {
+        this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 3000);
+      }
+    }, err => this.retryChangeCover(--retry, images))
+  }
+
+  retryChangeAvatar(retry, images) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
+      if (data.status) {
+        this.callback(true).then(() => { });
+        this.retryPutFeed(5, this.customService.content_change_avatar, images);
+      } else {
+        this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 3000);
+      }
+    }, err => this.retryChangeAvatar(--retry, images))
+  }
+
+  retryPutFeed(retry, content, images) {
+    if (retry == 0) return;
+    this.feedService.putFeed(content, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
   }
 
   report() {
@@ -98,9 +118,17 @@ export class UserMenuComponent implements OnInit {
 
   block() {
     this.nav.pop()
+    this.retryBlock(5);
+  }
+
+  retryBlock(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.userService.blockUser(this.user.guid).subscribe(data => {
       this.customService.toastMessage("Bạn đã chặn " + this.user.fullname + " thành công", 'bottom', 3000);
       this.callback(true).then(() => { });
-    })
+    }, err => this.retryBlock(--retry))
   }
 }

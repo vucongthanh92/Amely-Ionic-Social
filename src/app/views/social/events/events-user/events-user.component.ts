@@ -36,14 +36,17 @@ export class EventsUserComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.eventsService.getEvents(0, 9999, 'member').subscribe(data => {
-      this.events = []
-      if (data.events instanceof Array) {
-        this.events = data.events;
-      }
-      // loading.dismiss();
-      this.users = data.users;
-    }, err => this.loadEvent(--retry))
+    setTimeout(() => {
+      this.eventsService.getEvents(0, 9999, 'member').subscribe(data => {
+        this.events = []
+        if (data.events instanceof Array) {
+          this.events = data.events;
+        }
+        // loading.dismiss();
+        this.users = data.users;
+      }, err => this.loadEvent(--retry))
+    }, 2500);
+   
   }
 
   getDateCreate(time: number) {

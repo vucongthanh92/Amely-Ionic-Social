@@ -81,30 +81,43 @@ export class UserUpdateComponent implements OnInit {
         enableBackdropDismiss: true
       });
       loading.present();
-      this.userService.updateProfile(this.first_name, this.last_name, null, this.gender, this.birthdate, null, this.friend_hidden == true ? '1' : '0'
-        , this.mobile_hidden == true ? '1' : '0', this.birthdate_hidden == true ? '1' : '0', this.province_id, this.district_id, this.ward_id, this.address).subscribe(data => {
-          if (data.status) {
-            this.customService.toastMessage('Cập nhật thông tin thành công', 'bottom', 2000);
-            this.customService.user_current.first_name = this.first_name;
-            this.customService.user_current.last_name = this.last_name;
-            this.customService.user_current.birthdate = this.birthdate;
-            this.customService.user_current.gender = this.gender;
-            this.customService.user_current.friends_hidden = this.friend_hidden ? '1' : '0';
-            this.customService.user_current.mobile_hidden = this.mobile_hidden ? '1' : '0';
-            this.customService.user_current.birthdate_hidden = this.birthdate_hidden ? '1' : '0';
-            this.customService.user_current.fullname = this.first_name + " " + this.last_name;
-            this.customService.user_current.province = this.province_id;
-            this.customService.user_current.district = this.district_id;
-            this.customService.user_current.ward = this.ward_id;
-            this.customService.user_current.address = this.address;
-            this.callback(true).then(() => {
-              this.nav.pop()
-            });
-          } else {
-            this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
-          }
-          loading.dismiss();
-        }, err => this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại sau', 'bottom', 4000));
+      this.retryUpdateProfile(5, loading);
     }
   }
+
+  retryUpdateProfile(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.updateProfile(this.first_name, this.last_name, null, this.gender, this.birthdate, null, this.friend_hidden == true ? '1' : '0'
+      , this.mobile_hidden == true ? '1' : '0', this.birthdate_hidden == true ? '1' : '0', this.province_id, this.district_id, this.ward_id, this.address).subscribe(data => {
+        if (data.status) {
+          this.customService.toastMessage('Cập nhật thông tin thành công', 'bottom', 2000);
+          this.customService.user_current.first_name = this.first_name;
+          this.customService.user_current.last_name = this.last_name;
+          this.customService.user_current.birthdate = this.birthdate;
+          this.customService.user_current.gender = this.gender;
+          this.customService.user_current.friends_hidden = this.friend_hidden ? '1' : '0';
+          this.customService.user_current.mobile_hidden = this.mobile_hidden ? '1' : '0';
+          this.customService.user_current.birthdate_hidden = this.birthdate_hidden ? '1' : '0';
+          this.customService.user_current.fullname = this.first_name + " " + this.last_name;
+          this.customService.user_current.province = this.province_id;
+          this.customService.user_current.district = this.district_id;
+          this.customService.user_current.ward = this.ward_id;
+          this.customService.user_current.address = this.address;
+          this.callback(true).then(() => {
+            this.nav.pop()
+          });
+        } else {
+          this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
+        }
+        loading.dismiss();
+      }, err => this.retryUpdateProfile(--retry, loading));
+  }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

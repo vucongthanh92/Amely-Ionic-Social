@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Tạo đề xuất trao đổi</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Tạo đề xuất trao đổi</div>
+    </ion-buttons>
+
     <ion-buttons end>
       <button ion-button (click)="offer()">
-        <ion-icon name="send"></ion-icon>
+        <ion-icon class="create_offer_send_icon" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -13,8 +19,6 @@
   <div class="scroll-content divBody">
     <ion-grid>
       <div *ngIf="!counter">
-
-
         <ion-row class="marginRow">
           <ion-col col-4>
             <div class="divSize">
@@ -32,12 +36,14 @@
             <ion-icon class="iconSize" name="md-bulb"></ion-icon>
           </ion-col>
         </ion-row>
+
         <ion-list radio-group *ngIf="offer_type == 'giveaway'" [(ngModel)]="giveaway_approval">
           <ion-item>
             <ion-label>Chờ duyệt trao đổi</ion-label>
             <ion-toggle [(ngModel)]='giveaway_approval'></ion-toggle>
           </ion-item>
         </ion-list>
+        
         <ion-row class="marginRow" *ngIf="offer_type == 'random'">
           <ion-col col-4>
             <div class="divSize">

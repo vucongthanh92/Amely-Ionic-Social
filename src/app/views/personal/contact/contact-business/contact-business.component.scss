@@ -15,7 +15,7 @@ app-contact-business {
         white-space: nowrap;
         max-height: 40px;
         text-transform: capitalize;
-        padding: 3px 0px 0px 7px;
+        padding: 3px 0px 0px 0px;
         text-overflow: ellipsis;
         color: #333;
         text-transform: capitalize;
@@ -30,8 +30,10 @@ app-contact-business {
         font-size: 13px;
         color: #666;
         overflow: hidden;
-        height: 32px;
-        white-space: normal;
+        height: auto;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 3px 0px 0px 1px;
     }
 
     .list-ios {

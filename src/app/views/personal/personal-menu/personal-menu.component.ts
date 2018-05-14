@@ -39,14 +39,22 @@ export class PersonalMenuComponent implements OnInit {
           });
           console.log(phoneNumbers);
 
-          this.userService.updateContact(phoneNumbers).subscribe(data => {
-            if (data.status) {
-              this.customService.toastMessage('Đã gửi lời mời kết bạn đến tất cả danh sách số điện thoại trong danh bạ', 'bottom', 5000);
-            } else this.customService.toastMessage('Cập nhật danh bạ thất bại', 'bottom', 3000);
-          })
+          this.retryUpdateContact(5, phoneNumbers);
         } else {
           this.customService.toastMessage('Danh bạ rỗng', 'bottom', 3000);
         }
       });
+  }
+
+  retryUpdateContact(retry, phoneNumbers) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.updateContact(phoneNumbers).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Đã gửi lời mời kết bạn đến tất cả danh sách số điện thoại trong danh bạ', 'bottom', 5000);
+      } else this.customService.toastMessage('Cập nhật danh bạ thất bại', 'bottom', 3000);
+    }, err => this.retryUpdateContact(--retry, phoneNumbers));
   }
 }

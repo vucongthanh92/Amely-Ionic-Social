@@ -57,36 +57,29 @@ export class QuickPayListItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
-            if (+data.quantity > total || +data.quantity > product.display_quantity) {
+            if (+data.quantity > total || +data.quantity > product.display_quantity || +data.quantity < 0 || +data.quantity % 1 != 0 || isNaN(+data.quantity)) {
               this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000)
             } else {
-              this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
-                if (data && data.products && data.products instanceof Array) {
-                  // this.products = JSON.parse(JSON.stringify(data.products));
-                  // let productsTMP = [];
-                  // data.products.forEach(element => {
-                  //   if (element.redeem_quantity && element.redeem_quantity > 0) {
-                  //     element.hasInventory = 2;
-                  //     productsTMP.push(element);
-                  //   }
-                  // });
-                  // this.products = this.products.concat(productsTMP)
-                  // this.products.forEach(e => {
-                  //   if (!e.hasInventory || e.hasInventory != 2) {
-                  //     this.total_price += this.customService.netPrice(e);
-                  //   }
-                  // });
-                  this.total_price = +data.total
-                  this.products = data.products;
-                  this.paymentService.payment_qr_data.products = data.products;
-                }
-              })
+              this.retryOrderRedeem(5, product, data);
             }
           }
         }
       ]
     });
     alert.present();
+  }
+
+  retryOrderRedeem(retry, product, data) {
+    if (retry == 0) {
+      return;
+    }
+    this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
+      if (data && data.products && data.products instanceof Array) {
+        this.total_price = +data.total
+        this.products = data.products;
+        this.paymentService.payment_qr_data.products = data.products;
+      }
+    }, err => this.retryOrderRedeem(--retry, product, data))
   }
 
   next() {

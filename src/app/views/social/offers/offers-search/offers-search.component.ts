@@ -85,11 +85,7 @@ export class OffersSearchComponent implements OnInit {
         switch (data) {
           case 'friends':
             this.offers = [];
-            this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
-              if (data instanceof Array) {
-                this.offers = data;
-              }
-            })
+            this.retryGetOffers(5);
             loading.dismiss();
             break;
           case 'public':
@@ -102,11 +98,12 @@ export class OffersSearchComponent implements OnInit {
             this.geoQueryOffer.on("key_entered", function (key, location, distance) {
               console.log(key);
               console.log(key + " user query at " + location + " (" + distance + " km from center)");
-              that.offersServie.getOffer(key).subscribe(data => {
-                if (data.owner.guid != that.customService.user_current.guid) {
-                  that.offers.push(data);
-                }
-              });
+              // that.offersServie.getOffer(key).subscribe(data => {
+              //   if (data.owner.guid != that.customService.user_current.guid) {
+              //     that.offers.push(data);
+              //   }
+              // });
+              this.retryGetOffer(5, that, key);
             });
             loading.dismiss();
             break;
@@ -124,6 +121,23 @@ export class OffersSearchComponent implements OnInit {
     alert.present();
   }
 
+  retryGetOffer(retry, that, key) {
+    if (retry) return;
+    that.offersServie.getOffer(key).subscribe(data => {
+      if (data.owner.guid != that.customService.user_current.guid) {
+        that.offers.push(data);
+      }
+    }, err => this.retryGetOffer(--retry, that, key));
+  }
+
+  retryGetOffers(retry) {
+    if (retry) return;
+    this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
+      if (data instanceof Array) {
+        this.offers = data;
+      }
+    }, err => this.retryGetOffers(--retry))
+  }
   callbackLocation = (_params) => {
     return new Promise((resolve, reject) => {
       console.log('add-feed');
@@ -180,13 +194,19 @@ export class OffersSearchComponent implements OnInit {
     });
   }
 
+
   bookmarkOffer(offer: Offer) {
+    this.retryBookmarkOffer(5, offer);
+  }
+
+  retryBookmarkOffer(retry, offer) {
+    if (retry) return retry;
     this.offersServie.bookmarkOffer(offer.guid).subscribe(data => {
       if (data.status) {
         this.customService.toastMessage('Bookmark thành công', 'bottom', 3000);
       } else {
         this.customService.toastMessage('Trao đổi đã bookmark', 'bottom', 3000);
       }
-    });
+    }, err => this.retryBookmarkOffer(--retry, offer));
   }
 }

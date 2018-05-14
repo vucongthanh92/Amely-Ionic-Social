@@ -22,7 +22,14 @@ export class CreateWalletComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
+    this.retryCreateWallet(5, loading);
+  }
 
+  retryCreateWallet(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.inventoryService.createWallet().subscribe(data => {
       if (data.status) {
         loading.dismiss();
@@ -31,7 +38,7 @@ export class CreateWalletComponent implements OnInit {
         loading.dismiss();
         this.customService.toastMessage('Tạo ví thất bại. Vui lòng thử lại !', 'bottom', 2000)
       }
-    })
+    }, err => this.retryCreateWallet(--retry, loading))
   }
   onCancel() {
     this.nav.pop();

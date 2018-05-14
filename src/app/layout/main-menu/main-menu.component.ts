@@ -70,12 +70,17 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.getUserProfile();
   }
 
   getUserProfile() {
+    this.retryGetuserProfile(5);
+  }
+
+  retryGetuserProfile(retry) {
+    if (retry == 0) {
+      return;
+    }
     this.api.getProfile({}).subscribe(data => {
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
@@ -92,11 +97,7 @@ export class MainMenuComponent implements OnInit {
           { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
           { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
         ];
-        this.api.getFriends(data.guid).subscribe(d => {
-          if (d instanceof Array) {
-            this.customService.friends = d;
-          }
-        })
+        this.retryGetFriends(5, data);
         this.notifyFirebase();
         this.geolocation.getCurrentPosition().then((resp) => {
           const latitude = resp.coords.latitude;
@@ -116,7 +117,16 @@ export class MainMenuComponent implements OnInit {
         this.customService.toastMessage('Thông tin tài khoản đã bị thay đổi. Vui lòng đăng nhập lại', 'bottom', 3000);
         this.nav.setRoot(SigninComponent);
       }
-    })
+    }, err => this.retryGetuserProfile(--retry))
+  }
+
+  retryGetFriends(retry, data) {
+    if (retry == 0) return
+    this.api.getFriends(data.guid).subscribe(d => {
+      if (d instanceof Array) {
+        this.customService.friends = d;
+      }
+    }, err => this.retryGetFriends(--retry, data))
   }
 
   requestUpdateProfile() {
@@ -146,90 +156,92 @@ export class MainMenuComponent implements OnInit {
       dataSnapshot.forEach(items => {
         let notify: Notification;
         notify = items.val();
-
         if (notify.poster_guid)
-          this.userService.getUser(null, notify.poster_guid).subscribe(data => {
-            notify.from_user = data;
-
-            switch (notify.notification_type) {
-              case 'like:post':
-                notify.title = data.fullname + ' đã thích bài viết của bạn';
-                this.customService.notifications.push(notify);
-                if (!notify.viewed) {
-                  this.showNotify(notify.subject_guid, notify.title);
-                }
-                // console.log('like: post');
-                break;
-              case "comments:post":
-                // console.log("comments:post");
-                notify.title = data.fullname + ' đã bình luận bài viết của bạn';
-                this.customService.notifications.push(notify);
-                if (!notify.viewed) {
-                  this.showNotify(notify.subject_guid, notify.title);
-                }
-                break;
-              case 'group:inviterequest':
-                this.initNotifyGroup(notify, data);
-                break;
-              case "friend:request":
-                // console.log("friend:request");
-                notify.title = data.fullname + ' đã gửi lời mời kết bạn';
-                this.customService.notifications.push(notify);
-                if (!notify.viewed) {
-                  this.showNotify(notify.subject_guid, notify.title);
-                }
-                break;
-              case "gift:request":
-                // console.log("gift:request");
-                this.initNotifyGift(notify, data);
-                break;
-              case "gift:accept":
-                // console.log("gift:accept");
-                this.initNotifyGift(notify, data);
-                break;
-              case "gift:reject":
-                // console.log("gift:reject");
-                this.initNotifyGift(notify, data);
-                break;
-              case "event:member":
-                // console.log("event:member");
-                this.initNotifyEvent(notify, data)
-                break;
-              case "event:invite":
-                // console.log("event:invite");
-                this.initNotifyEvent(notify, data)
-                break;
-              case "offer":
-                // console.log('offer');
-                this.initNotifyOffer(notify, data)
-                break;
-              case "counter":
-                // console.log('counter');
-                this.initNotifyOffer(notify, data)
-                break;
-              case "redeem:finished":
-                // console.log("redeem:finished");
-
-                break;
-
-            }
-          })
+          this.retryLoadNotifyUser(5, notify);
         return false;
       });
     })
   }
 
+  retryLoadNotifyUser(retry, notify) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.getUser(null, notify.poster_guid).subscribe(data => {
+      notify.from_user = data;
+
+      switch (notify.notification_type) {
+        case 'like:post':
+          notify.title = data.fullname + ' đã thích bài viết của bạn';
+          this.customService.notifications.push(notify);
+          if (!notify.viewed) {
+            this.showNotify(notify.subject_guid, notify.title);
+          }
+          // console.log('like: post');
+          break;
+        case "comments:post":
+          // console.log("comments:post");
+          notify.title = data.fullname + ' đã bình luận bài viết của bạn';
+          this.customService.notifications.push(notify);
+          if (!notify.viewed) {
+            this.showNotify(notify.subject_guid, notify.title);
+          }
+          break;
+        case 'group:inviterequest':
+          this.initNotifyGroup(notify, data);
+          break;
+        case "friend:request":
+          // console.log("friend:request");
+          notify.title = data.fullname + ' đã gửi lời mời kết bạn';
+          this.customService.notifications.push(notify);
+          if (!notify.viewed) {
+            this.showNotify(notify.subject_guid, notify.title);
+          }
+          break;
+        case "gift:request":
+          // console.log("gift:request");
+          this.initNotifyGift(notify, data);
+          break;
+        case "gift:accept":
+          // console.log("gift:accept");
+          this.initNotifyGift(notify, data);
+          break;
+        case "gift:reject":
+          // console.log("gift:reject");
+          this.initNotifyGift(notify, data);
+          break;
+        case "event:member":
+          // console.log("event:member");
+          this.initNotifyEvent(notify, data)
+          break;
+        case "event:invite":
+          // console.log("event:invite");
+          this.initNotifyEvent(notify, data)
+          break;
+        case "offer":
+          // console.log('offer');
+          this.initNotifyOffer(notify, data)
+          break;
+        case "counter":
+          // console.log('counter');
+          this.initNotifyOffer(notify, data)
+          break;
+        case "redeem:finished":
+          // console.log("redeem:finished");
+
+          break;
+
+      }
+    }, err => this.retryLoadNotifyUser(--retry, notify))
+  }
+
   initNotifyGroup(notify: Notification, user: User) {
     this.groupService.getGroup(notify.subject_guid).subscribe(data => {
       if (data.guid != null) {
-        // console.log('group:inviterequest');
-        // console.log(data);
-        // console.log('----------------------');
         notify.title = user.fullname + " đã mời bạn vào nhóm " + data.title;
         this.customService.notifications.push(notify);
       }
-
-
     })
   }
 

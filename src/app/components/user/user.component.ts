@@ -39,7 +39,7 @@ export class UserComponent {
   is_hidden_phone_number: boolean;
   from = 'user';
   is_failed: boolean;
-  isLoadSuccess: boolean=false;
+  isLoadSuccess: boolean = false;
   limitOffer: number;
   limitGift: number;
   constructor(
@@ -57,10 +57,17 @@ export class UserComponent {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
     this.imageViewerCtrl = imageViewerCtrl;
+    this.retryGetServices(5);
+  }
+
+  retryGetServices(retry) {
+    if (retry == 0) {
+      return;
+    }
     this.userService.getServices().subscribe(data => {
       this.limitOffer = data.limit_offer;
       this.limitGift = data.limit_gift;
-    })
+    }, err => this.retryGetServices(--retry));
   }
 
   presentImage(myImage) {
@@ -69,7 +76,7 @@ export class UserComponent {
   }
 
   openModal(urlImage) {
-    this.appCtrl.getRootNav().push(ModalImageUserComponent, { urlImage: this.is_user_current?this.userCurrent.avatar:this.user.avatar});
+    this.appCtrl.getRootNav().push(ModalImageUserComponent, { urlImage: this.is_user_current ? this.userCurrent.avatar : this.user.avatar });
   }
 
   ngOnInit() {
@@ -88,7 +95,7 @@ export class UserComponent {
         this.is_failed = true;
       } else {
         this.isLoadSuccess = true;
-        this.user = data;        
+        this.user = data;
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
         this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
@@ -96,14 +103,9 @@ export class UserComponent {
         this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
         this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
         this.is_hidden_phone_number = this.user.mobile_hidden == undefined || this.user.mobile_hidden == '0' ? false : true;
-        // console.log(this.is_hidden_birthday);
-        // console.log(this.is_hidden_friend);
-        // console.log(this.is_hidden_phone_number);
-
         let date = new Date(data.birthdate);
         this.birthday = date.getDate().toString() + "/" + (date.getMonth() + 1).toString() + "/" + date.getFullYear().toString();
         if (this.user.mood && this.user.mood.guid != null) {
-          // this.iconMood= this.moodLocal.find(e=>e.guid===data.mood.guid).image;
           this.iconMood = this.moodLocal[this.user.mood.guid].image;
         }
       }
@@ -211,18 +213,27 @@ export class UserComponent {
   }
   addFriend() {
     if (this.title_add_friend === 'Kết bạn') {
-      this.userService.addFriend(this.userCurrent.guid, this.user.guid, "user").subscribe(data => {
-        console.log(data);
-        
-        if (data.status) {
-          this.title_add_friend = "Đã gửi lời mời";
-        } else {
-          this.title_add_friend = 'Kết bạn';
-        }
-      });
+      this.retryAddFriend(5);
       this.title_add_friend = "Đã gửi lời mời";
     }
   }
+
+  retryAddFriend(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.addFriend(this.userCurrent.guid, this.user.guid, "user").subscribe(data => {
+      console.log(data);
+
+      if (data.status) {
+        this.title_add_friend = "Đã gửi lời mời";
+      } else {
+        this.title_add_friend = 'Kết bạn';
+      }
+    }, err => this.retryAddFriend(--retry));
+  }
+
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create(UserMenuComponent, {
       user: this.user, callback: this.myCallbackFunction, nav: this.nav, appCtrl: this.appCtrl,
@@ -232,6 +243,7 @@ export class UserComponent {
       ev: myEvent
     });
   }
+
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
       if (_params) {
@@ -240,4 +252,9 @@ export class UserComponent {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

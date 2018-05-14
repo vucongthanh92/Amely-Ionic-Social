@@ -45,17 +45,7 @@ export class FeedMenuComponent implements OnInit {
         {
           text: 'Đồng ý',
           handler: data => {
-            this.feedService.deleteFeed(this.post.guid).subscribe(data => {
-              if (data.status) {
-                this.nav.pop();
-                this.uploaded.emit({ type: 'delete', feedGuid: this.post.guid });
-                this.customService.toastMessage('Xóa bài viết thành công !!', 'bottom', 2000);
-              } else {
-                this.customService.toastMessage('Xóa bài viết thất bại. Vui lòng thử lại !!', 'bottom', 2000);
-              }
-            }, err => {
-              this.customService.toastMessage('Xóa bài viết thất bại. Vui lòng thử lại !!', 'bottom', 2000);
-            });
+            this.retryDeleteFeed(5);
           }
         }
       ]
@@ -63,12 +53,36 @@ export class FeedMenuComponent implements OnInit {
     alert.present();
   }
 
+  retryDeleteFeed(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feedService.deleteFeed(this.post.guid).subscribe(data => {
+      if (data.status) {
+        this.nav.pop();
+        this.uploaded.emit({ type: 'delete', feedGuid: this.post.guid });
+        this.customService.toastMessage('Xóa bài viết thành công !!', 'bottom', 2000);
+      } else {
+        this.customService.toastMessage('Xóa bài viết thất bại. Vui lòng thử lại !!', 'bottom', 2000);
+      }
+    }, err => {
+      this.retryDeleteFeed(--retry);
+    });
+  }
   share() {
     this.nav.pop();
+    this.retryShareFeed(5);
+  }
+  retryShareFeed(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.customService.share('post', this.post.guid, null).subscribe(data => {
       if (data.status) {
         this.customService.toastMessage('Bài viết đã chia sẻ thành công', 'bottom', 3000)
       } else this.customService.toastMessage('Chia sẻ thất bại', 'bottom', 3000)
-    }, err => this.customService.toastMessage('Chia sẻ thất bại, vui lòng kiểm tra lại kết nối mạng', 'bottom', 3000));
+    }, err => this.retryShareFeed(--retry));
   }
 }

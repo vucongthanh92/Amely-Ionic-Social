@@ -22,7 +22,7 @@ export class CommentsComponent implements OnInit {
   @Input('content') content: string
   public image: string;
 
-  constructor(private nav_params: NavParams, private feed_service: FeedsService, private customService: CustomService, 
+  constructor(private nav_params: NavParams, private feed_service: FeedsService, private customService: CustomService,
     private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera, public loadingCtrl: LoadingController) {
     this.feed_guid = this.nav_params.get('guid');
     this.user_current = JSON.parse(localStorage.getItem('loggin_user'));
@@ -39,7 +39,7 @@ export class CommentsComponent implements OnInit {
     });
     loading.present();
     if (retry == 0) {
-      loading.dismiss();      
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -49,7 +49,7 @@ export class CommentsComponent implements OnInit {
           this.comments = data.comments;
           this.users = data.users;
         }
-        loading.dismiss();        
+        loading.dismiss();
       }
       , err => {
         this.loadData(--retry)
@@ -75,15 +75,23 @@ export class CommentsComponent implements OnInit {
     // loading.present();
     setTimeout(() => {
       this.offset = this.offset + this.limit;
-      this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
-        if (data.comments instanceof Array) {
-          this.comments = this.comments.concat(data.comments);
-          this.users = Object.assign(this.users, data.users);
-        }
-        // loading.dismiss();        
-      })
+      this.retryGetComments(5);
       infiniteScroll.complete();
     }, 500);
+  }
+
+  retryGetComments(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
+      if (data.comments instanceof Array) {
+        this.comments = this.comments.concat(data.comments);
+        this.users = Object.assign(this.users, data.users);
+      }
+      // loading.dismiss();        
+    }, err => this.retryGetComments(--retry))
   }
 
   onSend() {
@@ -93,27 +101,36 @@ export class CommentsComponent implements OnInit {
     });
     loading.present();
     if (this.content) {
-      
-      loading.dismiss();      
+
+      loading.dismiss();
       let contentTmp = this.content;
-     let images;
+      let images;
       if (this.image) {
         images = [this.image]
       }
-      this.feed_service.putComment(this.feed_guid, this.content, images).subscribe(data => {
-        if (data.status) {
-          loading.dismiss();      
-          this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
-          if (this.comments == undefined) this.comments = [];
-          this.comments.unshift(this.comment);
-          this.image = null;
-        }
-      })
-    }else {
+      this.retryPutComment(5, loading, contentTmp, images);
+    } else {
       this.customService.toastMessage('Bình luận không được để trống !', 'bottom', 3000);
     }
     this.content = '';
   }
+
+  retryPutComment(retry, loading, contentTmp, images) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feed_service.putComment(this.feed_guid, this.content, images).subscribe(data => {
+      if (data.status) {
+        loading.dismiss();
+        this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
+        if (this.comments == undefined) this.comments = [];
+        this.comments.unshift(this.comment);
+        this.image = null;
+      }
+    }, err => this.retryPutComment(--retry, loading, contentTmp, images))
+  }
+
   imageAction() {
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
     // this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });

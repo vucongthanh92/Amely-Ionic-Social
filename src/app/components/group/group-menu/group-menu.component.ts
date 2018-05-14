@@ -1,3 +1,4 @@
+import { guid } from './../../../api/models/guid';
 import { InventoryComponent } from './../../inventory/inventory.component';
 import { QrComponent } from './../../qr/qr.component';
 import { GroupService } from './../../../services/group.service';
@@ -58,14 +59,7 @@ export class GroupMenuComponent implements OnInit {
         {
           text: 'Đồng ý',
           handler: () => {
-            this.groupSerive.deleteGroup(this.group.guid).subscribe(data => {
-              if (data.status) {
-                this.customService.toastMessage('Xóa nhóm thành công', 'bottom', 2000);
-                this.reloadCallback({ type: 'remove', group: this.group }).then(() => {
-                  this.navGroupConponent.pop();
-                });
-              } else this.customService.toastMessage('Rời nhóm thất bại', 'bottom', 2000);
-            })
+            this.retryDeleteGroup(5);
           }
         }
       ]
@@ -73,6 +67,20 @@ export class GroupMenuComponent implements OnInit {
     alert.present();
   }
 
+  retryDeleteGroup(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupSerive.deleteGroup(this.group.guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Xóa nhóm thành công', 'bottom', 2000);
+        this.reloadCallback({ type: 'remove', group: this.group }).then(() => {
+          this.navGroupConponent.pop();
+        });
+      } else this.customService.toastMessage('Rời nhóm thất bại', 'bottom', 2000);
+    }, err => this.retryDeleteGroup(--retry))
+  }
   outGroup() {
     this.nav.pop();
     let alert = this.alertCtrl.create({
@@ -86,14 +94,7 @@ export class GroupMenuComponent implements OnInit {
         {
           text: 'Đồng ý',
           handler: () => {
-            this.groupSerive.outGroup(this.group.guid).subscribe(data => {
-              if (data.status) {
-                this.customService.toastMessage('Rời nhóm thành công', 'bottom', 2000);
-                this.reloadCallback({ type: 'remove', group: this.group }).then(() => {
-                  this.navGroupConponent.pop();
-                });
-              } else this.customService.toastMessage('Rời nhóm thất bại', 'bottom', 2000);
-            })
+            this.retryOutGroup(5);
           }
         }
       ]
@@ -101,6 +102,20 @@ export class GroupMenuComponent implements OnInit {
     alert.present();
   }
 
+  retryOutGroup(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupSerive.outGroup(this.group.guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Rời nhóm thành công', 'bottom', 2000);
+        this.reloadCallback({ type: 'remove', group: this.group }).then(() => {
+          this.navGroupConponent.pop();
+        });
+      } else this.customService.toastMessage('Rời nhóm thất bại', 'bottom', 2000);
+    }, err => this.retryOutGroup(--retry))
+  }
   requestChangeAdmin() {
     this.nav.pop();
     this.showDialogChooseMember();
@@ -122,20 +137,28 @@ export class GroupMenuComponent implements OnInit {
     alert.addButton({
       text: 'Chấp nhận',
       handler: (guid: any) => {
-        this.groupSerive.requestChangeAdmin(+guid, this.group.guid).subscribe(data => {
-          if (data.status) {
-            if (this.is_owner) {
-              this.customService.toastMessage('Thành công', 'bottom', 2000);
-              this.group.owner_guid = guid;
-              this.callback(this.group).then(() => { })
-            } else {
-              this.customService.toastMessage('Yêu cầu chuyển quyền admin đã được gửi', 'bottom', 4000);
-            }
-          }
-        })
+        this.retryRequestChangeAdmin(5, guid);
       }
     });
     alert.present();
+  }
+
+  retryRequestChangeAdmin(retry, guid) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupSerive.requestChangeAdmin(+guid, this.group.guid).subscribe(data => {
+      if (data.status) {
+        if (this.is_owner) {
+          this.customService.toastMessage('Thành công', 'bottom', 2000);
+          this.group.owner_guid = guid;
+          this.callback(this.group).then(() => { })
+        } else {
+          this.customService.toastMessage('Yêu cầu chuyển quyền admin đã được gửi', 'bottom', 4000);
+        }
+      }
+    }, err => { this.retryRequestChangeAdmin(--retry, guid) })
   }
 
   openQR() {
@@ -150,29 +173,42 @@ export class GroupMenuComponent implements OnInit {
     this.nav.pop();
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
-      console.log(images);
-
       if (isAvatar) {
-        this.customService.updateAvatar(this.group.guid, 'group', images).subscribe(data => {
-          this.customService.toastMessage('Thay đổi ảnh đại diện thành công ', 'bottom', 10000)
-          if (data.status) {
-            this.group.avatar = url + "";
-            this.callback(this.group).then(() => { })
-          } else {
-            this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 2000);
-          }
-        })
+        this.retryUpdateAvatar(5, images, url);
       } else {
-        this.customService.updateCover(this.group.guid, 'group', images).subscribe(data => {
-          this.customService.toastMessage('Thay đổi ảnh bìa thành công ', 'bottom', 10000)
-          if (data.status) {
-            this.group.cover = url + "";
-            this.callback(this.group).then(() => { })
-          } else {
-            this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 2000);
-          }
-        })
+        this.retryUpdateCover(5, images, url);
       }
     });
+  }
+  retryUpdateAvatar(retry, images, url) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.updateAvatar(this.group.guid, 'group', images).subscribe(data => {
+      this.customService.toastMessage('Thay đổi ảnh đại diện thành công ', 'bottom', 10000)
+      if (data.status) {
+        this.group.avatar = url + "";
+        this.callback(this.group).then(() => { })
+      } else {
+        this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 2000);
+      }
+    }, err => this.retryUpdateAvatar(--retry, images, url))
+  }
+
+  retryUpdateCover(retry, images, url) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.updateCover(this.group.guid, 'group', images).subscribe(data => {
+      this.customService.toastMessage('Thay đổi ảnh bìa thành công ', 'bottom', 10000)
+      if (data.status) {
+        this.group.cover = url + "";
+        this.callback(this.group).then(() => { })
+      } else {
+        this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 2000);
+      }
+    }, err => this.retryUpdateCover(--retry, images, url))
   }
 }

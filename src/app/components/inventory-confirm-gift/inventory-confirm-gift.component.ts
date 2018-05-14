@@ -85,17 +85,20 @@ export class InventoryConfirmGiftComponent implements OnInit {
       content: 'Please wait...',
       enableBackdropDismiss: true
     });
-
     loading.present();
+    this.retryGift(5, loading);
+  }
+
+  retryGift(retry, loading) {
+    if (retry == 0) return;
     this.giftsService.gift(this.param_create_gift).subscribe(data => {
       loading.dismiss();
       if (data.status) {
-        this.customService.toastMessage("Đã tặng quà thành công!!! ", "bottom", 3000);        
+        this.customService.toastMessage("Đã tặng quà thành công!!! ", "bottom", 3000);
         this.nav.popToRoot();
       } else {
         this.customService.toastMessage(" Lỗi tặng quà!!! ", "bottom", 3000);
       }
-    })
+    }, err => this.retryGift(--retry, loading))
   }
-
 }

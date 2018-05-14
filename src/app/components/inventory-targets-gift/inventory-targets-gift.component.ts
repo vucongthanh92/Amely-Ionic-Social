@@ -52,36 +52,19 @@ export class InventoryTargetsGiftComponent implements OnInit {
         duration: 3000
       });
       loader.present();
-      console.log(type);
-      console.log(id);
-
       switch (type) {
         case 'user':
           if (id == this.customService.user_current.guid) {
             this.customService.toastMessage('Bạn không thể tặng quà cho chính mình được', 'bottom', 3000);
             break;
           }
-          this.userService.getUser(null, id).subscribe(data => {
-            loader.dismiss();
-            if (data.guid != null) {
-              this.nav.push(InventoryConfirmGiftComponent, { param: data, type: type, item: this.navParams.get('item') });
-            } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
-          })
+          this.retryGetUser(5, loader, id, type);
           break;
         case 'group':
-          this.groupService.getGroup(id).subscribe(data => {
-            if (data.guid != null) {
-              this.nav.push(InventoryConfirmGiftComponent, { param: data, type: type, item: this.navParams.get('item') });
-            } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
-            loader.dismiss();
-          })
+          this.retryGetGroup(5, loader, id, type);
           break;
         case 'event':
-          this.eventService.getEvent(id).subscribe(data => {
-            if (data.events.guid != null) {
-              this.nav.push(InventoryConfirmGiftComponent, { param: data.events, type: type, item: this.navParams.get('item') });
-            } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
-          })
+          this.retryGetEvent(5, id, type);
           break;
         default:
           this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000)
@@ -91,5 +74,43 @@ export class InventoryTargetsGiftComponent implements OnInit {
     }).catch(err => {
       console.log('Error', err);
     });
+  }
+
+  retryGetUser(retry, loader, id, type) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.getUser(null, id).subscribe(data => {
+      loader.dismiss();
+      if (data.guid != null) {
+        this.nav.push(InventoryConfirmGiftComponent, { param: data, type: type, item: this.navParams.get('item') });
+      } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
+    }, err => this.retryGetUser(--retry, loader, id, type));
+  }
+
+  retryGetGroup(retry, loader, id, type) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupService.getGroup(id).subscribe(data => {
+      if (data.guid != null) {
+        this.nav.push(InventoryConfirmGiftComponent, { param: data, type: type, item: this.navParams.get('item') });
+      } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
+      loader.dismiss();
+    }, err => this.retryGetGroup(--retry, loader, id, type));
+  }
+
+  retryGetEvent(retry, id, type) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.eventService.getEvent(id).subscribe(data => {
+      if (data.events.guid != null) {
+        this.nav.push(InventoryConfirmGiftComponent, { param: data.events, type: type, item: this.navParams.get('item') });
+      } else this.customService.toastMessage('Dữ liệu không tồn tại', 'bottom', 3000)
+    }, err => this.retryGetEvent(--retry, id, type));
   }
 }
