@@ -70,6 +70,31 @@ export class ShoppingComponent implements OnInit {
     }
   }
 
+  retryGetTempOrder(retry, barcodeData, loading) {
+    if (retry == 0) {
+      return;
+    }
+    this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+      // check update profile        
+      if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+        this.requestUpdateProfile()
+        loading.dismiss();
+      } else {
+        this.paymentService.payment_qr_data = data;
+        this.retryGetPaymentMethod(5, loading);
+      }
+    }, err => this.retryGetTempOrder(--retry, barcodeData, loading));
+  }
+
+  retryGetPaymentMethod(retry, loading) {
+    if (retry == 0) return;
+    this.paymentService.getPaymentMethod().subscribe(data => {
+      this.paymentService.payment_order_post = data;
+      loading.dismiss();
+      this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+    }, err => this.retryGetPaymentMethod(--retry, loading));
+  }
+
   payment() {
     // const test ="VnpHaEJDNDM4aUxGNkg5V1k3cWJhR3dpZTZyaldIOEQyTmdnN0EzdEpEMD0";
     this.barcodeScanner.scan().then((barcodeData) => {
@@ -79,20 +104,7 @@ export class ShoppingComponent implements OnInit {
       });
       if (!barcodeData.cancelled) {
         loading.present();
-        this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-          // check update profile        
-          if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-            this.requestUpdateProfile()
-            loading.dismiss();
-          } else {
-            this.paymentService.payment_qr_data = data;
-            this.paymentService.getPaymentMethod().subscribe(data => {
-              this.paymentService.payment_order_post = data;
-              loading.dismiss();
-              this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-            });
-          }
-        })
+        this.retryGetTempOrder(5, barcodeData, loading);
       }
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);

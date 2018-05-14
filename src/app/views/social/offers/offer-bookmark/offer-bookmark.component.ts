@@ -65,14 +65,7 @@ export class OfferBookmarkComponent implements OnInit {
                 {
                   text: 'Đồng ý',
                   handler: () => {
-                    this.offerService.deleteBookmark().subscribe(data => {
-                      if (data.status) {
-                        this.customService.toastMessage('Thành công', 'bottom', 3000);
-                        this.nav.pop();
-                      } else {
-                        this.customService.toastMessage('Xóa danh sách thất bại', 'bottom', 3000);
-                      }
-                    })
+                    this.retryDeleteOffer(5);
                   }
                 }
               ]
@@ -84,6 +77,18 @@ export class OfferBookmarkComponent implements OnInit {
     });
 
     actionSheet.present();
+  }
+
+  retryDeleteOffer(retry) {
+    if (retry == 0) return;
+    this.offerService.deleteBookmark().subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Thành công', 'bottom', 3000);
+        this.nav.pop();
+      } else {
+        this.customService.toastMessage('Xóa danh sách thất bại', 'bottom', 3000);
+      }
+    }, err => this.retryDeleteOffer(--retry))
   }
 }
 

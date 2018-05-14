@@ -14,7 +14,7 @@ import { User } from '../../../api/models';
   templateUrl: './notification.component.html'
 })
 export class NotificationComponent implements OnInit {
-  
+
   loading: any;
 
   constructor(public customService: CustomService, private appCtrl: App,
@@ -36,6 +36,24 @@ export class NotificationComponent implements OnInit {
     return new Date(time * 1000);
   }
 
+  retryGetFeed(retry, n) {
+    if (retry == 0) return;
+    this.feedService.getFeed(n.subject_guid).subscribe(data => {
+      if (data.post) {
+        this.appCtrl.getRootNav().push(FeedDetailComponent, {
+          post: data.post,
+          user: this.getPoster(data.post.poster_guid, data.users),
+          mood: data.post.mood ? this.getMood(data.post.mood.guid) : null,
+          user_tag: this.getUsersTag(data.post.description, data.users)
+        })
+        return;
+      } else {
+        this.customService.toastMessage('Bài viết đã bị xóa', 'bottom', 2000);
+      }
+    },err=>this.retryGetFeed(--retry,n))
+  }
+
+
   goToPage(n: Notification) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -49,38 +67,7 @@ export class NotificationComponent implements OnInit {
     switch (n.notification_type) {
       case 'like:post':
       case "comments:post":
-        // this.loading.present();
-        this.feedService.getFeed(n.subject_guid).subscribe(data => {
-          // this.loading.dismiss();
-          if (data.post) {
-            // console.log(data);
-
-            // [post] = "post"[user] = "getPoster(post.poster_guid)"[mood] = "getMood(post.mood_guid)"[user_tag] = "getUsersTag(post.description)"
-            // this.appCtrl.getRootNav().push(FeedComponent, {
-            //   post: data.post,
-            //   user: this.getPoster(data.post.poster_guid,data.users),
-            //   mood: data.post.mood ? this.getMood(data.post.mood.guid) : null,
-            //   user_tag: this.getUsersTag(data.post.description,data.users)
-            // })
-
-            // let feedModal = this.modalCtrl.create(FeedDetailComponent, {
-            //   post: data.post,
-            //   user: this.getPoster(data.post.poster_guid, data.users),
-            //   mood: data.post.mood ? this.getMood(data.post.mood.guid) : null,
-            //   user_tag: this.getUsersTag(data.post.description, data.users)
-            // });
-            // feedModal.present();
-            this.appCtrl.getRootNav().push(FeedDetailComponent, {
-              post: data.post,
-              user: this.getPoster(data.post.poster_guid, data.users),
-              mood: data.post.mood ? this.getMood(data.post.mood.guid) : null,
-              user_tag: this.getUsersTag(data.post.description, data.users)
-            })
-            return;
-          }else{
-            this.customService.toastMessage('Bài viết đã bị xóa','bottom',2000);
-          }
-        })
+        this.retryGetFeed(5, n);
         break;
       case "event:member":
       case "event:invite":
@@ -99,7 +86,7 @@ export class NotificationComponent implements OnInit {
         giftAccept.present();
         break;
       case "gift:reject":
-        let giftReject = this.modalCtrl.create(GiftDetailComponent, { status: 'reject', gift_id: n.gift.guid, notify: n});
+        let giftReject = this.modalCtrl.create(GiftDetailComponent, { status: 'reject', gift_id: n.gift.guid, notify: n });
         giftReject.present();
         break;
       case "offer":
@@ -114,11 +101,11 @@ export class NotificationComponent implements OnInit {
         //     offerRult.present();
         //     break;
         //   case 'random':
-        console.log('offer '+n.item_guid);
-        
-        let offerRult = this.modalCtrl.create(OfferResultComponent, { offer: n.offer, notify: n, cOfferGuid: n.item_guid  });
-            offerRult.present();
-            // break;
+        console.log('offer ' + n.item_guid);
+
+        let offerRult = this.modalCtrl.create(OfferResultComponent, { offer: n.offer, notify: n, cOfferGuid: n.item_guid });
+        offerRult.present();
+        // break;
         // }
         break;
       case "counter":

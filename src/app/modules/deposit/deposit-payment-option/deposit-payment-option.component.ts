@@ -57,9 +57,15 @@ export class DepositPaymentOptionComponent implements OnInit {
     console.log(this.paymentMethod);
     console.log(this.option_selected);
 
-    this.walletService.deposit(this.paymentMethod, this.option_selected, this.amount).subscribe(data => {
-      console.log(data);
+    this.retryDeposit(5);
+  }
 
+  retryDeposit(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.walletService.deposit(this.paymentMethod, this.option_selected, this.amount).subscribe(data => {
       const browser = this.iab.create(data.url);
       browser.on('loadstop').subscribe(data => {
         this.nav.popToRoot();
@@ -67,6 +73,6 @@ export class DepositPaymentOptionComponent implements OnInit {
       browser.on('exit').subscribe(data => {
         this.nav.popToRoot();
       });
-    })
+    }, err => this.retryDeposit(--retry));
   }
 }

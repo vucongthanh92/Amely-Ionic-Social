@@ -37,7 +37,14 @@ export class ChooseItemComponent implements OnInit {
     ];
 
     this.arrTagBadge.forEach(e => {
-      this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
+      this.retryGetInventoriesByType(5, e);
+    })
+  }
+
+  retryGetInventoriesByType(retry, e) {
+    if (retry == 0) return;
+    this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(
+      data => {
         if (data) {
           this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
           if (data instanceof Array) {
@@ -46,10 +53,9 @@ export class ChooseItemComponent implements OnInit {
             }
           }
         }
-      });
-    })
+      },
+      err => this.retryGetInventoriesByType(--retry, e));
   }
-
   presentItemDetail(item) {
     let profileModal = this.modalCtrl.create(GiftItemDetailComponent, { item: item });
     profileModal.present();
@@ -70,18 +76,23 @@ export class ChooseItemComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
-    
-    this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, item_type, 'user').subscribe(data => {
-      if (data instanceof Array) {
-        loading.dismiss();
-        this.inventoriesItem = data;
-      } else {
-        loading.dismiss();
-        this.inventoriesItem = [];
-      }
-    })
+    this.retryOnFilterItem(5, item_type, loading);
   }
 
+  retryOnFilterItem(retry, item_type, loading) {
+    if (retry == 0) return;
+    this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, item_type, 'user').subscribe(
+      data => {
+        if (data instanceof Array) {
+          loading.dismiss();
+          this.inventoriesItem = data;
+        } else {
+          loading.dismiss();
+          this.inventoriesItem = [];
+        }
+      },
+      err => { this.retryOnFilterItem(--retry, item_type, loading) })
+  }
   goToDetail(item) {
     this.appCtrl.getRootNav().push(GiftItemDetailComponent, { item: item });
   }

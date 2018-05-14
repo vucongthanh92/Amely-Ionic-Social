@@ -108,16 +108,24 @@ export class FeedsComponent implements OnInit {
 
   doInfinite(infiniteScroll) {
     setTimeout(() => {
-      this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-        if (data.posts != null) {
-          this.posts = this.posts.concat(data.posts);
-          this.users = Object.assign(this.users, data.users);
-          this.shares = data.shares;
-          this.offset = this.offset + data.posts.length;
-        }
-      });
+      this.retryLoadmore(5);
       infiniteScroll.complete();
     }, 500);
+  }
+
+  retryLoadmore(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
+      if (data.posts != null) {
+        this.posts = this.posts.concat(data.posts);
+        this.users = Object.assign(this.users, data.users);
+        this.shares = data.shares;
+        this.offset = this.offset + data.posts.length;
+      }
+    }, err => this.retryLoadmore(--retry));
   }
 
   getPoster(poster_guid) {
@@ -163,21 +171,29 @@ export class FeedsComponent implements OnInit {
 
     return new Promise((resolve, reject) => {
       this.offset = 0;
-      this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
-        if (data.posts) {
-          this.offset = this.offset + data.posts.length;
-          this.posts = data.posts;
-          this.users = data.users;
-          this.moods = data.moods;
-          this.shares = data.shares;
-          this.isHasData = true;
-        } else {
-          this.isHasData = false;
-        }
-        loading.dismiss();
-      });
+      this.retryGetFeed(5, loading);
       resolve();
     });
+  }
+
+  retryGetFeed(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
+      if (data.posts) {
+        this.offset = this.offset + data.posts.length;
+        this.posts = data.posts;
+        this.users = data.users;
+        this.moods = data.moods;
+        this.shares = data.shares;
+        this.isHasData = true;
+      } else {
+        this.isHasData = false;
+      }
+      loading.dismiss();
+    }, err => this.retryGetFeed(--retry, loading));
   }
   deleteFeedCallback = (_params) => {
     return new Promise((resolve, reject) => {

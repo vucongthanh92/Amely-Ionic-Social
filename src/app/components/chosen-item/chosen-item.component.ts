@@ -1,3 +1,4 @@
+import { CustomService } from './../../services/custom.service';
 import { User } from './../../api/models/user';
 import { InventoriesService } from './../../services/inventories.service';
 import { App, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
@@ -22,6 +23,7 @@ export class ChosenItemComponent implements OnInit {
     public nav: NavController,
     public appCtrl: App,
     public inventorySerive: InventoriesService,
+    public customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
   }
@@ -44,21 +46,28 @@ export class ChosenItemComponent implements OnInit {
 
     this.arrTagBadge.forEach(e => {
 
-      this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
-        if (data) {
-          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
-          if (data instanceof Array) {
-            this.inventoriesItem = this.inventoriesItem.concat(data);
-          }
-        }
-      }
-        , err => {
-          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: 0 })
-        });
+      this.retryGetInventoryByType(5, e);
     })
     loading.dismiss();
   }
 
+  retryGetInventoryByType(retry, e) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, e.item_type, 'user').subscribe(data => {
+      if (data) {
+        this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0 })
+        if (data instanceof Array) {
+          this.inventoriesItem = this.inventoriesItem.concat(data);
+        }
+      }
+    }
+      , err => {
+        this.retryGetInventoryByType(--retry, e);
+      });
+  }
   presentItemDetail(item) {
     let profileModal = this.modalCtrl.create(GiftItemDetailComponent, { item: item });
     profileModal.present();
@@ -75,15 +84,23 @@ export class ChosenItemComponent implements OnInit {
   }
 
   onFilterItem(item_type) {
+    this.retryFilterItem(5, item_type);
+  }
+
+  retryFilterItem(retry, item_type) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.inventorySerive.getInventoriesByType(0, 9999, this.userCurrent.guid, item_type, 'user').subscribe(data => {
       if (data instanceof Array) {
         this.inventoriesItem = data;
       } else {
         this.inventoriesItem = [];
       }
-    })
+    }, err => this.retryFilterItem(--retry, item_type));
   }
-
+  
   goToDetail(item) {
     this.appCtrl.getRootNav().push(GiftItemDetailComponent, { item: item });
   }

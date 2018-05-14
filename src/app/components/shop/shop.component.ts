@@ -22,7 +22,7 @@ export class ShopComponent implements OnInit {
     this.shopGuid = this.navParams.get('guid');
     let userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.userGuid = userCurrent.guid;
-    
+
   }
 
   ngOnInit() {
@@ -44,10 +44,10 @@ export class ShopComponent implements OnInit {
     }
     this.shopService.getShop(this.shopGuid, null).subscribe(data => {
       this.shop = data;
-      
+
     }, err => this.loadData(--retry))
     loading.dismiss();
-    
+
   }
 
   shopTab = 'products';
@@ -71,29 +71,40 @@ export class ShopComponent implements OnInit {
 
   likeShop() {
     if (this.shop.liked) {
-      this.customService.unlike('shop', this.shopGuid).subscribe(data => {
-        if (!data.status) {
-          this.customService.toastMessage('Thích thất bại.Vui lòng thử lại', 'bottom', 3000);
-          this.shop.liked = true;
-        }
-      });
+      this.retryUnLike(5);
       this.shop.liked = false;
     } else {
-      this.customService.like('shop', this.shopGuid).subscribe(data => {
-        if (!data.status) {
-          this.customService.toastMessage('Bỏ thích thất bại.Vui lòng thử lại', 'bottom', 3000);
-          this.shop.liked = false;
-        }
-      });
+      this.retryLike(5);
       this.shop.liked = true;
     }
   }
-  openStoreLocation(store:Store){
+
+  retryUnLike(retry) {
+    if (retry == 0) return;
+    this.customService.unlike('shop', this.shopGuid).subscribe(data => {
+      if (!data.status) {
+        this.customService.toastMessage('Thích thất bại.Vui lòng thử lại', 'bottom', 3000);
+        this.shop.liked = true;
+      }
+    }, err => this.retryLike(--retry));
+  }
+
+  retryLike(retry) {
+    if (retry == 0) return;
+    this.customService.like('shop', this.shopGuid).subscribe(data => {
+      if (!data.status) {
+        this.customService.toastMessage('Bỏ thích thất bại.Vui lòng thử lại', 'bottom', 3000);
+        this.shop.liked = false;
+      }
+    }, err => this.retryLike(--retry));
+  }
+
+  openStoreLocation(store: Store) {
     this.appCtrl.getRootNav().push(LocationComponent, { title: store.title, lat: store.lat, lng: store.lng });
   }
 
-  chatOwner(){
-    let friend:any={};
+  chatOwner() {
+    let friend: any = {};
     friend.from = this.customService.user_current.username;
     friend.to = friend.username;
     this.messagesService.getKeyChat(this.customService.user_current.username, friend.username, "individual").query.once('value', snap => {

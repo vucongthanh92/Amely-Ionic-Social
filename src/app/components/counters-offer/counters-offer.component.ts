@@ -111,26 +111,10 @@ export class CountersOfferComponent implements OnInit {
 
             switch (key) {
               case 0:
-                this.offersService.rejectCounter(counter_guid).subscribe(data => {
-                  if (data.status) {
-                    this.customService.toastMessage("Bạn đã xóa trao đổi !", "bottom", 5000);
-                    callback("callback").then(() => {
-                      this.nav.pop();
-                    });
-                    loading.dismiss();
-                  }
-                });
+                this.retryRejectCounter(5, counter_guid, loading, callback);
                 break;
               case 1:
-                this.offersService.agreeCounter(this.offer.guid, counter_guid).subscribe(data => {
-                  if (data.status) {
-                    this.customService.toastMessage("Bạn đã trao đổi thành công !", "bottom", 5000);
-                    callback("callback").then(() => {
-                      this.nav.pop();
-                    });
-                    loading.dismiss();
-                  }
-                });
+                this.retryAgreeCounter(5, counter_guid, callback, loading)
                 break;
               default:
                 break;
@@ -141,6 +125,39 @@ export class CountersOfferComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  retryRejectCounter(retry, counter_guid, loading, callback) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.offersService.rejectCounter(counter_guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage("Bạn đã xóa trao đổi !", "bottom", 5000);
+        callback("callback").then(() => {
+          this.nav.pop();
+        });
+        loading.dismiss();
+      }
+    }, err => { this.retryRejectCounter(--retry, counter_guid, loading, callback) });
+  }
+
+  retryAgreeCounter(retry, counter_guid, callback, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.offersService.agreeCounter(this.offer.guid, counter_guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage("Bạn đã trao đổi thành công !", "bottom", 5000);
+        callback("callback").then(() => {
+          this.nav.pop();
+        });
+        loading.dismiss();
+      }
+    }, err => { this.retryAgreeCounter(--retry, counter_guid, callback, loading) });
+
   }
 
   openOwner(guidOwner, username) {

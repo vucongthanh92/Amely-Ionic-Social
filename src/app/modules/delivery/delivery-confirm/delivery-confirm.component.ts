@@ -53,7 +53,14 @@ export class DeliveryConfirmComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
-
+    this.initDelevery(5, loading);
+  }
+  
+  initDelevery(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.inventoryService.delevery(this.ward_id, 'confirm', this.phone, this.address, this.province_id, this.district_id, this.fullname, this.note, this.payment_method, '0', this.item.guid + "",
       this.quantity, this.item.product_snapshot.shop.guid).subscribe(data => {
         if (data.status) {
@@ -64,6 +71,6 @@ export class DeliveryConfirmComponent implements OnInit {
           this.customService.toastMessage('Xác nhận thất bại. Vui lòng thử lại', 'bottom', 2000);
         }
 
-      })
+      }, err => this.initDelevery(--retry, loading));
   }
 }

@@ -34,18 +34,26 @@ export class VerifycodeComponent implements OnInit {
     if (!this.code) {
       loading.dismiss();
       this.customService.toastMessage('Chưa nhập mã kích hoạt', 'bottom', 2000);
-    }else{
-    this.userService.activeUser(this.user.username,this.user.password,this.user.mobilelogin,this.code).subscribe(data=>{
+    } else {
+      this.retryActiveUser(5, loading)
+    }
+  }
+  retryActiveUser(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.activeUser(this.user.username, this.user.password, this.user.mobilelogin, this.code).subscribe(data => {
       if (data.status) {
         loading.dismiss();
         this.nav.setRoot(SigninComponent);
         this.customService.toastMessage('Kích hoạt thành công', 'bottom', 2000);
-      }else{
+      } else {
         loading.dismiss();
         this.customService.toastMessage('Kích hoạt thất bại', 'bottom', 2000);
       }
+    }, err => {
+      this.retryActiveUser(--retry, loading);
     })
-    
-    }
   }
 }

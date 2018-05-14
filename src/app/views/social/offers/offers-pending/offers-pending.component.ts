@@ -40,7 +40,7 @@ export class OffersPendingComponent implements OnInit {
       if (data instanceof Array) {
         this.counterOffers = data;
         console.log(this.counterOffers);
-        
+
       }
       loading.dismiss();
     }, err => this.loadData(--retry));
@@ -81,17 +81,26 @@ export class OffersPendingComponent implements OnInit {
             });
 
             loading.present();
-            this.offerService.deleteCounterOffer(counterOffer.guid).subscribe(data => {
-              loading.dismiss();
-              if (data.status) {
-                this.counterOffers = this.counterOffers.filter(e => e.guid != counterOffer.guid);
-              } else this.customService.toastMessage('Thất bại. Vui lòng thử lại', 'bottom', 3000);
-            })
+            this.retryDeleteCounterOffer(5, counterOffer, loading);
           }
         }
       ]
     });
     prompt.present();
+  }
+
+  retryDeleteCounterOffer(retry, counterOffer, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.offerService.deleteCounterOffer(counterOffer.guid).subscribe(data => {
+      loading.dismiss();
+      if (data.status) {
+        this.counterOffers = this.counterOffers.filter(e => e.guid != counterOffer.guid);
+      } else this.customService.toastMessage('Thất bại. Vui lòng thử lại', 'bottom', 3000);
+    }, err => this.retryDeleteCounterOffer(--retry, counterOffer, loading))
   }
 
   openOwner(guidOwner, username) {

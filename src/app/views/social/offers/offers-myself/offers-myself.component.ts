@@ -54,7 +54,7 @@ export class OffersMyselfComponent implements OnInit {
         // loading.dismiss();
       }, err => this.getOffers(--retry))
     }, 2500);
-    
+
   }
 
   changePage(offer) {
@@ -115,22 +115,29 @@ export class OffersMyselfComponent implements OnInit {
             //   enableBackdropDismiss: true
             // });
             // loading.present();
-            
-            this.offersService.delete(o.guid).subscribe(data => {
-              this.offers = []
-              if (data.status) {
-                this.offers = this.offers.filter(e => e.guid != o.guid);
-                this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
-                if (o.target != 'friends') {
-                  this.fbService.deleteOffer(o.guid)
-                }
-                // loading.dismiss();
-              }
-            })
+            this.retryDetele(5, o);
           }
         }
       ]
     });
     prompt.present();
+  }
+
+  retryDetele(retry, o) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.offersService.delete(o.guid).subscribe(data => {
+      this.offers = []
+      if (data.status) {
+        this.offers = this.offers.filter(e => e.guid != o.guid);
+        this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);
+        if (o.target != 'friends') {
+          this.fbService.deleteOffer(o.guid)
+        }
+        // loading.dismiss();
+      }
+    }, err => this.retryDetele(--retry, o))
   }
 }

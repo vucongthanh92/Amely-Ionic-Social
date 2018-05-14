@@ -30,17 +30,24 @@ export class ChangePasswordComponent implements OnInit {
     } else if (this.new_pass != this.renew_pass) {
       this.customService.toastMessage('Mật khẩu không trùng khớp .', 'bottom', 2000);
     } else {
-      this.userService.changePassword(this.old_pass, this.new_pass, this.renew_pass).subscribe(data=>{
-       if (data.status) {
-         this.nav.pop();
-         this.customService.toastMessage('Đổi mật khẩu thành công !', 'bottom', 2000);
-       }else{
-         this.customService.toastMessage('Thất bại','bottom',2000);
-       }
-     },err=>{
-       alert('Không thể kết nối máy chủ, vui lòng thử lại.')
-     })
+      this.retryChangePass(5)
     }
   }
 
+  retryChangePass(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.changePassword(this.old_pass, this.new_pass, this.renew_pass).subscribe(data => {
+      if (data.status) {
+        this.nav.pop();
+        this.customService.toastMessage('Đổi mật khẩu thành công !', 'bottom', 2000);
+      } else {
+        this.customService.toastMessage('Thất bại', 'bottom', 2000);
+      }
+    }, err => {
+      this.retryChangePass(--retry);
+    })
+  }
 }

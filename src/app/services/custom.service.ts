@@ -150,8 +150,8 @@ export class CustomService {
       });
       report.present();
     });
-
   }
+  
 
   confirmPassword(alertCtrl: AlertController, userService: UserService) {
     return new Promise((resolve, reject) => {

@@ -42,7 +42,14 @@ export class EventMenuComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
+    this.retryPublicEvent(5, loading);
+  }
 
+  retryPublicEvent(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.eventSerive.publicEvent(this.event.guid).subscribe(data => {
       if (data.status) {
         loading.dismiss();
@@ -50,9 +57,10 @@ export class EventMenuComponent implements OnInit {
       } else loading.dismiss(); this.customService.toastMessage('Công bố thất bại , vui lòng thử lại .', 'bottom', 3000)
     },
       err => {
-        this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
+        this.retryPublicEvent(--retry, loading);
       })
   }
+
   closeOpenEvent() {
     this.nav.pop();
     // if (this.event) {

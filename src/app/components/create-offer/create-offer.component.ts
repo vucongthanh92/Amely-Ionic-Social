@@ -71,102 +71,61 @@ export class CreateOfferComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+
   offer() {
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
         this.is_used = true;
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
-    if (this.counter) {
-      if (this.item) {
-        let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
-        this.offerService.createCounterOffer(obj).subscribe(data => {
-          loading.dismiss();
-          if (data.status) {
-            let callback = this.params.get("callback");
-            callback("back").then(() => {
-              this.nav.pop();
-            });
-          } else {
-            this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
-          }
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          enableBackdropDismiss: true
         });
-      }else{
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
-      }
-    } else {
-      if (!this.offer_type) {
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn hình thức trao đổi', 'bottom', 3000);
-      } else if (!this.target) {
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn đối tượng trao đổi', 'bottom', 3000);
-      } else if (!this.duration) {
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn thời gian trao đổi', 'bottom', 3000);
-      } else if (this.offer_type == 'random' && !this.limit_counter) {
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn giới hạn thành viên tham gia', 'bottom', 3000);
-      } else if (!this.item) {
-        loading.dismiss();
-        this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
-      } else {
-
-        let obj: Param_create_offer = {};
-        obj.offer_type = this.offer_type;
-        obj.duration = this.duration;
-        obj.target = this.target;
-        obj.limit_counter = this.limit_counter;
-        obj.giveaway_approval = this.giveaway_approval;
-        obj.random_expiration = false;
-        obj.item_guid = this.item.guid;
-        obj.quantity = this.item.quantity;
-        obj.note = this.description;
-        obj.location_lat = "100";
-        obj.location_lng = "100";
-
-        console.log(obj);
-
-        this.offerService.createOffer(obj).subscribe(data => {
-          if (data.offer_guid) {
-            loading.dismiss();
-            let owner_from = data.offer_guid;
-            if (this.target != 'friends') {
-              this.geolocation.getCurrentPosition().then((resp) => {
-                let lat = resp.coords.latitude;
-                let lng = resp.coords.longitude;
-                if (this.target == 'location') {
-                  if (this.lat_custom && this.lng_custom) {
-                    lat = this.lat_custom;
-                    lng = this.lng_custom;
-                    console.log('lat_custom && lng_custom != null , not empty');
-                  } else {
-                    this.target = 'public';
-                  }
-                }
-                let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
-                this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
-              });
-            }
-            let callback = this.params.get("callback");
-            callback("test").then(() => {
-              this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
-              this.nav.pop();
-            });
+        loading.present();
+        if (this.counter) {
+          if (this.item) {
+            let obj = { item_guid: this.item.guid, note: this.description, offer_guid: this.offer_target.guid, quantity: this.item.quantity };
+            this.retryCreateCounterOffer(5,obj,loading)
           } else {
-            this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
           }
-        })
-      }
-    }
-    })
+        } else {
+          if (!this.offer_type) {
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn hình thức trao đổi', 'bottom', 3000);
+          } else if (!this.target) {
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn đối tượng trao đổi', 'bottom', 3000);
+          } else if (!this.duration) {
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn thời gian trao đổi', 'bottom', 3000);
+          } else if (this.offer_type == 'random' && !this.limit_counter) {
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn giới hạn thành viên tham gia', 'bottom', 3000);
+          } else if (!this.item) {
+            loading.dismiss();
+            this.customService.toastMessage('Chưa chọn quà', 'bottom', 3000);
+          } else {
+
+            let obj: Param_create_offer = {};
+            obj.offer_type = this.offer_type;
+            obj.duration = this.duration;
+            obj.target = this.target;
+            obj.limit_counter = this.limit_counter;
+            obj.giveaway_approval = this.giveaway_approval;
+            obj.random_expiration = false;
+            obj.item_guid = this.item.guid;
+            obj.quantity = this.item.quantity;
+            obj.note = this.description;
+            obj.location_lat = "100";
+            obj.location_lng = "100";
+
+            this.retryCreateOffer(5, obj, loading);
+          }
+        }
+      })
   }
-  
+
   onChangeTarget() {
     console.log(this.target);
     if (this.target == 'location') {
@@ -218,5 +177,59 @@ export class CreateOfferComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
- 
+
+  retryCreateOffer(retry, obj, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.offerService.createOffer(obj).subscribe(data => {
+      if (data.offer_guid) {
+        loading.dismiss();
+        let owner_from = data.offer_guid;
+        if (this.target != 'friends') {
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let lat = resp.coords.latitude;
+            let lng = resp.coords.longitude;
+            if (this.target == 'location') {
+              if (this.lat_custom && this.lng_custom) {
+                lat = this.lat_custom;
+                lng = this.lng_custom;
+                console.log('lat_custom && lng_custom != null , not empty');
+              } else {
+                this.target = 'public';
+              }
+            }
+            let geoHash = this.geolocationService.encodeGeohash([lat, lng], 10);
+            this.fbService.createLocation(owner_from, "offers", geoHash, lat, lng);
+          });
+        }
+        let callback = this.params.get("callback");
+        callback("test").then(() => {
+          this.customService.toastMessage("Tạo đề xuất trao đổi thành công !!!", "bottom", 3000);
+          this.nav.pop();
+        });
+      } else {
+        this.customService.toastMessage("Bạn đã hết lượt trao đổi !!!", "bottom", 3000);
+      }
+    }, err => this.retryCreateOffer(--retry, obj, loading))
+  }
+
+  retryCreateCounterOffer(retry, obj, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.offerService.createCounterOffer(obj).subscribe(data => {
+      loading.dismiss();
+      if (data.status) {
+        let callback = this.params.get("callback");
+        callback("back").then(() => {
+          this.nav.pop();
+        });
+      } else {
+        this.customService.toastMessage("Trao đổi thất bại !!!", "bottom", 3000);
+      }
+    }, err => { this.retryCreateCounterOffer(--retry, obj, loading) });
+  }
 }

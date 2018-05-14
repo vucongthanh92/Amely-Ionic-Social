@@ -67,7 +67,7 @@ export class ContactUsersComponent implements OnInit {
     friend.from = this.userCurrent.username;
     friend.to = friend.username;
     console.log(friend);
-    
+
     this.messagesService.getKeyChat(this.userCurrent.username, friend.username, "individual").query.once('value', snap => {
       let key = "";
       if (snap.val() == null) {
@@ -135,17 +135,21 @@ export class ContactUsersComponent implements OnInit {
               enableBackdropDismiss: true
             });
             loading.present();
-            this.userService.deleteFriend(u.guid).subscribe(data => {
-              if (data.status) {
-                this.friends = this.friends.filter(e => e.guid != u.guid);
-              } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
-              loading.dismiss();              
-            });
+            this.retryDeleteFriend(5,u,loading)
           }
         }
       ]
     });
     alert.present();
+  }
 
+  retryDeleteFriend(retry, u, loading) {
+    if (retry == 0) return;
+    this.userService.deleteFriend(u.guid).subscribe(data => {
+      if (data.status) {
+        this.friends = this.friends.filter(e => e.guid != u.guid);
+      } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
+      loading.dismiss();
+    },err=>this.retryDeleteFriend(--retry,u,loading));
   }
 }

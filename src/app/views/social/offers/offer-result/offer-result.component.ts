@@ -34,19 +34,25 @@ export class OfferResultComponent implements OnInit {
         this.is_load_success = true;
         break;
       case 'random':
-        this.offerService.getCounterOffer(this.cOfferGuid).subscribe(data => {
-          if (data.status != 'false') {
-            this.cOffer = data;
-            console.log(this.cOffer);
-          }
-
-        })
+        this.retryGetCounterOffer(5);
         break;
     }
 
 
   }
 
+  retryGetCounterOffer(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.offerService.getCounterOffer(this.cOfferGuid).subscribe(data => {
+      if (data.status != 'false') {
+        this.cOffer = data;
+      }
+    }, err => this.retryGetCounterOffer(--retry));
+  }
+  
   dismiss() {
     this.viewCtrl.dismiss();
   }

@@ -35,24 +35,53 @@ export class ShoppingMenuComponent implements OnInit {
       console.log(barcodeData);
       if (!barcodeData.cancelled) {
         loading.present();
-        this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-          // check update profile        
-          if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-            this.requestUpdateProfile()
-            loading.dismiss();
-          } else {
-            this.paymentService.payment_qr_data = data;
-            this.paymentService.getPaymentMethod().subscribe(data => {
-              this.paymentService.payment_order_post = data;
-              loading.dismiss();
-              this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-            });
-          }
-        })
+        // this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+        //   // check update profile        
+        //   if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+        //     this.requestUpdateProfile()
+        //     loading.dismiss();
+        //   } else {
+        //     this.paymentService.payment_qr_data = data;
+        //     this.paymentService.getPaymentMethod().subscribe(data => {
+        //       this.paymentService.payment_order_post = data;
+        //       loading.dismiss();
+        //       this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+        //     });
+        //   }
+        // })
+        this.retryGetTempOrder(5, loading, barcodeData);
       }
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
+  }
+
+  retryGetTempOrder(retry, loading, barcodeData) {
+    if (retry) return;
+    this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+      // check update profile        
+      if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+        this.requestUpdateProfile()
+        loading.dismiss();
+      } else {
+        this.paymentService.payment_qr_data = data;
+        // this.paymentService.getPaymentMethod().subscribe(data => {
+        //   this.paymentService.payment_order_post = data;
+        //   loading.dismiss();
+        //   this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+        // });
+        this.retryGetPaymentMethod(5, loading);
+      }
+    }, err => this.retryGetTempOrder(--retry, loading, barcodeData))
+  }
+
+  retryGetPaymentMethod(retry, loading) {
+    if (retry) return;
+    this.paymentService.getPaymentMethod().subscribe(data => {
+      this.paymentService.payment_order_post = data;
+      loading.dismiss();
+      this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+    }, err => this.retryGetPaymentMethod(--retry, loading));
   }
 
   requestUpdateProfile() {

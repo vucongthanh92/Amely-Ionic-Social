@@ -25,28 +25,44 @@ export class BusinessMenuComponent implements OnInit {
     this.nav.pop();
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
-      this.customService.updateCover(+this.page.guid, "business", images).subscribe(data => {
-        if (data.status) {
-          this.callback({ url: data + "", isAvatar: false }).then(() => {
-          });
-        } else {
-          this.customService.toastMessage("Đã có lỗi vui lòng thử lại.", "bottom", 3000);
-        }
-      })
-
+      this.retryUpdateCover(5, images);
     })
+  }
+
+  retryUpdateCover(retry, images) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.updateCover(+this.page.guid, "business", images).subscribe(data => {
+      if (data.status) {
+        this.callback({ url: data + "", isAvatar: false }).then(() => {
+        });
+      } else {
+        this.customService.toastMessage("Đã có lỗi vui lòng thử lại.", "bottom", 3000);
+      }
+    }, err => this.retryUpdateCover(--retry, images))
   }
 
   changeAvatar() {
     this.nav.pop();
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
-      
-      console.log(images);
-      
+      this.retryChangeAvatar(5,images)
+
+    })
+  }
+
+  retryChangeAvatar(retry, images) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+      let images = [url + ''];
       this.customService.updateAvatar(+this.page.guid, "business", images).subscribe(data => {
         console.log(data);
-        
+
         if (data.status) {
           this.callback({ url: data + "", isAvatar: true }).then(() => {
           });
@@ -55,6 +71,6 @@ export class BusinessMenuComponent implements OnInit {
         }
       })
 
-    })
+    }, err => this.retryChangeAvatar(5, images));
   }
 }

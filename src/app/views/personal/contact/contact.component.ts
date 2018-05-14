@@ -38,18 +38,15 @@ export class ContactComponent implements OnInit {
   }
 
   initGroupsContact() {
+    this.retryGetGroup(5);
+  }
 
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
+  retryGetGroup(retry) {
+    if (retry == 0) return;
     this.groupService.getGroups(this.customService.user_current.guid).subscribe(data => {
       this.groupService.groups_contact = data.groups;
       this.groupService.groups_user = data.owners;
-      // loading.dismiss();
-
-    })
+    }, err => this.retryGetGroup(--retry))
   }
 
   goToPage(value) {

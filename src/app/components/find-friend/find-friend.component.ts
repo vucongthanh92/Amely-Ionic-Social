@@ -24,24 +24,31 @@ export class FindFriendComponent implements OnInit {
 
   findUser() {
     if (this.phone_number && this.phone_number.length > 7) {
-      this.userService.findUser(this.phone_number).subscribe(
-        data => {
-          if (data.user.guid != null) {
-            this.user_found = data.user;
-            console.log(this.user_found);
-            
-          } else {
-            this.user_found = null;
-          }
-        },
-        err => {
-          this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
-        });
+      this.retryFindUser(5);
     } else {
       this.customService.toastMessage('Số điện thoại không hợp lệ', 'bottom', 2000);
     }
   }
 
+  retryFindUser(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.findUser(this.phone_number).subscribe(
+      data => {
+        if (data.user.guid != null) {
+          this.user_found = data.user;
+          console.log(this.user_found);
+
+        } else {
+          this.user_found = null;
+        }
+      },
+      err => {
+        this.retryFindUser(--retry);
+      });
+  }
   openUserProfile() {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: this.user_found.guid })
     this.viewCtrl.dismiss();

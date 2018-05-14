@@ -79,10 +79,16 @@ export class OffersItemDetailComponent implements OnInit {
     this.offer.seconds = 0;
     // console.log(this.offer);
     // this.product_image = this.offer.product_snapshot.images[0];
+    this.retryGetCurrentTime(5);
+  }
+
+  retryGetCurrentTime(retry) {
+    if (retry == 0) return;
     this.customService.getCurrentTime().subscribe(data => {
       this.offer.seconds = this.offer.time_end - data.current_time;
-    });
+    }, err => this.retryGetCurrentTime(--retry));
   }
+
   ngOnInit() {
   }
 
@@ -102,6 +108,11 @@ export class OffersItemDetailComponent implements OnInit {
   }
 
   requestOffer(offer: Offer) {
+    this.retryRequestOffer(5, offer);
+  }
+
+  retryRequestOffer(retry, offer) {
+    if (retry == 0) return;
     this.offerService.createCounterOffer({ offer_guid: offer.guid, item_guid: null, quantity: 0, note: 'string' }).subscribe(data => {
       if (data.status) {
         let callback = this.navParams.get("callback");
@@ -111,7 +122,7 @@ export class OffersItemDetailComponent implements OnInit {
       } else {
         this.customService.toastMessage('Bạn đã đề nghị nhận quà cho trao đổi này.', 'bottom', 2000);
       }
-    });
+    }, err => this.retryRequestOffer(--retry, offer));
   }
 
   chosenItem(offer) {
