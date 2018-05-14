@@ -85,18 +85,28 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
 
     setTimeout(() => {
+      loading.present();      
       this.offset = this.offset + this.limit;
       if (!this.isLoadMore) {
         this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
           if (data.products instanceof Array) {
             this.products = this.products.concat(data.products);
+            loading.dismiss();
+          }else {
+            loading.dismiss();
           }
         });
       }
       infiniteScroll.complete();
     }, 500);
+    
+    
   }
 
   search() {

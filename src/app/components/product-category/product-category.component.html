@@ -10,72 +10,75 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-
-  <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categories_parent.length>0">
-    <ion-row>
-      <ion-col col-8>
-        <h3>Danh mục</h3>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <!-- <ion-col col-4 style="text-align: center" *ngFor="let category of categories_parent" (click)="goToSubCat(category)">
-        <img width="70%" src="{{category.logo}}" />
-        <h4>{{category.title}}</h4>
-      </ion-col> -->
-      <ion-item>
-        <ion-label>Danh mục</ion-label>
-        <ion-select [(ngModel)]="category_selected" (ionChange)="goToSubCat()">
-          <ion-option *ngFor="let cat of categories_parent" [value]="cat">{{cat.title}}</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-row>
+  
+  <div>
+    <div style="background-color: #fff; padding: 5px; margin: 10px 0px;" *ngIf="categories_parent.length>0">
+      <ion-row>
+        <ion-col col-8>
+          <h3>Danh mục</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <!-- <ion-col col-4 style="text-align: center" *ngFor="let category of categories_parent" (click)="goToSubCat(category)">
+            <img width="70%" src="{{category.logo}}" />
+            <h4>{{category.title}}</h4>
+          </ion-col> -->
+        <ion-item>
+          <ion-label>Danh mục</ion-label>
+          <ion-select [(ngModel)]="category_selected" (ionChange)="goToSubCat()">
+            <ion-option *ngFor="let cat of categories_parent" [value]="cat">{{cat.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+    </div>
+    
+    
+    <ion-grid>
+      <ion-list *ngIf='products'>
+        <ion-item *ngFor="let product of products" (click)="openProductDetail(product)">
+          <ion-row>
+            <ion-col col-4>
+              <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
+                <span class="ribbon cruzeiro">
+                  <span>VOUCHER</span>
+                </span>
+              </div>
+              <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="offer_myself_image"></div>
+              <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+            </ion-col>
+            <ion-col col-8>
+              <ion-row style="font-weight: bold;">{{product.title}}</ion-row>
+              <!-- <ion-row>{{ formatCurrency(product)}} </ion-row> -->
+              <ion-row *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+                <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+              </ion-row>
+              <ng-template #other_content>
+                <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
+                <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+              </ng-template>
+              <ion-row *ngIf="product.quantity==0" style="color: red;">Hết hàng</ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    
+      <ion-list *ngIf='!products'>
+        <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
+          <ion-row>
+            <ion-col col-3>
+              <div class="divCustom"></div>
+            </ion-col>
+            <ion-col col-9>
+              <h2></h2>
+              <h3></h3>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    
+    </ion-grid>
   </div>
-
-
-  <ion-grid>
-    <ion-list *ngIf='products'>
-      <ion-item *ngFor="let product of products" (click)="openProductDetail(product)">
-        <ion-row >
-          <ion-col col-4>
-            <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
-              <span class="ribbon cruzeiro">
-                <span>VOUCHER</span>
-              </span>
-            </div>
-            <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="offer_myself_image"></div>
-            <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
-          </ion-col>
-          <ion-col col-8>
-            <ion-row style="font-weight: bold;">{{product.title}}</ion-row>
-            <!-- <ion-row>{{ formatCurrency(product)}} </ion-row> -->
-            <ion-row *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-              <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
-            </ion-row>
-            <ng-template #other_content>
-              <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
-              <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
-            </ng-template>
-            <ion-row *ngIf="product.quantity==0" style="color: red;">Hết hàng</ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngIf='!products'>
-      <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
-        <ion-row>
-          <ion-col col-3>
-            <div class="divCustom"></div>
-          </ion-col>
-          <ion-col col-9>
-            <h2></h2>
-            <h3></h3>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
-
-  </ion-grid>
+  
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
