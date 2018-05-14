@@ -66,7 +66,7 @@ export class ContactUsersComponent implements OnInit {
     }, 1500);
     friend.from = this.userCurrent.username;
     friend.to = friend.username;
-    console.log(friend.to);
+    console.log(friend);
     
     this.messagesService.getKeyChat(this.userCurrent.username, friend.username, "individual").query.once('value', snap => {
       let key = "";

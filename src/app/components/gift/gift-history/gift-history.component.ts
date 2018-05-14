@@ -5,16 +5,23 @@ import { Component, OnInit } from '@angular/core';
 import { CustomService } from '../../../services/custom.service';
 import { NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-gift-history',
   templateUrl: './gift-history.component.html'
 })
 export class GiftHistoryComponent implements OnInit {
-
   transaction: Transaction;
   gift: Gift;
-  constructor(private giftService: GiftsService, private customService: CustomService, private navParams: NavParams, public sanitizer: DomSanitizer) {
+
+  constructor(
+    private giftService: GiftsService, 
+    private customService: CustomService, 
+    private navParams: NavParams, 
+    public sanitizer: DomSanitizer,
+    public nav: NavController
+  ) {
     this.transaction = this.navParams.get('trans');
     this.giftService.getGift(this.transaction.related_guid).subscribe(
       data => {
@@ -25,8 +32,6 @@ export class GiftHistoryComponent implements OnInit {
   ngOnInit() {
     this.transaction = this.navParams.get('trans');
     console.log(this.transaction);
-
-
   }
 
   loadData(retry) {
@@ -48,5 +53,9 @@ export class GiftHistoryComponent implements OnInit {
 
   convertCurrency(amount, currency) {
     return this.customService.formatCurrency(amount, currency)
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

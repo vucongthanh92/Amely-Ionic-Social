@@ -70,8 +70,6 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.getUserProfile();
   }
 

@@ -16,8 +16,8 @@
         <div *ngIf="do.product.images" class="history_delivery_img" [style.background]="'url(' + do.product.images[0] + ')'"></div>
       </ion-thumbnail>
       <h2 class="history_delivery_title">
-        <img *ngIf='do.shipping_method=="sq/standard"' class="history_delivery_icon" src="assets/imgs/ic_gender_female_pink.png">
-        <img *ngIf='do.shipping_method!="sq/standard"' class="history_delivery_icon" src="assets/imgs/ic_gender_male_blue.png">
+        <img *ngIf='do.shipping_method=="sq/express"' class="history_delivery_icon" src="assets/imgs/vector_giao_hang_nhanh-01.png">
+        <img *ngIf='do.shipping_method=="sq/standard"' class="history_delivery_icon" src="assets/imgs/vector_giao_hang_thuong-01.png">
         {{do.product.title}}
       </h2>
 
