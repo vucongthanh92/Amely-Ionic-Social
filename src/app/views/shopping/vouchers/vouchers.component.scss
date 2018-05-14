@@ -177,7 +177,7 @@ app-vouchers {
         background: $default;
         position: absolute;
         top: 19px;
-        right: -21px;
+        right: -26px;
         &::before {
           content: "";
           position: absolute;
@@ -232,4 +232,13 @@ app-vouchers {
     text-transform: capitalize;
     text-decoration: line-through;
   }
+
+  .wallphoto_quantity_4 {
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 230px;
+  }
+
 }

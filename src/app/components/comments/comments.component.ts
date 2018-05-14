@@ -6,6 +6,7 @@ import { FeedsService } from '../../services/feeds.service';
 import { CustomService } from '../../services/custom.service';
 import { FirebaseService } from '../../services/firebase.service';
 import { Camera } from '@ionic-native/camera';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-comments',
@@ -22,8 +23,16 @@ export class CommentsComponent implements OnInit {
   @Input('content') content: string
   public image: string;
 
-  constructor(private nav_params: NavParams, private feed_service: FeedsService, private customService: CustomService,
-    private actionSheetCtrl: ActionSheetController, private fbService: FirebaseService, private camera: Camera, public loadingCtrl: LoadingController) {
+  constructor(
+    private nav_params: NavParams, 
+    private feed_service: FeedsService, 
+    private customService: CustomService, 
+    private actionSheetCtrl: ActionSheetController, 
+    private fbService: FirebaseService, 
+    private camera: Camera, 
+    public loadingCtrl: LoadingController,
+    public nav: NavController
+  ) {
     this.feed_guid = this.nav_params.get('guid');
     this.user_current = JSON.parse(localStorage.getItem('loggin_user'));
   }
@@ -134,5 +143,9 @@ export class CommentsComponent implements OnInit {
   imageAction() {
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
     // this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

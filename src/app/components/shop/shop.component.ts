@@ -99,7 +99,11 @@ export class ShopComponent implements OnInit {
     }, err => this.retryLike(--retry));
   }
 
-  openStoreLocation(store: Store) {
+  dismiss() {
+    this.nav.pop();
+  }
+
+  openStoreLocation(store:Store){
     this.appCtrl.getRootNav().push(LocationComponent, { title: store.title, lat: store.lat, lng: store.lng });
   }
 

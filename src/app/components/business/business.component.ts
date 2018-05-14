@@ -118,4 +118,7 @@ export class BusinessComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
+
 }
+
+

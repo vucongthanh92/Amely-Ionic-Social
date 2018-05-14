@@ -1,6 +1,11 @@
 <ion-header>
-  <ion-navbar swipeBackEnabled="true">
-    <ion-title class="gift_nav_title">Chi Tiết Tặng Quà</ion-title>
+  <ion-navbar swipeBackEnabled="true" hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Chi Tiết Tặng Quà</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

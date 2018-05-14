@@ -183,4 +183,8 @@ export class InventoryComponent implements OnInit {
   formatCurrency() {
     return this.customService.formatCurrency(this.totalPrice + "", this.userCurrent.usercurrency);
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

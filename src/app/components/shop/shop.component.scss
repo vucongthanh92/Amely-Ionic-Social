@@ -1,11 +1,11 @@
 app-shop {
   .shop_cover {
-    padding: 30px;
+    padding: 30px 30px 25px 30px;
     width: 100%;
     min-height: 150px;
     text-align: center;
     background-size: cover !important;
-    margin: 40px 0px 0px 0px;
+    margin: 50px 0px 0px 0px;
     background-position: center !important;
   }
 
@@ -18,9 +18,10 @@ app-shop {
 
   .shop_cover_title {
     color: white;
-    font-size: 18px;
-    margin: 5px 0px 0px 0px;
+    font-size: 2rem;
+    margin: 7px 0px 0px 0px;
     text-transform: capitalize;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
   .shop_tabcontainer {

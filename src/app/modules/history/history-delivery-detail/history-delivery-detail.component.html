@@ -1,60 +1,52 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Chi tiết giao hàng
-    </ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Đơn giao hàng số #{{ do.guid }}</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-card>
+  <ion-card class="history_delivery_main">
     <ion-card-content>
-
       <ion-list>
-        <h2><b>Sản phẩm :</b></h2>
-        <ion-item>
+        <h2 class="history_delivery_label">Sản phẩm :</h2>
+        <ion-item class="history_delivery_item">
           <ion-thumbnail item-left>
-            <img *ngIf="do.product.images"  src="{{do.product.images[0]}}">
+            <div class="history_delivery_img" *ngIf="do.product.images" [style.background]="'url(' + do.product.images[0] + ')'"></div>
           </ion-thumbnail>
-          <h2>{{do.product.title}}</h2>
+          <h2 class="history_delivery_title">{{do.product.title}}</h2>
           <p>Số lượng : {{do.quantity}}</p>
-          <button ion-button clear item-right></button>
         </ion-item>
 
-        <h2>
-          <b>Cửa hàng :</b>
-        </h2>
-        <ion-item>
+        <h2 class="history_delivery_label history_delivery_row">Cửa hàng :</h2>
+        <ion-item class="history_delivery_item">
           <ion-thumbnail item-left>
-            <img src="assets/imgs/logog.png">
+            <img src="assets/imgs/logo.png">
           </ion-thumbnail>
-          <h2>{{do.product.shop.title}}</h2>
-          <p>Số điện thoại : {{do.product.shop.shop_phone}}</p>
-          <button ion-button clear item-right></button>
+          <h2 class="history_delivery_title">{{do.product.shop.title}}</h2>
+          <p><ion-icon class="history_delivery_icon_phone" ios="ios-call" md="md-call"></ion-icon> {{do.product.shop.shop_phone}}</p>
         </ion-item>
 
-        <ion-item>
+        <ion-item class="history_delivery_item">
           <p *ngIf="do.shipping_method=='sq/standard'">
-            <b>Phương thức</b> : Giao hàng thường</p>
+            <span class="history_delivery_label">Phương thức:</span> Giao hàng thường</p>
           <p *ngIf="do.shipping_method!='sq/standard'">
-            <b>Phương thức</b> : Giao hàng nhanh</p>
-          <button ion-button clear item-right></button>
+            <span class="history_delivery_label">Phương thức:</span> Giao hàng nhanh</p>
         </ion-item>
 
-        <h2>
-          <b>Gửi đến</b>
-        </h2>
-        <ion-item>
-          <p>
-            <b> {{do.shipping_fullname}}</b>
-          </p>
-          <p>
-            <b>Địa chỉ :</b>{{address}}</p>
-          <p>Số điện thoại : {{do.shipping_phone}}</p>
-          <button ion-button clear item-right></button>
+        <h2 class="history_delivery_label history_delivery_row">Gửi đến</h2>
+        <ion-item class="history_delivery_item history_delivery_sending">
+          <div class="history_delivery_sending_row">{{do.shipping_fullname}}</div>
+          <div class="history_delivery_sending_row">Địa chỉ: {{address}}</div>
+          <div class="history_delivery_sending_row">
+            <ion-icon class="history_delivery_icon_phone" ios="ios-call" md="md-call"></ion-icon> {{do.shipping_phone}}
+          </div>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

@@ -37,9 +37,18 @@ export class AddFeedComponent implements OnInit {
   private location;
   private friends: string;
 
-  constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
-    private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
-    private feedService: FeedsService, private camera: Camera) {
+  constructor(
+    public nav: NavController, 
+    private navParams: NavParams, 
+    public appCtrl: App, 
+    private actionSheetCtrl: ActionSheetController,
+    private userService: UserService, 
+    private customService: CustomService, 
+    public alertCtrl: AlertController, 
+    private fbService: FirebaseService,
+    private feedService: FeedsService, 
+    private camera: Camera
+  ) {
     this.user_current = this.customService.user_current;
     this.type_feed = this.navParams.get('type')
     this.owner_guid = this.navParams.get('owner_guid')
