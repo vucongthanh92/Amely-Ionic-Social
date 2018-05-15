@@ -23,6 +23,7 @@ export class PaymentConfirmComponent implements OnInit {
   payment_method: any;
   shipping_method: any;
   private loading;
+  is_show_shipping_method: boolean;
   constructor(
     private nav: NavController,
     private iab: InAppBrowser,
@@ -35,6 +36,7 @@ export class PaymentConfirmComponent implements OnInit {
     this.items = this.paymentService.items;
     this.payment_method = this.paymentService.payment_methods.payment_methods[this.paymentService.param_create_order.payment].displayname;
     this.shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].displayname;
+    this.is_show_shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].filename != 'sq/storage';
 
     if (this.confirm.province && this.confirm.district && this.confirm.ward) {
       this.customer_address = this.confirm.address + " " + this.getDisplayname(this.confirm.ward, 'ward') + " " + this.getDisplayname(this.confirm.district, 'district') + " " + this.getDisplayname(this.confirm.province, 'province');

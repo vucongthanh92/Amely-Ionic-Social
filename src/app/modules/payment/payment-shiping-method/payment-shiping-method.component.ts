@@ -3,6 +3,7 @@ import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { PaymentReceiverInfoComponent } from '../payment-receiver-info/payment-receiver-info.component';
+import { PaymentPaymentMethodComponent } from '../payment-payment-method/payment-payment-method.component';
 
 @Component({
   selector: 'app-payment-shiping-method',
@@ -12,15 +13,15 @@ export class PaymentShipingMethodComponent implements OnInit {
 
   shipping_methods: any;
   shipping_selected: any;
-  payment_selected:any;
+  payment_selected: any;
   constructor(
     private customService: CustomService,
     private paymentService: PaymentService,
-    public nav: NavController, 
-    public appCtrl: App) { 
-      this.shipping_methods = (<any>Object).values(this.paymentService.payment_methods.shipping_methods);
-      this.shipping_methods = this.shipping_methods.filter(data => data.filename != "sq/pickup");
-    }
+    public nav: NavController,
+    public appCtrl: App) {
+    this.shipping_methods = (<any>Object).values(this.paymentService.payment_methods.shipping_methods);
+    this.shipping_methods = this.shipping_methods.filter(data => data.filename != "sq/pickup");
+  }
 
   ngOnInit() {
   }
@@ -32,7 +33,11 @@ export class PaymentShipingMethodComponent implements OnInit {
   changePage() {
     if (this.shipping_selected) {
       this.paymentService.param_create_order.shipping_method = this.shipping_selected;
-      this.appCtrl.getRootNav().push(PaymentReceiverInfoComponent);
+      if (this.shipping_selected == 'sq/storage') {
+        this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
+      } else {
+        this.appCtrl.getRootNav().push(PaymentReceiverInfoComponent);
+      }
     } else {
       this.customService.toastMessage("Vui lòng chọn phương thức vận chuyển", "bottom", 3000);
     }

@@ -3,6 +3,7 @@ import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { PaymentPaymentOptionsComponent } from '../payment-payment-options/payment-payment-options.component';
+import { PaymentConfirmComponent } from '../payment-confirm/payment-confirm.component';
 
 @Component({
   selector: 'app-payment-payment-method',
@@ -32,7 +33,16 @@ export class PaymentPaymentMethodComponent implements OnInit {
       this.customService.toastMessage("Vui lòng chọn phương thức thanh toán", "bottom", 3000);
     } else {
       this.paymentService.param_create_order.payment = this.payment_selected;
-      this.appCtrl.getRootNav().push(PaymentPaymentOptionsComponent);
+      let bankcodes = this.paymentService.payment_methods.options[this.paymentService.param_create_order.payment];
+      /**
+       * check has option change to PaymentPaymentOptionsComponent
+       * else PaymentConfirmComponent
+       */
+      // if (bankcodes && bankcodes.bankcode.options) {
+      //    this.appCtrl.getRootNav().push(PaymentPaymentOptionsComponent);
+      // }else {
+        this.appCtrl.getRootNav().push(PaymentConfirmComponent);
+      // }
     }
   }
 }

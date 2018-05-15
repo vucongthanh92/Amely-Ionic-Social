@@ -69,14 +69,7 @@ export class PaymentCustomerInfoComponent implements OnInit {
 
 
   changePage() {
-    console.log(this.province);
-    console.log(this.district);
-    console.log(this.ward);
-    console.log(this.fullname);
-    console.log(this.phone);
-    console.log(this.address);
-    
-    if (!this.fullname && !this.phone && !this.address && !this.province && !this.district && !this.ward) {
+    if (!this.fullname || !this.phone || !this.address || !this.province || !this.district || !this.ward) {
       this.customService.toastMessage('Thông tin khách hàng chưa hợp lệ', 'bottom', 3000);
     } else {
       this.paymentService.param_create_order.fullname = this.fullname;
