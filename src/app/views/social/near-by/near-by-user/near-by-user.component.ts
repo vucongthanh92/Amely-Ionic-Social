@@ -71,8 +71,6 @@ export class NearByUserComponent implements OnInit {
           return false;
         })
       }, 2500);
-     
-
     });
   }
   checkUser(userFB: { findable_by: string, gender: string, mood: string, yob: string }, username) {

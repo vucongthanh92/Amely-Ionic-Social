@@ -103,9 +103,9 @@ export class FeedComponent {
           this.descriptionPost = "Đã thay đổi ảnh bìa";
           break;
       }
-      if (this.descriptionPost == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
+      if (this.descriptionPost == this.customService.content_change_cover) {
         this.descriptionPost = 'Đã thay đổi ảnh bìa'
-      } else if (this.descriptionPost == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))amen') {
+      } else if (this.descriptionPost == this.customService.content_change_avatar) {
         this.descriptionPost = 'Đã thay đổi ảnh đại diện'
       }
       // console.log(this.post.wallphoto);

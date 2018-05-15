@@ -68,7 +68,6 @@ export class InventoryComponent implements OnInit {
     } else if (this.inventoryType === 'business') {
       this.page = this.navParams.get("obj");
     }
-
     if (this.ownerGuid == this.userCurrent.guid) {
       this.hidden_header = true;
     } else {
@@ -90,35 +89,15 @@ export class InventoryComponent implements OnInit {
 
 
     this.arrTagBadge.forEach(e => {
-      this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
-        if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
-          this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
-          // this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
-
-          this.types.sort(this.compare);
-        }
-        // if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
-        //   this.totalItem += data.length ? data.length : 0;
-        if (data && e.item_type == 'nearly_stored' && data.length) {
-          this.badge_near_stored = data.length;
-        }
-        if (data && e.item_type == 'nearly_expiry' && data.length) {
-          this.badge_near_expiry = data.length;
-        }
-
-      });
+      this.retryGetInventoriesByType(5, e);
     })
 
+    this.retryGetInventory(5);
+  }
+  retryGetInventory(retry) {
+    if (retry == 0) return;
     this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
-
-      // let loading = this.loadingCtrl.create({
-      //   content: 'Please wait...',
-      //   enableBackdropDismiss: true
-      // });
-      // loading.present();
-
       if (data instanceof Array) {
-        // loading.dismiss();
         this.totalItem = data.length;
         data.forEach(e => {
           this.total += +e.quantity;
@@ -127,10 +106,30 @@ export class InventoryComponent implements OnInit {
         console.log(this.total);
 
       } else {
-        // loading.dismiss();
         this.totalItem = 0;
       }
-    })
+    }, err => this.retryGetInventory(--retry))
+  }
+
+  retryGetInventoriesByType(retry, e) {
+    if (retry == 0) return;
+    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
+      if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
+        this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
+        // this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
+
+        this.types.sort(this.compare);
+      }
+      // if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
+      //   this.totalItem += data.length ? data.length : 0;
+      if (data && e.item_type == 'nearly_stored' && data.length) {
+        this.badge_near_stored = data.length;
+      }
+      if (data && e.item_type == 'nearly_expiry' && data.length) {
+        this.badge_near_expiry = data.length;
+      }
+
+    }, err => this.retryGetInventoriesByType(--retry, e));
   }
 
   compare(a, b) {
@@ -182,5 +181,9 @@ export class InventoryComponent implements OnInit {
 
   formatCurrency() {
     return this.customService.formatCurrency(this.totalPrice + "", this.userCurrent.usercurrency);
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

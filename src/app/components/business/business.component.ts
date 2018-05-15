@@ -1,13 +1,11 @@
 import { InventoryComponent } from './../inventory/inventory.component';
 import { Component, OnInit } from '@angular/core';
-import { App, NavParams, NavController, PopoverController, ActionSheetController, LoadingController } from 'ionic-angular';
+import { App, NavParams, NavController, PopoverController, LoadingController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { BusinessService } from '../../services/business.service';
 import { Business } from '../../api/models/business';
 import { CustomService } from '../../services/custom.service';
 import { BusinessMenuComponent } from './business-menu/business-menu.component';
-import { Camera } from '@ionic-native/camera';
-import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-business',
@@ -43,20 +41,36 @@ export class BusinessComponent implements OnInit {
 
   likePage(isLike: boolean) {
     if (isLike) {
-      this.customService.like('business', this.business_guid).subscribe(data => {
-        if (data.status) {
-          this.page.followed = true;
-        }
-      });
+      this.retryLike(5);
     } else {
-      this.customService.unlike('business', this.business_guid).subscribe(data => {
-        if (data.status) {
-          this.page.followed = false;
-        }
-      });
+      this.retryUnlike(5);
     }
   }
   newfeedsPage = true;
+
+  retryLike(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.like('business', this.business_guid).subscribe(data => {
+      if (data.status) {
+        this.page.followed = true;
+      }
+    }, err => this.retryLike(--retry));
+  }
+
+  retryUnlike(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.unlike('business', this.business_guid).subscribe(data => {
+      if (data.status) {
+        this.page.followed = false;
+      }
+    }, err => this.retryUnlike(--retry));
+  }
 
   goInventory() {
     this.appCtrl.getRootNav().push(InventoryComponent, { type: 'business', ownerGuid: this.business_guid, obj: this.page });
@@ -104,4 +118,7 @@ export class BusinessComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
+
 }
+
+

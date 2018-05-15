@@ -68,6 +68,10 @@ export class DepositPaymentMethodComponent implements OnInit {
           if (isMin) return this.customService.formatCurrency(this.min + '', 'VND');
           else return this.customService.formatCurrency(this.max + '', 'VND');
       }
-
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

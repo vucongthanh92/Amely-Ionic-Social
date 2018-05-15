@@ -35,10 +35,20 @@ export class AddFeedComponent implements OnInit {
   private image: string;
   private callback;
   private location;
+  private friends: string;
 
-  constructor(public nav: NavController, private navParams: NavParams, public appCtrl: App, private actionSheetCtrl: ActionSheetController,
-    private userService: UserService, private customService: CustomService, public alertCtrl: AlertController, private fbService: FirebaseService,
-    private feedService: FeedsService, private camera: Camera) {
+  constructor(
+    public nav: NavController, 
+    private navParams: NavParams, 
+    public appCtrl: App, 
+    private actionSheetCtrl: ActionSheetController,
+    private userService: UserService, 
+    private customService: CustomService, 
+    public alertCtrl: AlertController, 
+    private fbService: FirebaseService,
+    private feedService: FeedsService, 
+    private camera: Camera
+  ) {
     this.user_current = this.customService.user_current;
     this.type_feed = this.navParams.get('type')
     this.owner_guid = this.navParams.get('owner_guid')
@@ -47,12 +57,19 @@ export class AddFeedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.retryGetFriends(5);
+  }
+
+  retryGetFriends(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.userService.getFriends(null).subscribe(data => {
       this.users = data;
       this.usersTmp = data;
-    })
+    }, err => { this.retryGetFriends(5) })
   }
-
   showTagFriend() {
     this.is_show_tag = !this.is_show_tag;
     if (this.is_show_tag) {
@@ -115,9 +132,9 @@ export class AddFeedComponent implements OnInit {
   }
 
   putFeed() {
-    let friends: string = '';
+    this.friends = '';
     this.usersTag.forEach(element => {
-      friends = friends + element.guid + ","
+      this.friends = this.friends + element.guid + ","
     });
 
     if (!this.content) {
@@ -129,14 +146,19 @@ export class AddFeedComponent implements OnInit {
       if (this.owner_guid == undefined) {
         this.owner_guid = this.customService.user_current.guid;
       }
-      // console.log(this.owner_guid);
-      // console.log(this.type_feed);
 
-      //type_feed va` owner guid post feed ntn
+      this.putFeedApi(5);
+    }
+  }
 
-      this.feedService.putFeed(this.content, friends, this.location, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid, this.type_feed).subscribe(data => {
+  putFeedApi(retry: number) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
+    this.feedService.putFeed(this.content, this.friends, this.location, this.privacy, this.mood_result, this.image ? [this.image] : null, this.owner_guid,
+      this.type_feed).subscribe(data => {
         this.isCreatingFeed = false;
-
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
           this.callback().then(() => {
@@ -148,9 +170,9 @@ export class AddFeedComponent implements OnInit {
             this.nav.pop();
           });
         }
-      })
-    }
+      }, err => { this.putFeedApi(--retry) });
   }
+
   imageAction() {
     // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
     //   .then(url => { this.image = url + '' })

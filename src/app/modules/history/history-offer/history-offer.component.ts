@@ -50,4 +50,8 @@ export class HistoryOfferComponent implements OnInit {
   getDateCreate(time: number) {
     return new Date(time * 1000);
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

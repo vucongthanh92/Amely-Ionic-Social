@@ -26,6 +26,12 @@ export class InventoryMenuComponent implements OnInit {
     loading.present();
 
     this.is_press_wallet = true;
+    this.retryGetWallet(5, loading);
+    this.nav.pop();
+  }
+
+  retryGetWallet(retry, loading) {
+    if (retry == 0) return;
     this.inventoryService.getWallet().subscribe(data => {
       this.is_press_wallet = false;
       if (data.guid != null) {
@@ -36,8 +42,7 @@ export class InventoryMenuComponent implements OnInit {
         loading.dismiss();
         this.appCtrl.getRootNav().push(CreateWalletComponent)
       }
-    })
-    this.nav.pop();
+    }, err => this.retryGetWallet(--retry, loading));
   }
 
   historyDelivery() {

@@ -21,13 +21,15 @@ app-comments {
             .item-inner {
                 border-bottom: none;
                 padding: 0px;
+                margin: 0px 0px 0px 5rem;
+            }
+
+            .comment_avatar {
+                height: auto;
+                position: absolute;
+                top: 0px;
             }
         }
-    }
-
-    .comment_avatar {
-        height: 100%;
-        margin: 3px 15px 0px 0px !important;
     }
 
     .comment_body_image {
@@ -37,13 +39,13 @@ app-comments {
 
     .comment_body_datetime {
         font-size: 13px;
-        padding: 3px 0px 0px 9px;
+        padding: 3px 0px 3px 7px;
         font-style: italic;
     }
 
     .comment_body {
         background-color: #efeff4;
-        padding: 7px 7px 7px 9px;
+        padding: 10px 12px 7px 12px;
         border-radius: 9px;
 
         .comment_body_title {
@@ -59,5 +61,22 @@ app-comments {
             line-height: 18px;
             color: #666;
         }
+    }
+
+    .comment_footer_image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .comment_footer_icon {
+        font-size: 40px; 
+        color: #9E9E9E; 
+        left: -10px; 
+        position: relative;
+    }
+
+    .comment_footer_send {
+        font-size: 40px;
+        margin-right: 10px;
     }
 }

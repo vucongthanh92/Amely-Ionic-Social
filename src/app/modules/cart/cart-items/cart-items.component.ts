@@ -41,7 +41,7 @@ export class CartItemsComponent implements OnInit {
       if (item[0].quantity_cart < item[0].quantity) {
         item[0].quantity_cart = item[0].quantity_cart + 1;
         this.update();
-      }else{
+      } else {
         this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
       }
     }
@@ -87,11 +87,11 @@ export class CartItemsComponent implements OnInit {
     this.items.forEach(e => {
       this.number_items = this.number_items + e.quantity_cart;
       if (e.sale_price == 0 || e.sale_price == null) {
-        this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));  
-      }else{
+        this.total = this.total + (e.quantity_cart * this.customService.netPrice(e));
+      } else {
         this.total = this.total + (e.quantity_cart * this.customService.netSalePrice(e));
       }
-      
+
     });
   }
 
@@ -111,20 +111,26 @@ export class CartItemsComponent implements OnInit {
         console.log(obj);
 
       });
-      console.log(carts);
-
-      this.shoppingsService.putCart({ items: carts }).subscribe(data => {
-        if (data.status!=undefined) {
-          this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
-        } else {
-          this.paymentService.items = data;
-          this.appCtrl.getRootNav().push(PaymentItemsComponent);
-        }
-        loading.dismiss();
-      }, err => loading.dismiss());
+      this.retryPutCart(5, carts, loading);
     } else {
       this.customService.toastMessage('Giỏ hàng đang trống, xin hãy chọn sản phẩm !', 'bottom', 3000);
     }
+  }
+
+  retryPutCart(retry, carts, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      return
+    }
+    this.shoppingsService.putCart({ items: carts }).subscribe(data => {
+      if (data.status != undefined) {
+        this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
+      } else {
+        this.paymentService.items = data;
+        this.appCtrl.getRootNav().push(PaymentItemsComponent);
+      }
+      loading.dismiss();
+    }, err => this.retryPutCart(--retry, carts, loading));
   }
 
   formartCurrency(item: Product) {
@@ -136,5 +142,9 @@ export class CartItemsComponent implements OnInit {
 
   formatSalePriceShow(price: number, currency: string) {
     return this.customService.formatCurrency(price + "", currency);
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

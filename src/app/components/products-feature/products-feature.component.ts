@@ -78,14 +78,20 @@ export class ProductsFeatureComponent implements OnInit {
     // loading.present();
 
     // "default" "feature"
+    this.retryInitShopProductFeatue(5);
+  }
+
+  retryInitShopProductFeatue(retry) {
+    if (retry == 0) {
+      return;
+    }
     this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
       if (data.products instanceof Array) {
         // loading.dismiss();
         this.productsMostSold = data.products;
       }
-    })
+    }, err => this.retryInitShopProductFeatue(--retry))
   }
-
   // formatCurrency(product: Product, currency: string) {
   //   return this.customService.formatCurrency(this.customService.netPrice(product) + '', currency);
   // }

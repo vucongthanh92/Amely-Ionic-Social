@@ -32,4 +32,8 @@ export class HistoryOfferDetailComponent implements OnInit {
       console.log(this.offer);
     }, err => this.loadData(--retry))
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

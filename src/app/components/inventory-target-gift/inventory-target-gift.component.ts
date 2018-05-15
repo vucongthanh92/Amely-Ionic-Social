@@ -29,15 +29,11 @@ export class InventoryTargetGiftComponent implements OnInit {
 
     switch (type) {
       case 'users':
-        this.userService.getFriends(this.customService.user_current.guid).subscribe(data => {
-          this.user_list = data;
-        });
+        this.retryGetUser(5);
         console.log('user');
         break;
       case 'groups':
-        this.groupService.getGroups(this.customService.user_current.guid).subscribe(data => {
-          this.group_list = data.groups;
-        });
+        this.retryGetGroup(5);
         console.log('group');
         break;
       case 'businesses':
@@ -51,6 +47,25 @@ export class InventoryTargetGiftComponent implements OnInit {
     }
   }
 
+  retryGetGroup(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupService.getGroups(this.customService.user_current.guid).subscribe(data => {
+      this.group_list = data.groups;
+    }, err => this.retryGetGroup(--retry));
+  }
+
+  retryGetUser(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.getFriends(this.customService.user_current.guid).subscribe(data => {
+      this.user_list = data;
+    }, err => this.retryGetUser(--retry));
+  }
   ngOnInit() {
   }
 

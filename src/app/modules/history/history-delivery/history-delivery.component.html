@@ -1,34 +1,39 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Lịch sử giao hàng
-    </ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">lịch sử giao hàng</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
-  <ion-list *ngIf="dos">
-    <ion-item *ngFor="let do of dos " (click)="openDetail(do)">
+<ion-content class="history_delivery_container">
+  <ion-list class="history_delivery_list" *ngIf="dos">
+    <ion-item class="history_delivery_item" *ngFor="let do of dos " (click)="openDetail(do)">
       <ion-thumbnail item-left>
-        <img *ngIf="do.product.images" src="{{do.product.images[0]}}">
+        <div *ngIf="do.product.images" class="history_delivery_img" [style.background]="'url(' + do.product.images[0] + ')'"></div>
       </ion-thumbnail>
-      <h2>
-        <img *ngIf='do.shipping_method=="sq/standard"' width='30px' height='30px' src="assets/imgs/ic_gender_female_pink.png">
-        <img *ngIf='do.shipping_method!="sq/standard"' width='30px' height='30px' src="assets/imgs/ic_gender_male_blue.png"> {{do.product.title}}
+      <h2 class="history_delivery_title">
+        <img *ngIf='do.shipping_method=="sq/express"' class="history_delivery_icon" src="assets/imgs/vector_giao_hang_nhanh-01.png">
+        <img *ngIf='do.shipping_method=="sq/standard"' class="history_delivery_icon" src="assets/imgs/vector_giao_hang_thuong-01.png">
+        {{do.product.title}}
       </h2>
-      <p (click)="openShop(do.product.shop)">
-        <b>Cửa hàng </b>
-        <span style="color: #ffa346">{{do.product.shop.title}}</span>
-      </p>
-      <p>
-        <p>
-          <b>Ngày tạo </b>{{convertDate(+do.time_created) | date:'dd/MM/yyyy'}}</p>
-        <p>
-          <b>Trạng thái </b>
-          <span *ngIf="do.status=='new'" style="color: #ffa346">Chờ duyệt</span>
-          <span *ngIf="do.status=='approved'" style="color: #ffa346">Đã duyệt</span>
-        </p>
-        <button ion-button clear item-right></button>
+
+      <div class="history_delivery_row" (click)="openShop(do.product.shop)">
+        Cửa hàng: <span class="history_delivery_text">{{do.product.shop.title}}</span>
+      </div>
+
+      <div class="history_delivery_row">
+        Ngày tạo: {{convertDate(+do.time_created) | date:'dd/MM/yyyy'}}
+      </div>
+      
+      <div class="history_delivery_row">
+        Trạng thái: 
+        <span *ngIf="do.status=='new'" class="history_delivery_text">Chờ duyệt</span>
+        <span *ngIf="do.status=='approved'" class="history_delivery_text">Đã duyệt</span>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

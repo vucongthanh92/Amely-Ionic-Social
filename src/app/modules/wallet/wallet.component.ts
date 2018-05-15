@@ -36,12 +36,17 @@ export class WalletComponent implements OnInit {
 
   ngOnInit() {
     this.loadData(5)
+    this.retryGetTransactions(5);
+  }
+
+  retryGetTransactions(retry) {
+    if (retry == 5) return;
     this.customService.getTransactions('wallet').subscribe(data => {
       if (data instanceof Array) {
         this.transactions = data;
         this.transactions = this.transactions.filter(e => e.status != "cancel");
       }
-    });
+    }, err => this.retryGetTransactions(--retry));
   }
 
   loadData(retry) {
@@ -84,21 +89,29 @@ export class WalletComponent implements OnInit {
     this.barcodeScanner.scan().then((barcodeData) => {
       this.loading = this.loadingCtrl.create();
       this.loading.present();
-      this.walletService.getCartFromQR(barcodeData.text).subscribe(data => {
-        this.paymentService.items.products = (<any>Object).values(data.products);
-        this.paymentService.items.sub_total = data.sub_total;
-        this.paymentService.items.tax = data.tax;
-        this.paymentService.items.total = data.total;
-        this.paymentService.items.currency = data.shop.currency;
-        this.paymentService.items.to_guid = data.to_guid;
-        this.paymentService.param_create_order.to_guid = data.to_guid;
-        this.loading.dismiss();
-        this.appCtrl.getRootNav().push(PaymentItemsComponent);
-      })
+      this.retryGetQR(5, barcodeData);
     }, (err) => {
       this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
     });
 
+  }
+
+  retryGetQR(retry, barcodeData) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.walletService.getCartFromQR(barcodeData.text).subscribe(data => {
+      this.paymentService.items.products = (<any>Object).values(data.products);
+      this.paymentService.items.sub_total = data.sub_total;
+      this.paymentService.items.tax = data.tax;
+      this.paymentService.items.total = data.total;
+      this.paymentService.items.currency = data.shop.currency;
+      this.paymentService.items.to_guid = data.to_guid;
+      this.paymentService.param_create_order.to_guid = data.to_guid;
+      this.loading.dismiss();
+      this.appCtrl.getRootNav().push(PaymentItemsComponent);
+    }, err => this.retryGetQR(--retry, barcodeData))
   }
 
   orderDetail(trans: Transaction) {
@@ -171,5 +184,9 @@ export class WalletComponent implements OnInit {
         return "Chưa định nghĩa";
 
     }
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

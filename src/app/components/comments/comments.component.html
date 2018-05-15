@@ -1,66 +1,62 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Bình luận</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">bình luận</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
-  <div class="comment_container">
-    <ion-row *ngIf="comments">
-      <ion-col col-12 class="comment_main" *ngFor="let comment of comments">
-        <ion-grid>
-          <ion-row class="comment_row">
-            <ion-item class="comment_item">
-              <ion-avatar class="comment_avatar" item-start>
-                <div *ngIf="!checkUserCurrent(comment.owner_guid)">
-                  <img class="comment_avatar_image" *ngIf="findUser(comment.owner_guid)" src="{{findUser(comment.owner_guid).avatar}}" />
-                </div>
-                <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                  <img class="comment_avatar_image" src="{{user_current.avatar}}" />
-                </div>
-              </ion-avatar>
-
-              <div class="comment_body">
-                <div *ngIf="!checkUserCurrent(comment.owner_guid)">
-                  <h2 class="comment_body_title" *ngIf="findUser(comment.owner_guid)">{{findUser(comment.owner_guid).fullname}}</h2>
-                </div>
-                <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                  <h2 class="comment_body_title">{{user_current.fullname}}</h2>
-                </div>
-
-                <p class="comment_body_content">{{comment.content}}</p>
-                <p>
-                  <img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer />
-                </p>
-                <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
+<ion-content class="comment_container">
+  <ion-row *ngIf="comments">
+    <ion-col col-12 class="comment_main" *ngFor="let comment of comments">
+      <ion-grid>
+        <ion-row class="comment_row">
+          <ion-item class="comment_item">
+            <ion-avatar class="comment_avatar" item-start>
+              <div *ngIf="!checkUserCurrent(comment.owner_guid)">
+                <img class="comment_avatar_image" *ngIf="findUser(comment.owner_guid)" src="{{findUser(comment.owner_guid).avatar}}" />
               </div>
+              <div *ngIf="checkUserCurrent(comment.owner_guid)">
+                <img class="comment_avatar_image" src="{{user_current.avatar}}" />
+              </div>
+            </ion-avatar>
 
-              
-            </ion-item>
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>
-    </ion-row>
-  </div>
+            <div class="comment_body">
+              <div *ngIf="!checkUserCurrent(comment.owner_guid)">
+                <h2 class="comment_body_title" *ngIf="findUser(comment.owner_guid)">{{findUser(comment.owner_guid).fullname}}</h2>
+              </div>
+              <div *ngIf="checkUserCurrent(comment.owner_guid)"><h2 class="comment_body_title">{{user_current.fullname}}</h2></div>
+              <p class="comment_body_content">{{comment.content}}</p>
+              <p><img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer /></p>
+              <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
+            </div>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-row>
 </ion-content>
 
 <ion-footer>
   <ion-row *ngIf="image">
-    <img width="100px" height="100px" src="{{image}}">
+    <img class="comment_footer_image" src="{{image}}">
   </ion-row>
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button icon-right color="royal"  (click)="imageAction()">
-        <ion-icon style="font-size: 40px; color: #9E9E9E; left: -10px; position: relative;" name="camera"></ion-icon>
+      <button ion-button icon-right color="royal" (click)="imageAction()">
+        <ion-icon class="comment_footer_icon" name="camera"></ion-icon>
       </button>
     </ion-buttons>
     <ion-input [(ngModel)]="content" placeholder="Nhập bình luận..."></ion-input>
     <ion-buttons end>
       <button ion-button icon-right color="royal" (click)="onSend()">
-        <ion-icon style="font-size: 40px; margin-right: 10px;" name="send"></ion-icon>
+        <ion-icon class="comment_footer_send" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

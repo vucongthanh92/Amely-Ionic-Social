@@ -20,6 +20,7 @@ export class GroupComponent implements OnInit {
   dateCreated: Date;
   is_admin: boolean;
   reloadCallback: any;
+  isMenu: boolean;
 
   constructor(public alertCtrl: AlertController, public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private groupService: GroupService, private customService: CustomService, public popoverCtrl: PopoverController) {
@@ -47,6 +48,8 @@ export class GroupComponent implements OnInit {
       data => {
         this.groups.push(data);
         this.group = data;
+        this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid );
+        
         this.dateCreated = new Date(this.group.time_created * 1000);
         this.is_admin = this.group.owner_guid == this.customService.user_current.guid;
         if (!this.group.voted) this.showVoteAdmin();
@@ -110,17 +113,25 @@ export class GroupComponent implements OnInit {
     alert.addButton({
       text: 'Mời',
       handler: (data: any) => {
-        this.customService.invite(this.group.guid, data, 'group').subscribe(data => {
-          if (data.status) {
-            this.customService.toastMessage("Gửi lời mời thành công !", 'bottom', 2000);
-          } else {
-            this.customService.toastMessage("Gửi lời mời thất bại. Vui lòng thử lại !", 'bottom', 2000);
-          }
-        })
+        this.retryInvite(5, data);
       }
     });
 
     alert.present();
+  }
+
+  retryInvite(retry, data) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.customService.invite(this.group.guid, data, 'group').subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage("Gửi lời mời thành công !", 'bottom', 2000);
+      } else {
+        this.customService.toastMessage("Gửi lời mời thất bại. Vui lòng thử lại !", 'bottom', 2000);
+      }
+    }, err => this.retryInvite(--retry, data))
   }
 
   openPopover(myEvent) {
@@ -147,27 +158,35 @@ export class GroupComponent implements OnInit {
           {
             text: 'Từ chối',
             handler: () => {
-              this.groupService.groupVote('no', this.group.guid).subscribe(data => {
-                if (data.status) {
-                  this.customService.toastMessage('Bình chọn thành công', 'bottom', 2000)
-                }
-              });
+              this.retryGroupVote(5, 'no');
             }
           },
           {
             text: 'Đồng ý',
             handler: () => {
-              this.groupService.groupVote('yes', this.group.guid).subscribe(data => {
-                if (data.status) {
-                  this.customService.toastMessage('Bình chọn thành công', 'bottom', 2000)
-                }
-              });
+              this.retryGroupVote(5, 'yes');
             }
           }
         ]
       });
       alert.present();
     }
+  }
+
+  /**
+   * @param retry 
+   * @param type yes - no
+   */
+  retryGroupVote(retry, type) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupService.groupVote(type, this.group.guid).subscribe(data => {
+      if (data.status) {
+        this.customService.toastMessage('Bình chọn thành công', 'bottom', 2000)
+      }
+    }, err => this.retryInvite(--retry, type));
   }
 
   dismiss() {

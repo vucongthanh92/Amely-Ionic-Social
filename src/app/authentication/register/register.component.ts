@@ -83,60 +83,68 @@ export class RegisterComponent implements OnInit {
       loading.dismiss();
       this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
     } else {
-      this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
-        data => {
-          if (data.status) {
-            let u: User = new User();
-            u.username = this.username;
-            u.password = this.password;
-            u.mobilelogin = this.mobilelogin;
-            this.nav.setRoot(VerifycodeComponent, { user: u });
-            loading.dismiss();
-          } else {
-            switch (data.error) {
-              case 'fields_not_empty':
-                this.customService.toastMessage('Dữ liệu chưa đầy đủ', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'email_re_matching':
-                this.customService.toastMessage('Xác thực lại email', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'password_re_matching':
-                this.customService.toastMessage('Xác thực lại mật khẩu', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'username_format':
-                this.customService.toastMessage('Sai định dạng tài khoản', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'password_length':
-                this.customService.toastMessage('Độ dài mật khẩu không hợp lệ', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'mobile_format':
-                this.customService.toastMessage('Số điện thoại sai định dạng', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'username_exist':
-                this.customService.toastMessage('Tài khoản đã tồn tại', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'email_exist':
-                this.customService.toastMessage('Email đã tồn tại', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'email_format':
-                this.customService.toastMessage('Sai định dạng email', 'bottom', 2000);
-                loading.dismiss();
-                break;
-              case 'mobile_exist':
-                this.customService.toastMessage('Số điện thoại đã tồn tại', 'bottom', 2000);
-                loading.dismiss();
-                break;
-            }
-          }
-        })
+      this.retryRegister(5,loading);
     }
+  }
+
+  retryRegister(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
+      data => {
+        if (data.status) {
+          let u: User = new User();
+          u.username = this.username;
+          u.password = this.password;
+          u.mobilelogin = this.mobilelogin;
+          this.nav.setRoot(VerifycodeComponent, { user: u });
+          loading.dismiss();
+        } else {
+          switch (data.error) {
+            case 'fields_not_empty':
+              this.customService.toastMessage('Dữ liệu chưa đầy đủ', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'email_re_matching':
+              this.customService.toastMessage('Xác thực lại email', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'password_re_matching':
+              this.customService.toastMessage('Xác thực lại mật khẩu', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'username_format':
+              this.customService.toastMessage('Sai định dạng tài khoản', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'password_length':
+              this.customService.toastMessage('Độ dài mật khẩu không hợp lệ', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'mobile_format':
+              this.customService.toastMessage('Số điện thoại sai định dạng', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'username_exist':
+              this.customService.toastMessage('Tài khoản đã tồn tại', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'email_exist':
+              this.customService.toastMessage('Email đã tồn tại', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'email_format':
+              this.customService.toastMessage('Sai định dạng email', 'bottom', 2000);
+              loading.dismiss();
+              break;
+            case 'mobile_exist':
+              this.customService.toastMessage('Số điện thoại đã tồn tại', 'bottom', 2000);
+              loading.dismiss();
+              break;
+          }
+        }
+      }, err => { this.retryRegister(--retry, loading) })
   }
 }

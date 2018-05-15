@@ -21,14 +21,23 @@ export class AddGroupComponent implements OnInit {
   public users_choosed: Array<User> = [];
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private user_serive: UserService, private custom_service: CustomService
-    , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase, public loadingCtrl: LoadingController) { }
+    , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase, public loadingCtrl: LoadingController
+    , private customService: CustomService) { }
 
   ngOnInit() {
+    this.retryGetFriends(5);
+  }
+
+  retryGetFriends(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.user_serive.getFriends(null).subscribe(data => {
       if (data instanceof Array) {
         this.friends = data;
       }
-    })
+    },err=>{this.retryGetFriends(--retry)})
   }
   chooseUser(user: User) {
     this.friends = this.friends.filter(e => e.guid != user.guid);
@@ -58,26 +67,31 @@ export class AddGroupComponent implements OnInit {
         user_guids.push(e.guid);
         usernames.push(e.username);
       });
-
-      this.group_service.putGroup(this.group_name, '', '2', '2', '3', this.has_inventory ? '2' : '', user_guids).subscribe(data => {
-        if (data.group_guid) {
-          this.messagesService.createKeyChat("group", this.custom_service.user_current.username, data.group_guid + '', { key: data.group_guid + '', last_read: 0, unread_count: 0 });
-          let path = "/shared/groups";
-          let obj = { guid: data.group_guid + '', members: usernames, name: this.group_name, owner: this.custom_service.user_current.username }
-          this.afDatabase.list(path).set(data.group_guid + '', obj);
-          let callback = this.navParams.get("callback");
-
-          callback({ type: 'reload' }).then(() => {
-            this.nav.pop();
-            loading.dismiss();   
-          });
-                         
-        }
-      });
-
+      this.retryPutGroup(5, loading, usernames, user_guids);
     }
   }
 
+  retryPutGroup(retry, loading, usernames, user_guids){
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.group_service.putGroup(this.group_name, '', '2', '2', '3', this.has_inventory ? '2' : '', user_guids).subscribe(data => {
+      if (data.group_guid) {
+        this.messagesService.createKeyChat("group", this.custom_service.user_current.username, data.group_guid + '', { key: data.group_guid + '', last_read: 0, unread_count: 0 });
+        let path = "/shared/groups";
+        let obj = { guid: data.group_guid + '', members: usernames, name: this.group_name, owner: this.custom_service.user_current.username }
+        this.afDatabase.list(path).set(data.group_guid + '', obj);
+        let callback = this.navParams.get("callback");
+
+        callback({ type: 'reload' }).then(() => {
+          this.nav.pop();
+          loading.dismiss();
+        });
+
+      }
+    },err=>this.retryPutGroup(--retry,loading,usernames,user_guids));
+  }
   dismiss() {
     this.nav.pop();
   }

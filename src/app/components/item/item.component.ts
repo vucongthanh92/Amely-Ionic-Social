@@ -29,14 +29,15 @@ export class ItemComponent implements OnInit {
   is_reload_before_page = false;
   expiryType: number;
   stored_end: Date;
+  isUser: boolean;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
     private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
-    console.log(this.itemGuid);
-    
+    this.isUser = this.navParams.get('inventoryType')=='user';
+
   }
 
   ngOnInit() {
@@ -45,22 +46,13 @@ export class ItemComponent implements OnInit {
 
   loadData(retry) {
 
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
-
     if (retry == 0) {
-      // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.inventoriesService.getItemInventory(this.itemGuid).subscribe(
       data => {
         this.item = data;
-        console.log(this.item);
-        
         this.expiryType = +this.item.is_special;
         this.product = data.product_snapshot;
         this.shop = data.product_snapshot.shop;
@@ -72,27 +64,29 @@ export class ItemComponent implements OnInit {
         this.loadData(--retry)
       })
   }
+
   createCode() {
-
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
-
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
         this.is_used = true;
-        this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
-          if (this.createCode) {
-            this.createdCode = data.code
-          }
-          this.is_used = false;
-          // loading.dismiss();
-        })
+        this.retryCreateRedeem(5);
       })
 
 
+  }
+
+  retryCreateRedeem(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
+      if (this.createCode) {
+        this.createdCode = data.code
+      }
+      this.is_used = false;
+      // loading.dismiss();
+    }, err => this.retryCreateRedeem(--retry));
   }
 
   gift() {
@@ -126,55 +120,81 @@ export class ItemComponent implements OnInit {
   onGiveList(isLike) {
     if (isLike) {
       this.item.givelist = '2';
-      this.inventoriesService.addGiveList(this.itemGuid).subscribe(data => {
-        if (!data.status) {
-          this.item.givelist = '1';
-          this.customService.toastMessage('Thêm vào danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000);
-        } else {
-          this.is_reload_before_page = true;
-          this.customService.toastMessage('Đã thêm vào danh sách muốn cho đi', 'bottom', 2000);
-        }
-      })
+      this.retryAddGiveList(5);
     } else {
       this.item.givelist = "1";
-      this.inventoriesService.deleteGiveList(this.itemGuid).subscribe(data => {
-        if (!data.status) {
-          this.item.givelist = '2';
-          this.customService.toastMessage('Hủy danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000)
-        } else {
-          this.is_reload_before_page = true;
-          this.customService.toastMessage('Đã xóa khỏi danh sách muốn cho đi', 'bottom', 2000);
-        }
-      })
+      this.retryDeleteGiveList(5);
     }
   }
 
+  retryAddGiveList(retry) {
+    if (retry == 0) {
+      return;
+    }
+    this.inventoriesService.addGiveList(this.itemGuid).subscribe(data => {
+      if (!data.status) {
+        this.item.givelist = '1';
+        this.customService.toastMessage('Thêm vào danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000);
+      } else {
+        this.is_reload_before_page = true;
+        this.customService.toastMessage('Đã thêm vào danh sách muốn cho đi', 'bottom', 2000);
+      }
+    }, err => this.retryAddGiveList(--retry))
+  }
+
+  retryDeleteGiveList(retry) {
+    if (retry == 0) {
+      return;
+    }
+    this.inventoriesService.deleteGiveList(this.itemGuid).subscribe(data => {
+      if (!data.status) {
+        this.item.givelist = '2';
+        this.customService.toastMessage('Hủy danh sách muốn cho đi thất bại. Vui lòng thử lại.', 'bottom', 3000)
+      } else {
+        this.is_reload_before_page = true;
+        this.customService.toastMessage('Đã xóa khỏi danh sách muốn cho đi', 'bottom', 2000);
+      }
+    }, err => this.retryDeleteGiveList(--retry));
+  }
   onWishList(isLike) {
     if (isLike) {
       this.item.wishlist = '2';
-      this.inventoriesService.addWishList(this.itemGuid).subscribe(data => {
-        if (!data.status) {
-          this.item.wishlist = '1';
-          this.customService.toastMessage('Thêm vào danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
-        } else {
-          this.is_reload_before_page = true;
-          this.customService.toastMessage('Đã thêm vào danh sách yêu thích', 'bottom', 2000);
-        }
-      })
+      this.retryAddWishList(5);
     } else {
       this.item.wishlist = '1';
-      this.inventoriesService.deleteWishList(this.itemGuid).subscribe(data => {
-        if (!data.status) {
-          this.item.wishlist = '2';
-          this.customService.toastMessage('Hủy danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
-        } else {
-          this.is_reload_before_page = true;
-          this.customService.toastMessage('Đã xóa khỏi danh sách yêu thích', 'bottom', 2000);
-        }
-      })
+      this.retryDeleteWishList(5);
     }
   }
 
+  retryAddWishList(retry) {
+    if (retry == 0)
+      return;
+
+    this.inventoriesService.addWishList(this.itemGuid).subscribe(data => {
+      if (!data.status) {
+        this.item.wishlist = '1';
+        this.customService.toastMessage('Thêm vào danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
+      } else {
+        this.is_reload_before_page = true;
+        this.customService.toastMessage('Đã thêm vào danh sách yêu thích', 'bottom', 2000);
+      }
+    }, err => this.retryAddWishList(--retry))
+  }
+
+  retryDeleteWishList(retry) {
+    if (retry == 0)
+      return;
+
+    this.inventoriesService.deleteWishList(this.itemGuid).subscribe(data => {
+      if (!data.status) {
+        this.item.wishlist = '2';
+        this.customService.toastMessage('Hủy danh sách yêu thích thất bại. Vui lòng thử lại.', 'bottom', 3000);
+      } else {
+        this.is_reload_before_page = true;
+        this.customService.toastMessage('Đã xóa khỏi danh sách yêu thích', 'bottom', 2000);
+      }
+    }, err => this.retryDeleteWishList(--retry));
+  }
   renewalItem() {
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
@@ -188,4 +208,9 @@ export class ItemComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

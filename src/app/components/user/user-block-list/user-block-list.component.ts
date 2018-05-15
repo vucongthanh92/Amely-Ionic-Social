@@ -42,18 +42,26 @@ export class UserBlockListComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: () => {
-            this.userService.unblock(user.guid).subscribe(data => {
-              if (data.status) {
-                this.blockList = this.blockList.filter(e => e.guid != user.guid)
-                this.customService.toastMessage('Bỏ chặn ' + user.fullname + " thành công", 'bottom', 2000);
-              } else {
-                this.customService.toastMessage('Bỏ chặn ' + user.fullname + " thất bại", 'bottom', 2000);
-              }
-            });
+            this.retryUnBlock(5, user);
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  retryUnBlock(retry, user) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.unblock(user.guid).subscribe(data => {
+      if (data.status) {
+        this.blockList = this.blockList.filter(e => e.guid != user.guid)
+        this.customService.toastMessage('Bỏ chặn ' + user.fullname + " thành công", 'bottom', 2000);
+      } else {
+        this.customService.toastMessage('Bỏ chặn ' + user.fullname + " thất bại", 'bottom', 2000);
+      }
+    }, err => this.retryUnBlock(--retry, user));
   }
 }

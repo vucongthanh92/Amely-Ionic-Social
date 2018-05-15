@@ -32,20 +32,24 @@ export class WithdrawnOptionComponent implements OnInit {
     return this.customService.formatCurrency(this.amount + "", this.customService.user_current.usercurrency);
   }
 
+  retryConfirmOptionWithdrawn(retry) {
+    if (retry == 0) return;
+    this.walletService.confirmOptionWithdrawn(this.amount + "", this.paymentMethod, this.email, this.note, null, null, null, null).subscribe(data => {
+      if (!data.status) {
+        this.customService.toastMessage("Thực hiện rút tiền thất bại", 'bottom', 2000)
+      } else {
+        this.customService.toastMessage("Thực hiện rút tiền thành công", 'bottom', 2000);
+        this.nav.popToRoot();
+      }
+    }, err => this.retryConfirmOptionWithdrawn(--retry));
+  }
   changePage() {
     switch (this.paymentMethod) {
       case 'paypal/standard':
         if (!this.email) {
           this.customService.toastMessage('Email không được để trống', 'bottom', 2000);
         } else {
-          this.walletService.confirmOptionWithdrawn(this.amount+"", this.paymentMethod, this.email, this.note, null, null, null, null).subscribe(data => {
-            if (!data.status) {
-              this.customService.toastMessage("Thực hiện rút tiền thất bại", 'bottom', 2000)
-            } else {
-              this.customService.toastMessage("Thực hiện rút tiền thành công", 'bottom', 2000);
-              this.nav.popToRoot();
-            }
-          })
+          this.retryConfirmOptionWithdrawn(5);
         }
         break;
 
@@ -58,21 +62,26 @@ export class WithdrawnOptionComponent implements OnInit {
           this.customService.toastMessage("Tên ngân hàng không được để trống", 'bottom', 2000)
         } else if (!this.bank_branch_name) {
           this.customService.toastMessage("Tên chi nhánh không được để trống", 'bottom', 2000)
-        } else  {
-          this.walletService.confirmOptionWithdrawn(this.amount+"",this.paymentMethod,null,this.note,this.bank_branch_name,
-          this.bank_name,this.account_name,this.account_number).subscribe(data=>{
-            if (!data.status) {
-              this.customService.toastMessage("Thực hiện rút tiền thất bại", 'bottom', 2000)
-             
-            } else {
-              this.customService.toastMessage("Thực hiện rút tiền thành công", 'bottom', 2000);
-              this.nav.popToRoot();
-            }
-          })
+        } else {
+          this.retryConfirmOptionWithdrawnBankAccount(5);
         }
-          
+
         break;
     }
+  }
+
+  retryConfirmOptionWithdrawnBankAccount(retry) {
+    if (retry == 0) return;
+    this.walletService.confirmOptionWithdrawn(this.amount + "", this.paymentMethod, null, this.note, this.bank_branch_name,
+      this.bank_name, this.account_name, this.account_number).subscribe(data => {
+        if (!data.status) {
+          this.customService.toastMessage("Thực hiện rút tiền thất bại", 'bottom', 2000)
+
+        } else {
+          this.customService.toastMessage("Thực hiện rút tiền thành công", 'bottom', 2000);
+          this.nav.popToRoot();
+        }
+      }, err => this.retryConfirmOptionWithdrawnBankAccount(--retry))
   }
 
 }

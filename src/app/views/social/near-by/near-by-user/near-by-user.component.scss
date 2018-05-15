@@ -76,11 +76,13 @@ app-near-by-user{
         right: 10px;
 
         .feeds_button_fab {
-            background-color: #f0ad4e; 
+            background-color: #f0ad4e;
             color: #fff;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 
             ion-icon {
-                font-weight: bold;
+                font-weight: bolder;
+                font-size: 3.5rem;
             }
         }
     }

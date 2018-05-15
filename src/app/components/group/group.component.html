@@ -7,7 +7,7 @@
       <div *ngIf="group" class="ion_navbar_title">{{group.title}}</div>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button (click)="openPopover($event)">
+      <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
         <ion-icon class="group_more_icon" name="md-more"></ion-icon>
       </button>
     </ion-buttons>

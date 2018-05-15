@@ -119,6 +119,13 @@ export class MessagesService {
   }
 
   acceptGift(username, gift_guid) {
+    this.retryAcceptGift(5, gift_guid)
+  }
+
+  retryAcceptGift(retry, gift_guid) {
+    if (retry == 0) {
+      return;
+    }
     this.giftsService.accept(gift_guid).subscribe(res => {
       if (res.status) {
         let owner_from = this.customService.user_current.username;
@@ -127,10 +134,17 @@ export class MessagesService {
         let subject_guid = gift_guid;
         this.fbService.updateNotificationBySubject(owner_from, notification_type, status, subject_guid);
       }
-    });
+    }, err => this.retryAcceptGift(--retry, gift_guid));
   }
-  
+
   rejectGift(username, gift_guid) {
+    this.retryRejectGift(5, gift_guid);
+  }
+
+  retryRejectGift(retry, gift_guid) {
+    if (retry == 0) {
+      return;
+    }
     this.giftsService.reject(gift_guid).subscribe(res => {
       if (res.status) {
         let owner_from = this.customService.user_current.username;
@@ -139,6 +153,6 @@ export class MessagesService {
         let subject_guid = gift_guid;
         this.fbService.updateNotificationBySubject(owner_from, notification_type, status, subject_guid);
       }
-    });
+    }, err => this.retryRejectGift(--retry, gift_guid));
   }
 }

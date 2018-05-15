@@ -71,6 +71,14 @@ export class PaymentConfirmComponent implements OnInit {
   changePage() {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
+    this.retryCreateOrder(5, this.loading);
+  }
+
+  retryCreateOrder(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
     this.paymentService.createOrder().subscribe(data => {
       this.loading.dismiss();
       this.nav.push(PaymentWebviewComponent, { url: data.url });
@@ -96,11 +104,9 @@ export class PaymentConfirmComponent implements OnInit {
 
       browser.on('loadstart').subscribe(e => {
 
-      });
-
+      }, err => { this.retryCreateOrder(--retry, loading) });
     })
   }
-
   formatCurrency(item: Product) {
     return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
   }

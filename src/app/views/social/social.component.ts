@@ -38,7 +38,7 @@ export class SocialComponent implements OnInit {
     private paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl: LoadingController,
-    private fbService:FirebaseService
+    private fbService: FirebaseService
   ) {
     // this.menuCtrl.enable(true, 'mainMenu');
     var ratio = window.devicePixelRatio || 1;
@@ -95,24 +95,39 @@ export class SocialComponent implements OnInit {
       });
 
       loading.present();
-      this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
-        // check update profile        
-        if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-          this.requestUpdateProfile()
-          loading.dismiss();
-        } else {
-          this.paymentService.payment_qr_data = data;
-          this.paymentService.getPaymentMethod().subscribe(data => {
-            this.paymentService.payment_order_post = data;
-            loading.dismiss();
-            this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-            this.fbService.deleteQRCode(barcodeData.text)
-          });
-        }
-      })
+      this.retryGetTempOrder(5, barcodeData, loading)
     }, (err) => {
       this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
     });
+  }
+
+  retryGetTempOrder(retry, barcodeData, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      return;
+    }
+    this.paymentService.getTempOrder(barcodeData.text).subscribe(data => {
+      // check update profile        
+      if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+        this.requestUpdateProfile()
+        loading.dismiss();
+      } else {
+        this.paymentService.payment_qr_data = data;
+        this.retryGetPaymentMethod(5, loading, barcodeData);
+      }
+    }, err => this.retryGetTempOrder(--retry, barcodeData, loading))
+  }
+
+  retryGetPaymentMethod(retry, loading, barcodeData) {
+    if (retry == 0) {
+      return;
+    }
+    this.paymentService.getPaymentMethod().subscribe(data => {
+      this.paymentService.payment_order_post = data;
+      loading.dismiss();
+      this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+      this.fbService.deleteQRCode(barcodeData.text)
+    }, err => this.retryGetPaymentMethod(--retry, loading, barcodeData));
   }
 
   requestUpdateProfile() {

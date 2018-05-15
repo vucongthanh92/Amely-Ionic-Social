@@ -29,29 +29,36 @@ export class MessagesComponent implements OnInit {
     public nav: NavController,
     public appCtrl: App) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    
+
   }
 
   ngOnInit() {
-     
+
   }
 
-  
+  retryGetUser(retry, object) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.userService.getUser(object.from, null).subscribe(data => {
+      object.avatar = data.avatar;
+      object.guid = data.guid;
+    }, err => this.retryGetUser(--retry, object));
+  }
+
   ionViewDidLoad() {
     let owner_from = this.customService.user_current.username;
     this.messagesService.getListChat(owner_from, "individual").on('value', itemSnap => {
       this.individualList = [];
-      itemSnap.forEach( items => {
+      itemSnap.forEach(items => {
         this.messagesService.getLastMessage(items.val().key).on('value', lastmessage => {
           lastmessage.forEach(e => {
             let object = e.val();
             object.key = items.val().key;
             object.from = items.key;
             this.individualList = this.individualList.filter(data => data.key != object.key);
-            this.userService.getUser(object.from, null).subscribe(data => {
-              object.avatar = data.avatar;
-              object.guid = data.guid;
-            });
+            this.retryGetUser(5, object);
             object.chat_type = "individual";
             this.individualList.push(object);
             this.individualList.sort(this.compare);
@@ -68,22 +75,14 @@ export class MessagesComponent implements OnInit {
         let group_guid = items.val().key;
         this.messagesService.getLastMessage(group_guid).on('value', lastmessage => {
           lastmessage.forEach(e => {
-            this.groupService.getGroup(group_guid).subscribe( group => {
-              group.last_message = e.val().text;
-              group.last_time = e.val().time;
-              group.key = group_guid;
-              this.groups = this.groups.filter(data => data.guid != group_guid);
-              group.chat_type = "group";
-              this.groups.push(group);
-              this.groups.sort(this.compareGroup);
-            });
+            this.retryGetGroup(5, group_guid, e)
             return false;
           });
         });
         return false;
       });
     });
-    
+
 
     // this.groupService.getGroups(this.userCurrent.guid).subscribe( data => {
     //   this.groups = [];
@@ -102,6 +101,22 @@ export class MessagesComponent implements OnInit {
     //   });
     //   this.users = data.owners;
     // });
+  }
+
+  retryGetGroup(retry, group_guid, e) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.groupService.getGroup(group_guid).subscribe(group => {
+      group.last_message = e.val().text;
+      group.last_time = e.val().time;
+      group.key = group_guid;
+      this.groups = this.groups.filter(data => data.guid != group_guid);
+      group.chat_type = "group";
+      this.groups.push(group);
+      this.groups.sort(this.compareGroup);
+    }, err => this.retryGetGroup(--retry, group_guid, e));
   }
 
   goToPage(value, chat_type) {

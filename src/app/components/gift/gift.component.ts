@@ -40,7 +40,7 @@ export class GiftComponent implements OnInit {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.param = this.params.get('param');
     console.log(this.param);
-    
+
     switch (this.param.chat_type) {
       case 'individual':
         this.checkKeyChat(this.userCurrent.username, this.param.from, "individual");
@@ -122,33 +122,37 @@ export class GiftComponent implements OnInit {
 
           }
 
-          
+
 
           let loading = this.loadingCtrl.create({
             content: 'Please wait...',
             enableBackdropDismiss: true
           });
           loading.present();
-          this.giftsService.gift(obj).subscribe(res => {
-            loading.dismiss();
-            if (res.status) {
-              this.nav.pop();
-              this.customService.toastMessage('Tặng quà thành công !!!', 'bottom', 3000);
-            } else {
-              const toast = this.toastCtrl.create({
-                message: 'Hạn mức số lần tặng quà đã hết !!!',
-                position: "bottom",
-                duration: 3000
-              });
-             
-              toast.present();
-            }
-          });
+          this.retryGift(5, obj, loading);
         })
 
     }
   }
 
+  retryGift(retry, obj, loading) {
+    if (retry == 0) return;
+    this.giftsService.gift(obj).subscribe(res => {
+      loading.dismiss();
+      if (res.status) {
+        this.nav.pop();
+        this.customService.toastMessage('Tặng quà thành công !!!', 'bottom', 3000);
+      } else {
+        const toast = this.toastCtrl.create({
+          message: 'Hạn mức số lần tặng quà đã hết !!!',
+          position: "bottom",
+          duration: 3000
+        });
+
+        toast.present();
+      }
+    }, err => this.retryGift(--retry, obj, loading));
+  }
   goToPage() {
     this.appCtrl.getRootNav().push(ChooseItemComponent, {
       callback: this.myCallbackFunction

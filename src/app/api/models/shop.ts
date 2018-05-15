@@ -17,6 +17,7 @@ export class Shop {
     owner_name?: string;
     owner_phone?: string;
     owner_address?: string;
+    owner_username?: string;
     owner_ssn?: string;
     cover?: string;
     contact?: string;

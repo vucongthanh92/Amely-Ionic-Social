@@ -1,9 +1,11 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title *ngIf="item"> {{item.product_snapshot.title}}</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div *ngIf="item" class="ion_navbar_title">{{item.product_snapshot.title}}</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -36,9 +38,9 @@
     <ion-card-header>
       Thông tin sản phẩm
     </ion-card-header>
-    <ion-row>Số lượng : {{item.quantity}}</ion-row>
+    <ion-row class="inventtory_item_row">Số lượng : {{item.quantity}}</ion-row>
     <ion-row>
-      <span style="color:red">Ngày hết hạn lưu kho: {{stored_end | date: 'dd/MM/yyyy'}}</span>
+      <ion-col class="inventtory_item_timeout inventtory_item_row" col-12>Ngày hết hạn lưu kho: {{stored_end | date: 'dd/MM/yyyy'}}</ion-col>
     </ion-row>
     <ion-card-content>
 
@@ -87,8 +89,8 @@
           <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
         </ion-col>
 
-        <ion-col col-3 *ngIf="!is_remove_item">
-          <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
+        <ion-col col-3 *ngIf="!is_remove_item && isUser">
+          <button class="item_footer_btn" ion-button block (click)="gift()" >tặng quà</button>
         </ion-col>
 
         <ion-col col-3 *ngIf="!is_remove_item">
@@ -110,7 +112,7 @@
             <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
           </ion-col>
 
-          <ion-col col-4 *ngIf="!is_remove_item">
+          <ion-col col-4 *ngIf="!is_remove_item && isUser">
             <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
           </ion-col>
 

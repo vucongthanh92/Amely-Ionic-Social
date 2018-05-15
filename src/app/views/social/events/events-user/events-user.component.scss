@@ -63,9 +63,11 @@ app-events-user {
     .events_user_fab {
         bottom: 50px;
         background-color: #f0ad4e;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 
         ion-icon {
-            font-weight: bold;
+            font-weight: bolder;
+            font-size: 3.5rem;
         }
     }
 
