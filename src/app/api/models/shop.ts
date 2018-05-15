@@ -4,13 +4,16 @@ import { Store } from './store';
 /**
  */
 export class Shop {
-    lat?: number;
+    owner_province?: string;
     guid?: number;
     owner_guid?: number;
     description?: string;
     title?: string;
     shop_phone?: string;
     shop_address?: string;
+    shop_province?: string;
+    shop_district?: string;
+    shop_ward?: string;
     shop_bidn?: string;
     friendly_url?: string;
     status?: string;
@@ -19,9 +22,13 @@ export class Shop {
     owner_address?: string;
     owner_username?: string;
     owner_ssn?: string;
-    cover?: string;
-    contact?: string;
+    owner_ward?: string;
+    owner_district?: string;
     time_created?: number;
+    cover?: string;
+    policy?: string;
+    contact?: string;
+    lat?: number;
     lng?: number;
     introduce?: string;
     featured?: string;

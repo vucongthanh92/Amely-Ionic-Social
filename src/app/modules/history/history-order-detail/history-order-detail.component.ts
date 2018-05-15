@@ -4,7 +4,7 @@ import { HistoryService } from './../../../services/history.service';
 import { Transaction } from './../../../api/models/transaction';
 import { NavParams, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
-import { User, Product } from '../../../api/models';
+import { User, Product, Shop } from '../../../api/models';
 
 @Component({
   selector: 'app-history-order-detail',
@@ -14,9 +14,11 @@ export class HistoryOrderDetailComponent implements OnInit {
   order: Order;
   order_guid: number;
   tran: Transaction;
-  totalItem: number = 0;
-  totalAmount: number = 0;
   user_current: User;
+  totalPrice: number = 0;
+  shops: Array<Shop>;
+  items: Array<Product>;
+
 
   constructor(private navParams: NavParams, private historyService: HistoryService, private customService: CustomService, private nav: NavController) {
     this.tran = this.navParams.get('transaction');
@@ -35,22 +37,23 @@ export class HistoryOrderDetailComponent implements OnInit {
       return;
     }
     this.historyService.getOrder(this.order_guid ? this.order_guid : this.tran.related_guid).subscribe(data => {
-      this.order = data;
-      this.order.order_item
-      if (this.order.order_item) {
-        this.order.order_item.forEach(e => {
-          this.totalItem = this.totalItem + e.qty;
-          if (e.sale_price == 0 || e.sale_price == null) {
-            this.totalAmount = this.totalAmount + ((+e.price + (+e.price * (+e.tax / 100))) * e.qty);
-          } else {
-            this.totalAmount = this.totalAmount + ((+e.sale_price + (+e.sale_price * (+e.tax / 100))) * e.qty);
-          }
-        })
-      } else {
-        this.totalItem = 0;
-        this.totalAmount = 0;
+      try {
+        this.order = data.order;
+        this.shops = data.shops;
+        this.items = data.items;
+        
+      } catch (e) {
+
       }
+
     }, err => this.loadData(--retry))
+  }
+
+  getProductsShop(shopGuid){
+    console.log(this.items[shopGuid]);
+    console.log(shopGuid);
+    
+    return this.items[shopGuid];
   }
 
   formatCurrency(item: Product) {

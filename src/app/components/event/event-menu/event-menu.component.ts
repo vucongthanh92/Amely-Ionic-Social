@@ -54,7 +54,10 @@ export class EventMenuComponent implements OnInit {
       if (data.status) {
         loading.dismiss();
         this.eventSerive.publish = 2;
-      } else loading.dismiss(); this.customService.toastMessage('Công bố thất bại , vui lòng thử lại .', 'bottom', 3000)
+      } else {
+        loading.dismiss();
+        this.customService.toastMessage('Công bố thất bại , vui lòng thử lại .', 'bottom', 3000)
+      }
     },
       err => {
         this.retryPublicEvent(--retry, loading);

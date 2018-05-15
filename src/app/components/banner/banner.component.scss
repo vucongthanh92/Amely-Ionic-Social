@@ -1,0 +1,13 @@
+app-banner{
+    .shops_slides {
+        height: 180px;
+
+        .shops_slides_image {
+            background-position: center !important;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            width: 100%;
+            height: 180px;
+        }
+    }
+}

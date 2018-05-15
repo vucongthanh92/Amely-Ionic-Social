@@ -20,7 +20,6 @@
 <ion-content class="outer-content">
   <div style="background-color: #fff;" *ngIf="is_show" >
     <ion-list>
-
       <ion-item>
         <ion-label stacked>Họ tên</ion-label>
         <ion-input type="text" [(ngModel)]="shipping_fullname" name="shipping_fullname"></ion-input>
@@ -39,7 +38,7 @@
         <ion-input type="text" [(ngModel)]="shipping_note" name="shipping_note"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Thành phố / Tỉnh</ion-label>
+        <ion-label>Thành phố/Tỉnh</ion-label>
         <ion-select *ngIf="provinces" [(ngModel)]="shipping_province" name="province" (ionChange)="onProvinceChange($event)">
           <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
         </ion-select>

@@ -92,7 +92,7 @@ import { Param_create_offer } from '../models/param-_create-_offer';
 import { body_43 } from '../models/body-_43';
 import { Order_redeem } from '../models/order-_redeem';
 import { body_44 } from '../models/body-_44';
-import { Order } from '../models/order';
+import { OrderGet } from '../models/order-get';
 import { inline_response_200_15 } from '../models/inline-_response-_200_15';
 import { inline_response_200_14 } from '../models/inline-_response-_200_14';
 import { Param_create_order } from '../models/param-_create-_order';
@@ -4174,7 +4174,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getOrderResponse(orderGuid: number): Observable<HttpResponse<Order>> {
+  getOrderResponse(orderGuid: number): Observable<HttpResponse<OrderGet>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -4193,9 +4193,9 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Order = null;
-        _body = _resp.body as Order
-        return _resp.clone({body: _body}) as HttpResponse<Order>;
+        let _body: OrderGet = null;
+        _body = _resp.body as OrderGet
+        return _resp.clone({body: _body}) as HttpResponse<OrderGet>;
       })
     );
   }
@@ -4203,7 +4203,7 @@ export class ApiService extends BaseService {
   /**
    * @param order_guid - Global Unique IDentity
    */
-  getOrder(orderGuid: number): Observable<Order> {
+  getOrder(orderGuid: number): Observable<OrderGet> {
     return this.getOrderResponse(orderGuid).pipe(
       map(_r => _r.body)
     );

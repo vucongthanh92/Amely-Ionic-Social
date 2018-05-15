@@ -1,4 +1,3 @@
-import { guid } from './../../../api/models/guid';
 import { InventoryComponent } from './../../inventory/inventory.component';
 import { QrComponent } from './../../qr/qr.component';
 import { GroupService } from './../../../services/group.service';

@@ -19,6 +19,7 @@ export { Business } from './models/business';
 export { Gift } from './models/gift';
 export { Manufacturer } from './models/manufacturer';
 export { Photo } from './models/photo';
+export { OrderGet } from './models/order-get';
 export { Order } from './models/order';
 export { Shipping_methods } from './models/shipping-_methods';
 export { Payment_methods } from './models/payment-_methods';

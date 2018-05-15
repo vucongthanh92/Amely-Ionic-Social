@@ -76,6 +76,7 @@ import { ModalImageFeedComponent } from '../components/modal-image/modal-image-f
 import { ModalImageComponent } from '../components/modal-image/modal-image.component';
 import { BusinessMenuComponent } from '../components/business/business-menu/business-menu.component';
 import { RenewalItemComponent } from '../components/renewal-item/renewal-item.component';
+import { BannerComponent } from '../components/banner/banner.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -160,7 +161,8 @@ import { RenewalItemComponent } from '../components/renewal-item/renewal-item.co
     ModalImageFeedComponent,
     ModalImageComponent,
     BusinessMenuComponent,
-    RenewalItemComponent
+    RenewalItemComponent,
+    BannerComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -224,7 +226,8 @@ import { RenewalItemComponent } from '../components/renewal-item/renewal-item.co
     ModalImageFeedComponent,
     ModalImageComponent,
     BusinessMenuComponent,
-    RenewalItemComponent
+    RenewalItemComponent,
+    BannerComponent
   ],
   exports: [
     CategoriesComponent,
@@ -288,7 +291,8 @@ import { RenewalItemComponent } from '../components/renewal-item/renewal-item.co
     ModalImageFeedComponent,
     ModalImageComponent,
     BusinessMenuComponent,
-    RenewalItemComponent
+    RenewalItemComponent,
+    BannerComponent
   ]
 })
 export class SharedModule { }
