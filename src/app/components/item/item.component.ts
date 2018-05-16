@@ -29,13 +29,14 @@ export class ItemComponent implements OnInit {
   is_reload_before_page = false;
   expiryType: number;
   stored_end: Date;
+  isUser: boolean;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
     private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
-    console.log(this.itemGuid);
+    this.isUser = this.navParams.get('inventoryType')=='user';
 
   }
 

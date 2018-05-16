@@ -20,6 +20,7 @@ export class GroupComponent implements OnInit {
   dateCreated: Date;
   is_admin: boolean;
   reloadCallback: any;
+  isMenu: boolean;
 
   constructor(public alertCtrl: AlertController, public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private groupService: GroupService, private customService: CustomService, public popoverCtrl: PopoverController) {
@@ -47,6 +48,8 @@ export class GroupComponent implements OnInit {
       data => {
         this.groups.push(data);
         this.group = data;
+        this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid );
+        
         this.dateCreated = new Date(this.group.time_created * 1000);
         this.is_admin = this.group.owner_guid == this.customService.user_current.guid;
         if (!this.group.voted) this.showVoteAdmin();

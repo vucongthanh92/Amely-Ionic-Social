@@ -89,8 +89,8 @@
           <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
         </ion-col>
 
-        <ion-col col-3 *ngIf="!is_remove_item">
-          <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
+        <ion-col col-3 *ngIf="!is_remove_item && isUser">
+          <button class="item_footer_btn" ion-button block (click)="gift()" >tặng quà</button>
         </ion-col>
 
         <ion-col col-3 *ngIf="!is_remove_item">
@@ -112,7 +112,7 @@
             <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
           </ion-col>
 
-          <ion-col col-4 *ngIf="!is_remove_item">
+          <ion-col col-4 *ngIf="!is_remove_item && isUser">
             <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
           </ion-col>
 
