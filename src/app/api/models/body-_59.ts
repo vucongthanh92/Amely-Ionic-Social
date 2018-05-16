@@ -3,8 +3,13 @@
 /**
  */
 export class body_59 {
-    shop_guid?: number;
-    order_filter?: string;
-    offset?: number;
-    page_limit?: number;
+    shipping_method?: string;
+    shipping_name?: string;
+    shipping_phone?: string;
+    shipping_address?: string;
+    shipping_province?: string;
+    shipping_district?: string;
+    shipping_ward?: string;
+    shipping_note?: string;
+    to_guid?: string;
 }

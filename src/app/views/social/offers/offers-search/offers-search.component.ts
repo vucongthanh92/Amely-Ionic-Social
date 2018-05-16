@@ -131,7 +131,7 @@ export class OffersSearchComponent implements OnInit {
   }
 
   retryGetOffers(retry) {
-    if (retry) return;
+    if (retry==0) return;
     this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
       if (data instanceof Array) {
         this.offers = data;

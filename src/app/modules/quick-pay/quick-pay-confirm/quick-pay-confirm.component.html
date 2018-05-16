@@ -82,6 +82,14 @@
 
       <ion-item>
         <ion-icon name='card' item-start></ion-icon>
+        Phí giao hàng
+        <ion-note item-end style="color: red;">
+          {{ formartShippingFee() }}
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name='card' item-start></ion-icon>
         Tổng tiền
         <ion-note item-end style="color: red;">
           {{ formartTotalPrice() }}

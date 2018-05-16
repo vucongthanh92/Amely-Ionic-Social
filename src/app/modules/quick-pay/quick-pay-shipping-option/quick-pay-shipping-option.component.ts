@@ -5,7 +5,7 @@ import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
 import { PROVINCES } from './../../../provinces';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'app-quick-pay-shipping-option',
@@ -24,7 +24,7 @@ export class QuickPayShippingOptionComponent implements OnInit {
   districts: any;
   wards: any;
   is_show: boolean;
-  constructor(private nav: NavController, private customService: CustomService, private paymentService: PaymentService) {
+  constructor(private nav: NavController, private customService: CustomService, private paymentService: PaymentService, private loadingCtrl: LoadingController) {
     this.provinces = PROVINCES;
   }
 
@@ -59,6 +59,17 @@ export class QuickPayShippingOptionComponent implements OnInit {
     } else if (!this.shipping_ward) {
       this.customService.toastMessage('Chưa chọn phường xã', 'bottom', 3000);
     } else {
+      if (this.paymentService.quick_pay_send_data.shipping_methods.filename == 'sq/express') {
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          enableBackdropDismiss: true
+        });
+
+        loading.present();
+        this.retryShippingFee(5, loading);
+      } else {
+        this.nav.push(QuickPayConfirmComponent);
+      }
       this.paymentService.quick_pay_send_data.shipping = {};
       this.paymentService.quick_pay_send_data.shipping.shipping_fullname = this.shipping_fullname;
       this.paymentService.quick_pay_send_data.shipping.shipping_phone = this.shipping_phone;
@@ -66,7 +77,21 @@ export class QuickPayShippingOptionComponent implements OnInit {
       this.paymentService.quick_pay_send_data.shipping.shipping_province = this.shipping_province;
       this.paymentService.quick_pay_send_data.shipping.shipping_district = this.shipping_district;
       this.paymentService.quick_pay_send_data.shipping.shipping_ward = this.shipping_ward;
-      this.nav.push(QuickPayConfirmComponent);
+
     }
+  }
+
+  retryShippingFee(retry, loading) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.paymentService.getShippingFee('sq/express', this.shipping_fullname, this.shipping_phone, this.shipping_address, this.shipping_province,
+      this.shipping_district, this.shipping_ward, this.shipping_note, this.paymentService.payment_qr_data.to_guid).subscribe(data => {
+        console.log(data);
+        loading.dismiss();
+        this.paymentService.quick_pay_send_data.shipping.shipping_fee = data.fee;
+        this.nav.push(QuickPayConfirmComponent);
+      }, err => this.retryShippingFee(--retry, loading));
   }
 }

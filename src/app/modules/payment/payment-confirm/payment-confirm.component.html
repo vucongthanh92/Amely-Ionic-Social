@@ -82,6 +82,14 @@
 
           <ion-item>
             <ion-icon name='card' item-start></ion-icon>
+            Phí vận chuyển
+            <ion-note item-end style="color: red;">
+              {{ customService.formatCurrency( this.paymentService.param_create_order.shipping_fee, items.currency) }}
+            </ion-note>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='card' item-start></ion-icon>
             Tổng tiền
             <ion-note item-end style="color: red;">
               {{ customService.formatCurrency(items.total, items.currency) }}

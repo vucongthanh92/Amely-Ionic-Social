@@ -47,4 +47,10 @@ export class PaymentService {
       shipping_note: shipping_note, shipping_method: shipping_method, shipping_fee: shipping_fee, to_guid: to_guid
     })
   }
+  getShippingFee(shipping_method: string, shipping_name: string, shipping_phone: string, shipping_address: string, shipping_province: string, shipping_district: string, shipping_ward: string, shipping_note: string, to_guid: string) {
+    return this.api.getShippingFee({
+      shipping_method: shipping_method, shipping_name: shipping_name, shipping_phone: shipping_phone, shipping_address: shipping_address,
+      shipping_province: shipping_province, shipping_district: shipping_district, shipping_ward: shipping_ward, shipping_note: shipping_note, to_guid: to_guid
+    })
+  }
 }

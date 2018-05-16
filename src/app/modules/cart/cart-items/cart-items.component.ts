@@ -96,7 +96,6 @@ export class CartItemsComponent implements OnInit {
   }
 
   payment() {
-
     if (this.items.length > 0) {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',

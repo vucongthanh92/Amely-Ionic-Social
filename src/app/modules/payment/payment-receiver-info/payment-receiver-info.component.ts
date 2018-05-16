@@ -1,7 +1,7 @@
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { App, NavController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { PaymentPaymentMethodComponent } from '../payment-payment-method/payment-payment-method.component';
 import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
@@ -29,6 +29,7 @@ export class PaymentReceiverInfoComponent implements OnInit {
     private customService: CustomService,
     private paymentService: PaymentService,
     public nav: NavController,
+    private loadingCtrl: LoadingController,
     public appCtrl: App) {
     this.provinces = PROVINCES;
     this.shipping_fullname = this.customService.user_current.fullname;
@@ -54,6 +55,10 @@ export class PaymentReceiverInfoComponent implements OnInit {
   }
 
   changePage() {
+    console.log(this.shipping_province);
+    console.log(this.shipping_district);
+    console.log(this.shipping_ward);
+
     if (this.is_show) {
       if (!this.shipping_fullname) {
         this.customService.toastMessage('Tên người nhận không được để trống', 'bottom', 3000);
@@ -62,6 +67,16 @@ export class PaymentReceiverInfoComponent implements OnInit {
       } else if (!this.shipping_address || !this.shipping_province || !this.shipping_district || !this.shipping_ward) {
         this.customService.toastMessage('Vui lòng nhập địa chỉ người nhận', 'bottom', 3000);
       } else {
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          enableBackdropDismiss: true
+        });
+        if (this.paymentService.param_create_order.shipping_method == 'sq/express') {
+          loading.present();
+          this.retryGetShippingFee(5, loading);
+        } else {
+          this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
+        }
         this.paymentService.param_create_order.shipping_fullname = this.shipping_fullname;
         this.paymentService.param_create_order.shipping_phone = this.shipping_phone;
         this.paymentService.param_create_order.shipping_address = this.shipping_address;
@@ -69,13 +84,26 @@ export class PaymentReceiverInfoComponent implements OnInit {
         this.paymentService.param_create_order.shipping_district = this.shipping_district;
         this.paymentService.param_create_order.shipping_ward = this.shipping_ward;
         this.paymentService.param_create_order.shipping_note = this.shipping_note;
-        this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
+
       }
     } else {
       this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
     }
+  }
 
-
-
+  retryGetShippingFee(retry, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.paymentService.getShippingFee('sq/express', this.shipping_fullname, this.shipping_phone, this.shipping_address, this.shipping_province, this.shipping_district,
+      this.shipping_ward, this.shipping_note, null).subscribe(data => {
+        loading.dismiss();
+        console.log(data);
+        
+        this.paymentService.param_create_order.shipping_fee = data.fee + "";
+        this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
+      }, err => this.retryGetShippingFee(--retry, loading))
   }
 }

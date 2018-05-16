@@ -31,12 +31,12 @@ export class PaymentConfirmComponent implements OnInit {
     private paymentService: PaymentService,
     private loadingCtrl: LoadingController
   ) {
-
     this.confirm = this.paymentService.param_create_order;
     this.items = this.paymentService.items;
     this.payment_method = this.paymentService.payment_methods.payment_methods[this.paymentService.param_create_order.payment].displayname;
     this.shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].displayname;
     this.is_show_shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].filename != 'sq/storage';
+    if (this.paymentService.param_create_order.shipping_method != 'sq/express') this.paymentService.param_create_order.shipping_fee = "0";
 
     if (this.confirm.province && this.confirm.district && this.confirm.ward) {
       this.customer_address = this.confirm.address + " " + this.getDisplayname(this.confirm.ward, 'ward') + " " + this.getDisplayname(this.confirm.district, 'district') + " " + this.getDisplayname(this.confirm.province, 'province');
@@ -74,6 +74,8 @@ export class PaymentConfirmComponent implements OnInit {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
     this.retryCreateOrder(5, this.loading);
+    console.log(this.paymentService.param_create_order );
+    
   }
 
   retryCreateOrder(retry, loading) {
@@ -82,6 +84,8 @@ export class PaymentConfirmComponent implements OnInit {
       return;
     }
     this.paymentService.createOrder().subscribe(data => {
+      console.log(data);
+      
       this.loading.dismiss();
       this.nav.push(PaymentWebviewComponent, { url: data.url });
       const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
