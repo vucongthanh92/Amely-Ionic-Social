@@ -14,7 +14,6 @@ import { Share } from '../../api/models';
 })
 
 export class FeedsComponent implements OnInit {
-
   @Input('feed_type') feed_type: string;
   @Input('owner_guid') owner_guid: string;
   @Input('type') type: string;
@@ -71,14 +70,7 @@ export class FeedsComponent implements OnInit {
 
   refreshView(retry) {
 
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
-
     if (retry == 0) {
-      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -86,20 +78,17 @@ export class FeedsComponent implements OnInit {
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
         if (data.posts) {
-          loading.dismiss();
           this.offset = this.offset + data.posts.length;
           this.posts = data.posts;
           this.users = data.users;
           this.shares = data.shares;
           this.isHasData = true;
         } else {
-          loading.dismiss();
           this.isHasData = false;
         }
       },
       err => {
         console.log(err);
-        loading.dismiss();
         this.refreshView(--retry);
 
       }

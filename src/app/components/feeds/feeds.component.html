@@ -7,6 +7,27 @@
     </ion-item>
   </ion-card>
 
+  <ion-card *ngIf="!isHasData">
+    <ion-col col-6 class="offer_myself_box" *ngFor='let fake of [9,9,9,9,9,9,9,9,9]' class='fakeItem'>
+      <div class="offer_myself_main">
+        <ion-grid>
+          <ion-row style="margin-left: -10px;">
+            <ion-col col-3>
+              <ion-avatar item-start>
+                <div class="divCustom2"></div>
+              </ion-avatar>
+            </ion-col>
+            <ion-col col-9>
+              <p class="offer_myself_location"></p>
+              <h3 class="offer_myself_location"></h3>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="divCustom"></div>
+      </div>
+    </ion-col>
+  </ion-card>
+
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
