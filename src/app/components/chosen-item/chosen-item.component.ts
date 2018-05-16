@@ -105,5 +105,9 @@ export class ChosenItemComponent implements OnInit {
   goToDetail(item) {
     this.appCtrl.getRootNav().push(GiftItemDetailComponent, { item: item });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }
 

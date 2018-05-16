@@ -1,22 +1,27 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Danh sách phản hồi</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">danh sách phản hồi</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
+<ion-content class="counter_offer_main">
   <div *ngIf="offer.offer_type == 'normal'">
     <ion-list *ngIf="counters">
       <ion-item-sliding *ngFor="let counter of counters">
         <ion-item>
-          <ion-thumbnail item-start>
-            <img width="100%" src="{{ counter.product_snapshot.images[0] }}" (click)="openProduct(counter.product_snapshot.guid)">
+          <ion-thumbnail class="counter_offer_product_img" item-start>
+            <img src="{{ counter.product_snapshot.images[0] }}" (click)="openProduct(counter.product_snapshot.guid)">
           </ion-thumbnail>
-          <h2>{{ counter.product_snapshot.title }}</h2>
+          <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
           <p>{{ counter.description }}</p>
-          <ion-item class="user-info">
+          <ion-item class="counter_offer_user">
             <ion-avatar item-start>
-              <img width="100%" src="{{ counter.owner.avatar }}" (click)="openOwner(counter.owner.guid, counter.owner.username)">
+              <img src="{{ counter.owner.avatar }}" (click)="openOwner(counter.owner.guid, counter.owner.username)">
             </ion-avatar>
             <h2>{{ counter.owner.username }}</h2>
           </ion-item>
@@ -24,28 +29,27 @@
         </ion-item>
         <ion-item-options side="right">
           <button ion-button color="secondary" (click)="agree(counter)">
-            <ion-icon name="thumbs-up"></ion-icon>
-            Chấp nhận
+            <ion-icon name="thumbs-up"></ion-icon>Chấp nhận
           </button>
           <button ion-button color="danger" (click)="reject(counter)">
-            <ion-icon name="trash"></ion-icon>
-             Từ chối
+            <ion-icon name="trash"></ion-icon>Từ chối
           </button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
   </div>
+  
   <div *ngIf="offer.offer_type == 'random'">
     <ion-list *ngIf="counters">
       <ion-item *ngFor="let counter of counters">
-        <ion-thumbnail item-start>
+        <ion-thumbnail class="counter_offer_product_img" item-start>
           <img width="100%" src="{{ counter.product_snapshot.images[0] }}">
         </ion-thumbnail>
-        <h2>{{ counter.product_snapshot.title }}</h2>
+        <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
         <p>{{ counter.description }}</p>
-        <ion-item class="user-info">
+        <ion-item class="counter_offer_user">
           <ion-avatar item-start>
-            <img width="100%" src="{{ counter.owner.avatar }}">
+            <img src="{{ counter.owner.avatar }}">
           </ion-avatar>
           <h2>{{ counter.owner.username }}</h2>
         </ion-item>
@@ -53,23 +57,22 @@
       </ion-item>
     </ion-list>
   </div>
+  
   <div *ngIf="offer.offer_type == 'giveaway'">
     <ion-list *ngIf="counters">
       <ion-item-sliding *ngFor="let counter of counters">
-        <ion-item class="user-info">
+        <ion-item class="counter_offer_user">
           <ion-avatar item-start>
-            <img width="100%" src="{{ counter.owner.avatar }}">
+            <img src="{{ counter.owner.avatar }}">
           </ion-avatar>
-          <h2>{{ counter.owner.username }}</h2>
+          <h2 class="counter_offer_product_title">{{ counter.owner.username }}</h2>
         </ion-item>
         <ion-item-options side="right">
           <button ion-button color="secondary" (click)="agree(counter)">
-            <ion-icon name="chatbubbles"></ion-icon>
-            Chấp nhận
+            <ion-icon name="chatbubbles"></ion-icon>Chấp nhận
           </button>
           <button ion-button color="danger" (click)="reject(counter)">
-            <ion-icon name="trash"></ion-icon>
-            Từ chối
+            <ion-icon name="trash"></ion-icon>Từ chối
           </button>
         </ion-item-options>
       </ion-item-sliding>

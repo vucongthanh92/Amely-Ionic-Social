@@ -6,6 +6,10 @@ app-offers-item-detail {
     padding: 0px;
   }
 
+  .scroll-content {
+    margin-top: 0px !important;
+  }
+
   .offer_item_date {
     text-align: center;
     border-bottom: 1px solid #c8c7cc;
@@ -20,8 +24,18 @@ app-offers-item-detail {
     text-align: center;
   }
 
+  .offer_item_quantity {
+    margin: 0 0 5px;
+  }
+
   .offer_item_title {
     margin: 0px 0px 5px 0px;
+    text-transform: capitalize;
+    font-size: 1.6rem;
+    color: #f0ad4e;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   
   .offer_item_image {
@@ -83,5 +97,6 @@ app-offers-item-detail {
     margin: auto;
     max-width: 100%;
     max-height: 100%;
+    border-radius: 3px;
   }
 }
