@@ -12,6 +12,14 @@
     </div>
   </ion-item>
 
+  <ion-item (click)="changeCover()" *ngIf="is_user_current">
+    <ion-icon ios="ios-image" md="md-image"></ion-icon> Thay đổi ảnh bìa
+  </ion-item>
+  
+  <ion-item (click)="changeAvatar()" *ngIf="is_user_current">
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
+  </ion-item>
+
   <ion-item class="event_menu_item" (click)="openQR()" *ngIf="event.has_inventory=='1'">
       <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
   </ion-item>

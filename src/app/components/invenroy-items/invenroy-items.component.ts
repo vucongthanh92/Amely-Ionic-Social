@@ -27,6 +27,8 @@ export class InvenroyItemsComponent implements OnInit {
     this.inventoryType = this.navParams.get('inventoryType');
     this.title = this.navParams.get('title');
     this.callback = this.navParams.get('callback');
+    console.log(this.inventoryType);
+    
   }
 
   ngOnInit() {
@@ -83,7 +85,7 @@ export class InvenroyItemsComponent implements OnInit {
   goToPage(value, item) {
     switch (value) {
       case 'item':
-        this.appCtrl.getRootNav().push(ItemComponent, { itemGuid: item.guid, callback: this.myCallbackFunction });
+        this.appCtrl.getRootNav().push(ItemComponent, { itemGuid: item.guid, callback: this.myCallbackFunction, inventoryType: this.inventoryType });
         break;
       case 'default':
         break;

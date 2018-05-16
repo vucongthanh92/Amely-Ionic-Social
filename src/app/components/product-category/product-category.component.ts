@@ -92,14 +92,21 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
 
     setTimeout(() => {
+      loading.present();      
       this.offset = this.offset + this.limit;
       if (!this.isLoadMore) {
         this.retryLoadMore(5);
       }
       infiniteScroll.complete();
     }, 500);
+    
+    
   }
 
   retryLoadMore(retry) {

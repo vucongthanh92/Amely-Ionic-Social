@@ -36,21 +36,35 @@
     </ion-list>
   </div>
   <div *ngIf="offer.offer_type == 'random'">
-    <ion-list *ngIf="counters">
-      <ion-item *ngFor="let counter of counters">
+    <ion-list>
+      <ion-item>
         <ion-thumbnail item-start>
-          <img width="100%" src="{{ counter.product_snapshot.images[0] }}">
+          <img width="100%" src="{{ offer.product_snapshot.images[0] }}">
         </ion-thumbnail>
-        <h2>{{ counter.product_snapshot.title }}</h2>
-        <p>{{ counter.description }}</p>
+        <h2>{{ offer.product_snapshot.title }}</h2>
+        <p>{{ offer.description }}</p>
         <ion-item class="user-info">
           <ion-avatar item-start>
-            <img width="100%" src="{{ counter.owner.avatar }}">
+            <img width="100%" src="{{ offer.owner.avatar }}">
           </ion-avatar>
-          <h2>{{ counter.owner.username }}</h2>
+          <h2>{{ offer.owner.username }}</h2>
         </ion-item>
-        <ion-icon name="md-arrow-back" item-end></ion-icon>
       </ion-item>
+      <div *ngIf="counters">
+        <ion-item *ngFor="let counter of counters">
+          <ion-thumbnail item-start>
+            <img width="100%" src="{{ counter.product_snapshot.images[0] }}">
+          </ion-thumbnail>
+          <h2>{{ counter.product_snapshot.title }}</h2>
+          <p>{{ counter.description }}</p>
+          <ion-item class="user-info">
+            <ion-avatar item-start>
+              <img width="100%" src="{{ counter.owner.avatar }}">
+            </ion-avatar>
+            <h2>{{ counter.owner.username }}</h2>
+          </ion-item>
+        </ion-item>
+      </div>
     </ion-list>
   </div>
   <div *ngIf="offer.offer_type == 'giveaway'">

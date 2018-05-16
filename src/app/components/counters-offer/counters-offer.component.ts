@@ -30,6 +30,8 @@ export class CountersOfferComponent implements OnInit {
     public appCtrl: App
   ) {
     this.offer = this.navParams.get('param');
+    console.log(this.offer);
+    
     this.loadData(5);
   }
 

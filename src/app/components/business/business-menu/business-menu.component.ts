@@ -48,7 +48,7 @@ export class BusinessMenuComponent implements OnInit {
     this.nav.pop();
     this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
-      this.retryChangeAvatar(5,images)
+      this.retryChangeAvatar(5, images)
 
     })
   }
@@ -58,19 +58,15 @@ export class BusinessMenuComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
-      let images = [url + ''];
-      this.customService.updateAvatar(+this.page.guid, "business", images).subscribe(data => {
-        console.log(data);
+    this.customService.updateAvatar(+this.page.guid, "business", images).subscribe(data => {
+      console.log(data);
 
-        if (data.status) {
-          this.callback({ url: data + "", isAvatar: true }).then(() => {
-          });
-        } else {
-          this.customService.toastMessage("Đã có lỗi vui lòng thử lại.", "bottom", 3000);
-        }
-      })
-
-    }, err => this.retryChangeAvatar(5, images));
+      if (data.status) {
+        this.callback({ url: data + "", isAvatar: true }).then(() => {
+        });
+      } else {
+        this.customService.toastMessage("Đã có lỗi vui lòng thử lại.", "bottom", 3000);
+      }
+    },err=>this.retryChangeAvatar(--retry, images))
   }
 }

@@ -68,7 +68,6 @@ export class InventoryComponent implements OnInit {
     } else if (this.inventoryType === 'business') {
       this.page = this.navParams.get("obj");
     }
-
     if (this.ownerGuid == this.userCurrent.guid) {
       this.hidden_header = true;
     } else {

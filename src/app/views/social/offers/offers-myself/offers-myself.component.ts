@@ -57,6 +57,10 @@ export class OffersMyselfComponent implements OnInit {
 
   }
 
+  counterOfferRandom(offerRandom:any){
+    return + offerRandom + 1;
+  }
+
   changePage(offer) {
     // this.nav.push(OffersItemDetailComponent, { param: offer });
     // this.nav.setRoot(OffersItemDetailComponent, { param: offer });

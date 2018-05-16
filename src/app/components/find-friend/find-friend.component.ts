@@ -42,6 +42,7 @@ export class FindFriendComponent implements OnInit {
           console.log(this.user_found);
 
         } else {
+          this.customService.toastMessage('Không tìm thấy thông tin', 'bottom', 2000);
           this.user_found = null;
         }
       },
