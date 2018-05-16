@@ -25,7 +25,7 @@
       </div>
   
       <div *ngIf="offer.offer_type=='random'" class="offer_myself_counter">
-         {{offer.counter_offers_number}}/{{offer.limit_counter}}
+         {{ counterOfferRandom(offer.counter_offers_number)}}/{{offer.limit_counter}}
       </div>
       <div *ngIf="offer.offer_type!='random'"  class="offer_myself_counter">
          {{offer.counter_offers_number}}

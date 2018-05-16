@@ -92,7 +92,7 @@ export class EventComponent implements OnInit {
     }
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event, type: this.type });
+    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event, type: this.type, callback: this.callbackAvatarCover });
     popover.present({
       ev: myEvent
     });
@@ -133,5 +133,25 @@ export class EventComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
+
+  callbackAvatarCover = (_params) => {
+    return new Promise((resolve, reject) => {
+      // const url: string = _params.url;
+      // const isAvatar: boolean = _params.isAvatar;
+      // isAvatar ? this.page.avatar = url : this.page.cover = url;
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss: true
+      });
+
+      loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+        this.loadData(5)
+      }, 4000);
+      resolve();
+    });
+  }
+
 
 }
