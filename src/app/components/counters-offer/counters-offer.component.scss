@@ -1,6 +1,33 @@
 app-counters-offer {
-  .user-info.item .item-inner {
+  .counter_offer_user.item .item-inner {
     border: 0px;
   }
 
+  .counter_offer_user {
+    padding: 0px;
+
+    ion-avatar {
+      margin: 7px 5px 0px 0 !important;
+
+      img {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        margin: 0px;
+      }
+    }
+
+    .item-inner {
+      .label-ios {
+        margin: 0px 8px 5px 0;
+      }
+    }
+  }
+
+  .counter_offer_product_title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }

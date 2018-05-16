@@ -1,21 +1,102 @@
- app-offers-item-detail {
-   .ionContent {
-     left: -15px;
-   }
-   .h4Ion {
-     left: 20px;
-     position: relative;
-     font-size: 15px;
-   }
+app-offers-item-detail {
+  .offer_item_content {
+    margin: 64px auto 0px auto;
+    width: auto;
+    box-shadow: none;
+    padding: 0px;
+  }
 
-   .offer_detail_info {
-     margin: 0px 0px 30px 0px;
-   }
+  .scroll-content {
+    margin-top: 0px !important;
+  }
 
-   .offer_detail_relation {
-      float: right;
-      color: #488aff;
-      font-size: 16px;
-   }
+  .offer_item_date {
+    text-align: center;
+    border-bottom: 1px solid #c8c7cc;
+    margin: 0px 0px 12px 0px;
+    padding: 10px 7px 9px 7px;
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .offer_item_info {
+    padding: 0px;
+    text-align: center;
+  }
+
+  .offer_item_quantity {
+    margin: 0 0 5px;
+  }
+
+  .offer_item_title {
+    margin: 0px 0px 5px 0px;
+    text-transform: capitalize;
+    font-size: 1.6rem;
+    color: #f0ad4e;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
   
- }
+  .offer_item_image {
+    margin: 0px 0px 30px 0px;
+  }
+
+  .offer_detail_relation {
+    color: #488aff;
+    font-size: 1.5rem;
+    vertical-align: middle;
+
+    ion-icon {
+      vertical-align: bottom;
+      margin: 0px 3px 0px 0px;
+    }
+  }
+
+  .offer_item_btn_send {
+    background-color: #f0ad4e;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .offer_item_nearby {
+    border-bottom: 1px solid #c8c7cc;
+    padding: 0px;
+    margin: 0px 10px 7px 10px;
+    width: auto;
+
+    .label-ios {
+      margin: 10px 0px 0px 0px;
+    }
+  }
+
+  .offer_item_description_label {
+    color: #333;
+    margin: 0px 0px 3px 0px;
+  }
+
+  .offer_item_description_content {
+    color: #333;
+  }
+
+  .offer_item_product {
+    padding: 7px 10px 25px 10px;
+  }
+
+  .offer_item_invent {
+    float: right;
+    margin: 0px 0px 5px 0px;
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  .offer_item_img {
+    width: auto;
+    height: auto;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 3px;
+  }
+}

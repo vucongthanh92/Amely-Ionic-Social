@@ -1,110 +1,76 @@
 <ion-header>
-  <ion-navbar swipeBackEnabled="true">
-    <ion-title>Chi tiết trao đổi</ion-title>
+  <ion-navbar swipeBackEnabled="true" hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Chi tiết trao đổi</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" *ngIf="offer">
-  <ion-card>
-    <ion-card-header>
-      Chủ trao đổi
-      <strong style="float: right" *ngIf="offer.seconds">
+<ion-content class="offer_item_main" *ngIf="offer">
+  <ion-card class="offer_item_content">
+    <ion-card-header class="offer_item_date" *ngIf="offer.seconds">
         <app-timer #countdownTimer [timeInSeconds]="offer.seconds"></app-timer>
-      </strong>
     </ion-card-header>
-    <ion-item *ngIf="offer.owner">
-      <ion-avatar item-start>
-        <img [src]="offer.owner.avatar">
-      </ion-avatar>
-      <h2>
-        {{ offer.owner.username }}
-        <span *ngIf="offer.target == 'public'" class="offer_detail_relation">
-          <ion-icon name="globe"></ion-icon> Xung quanh</span>
-        <span *ngIf="offer.target == 'friends'" class="offer_detail_relation">
-          <ion-icon name="people"></ion-icon> Bạn bè</span>
-        <span *ngIf="offer.target == 'location'" class="offer_detail_relation">
-          <ion-icon name="locate"></ion-icon> Vị trí</span>
-      </h2>
-      <button *ngIf="!is_counter && offer.offer_type!='giveaway'" type="button" name="button" (click)="chosenItem(offer)" ion-button>Tham gia trao đổi</button>
-      <button *ngIf="!is_counter && offer.offer_type =='giveaway'" type="button" name="button" (click)="requestOffer(offer)" ion-button>Đề nghị nhận quà</button>
-    </ion-item>
-    <ion-row class="offer_detail_info">
+
+    <ion-card-content class="offer_item_info">
+      <h3 class="offer_item_title">{{ offer.product_snapshot.title }}</h3>
+      <p class="offer_item_quantity">Số lượng : {{ offer.quantity }}</p>
+    </ion-card-content>
+
+    <ion-row class="offer_item_image">
       <ion-col col-12>
-        <img width="100%" [src]="offer.product_snapshot.images[0]" imageViewer>
+        <img class="offer_item_img" [src]="offer.product_snapshot.images[0]" imageViewer>
       </ion-col>
       <ion-col col-12>
-        <ion-card-content>
-          <h3>
-            <strong>{{ offer.product_snapshot.title }}</strong>
-          </h3>
-          <p>Số lượng : {{ offer.quantity }}</p>
+        <ion-item class="offer_item_nearby" *ngIf="offer.owner">
+            <span *ngIf="offer.target == 'public'" class="offer_detail_relation">
+              <ion-icon name="globe"></ion-icon> Xung quanh</span>
+            <span *ngIf="offer.target == 'friends'" class="offer_detail_relation">
+              <ion-icon name="people"></ion-icon> Bạn bè</span>
+            <span *ngIf="offer.target == 'location'" class="offer_detail_relation">
+              <ion-icon name="locate"></ion-icon> Vị trí</span>
+          <button class="offer_item_invent" *ngIf="!is_counter && offer.offer_type!='giveaway'" type="button" name="button" (click)="chosenItem(offer)" 
+            ion-button>Tham gia trao đổi</button>
+          <button class="offer_item_invent" *ngIf="!is_counter && offer.offer_type =='giveaway'" type="button" name="button" (click)="requestOffer(offer)" 
+            ion-button>Đề nghị nhận quà</button>
+        </ion-item>
+
+        <ion-card-content class="offer_item_product">
+          <p class="offer_item_description_label">Thông tin sản phẩm: </p>
+          <p class="offer_item_description_content">{{ offer.product_snapshot.description }}</p>
         </ion-card-content>
-      </ion-col>
-      <ion-col col-12>
-        <ion-card-content>
-          <p>Thông tin sản phẩm</p>
-          <p>{{ offer.product_snapshot.description }}</p>
-        </ion-card-content>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-
-      </ion-col>
-      <ion-col>
-
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-
-        </ion-note>
       </ion-col>
     </ion-row>
   </ion-card>
+
   <ion-card *ngIf="counter">
-    <ion-card-header>
-      Người trao đổi
-    </ion-card-header>
+    <ion-card-header>Người trao đổi</ion-card-header>
     <ion-item *ngIf="counter.owner">
-      <ion-avatar item-start>
-        <img [src]="counter.owner.avatar">
-      </ion-avatar>
+      <ion-avatar item-start><img [src]="counter.owner.avatar"></ion-avatar>
       <h2>{{ counter.owner.username }}</h2>
     </ion-item>
+    
     <ion-row *ngIf="counter.product_snapshot">
-      <ion-col col-12>
-        <img width="100%" [src]="counter.product_snapshot.images[0]">
-      </ion-col>
+      <ion-col col-12><img width="100%" [src]="counter.product_snapshot.images[0]"></ion-col>
       <ion-col col-12>
         <ion-card-content>
-          <h3>
-            <strong>{{ counter.product_snapshot.title }}</strong>
-          </h3>
-          <p>Số lượng : {{ counter.quantity }}</p>
+          <h3><strong>{{ counter.product_snapshot.title }}</strong></h3>
+          <p>Số lượng: {{ counter.quantity }}</p>
         </ion-card-content>
       </ion-col>
       <ion-col col-12>
-        <p>Thông tin sản phẩm</p>
-        <p>{{ counter.product_snapshot.description }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-
-      </ion-col>
-      <ion-col>
-
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-
-        </ion-note>
+        <p class="offer_item_description_label">Thông tin sản phẩm</p>
+        <p class="offer_item_description_content">{{ counter.product_snapshot.description }}</p>
       </ion-col>
     </ion-row>
   </ion-card>
 </ion-content>
+
 <div *ngIf="offer">
   <ion-footer *ngIf="offer.owner.username == customService.user_current.username">
-    <button type="button" name="button" (click)="changePage(offer)" ion-button full no-margin>Xem danh sách tham gia</button>
+    <button class="offer_item_btn_send" type="button" name="button" (click)="changePage(offer)" ion-button full no-margin>Xem danh sách tham gia</button>
   </ion-footer>
 </div>

@@ -159,4 +159,8 @@ export class OffersItemDetailComponent implements OnInit {
     });
   }
 
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

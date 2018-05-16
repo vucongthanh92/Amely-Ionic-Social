@@ -169,4 +169,8 @@ export class CountersOfferComponent implements OnInit {
   openProduct(guidProduct) {
     this.appCtrl.getRootNav().push(ProductComponent, { guid: guidProduct });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

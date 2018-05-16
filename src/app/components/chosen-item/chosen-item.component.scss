@@ -65,39 +65,27 @@ app-chosen-item {
         }
       }
 
-    #divContent{
+      .chosen_item_content{
         margin: 0 0 1% 1%;
         vertical-align: middle;
         text-align: center;
         background-color: #fff;
         left: 1%;
-        // position: absolute;
-        min-height: 98%;
-        margin-top: 5px;
-        border-radius: 8px;
-        width: 98%;
-      }
-    #divContent{
-        margin: 0 0 1% 1%;
-        vertical-align: middle;
-        text-align: center;
-        background-color: #fff;
-        left: 1%;
-        // position: absolute;
         min-height: 98%;
         margin-top: 5px;
         border-radius: 8px;
         width: 98%;
       }
 
-       .offer_myself_image {
-    background-position: center !important;
-    background-size: cover !important;
-    padding: 0px;
-    width: 100%;
-    height: 100px;
-    margin: 0px 0px 5px 0px;
-  }
+      .offer_myself_image {
+        background-position: center !important;
+        background-size: cover !important;
+        padding: 0px;
+        width: 100%;
+        height: 100px;
+        margin: 0px 0px 5px 0px;
+        border: 1px solid #e8e8ef;
+      }
 
 
   @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
@@ -174,7 +162,6 @@ app-chosen-item {
     }
   }
 
-
   .ribbon.atletico {
     @include ribbonize($atletico);
   }
@@ -183,4 +170,38 @@ app-chosen-item {
     @include ribbonize($javascript, black);
   }
 
+  .chosen_item_main {
+    background-color: #57bde3;
+    height: 100%;
+    position: relative;
+  }
+
+  .chosen_item_product_title {
+    margin: 0px 0px 3px 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    color: #000;
+  }
+
+  .chosen_item_product_quantity {
+    font-size: 1.2rem;
+    color: #77797c;
+  }
+
+  .chosen_item_footer_title {
+    color: #8e9093 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 3px 0px 3px;
+    font-size: 1.3rem;
+    margin: 0px;
+    bottom: 5px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
 }
