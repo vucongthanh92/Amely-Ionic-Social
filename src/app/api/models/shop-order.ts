@@ -3,12 +3,13 @@
 /**
  */
 export class ShopOrder {
-    subtype?: string;
+    shipping_status?: string;
     guid?: number;
     owner_guid?: number;
     description?: string;
     title?: string;
     type?: string;
+    subtype?: string;
     time_created?: string;
     process_status?: string;
     shop_guid?: string;

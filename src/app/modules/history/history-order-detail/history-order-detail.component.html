@@ -10,60 +10,48 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <div class="history_order">
-    <ion-row *ngIf="order">
-      <ion-col col-12 class="history_order_item" *ngFor="let item of order.order_item">
-        <ion-grid>
-          <ion-row>
-            <ion-col col-3>
-              <div *ngIf="item.images" [style.background]="'url(' + item.images[0] + ')'" class="history_order_images"></div>
-            </ion-col>
-            <ion-col col-7>
-              <h3 class="history_order_title">{{item.title}} </h3>
-              <p class="history_order_description">
-                <a class="history_order_price">
-                  <div *ngIf="item.sale_price == 0 || item.sale_price == null; else other_content">
-                    <div class="product_feature_price">{{ formatSalePrice( item.price, item.currency) }} <a style="color: #aeacb4">x {{item.qty}}</a> </div> 
-                  </div>
-                  <ng-template #other_content>
-                    <div class="product_feature_price">{{formatSalePrice(item.sale_price,item.currency)}} <a style="color: #aeacb4">x {{item.qty}}</a></div>
-                    <div class="product_sale_price">{{ formatSalePrice( item.price, item.currency) }}</div>
-                  </ng-template>
-                  <!-- {{formatCurrency(item)}} -->
-
-                </a> 
-              </p>
-              <!-- <p style="top:-10px; position: relative;">Thuế : {{item.tax}}%</p> -->
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-    </ion-row>
+  <div *ngFor="let shop of shops">
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="{{shop.avatar}}">
+      </ion-thumbnail>
+      <h2>{{shop.title}}</h2>
+    </ion-item>
+    <div >
+      <ion-list >
+        <ion-item style="padding-left: 15px" *ngFor="let p of  getProductsShop(shop.guid)">
+          <ion-thumbnail item-left>
+            <img *ngIf="p.images" src="{{p.images[0]}}">
+            <img *ngIf="!p.images" src="assets/imgs/image_not_found.jpg">
+          </ion-thumbnail>
+          <h2>{{p.title}}</h2>
+          <div *ngIf="!p.redeem_quantity ||p.redeem_quantity==0;else other_content">
+            <p>SL :
+              <span style="color: red">{{p.display_quantity}}</span>
+            </p>
+            <p>Tổng tiền :
+              <span style="color: red">{{formatTotalPrive(p.display_price,p.display_currency)}}</span>
+            </p>
+          </div>
+          <ng-template #other_content>
+            <div>
+              <p>Sử dụng trong kho
+                <span style="color: red">{{p.redeem_quantity}}</span> sản phảm</p>
+            </div>
+          </ng-template>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
 
 <ion-footer class="history_order_total" *ngIf="order">
   <div class="history_order_total_box" padding-horizontal>
     <ion-item>
-      Tổng sản phẩm
-      <ion-note class="ionNote" item-end>
-        {{totalItem}}
-      </ion-note>
-    </ion-item>
-    <!-- <ion-item>
-        <ion-label>Tổng tiền : </ion-label>
-        <h4 style="color: red; ">300,000 đ</h4>
-      </ion-item> -->
-    <ion-item>
       Tổng tiền
-      <ion-note class="ionNote" item-end *ngIf="user_current" >
-        {{formatTotalPrive(totalAmount,user_current.usercurrency)}}
+      <ion-note class="ionNote" item-end *ngIf="user_current">
+        {{formatTotalPrive(totalPrice,user_current.usercurrency)}}
       </ion-note>
     </ion-item>
-    <div class="divVAT">
-      <ion-label>
-        <i>(Đã bao gồm VAT)</i>
-      </ion-label>
-    </div>
   </div>
 </ion-footer>

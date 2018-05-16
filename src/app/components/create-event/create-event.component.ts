@@ -195,7 +195,7 @@ export class CreateEventComponent implements OnInit {
       //   country: string, location: string, description: string, has_inventory: string, status: string,
       //     event_type: string, owner_guid: number, members: string[], invites: string[]
       loading.dismiss();
-      const status = this.is_open ? "2" : "1";
+      // const status = this.is_open ? "2" : "1";
       this.retryCreateEvent(5, datetime_start, datetime_end, loading)
     }
 
