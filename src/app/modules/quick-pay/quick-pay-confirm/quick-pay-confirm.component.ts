@@ -47,7 +47,7 @@ export class QuickPayConfirmComponent implements OnInit {
     if (this.paymentService.quick_pay_send_data.shipping_methods && (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage')) {
       this.paymentService.quick_pay_send_data.shipping = null;
     }
-    if (this.paymentService.quick_pay_send_data.shipping_methods.filename != 'sq/express') this.paymentService.quick_pay_send_data.shipping.shipping_fee ="0";
+    if (this.paymentService.quick_pay_send_data.shipping_methods.filename != 'sq/express') this.paymentService.quick_pay_send_data.shipping.shipping_fee = "0";
   }
 
   getTotalPrice() {
@@ -60,7 +60,7 @@ export class QuickPayConfirmComponent implements OnInit {
   }
 
   formartTotalPrice() {
-    return this.customService.formatCurrency(this.getTotalPrice() + "", this.userCurrent.usercurrency);
+    return this.customService.formatCurrency((+this.getTotalPrice() + (+this.paymentService.quick_pay_send_data.shipping.shipping_fee)) + "", this.userCurrent.usercurrency);
   }
 
   formartShippingFee() {

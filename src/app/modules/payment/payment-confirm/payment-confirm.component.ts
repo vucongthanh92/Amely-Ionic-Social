@@ -51,6 +51,10 @@ export class PaymentConfirmComponent implements OnInit {
     }
   }
 
+  formatTotalPrice() {
+   return this.customService.formatCurrency(((+this.items.total) + (+this.paymentService.param_create_order.shipping_fee)) + "", this.items.currency)
+  }
+
   getDisplayname(id, type) {
     switch (type) {
       case 'province':
@@ -74,8 +78,8 @@ export class PaymentConfirmComponent implements OnInit {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
     this.retryCreateOrder(5, this.loading);
-    console.log(this.paymentService.param_create_order );
-    
+    console.log(this.paymentService.param_create_order);
+
   }
 
   retryCreateOrder(retry, loading) {
@@ -85,7 +89,7 @@ export class PaymentConfirmComponent implements OnInit {
     }
     this.paymentService.createOrder().subscribe(data => {
       console.log(data);
-      
+
       this.loading.dismiss();
       this.nav.push(PaymentWebviewComponent, { url: data.url });
       const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
