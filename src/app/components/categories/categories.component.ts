@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   @Input('shopGuid') shopGuid;
   public categories: Array<Category>;
   public categoriesParent: Array<Category>;
+  isHasData : boolean = false;
   constructor(public nav: NavController, public appCtrl: App, private shoppingService: ShoppingsService, private customService: CustomService,
     public loadingCtrl: LoadingController) { }
 
@@ -31,11 +32,13 @@ export class CategoriesComponent implements OnInit {
 
     if (retry == 0) {
       // loading.dismiss();
+      this.isHasData = true;
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.shoppingService.getCategories(0, 9999, this.shopGuid, 1, 0).subscribe(
       data => {
+        this.isHasData = true;
         if (data instanceof Array) {
           // loading.dismiss();
           this.categories = data;

@@ -22,17 +22,16 @@ export class EventsUserComponent implements OnInit {
     public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    this.loadEvent(5);
+    this.loadEvent(5,null);
   }
 
-  loadEvent(retry) {
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
+  loadEvent(retry, loading) {
+   
     if (retry == 0) {
-      // loading.dismiss();
+      if (loading) {
+        loading.dismiss();
+      }
+      
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -42,9 +41,11 @@ export class EventsUserComponent implements OnInit {
         if (data.events instanceof Array) {
           this.events = data.events;
         }
-        // loading.dismiss();
+        if (loading) {
+          loading.dismiss();
+        }
         this.users = data.users;
-      }, err => this.loadEvent(--retry))
+      }, err => this.loadEvent(--retry, loading))
     }, 2500);
    
   }
@@ -58,7 +59,7 @@ export class EventsUserComponent implements OnInit {
   }
 
   goToPage(event_guid) {
-    this.app.getRootNav().push(EventComponent, { is_user: true, event_guid: event_guid });
+    this.app.getRootNav().push(EventComponent, { is_user: true, event_guid: event_guid, callback: this.myCallbackFunction });
   }
   createEvent() {
     this.app.getRootNav().push(CreateEventComponent, { callback: this.myCallbackFunction });
@@ -66,7 +67,12 @@ export class EventsUserComponent implements OnInit {
 
   myCallbackFunction = () => {
     return new Promise((resolve, reject) => {
-      this.loadEvent(5);
+       let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+      this.loadEvent(5,loading);
       resolve();
     });
   }
