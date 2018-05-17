@@ -26,7 +26,7 @@ export class FeedsComponent implements OnInit {
   offset = 0;
   is_show_btn_add_feed: boolean = false;
 
-  private isHasData: boolean;
+  private isHasData: boolean = false;
   constructor(
     private customService: CustomService,
     private feedsService: FeedsService,
@@ -71,6 +71,7 @@ export class FeedsComponent implements OnInit {
   refreshView(retry) {
 
     if (retry == 0) {
+      this.isHasData = true;
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -84,7 +85,7 @@ export class FeedsComponent implements OnInit {
           this.shares = data.shares;
           this.isHasData = true;
         } else {
-          this.isHasData = false;
+          this.isHasData = true;
         }
       },
       err => {
@@ -167,6 +168,7 @@ export class FeedsComponent implements OnInit {
 
   retryGetFeed(retry, loading) {
     if (retry == 0) {
+      this.isHasData = true;
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -179,7 +181,7 @@ export class FeedsComponent implements OnInit {
         this.shares = data.shares;
         this.isHasData = true;
       } else {
-        this.isHasData = false;
+        this.isHasData = true;
       }
       loading.dismiss();
     }, err => this.retryGetFeed(--retry, loading));

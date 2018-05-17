@@ -82,7 +82,11 @@ export class ProductComponent implements OnInit {
   putCartLocal(product) {
     let item = this.customService.cart.filter(data => data.guid == product.guid);
     if (item.length > 0) {
-      item[0].quantity_cart = item[0].quantity_cart + 1;
+      if (item[0].quantity_cart < item[0].quantity) {
+        item[0].quantity_cart = item[0].quantity_cart + 1;
+      }else{
+        this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
+      }
     } else {
       product.quantity_cart = 1;
       this.customService.cart.push(product);
