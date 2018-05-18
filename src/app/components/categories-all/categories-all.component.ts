@@ -19,9 +19,11 @@ export class CategoriesAllComponent implements OnInit {
   ngOnInit() {
   }
 
-
   goToPage(category: Category) {
     this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
   }
 
+  dismiss() {
+    this.nav.pop();
+  }
 }

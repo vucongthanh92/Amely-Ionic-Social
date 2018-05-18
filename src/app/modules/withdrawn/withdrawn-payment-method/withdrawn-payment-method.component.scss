@@ -1,0 +1,38 @@
+app-withdrawn-payment-method {
+    .withdrawn_payment_next {
+        color: #fff;
+
+        ion-icon {
+            font-size: 2.4rem !important;
+            margin: 0px 0px 0px 7px;
+        }
+    }
+
+    .withdrawn_payment_notice {
+        border-bottom: 1px solid #c8c7cc;
+
+        ion-col {
+            text-align: center;
+            padding: 15px 3px 15px 3px;
+            color: #666;
+            font-size: 1.5rem;
+        }
+        
+        ion-col:first-child {
+            border-right: 1px solid #c8c7cc;
+        }
+    }
+
+    .withdrawn_payment_balance {
+        padding: 3px 0px 3px 15px;
+    }
+
+    .withdrawn_payment_method {
+        width: 100%;
+        margin: 0px 0px 0px 0px;
+
+        .item-ios {
+            padding: 7px 0px 7px 12px;
+        }
+    }
+}

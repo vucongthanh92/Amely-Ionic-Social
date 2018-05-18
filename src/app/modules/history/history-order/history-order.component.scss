@@ -1,4 +1,10 @@
 app-history-order {
+    .history_order_content {
+        .list-ios {
+            margin: -1px 0 0px;
+        }
+    }
+
     .inventory_history_item {
         padding: 0px;
 
@@ -8,7 +14,8 @@ app-history-order {
     }
 
     .inventory_history_icon {
-        margin: 0px 5px 0px 0px;
+        margin: 0px 7px 0px 0px;
+        vertical-align: bottom;
     }
 
     .inventory_history_row {
@@ -19,5 +26,9 @@ app-history-order {
         float: right;
         font-size: 13px;
         color: #666;
+    }
+
+    .inventory_history_price {
+        margin: 3px 0px 0px 24px;
     }
 }

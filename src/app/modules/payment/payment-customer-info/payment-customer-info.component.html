@@ -1,67 +1,61 @@
 <ion-header>
-  <ion-navbar>
-   <button ion-button icon-only menuToggle>
-     <ion-icon name="menu"></ion-icon>
-   </button>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title ion_navbar_width">thông tin khách hàng</div>
+    </ion-buttons>
 
-   <ion-title>
-     Thông tin khách hàng
-   </ion-title>
-
-   <ion-buttons end>
-     <button ion-button icon-only (click)="changePage()">
-       Next <ion-icon name="arrow-forward"></ion-icon>
-     </button>
-   </ion-buttons>
- </ion-navbar>
+    <ion-buttons end>
+      <button ion-button class="payment_customer_next" (click)="changePage()">
+        <ion-icon ios="md-arrow-forward" md="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
+<ion-content class="payment_customer_content">
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Họ tên</ion-label>
+      <ion-input type="text" [(ngModel)]="fullname" name="fullname"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Số điện thoại</ion-label>
+      <ion-input type="text" [(ngModel)]="phone" name="phone"></ion-input>
+    </ion-item>
 
-<ion-content class="outer-content">
-  <div style="background-color: #fff;">
-    <ion-list>
-
-  <ion-item>
-    <ion-label stacked>Họ tên</ion-label>
-    <ion-input type="text" [(ngModel)]="fullname" name="fullname"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label stacked>Số điện thoại</ion-label>
-    <ion-input type="text" [(ngModel)]="phone" name="phone"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>Địa chỉ</ion-label>
-    <ion-input type="text" [(ngModel)]="address" name="address" ></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>Ghi chú</ion-label>
-    <ion-input type="text" [(ngModel)]="note" name="note" ></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Thành phố / Tỉnh</ion-label>
-    <ion-select *ngIf="provinces" [(ngModel)]="province" name="province" (ionChange)="onProvinceChange($event)" >
-      <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Quận / Huyện</ion-label>
-    <ion-select *ngIf="districts" [(ngModel)]="district" name="district" (ionChange)="onDistrictChange($event)">
-      <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Phường / Xã</ion-label>
-    <ion-select *ngIf="wards" [(ngModel)]="ward" name="ward" (ionChange)="onWardChange($event)">
-      <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
-
-  </div>
-
-  <div style="background-color: #fff;">
-
-  </div>
+    <ion-item>
+      <ion-label stacked>Địa chỉ</ion-label>
+      <ion-input type="text" [(ngModel)]="address" name="address" ></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label stacked>Ghi chú</ion-label>
+      <ion-input type="text" [(ngModel)]="note" name="note" ></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Thành phố / Tỉnh</ion-label>
+      <ion-select *ngIf="provinces" [(ngModel)]="province" name="province" (ionChange)="onProvinceChange($event)" >
+        <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Quận / Huyện</ion-label>
+      <ion-select *ngIf="districts" [(ngModel)]="district" name="district" (ionChange)="onDistrictChange($event)">
+        <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Phường / Xã</ion-label>
+      <ion-select *ngIf="wards" [(ngModel)]="ward" name="ward" (ionChange)="onWardChange($event)">
+        <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>

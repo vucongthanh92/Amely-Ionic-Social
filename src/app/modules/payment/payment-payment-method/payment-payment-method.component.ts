@@ -44,4 +44,9 @@ export class PaymentPaymentMethodComponent implements OnInit {
       // }
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

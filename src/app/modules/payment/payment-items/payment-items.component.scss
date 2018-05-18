@@ -31,14 +31,7 @@ app-payment-items{
     top: -12px;
     position: relative;
   }
-  h4 {
-    font-size: 1.5rem;
-  }
-  .divVAT {
-    position: relative;
-    top: -10px;
-    font-size: 12px;
-  }
+
   .ionNote {
     color: red;
     font-weight: bold;
@@ -65,4 +58,51 @@ app-payment-items{
     top: 20px;
     margin-left: 40px;
   }
+
+  .payment_item_next {
+    color: #fff;
+    
+    ion-icon {
+      font-size: 2.4rem;
+      margin: 0px 0px 0px 7px;
+    }
+  }
+
+  .payment_item_content {
+    background-color: #fff;
+  }
+
+  .payment_item_product {
+    border-bottom: 1px solid #c8c7cc;
+
+    .payment_item_product_img {
+      border-radius: 3px;
+    }
+  }
+
+  .payment_item_product_price {
+    color: red;
+    margin: 0px 0px 0px 1px;
+  }
+
+  .payment_item_product_title {
+    color: #333;
+    font-size: 1.5rem;
+    margin: 1px 0px 3px 1px;
+  }
+
+  .payment_item_product_quantity {
+    color: #9e9e9e;
+  }
+
+  .payment_item_total {
+    position: absolute; 
+    bottom: 0px; 
+    width: 100%;
+
+    .item-inner {
+      padding: 0px 8px 0px 8px;
+    }
+  }
+
 }

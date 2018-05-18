@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
+<ion-content class="history_order_content">
   <ion-list>
     <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
       <a *ngIf="transaction.status==='pending'" class="inventory_history_row" style="color: #666">
@@ -20,7 +20,7 @@
         <ion-icon ios="ios-checkmark-circle" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon> Đơn đặt hàng số #{{transaction.guid}}</a>
 
       <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
-      <p style="margin: 0px 0px 0px 20px">{{formatCurrency(transaction.quantity+'',transaction.currency)}}</p>
+      <p class="inventory_history_price">{{formatCurrency(transaction.quantity+'',transaction.currency)}}</p>
     </ion-item>
   </ion-list>
 </ion-content>
