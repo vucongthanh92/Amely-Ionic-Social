@@ -6,4 +6,13 @@ app-payment-payment-method{
     width: 80px;
     height: 80px;
   }
+
+  .payment_method_next {
+    color: #fff;
+
+    ion-icon {
+      font-size: 2.4rem;
+      margin: 0px 0px 0px 7px;
+    }
+  }
 }

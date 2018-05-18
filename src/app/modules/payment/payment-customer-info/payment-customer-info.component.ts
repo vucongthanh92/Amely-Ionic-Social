@@ -82,4 +82,9 @@ export class PaymentCustomerInfoComponent implements OnInit {
       this.appCtrl.getRootNav().push(PaymentShipingMethodComponent);
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

@@ -42,4 +42,9 @@ export class PaymentShipingMethodComponent implements OnInit {
       this.customService.toastMessage("Vui lòng chọn phương thức vận chuyển", "bottom", 3000);
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

@@ -1,31 +1,34 @@
 <ion-header>
-  <ion-navbar>
-   <button ion-button icon-only menuToggle>
-     <ion-icon name="menu"></ion-icon>
-   </button>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title ion_navbar_width">phương thức vận chuyển</div>
+    </ion-buttons>
 
-   <ion-title>
-     Phương thức vận chuyển
-   </ion-title>
-
-   <ion-buttons end>
-     <button ion-button icon-only (click)="changePage()">
-       Next <ion-icon name="arrow-forward"></ion-icon>
-     </button>
-   </ion-buttons>
- </ion-navbar>
+    <ion-buttons end>
+      <button ion-button class="payment_shipping_next" (click)="changePage()">
+        <ion-icon ios="md-arrow-forward" md="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
-  <div style="background-color: #fff;">
-    <ion-list radio-group [(ngModel)]="shipping_selected">
-      <ion-item *ngFor="let shipping_method of shipping_methods" (click)="shipping_method_selected(shipping_method.filename)" >
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-radio value="{{ shipping_method.filename }}" item-end></ion-radio>
-        <ion-label>{{ shipping_method.displayname }}</ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
+<ion-content class="payment_shipping_content">
+  <ion-list radio-group [(ngModel)]="shipping_selected">
+    <ion-item *ngFor="let shipping_method of shipping_methods" (click)="shipping_method_selected(shipping_method.filename)" >
+      <ion-thumbnail *ngIf="shipping_method.filename == 'sq/storage'" item-start>
+        <img src="assets/imgs/vector_vao_kho_qua-01.png" />
+      </ion-thumbnail>
+      <ion-thumbnail *ngIf="shipping_method.filename == 'sq/standard'" item-start>
+        <img src="assets/imgs/vector_giao_hang_thuong-01.png" />
+      </ion-thumbnail>
+      <ion-thumbnail *ngIf="shipping_method.filename == 'sq/express'" item-start>
+        <img src="assets/imgs/vector_giao_hang_nhanh-01.png" />
+      </ion-thumbnail>
+      <ion-radio value="{{ shipping_method.filename }}" item-end></ion-radio>
+      <ion-label>{{ shipping_method.displayname }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

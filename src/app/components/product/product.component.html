@@ -4,7 +4,7 @@
       <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div *ngIf="product" class="ion_navbar_title">{{product.title}}</div>
+      <div *ngIf="product" class="ion_navbar_title product_navbar_width">{{product.title}}</div>
     </ion-buttons>
 
     <ion-buttons end>
@@ -31,9 +31,8 @@
   <ion-card>
     <ion-card-content>
       <ion-row>
-        <ion-col col-12>{{product.title}}
-        </ion-col>
-        <ion-col col-12>
+        <ion-col class="product_box_title" col-12>{{product.title}}</ion-col>
+        <ion-col class="product_box_price" col-12>
           <!-- {{formatSalePrice(product.sale_price,product.currency)}} -->
           <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
             <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>

@@ -1,20 +1,17 @@
 <ion-header>
-  <ion-navbar>
-   <button ion-button icon-only menuToggle>
-     <ion-icon name="menu"></ion-icon>
-   </button>
-
-   <ion-title>
-     Phương thức thanh toán
-   </ion-title>
-
-  <ion-buttons end>
-    <button ion-button icon-only (click)="changePage()">
-      Next
-      <ion-icon name="arrow-forward"></ion-icon>
-    </button>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+    <div class="ion_navbar_title ion_navbar_width">phương thức thanh toán</div>
   </ion-buttons>
 
+  <ion-buttons end>
+    <button ion-button class="payment_method_next" (click)="changePage()">
+      <ion-icon ios="md-arrow-forward" md="md-arrow-forward"></ion-icon>
+    </button>
+  </ion-buttons>
  </ion-navbar>
 </ion-header>
 
