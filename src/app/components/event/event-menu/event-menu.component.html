@@ -5,7 +5,7 @@
 
   <ion-item class="event_menu_item" *ngIf="is_user_current" (click)="closeOpenEvent()">
     <div *ngIf="(eventSerive.publish==1 || eventSerive.publish==2 )">
-      <ion-icon ios="ios-trash" md="md-trash"></ion-icon> <span>Đóng sự kiện</span>
+      <ion-icon ios="ios-close" md="md-close"></ion-icon> <span>Đóng sự kiện</span>
     </div>
     <div *ngIf="(eventSerive.publish==0 ||eventSerive.publish==3)">
       <ion-icon ios="ios-open" md="md-open"></ion-icon> <span>Mở sự kiện</span>
@@ -18,6 +18,10 @@
   
   <ion-item (click)="changeAvatar()" *ngIf="is_user_current">
     <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
+  </ion-item>
+
+  <ion-item (click)="deleteEvent()" *ngIf="is_user_current">
+    <ion-icon ios="ios-trash" md="md-trash"></ion-icon> Xóa sự kiện
   </ion-item>
 
   <ion-item class="event_menu_item" (click)="openQR()" *ngIf="event.has_inventory=='1'">

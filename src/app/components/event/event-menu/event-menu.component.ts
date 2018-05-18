@@ -2,7 +2,7 @@ import { FirebaseService } from './../../../services/firebase.service';
 import { CustomService } from './../../../services/custom.service';
 import { EventsService } from './../../../services/events.service';
 import { Component, OnInit } from '@angular/core'; ``
-import { NavParams, App, LoadingController, NavController, ActionSheetController } from 'ionic-angular';
+import { NavParams, App, LoadingController, NavController, ActionSheetController, AlertController } from 'ionic-angular';
 import { Event } from '../../../api/models';
 import { QrComponent } from '../../qr/qr.component';
 import { Camera } from '@ionic-native/camera';
@@ -14,16 +14,18 @@ import { Camera } from '@ionic-native/camera';
 export class EventMenuComponent implements OnInit {
   private event: Event;
   private callback: any;
-
+  callbackReload: any;
   //"history"  "guest" "member" "visitor"
   public type: string;
   public is_user_current: boolean = false;
   constructor(private navParams: NavParams, public eventSerive: EventsService, private customService: CustomService, private appCtrl: App,
     public loadingCtrl: LoadingController, private nav: NavController, private actionSheetCtrl: ActionSheetController, private camera: Camera,
-    private fbService: FirebaseService) {
+    private fbService: FirebaseService, private alertCtrl: AlertController) {
     this.event = this.navParams.get('event');
+    
     this.type = this.navParams.get('type');
     this.callback = this.navParams.get("callback");
+    this.callbackReload = this.navParams.get("callbackreload");
 
     this.is_user_current = this.customService.user_current.guid == this.event.creator.guid;
 
@@ -123,6 +125,53 @@ export class EventMenuComponent implements OnInit {
     })
   }
 
+  deleteEvent() {
+    let alert = this.alertCtrl.create({
+      title: 'Xác nhận',
+      message: 'Bạn có muốn xóa sự kiện?',
+      buttons: [
+        {
+          text: 'Từ chối',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Chấp nhận',
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...',
+              enableBackdropDismiss: true
+            });
+            loading.present();
+            this.retryDeleteEvent(5, loading)
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  retryDeleteEvent(retry, loading) {
+    if (retry == 0) {
+      loading.dismiss();      
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.eventSerive.deleteEvent(this.event.guid).subscribe(data => {
+      if (data.status) {
+        loading.dismiss();
+        this.nav.pop();
+        this.customService.toastMessage('Xóa sự kiện thành công!', 'bottom', 3000)
+        this.callbackReload().then(() => {
+        });
+      } else {
+        loading.dismiss();
+        this.customService.toastMessage('Xóa sự kiện thất bại , vui lòng thử lại .', 'bottom', 3000)
+      }
+    }, err => this.retryDeleteEvent(--retry, loading));
+  }
+
   retryUpdateCover(retry, images) {
     if (retry == 0) {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
@@ -157,4 +206,6 @@ export class EventMenuComponent implements OnInit {
       }
     }, err => this.retryChangeAvatar(--retry, images))
   }
+
+
 }

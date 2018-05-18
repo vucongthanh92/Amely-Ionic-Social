@@ -7,7 +7,7 @@
     <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);" *ngIf="shopGuid" >Xem tất cả</ion-col>
   </ion-row>
   <ion-scroll scrollX class="product_feature">
-    <div class="scroll-item" *ngIf="productsMostSold">
+    <div class="scroll-item" *ngIf="productsMostSold; else other_content2">
       <ion-col col-6 *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
         <div class="item-card">
           <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'" >
@@ -26,11 +26,29 @@
               <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
               <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
             </ng-template>
-            <!-- <div class="product_feature_price">{{formatCurrency(product,product.currency)}}</div> -->
-            <!-- <div class="product_feature_price" *ngIf="product.quantity==0" >Hết hàng</div> -->
           </div>
         </div>
       </ion-col>
     </div>
   </ion-scroll>
 </div>
+
+<ng-template #other_content2>
+  <div  class="product_feature_container">
+    <ion-scroll scrollX class="product_feature">
+      <div class="scroll-item">
+        <ion-col col-6 *ngFor="let fake of [3,3,3,3,3,3]">
+          <div class="item-card">
+            <div style="width: 110px;" class='fakeItem'>
+              <div class="divCustom"></div>
+              <div>
+                <h2></h2>
+                <h2></h2>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </div>
+    </ion-scroll>
+  </div>
+</ng-template>

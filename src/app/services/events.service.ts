@@ -31,6 +31,9 @@ export class EventsService {
   getEvent(guid: number) {
     return this.apiService.getEvent(guid);
   }
+  deleteEvent(event_guid: number) {
+    return this.apiService.deleteEvent(event_guid);
+  }
   publicEvent(guid: number) {
     return this.apiService.getEvents({ event_guid: guid, event_type: 'publish' });
   }

@@ -20,10 +20,12 @@ export class EventComponent implements OnInit {
   public users: User[];
   public string_members: Array<string>;
   public string_guests: Array<string>;
+  callback: any;
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, public popoverCtrl: PopoverController,
     public eventService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
     // this.is_user = navParams.get('is_user');
     this.event_guid = this.navParams.get('event_guid');
+    this.callback = this.navParams.get('callback');
   }
 
   ngOnInit() {
@@ -92,7 +94,7 @@ export class EventComponent implements OnInit {
     }
   }
   openPopover(myEvent) {
-    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event, type: this.type, callback: this.callbackAvatarCover });
+    let popover = this.popoverCtrl.create(EventMenuComponent, { event: this.event, type: this.type, callback: this.callbackAvatarCover, callbackreload: this.callbackReload });
     popover.present({
       ev: myEvent
     });
@@ -149,6 +151,20 @@ export class EventComponent implements OnInit {
         loading.dismiss();
         this.loadData(5)
       }, 4000);
+      resolve();
+    });
+  }
+  callbackReload = (_params) => {
+    return new Promise((resolve, reject) => {
+      try {
+        this.callback().then(() => {
+          this.nav.pop();
+        });
+      } catch (error) {
+        
+      }
+       
+    
       resolve();
     });
   }
