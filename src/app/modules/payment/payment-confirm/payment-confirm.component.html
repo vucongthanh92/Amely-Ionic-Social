@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-navbar>
-   <button ion-button icon-only menuToggle>
-     <ion-icon name="menu"></ion-icon>
-   </button>
-
-   <ion-title>
-     Xác nhận
-   </ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title ion_navbar_width">xác nhận</div>
+    </ion-buttons>
+    
    <ion-buttons end>
      <button ion-button icon-only (click)="changePage()">
        COMPLETE
