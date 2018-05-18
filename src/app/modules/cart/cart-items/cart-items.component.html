@@ -22,11 +22,11 @@
               <h4 class="cart_items_product_title" style="font-weight: bold;">{{ item.title }}</h4>
               <h4 class="cart_items_product_title">
                 <div *ngIf="item.sale_price == 0 || item.sale_price == null; else other_content">
-                  <div class="product_feature_price">{{ formatSalePriceShow( item.price, item.currency) }}</div>
+                  <div class="product_feature_price">{{ formatSalePriceShow( item.display_price, item.currency) }}</div>
                 </div>
                 <ng-template #other_content>
-                  <div class="product_feature_price">{{formatSalePriceShow(item.sale_price,item.currency)}}</div>
-                  <div class="product_sale_price">{{ formatSalePriceShow( item.price, item.currency) }}</div>
+                  <div class="product_feature_price">{{formatSalePriceShow(item.display_price,item.currency)}}</div>
+                  <div class="product_sale_price">{{ formatSalePriceShow( item.display_old_price, item.currency) }}</div>
                 </ng-template>
               </h4>
               <h4 class="cart_items_product_price">{{ formartCurrency( item) }}</h4>
