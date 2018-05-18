@@ -1,51 +1,40 @@
-
 <ion-header>
-  <ion-navbar>
-   <button ion-button icon-only menuToggle>
-     <ion-icon name="menu"></ion-icon>
-   </button>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title ion_navbar_width">thống kê</div>
+    </ion-buttons>
 
-   <ion-title>
-     Thống kê
-   </ion-title>
-
-   <ion-buttons end>
-     <button ion-button icon-only (click)="changePage()">
-       Next <ion-icon name="arrow-forward"></ion-icon>
-     </button>
-   </ion-buttons>
- </ion-navbar>
+    <ion-buttons end>
+      <button ion-button class="payment_item_next" (click)="changePage()">
+        Tiếp Tục <ion-icon ios="md-arrow-forward" md="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
-
-
 <ion-content class="outer-content">
-  <div style="background-color: #fff;">
+  <div class="payment_item_content">
     <ion-row>
-    	<ion-col col-12 style="text-align: left; position: relative; margin-bottom: -25px; top: -10px;" *ngFor="let product of products">
+    	<ion-col class="payment_item_item" col-12 *ngFor="let product of products">
         <ion-grid>
           <ion-row>
-            <ion-col col-3 style="margin-right: 15px;">
-              <img width="100%" src="{{ product.images[0] }}" />
-            </ion-col>
+            <ion-col col-3><img src="{{ product.images[0] }}" /></ion-col>
             <ion-col col-6>
-              <div>
-                <h4>{{ product.title }}</h4>
-              </div>
-              <div class="">
-                <h4 style="color: red; top: -10px; position: relative;">{{ formatCurrency(product) }}<i style="color: #9e9e9e;">x {{ product.display_quantity }}</i></h4>
-              </div>
+              <div>{{ product.title }}</div>
+              <div class="payment_item_product_quantity">{{ formatCurrency(product) }}<i style="color: #9e9e9e;">x {{ product.display_quantity }}</i></div>
             </ion-col>
             <ion-col col-2>
-              <div class="divIcon">
-
-              </div>
+              <div class="divIcon"></div>
             </ion-col>
           </ion-row>
         </ion-grid>
     	</ion-col>
     </ion-row>
   </div>
+  
   <div style="position: absolute; bottom: 0px; width: 100%">
     <!-- <ion-item>
       Tổng tiền trước thuế :

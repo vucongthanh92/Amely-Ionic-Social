@@ -14,6 +14,10 @@ app-deposit-payment-method {
         padding: 15px 0px 15px 0px;
     }
 
+    .deposit_payment_minmax:first-child {
+        border-right: 1px solid #c8c7cc;
+    }
+
     .deposit_payment_balance {
         border-top: 1px solid #c8c7cc;
         padding: 5px 0px 5px 15px;

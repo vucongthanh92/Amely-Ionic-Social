@@ -64,4 +64,8 @@ export class PaymentItemsComponent implements OnInit {
   formatCurrency(item) {
     return this.customService.formatCurrency(+(item.display_price + (+(item.display_price * (item.tax / 100)))) + "", item.currency);
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }
