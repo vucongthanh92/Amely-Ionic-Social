@@ -3,10 +3,6 @@
 /**
  */
 export class body_34 {
-    group_guid: number;
-    name: string;
-    description: string;
-    privacy: string;
-    member_invite: string;
-    membership: string;
+    vote_type?: string;
+    group_guid?: number;
 }

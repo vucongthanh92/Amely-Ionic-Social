@@ -2,7 +2,6 @@
 
 /**
  */
-export class body_39 {
-    duration?: number;
+export class body_72 {
     item_guid?: number;
 }

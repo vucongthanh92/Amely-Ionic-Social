@@ -3,5 +3,7 @@
 /**
  */
 export class body_18 {
-    new_phone?: string;
+    old_password?: string;
+    new_password?: string;
+    confirm_password?: string;
 }

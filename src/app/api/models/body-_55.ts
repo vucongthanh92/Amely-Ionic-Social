@@ -1,8 +1,10 @@
 /* tslint:disable */
 
 /**
+ * Submit properties to be changed
  */
 export class body_55 {
-    to_guid?: number;
-    type?: string;
+    item_guid?: number;
+    owner_guid?: number;
+    quantity_redeem?: number;
 }

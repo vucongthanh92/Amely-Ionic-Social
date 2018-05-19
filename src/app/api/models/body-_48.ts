@@ -3,8 +3,8 @@
 /**
  */
 export class body_48 {
-    friendly_url?: string;
-    product_guid?: number;
+    expiry?: number;
+    sku?: string;
     title?: string;
     description?: string;
     manufacturer?: string;
@@ -15,24 +15,22 @@ export class body_48 {
     price?: number;
     currency?: string;
     quantity?: number;
-    expiry?: number;
+    weight?: number;
+    product_group?: number;
+    featured?: number;
+    storage_duration?: string;
     duration?: number;
     begin_day?: string;
     end_day?: string;
-    sku?: string;
+    friendly_url?: string;
     origin?: string;
     order?: string;
-    weight?: number;
-    storage_duration?: number;
-    product_group?: number;
-    featured?: number;
     status?: string;
     ossn_photo?: string[];
     shop_category?: string[];
     market_category?: string[];
     custom_attribute_keys?: string[];
     custom_attribute_values?: string[];
-    images?: string[];
     unit?: string;
     enabled?: string;
 }
