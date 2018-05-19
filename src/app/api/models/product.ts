@@ -17,6 +17,7 @@ export class Product {
     weight?: number;
     expiry_type?: number;
     display_price?: number;
+    display_old_price?: number;
     display_currency?: string;
     qty?: number;
     advertise_guid?: number;

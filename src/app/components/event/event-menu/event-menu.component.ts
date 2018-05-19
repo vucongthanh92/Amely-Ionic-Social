@@ -6,6 +6,7 @@ import { NavParams, App, LoadingController, NavController, ActionSheetController
 import { Event } from '../../../api/models';
 import { QrComponent } from '../../qr/qr.component';
 import { Camera } from '@ionic-native/camera';
+import { InventoryComponent } from '../../inventory/inventory.component';
 
 @Component({
   selector: 'app-event-menu',
@@ -14,6 +15,7 @@ import { Camera } from '@ionic-native/camera';
 export class EventMenuComponent implements OnInit {
   private event: Event;
   private callback: any;
+  has_inventory: boolean;
   callbackReload: any;
   //"history"  "guest" "member" "visitor"
   public type: string;
@@ -22,7 +24,7 @@ export class EventMenuComponent implements OnInit {
     public loadingCtrl: LoadingController, private nav: NavController, private actionSheetCtrl: ActionSheetController, private camera: Camera,
     private fbService: FirebaseService, private alertCtrl: AlertController) {
     this.event = this.navParams.get('event');
-    
+    this.has_inventory = this.event.has_inventory == '1';
     this.type = this.navParams.get('type');
     this.callback = this.navParams.get("callback");
     this.callbackReload = this.navParams.get("callbackreload");
@@ -205,6 +207,11 @@ export class EventMenuComponent implements OnInit {
         this.customService.toastMessage("Đã có lỗi vui lòng thử lại.", "bottom", 3000);
       }
     }, err => this.retryChangeAvatar(--retry, images))
+  }
+
+  openInventory() {
+    this.nav.pop();
+    this.appCtrl.getRootNav().push(InventoryComponent, { type: 'event', ownerGuid: this.event.guid, obj: this.event });
   }
 
 

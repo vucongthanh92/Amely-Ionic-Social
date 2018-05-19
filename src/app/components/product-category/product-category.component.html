@@ -54,11 +54,11 @@
             <ion-row class="product_category_title">{{product.title}}</ion-row>
             <!-- <ion-row>{{ formatCurrency(product)}} </ion-row> -->
             <ion-row *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-              <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+              <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.currency) }}</div>
             </ion-row>
             <ng-template #other_content>
-              <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
-              <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.currency)}}</div>
+              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.currency) }}</div>
             </ng-template>
             <ion-row *ngIf="product.quantity==0" style="color: red;">Hết hàng</ion-row>
           </ion-col>

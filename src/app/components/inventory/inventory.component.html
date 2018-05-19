@@ -21,14 +21,21 @@
 			<ion-card class="inventory_product_box">
 				<ion-item (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{group.avatar}}">
+						<img class="inventory_product_image" *ngIf="group.avatar" src="{{group.avatar}}" imageViewer>
+						<img class="inventory_product_image" *ngIf="!group.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
 					<p>{{group.title}}</p>
 				</ion-item>
 			</ion-card>
 		</ion-col>
 
-		<ion-item *ngIf="inventoryType =='event'" class="inventory_user_info">
+		<ion-item *ngIf="inventoryType =='event' && event.creator" class="inventory_user_info">
+			<ion-avatar item-start>
+				<img src="{{event.creator.avatar}}" />
+			</ion-avatar>
+			<div class="inventory_user_fullname">{{event.creator.fullname}}</div>
+		</ion-item>
+		<ion-item *ngIf="inventoryType =='event' && event.owner" class="inventory_user_info">
 			<ion-avatar item-start>
 				<img src="{{event.owner.avatar}}" />
 			</ion-avatar>
@@ -38,7 +45,8 @@
 			<ion-card class="inventory_product_box">
 				<ion-item (click)="openEventProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{event.avatar}}">
+						<img class="inventory_product_image" *ngIf="event.avatar" src="{{event.avatar}}" imageViewer>
+						<img class="inventory_product_image" *ngIf="!event.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
 					<p>{{event.title}}</p>
 				</ion-item>
@@ -55,7 +63,8 @@
 			<ion-card class="inventory_product_box">
 				<ion-item (click)="openOAProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{page.avatar}}">
+						<img class="inventory_product_image" *ngIf="page.avatar" src="{{page.avatar}}" imageViewer>
+						<img class="inventory_product_image" *ngIf="!page.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
 					<p>{{page.title}}</p>
 				</ion-item>
