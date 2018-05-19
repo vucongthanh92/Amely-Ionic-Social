@@ -1,5 +1,5 @@
 <ion-content class="outer-content">
-  <ion-card *ngIf="vouchers">
+  <ion-card class="voucher_content" *ngIf="vouchers">
     <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
       <ion-card class="voucher_image_box">
         <div class="item-ribbon offer_search_ribbon">
@@ -16,11 +16,11 @@
       <h3 class="voucher_title">{{voucher.title}}</h3>
       <div class="voucher_price">
         <div *ngIf="voucher.sale_price == 0 || voucher.sale_price == null; else other_content">
-          <div class="product_feature_price">{{ formatSalePrice( voucher.price, voucher.currency) }}</div>
+          <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.currency) }}</div>
         </div>
         <ng-template #other_content>
-          <div class="product_feature_price">{{formatSalePrice(voucher.sale_price,voucher.currency)}}</div>
-          <div class="product_sale_price">{{ formatSalePrice( voucher.price, voucher.currency) }}</div>
+          <div class="product_feature_price">{{formatSalePrice(voucher.display_price,voucher.currency)}}</div>
+          <div class="product_sale_price">{{ formatSalePrice( voucher.display_old_price, voucher.currency) }}</div>
         </ng-template>
         <!-- {{formatCurrency(voucher)}} -->
       </div>

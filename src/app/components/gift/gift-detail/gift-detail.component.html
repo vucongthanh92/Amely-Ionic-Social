@@ -1,10 +1,11 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title ion_navbar_width">thông tin quà tặng</div>
     </ion-buttons>
-    <ion-title>Thông tin quà tặng</ion-title>
-
   </ion-navbar>
 </ion-header>
 
@@ -13,15 +14,9 @@
     <img *ngIf="gift.item" src="{{gift.item.images[0]}}" />
     <img *ngIf="!gift.item" src="assets/imgs/image_not_found.jpg" />
     <ion-card-content>
-      <ion-card-title>
-        {{gift.item.title}}
-      </ion-card-title>
-      <ion-card-title>
-        Thông tin chung
-      </ion-card-title>
-      <p>
-        {{gift.item.description}}
-      </p>
+      <ion-card-title>{{gift.item.title}}</ion-card-title>
+      <ion-card-title>Thông tin chung</ion-card-title>
+      <p>{{gift.item.description}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -20,11 +20,16 @@
     <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
   </ion-item>
 
+  <ion-item (click)="openInventory()" *ngIf="has_inventory">
+    <ion-icon ios="ios-albums" md="md-albums"></ion-icon>
+    <span>Vào kho</span>
+  </ion-item>
+
   <ion-item (click)="deleteEvent()" *ngIf="is_user_current">
     <ion-icon ios="ios-trash" md="md-trash"></ion-icon> Xóa sự kiện
   </ion-item>
 
-  <ion-item class="event_menu_item" (click)="openQR()" *ngIf="event.has_inventory=='1'">
+  <ion-item class="event_menu_item" (click)="openQR()" *ngIf="has_inventory">
       <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
   </ion-item>
 </ion-list>

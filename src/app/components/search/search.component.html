@@ -53,11 +53,11 @@
         <h2>{{product.title}}</h2>
         <h2 style="color: red; font-weight: bold;">
           <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-            <div class="product_feature_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.currency) }}</div>
           </div>
           <ng-template #other_content>
-            <div class="product_feature_price">{{formatSalePrice(product.sale_price,product.currency)}}</div>
-            <div class="product_sale_price">{{ formatSalePrice( product.price, product.currency) }}</div>
+            <div class="product_feature_price">{{formatSalePrice(product.display_price,product.currency)}}</div>
+            <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.currency) }}</div>
           </ng-template>
           <!-- {{formatCurrency(product,product.currency)}} -->
         </h2>

@@ -84,4 +84,7 @@ export class WithdrawnOptionComponent implements OnInit {
       }, err => this.retryConfirmOptionWithdrawnBankAccount(--retry))
   }
 
+  dismiss() {
+    this.nav.pop();
+  }
 }

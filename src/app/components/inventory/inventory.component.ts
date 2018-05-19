@@ -65,6 +65,7 @@ export class InventoryComponent implements OnInit {
 
     } else if (this.inventoryType === 'event') {
       this.event = this.navParams.get("obj");
+      console.log(this.event);
     } else if (this.inventoryType === 'business') {
       this.page = this.navParams.get("obj");
     }

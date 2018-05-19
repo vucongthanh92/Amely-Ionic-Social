@@ -68,4 +68,9 @@ export class WithdrawnPaymentMethodComponent implements OnInit {
       }
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
