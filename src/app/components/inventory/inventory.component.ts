@@ -43,6 +43,8 @@ export class InventoryComponent implements OnInit {
   public totalPrice: number = 0;
   public total: number = 0;
 
+  isHasData: number = 0;
+
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams,
     public loadingCtrl: LoadingController, private customService: CustomService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
@@ -115,6 +117,8 @@ export class InventoryComponent implements OnInit {
   retryGetInventoriesByType(retry, e) {
     if (retry == 0) return;
     this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
+      this.isHasData= this.isHasData + 1;
+      
       if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
         this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
         // this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
