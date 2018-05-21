@@ -181,9 +181,9 @@ export class CustomService {
               });
 
               loading.present();
-              userService.login(this.user_current.username, data.password).subscribe(data => {
+              userService.login(this.user_current.username, data.password).subscribe(resp => {
                 loading.dismiss();
-                if (data.token != null) resolve();
+                if (resp.token != null) resolve(data.password);
                 else { this.toastMessage('Mật khẩu không hợp lệ', 'bottom', 2000) }
               })
             }

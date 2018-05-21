@@ -53,7 +53,7 @@ export class UserService {
   }
 
   activeUser(username: string, password: string, mobilelogin: string, code: string) {
-    return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code });
+    return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code, email: "" });
   }
 
   blockUser(guid) {
@@ -75,7 +75,7 @@ export class UserService {
     return this.api.deleteFriend(guid);
   }
 
-  getServices(){
+  getServices() {
     return this.api.getServices();
   }
 }

@@ -7,4 +7,5 @@ export class body {
     password?: string;
     mobilelogin?: string;
     code?: string;
+    email?: string;
 }

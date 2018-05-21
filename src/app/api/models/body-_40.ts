@@ -3,6 +3,7 @@
 /**
  */
 export class body_40 {
-    owner_type?: string;
-    owner_guid?: number;
+    from_guid?: number;
+    to_guid?: number;
+    join_type?: string;
 }

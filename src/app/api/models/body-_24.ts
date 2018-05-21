@@ -3,17 +3,17 @@
 /**
  */
 export class body_24 {
-    template?: string;
-    title?: string;
-    start_date?: string;
-    end_date?: string;
-    country?: string;
-    location?: string;
-    description?: string;
-    has_inventory?: string;
-    status?: string;
-    event_type?: string;
-    owner_guid?: number;
-    members?: string[];
-    invites?: string[];
+    shipping_ward?: string;
+    step?: string;
+    shipping_phone?: string;
+    shipping_address?: string;
+    shipping_province?: string;
+    shipping_district?: string;
+    shipping_fullname?: string;
+    shipping_note?: string;
+    shipping_method?: string;
+    shipping_fee?: string;
+    item?: string;
+    quantity?: number;
+    shop_guid?: number;
 }

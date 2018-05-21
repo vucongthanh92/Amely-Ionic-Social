@@ -3,9 +3,11 @@
 /**
  */
 export class body_35 {
-    offset: number;
-    limit: number;
-    owner_guid: number;
-    inventory_type: string;
-    item_type: string;
+    name: string;
+    description: string;
+    privacy: string;
+    member_invite: string;
+    membership: string;
+    has_inventory?: string;
+    members: number[];
 }
