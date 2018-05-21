@@ -35,9 +35,9 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.product) {
+    // if (!this.product) {
       this.loadData(5);
-    }
+    // }
   }
 
   loadData(retry) {
@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.productsService.getProduct(this.guid).subscribe(data => {
+    this.productsService.getProduct(this.product ? this.product.guid:this.guid).subscribe(data => {
       loading.dismiss();
       this.product = data.product;
       console.log(this.product);

@@ -91,33 +91,26 @@ export class ProductCategoryComponent implements OnInit {
     return desc.length > 50 ? desc.substring(0, 50) + " ..." : desc;
   }
 
-  doInfinite(infiniteScroll) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-
-
-    setTimeout(() => {
-      loading.present();      
+  doInfinite(infiniteScroll) {  
       this.offset = this.offset + this.limit;
       if (!this.isLoadMore) {
-        this.retryLoadMore(5);
+        this.retryLoadMore(5, infiniteScroll);
       }
-      infiniteScroll.complete();
-    }, 500);
-    
+     
     
   }
 
-  retryLoadMore(retry) {
+  retryLoadMore(retry, infiniteScroll) {
     if (retry == 0) {
+      infiniteScroll.complete();
       return;
     }
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
+      infiniteScroll.complete();
       if (data.products instanceof Array) {
         this.products = this.products.concat(data.products);
       }
-    }, err => this.retryLoadMore(--retry));
+    }, err => this.retryLoadMore(--retry, infiniteScroll));
   }
   search() {
     this.is_search = !this.is_search;

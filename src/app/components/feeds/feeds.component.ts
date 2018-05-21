@@ -97,25 +97,25 @@ export class FeedsComponent implements OnInit {
   }
 
   doInfinite(infiniteScroll) {
-    setTimeout(() => {
-      this.retryLoadmore(5);
-      infiniteScroll.complete();
-    }, 500);
+    this.retryLoadmore(5, infiniteScroll);
+      
   }
 
-  retryLoadmore(retry) {
+  retryLoadmore(retry, infiniteScroll) {
     if (retry == 0) {
+      infiniteScroll.complete();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
+      infiniteScroll.complete();
       if (data.posts != null) {
         this.posts = this.posts.concat(data.posts);
         this.users = Object.assign(this.users, data.users);
         this.shares = data.shares;
         this.offset = this.offset + data.posts.length;
       }
-    }, err => this.retryLoadmore(--retry));
+    }, err => this.retryLoadmore(--retry, infiniteScroll));
   }
 
   getPoster(poster_guid) {
