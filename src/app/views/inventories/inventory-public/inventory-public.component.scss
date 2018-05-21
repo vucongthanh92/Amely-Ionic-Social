@@ -39,11 +39,13 @@ app-inventory-public {
         background-position: center !important;
         background-size: cover !important;
         height: 10vh;
-        width: 20vw;
+        width: 18vw;
         overflow: hidden;
         border-radius: 5px;
         padding: 0px;
+        -webkit-box-flex: unset;
         flex-grow: unset;
+        max-width: 18vw;
     }
 
     .inventory_public_footer {
