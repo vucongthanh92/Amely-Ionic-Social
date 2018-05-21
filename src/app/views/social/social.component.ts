@@ -49,8 +49,11 @@ export class SocialComponent implements OnInit {
     if (screen.width == 1125 && screen.height == 2436) {
       this.check_screen = "top_navigation_iphonex";
     }
+    else if (screen.width == 1080 && screen.height == 1920) {
+      this.check_screen = "top_navigation_iphone7plus";
+    }
     else {
-      this.check_screen = "top_navigation_default";
+      this.check_screen = "top_navigation_iphone6s";
     }
   }
   ngOnInit() {

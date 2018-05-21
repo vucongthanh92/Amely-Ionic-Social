@@ -22,6 +22,7 @@ app-add-feed {
 
         .item-inner {
             padding: 0px;
+            margin-left: 0px !important;
         }
 
         .input-wrapper {
@@ -31,10 +32,16 @@ app-add-feed {
     }
 
     .addfeed_item {
-        padding-left: 12px;
+        padding-left: 10px;
+
+        ion-avatar {
+            position: absolute;
+            top: 1.4rem;
+            left: 1rem;
+        }
 
         .item-inner {
-            padding: 0px !important;
+            margin-left: 4.6rem;
         }
 
         .label-ios {
