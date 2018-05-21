@@ -214,5 +214,13 @@ export class EventMenuComponent implements OnInit {
     this.appCtrl.getRootNav().push(InventoryComponent, { type: 'event', ownerGuid: this.event.guid, obj: this.event });
   }
 
+  report() {
+    this.nav.pop();
+    this.customService.report(this.alertCtrl, "event", this.event.guid)
+      .then(() => this.customService.toastMessage('Phản hồi đã được gửi', 'bottom', 3000))
+      .catch(() => this.customService.toastMessage('Phản hồi gửi thất bại', 'bottom', 3000))
+
+  }
+
 
 }

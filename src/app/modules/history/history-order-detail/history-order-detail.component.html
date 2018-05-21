@@ -48,6 +48,12 @@
 <ion-footer class="history_order_total" *ngIf="order">
   <div class="history_order_total_box" padding-horizontal>
     <ion-item>
+      Phí giao hàng
+      <ion-note class="ionNote" item-end *ngIf="user_current">
+        {{formatTotalPrive(shippingFee,user_current.usercurrency)}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
       Tổng tiền
       <ion-note class="ionNote" item-end *ngIf="user_current">
         {{formatTotalPrive(totalPrice,user_current.usercurrency)}}
