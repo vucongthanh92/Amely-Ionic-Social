@@ -31,15 +31,15 @@
               </h4>
               <h4 class="cart_items_product_price">{{ formartCurrency( item) }}</h4>
               <ion-row class="cart_items_quantity">
-                <ion-col col-3>
+                <ion-col col-4>
                   <button class="cart_items_product_decrease" ion-button block icon-only (click)="decrease(item.guid)">
                     <ion-icon name="remove"></ion-icon>
                   </button>
                 </ion-col>
-                <ion-col col-3 class="cart_items_product_number">
+                <ion-col col-4 class="cart_items_product_number">
                   {{ item.quantity_cart }}
                 </ion-col>
-                <ion-col col-3>
+                <ion-col col-4>
                   <button class="cart_items_product_increase" ion-button block icon-only (click)="increase(item.guid)">
                     <ion-icon name="add"></ion-icon>
                   </button>

@@ -30,8 +30,9 @@
           </div>
         </div>
 
-        <div class="addfeed_mood_title" *ngIf="mood_result">
-          - đang {{moods[mood_result].title}}
+        <div class="addfeed_mood_title" *ngIf="mood_result"> - 
+          <img class="addfeed_demo_icon" src="assets/imgs/ic_gift_4.png"> 
+          đang {{moods[mood_result].title}}
         </div>
       </div>
 
@@ -43,7 +44,7 @@
         </ion-select>
 
         <button class="add_feed_mood" ion-button clear item-end (click)="showMood()">
-          <ion-icon class="addfeed_icon_mood" ios="ios-happy" md="md-happy"></ion-icon>
+          <img class="addfeed_icon_mood" src="assets/imgs/mood.png">
         </button>
 
       </ion-item>
