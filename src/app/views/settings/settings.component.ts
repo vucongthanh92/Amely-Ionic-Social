@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
       if (screen.width == 1125 && screen.height == 2436) {
         this.check_screen = "top_navigation_iphonex";
       }
-      else if (screen.width == 1080 && screen.height == 1920) {
+      else if (screen.width == 1242 && screen.height == 2208) {
         this.check_screen = "top_navigation_iphone7plus";
       }
       else {
