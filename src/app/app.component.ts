@@ -32,9 +32,25 @@ export class MyApp {
   ) {
     this.checkLogin();
     this.initializeApp();
+    this.checkDevice();
   }
 
-
+  checkDevice() {
+    var ratio = window.devicePixelRatio || 1;
+    var device = {
+      width: window.screen.width * ratio,
+      height: window.screen.height * ratio
+    };
+    if (device.width == 1125 && device.height == 2436) {
+      localStorage.setItem("device", "iphonex");
+    }
+    else if (device.width == 1242 && device.height == 2208) {
+      localStorage.setItem("device", "iphone7plus");
+    }
+    else {
+      localStorage.setItem("device", "iphone6s");
+    }
+  }
 
   initializeApp() {
     // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
