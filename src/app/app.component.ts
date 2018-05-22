@@ -30,24 +30,6 @@ export class MyApp {
   ) {
     this.checkLogin();
     this.initializeApp();
-    this.checkDevice();
-  }
-
-  checkDevice() {
-    var ratio = window.devicePixelRatio || 1;
-    var device = {
-      width: window.screen.width * ratio,
-      height: window.screen.height * ratio
-    };
-    if (device.width == 1125 && device.height == 2436) {
-      window.localStorage.setItem("device_screen", "iphonex");
-    }
-    else if (device.width == 1242 && device.height == 2208) {
-      window.localStorage.setItem("device_screen", "iphone7plus");
-    }
-    else {
-      window.localStorage.setItem("device_screen", "iphone6s");
-    }
   }
 
   initializeApp() {

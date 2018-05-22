@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
     public appCtrl: App, 
     public navParams:NavParams,
     private customService:CustomService) {
-      this.device_screen = window.localStorage.getItem("device_screen");
+      this.device_screen = customService.checkDevice();
     }
 
   ngOnInit() {

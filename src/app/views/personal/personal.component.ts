@@ -26,7 +26,7 @@ export class PersonalComponent implements OnInit {
     public menuCtrl: MenuController,
     public customService: CustomService,
     public nav: NavController, public appCtrl: App, public navParams: NavParams) {
-      this.device_screen = window.localStorage.getItem("device_screen");
+      this.device_screen = customService.checkDevice();
     }
 
   ngOnInit() {

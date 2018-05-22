@@ -33,7 +33,7 @@ export class ShoppingComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner) {
-      this.device_screen = window.localStorage.getItem("device_screen");
+      this.device_screen = customService.checkDevice();
   }
 
   ngOnInit() {

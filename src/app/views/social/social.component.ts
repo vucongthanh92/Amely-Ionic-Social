@@ -17,8 +17,8 @@ import { UserUpdateComponent } from '../../components/user/user-update/user-upda
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
-
 })
+
 export class SocialComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
@@ -40,7 +40,7 @@ export class SocialComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private fbService: FirebaseService
   ) {
-    this.device_screen = localStorage.getItem("device_screen");
+    this.device_screen = customService.checkDevice();
   }
 
   ngOnInit() {
