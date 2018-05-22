@@ -32,7 +32,6 @@ export class QuickPayListItemComponent implements OnInit {
     this.navBar.backButtonClick = (e: UIEvent) => {
       // todo something
       this.nav.pop();
-      console.log(12321321321);
       this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data=>{})
     }
   }
