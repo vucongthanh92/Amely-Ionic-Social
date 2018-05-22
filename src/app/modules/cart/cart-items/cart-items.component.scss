@@ -20,12 +20,14 @@ app-cart-items{
 
     .cart_items_product_title {
       font-size: 1.4rem;
-      font-weight: normal;
+      font-weight: normal !important;
       color: #333;
       text-transform: capitalize;
-      margin: 0px 0px 0px 10px;
+      margin: 0px 0px 5px 0px;
       text-align: left;
       text-overflow: ellipsis;
+      overflow: hidden;
+      max-height: 35px;
     }
 
     .cart_items_quantity {
@@ -137,7 +139,6 @@ app-cart-items{
       height: 55px;
       width: 70px;
       border-radius: 5px;
-      border: 1px solid #efeff4;
     }
 
     .cart_items_item {

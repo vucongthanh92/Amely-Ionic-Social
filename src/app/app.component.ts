@@ -8,8 +8,6 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 import { AuthenticationService } from './authentication/authentication.service';
 
-
-
 @Component({
   templateUrl: 'app.html',
   providers: [Keyboard]
@@ -33,8 +31,6 @@ export class MyApp {
     this.checkLogin();
     this.initializeApp();
   }
-
-
 
   initializeApp() {
     // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -62,6 +58,5 @@ export class MyApp {
 
       this.rootPage = SigninComponent;
     }
-
   }
 }

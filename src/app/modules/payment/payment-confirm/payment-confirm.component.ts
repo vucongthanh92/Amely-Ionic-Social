@@ -120,4 +120,9 @@ export class PaymentConfirmComponent implements OnInit {
   formatCurrency(item: Product) {
     return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

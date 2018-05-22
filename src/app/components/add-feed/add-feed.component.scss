@@ -13,8 +13,8 @@ app-add-feed {
     }
 
     .addfeed_icon_mood {
-        font-size: 25px;
-        color: #f0ad4e;
+        width: 30px;
+        height: auto;
     }
 
     .addfeed_status {
@@ -22,6 +22,7 @@ app-add-feed {
 
         .item-inner {
             padding: 0px;
+            margin-left: 0px !important;
         }
 
         .input-wrapper {
@@ -31,7 +32,17 @@ app-add-feed {
     }
 
     .addfeed_item {
-        padding-left: 12px;
+        padding-left: 10px;
+
+        ion-avatar {
+            position: absolute;
+            top: 1.4rem;
+            left: 1rem;
+        }
+
+        .item-inner {
+            margin-left: 4.6rem;
+        }
 
         .label-ios {
             white-space: normal;
@@ -77,6 +88,7 @@ app-add-feed {
 
     .addfeed_mood_title {
         display: inline;
+        font-size: 1.4rem;
     }
 
     .addfeed_select {
@@ -133,5 +145,12 @@ app-add-feed {
         right: 0px;
         top: 10px;
         margin: 0px !important;
+    }
+
+    .addfeed_demo_icon {
+        width: 18px;
+        height: auto;
+        vertical-align: -1px;
+        margin: 0px 1px 0px 1px;
     }
 }

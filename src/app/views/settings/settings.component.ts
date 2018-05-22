@@ -13,10 +13,10 @@ import { App, NavController, NavParams } from 'ionic-angular';
 export class SettingsComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
-  check_screen: string;
   tabGeneral = SettingGeneralComponent;
   tabPrivate = SettingPrivateComponent;
   tabSecurity = SettingSecurityComponent;
+  public device_screen: string;
 
   constructor(
     public nav: NavController, 
@@ -29,10 +29,13 @@ export class SettingsComponent implements OnInit {
         height: window.screen.height * ratio
       };
       if (screen.width == 1125 && screen.height == 2436) {
-        this.check_screen = "top_navigation_iphonex";
+        this.device_screen = "top_navigation_iphonex";
+      }
+      else if (screen.width == 1242 && screen.height == 2208) {
+        this.device_screen = "top_navigation_iphone7plus";
       }
       else {
-        this.check_screen = "top_navigation_default"
+        this.device_screen = "top_navigation_iphone6s";
       }
     }
 

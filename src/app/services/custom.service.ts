@@ -85,8 +85,6 @@ export class CustomService {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
-
-
   getCurrentTime() {
     return this.api.getServices();
   }
@@ -297,4 +295,5 @@ export class CustomService {
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
+  
 }
