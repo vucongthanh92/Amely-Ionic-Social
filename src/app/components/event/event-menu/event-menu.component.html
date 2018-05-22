@@ -32,4 +32,8 @@
   <ion-item class="event_menu_item" (click)="openQR()" *ngIf="has_inventory">
       <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
   </ion-item>
+
+  <ion-item (click)="report()">
+    <ion-icon ios="ios-remove-circle" md="md-remove-circle"></ion-icon> Report
+  </ion-item>
 </ion-list>

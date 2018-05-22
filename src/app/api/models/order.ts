@@ -9,4 +9,6 @@ export class Order {
     shipping_method?: string;
     payment_method?: string;
     order_item?: Product[];
+    total?: number;
+    shipping_fee?: number;
 }

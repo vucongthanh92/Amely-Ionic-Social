@@ -8,8 +8,6 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 import { AuthenticationService } from './authentication/authentication.service';
 
-
-
 @Component({
   templateUrl: 'app.html',
   providers: [Keyboard]

@@ -52,7 +52,7 @@ export class ProductCategoryComponent implements OnInit {
 
 
   formatCurrency(product: Product) {
-    return this.custom_service.formatCurrency(this.custom_service.netPrice(product) + "", product.currency);
+    return this.custom_service.formatCurrency(this.custom_service.netPrice(product) + "", product.display_currency);
   }
 
   formatSalePrice(price: number, currency: string) {

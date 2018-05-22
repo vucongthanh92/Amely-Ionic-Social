@@ -40,7 +40,7 @@ export class WalletComponent implements OnInit {
   }
 
   retryGetTransactions(retry) {
-    if (retry == 5) return;
+    if (retry == 0) return;
     this.customService.getTransactions('wallet').subscribe(data => {
       if (data instanceof Array) {
         this.transactions = data;

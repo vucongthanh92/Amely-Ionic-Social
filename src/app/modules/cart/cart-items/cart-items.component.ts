@@ -133,10 +133,10 @@ export class CartItemsComponent implements OnInit {
   }
 
   formartCurrency(item: Product) {
-    this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+    this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
   }
   formartSalePrice(item: Product) {
-    this.customService.formatCurrency(this.customService.netSalePrice(item) + "", item.currency);
+    this.customService.formatCurrency(this.customService.netSalePrice(item) + "", item.display_currency);
   }
 
   formatSalePriceShow(price: number, currency: string) {
