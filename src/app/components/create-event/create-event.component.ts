@@ -223,4 +223,9 @@ export class CreateEventComponent implements OnInit {
         }
       }, err => { this.retryCreateEvent(--retry, datetime_start, datetime_end, loading) });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

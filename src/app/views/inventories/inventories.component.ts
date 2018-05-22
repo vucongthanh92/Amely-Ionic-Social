@@ -27,7 +27,20 @@ export class InventoriesComponent implements OnInit {
     public nav: NavController, 
     public appCtrl: App, 
     public navParams: NavParams) {
-      this.device_screen = customService.checkDevice();
+      var ratio = window.devicePixelRatio || 1;
+      var screen = {
+        width: window.screen.width * ratio,
+        height: window.screen.height * ratio
+      };
+      if (screen.width == 1125 && screen.height == 2436) {
+        this.device_screen = "top_navigation_iphonex";
+      }
+      else if (screen.width == 1242 && screen.height == 2208) {
+        this.device_screen = "top_navigation_iphone7plus";
+      }
+      else {
+        this.device_screen = "top_navigation_iphone6s";
+      }
     }
 
   ngOnInit() {
