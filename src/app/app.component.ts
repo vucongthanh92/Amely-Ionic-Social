@@ -58,6 +58,5 @@ export class MyApp {
 
       this.rootPage = SigninComponent;
     }
-
   }
 }
