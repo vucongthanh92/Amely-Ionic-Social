@@ -86,6 +86,8 @@ export class SearchComponent implements OnInit {
 
       if (data.products) {
         this.products = data.products;
+        console.log(this.products);
+        
         this.is_has_data = 1;
         this.search = 'product';
       }

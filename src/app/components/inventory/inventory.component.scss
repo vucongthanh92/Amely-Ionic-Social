@@ -245,4 +245,51 @@ app-inventory {
     border: 1px solid #999;
     margin: 3px auto 0px auto;
   }
+
+   .fakeItem {
+         h2, h3, p {
+             background: linear-gradient(to right, lightgray, white, lightgray);
+             animation: skeleton 2s infinite;
+             animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+             background-repeat: no-repeat;
+             background-position-x: -300px;
+             background-position-y: 0;
+             background-color: lightgray;
+             opacity: 0.5;
+             height: 1em;
+             margin-top: 10px;
+        }
+         h2 {
+             height: 30px;
+             margin-top: 0px;
+             width: auto;
+        }
+         h3 {
+             max-width: 95px;
+        }
+         p {
+             max-width: 250px;
+        }
+    }
+     .divCustom{
+         background: linear-gradient(to right, lightgray, white, lightgray);
+         animation: skeleton 2s infinite;
+         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+         background-repeat: no-repeat;
+         background-position-x: -300px;
+         background-position-y: 0;
+         background-color: lightgray;
+         opacity: 0.5;
+         height: 8em;
+         width: 105px;
+         border-radius: 10px;
+    }
+     @keyframes skeleton {
+         0% {
+             background-position-x: -150px;
+        }
+         100% {
+             background-position-x: 150px;
+        }
+    }
 }

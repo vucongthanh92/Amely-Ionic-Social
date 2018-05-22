@@ -16,6 +16,7 @@ export class HistoryOrderDetailComponent implements OnInit {
   tran: Transaction;
   user_current: User;
   totalPrice: number = 0;
+  shippingFee: number = 0;
   shops: Array<Shop>;
   items: Array<Product>;
 
@@ -37,10 +38,14 @@ export class HistoryOrderDetailComponent implements OnInit {
       return;
     }
     this.historyService.getOrder(this.order_guid ? this.order_guid : this.tran.related_guid).subscribe(data => {
+      console.log(data);
+      
       try {
         this.order = data.order;
         this.shops = data.shops;
         this.items = data.items;
+        this.totalPrice = data.order.total;
+        this.shippingFee = data.order.shipping_fee;
         
       } catch (e) {
 
@@ -50,14 +55,11 @@ export class HistoryOrderDetailComponent implements OnInit {
   }
 
   getProductsShop(shopGuid){
-    console.log(this.items[shopGuid]);
-    console.log(shopGuid);
-    
     return this.items[shopGuid];
   }
 
   formatCurrency(item: Product) {
-    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
   }
   formatTotalPrive(amount: number, usercurrency) {
     return this.customService.formatCurrency(amount + "", usercurrency);

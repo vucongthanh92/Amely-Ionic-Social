@@ -16,11 +16,11 @@
       <h3 class="voucher_title">{{voucher.title}}</h3>
       <div class="voucher_price">
         <div *ngIf="voucher.sale_price == 0 || voucher.sale_price == null; else other_content">
-          <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.currency) }}</div>
+          <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.display_currency) }}</div>
         </div>
         <ng-template #other_content>
-          <div class="product_feature_price">{{formatSalePrice(voucher.display_price,voucher.currency)}}</div>
-          <div class="product_sale_price">{{ formatSalePrice( voucher.display_old_price, voucher.currency) }}</div>
+          <div class="product_feature_price">{{formatSalePrice(voucher.display_price,voucher.display_currency)}}</div>
+          <div class="product_sale_price">{{ formatSalePrice( voucher.display_old_price, voucher.display_currency) }}</div>
         </ng-template>
         <!-- {{formatCurrency(voucher)}} -->
       </div>

@@ -89,23 +89,42 @@
 		</ion-col>
 
 		<!-- SHOW FOR USER -->
-		<ion-col class="inventory_total" *ngIf="inventoryType=='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
+		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
 				<ion-card-header>
 					TỔNG :{{totalItem}}/{{total}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
-		<ion-col class="inventory_total" *ngIf="inventoryType=='user'" col-6>
+		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
 			<ion-card>
 				<ion-card-header>
 					GIÁ TRỊ:{{formatCurrency()}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
+
+		<ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+			<ion-card>
+				<ion-card-header>
+					<div class='fakeItem'>
+						<h2></h2>
+					</div>
+				</ion-card-header>
+			</ion-card>
+		</ion-col>
+		<ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+			<ion-card>
+				<ion-card-header>
+					<div class='fakeItem'>
+						<h2></h2>
+					</div>
+				</ion-card-header>
+			</ion-card>
+		</ion-col>
 	</ion-row>
 
-	<ion-grid class="inventory_metro_menu">
+	<ion-grid class="inventory_metro_menu" *ngIf="isHasData == arrTagBadge.length">
 		<ion-row>
 			<ion-col class="inventory_metro_box" col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
 				<div class="box inventory">
@@ -114,6 +133,16 @@
 						<img width="100%" src="{{type.image}}" />
 					</div>
 					<h6 class="inventory_metro_title">{{type.title}}</h6>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid class="inventory_metro_menu" *ngIf="isHasData !=  arrTagBadge.length">
+		<ion-row>
+			<ion-col class="inventory_metro_box" col-4 style="text-align: center" *ngFor='let fake of [3,3,3,3,3,3,3,3,3]'>
+				<div class="box inventory" class='fakeItem'>
+					<div class="divCustom"></div>
 				</div>
 			</ion-col>
 		</ion-row>

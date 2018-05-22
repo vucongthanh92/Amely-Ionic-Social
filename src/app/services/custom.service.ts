@@ -109,13 +109,13 @@ export class CustomService {
 
   netPrice(product: Product): number {
     if (product.tax) {
-      return +product.price + (+(product.price * (product.tax / 100)));
-    } else return product.price;
+      return +product.display_price + (+(product.display_price * (product.tax / 100)));
+    } else return product.display_price;
   }
   netSalePrice(product: Product): number {
     if (product.tax) {
-      return +product.sale_price + (+(product.sale_price * (product.tax / 100)));
-    } else return product.sale_price;
+      return +product.display_price + (+(product.display_price * (product.tax / 100)));
+    } else return product.display_price;
   }
 
   report(alertCtrl: AlertController, report_type: string, guid: number) {

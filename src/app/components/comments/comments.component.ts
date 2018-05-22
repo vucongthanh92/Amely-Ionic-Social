@@ -82,25 +82,25 @@ export class CommentsComponent implements OnInit {
     //   enableBackdropDismiss: true
     // });
     // loading.present();
-    setTimeout(() => {
       this.offset = this.offset + this.limit;
-      this.retryGetComments(5);
-      infiniteScroll.complete();
-    }, 500);
+    this.retryGetComments(5, infiniteScroll);
+      
   }
 
-  retryGetComments(retry) {
+  retryGetComments(retry, infiniteScroll) {
     if (retry == 0) {
+      infiniteScroll.complete();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(data => {
+      infiniteScroll.complete();
       if (data.comments instanceof Array) {
         this.comments = this.comments.concat(data.comments);
         this.users = Object.assign(this.users, data.users);
       }
       // loading.dismiss();        
-    }, err => this.retryGetComments(--retry))
+    }, err => this.retryGetComments(--retry, infiniteScroll))
   }
 
   onSend() {
@@ -111,7 +111,6 @@ export class CommentsComponent implements OnInit {
     loading.present();
     if (this.content) {
 
-      loading.dismiss();
       let contentTmp = this.content;
       let images;
       if (this.image) {
@@ -126,6 +125,7 @@ export class CommentsComponent implements OnInit {
 
   retryPutComment(retry, loading, contentTmp, images) {
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }

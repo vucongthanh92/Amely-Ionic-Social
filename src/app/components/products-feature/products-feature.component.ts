@@ -16,6 +16,7 @@ export class ProductsFeatureComponent implements OnInit {
   public productsMostSold: Array<Product> = [];
   @Input('shopGuid') shopGuid;
   @Input('is_feature') is_feature: boolean;
+  isHasData: boolean = false;
 
   constructor(public nav: NavController, public appCtrl: App, private shopService: ShopsService,
     private shoppingSerivce: ShoppingsService, public customService: CustomService, public loadingCtrl: LoadingController) { }
@@ -38,11 +39,13 @@ export class ProductsFeatureComponent implements OnInit {
     // loading.present();
 
     if (retry == 0) {
+      this.isHasData = true;
       // loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingSerivce.getProductsFeature().subscribe(data => {
+      this.isHasData = true;
       // loading.dismiss();
       this.productsMostSold = data;
     }, err => this.getProductsFeature(--retry));
@@ -58,10 +61,12 @@ export class ProductsFeatureComponent implements OnInit {
 
     if (retry == 0) {
       // loading.dismiss();
+      this.isHasData = true;
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingSerivce.getMostSoldProducts().subscribe(data => {
+      this.isHasData = true;
       if (data instanceof Array) {
         this.productsMostSold = data;
       }
@@ -83,9 +88,11 @@ export class ProductsFeatureComponent implements OnInit {
 
   retryInitShopProductFeatue(retry) {
     if (retry == 0) {
+      this.isHasData = true;
       return;
     }
     this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
+      this.isHasData = true;
       if (data.products instanceof Array) {
         // loading.dismiss();
         this.productsMostSold = data.products;

@@ -35,11 +35,11 @@
         <ion-col class="product_box_price" col-12>
           <!-- {{formatSalePrice(product.sale_price,product.currency)}} -->
           <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-            <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.currency) }}</div>
+            <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
           </div>
           <ng-template #other_content>
-              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.currency)}}</div>
-              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.currency) }}</div>
+              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
+              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
           </ng-template>
         </ion-col>
       </ion-row>
