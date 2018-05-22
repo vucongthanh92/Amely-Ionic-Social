@@ -16,18 +16,17 @@ export class PersonalComponent implements OnInit {
   @Input('search') search: string;
   isOn: boolean;
   tabActive = true;
-  check_screen: string;
   tab1Root = ContactComponent;
   tab2Root = MessagesComponent;
   tab3Root = NotificationComponent;
-  public device: string;
+  public device_screen: string;
 
   constructor(
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
     public customService: CustomService,
-    public nav: NavController, public appCtrl: App, public navParams: NavParams,) {
-      this.device = localStorage.getItem("device");
+    public nav: NavController, public appCtrl: App, public navParams: NavParams) {
+      this.device_screen = window.localStorage.getItem("device_screen");
     }
 
   ngOnInit() {

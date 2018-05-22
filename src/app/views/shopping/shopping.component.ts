@@ -19,11 +19,10 @@ import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-lis
 export class ShoppingComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
-  check_screen: string;
   tab1Root = ShopsComponent;
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
-  public device: string;
+  public device_screen: string;
 
   constructor(
     public nav: NavController,
@@ -34,7 +33,7 @@ export class ShoppingComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner) {
-      this.device = localStorage.getItem("device");
+      this.device_screen = window.localStorage.getItem("device_screen");
   }
 
   ngOnInit() {

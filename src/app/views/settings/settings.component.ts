@@ -13,18 +13,17 @@ import { App, NavController, NavParams } from 'ionic-angular';
 export class SettingsComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
-  check_screen: string;
   tabGeneral = SettingGeneralComponent;
   tabPrivate = SettingPrivateComponent;
   tabSecurity = SettingSecurityComponent;
-  public device: string;
+  public device_screen: string;
 
   constructor(
     public nav: NavController, 
     public appCtrl: App, 
     public navParams:NavParams,
     private customService:CustomService) {
-      this.device = localStorage.getItem("device");
+      this.device_screen = window.localStorage.getItem("device_screen");
     }
 
   ngOnInit() {

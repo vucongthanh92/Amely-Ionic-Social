@@ -22,14 +22,14 @@ import { UserUpdateComponent } from '../../components/user/user-update/user-upda
 export class SocialComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
-  check_screen: string;
   tab1Root = NewsFeedComponent;
   tab2Root = OffersComponent;
   tab3Root = NearByComponent;
   tab4Root = EventsComponent;
   tab5Root = NearByComponent;
   tab6Root = EventsComponent;
-  public device: string;
+  public device_screen: string;
+
   constructor(
     public nav: NavController, public appCtrl: App, public navParams: NavParams,
     public menuCtrl: MenuController,
@@ -40,7 +40,7 @@ export class SocialComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private fbService: FirebaseService
   ) {
-    this.device = localStorage.getItem("thanhvc");
+    this.device_screen = localStorage.getItem("device_screen");
   }
 
   ngOnInit() {
