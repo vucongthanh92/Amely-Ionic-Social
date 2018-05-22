@@ -40,7 +40,7 @@ export class SocialComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private fbService: FirebaseService
   ) {
-    this.device = localStorage.getItem("device");
+    this.device = localStorage.getItem("thanhvc");
   }
 
   ngOnInit() {

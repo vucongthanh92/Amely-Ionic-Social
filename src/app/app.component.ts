@@ -42,13 +42,13 @@ export class MyApp {
       height: window.screen.height * ratio
     };
     if (device.width == 1125 && device.height == 2436) {
-      localStorage.setItem("device", "iphonex");
+      localStorage.setItem("thanhvc", "iphonex");
     }
     else if (device.width == 1242 && device.height == 2208) {
-      localStorage.setItem("device", "iphone7plus");
+      localStorage.setItem("thanhvc", "iphone7plus");
     }
     else {
-      localStorage.setItem("device", "iphone6s");
+      localStorage.setItem("thanhvc", "iphone6s");
     }
   }
 
