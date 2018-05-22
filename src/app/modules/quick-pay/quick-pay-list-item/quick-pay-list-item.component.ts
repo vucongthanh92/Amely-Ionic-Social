@@ -1,8 +1,8 @@
 import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Product } from './../../../api/models/product';
-import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController, AlertController, Navbar } from 'ionic-angular';
 import { QuickPayMethodComponent } from '../quick-pay-method/quick-pay-method.component';
 import { Shop } from '../../../api/models';
 
@@ -15,7 +15,7 @@ export class QuickPayListItemComponent implements OnInit {
   products: Product[];
   shop: Shop;
   total_price: number = 0;
-
+  @ViewChild(Navbar) navBar: Navbar;
   constructor(private nav: NavController, private paymentService: PaymentService, private customService: CustomService
     , private alertCtrl: AlertController) { }
 
@@ -26,6 +26,15 @@ export class QuickPayListItemComponent implements OnInit {
     this.products.forEach(e => {
       this.total_price += (this.customService.netPrice(e) * e.display_quantity);
     });
+  }
+
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = (e: UIEvent) => {
+      // todo something
+      this.nav.pop();
+      console.log(12321321321);
+      this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data=>{})
+    }
   }
 
   showInventoryItem(product: Product) {

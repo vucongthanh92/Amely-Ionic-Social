@@ -4507,13 +4507,15 @@ export class ApiService extends BaseService {
     );
   }
   /**
+   * @param product_number - Global Unique IDentity
    * @param guid - Global Unique IDentity
    */
-  getProductResponse(guid: number): Observable<HttpResponse<inline_response_200_16>> {
+  getProductResponse(params: ApiService.GetProductParams): Observable<HttpResponse<inline_response_200_16>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (guid != null) __params = __params.set("guid", guid.toString());
+    if (params.productNumber != null) __params = __params.set("product_number", params.productNumber.toString());
+    if (params.guid != null) __params = __params.set("guid", params.guid.toString());
     let req = new HttpRequest<any>(
       "GET",
       this.rootUrl + `/products`,
@@ -4536,10 +4538,11 @@ export class ApiService extends BaseService {
   }
 
   /**
+   * @param product_number - Global Unique IDentity
    * @param guid - Global Unique IDentity
    */
-  getProduct(guid: number): Observable<inline_response_200_16> {
-    return this.getProductResponse(guid).pipe(
+  getProduct(params: ApiService.GetProductParams): Observable<inline_response_200_16> {
+    return this.getProductResponse(params).pipe(
       map(_r => _r.body)
     );
   }
@@ -4993,6 +4996,48 @@ export class ApiService extends BaseService {
    */
   quickPayCreate(body: Param_create_order): Observable<DefaultResponse> {
     return this.quickPayCreateResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * null
+   * @param to_guid - undefined
+   * @param is_shop - undefined
+   */
+  quickpayDeleteResponse(params: ApiService.QuickpayDeleteParams): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.toGuid != null) __params = __params.set("to_guid", params.toGuid.toString());
+    if (params.isShop != null) __params = __params.set("is_shop", params.isShop.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/quickpay`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * null
+   * @param to_guid - undefined
+   * @param is_shop - undefined
+   */
+  quickpayDelete(params: ApiService.QuickpayDeleteParams): Observable<DefaultResponse> {
+    return this.quickpayDeleteResponse(params).pipe(
       map(_r => _r.body)
     );
   }
@@ -6324,9 +6369,17 @@ export module ApiService {
     type: string;
     guid: number;
   }
+  export interface GetProductParams {
+    productNumber: string;
+    guid: number;
+  }
   export interface GetProfileParams {
     username?: number;
     guid?: number;
+  }
+  export interface QuickpayDeleteParams {
+    toGuid: number;
+    isShop: string;
   }
   export interface GetShopParams {
     storeGuid: string;

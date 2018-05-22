@@ -102,23 +102,23 @@
         <p>{{payment_method.displayname}}</p>
       </ion-item>
 
-      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='basket' item-start></ion-icon>
         Nhận hàng
         <p>{{shipping.displayname}}</p>
       </ion-item>
 
-      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+      <ion-item *ngIf="shipping_methods !=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='locate' item-start></ion-icon>
         Địa chỉ giao
         <p>{{getAddress()}}</p>
       </ion-item>
-      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='contacts' item-start></ion-icon>
         Người nhận
         <p>{{shipping.shipping_fullname}}</p>
       </ion-item>
-      <ion-item *ngIf="shipping_methods &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
         <ion-icon name='call' item-start></ion-icon>
         Số điện thoại
         <p>{{shipping.shipping_phone}}</p>
