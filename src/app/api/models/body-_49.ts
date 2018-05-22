@@ -10,4 +10,5 @@ export class body_49 {
     get_all?: number;
     offset?: number;
     limit?: number;
+    product_number?: string;
 }
