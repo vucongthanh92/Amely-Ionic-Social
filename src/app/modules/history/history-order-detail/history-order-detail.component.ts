@@ -59,7 +59,7 @@ export class HistoryOrderDetailComponent implements OnInit {
   }
 
   formatCurrency(item: Product) {
-    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
   }
   formatTotalPrive(amount: number, usercurrency) {
     return this.customService.formatCurrency(amount + "", usercurrency);

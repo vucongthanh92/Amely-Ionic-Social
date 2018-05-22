@@ -20,11 +20,11 @@
           <div class="product_feature_info">
             <h4 class="product_feature_title">{{product.title}}</h4>
             <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-              <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.currency) }}</div>
+              <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
             </div>
             <ng-template #other_content>
-              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.currency)}}</div>
-              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.currency) }}</div>
+              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
+              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
             </ng-template>
           </div>
         </div>

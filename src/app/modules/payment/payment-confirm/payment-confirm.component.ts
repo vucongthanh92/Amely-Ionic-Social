@@ -52,7 +52,7 @@ export class PaymentConfirmComponent implements OnInit {
   }
 
   formatTotalPrice() {
-   return this.customService.formatCurrency(((+this.items.total) + (+this.paymentService.param_create_order.shipping_fee)) + "", this.items.currency)
+    return this.customService.formatCurrency(((+this.items.total) + (+this.paymentService.param_create_order.shipping_fee)) + "", this.items.display_currency)
   }
 
   getDisplayname(id, type) {
@@ -118,6 +118,6 @@ export class PaymentConfirmComponent implements OnInit {
     })
   }
   formatCurrency(item: Product) {
-    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.currency);
+    return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
   }
 }
