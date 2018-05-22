@@ -85,8 +85,6 @@ export class CustomService {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
-
-
   getCurrentTime() {
     return this.api.getServices();
   }
@@ -297,4 +295,24 @@ export class CustomService {
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
+
+  //check version device iphone
+  checkDevice() {
+    var ratio = window.devicePixelRatio || 1;
+    var device = {
+      width: window.screen.width * ratio,
+      height: window.screen.height * ratio
+    };
+    if (device.width == 1125 && device.height == 2436) {
+      return "iphonex";
+    }
+    else if (device.width == 1242 && device.height == 2208) {
+      return "iphone7plus";
+    }
+    else {
+      return "iphone6s";
+    }
+  }
+  //============================
+  
 }

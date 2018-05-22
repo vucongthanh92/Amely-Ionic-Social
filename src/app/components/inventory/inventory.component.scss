@@ -142,7 +142,8 @@ app-inventory {
     .card-header-ios {
       line-height: 24px;
       color: #666;
-      font-size: 15px;
+      font-size: 1.3rem;
+      font-weight: normal;
     }
   }
 
@@ -209,13 +210,24 @@ app-inventory {
       margin: 5px 8px 5px 0;
       text-overflow: unset;
       white-space: normal;
-      height: 35px;
       overflow: hidden;
     }
 
     .inventory_product_box {
       margin:0px; 
       width: 100%;
+    }
+
+    .inventory_product_info {
+      .inventory_product_title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .item-inner {
+        padding: 0px;
+      }
     }
 
     ion-item {

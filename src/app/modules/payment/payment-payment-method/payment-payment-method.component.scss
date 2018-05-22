@@ -2,9 +2,10 @@ app-payment-payment-method{
   .toolbar-title-ios {
     font-size: 1.5rem;
   }
+  
   .item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
 
   .payment_method_next {
@@ -13,6 +14,18 @@ app-payment-payment-method{
     ion-icon {
       font-size: 2.4rem;
       margin: 0px 0px 0px 7px;
+    }
+  }
+
+  .payment_method_content {
+    background-color: #fff;
+  }
+
+  .payment_method_list {
+    margin: -1px 0px 0px 0px;
+
+    ion-item {
+      padding: 9px 10px 9px 12px;
     }
   }
 }

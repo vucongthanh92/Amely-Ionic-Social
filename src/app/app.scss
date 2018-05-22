@@ -4,7 +4,6 @@
         background: #00bdf2;
         color: #fff;
     }
-
     .ion_navbar_box {
         float: left;
     }
@@ -41,4 +40,16 @@
         color: #fff;
         text-transform: capitalize;
     }
+}
+
+#top_navigation_iphone6s {
+    top: 64px;
+}
+
+#top_navigation_iphone7plus {
+    top: 44px;
+}
+
+#top_navigation_iphonex {
+    top: 44px;
 }

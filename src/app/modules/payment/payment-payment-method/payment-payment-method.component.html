@@ -15,16 +15,17 @@
  </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
-  <div style="background-color: #fff;">
-    <ion-list radio-group [(ngModel)]="payment_selected">
-      <ion-item *ngFor="let payment_method of payment_methods">
-        <ion-thumbnail item-start>
-          <img width="100%" src="assets/imgs/logo.png" />
-        </ion-thumbnail>
-        <ion-radio value="{{ payment_method.filename }}" item-end></ion-radio>
-        <ion-label>{{ payment_method.displayname }}</ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
+<ion-content class="payment_method_content">
+  <ion-list class="payment_method_list" radio-group [(ngModel)]="payment_selected">
+    <ion-item *ngFor="let payment_method of payment_methods">
+      <ion-thumbnail item-start>
+        <img *ngIf="payment_method.filename == 'paypal/standard'" src="assets/imgs/vector_paypal-01.png" />
+        <img *ngIf="payment_method.filename == 'onepay/opatm'" src="assets/imgs/vector_atm-01.png" />
+        <img *ngIf="payment_method.filename == 'onepay/opcreditcard'" src="assets/imgs/vector_visa-01.png" />
+        <img *ngIf="payment_method.filename == 'sq/wallet'" src="assets/imgs/vector_wallet-01.png" />
+      </ion-thumbnail>
+      <ion-radio value="{{ payment_method.filename }}" item-end></ion-radio>
+      <ion-label>{{ payment_method.displayname }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

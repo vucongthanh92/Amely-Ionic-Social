@@ -16,27 +16,17 @@ export class PersonalComponent implements OnInit {
   @Input('search') search: string;
   isOn: boolean;
   tabActive = true;
-  check_screen: string;
   tab1Root = ContactComponent;
   tab2Root = MessagesComponent;
   tab3Root = NotificationComponent;
+  public device_screen: string;
 
   constructor(
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
     public customService: CustomService,
-    public nav: NavController, public appCtrl: App, public navParams: NavParams,) {
-      var ratio = window.devicePixelRatio || 1;
-      var screen = {
-        width: window.screen.width * ratio,
-        height: window.screen.height * ratio
-      };
-      if (screen.width == 1125 && screen.height == 2436) {
-        this.check_screen = "top_navigation_iphonex";
-      }
-      else {
-        this.check_screen = "top_navigation_default"
-      }
+    public nav: NavController, public appCtrl: App, public navParams: NavParams) {
+      this.device_screen = customService.checkDevice();
     }
 
   ngOnInit() {

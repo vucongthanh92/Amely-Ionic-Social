@@ -19,12 +19,12 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'group'">
 			<ion-card class="inventory_product_box">
-				<ion-item (click)="openGroupProfile()">
+				<ion-item class="inventory_product_info" (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" *ngIf="group.avatar" src="{{group.avatar}}" imageViewer>
 						<img class="inventory_product_image" *ngIf="!group.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
-					<p>{{group.title}}</p>
+					<p class="inventory_product_title">{{group.title}}</p>
 				</ion-item>
 			</ion-card>
 		</ion-col>
@@ -43,12 +43,12 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'event'">
 			<ion-card class="inventory_product_box">
-				<ion-item (click)="openEventProfile()">
+				<ion-item class="inventory_product_info" (click)="openEventProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" *ngIf="event.avatar" src="{{event.avatar}}" imageViewer>
 						<img class="inventory_product_image" *ngIf="!event.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
-					<p>{{event.title}}</p>
+					<p class="inventory_product_title">{{event.title}}</p>
 				</ion-item>
 			</ion-card>
 		</ion-col>
@@ -61,12 +61,12 @@
 		</ion-item>
 		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'business'">
 			<ion-card class="inventory_product_box">
-				<ion-item (click)="openOAProfile()">
+				<ion-item class="inventory_product_info" (click)="openOAProfile()">
 					<ion-thumbnail item-start>
 						<img class="inventory_product_image" *ngIf="page.avatar" src="{{page.avatar}}" imageViewer>
 						<img class="inventory_product_image" *ngIf="!page.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
-					<p>{{page.title}}</p>
+					<p class="inventory_product_title">{{page.title}}</p>
 				</ion-item>
 			</ion-card>
 		</ion-col>
@@ -75,7 +75,7 @@
 		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
 				<ion-card-header>
-					TỔNG :{{totalItem}}/{{total}}
+					TỔNG: {{totalItem}}/{{total}}
 				</ion-card-header>
 			</ion-card>
 
@@ -83,7 +83,7 @@
 		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-12>
 			<ion-card>
 				<ion-card-header>
-					GIÁ TRỊ:{{formatCurrency()}}
+					GIÁ TRỊ: {{formatCurrency()}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>

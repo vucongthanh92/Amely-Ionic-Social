@@ -43,6 +43,7 @@ export class QuickPayShippingOptionComponent implements OnInit {
   }
 
   onWardChange(wardid: string) {
+    
 
   }
   changePage() {
@@ -93,5 +94,9 @@ export class QuickPayShippingOptionComponent implements OnInit {
         this.paymentService.quick_pay_send_data.shipping.shipping_fee = data.fee;
         this.nav.push(QuickPayConfirmComponent);
       }, err => this.retryShippingFee(--retry, loading));
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }
