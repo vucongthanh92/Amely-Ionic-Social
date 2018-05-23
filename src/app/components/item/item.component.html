@@ -124,7 +124,7 @@
     </ion-grid>
 
     <ng-template #groupAndOA>
-      <ion-row *ngIf="expiryType < 1; else voucher ">
+      <ion-row *ngIf="isAdminGroup || isAdminEvent; else isNotAdmin ">
         <ion-col col-4 *ngIf="!is_remove_item">
           <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
         </ion-col>
@@ -142,20 +142,7 @@
         </ion-col>
       </ion-row>
       
-      <ng-template #voucher>
-        <ion-row>
-          <ion-col col-4 *ngIf="!is_remove_item">
-            <button class="item_footer_btn" [ladda]="is_used" ion-button block (click)="createCode()">sử dụng</button>
-          </ion-col>
-      
-          <ion-col col-4 *ngIf="!is_remove_item && isUser">
-            <button class="item_footer_btn" ion-button block (click)="gift()">tặng quà</button>
-          </ion-col>
-      
-          <ion-col col-4 *ngIf="!is_remove_item">
-            <button class="item_footer_btn" ion-button block (click)="renewalItem()">gia hạn</button>
-          </ion-col>
-        </ion-row>
+      <ng-template #isNotAdmin>
       </ng-template>
     </ng-template>
   </ion-toolbar>

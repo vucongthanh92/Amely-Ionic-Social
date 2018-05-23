@@ -44,10 +44,14 @@ export class InventoryComponent implements OnInit {
   public total: number = 0;
 
   isHasData: number = 0;
+  isAdminGroup: any;
+  isAdminEvent: any;
 
   constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams,
     public loadingCtrl: LoadingController, private customService: CustomService) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    this.isAdminGroup = this.navParams.get("isAdminGroup");
+    this.isAdminEvent = this.navParams.get("isAdminEvent");
   }
 
   types: Array<{ item_type: string, title: string, image: string, badge: number, position: number }> = [];
@@ -149,7 +153,7 @@ export class InventoryComponent implements OnInit {
     switch (value) {
       case 'items':
         this.appCtrl.getRootNav().push(InvenroyItemsComponent, {
-          ownerGuid: this.ownerGuid, itemType: item_type,
+          ownerGuid: this.ownerGuid, itemType: item_type, isAdminGroup: this.isAdminGroup, isAdminEvent: this.isAdminEvent,
           inventoryType: this.inventoryType, title: title, callback: this.myCallbackFunction
         });
         break;

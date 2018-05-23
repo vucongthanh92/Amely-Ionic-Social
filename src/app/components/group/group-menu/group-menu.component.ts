@@ -166,7 +166,7 @@ export class GroupMenuComponent implements OnInit {
   }
   openInventory() {
     this.nav.pop();
-    this.appCtrl.getRootNav().push(InventoryComponent, { type: 'group', ownerGuid: this.group.guid, obj: this.group });
+    this.appCtrl.getRootNav().push(InventoryComponent, { type: 'group', ownerGuid: this.group.guid, obj: this.group, isAdminGroup: this.group.owner_guid });
   }
   changeAvatarCover(isAvatar: string) {
     this.nav.pop();

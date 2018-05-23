@@ -12,6 +12,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Product } from '../../api/models/product';
 import { InventoryTargetsGiftComponent } from '../inventory-targets-gift/inventory-targets-gift.component';
 import { AlertController, LoadingController } from 'ionic-angular';
+import { User } from '../../api/models';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html'
@@ -30,6 +31,11 @@ export class ItemComponent implements OnInit {
   expiryType: number;
   stored_end: Date;
   isUser: boolean;
+  isAdminGroup: boolean;
+  ownerGuidGroup: any;
+  isAdminEvent: boolean;
+  ownerGuidEvent: any;
+  user_current: User;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -38,6 +44,12 @@ export class ItemComponent implements OnInit {
     this.callback = this.navParams.get('callback');
     this.isUser = this.navParams.get('inventoryType')=='user';
 
+    this.user_current = this.customService.user_current;
+    this.ownerGuidGroup = this.navParams.get('isAdminGroup');
+    this.isAdminGroup = this.user_current.guid == this.ownerGuidGroup;
+    this.ownerGuidEvent = this.navParams.get('isAdminEvent');
+    this.isAdminEvent = this.user_current.guid == this.ownerGuidEvent;
+    
   }
 
   ngOnInit() {
