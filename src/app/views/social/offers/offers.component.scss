@@ -16,11 +16,18 @@ app-offers {
   }
 
   .offer_tabs {
-    .tab-button {
-      app-social .tabs-ios .tab-button[aria-selected=true] {
-        border: none;
-        border-top: 1px solid #00bdf2;
-      }
+    .tab-button .tab-button-text {
+      border-right: 1px solid #c8c7cc;
+      width: 100%;
+    }
+    
+    .tab-button[aria-selected=true] {
+      border-top: 1px solid #00bdf2;
+      border-bottom: none;
+    }
+
+    .show-tabbar {
+      padding: 0px;
     }
   }
 
