@@ -36,12 +36,13 @@ app-history-order-detail {
 
     .history_order_total {
         background-color: #ffffff;
-        padding: 0px 0px 5px 0px;
+        padding: 3px 0px 3px 0px;
     }
 
     .history_order_total_box {
         ion-item, .item-inner {
             padding: 0px !important;
+            border-bottom: none !important;
         }
     }
 

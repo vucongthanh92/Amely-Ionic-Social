@@ -3,7 +3,8 @@
 /**
  */
 export class body_65 {
-    owner_guid?: number;
-    avatar_type?: string;
-    images?: string[];
+    shop_guid?: number;
+    shipping_filter?: string;
+    offset?: number;
+    page_limit?: number;
 }

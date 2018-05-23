@@ -3,17 +3,12 @@
 /**
  */
 export class body_49 {
-    friends_hidden: string;
-    firstname: string;
-    email: string;
-    gender: string;
-    birthdate: string;
-    usercurrency: string;
-    lastname: string;
-    mobile_hidden?: string;
-    birthdate_hidden?: string;
-    province?: string;
-    district?: string;
-    ward?: string;
-    address?: string;
+    category_guid?: number;
+    shop_guid?: number;
+    type_product?: string;
+    product_filter?: number;
+    get_all?: number;
+    offset?: number;
+    limit?: number;
+    product_number?: string;
 }

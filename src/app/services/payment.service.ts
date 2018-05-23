@@ -53,4 +53,8 @@ export class PaymentService {
       shipping_province: shipping_province, shipping_district: shipping_district, shipping_ward: shipping_ward, shipping_note: shipping_note, to_guid: to_guid
     })
   }
+
+  deleteQuickPay(toGuid: number) {
+    return this.api.quickpayDelete({ toGuid: toGuid, isShop: "false" });
+  }
 }

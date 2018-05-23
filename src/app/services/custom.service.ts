@@ -85,8 +85,6 @@ export class CustomService {
     return hoursString + ':' + minutesString + ':' + secondsString;
   }
 
-
-
   getCurrentTime() {
     return this.api.getServices();
   }
@@ -181,9 +179,9 @@ export class CustomService {
               });
 
               loading.present();
-              userService.login(this.user_current.username, data.password).subscribe(data => {
+              userService.login(this.user_current.username, data.password).subscribe(resp => {
                 loading.dismiss();
-                if (data.token != null) resolve();
+                if (resp.token != null) resolve(data.password);
                 else { this.toastMessage('Mật khẩu không hợp lệ', 'bottom', 2000) }
               })
             }
@@ -297,4 +295,5 @@ export class CustomService {
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
+  
 }

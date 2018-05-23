@@ -106,4 +106,8 @@ export class PaymentReceiverInfoComponent implements OnInit {
         this.appCtrl.getRootNav().push(PaymentPaymentMethodComponent);
       }, err => this.retryGetShippingFee(--retry, loading))
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

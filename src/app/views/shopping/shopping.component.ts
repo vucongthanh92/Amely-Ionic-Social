@@ -19,10 +19,10 @@ import { QuickPayListItemComponent } from '../../modules/quick-pay/quick-pay-lis
 export class ShoppingComponent implements OnInit {
   @Input('search') search_content: string;
   is_search_show: boolean;
-  check_screen: string;
   tab1Root = ShopsComponent;
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
+  public device_screen: string;
 
   constructor(
     public nav: NavController,
@@ -33,17 +33,20 @@ export class ShoppingComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner) {
-    var ratio = window.devicePixelRatio || 1;
-    var screen = {
-      width: window.screen.width * ratio,
-      height: window.screen.height * ratio
-    };
-    if (screen.width == 1125 && screen.height == 2436) {
-      this.check_screen = "top_navigation_iphonex";
-    }
-    else {
-      this.check_screen = "top_navigation_default";
-    }
+      var ratio = window.devicePixelRatio || 1;
+      var screen = {
+        width: window.screen.width * ratio,
+        height: window.screen.height * ratio
+      };
+      if (screen.width == 1125 && screen.height == 2436) {
+        this.device_screen = "top_navigation_iphonex";
+      }
+      else if (screen.width == 1242 && screen.height == 2208) {
+        this.device_screen = "top_navigation_iphone7plus";
+      }
+      else {
+        this.device_screen = "top_navigation_iphone6s";
+      }
   }
 
   ngOnInit() {
@@ -96,7 +99,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   payment() {
-    const test ="Ui8wcnN5YmNCQmErelNUU2NEa1YrN3pWS0E5eC9iYUNiVy9XRjBlR1J2bz0";
+    // const test = "eXFXdVBlVjVMTFJ6VW0raDhiYytjalQ3WFQrazZWcFo1RGZKK1l0K0MyOD0";
     this.barcodeScanner.scan().then((barcodeData) => {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
@@ -119,7 +122,7 @@ export class ShoppingComponent implements OnInit {
     //     this.paymentService.getPaymentMethod().subscribe(data => {
     //       this.paymentService.payment_order_post = data;
     //       this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-    //     });
+    //     })
     //   }
     // })
   }

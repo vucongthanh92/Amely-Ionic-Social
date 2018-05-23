@@ -3,7 +3,6 @@
 /**
  */
 export class body_52 {
-    promotion_guid?: number;
     title?: string;
     description?: string;
     time_start?: string;

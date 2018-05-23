@@ -3,8 +3,7 @@
 /**
  */
 export class body_60 {
-    shop_guid?: number;
-    order_filter?: string;
-    offset?: number;
-    page_limit?: number;
+    share_type?: string;
+    subject_guid?: number;
+    post?: string;
 }

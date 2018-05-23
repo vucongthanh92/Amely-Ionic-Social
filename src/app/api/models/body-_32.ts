@@ -3,6 +3,6 @@
 /**
  */
 export class body_32 {
-    vote_type?: string;
-    group_guid?: number;
+    owner_guid?: number;
+    type?: string;
 }

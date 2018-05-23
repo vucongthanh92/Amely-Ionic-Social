@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Tạo sự kiện</ion-title>
+  <ion-navbar hideBackButton>
+
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">tạo sự kiện</div>
+    </ion-buttons>
+
     <ion-buttons end>
       <button ion-button (click)="createEvent()">
-        <ion-icon name="send"></ion-icon>
+        <ion-icon class="create_event_send" name="send"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
