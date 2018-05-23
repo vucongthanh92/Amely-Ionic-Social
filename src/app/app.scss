@@ -49,11 +49,20 @@
 #top_navigation_iphone6s {
     top: 64px;
 }
+.platform-ios #top_navigation_iphone6s {
+    top: 64px;
+}
 
 #top_navigation_iphone7plus {
     top: 44px;
 }
+.platform-ios #top_navigation_iphone7plus {
+    top: 44px;
+}
 
 #top_navigation_iphonex {
+    top: 44px;
+}
+.platform-ios #top_navigation_iphonex {
     top: 44px;
 }
