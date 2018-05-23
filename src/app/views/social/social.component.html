@@ -22,14 +22,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-tabs #myTabsNav tabsPlacement="top" id="{{ device_screen }}" primary>
+<ion-tabs #myTabsNav tabsPlacement="top" class="top_navigation_device" [id]="device_screen" primary>
   <ion-tab [root]="tab1Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="TRAO ĐỔI" tabIcon="offer"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="SỰ KIỆN" tabIcon="event"></ion-tab>
 </ion-tabs>
-
-
 
 <!-- 
 <ion-tabs tabsPlacement="top" primary >
