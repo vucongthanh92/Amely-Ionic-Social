@@ -1,11 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Tạo Shop</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">tạo shop</div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content class="outer-content">
   <ion-list>
-    <ion-item *ngIf="shop.status=='2'">
+    <ion-item class="create_shop_item" *ngIf="shop.status=='2'">
       Cửa hàng không được phê duyệt vì {{shop.reason}}
     </ion-item>
     <ion-item>
