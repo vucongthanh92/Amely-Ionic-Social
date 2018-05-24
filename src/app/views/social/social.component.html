@@ -22,7 +22,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-tabs #myTabsNav tabsPlacement="top" class="top_navigation_device" id="top_navigation_iphone6s" primary>
+<ion-tabs #myTabsNav tabsPlacement="top" [ngClass]="device_screen" primary>
   <ion-tab [root]="tab1Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="TRAO ĐỔI" tabIcon="offer"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
