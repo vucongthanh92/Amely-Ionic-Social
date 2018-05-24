@@ -2,7 +2,7 @@ import { CustomService } from './../../../services/custom.service';
 import { PaymentService } from './../../../services/payment.service';
 import { Product } from './../../../api/models/product';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, AlertController, Navbar } from 'ionic-angular';
+import { NavController, AlertController, Navbar, LoadingController } from 'ionic-angular';
 import { QuickPayMethodComponent } from '../quick-pay-method/quick-pay-method.component';
 import { Shop } from '../../../api/models';
 
@@ -17,7 +17,7 @@ export class QuickPayListItemComponent implements OnInit {
   total_price: number = 0;
   @ViewChild(Navbar) navBar: Navbar;
   constructor(private nav: NavController, private paymentService: PaymentService, private customService: CustomService
-    , private alertCtrl: AlertController) { }
+    , private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.products = (<any>Object).values(this.paymentService.payment_qr_data.products);
@@ -32,7 +32,7 @@ export class QuickPayListItemComponent implements OnInit {
     this.navBar.backButtonClick = (e: UIEvent) => {
       // todo something
       this.nav.pop();
-      this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data=>{})
+      this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data => { })
     }
   }
 
@@ -65,10 +65,16 @@ export class QuickPayListItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
-            if (+data.quantity > total || +data.quantity > product.display_quantity || +data.quantity < 0 || +data.quantity % 1 != 0 || isNaN(+data.quantity)) {
+
+            if (isNaN(+data.quantity) || +data.quantity > total || +data.quantity < 0 || +data.quantity % 1 != 0) {
               this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000)
             } else {
-              this.retryOrderRedeem(5, product, data);
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...'
+                // , enableBackdropDismiss: true
+              });
+              loading.present();
+              this.retryOrderRedeem(5, product, data, loading);
             }
           }
         }
@@ -77,17 +83,25 @@ export class QuickPayListItemComponent implements OnInit {
     alert.present();
   }
 
-  retryOrderRedeem(retry, product, data) {
+  retryOrderRedeem(retry, product, data, loading) {
     if (retry == 0) {
+      loading.dismiss();
       return;
     }
-    this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
+
+    this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", +data.quantity).subscribe(data => {
       if (data && data.products && data.products instanceof Array) {
-        this.total_price = +data.total
-        this.products = data.products;
-        this.paymentService.payment_qr_data.products = data.products;
+        setTimeout(() => {
+          loading.dismiss();
+          this.total_price = +data.total
+          this.products = data.products;
+          this.paymentService.payment_qr_data.products = data.products;
+        }, 4000);
+      } else {
+        loading.dismiss();
+
       }
-    }, err => this.retryOrderRedeem(--retry, product, data))
+    }, err => this.retryOrderRedeem(--retry, product, data, loading))
   }
 
   next() {
@@ -106,7 +120,6 @@ export class QuickPayListItemComponent implements OnInit {
 
   callback = () => {
     return new Promise((resolve, reject) => {
-
       resolve();
     });
   }

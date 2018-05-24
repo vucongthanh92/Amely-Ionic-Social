@@ -17,6 +17,7 @@ export class EventMenuComponent implements OnInit {
   private callback: any;
   has_inventory: boolean;
   callbackReload: any;
+  isAdminEvent: any;
   //"history"  "guest" "member" "visitor"
   public type: string;
   public is_user_current: boolean = false;
@@ -30,6 +31,7 @@ export class EventMenuComponent implements OnInit {
     this.callbackReload = this.navParams.get("callbackreload");
 
     this.is_user_current = this.customService.user_current.guid == this.event.creator.guid;
+    this.isAdminEvent = this.event.creator.guid;
 
 
 
@@ -211,7 +213,7 @@ export class EventMenuComponent implements OnInit {
 
   openInventory() {
     this.nav.pop();
-    this.appCtrl.getRootNav().push(InventoryComponent, { type: 'event', ownerGuid: this.event.guid, obj: this.event });
+    this.appCtrl.getRootNav().push(InventoryComponent, { type: 'event', ownerGuid: this.event.guid, obj: this.event, isAdminEvent: this.isAdminEvent });
   }
 
   report() {

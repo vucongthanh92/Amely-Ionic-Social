@@ -99,32 +99,32 @@ export class ShoppingComponent implements OnInit {
   }
 
   payment() {
-    // const test = "eXFXdVBlVjVMTFJ6VW0raDhiYytjalQ3WFQrazZWcFo1RGZKK1l0K0MyOD0";
-    this.barcodeScanner.scan().then((barcodeData) => {
-      let loading = this.loadingCtrl.create({
-        content: 'Please wait...',
-        enableBackdropDismiss: true
-      });
-      if (!barcodeData.cancelled) {
-        loading.present();
-        this.retryGetTempOrder(5, barcodeData, loading);
-      }
-    }, (err) => {
-      this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
-    });
-
-    // this.paymentService.getTempOrder(test).subscribe(data => {
-    //   // check update profile        
-    //   if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
-    //     this.requestUpdateProfile()
-    //   } else {
-    //     this.paymentService.payment_qr_data = data;
-    //     this.paymentService.getPaymentMethod().subscribe(data => {
-    //       this.paymentService.payment_order_post = data;
-    //       this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-    //     })
+    const test = "bUY4TEZDcExVSEZUbnp4VlZWUkZJNnUyUnFzbi96V3cvaXowQ2wwV21Rcz0";
+    // this.barcodeScanner.scan().then((barcodeData) => {
+    //   let loading = this.loadingCtrl.create({
+    //     content: 'Please wait...',
+    //     enableBackdropDismiss: true
+    //   });
+    //   if (!barcodeData.cancelled) {
+    //     loading.present();
+    //     this.retryGetTempOrder(5, barcodeData, loading);
     //   }
-    // })
+    // }, (err) => {
+    //   this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
+    // });
+
+    this.paymentService.getTempOrder(test).subscribe(data => {
+      // check update profile        
+      if (!this.customService.user_current.address || !this.customService.user_current.province || !this.customService.user_current.district || !this.customService.user_current.ward) {
+        this.requestUpdateProfile()
+      } else {
+        this.paymentService.payment_qr_data = data;
+        this.paymentService.getPaymentMethod().subscribe(data => {
+          this.paymentService.payment_order_post = data;
+          this.appCtrl.getRootNav().push(QuickPayListItemComponent)
+        })
+      }
+    })
   }
 
   requestUpdateProfile() {
