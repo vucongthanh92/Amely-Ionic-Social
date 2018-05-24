@@ -44,10 +44,11 @@ export class QuickPayConfirmComponent implements OnInit {
     // console.log(this.paymentService.payment_qr_data.to_guid);
     // console.log(this.paymentService.quick_pay_send_data.shipping_methods);
 
-    if (this.paymentService.quick_pay_send_data.shipping_methods && (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage')) {
-      this.paymentService.quick_pay_send_data.shipping = null;
+    if (this.paymentService.quick_pay_send_data.shipping_methods != null && (this.shipping_methods.filename == 'sq/pickup' || this.shipping_methods.filename == 'sq/storage')) {
+      this.paymentService.quick_pay_send_data.shipping = {};
     }
-    if (this.paymentService.quick_pay_send_data.shipping_methods.filename != 'sq/express') this.paymentService.quick_pay_send_data.shipping.shipping_fee = "0";
+    if (this.paymentService.quick_pay_send_data.shipping_methods != null && this.paymentService.quick_pay_send_data.shipping_methods.filename != 'sq/express')
+      this.paymentService.quick_pay_send_data.shipping.shipping_fee = "0";
   }
 
   getTotalPrice() {
@@ -60,11 +61,17 @@ export class QuickPayConfirmComponent implements OnInit {
   }
 
   formartTotalPrice() {
-    return this.customService.formatCurrency((+this.getTotalPrice() + (+this.paymentService.quick_pay_send_data.shipping.shipping_fee)) + "", this.userCurrent.usercurrency);
+    if (this.paymentService.quick_pay_send_data.shipping) {
+      return this.customService.formatCurrency((+this.getTotalPrice() + (+this.paymentService.quick_pay_send_data.shipping.shipping_fee)) + "", this.userCurrent.usercurrency);
+    } else {
+      return this.customService.formatCurrency(this.getTotalPrice() + "", this.userCurrent.usercurrency);
+    }
   }
 
   formartShippingFee() {
-    return this.customService.formatCurrency(this.paymentService.quick_pay_send_data.shipping.shipping_fee, this.userCurrent.usercurrency);
+    if (this.paymentService.quick_pay_send_data.shipping) {
+      return this.customService.formatCurrency(this.paymentService.quick_pay_send_data.shipping.shipping_fee, this.userCurrent.usercurrency);
+    } else return 0;
   }
 
   getAddress() {
@@ -148,7 +155,7 @@ export class QuickPayConfirmComponent implements OnInit {
     this.paymentService.quickPay(this.user_current.fullname, this.user_current.fullname, this.user_current.address, this.user_current.province,
       this.user_current.district, this.user_current.ward, "", this.paymentService.quick_pay_send_data.paymentMethod.filename, "", this.user_current.mobilelogin,
       this.user_current.mobilelogin, this.user_current.address, this.user_current.province, this.user_current.district, this.user_current.ward, "",
-      this.paymentService.quick_pay_send_data.paymentMethod.filename == "COS" ? this.paymentService.quick_pay_send_data.shipping_methods.filename : "", this.paymentService.quick_pay_send_data.shipping.shipping_fee,
+      this.paymentService.quick_pay_send_data.paymentMethod.filename == "COS" ? this.paymentService.quick_pay_send_data.shipping_methods.filename : "", "0",
       this.paymentService.payment_qr_data.to_guid).subscribe(data => {
         loading1.dismiss();
         console.log(data);
@@ -159,20 +166,25 @@ export class QuickPayConfirmComponent implements OnInit {
 
           loading.present();
           this.listener = this.fbService.getOrder(this.paymentService.quick_pay_send_data.shop.guid, this.paymentService.payment_qr_data.user.guid, this.paymentService.payment_qr_data.to_guid).query;
-          this.listener.on("child_removed", snapshot => {
-            // loading.dismiss();
-            // console.log(this.paymentService.quick_pay_send_data.paymentMethod.filename);
-            switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
-              case 'COS':
-                this.createAlertConfirm("Sản phẩm đã được chuyển vào kho", loading);
-                break;
-              case 'COD':
-                this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng", loading);
-                break;
-              case 'WOD':
-                this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng", loading);
-                break
+          this.listener.on("child_changed", snapshot => {
+            console.log(snapshot.key);
+            console.log(snapshot.val());
+            if (snapshot.key == "status" && snapshot.val() == "approved") {
+              switch (this.paymentService.quick_pay_send_data.paymentMethod.filename) {
+                case 'COS':
+                  this.createAlertConfirm("Sản phẩm đã được chuyển vào kho", loading);
+                  break;
+                case 'COD':
+                  this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng", loading);
+                  break;
+                case 'WOD':
+                  this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng", loading);
+                  break
+              }
+            } else if (snapshot.key == "status" && snapshot.val() == "cancel") {
+              this.createAlertConfirm("Cửa hàng đã hủy thanh toán hóa đơn.Vui lòng liên hệ trực tiếp đến cửa hàng",loading)
             }
+           
           });
         } else if (!data.status && this.paymentService.quick_pay_send_data.paymentMethod.filename == "WOD") {
           this.customService.toastMessage("Số tiền trong ví không đủ thực hiện thanh toán", "bottom", 3000);

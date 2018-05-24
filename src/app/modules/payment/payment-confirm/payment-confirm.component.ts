@@ -52,7 +52,7 @@ export class PaymentConfirmComponent implements OnInit {
   }
 
   formatTotalPrice() {
-    return this.customService.formatCurrency(((+this.items.total) + (+this.paymentService.param_create_order.shipping_fee)) + "", this.items.display_currency)
+    return this.customService.formatCurrency(((+this.items.total) + (+this.paymentService.param_create_order.shipping_fee)) + "", this.items.currency)
   }
 
   getDisplayname(id, type) {

@@ -31,6 +31,7 @@ export class body_48 {
     market_category?: string[];
     custom_attribute_keys?: string[];
     custom_attribute_values?: string[];
+    images?: string[];
     unit?: string;
     enabled?: string;
 }

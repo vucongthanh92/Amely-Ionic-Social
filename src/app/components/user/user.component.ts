@@ -53,6 +53,8 @@ export class UserComponent {
     imageViewerCtrl: ImageViewerController,
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    console.log(this.userCurrent);
+    
     this.urlImage = this.userCurrent.avatar;
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;

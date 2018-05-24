@@ -4,13 +4,16 @@ import { Store } from './store';
 /**
  */
 export class body_66 {
+    contact?: string;
     shop_guid?: number;
-    name?: string;
     address?: string;
     phone?: string;
     introduction?: string;
     policy?: string;
-    contact?: string;
+    name?: string;
+    shop_province?: string;
+    shop_district?: string;
+    shop_ward?: string;
     stores?: Store[];
     status?: number;
 }

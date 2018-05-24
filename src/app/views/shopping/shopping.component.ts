@@ -99,7 +99,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   payment() {
-    const test ="Ui8wcnN5YmNCQmErelNUU2NEa1YrN3pWS0E5eC9iYUNiVy9XRjBlR1J2bz0";
+    // const test = "eXFXdVBlVjVMTFJ6VW0raDhiYytjalQ3WFQrazZWcFo1RGZKK1l0K0MyOD0";
     this.barcodeScanner.scan().then((barcodeData) => {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
@@ -122,7 +122,7 @@ export class ShoppingComponent implements OnInit {
     //     this.paymentService.getPaymentMethod().subscribe(data => {
     //       this.paymentService.payment_order_post = data;
     //       this.appCtrl.getRootNav().push(QuickPayListItemComponent)
-    //     });
+    //     })
     //   }
     // })
   }

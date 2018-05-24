@@ -4999,6 +4999,48 @@ export class ApiService extends BaseService {
   /**
    * null
    * @param to_guid - undefined
+   * @param is_shop - undefined
+   */
+  quickpayDeleteResponse(params: ApiService.QuickpayDeleteParams): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.toGuid != null) __params = __params.set("to_guid", params.toGuid.toString());
+    if (params.isShop != null) __params = __params.set("is_shop", params.isShop.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/quickpay`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * null
+   * @param to_guid - undefined
+   * @param is_shop - undefined
+   */
+  quickpayDelete(params: ApiService.QuickpayDeleteParams): Observable<DefaultResponse> {
+    return this.quickpayDeleteResponse(params).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * null
+   * @param to_guid - undefined
    */
   quickPayUpdateResponse(toGuid: number): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
@@ -6327,6 +6369,10 @@ export module ApiService {
   export interface GetProfileParams {
     username?: number;
     guid?: number;
+  }
+  export interface QuickpayDeleteParams {
+    toGuid: number;
+    isShop: string;
   }
   export interface GetShopParams {
     storeGuid: string;

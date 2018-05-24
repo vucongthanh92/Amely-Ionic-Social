@@ -19,6 +19,8 @@ export class InvenroyItemsComponent implements OnInit {
   public is_remove_item = false;
   private is_reload_before_page = false;
   private callback: any;
+  private isAdminGroup: any;
+  private isAdminEvent: any;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService, 
     private customService: CustomService, public loadingCtrl: LoadingController) {
@@ -27,6 +29,8 @@ export class InvenroyItemsComponent implements OnInit {
     this.inventoryType = this.navParams.get('inventoryType');
     this.title = this.navParams.get('title');
     this.callback = this.navParams.get('callback');
+    this.isAdminGroup = this.navParams.get("isAdminGroup");
+    this.isAdminEvent = this.navParams.get("isAdminEvent");
     console.log(this.inventoryType);
     
   }
@@ -85,7 +89,8 @@ export class InvenroyItemsComponent implements OnInit {
   goToPage(value, item) {
     switch (value) {
       case 'item':
-        this.appCtrl.getRootNav().push(ItemComponent, { itemGuid: item.guid, callback: this.myCallbackFunction, inventoryType: this.inventoryType });
+        this.appCtrl.getRootNav().push(ItemComponent, { isAdminGroup: this.isAdminGroup, itemGuid: item.guid, callback: this.myCallbackFunction, 
+          inventoryType: this.inventoryType, isAdminEvent: this.isAdminEvent });
         break;
       case 'default':
         break;
