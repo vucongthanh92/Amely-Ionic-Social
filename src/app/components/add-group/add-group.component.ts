@@ -19,12 +19,14 @@ export class AddGroupComponent implements OnInit {
   public isLoading
   public friends: Array<User>;
   public users_choosed: Array<User> = [];
+  public userCurrent: User;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private user_serive: UserService, private custom_service: CustomService
     , private group_service: GroupService, private messagesService: MessagesService, public afDatabase: AngularFireDatabase, public loadingCtrl: LoadingController
     , private customService: CustomService) { }
 
   ngOnInit() {
+    this.userCurrent = this.customService.user_current;
     this.retryGetFriends(5);
   }
 

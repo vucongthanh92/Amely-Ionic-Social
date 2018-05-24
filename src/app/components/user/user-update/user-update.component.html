@@ -76,6 +76,16 @@
       </ion-select>
     </ion-item>
 
+    <ion-item class="user_update_item" *ngIf="email; else addEmail" >
+      <ion-label class="user_update_label" floating>Email</ion-label>
+      <ion-input [(ngModel)]="email" type="text" disabled></ion-input>
+    </ion-item>
+
+    <ng-template #addEmail>
+      <ion-label class="user_update_label" floating>Email</ion-label>
+      <ion-input [(ngModel)]="email" type="text"></ion-input>
+    </ng-template>
+
     <div padding>
       <button (click)="updateInfo()" ion-button color="primary" block>Cập nhật</button>
     </div>

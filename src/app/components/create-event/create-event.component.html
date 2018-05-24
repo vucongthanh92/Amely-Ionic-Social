@@ -9,7 +9,7 @@
     </ion-buttons>
 
     <ion-buttons end>
-      <button ion-button (click)="createEvent()">
+      <button ion-button (click)="createEvent()" [ladda]="isCreatingFeed" class="add_feed_send_btn">
         <ion-icon class="create_event_send" name="send"></ion-icon>
       </button>
     </ion-buttons>
