@@ -16,8 +16,8 @@ import { ApiService } from '../../api/services';
 })
 export class SigninComponent implements OnInit {
 
-  @Input('username') username: string = 'quannm';
-  @Input('password') password: string = 'Amely123';
+  @Input('username') username: string;
+  @Input('password') password: string;
 
   latitude: any;
   longitude: any;
