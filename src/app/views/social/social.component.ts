@@ -31,7 +31,9 @@ export class SocialComponent implements OnInit {
   public device_screen: string;
 
   constructor(
-    public nav: NavController, public appCtrl: App, public navParams: NavParams,
+    public nav: NavController, 
+    public appCtrl: App, 
+    public navParams: NavParams,
     public menuCtrl: MenuController,
     public customService: CustomService,
     private popoverCtrl: PopoverController,
