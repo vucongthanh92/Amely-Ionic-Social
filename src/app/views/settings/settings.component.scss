@@ -8,7 +8,11 @@ app-settings{
         color: #fff;
         line-height: 20px;
     }
-        
+
+    .tabs-ios .tabbar {
+        margin: 0px;
+    }
+    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=setting-general], .tab-button-icon[aria-label=setting-general] {
