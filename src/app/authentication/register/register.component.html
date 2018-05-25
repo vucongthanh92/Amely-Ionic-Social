@@ -137,8 +137,14 @@
         </ion-item>
       </ion-col>
       <!-- END NUMBER PHONE -->
+      <ion-col class="register_colum" col-12>
+        <ion-item class="register_box">
+          <ion-label>Tôi đồng ý với <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">điều khoản sử dụng <br> và chính sách bảo mật.</a></ion-label>
+          <ion-checkbox (ionChange)="onChange($event)"></ion-checkbox>
+        </ion-item>
+      </ion-col>
     </ion-row>
 
-    <ion-row></ion-row>
+    
   </ion-grid>
 </ion-content>

@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   public password_re: string;
   public username: string;
   public is_show_privacy: boolean = false;
+  public test: boolean = false;
   public privacy: boolean = false;
   private year_current: number = (new Date()).getFullYear();
   constructor(public nav: NavController, private customService: CustomService, private userService: UserService,
@@ -146,5 +147,10 @@ export class RegisterComponent implements OnInit {
           }
         }
       }, err => { this.retryRegister(--retry, loading) })
+  }
+
+  onChange($event) {
+    this.test = true;
+    console.log(123213213213);
   }
 }
