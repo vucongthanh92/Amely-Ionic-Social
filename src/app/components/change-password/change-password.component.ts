@@ -50,4 +50,8 @@ export class ChangePasswordComponent implements OnInit {
       this.retryChangePass(--retry);
     })
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

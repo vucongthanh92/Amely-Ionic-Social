@@ -11,7 +11,7 @@ app-social{
 
     .tabs-ios .tabbar {
         padding: 2px 0px 0px 0px;
-        margin-top: 25px;
+        margin-top: 1px;
     }
 
     .tab-button-text {
@@ -46,7 +46,6 @@ app-social{
         }
     }
 
-    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=offer], .tab-button-icon[aria-label=offer] {

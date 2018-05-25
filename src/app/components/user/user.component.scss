@@ -1,29 +1,32 @@
 app-user {
   .profile_cover {
-    padding: 20px 20px 25px 20px;
+    padding: 0px;
     width: 100%;
-    min-height: 150px;
+    min-height: 185px;
     text-align: center;
     background-size: cover !important;
     margin: 0px;
     background-position: center !important;
   }
 
+  .profile_row {
+    text-align: center;
+    margin: -45px 0px 25px 0px;
+  }
+
   .profile_avatar {
-    width: 75px;
-    height: 75px;
-    margin: 3px 0px 3px 0px;
-    border-radius: 5px;
-    border: 1px solid #efeff4;
+    width: 100px;
+    height: 100px;
+    margin: 0px auto 3px auto;
+    border-radius: 50%;
+    border: 5px solid #efeff4;
   }
 
   .profile_fullname {
-    color: white;
+    color: #1D1D1D;
     font-size: 2rem;
-    margin: 7px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     text-transform: capitalize;
-    text-shadow: 1px 1px 2px #333;
-    font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
