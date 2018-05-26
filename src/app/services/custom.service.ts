@@ -304,13 +304,13 @@ export class CustomService {
       height: window.screen.height * ratio
     };
     if (screen.width == 1125 && screen.height == 2436) {
-      return "iphonex";
+      return "top_navigation_iphonex";
     }
     else if (screen.width == 1242 && screen.height == 2208) {
-      return "iphone7plus";
+      return "top_navigation_iphone7plus";
     }
     else {
-      return "iphone6s";
+      return "top_navigation_iphone6s";
     }
   }
   
