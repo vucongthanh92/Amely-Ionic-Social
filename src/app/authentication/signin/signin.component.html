@@ -13,13 +13,13 @@
               <ion-label>
                 <img class="login_icon" src="assets/imgs/ic_username.png" />
               </ion-label>
-              <ion-input type="text" name="username" [(ngModel)]="username" (ionChange)="setUsername(username)"></ion-input>
+              <ion-input type="text" name="username" [(ngModel)]="username" (ionChange)="setUsername(username)" placeholder="Tên đăng nhập"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>
                 <img class="login_icon" src="assets/imgs/ic_password.png" />
               </ion-label>
-              <ion-input type="password" name="password" [(ngModel)]="password"></ion-input>
+              <ion-input type="password" name="password" [(ngModel)]="password" placeholder="Mật khẩu"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>

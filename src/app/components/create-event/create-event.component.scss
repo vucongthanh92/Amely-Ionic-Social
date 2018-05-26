@@ -279,4 +279,24 @@ app-create-event {
         font-size: 2.4rem;
         margin: 7px 5px 0px 0px;
     }
+
+    .add_feed_send_btn {
+        background: transparent;
+        margin: 5px 0px 0px 0px;
+
+        ion-icon {
+            font-size: 2.5rem;
+        }
+    }
+
+    .add_feed_send_btn:hover {
+        background: transparent;
+        border: none;
+    }
+
+    .toggle-ios {
+    max-width: 51px;
+    width: 51px !important;
+    height: 32px;
+  }
 }

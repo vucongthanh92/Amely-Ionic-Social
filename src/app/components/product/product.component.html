@@ -20,7 +20,12 @@
 <ion-content class="outer-content" *ngIf="product">
   <ion-row>
     <ion-col col-12 *ngIf="product.images_entities" class="product_image">
-      <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}">
+      <ion-slides *ngIf="product.images_entities[product.images[0]]" autoplay="4000" class="shops_slides">
+        <ion-slide *ngFor="let img of imageProduct" >
+          <img imageViewer src="{{img}}">
+        </ion-slide>
+      </ion-slides>
+      <!-- <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}"> -->
     </ion-col>
     <ion-col col-12 *ngIf="!product.images_entities" class="product_image">
       <img imageViewer *ngIf="product.images[0]" src="{{ product.images[0] }}">
