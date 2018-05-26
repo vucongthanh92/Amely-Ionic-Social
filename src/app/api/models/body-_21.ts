@@ -3,5 +3,8 @@
 /**
  */
 export class body_21 {
-    mobiles?: string[];
+    offer_guid?: number;
+    item_guid?: number;
+    quantity?: number;
+    note?: string;
 }

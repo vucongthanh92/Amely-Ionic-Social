@@ -33,6 +33,10 @@ export class FirebaseService {
     this.afDatabase.database.ref('/users/' + username).update({ findable_by: value });
   }
 
+  updateProfile(username: string, yob: string, gender: string) {
+    this.afDatabase.database.ref('/users/' + username).update({ yob: yob, gender: gender });
+  }
+
   getMessages(key_chat) {
     let path = "/shared/messages/" + key_chat;
     return this.afDatabase.list(path);
@@ -122,7 +126,7 @@ export class FirebaseService {
     return this.afDatabase.list('/orders/' + shopguid + "/" + userGuid + "/" + guid);
   }
 
-  deleteQRCode(qr){
+  deleteQRCode(qr) {
     this.afDatabase.object('/redeem/' + qr).remove();
   }
 

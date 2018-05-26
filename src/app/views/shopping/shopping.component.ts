@@ -99,7 +99,7 @@ export class ShoppingComponent implements OnInit {
   }
 
   payment() {
-    // const test = "eXFXdVBlVjVMTFJ6VW0raDhiYytjalQ3WFQrazZWcFo1RGZKK1l0K0MyOD0";
+    // const test = "bUY4TEZDcExVSEZUbnp4VlZWUkZJNnUyUnFzbi96V3cvaXowQ2wwV21Rcz0";
     this.barcodeScanner.scan().then((barcodeData) => {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
