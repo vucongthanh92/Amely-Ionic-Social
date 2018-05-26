@@ -20,7 +20,7 @@ export class CreateEventComponent implements OnInit {
   private type_marry = "Đám cưới";
   private type_birthday = "Sinh nhật";
   public title_event = "Sự kiện";
-
+  public isCreatingFeed = false;
   public name: string;
   public description: string;
   public has_inventory: boolean;
@@ -152,7 +152,6 @@ export class CreateEventComponent implements OnInit {
   createEvent() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
-      enableBackdropDismiss: true
     });
     loading.present();
 
@@ -191,6 +190,7 @@ export class CreateEventComponent implements OnInit {
       loading.dismiss();
       this.customService.toastMessage('Địa điểm không được để trống !', 'bottom', 2000);
     } else {
+      this.isCreatingFeed = true;
       // template: string, title: string, start_date: string, end_date: string,
       //   country: string, location: string, description: string, has_inventory: string, status: string,
       //     event_type: string, owner_guid: number, members: string[], invites: string[]
@@ -209,12 +209,16 @@ export class CreateEventComponent implements OnInit {
     this.eventService.createEvent(this.type, this.name, (+datetime_start / 1000) + "", (+datetime_end / 1000) + "", "",
       this.location, this.description, this.has_inventory ? "1" : "", status, 'user', this.customService.user_current.guid,
       this.members_chosen, this.guests_chosen).subscribe(data => {
+        this.isCreatingFeed = false;
         if (data.status) {
-          loading.dismiss();
+          setTimeout(() => {
+            loading.dismiss();
+          }, 8000);
           this.customService.toastMessage('Thành công', 'bottom', 2000);
           let callback = this.params.get("callback");
           callback().then(() => {
             this.nav.pop();
+            
           });
 
         } else {

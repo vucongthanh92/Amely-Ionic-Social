@@ -21,6 +21,8 @@ export class ProductComponent implements OnInit {
   public shop: Shop;
   count_product: number;
   // cart = [];
+  imageProduct: any = [];
+  imagesA: any = [];
 
   constructor(
     public nav: NavController,
@@ -56,7 +58,10 @@ export class ProductComponent implements OnInit {
     this.productsService.getProduct(this.product ? this.product.guid:this.guid).subscribe(data => {
       loading.dismiss();
       this.product = data.product;
-      console.log(this.product);
+      this.imagesA = data.product.images;
+      this.imagesA.forEach(e => {
+        this.imageProduct.push(data.product.images_entities[e])
+      });
       
       this.categories = data.categories;
       this.shop = data.shop;
