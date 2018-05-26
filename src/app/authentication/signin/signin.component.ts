@@ -66,7 +66,9 @@ export class SigninComponent implements OnInit {
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
       this.loader.dismiss();
-      if (resp.status == false) {
+      console.log(resp);
+
+      if (resp.token == null) {
         if (resp.validation) {
           let u = resp.validation;
           u.password = this.password;
@@ -123,7 +125,7 @@ export class SigninComponent implements OnInit {
       enableBackdropDismiss: true
     });
 
-   
+
     let alert = this.alertCtrl.create({
       title: 'Nhập email của tài khoản',
       enableBackdropDismiss: false,
@@ -280,7 +282,8 @@ export class SigninComponent implements OnInit {
       }
 
     }, err => {
-      this.retrySendEmail(--retry, email, loading)})
+      this.retrySendEmail(--retry, email, loading)
+    })
   }
 
 }

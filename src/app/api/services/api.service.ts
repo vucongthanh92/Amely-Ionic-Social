@@ -39,30 +39,30 @@ import { body_14 } from '../models/body-_14';
 import { body_16 } from '../models/body-_16';
 import { body_17 } from '../models/body-_17';
 import { body_18 } from '../models/body-_18';
-import { body_19 } from '../models/body-_19';
 import { inline_response_200_4 } from '../models/inline-_response-_200_4';
+import { body_19 } from '../models/body-_19';
 import { body_20 } from '../models/body-_20';
-import { body_21 } from '../models/body-_21';
 import { CounterOffer } from '../models/counter-offer';
-import { body_23 } from '../models/body-_23';
 import { body_22 } from '../models/body-_22';
+import { body_21 } from '../models/body-_21';
 import { Currency } from '../models/currency';
 import { Delivery_order } from '../models/delivery-_order';
 import { inline_response_200_5 } from '../models/inline-_response-_200_5';
-import { body_24 } from '../models/body-_24';
+import { body_23 } from '../models/body-_23';
 import { inline_response_200_6 } from '../models/inline-_response-_200_6';
 import { inline_response_200_7 } from '../models/inline-_response-_200_7';
-import { body_26 } from '../models/body-_26';
 import { body_25 } from '../models/body-_25';
-import { body_27 } from '../models/body-_27';
+import { body_24 } from '../models/body-_24';
+import { body_26 } from '../models/body-_26';
 import { Product } from '../models/product';
 import { Shop } from '../models/shop';
 import { inline_response_200_8 } from '../models/inline-_response-_200_8';
 import { inline_response_200_9 } from '../models/inline-_response-_200_9';
-import { body_29 } from '../models/body-_29';
 import { body_28 } from '../models/body-_28';
-import { body_30 } from '../models/body-_30';
+import { body_27 } from '../models/body-_27';
+import { body_29 } from '../models/body-_29';
 import { body_31 } from '../models/body-_31';
+import { body_30 } from '../models/body-_30';
 import { Gift } from '../models/gift';
 import { body_32 } from '../models/body-_32';
 import { Param_create_gift } from '../models/param-_create-_gift';
@@ -1371,44 +1371,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  changeForgotPasswordResponse(body: body_17): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    __body = body;
-    let req = new HttpRequest<any>(
-      "POST",
-      this.rootUrl + `/change_password`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * @param body - undefined
-   */
-  changeForgotPassword(body: body_17): Observable<DefaultResponse> {
-    return this.changeForgotPasswordResponse(body).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * @param body - undefined
-   */
-  change_passwordResponse(body: body_18): Observable<HttpResponse<DefaultResponse>> {
+  change_passwordResponse(body: body_17): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1437,7 +1400,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  change_password(body: body_18): Observable<DefaultResponse> {
+  change_password(body: body_17): Observable<DefaultResponse> {
     return this.change_passwordResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -1445,7 +1408,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  change_phoneResponse(body: body_19): Observable<HttpResponse<DefaultResponse>> {
+  change_phoneResponse(body: body_18): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1474,7 +1437,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  change_phone(body: body_19): Observable<DefaultResponse> {
+  change_phone(body: body_18): Observable<DefaultResponse> {
     return this.change_phoneResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -1607,7 +1570,7 @@ export class ApiService extends BaseService {
    * insert a new comment
    * @param body - undefined
    */
-  createCommentResponse(body: body_20): Observable<HttpResponse<DefaultResponse>> {
+  createCommentResponse(body: body_19): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1637,7 +1600,7 @@ export class ApiService extends BaseService {
    * insert a new comment
    * @param body - undefined
    */
-  createComment(body: body_20): Observable<DefaultResponse> {
+  createComment(body: body_19): Observable<DefaultResponse> {
     return this.createCommentResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -1684,7 +1647,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  contact_updateResponse(body: body_21): Observable<HttpResponse<DefaultResponse>> {
+  contact_updateResponse(body: body_20): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1713,7 +1676,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  contact_update(body: body_21): Observable<DefaultResponse> {
+  contact_update(body: body_20): Observable<DefaultResponse> {
     return this.contact_updateResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -1758,7 +1721,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getCounterOffersResponse(body: body_23): Observable<HttpResponse<CounterOffer[]>> {
+  getCounterOffersResponse(body: body_22): Observable<HttpResponse<CounterOffer[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1787,7 +1750,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getCounterOffers(body: body_23): Observable<CounterOffer[]> {
+  getCounterOffers(body: body_22): Observable<CounterOffer[]> {
     return this.getCounterOffersResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -1795,7 +1758,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createCounterOfferResponse(body: body_22): Observable<HttpResponse<DefaultResponse>> {
+  createCounterOfferResponse(body: body_21): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -1824,7 +1787,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createCounterOffer(body: body_22): Observable<DefaultResponse> {
+  createCounterOffer(body: body_21): Observable<DefaultResponse> {
     return this.createCounterOfferResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2048,7 +2011,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createDOResponse(body: body_24): Observable<HttpResponse<Delivery_order>> {
+  createDOResponse(body: body_23): Observable<HttpResponse<Delivery_order>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2077,7 +2040,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createDO(body: body_24): Observable<Delivery_order> {
+  createDO(body: body_23): Observable<Delivery_order> {
     return this.createDOResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2122,7 +2085,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getEventsResponse(body?: body_26): Observable<HttpResponse<inline_response_200_7>> {
+  getEventsResponse(body?: body_25): Observable<HttpResponse<inline_response_200_7>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2151,7 +2114,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getEvents(body?: body_26): Observable<inline_response_200_7> {
+  getEvents(body?: body_25): Observable<inline_response_200_7> {
     return this.getEventsResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2159,7 +2122,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createEventResponse(body: body_25): Observable<HttpResponse<DefaultResponse>> {
+  createEventResponse(body: body_24): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2188,7 +2151,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createEvent(body: body_25): Observable<DefaultResponse> {
+  createEvent(body: body_24): Observable<DefaultResponse> {
     return this.createEventResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2233,7 +2196,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateEventResponse(body: body_27): Observable<HttpResponse<DefaultResponse>> {
+  updateEventResponse(body: body_26): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2262,7 +2225,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateEvent(body: body_27): Observable<DefaultResponse> {
+  updateEvent(body: body_26): Observable<DefaultResponse> {
     return this.updateEventResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2381,7 +2344,7 @@ export class ApiService extends BaseService {
    * empty owner_guid: timeline of user
    * @param body - undefined
    */
-  getFeedsResponse(body: body_29): Observable<HttpResponse<inline_response_200_9>> {
+  getFeedsResponse(body: body_28): Observable<HttpResponse<inline_response_200_9>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2412,7 +2375,7 @@ export class ApiService extends BaseService {
    * empty owner_guid: timeline of user
    * @param body - undefined
    */
-  getFeeds(body: body_29): Observable<inline_response_200_9> {
+  getFeeds(body: body_28): Observable<inline_response_200_9> {
     return this.getFeedsResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2421,7 +2384,7 @@ export class ApiService extends BaseService {
    * Post a new feed (Can't upload image)
    * @param body - undefined
    */
-  createFeedResponse(body: body_28): Observable<HttpResponse<DefaultResponse>> {
+  createFeedResponse(body: body_27): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2451,7 +2414,7 @@ export class ApiService extends BaseService {
    * Post a new feed (Can't upload image)
    * @param body - undefined
    */
-  createFeed(body: body_28): Observable<DefaultResponse> {
+  createFeed(body: body_27): Observable<DefaultResponse> {
     return this.createFeedResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2499,7 +2462,7 @@ export class ApiService extends BaseService {
    * Update a posted feed
    * @param body - undefined
    */
-  updateFeedResponse(body: body_30): Observable<HttpResponse<DefaultResponse>> {
+  updateFeedResponse(body: body_29): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2529,7 +2492,7 @@ export class ApiService extends BaseService {
    * Update a posted feed
    * @param body - undefined
    */
-  updateFeed(body: body_30): Observable<DefaultResponse> {
+  updateFeed(body: body_29): Observable<DefaultResponse> {
     return this.updateFeedResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2537,7 +2500,44 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  forgotPasswordResponse(body: body_31): Observable<HttpResponse<DefaultResponse>> {
+  changeForgotPasswordResponse(body: body_31): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/forgot_password`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * @param body - undefined
+   */
+  changeForgotPassword(body: body_31): Observable<DefaultResponse> {
+    return this.changeForgotPasswordResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * @param body - undefined
+   */
+  forgotPasswordResponse(body: body_30): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -2566,7 +2566,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  forgotPassword(body: body_31): Observable<DefaultResponse> {
+  forgotPassword(body: body_30): Observable<DefaultResponse> {
     return this.forgotPasswordResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5221,6 +5221,8 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   register(body: body_56): Observable<DefaultResponse> {
+  console.log(body);
+  
     return this.registerResponse(body).pipe(
       map(_r => _r.body)
     );

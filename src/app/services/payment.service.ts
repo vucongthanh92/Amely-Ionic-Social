@@ -32,7 +32,7 @@ export class PaymentService {
     return this.api.getOrders();
   }
 
-  orderRedeem(to_guid: string, product_guid: string, redeem_quantity: string) {
+  orderRedeem(to_guid: string, product_guid: string, redeem_quantity: number) {
     return this.api.orderRedeem({ to_guid: to_guid, product_guid: product_guid, redeem_quantity: redeem_quantity });
   }
 

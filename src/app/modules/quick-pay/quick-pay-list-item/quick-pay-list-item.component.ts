@@ -32,7 +32,7 @@ export class QuickPayListItemComponent implements OnInit {
     this.navBar.backButtonClick = (e: UIEvent) => {
       // todo something
       this.nav.pop();
-      this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data=>{})
+      this.paymentService.deleteQuickPay(this.paymentService.payment_qr_data.to_guid).subscribe(data => { })
     }
   }
 
@@ -65,16 +65,15 @@ export class QuickPayListItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
-            if (+data.quantity > total || +data.quantity > product.display_quantity || +data.quantity < 0 || +data.quantity % 1 != 0 || isNaN(+data.quantity)) {
+
+            if (isNaN(+data.quantity) || +data.quantity > total || +data.quantity < 0 || +data.quantity % 1 != 0) {
               this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000)
             } else {
               let loading = this.loadingCtrl.create({
-                content: 'Please wait...',
-                enableBackdropDismiss:true
+                content: 'Please wait...'
+                // , enableBackdropDismiss: true
               });
-
               loading.present();
-              loading.dismiss();
               this.retryOrderRedeem(5, product, data, loading);
             }
           }
@@ -89,7 +88,8 @@ export class QuickPayListItemComponent implements OnInit {
       loading.dismiss();
       return;
     }
-    this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", data.quantity).subscribe(data => {
+
+    this.paymentService.orderRedeem(this.paymentService.payment_qr_data.to_guid, product.guid + "", +data.quantity).subscribe(data => {
       if (data && data.products && data.products instanceof Array) {
         setTimeout(() => {
           loading.dismiss();
@@ -97,6 +97,9 @@ export class QuickPayListItemComponent implements OnInit {
           this.products = data.products;
           this.paymentService.payment_qr_data.products = data.products;
         }, 4000);
+      } else {
+        loading.dismiss();
+
       }
     }, err => this.retryOrderRedeem(--retry, product, data, loading))
   }
@@ -117,7 +120,6 @@ export class QuickPayListItemComponent implements OnInit {
 
   callback = () => {
     return new Promise((resolve, reject) => {
-
       resolve();
     });
   }

@@ -83,7 +83,11 @@ export class RegisterComponent implements OnInit {
     } else if (this.is_show_privacy && !this.privacy) {
       loading.dismiss();
       this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
-    } else {
+    } else if (this.test == false) {
+      loading.dismiss();
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản !', 'bottom', 2000);
+    }
+    else {
       this.retryRegister(5,loading);
     }
   }
@@ -95,6 +99,8 @@ export class RegisterComponent implements OnInit {
     }
     this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
       data => {
+        console.log(data);
+        
         if (data.status) {
           let u: User = new User();
           u.username = this.username;
@@ -150,7 +156,5 @@ export class RegisterComponent implements OnInit {
   }
 
   onChange($event) {
-    this.test = true;
-    console.log(123213213213);
   }
 }
