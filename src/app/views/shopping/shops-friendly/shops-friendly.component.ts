@@ -36,9 +36,15 @@ export class ShopsFriendlyComponent implements OnInit {
     }
     setTimeout(() => {
       this.shoppingsService.getFriendlyShop().subscribe(data => {
-        // loading.dismiss();
-        this.shops = data.shops;
-        this.users = data.owners;
+        if (data.shops instanceof Array) {
+          
+          // loading.dismiss();
+          this.shops = data.shops;
+          this.users = data.owners;
+        }else {
+          this.shops = [];
+          this.users = [];
+        }
       }, err => this.loadData(--retry));
     }, 2500);
    

@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list *ngIf="trans">
+  <ion-list *ngIf="trans; else notData">
     <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
       <a *ngIf="transaction.description==='Requested'" class="inventory_history_row inventory_history_requested">
         <ion-icon ios="download" class="inventory_history_icon" md="md-archive"></ion-icon>Yêu cầu trao đổi #{{transaction.guid}}</a>
@@ -27,4 +27,10 @@
       <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
     </ion-item>
   </ion-list>
+
+  <ng-template #notData>
+    <div style="font-size: 20px; text-align: center;">
+       Không có dữ liệu...
+    </div> 
+  </ng-template>
 </ion-content>
