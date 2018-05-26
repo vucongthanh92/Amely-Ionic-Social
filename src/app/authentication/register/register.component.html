@@ -137,10 +137,15 @@
         </ion-item>
       </ion-col>
       <!-- END NUMBER PHONE -->
-      <ion-col class="register_colum" col-12>
+      <ion-col class="register_colum" col-2>
         <ion-item class="register_box">
-          <ion-label>Tôi đồng ý với <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">điều khoản sử dụng <br> và chính sách bảo mật.</a></ion-label>
-          <ion-checkbox (ionChange)="onChange($event)"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="test" (ionChange)="onChange($event)"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col class="register_colum" col-10>
+        <ion-item class="register_box">
+          <ion-label>Tôi đồng ý với <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">điều khoản sử dụng</a> <br> và <a href="https://amely.com/" target="_blank">chính sách bảo mật.</a></ion-label>
+          
         </ion-item>
       </ion-col>
     </ion-row>
