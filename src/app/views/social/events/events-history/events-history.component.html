@@ -12,6 +12,9 @@
         </ion-col>
       </ion-row>
     </ion-item>
+    <div *ngIf="events.length == 0" style="font-size: 20px; text-align: center; padding: 20px 0px 30px 0px;">
+      Không có dữ liệu...
+    </div>
   </ion-list>
 
   <ion-list class="events_list" *ngIf="!events">

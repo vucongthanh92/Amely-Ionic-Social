@@ -1,10 +1,10 @@
-<ion-slides *ngIf="banners && banners.length; else other_content " autoplay="4000" loop="true" class="shops_slides">
+<ion-slides *ngIf="banners && banners.length" autoplay="4000" loop="true" class="shops_slides">
   <ion-slide *ngFor="let b of banners" (click)='openBanner(b)'>
     <div class="shops_slides_image" [style.background]="'url(' + b.banner_url + ')'"></div>
   </ion-slide>
 </ion-slides>
 
-<ng-template #other_content>
+<!-- <ng-template #other_content>
 <ion-slides loop="true" class="shops_slides">
   <ion-slide *ngFor='let fake of [3,3,3,3,3,3]'>
     <div style="width: 100%;" class='fakeItem'>
@@ -12,4 +12,4 @@
     </div>
   </ion-slide>
 </ion-slides>
-</ng-template>
+</ng-template> -->

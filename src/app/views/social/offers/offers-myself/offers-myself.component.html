@@ -32,6 +32,9 @@
       </div>
   
     </ion-col>
+    <div *ngIf="offers.length == 0" style="font-size: 20px; text-align: center;">
+      Không có dữ liệu...
+    </div>
   </ion-row>
 
   <ion-row class="offer_myself_row" *ngIf="!offers">
