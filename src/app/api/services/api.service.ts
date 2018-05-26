@@ -5221,6 +5221,8 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   register(body: body_56): Observable<DefaultResponse> {
+  console.log(body);
+  
     return this.registerResponse(body).pipe(
       map(_r => _r.body)
     );

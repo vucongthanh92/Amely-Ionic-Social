@@ -82,6 +82,8 @@ export class MainMenuComponent implements OnInit {
       return;
     }
     this.api.getProfile({}).subscribe(data => {
+      console.log(data);
+      
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
         this.customService.user_current = data;
