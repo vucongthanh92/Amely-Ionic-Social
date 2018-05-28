@@ -245,6 +245,12 @@ export class CustomService {
                 // Handle error
               });
             }
+          }, {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
           }
         ]
       });
