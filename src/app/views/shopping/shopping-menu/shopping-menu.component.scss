@@ -1,5 +1,4 @@
 app-shopping-menu {
-
     .list-ios {
         margin: 0px;
     }
@@ -7,14 +6,16 @@ app-shopping-menu {
     .shopping_menu_item {
         padding: 0px !important;
 
-        ion-icon {
-            margin: 0px 5px 0px 0px;
-            font-size: 2rem;
+        .shopping_menu_history {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
         }
 
         span {
-            vertical-align: top;
+            vertical-align: middle;
             font-size: 1.5rem;
+            color: #333;
         }
 
         .item-inner {

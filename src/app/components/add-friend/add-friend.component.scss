@@ -19,7 +19,11 @@ app-add-friend {
     }
 
     .tabs-ios .tab-button[aria-selected=true] {
-        color: #488aff;
-        border-bottom: 1px solid #488aff;
+        color: #00bdf2;
+        border-bottom: 1px solid #00bdf2;
+
+        ion-icon {
+            color: #00bdf2 !important;
+        }
     }
 }
