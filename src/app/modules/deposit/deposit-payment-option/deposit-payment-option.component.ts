@@ -66,6 +66,8 @@ export class DepositPaymentOptionComponent implements OnInit {
       return;
     }
     this.walletService.deposit(this.paymentMethod, this.option_selected, this.amount).subscribe(data => {
+      console.log(data);
+
       const browser = this.iab.create(data.url);
       browser.on('loadstop').subscribe(data => {
         this.nav.popToRoot();

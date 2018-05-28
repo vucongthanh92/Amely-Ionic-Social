@@ -14,7 +14,7 @@
   <ion-row>
     <ion-col col-6 (click)="deposit()" class="wallet_deposit">
       <!-- <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon> -->
-      <img src="assets/imgs/recharge.png" style="max-width: 25%; margin-top: 10px;"/>
+      <img src="assets/imgs/recharge.png" style="max-width: 25%; margin-top: 10px;" />
       <div class="wallet_deposit_title">Nạp Tiền</div>
     </ion-col>
     <ion-col col-6 (click)="withdrawn()" class="wallet_withdrawn">
@@ -23,9 +23,11 @@
       <div class="wallet_withdrawn_title">Rút Tiền</div>
     </ion-col>
   </ion-row>
-  <ion-list *ngIf="transactions">
-    <ion-item class="transactions_item" *ngFor="let trans of transactions" (click)="orderDetail(trans)">
-      <div [innerHTML]=showTransactionDescription(trans)></div>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="transactions">
+    <ion-list *ngFor="let trans of transactions">
+      <ion-item *ngIf="trans.status!='new'" class="transactions_item" (click)="orderDetail(trans)">
+        <div [innerHTML]=showTransactionDescription(trans)></div>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
