@@ -88,13 +88,13 @@
       <ion-item>
         <ion-label>Quận / Huyện</ion-label>
         <ion-select *ngIf="owner_districts" [(ngModel)]="owner_district" name="district" (ionChange)="onOwnerDistrictChange($event)">
-          <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
+          <ion-option *ngFor="let district of owner_districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Phường / Xã</ion-label>
         <ion-select *ngIf="owner_wards" [(ngModel)]="owner_ward" name="ward" (ionChange)="onOwnerWardChange($event)">
-          <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
+          <ion-option *ngFor="let ward of owner_wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
         </ion-select>
       </ion-item>
     </div>

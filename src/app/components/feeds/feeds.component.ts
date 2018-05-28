@@ -78,6 +78,8 @@ export class FeedsComponent implements OnInit {
 
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
+        console.log(data);
+        
         if (data.posts != null) {
           this.offset = this.offset + data.posts.length;
           this.posts = data.posts;

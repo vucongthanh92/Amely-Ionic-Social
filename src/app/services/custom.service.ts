@@ -149,7 +149,7 @@ export class CustomService {
       report.present();
     });
   }
-  
+
 
   confirmPassword(alertCtrl: AlertController, userService: UserService) {
     return new Promise((resolve, reject) => {
@@ -295,5 +295,14 @@ export class CustomService {
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
-  
+
+  isInteger(number: string) {
+    if (isNaN(+number) || +number % 1 != 0) return false;
+    else return true;
+  }
+
+  checkPasswordStrength(password) {
+    var re = new RegExp('^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*[\$\%\&])|(?=.*[A-Z])(?=.*\d)(?=.*[\$\%\&])|(?=.*[A-Z])(?=.*[a-z])(?=.*[\$\%\&])).{8,16}$');
+    return re.test(password);
+  }
 }
