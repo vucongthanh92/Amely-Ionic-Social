@@ -1,4 +1,8 @@
 app-contact-groups{
+    .scroll-content {
+        margin-bottom: 42px !important;
+    }
+
     .textInfo{
         font-size: 13px;
         overflow: hidden;
@@ -70,11 +74,6 @@ app-contact-groups{
         padding: 0px 0px 0px 5px;
     }
 
-    .contact_group {
-        top: 60px;
-        background-color: white;
-    }
-
     .contact_group_fab {
         bottom: 45px;
         background-color: #f0ad4e;
@@ -87,50 +86,53 @@ app-contact-groups{
     }
 
     .list-ios {
-        margin: 3px 0 44px;
+        margin: 0px;
     }
+
     .fakeItem {
-     h2, h3, p {
-         background: linear-gradient(to right, lightgray, white, lightgray);
-         animation: skeleton 2s infinite;
-         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-         background-repeat: no-repeat;
-         background-position-x: -300px;
-         background-position-y: 0;
-         background-color: lightgray;
-         opacity: 0.5;
-         height: 1em;
-         margin-top: 10px;
+        h2, h3, p {
+            background: linear-gradient(to right, lightgray, white, lightgray);
+            animation: skeleton 2s infinite;
+            animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+            background-repeat: no-repeat;
+            background-position-x: -300px;
+            background-position-y: 0;
+            background-color: lightgray;
+            opacity: 0.5;
+            height: 1em;
+            margin-top: 10px;
+        }
+        h2 {
+            max-width: 150px;
+        }
+        h3 {
+            max-width: 200px;
+        }
+        p {
+            max-width: 250px;
+        }
     }
-     h2 {
-         max-width: 150px;
+
+    .divCustom{
+        background: linear-gradient(to right, lightgray, white, lightgray);
+        animation: skeleton 2s infinite;
+        animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+        background-repeat: no-repeat;
+        background-position-x: -300px;
+        background-position-y: 0;
+        background-color: lightgray;
+        opacity: 0.5;
+        height: 70px;
+        width: 70px;
+        border-radius: 100px;
     }
-     h3 {
-         max-width: 200px;
+
+    @keyframes skeleton {
+        0% {
+            background-position-x: -150px;
+        }
+        100% {
+            background-position-x: 150px;
+        }
     }
-     p {
-         max-width: 250px;
-    }
-  }
- .divCustom{
-     background: linear-gradient(to right, lightgray, white, lightgray);
-     animation: skeleton 2s infinite;
-     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-     background-repeat: no-repeat;
-     background-position-x: -300px;
-     background-position-y: 0;
-     background-color: lightgray;
-     opacity: 0.5;
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-  }
- @keyframes skeleton {
-     0% {
-         background-position-x: -150px;
-    }
-     100% {
-         background-position-x: 150px;
-    }
-  }
 }

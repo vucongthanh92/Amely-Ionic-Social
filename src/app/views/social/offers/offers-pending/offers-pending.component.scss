@@ -15,10 +15,6 @@
         height: 24px;
     }
 
-    #offer_pending_container {
-        top: 54px;
-    }
-
     .offer_pending_box {
         margin: 10px 0px 0px 0px
     }
@@ -86,5 +82,11 @@
     .offer_pending_description {
         margin: 0px 10px 3px 5px;
         display: flex;
+    }
+
+    .offer_pending_nodata {
+        font-size: 2rem; 
+        text-align: center; 
+        padding: 20px 0px 0px 0px;
     }
 }

@@ -1,4 +1,4 @@
-<ion-content class="outer-content" id="nearby_user_container">
+<ion-content class="nearby_user_content">
   <ion-list class="nearby_friendly" no-lines *ngIf="datas">
     <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
       <ion-avatar item-start>

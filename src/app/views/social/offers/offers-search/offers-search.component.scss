@@ -111,10 +111,6 @@ app-offers-search{
     @include ribbonize($javascript, black);
   }
 
-  #offer_search_container {
-    top: 62px;
-  }
-
   .offer_search_row {
     margin: 3px 7px 45px 7px;
   }
@@ -189,7 +185,8 @@ app-offers-search{
   }
 
   .offer_search_button {
-    bottom: 50px;
+    bottom: 45px;
+    background-color: #00bdf2;
   }
 
   .offer_search_datetime {

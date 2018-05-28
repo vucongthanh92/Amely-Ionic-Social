@@ -4,12 +4,8 @@ app-offers-myself{
         padding-top: 0px !important;
     }
 
-    #offer_myself_container {
-        top: 45px;
-    }
-
     .offer_myself_row {
-        padding: 30px 0px 30px 0px;
+        padding: 20px 0px 0px 0px;
     }
 
     .around{
@@ -125,7 +121,7 @@ app-offers-myself{
     }
 
     .offer_myself_button {
-        bottom: 50px;
+        bottom: 45px;
         background-color: #f0ad4e;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 
@@ -136,47 +132,47 @@ app-offers-myself{
     }
 
     .fakeItem {
-     h2, h3, p {
-         background: linear-gradient(to right, lightgray, white, lightgray);
-         animation: skeleton 2s infinite;
-         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-         background-repeat: no-repeat;
-         background-position-x: -300px;
-         background-position-y: 0;
-         background-color: lightgray;
-         opacity: 0.5;
-         height: 1em;
-         margin-top: 10px;
+        h2, h3, p {
+            background: linear-gradient(to right, lightgray, white, lightgray);
+            animation: skeleton 2s infinite;
+            animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+            background-repeat: no-repeat;
+            background-position-x: -300px;
+            background-position-y: 0;
+            background-color: lightgray;
+            opacity: 0.5;
+            height: 1em;
+            margin-top: 10px;
+        }
     }
-     h2 {
-         max-width: 95px;
+    
+    .divCustom{
+        background: linear-gradient(to right, lightgray, white, lightgray);
+        animation: skeleton 2s infinite;
+        animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+        background-repeat: no-repeat;
+        background-position-x: -300px;
+        background-position-y: 0;
+        background-color: lightgray;
+        opacity: 0.5;
+        height: 10em;
+        width: 10.5em;
     }
-     h3 {
-         max-width: 95px;
+    
+    @keyframes skeleton {
+        0% {
+            background-position-x: -150px;
+        }
+        100% {
+            background-position-x: 150px;
+        }
     }
-     p {
-         max-width: 250px;
+
+    .offer_myself_nodata {
+        font-size: 2rem;
+        display: block;
+        text-align: center;
+        width: 100%;
     }
-  }
- .divCustom{
-     background: linear-gradient(to right, lightgray, white, lightgray);
-     animation: skeleton 2s infinite;
-     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-     background-repeat: no-repeat;
-     background-position-x: -300px;
-     background-position-y: 0;
-     background-color: lightgray;
-     opacity: 0.5;
-     height: 10em;
-     width: 10.5em;
-  }
- @keyframes skeleton {
-     0% {
-         background-position-x: -150px;
-    }
-     100% {
-         background-position-x: 150px;
-    }
-  }
     
 }

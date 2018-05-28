@@ -1,7 +1,6 @@
 app-contact-users {
-
-    #contact_user_container {
-        top: 62px;
+    .scroll-content {
+        margin-bottom: 42px !important;
     }
 
     .contact_user_image_box {
@@ -83,10 +82,6 @@ app-contact-users {
     .contact_user_chat {
         width: 50%;
         margin: 50% 0px 0px 0px;
-    }
-
-    .contact_user {
-        margin-bottom: 42px;
     }
 
     .contact_user_fab {

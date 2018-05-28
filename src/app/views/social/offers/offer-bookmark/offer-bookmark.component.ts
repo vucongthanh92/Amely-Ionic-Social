@@ -90,5 +90,10 @@ export class OfferBookmarkComponent implements OnInit {
       }
     }, err => this.retryDeleteOffer(--retry))
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
 

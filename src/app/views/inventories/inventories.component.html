@@ -6,8 +6,9 @@
       </button>
       <div class="ion_navbar_title" *ngIf="!is_search_show">kho quà</div>
     </ion-buttons>
-
+    
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="inventories_searchbar"></ion-searchbar>
+    
     <ion-buttons end>
       <button ion-button (click)="search()" class="inventories_search_box">
         <ion-icon name="ios-search"></ion-icon>
@@ -18,8 +19,11 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-tabs tabsPlacement="top" [id]="device_screen">
-  <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
-  <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
-  <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
-</ion-tabs>
+
+<ion-content>
+  <ion-tabs tabsPlacement="top" [id]="device_screen" primary>
+    <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
+    <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
+    <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
+  </ion-tabs>
+</ion-content>
