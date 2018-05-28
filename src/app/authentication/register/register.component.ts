@@ -61,9 +61,9 @@ export class RegisterComponent implements OnInit {
     } else if (!this.password) {
       loading.dismiss();
       this.customService.toastMessage('Mật khẩu không được để trống', 'bottom', 2000);
-    } else if (this.password.length < 8) {
+    } else if (! this.customService.checkPasswordStrength(this.password)) {
       loading.dismiss();
-      this.customService.toastMessage('Mật khẩu tối đa 8 ký tự', 'bottom', 2000);
+      this.customService.toastMessage('Mật khẩu tối đa 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số', 'bottom', 2000);
     } else if (!this.password_re) {
       loading.dismiss();
       this.customService.toastMessage('Nhập lại mật khẩu', 'bottom', 2000);

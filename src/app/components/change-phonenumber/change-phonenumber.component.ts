@@ -71,6 +71,8 @@ export class ChangePhonenumberComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
+            console.log(data);
+            
             if (data.code) {
               loading.present();
               this.retryVerifyCode(5, data.code, loading)
@@ -90,6 +92,11 @@ export class ChangePhonenumberComponent implements OnInit {
       return;
     }
 
+    console.log(this.password);
+    console.log(this.phone_number);
+    console.log(code);
+    console.log(this.userCurrent.username);
+    
     this.userService.activeUser(this.userCurrent.username, this.password, this.phone_number, code).subscribe(data => {
       console.log(data);
       loading.dismiss();

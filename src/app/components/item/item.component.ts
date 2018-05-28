@@ -216,6 +216,7 @@ export class ItemComponent implements OnInit {
 
   callbackRenewal = (date: number) => {
     return new Promise((resolve, reject) => {
+      console.log(date);
       this.stored_end = new Date(this.stored_end.setDate(this.stored_end.getDate() + date));
       resolve();
     });

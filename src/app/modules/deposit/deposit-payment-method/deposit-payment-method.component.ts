@@ -4,6 +4,7 @@ import { WalletsService } from './../../../services/wallets.service';
 import { Component, OnInit } from '@angular/core';
 import { NavParams, NavController } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'app-deposit-payment-method',
@@ -16,9 +17,9 @@ export class DepositPaymentMethodComponent implements OnInit {
   amount: string;
   private min: number;
   private max: number;
-  wallet:Wallet;
-  
-  constructor(private navParams: NavParams, private nav: NavController, private walletService: WalletsService, private customService: CustomService) { 
+  wallet: Wallet;
+
+  constructor(private navParams: NavParams, private nav: NavController, private walletService: WalletsService, private customService: CustomService, private iab: InAppBrowser) {
     this.wallet = this.navParams.get('wallet')
   }
 
@@ -35,8 +36,8 @@ export class DepositPaymentMethodComponent implements OnInit {
       this.payment_methods = (<any>Object).values(data.payment_method);
       this.limit = data.limit;
       console.log(this.payment_methods);
-      this.payment_methods = this.payment_methods.filter(e => e.filename != 'ngl/atm' && e.filename !='ngl/creditcard')
-      
+      this.payment_methods = this.payment_methods.filter(e => e.filename != 'ngl/atm' && e.filename != 'ngl/creditcard')
+
     }, err => this.loadData(--retry))
   }
 
@@ -49,7 +50,8 @@ export class DepositPaymentMethodComponent implements OnInit {
       if (+this.amount < this.min || +this.amount > this.max) {
         this.customService.toastMessage('Số tiền rút không hợp lệ', 'bottom', 2000)
       } else {
-        this.nav.push(DepositPaymentOptionComponent, { paymentMethod: this.payment_selected, amount: +this.amount })
+        // this.nav.push(DepositPaymentOptionComponent, { paymentMethod: this.payment_selected, amount: +this.amount })
+        this.retryDeposit(5);
       }
     }
   }
@@ -74,4 +76,21 @@ export class DepositPaymentMethodComponent implements OnInit {
     this.nav.pop();
   }
 
+  retryDeposit(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.walletService.deposit(this.payment_selected, null, +this.amount).subscribe(data => {
+      console.log(data);
+
+      const browser = this.iab.create(data.url);
+      browser.on('loadstop').subscribe(data => {
+        this.nav.popToRoot();
+      });
+      browser.on('exit').subscribe(data => {
+        this.nav.popToRoot();
+      });
+    }, err => this.retryDeposit(--retry));
+  }
 }

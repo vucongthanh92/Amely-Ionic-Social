@@ -60,13 +60,21 @@ export class MainMenuComponent implements OnInit {
     //   { guid: '7733', title: 'WANNA_DATE', image: 'assets/imgs/ic_like.png' },
     // ]
     this.moodLocal = {
-      451: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png', tag: 'wanna_trade', guid: '451' },
-      452: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png', tag: 'wanna_send', guid: '451' },
-      453: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png', tag: 'wanna_gift', guid: '453' },
-      454: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png', tag: 'wanna_date', guid: '454' },
+      4: { title: 'Muốn tặng quà', image: 'assets/imgs/ic_gift_4.png', tag: 'wanna_send', guid: '4' },
+      5: { title: 'Muốn nhận quà', image: 'assets/imgs/ic_gift_3.png', tag: 'wanna_gift', guid: '5' },
+      6: { title: 'Muốn đổi quà', image: 'assets/imgs/ic_gift_1.png', tag: 'wanna_trade', guid: '6' },
+      7: { title: 'Muốn hẹn hò', image: 'assets/imgs/ic_like.png', tag: 'wanna_date', guid: '7' }
     }
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
+    console.log(this.customService.checkPasswordStrength("quanuan"));
+    console.log(this.customService.checkPasswordStrength("quanuana"));
+    console.log(this.customService.checkPasswordStrength("quanuan1"));
+    console.log(this.customService.checkPasswordStrength("quanu@n1"));
+    console.log(this.customService.checkPasswordStrength("1assesA@"));
+    console.log(this.customService.checkPasswordStrength("quanu@n1A"));
+    console.log(this.customService.checkPasswordStrength("Auanu@n1A"));
+    
   }
 
   ngOnInit() {
