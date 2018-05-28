@@ -90,7 +90,6 @@ app-vouchers {
   }
 
   .vouchers_button {
-    bottom: 64px;
     background-color: #ffb76b;
   }
 
@@ -243,6 +242,12 @@ app-vouchers {
     background-repeat: no-repeat !important;
     width: 100%;
     height: 230px;
+  }
+
+  .voucher_nodata {
+    font-size: 2rem; 
+    text-align: center; 
+    background-color: #efeff4;
   }
 
 }

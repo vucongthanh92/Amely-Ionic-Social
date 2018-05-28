@@ -9,8 +9,7 @@ app-personal {
         line-height: 20px;
     }
 
-    .searchbar-search-icon 
-    { 
+    .searchbar-search-icon { 
         display:none; 
         width:0; 
         height:0; 
@@ -18,6 +17,7 @@ app-personal {
 
     .tabs-ios .tabbar {
         padding: 2px 0px 0px 0px;
+        margin: 0px;
     }
 
     .tab-button-text {
@@ -29,7 +29,8 @@ app-personal {
     }
 
     .tabs-ios .tab-button[aria-selected=true] {
-        border-bottom: 1px solid #488aff;
+        border-bottom: 1px solid #00bdf2;
+        color: #00bdf2;
     }
     
     .tabs {

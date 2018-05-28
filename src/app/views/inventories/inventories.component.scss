@@ -8,7 +8,11 @@ app-inventories{
         color: #fff;
         line-height: 20px;
     }
-   
+
+    .tabs-ios .tabbar {
+        margin-top: 1px;
+    }
+
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=inventory-personal], .tab-button-icon[aria-label=inventory-personal] {
@@ -19,8 +23,8 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
-            color: #488aff;
-            border-bottom: 1px solid #488aff;
+            color: #00bdf2 !important;
+            border-bottom: 1px solid #00bdf2;
             
             .tab-button-icon[ng-reflect-name=inventory-personal], .tab-button-icon[aria-label=inventory-personal] {
             background-image: url(../assets/imgs/ic_inventory_personal_actived.png);
@@ -41,8 +45,8 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
-            color: #488aff;
-            border-bottom: 1px solid #488aff;
+            color: #00bdf2 !important;
+            border-bottom: 1px solid #00bdf2;
 
             .tab-button-icon[ng-reflect-name=inventory-general], .tab-button-icon[aria-label=inventory-general] {
             background-image: url(../assets/imgs/ic_inventory_general_actived.png);
@@ -63,8 +67,8 @@ app-inventories{
             }
         }
         a[aria-selected=true] {
-            color: #488aff;
-            border-bottom: 1px solid #488aff;
+            color: #00bdf2 !important;
+            border-bottom: 1px solid #00bdf2;
 
             .tab-button-icon[ng-reflect-name=inventory-history], .tab-button-icon[aria-label=inventory-history] {
             background-image: url(../assets/imgs/ic_inventory_history_actived.png);

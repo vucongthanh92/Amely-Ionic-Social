@@ -1,7 +1,7 @@
 app-events-history {
-    .events_container {
-        height: 90%;
-        top: 105px;
+
+    .scroll-content {
+        margin: 40px 0px 44px 0px !important;
     }
 
     .events_item {
@@ -52,47 +52,31 @@ app-events-history {
         margin: -1px 0 22px;
     }
 
-    .fakeItem {
-     h2, h3, p {
-         background: linear-gradient(to right, lightgray, white, lightgray);
-         animation: skeleton 2s infinite;
-         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-         background-repeat: no-repeat;
-         background-position-x: -300px;
-         background-position-y: 0;
-         background-color: lightgray;
-         opacity: 0.5;
-         height: 1em;
-         margin-top: 10px;
+    .divCustom{
+        background: linear-gradient(to right, lightgray, white, lightgray);
+        animation: skeleton 2s infinite;
+        animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+        background-repeat: no-repeat;
+        background-position-x: -300px;
+        background-position-y: 0;
+        background-color: lightgray;
+        opacity: 0.5;
+        height: 6em;
+        width: 95px;
     }
-     h2 {
-         max-width: 95px;
+    
+    @keyframes skeleton {
+        0% {
+            background-position-x: -150px;
+        }
+        100% {
+            background-position-x: 150px;
+        }
     }
-     h3 {
-         max-width: 125px;
+
+    .event_history_nodata {
+        font-size: 2rem; 
+        text-align: center; 
+        padding: 20px 0px 00px 0px;
     }
-     p {
-         max-width: 250px;
-    }
-  }
- .divCustom{
-     background: linear-gradient(to right, lightgray, white, lightgray);
-     animation: skeleton 2s infinite;
-     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-     background-repeat: no-repeat;
-     background-position-x: -300px;
-     background-position-y: 0;
-     background-color: lightgray;
-     opacity: 0.5;
-     height: 6em;
-     width: 95px;
-  }
- @keyframes skeleton {
-     0% {
-         background-position-x: -150px;
-    }
-     100% {
-         background-position-x: 150px;
-    }
-  }
 }

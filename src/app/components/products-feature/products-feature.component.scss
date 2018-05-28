@@ -61,10 +61,12 @@ app-products-feature {
     font-size: 16px;
     text-transform: capitalize;
     font-weight: 400;
-    margin: 0px 0px 5px 0px;
+    margin: 0px 0px 3px 0px;
     height: 20px;
     overflow: hidden;
     color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .product_feature_price {
