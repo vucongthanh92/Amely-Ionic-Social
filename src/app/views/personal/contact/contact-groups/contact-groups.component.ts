@@ -42,8 +42,10 @@ export class ContactGroupsComponent implements OnInit {
       return;
     }
     this.groupService.getGroups(this.userCurrent.guid).subscribe(data => {
-      this.groups = data.groups;
-      this.users = data.owners;
+      if (data.groups instanceof Array) {
+        this.groups = data.groups;
+        this.users = data.owners;
+      } else this.groups = [];
     }, err => this.loadData(--retry))
   }
   ngOnInit() {

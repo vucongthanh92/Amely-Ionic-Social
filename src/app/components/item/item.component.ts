@@ -42,14 +42,14 @@ export class ItemComponent implements OnInit {
     private alertCtrl: AlertController, private userService: UserService, public loadingCtrl: LoadingController) {
     this.itemGuid = this.navParams.get('itemGuid');
     this.callback = this.navParams.get('callback');
-    this.isUser = this.navParams.get('inventoryType')=='user';
+    this.isUser = this.navParams.get('inventoryType') == 'user';
 
     this.user_current = this.customService.user_current;
     this.ownerGuidGroup = this.navParams.get('isAdminGroup');
     this.isAdminGroup = this.user_current.guid == this.ownerGuidGroup;
     this.ownerGuidEvent = this.navParams.get('isAdminEvent');
     this.isAdminEvent = this.user_current.guid == this.ownerGuidEvent;
-    
+
   }
 
   ngOnInit() {
@@ -110,6 +110,7 @@ export class ItemComponent implements OnInit {
 
   formatStoredDate() {
     this.stored_end = new Date(+(this.item.stored_end + "000"))
+    console.log(this.stored_end);
   }
   ionViewWillLeave() {
     // Unregister the custom back button action for this page
@@ -216,8 +217,8 @@ export class ItemComponent implements OnInit {
 
   callbackRenewal = (date: number) => {
     return new Promise((resolve, reject) => {
-      console.log(date);
-      this.stored_end = new Date(this.stored_end.setDate(this.stored_end.getDate() + date));
+      this.stored_end.setDate((+this.stored_end.getDate()) + (+date));
+      this.stored_end = new Date(this.stored_end.getTime());
       resolve();
     });
   }

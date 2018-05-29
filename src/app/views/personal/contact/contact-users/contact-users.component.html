@@ -32,8 +32,11 @@
         <button ion-button (click)="removeFriend(friend)">Xóa bạn</button>
       </ion-item-options>
     </ion-item-sliding>
+    <div *ngIf="friends.length==0" style="font-size: 20px; text-align: center;">
+      Không có dữ liệu...
+    </div>
   </ion-list>
-  <ion-list *ngIf="friends">
+  <ion-list *ngIf="!friends">
     <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
       <ion-row>
         <ion-col col-3>

@@ -62,7 +62,10 @@ export class FriendsComponent implements OnInit {
   retryLoadFriends(retry, user_guid) {
     if (retry == 0) return;
     this.userService.getFriends(user_guid).subscribe(
-      data => { this.users = data; },
+      data => {
+        if (data instanceof Array) this.users = data;
+        else this.users = [];
+      },
       err => this.retryLoadFriends(--retry, user_guid));
   }
   isFriend(userGuid) {

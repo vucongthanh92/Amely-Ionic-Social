@@ -67,13 +67,6 @@ export class MainMenuComponent implements OnInit {
     }
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
-    console.log(this.customService.checkPasswordStrength("quanuan"));
-    console.log(this.customService.checkPasswordStrength("quanuana"));
-    console.log(this.customService.checkPasswordStrength("quanuan1"));
-    console.log(this.customService.checkPasswordStrength("quanu@n1"));
-    console.log(this.customService.checkPasswordStrength("1assesA@"));
-    console.log(this.customService.checkPasswordStrength("quanu@n1A"));
-    console.log(this.customService.checkPasswordStrength("Auanu@n1A"));
     
   }
 

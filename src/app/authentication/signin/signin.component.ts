@@ -221,7 +221,10 @@ export class SigninComponent implements OnInit {
           handler: data => {
             if (!data.password || !data.rePassword) {
               this.customService.toastMessage("Vui lòng nhập đủ thông tin", "bottom", 3000);
-            } else if (data.password != data.rePassword) {
+            } else if (!this.customService.checkPasswordStrength(data.password)) {
+              this.customService.toastMessage("Mật khẩu ít nhất 8 ký tự và bao gôm ít nhất 1 ký tự in, thường và số.", "bottom", 3000);
+            }
+            else if (data.password != data.rePassword) {
               this.customService.toastMessage("Mật khẩu không trùng khớp", "bottom", 3000);
             } else {
               loading.present();
