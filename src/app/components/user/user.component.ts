@@ -100,7 +100,7 @@ export class UserComponent {
         this.user = data;
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
-        this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
+        this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_blue.png' : 'assets/imgs/ic_gender_female_pink.png';
         this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
         this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
         this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;

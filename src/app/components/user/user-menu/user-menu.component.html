@@ -1,25 +1,25 @@
 <ion-list class="user_menu_list">
   <ion-item (click)="editUser()" *ngIf="is_user_current">
-    <ion-icon ios="ios-create" md="md-create"></ion-icon> Cập nhật thông tin
+    <img class="user_menu_icon" src="assets/imgs/update-infomation.png"><span>Cập nhật thông tin</span>
   </ion-item>
  
   <ion-item (click)="blockList()" *ngIf="is_user_current">
-    <ion-icon name="person"></ion-icon> Danh sách chặn
+    <img class="user_menu_icon" src="assets/imgs/update-infomation.png"><span>Danh sách chặn</span>
   </ion-item>
  
   <ion-item (click)="changeCoverAvatar(false)" *ngIf="is_user_current">
-    <ion-icon ios="ios-image" md="md-image"></ion-icon>Thay đổi ảnh bìa
+    <img class="user_menu_icon" src="assets/imgs/change-cover.png"><span>Thay đổi ảnh bìa</span>
   </ion-item>
  
   <ion-item (click)="changeCoverAvatar(true)" *ngIf="is_user_current">
-    <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
+    <img class="user_menu_icon" src="assets/imgs/change-avatar.png"><span>Thay đổi ảnh đại diện</span>
   </ion-item>
  
   <ion-item (click)="report()" *ngIf="!is_user_current">
-    <ion-icon ios="ios-remove-circle" md="md-remove-circle"></ion-icon> Report
+    <img class="user_menu_icon" src="assets/imgs/list-report.png"><span>Report</span>
   </ion-item>
  
   <ion-item (click)="block()" *ngIf="!is_user_current">
-    <ion-icon ios="ios-hand" md="md-hand"></ion-icon> Chặn
+    <img class="user_menu_icon" src="assets/imgs/list-report.png"><span>Chặn</span>
   </ion-item>
 </ion-list>
