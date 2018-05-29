@@ -3,17 +3,33 @@ app-social-menu {
         padding: 0px !important;
 
         .item-inner {
-            padding: 0px 9px 0px 15px;
+            padding: 0px 3px 0px 9px;
+
+            .label-ios {
+                margin: 12px 0px 14px 0;
+            }
         }
 
-        ion-icon {
-            font-size: 2.2rem;
-            margin: 0px 5px 0px 0px;
+        .social_menu_history {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin: 0px 2px 0px 0px;
+        }
+
+        .social_menu_bookmark {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin: 0px 8px 0px 5px;
         }
 
         span {
-            vertical-align: top;
+            vertical-align: middle;
             color: #333;
+            white-space: nowrap;
+            font-size: 1.5rem;
+            overflow: hidden;
         }
     }
 

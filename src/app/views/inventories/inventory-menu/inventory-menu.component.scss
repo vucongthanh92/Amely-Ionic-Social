@@ -11,10 +11,22 @@ app-inventory-menu{
         }
     }
 
+    .inventory_menu_wallet {
+        width: 20px;
+        height: auto;
+        vertical-align: middle;
+        margin: 0px 4px 0px 2px;
+    }
+
+    .inventory_menu_payment {
+        width: 28px;
+        height: auto;
+        vertical-align: middle;
+    }
+
     span {
-        vertical-align: top;
-        line-height: 25px;
-        font-size: 1.6rem;
+        vertical-align: middle;
+        font-size: 1.5rem;
     }
     
     .ladda-button:hover {
