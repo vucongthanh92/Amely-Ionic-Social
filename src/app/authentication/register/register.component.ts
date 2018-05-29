@@ -34,6 +34,10 @@ export class RegisterComponent implements OnInit {
     u.mobilelogin = '4124';
   }
 
+  setUsername(username) {
+    this.username = username.toLowerCase();
+  }
+
   onChangeTime(e) {
     const year_reg = new Date(this.birthdate).getFullYear();
     if (this.year_current - year_reg <= 14) {

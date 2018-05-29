@@ -78,7 +78,7 @@
           <ion-label>
             <ion-icon class="register_icon" ios="ios-person-outline" md="md-person"></ion-icon>
           </ion-label>
-          <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập"></ion-input>
+          <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập" (ionChange)="setUsername(username)"></ion-input>
         </ion-item>
       </ion-col>
       <!-- END USERNAME -->
