@@ -121,174 +121,174 @@ export class SigninComponent implements OnInit {
     this.nav.push(ForgotComponent);
   }
 
-  sendEmail() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
+  // sendEmail() {
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'Please wait...',
+  //     enableBackdropDismiss: true
+  //   });
 
 
-    let alert = this.alertCtrl.create({
-      title: 'Nhập email của tài khoản',
-      enableBackdropDismiss: false,
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'Email',
-          type: 'email'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Từ chối',
-        },
-        {
-          text: 'Chấp nhận',
-          handler: data => {
-            if (data.email && data.email.length > 5) {
-              loading.present();
-              this.retrySendEmail(5, data.email, loading)
-            } else {
-              this.customService.toastMessage("Email không hơp lệ", 'bottom', 3000);
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Nhập email của tài khoản',
+  //     enableBackdropDismiss: false,
+  //     inputs: [
+  //       {
+  //         name: 'email',
+  //         placeholder: 'Email',
+  //         type: 'email'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Từ chối',
+  //       },
+  //       {
+  //         text: 'Chấp nhận',
+  //         handler: data => {
+  //           if (data.email && data.email.length > 5) {
+  //             loading.present();
+  //             this.retrySendEmail(5, data.email, loading)
+  //           } else {
+  //             this.customService.toastMessage("Email không hơp lệ", 'bottom', 3000);
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
-  activationCode() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
+  // activationCode() {
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'Please wait...',
+  //     enableBackdropDismiss: true
+  //   });
 
-    let alert = this.alertCtrl.create({
-      title: 'Nhập mã xác nhận',
-      enableBackdropDismiss: false,
-      inputs: [
-        {
-          name: 'code',
-          placeholder: 'Mã xác nhận',
-        }
-      ],
-      buttons: [
-        {
-          text: 'Từ chối',
-        },
-        {
-          text: 'Chấp nhận',
-          handler: data => {
-            if (data.code) {
-              loading.present();
-              this.retryActivation(5, this.email, data.code, loading);
-            } else {
-              this.customService.toastMessage("Chưa nhập mã xác nhận", 'bottom', 3000);
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Nhập mã xác nhận',
+  //     enableBackdropDismiss: false,
+  //     inputs: [
+  //       {
+  //         name: 'code',
+  //         placeholder: 'Mã xác nhận',
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Từ chối',
+  //       },
+  //       {
+  //         text: 'Chấp nhận',
+  //         handler: data => {
+  //           if (data.code) {
+  //             loading.present();
+  //             this.retryActivation(5, this.email, data.code, loading);
+  //           } else {
+  //             this.customService.toastMessage("Chưa nhập mã xác nhận", 'bottom', 3000);
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
-  changePassword() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
+  // changePassword() {
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'Please wait...',
+  //     enableBackdropDismiss: true
+  //   });
 
-    let alert = this.alertCtrl.create({
-      title: 'Đổi mật khẩu',
-      enableBackdropDismiss: false,
-      inputs: [
-        {
-          name: 'password',
-          placeholder: 'Nhập mật khẩu mới',
-          type: 'password'
-        },
-        {
-          name: 'rePassword',
-          placeholder: 'Xác nhận mật khẩu',
-          type: 'password'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Từ chối',
-        },
-        {
-          text: 'Chấp nhận',
-          handler: data => {
-            if (!data.password || !data.rePassword) {
-              this.customService.toastMessage("Vui lòng nhập đủ thông tin", "bottom", 3000);
-            } else if (!this.customService.checkPasswordStrength(data.password)) {
-              this.customService.toastMessage("Mật khẩu ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số.", "bottom", 3000);
-            }
-            else if (data.password != data.rePassword) {
-              this.customService.toastMessage("Mật khẩu không trùng khớp", "bottom", 3000);
-            } else {
-              loading.present();
-              this.retryChangePassword(5, data.password, loading);
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Đổi mật khẩu',
+  //     enableBackdropDismiss: false,
+  //     inputs: [
+  //       {
+  //         name: 'password',
+  //         placeholder: 'Nhập mật khẩu mới',
+  //         type: 'password'
+  //       },
+  //       {
+  //         name: 'rePassword',
+  //         placeholder: 'Xác nhận mật khẩu',
+  //         type: 'password'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Từ chối',
+  //       },
+  //       {
+  //         text: 'Chấp nhận',
+  //         handler: data => {
+  //           if (!data.password || !data.rePassword) {
+  //             this.customService.toastMessage("Vui lòng nhập đủ thông tin", "bottom", 3000);
+  //           } else if (!this.customService.checkPasswordStrength(data.password)) {
+  //             this.customService.toastMessage("Mật khẩu ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số.", "bottom", 3000);
+  //           }
+  //           else if (data.password != data.rePassword) {
+  //             this.customService.toastMessage("Mật khẩu không trùng khớp", "bottom", 3000);
+  //           } else {
+  //             loading.present();
+  //             this.retryChangePassword(5, data.password, loading);
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
-  retryChangePassword(retry, password, loading) {
-    if (retry == 0) {
-      loading.dismiss();
-      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
-      return;
-    }
-    this.authenticationService.changePassword(password, this.email).subscribe(data => {
-      if (data.status) {
-        loading.dismiss();
-        this.customService.toastMessage("Mật khẩu đã được thay đổi", "bottom", 3000)
-      } else {
-        this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
-      }
-    }, err => this.retryChangePassword(--retry, password, loading))
-  }
+  // retryChangePassword(retry, password, loading) {
+  //   if (retry == 0) {
+  //     loading.dismiss();
+  //     this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+  //     return;
+  //   }
+  //   this.authenticationService.changePassword(password, this.email).subscribe(data => {
+  //     if (data.status) {
+  //       loading.dismiss();
+  //       this.customService.toastMessage("Mật khẩu đã được thay đổi", "bottom", 3000)
+  //     } else {
+  //       this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+  //     }
+  //   }, err => this.retryChangePassword(--retry, password, loading))
+  // }
 
-  retryActivation(retry, email, code, loading) {
-    if (retry == 0) {
-      loading.dismiss();
-      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
-      return;
-    }
-    this.authenticationService.activation(code, email).subscribe(data => {
-      if (data.status) {
-        loading.dismiss();
-        this.changePassword();
-      } else {
-        this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
-      }
-    })
-  }
+  // retryActivation(retry, email, code, loading) {
+  //   if (retry == 0) {
+  //     loading.dismiss();
+  //     this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+  //     return;
+  //   }
+  //   this.authenticationService.activation(code, email).subscribe(data => {
+  //     if (data.status) {
+  //       loading.dismiss();
+  //       this.changePassword();
+  //     } else {
+  //       this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+  //     }
+  //   })
+  // }
 
-  retrySendEmail(retry, email, loading) {
-    if (retry == 0) {
-      loading.dismiss();
-      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
-      return;
-    }
-    this.authenticationService.forgotPassword(email).subscribe(data => {
-      if (data.status) {
-        loading.dismiss();
-        this.email = email;
-        this.activationCode();
-      } else {
-        this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
-      }
+  // retrySendEmail(retry, email, loading) {
+  //   if (retry == 0) {
+  //     loading.dismiss();
+  //     this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+  //     return;
+  //   }
+  //   this.authenticationService.forgotPassword(email).subscribe(data => {
+  //     if (data.status) {
+  //       loading.dismiss();
+  //       this.email = email;
+  //       this.activationCode();
+  //     } else {
+  //       this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+  //     }
 
-    }, err => {
-      this.retrySendEmail(--retry, email, loading)
-    })
-  }
+  //   }, err => {
+  //     this.retrySendEmail(--retry, email, loading)
+  //   })
+  // }
 
 }
