@@ -80,49 +80,38 @@
         <ion-card-content>
           <ion-row>
             <ion-col col-6>
-              <p class="iconPage">
-                <img src="{{genderIcon}}" /> {{genderLabel}}
-              </p>
-              <p *ngIf="is_user_current" class="iconPage">
-                <img src="assets/imgs/gift-number.png" /> {{user.gift_count?user.gift_count:0}}/{{limitGift}}
-              </p>
-
+              <div class="user_row_icon">
+                <img src="{{genderIcon}}" /><span>{{genderLabel}}</span>
+              </div>
               <!-- Show birthday -->
               <div *ngIf="!is_user_current && !is_hidden_birthday">
-                <p *ngIf="birthday" class="iconPage">
-                  <img src="assets/imgs/ic_birthday_gray.png" /> {{birthday}}
-                </p>
+                <p *ngIf="birthday" class="user_row_icon"><img src="assets/imgs/ic_birthday_gray.png" /> {{birthday}}</p>
               </div>
               <div *ngIf="!is_user_current && is_hidden_birthday">
-                <p *ngIf="birthday" class="iconPage">
-                  <img src="assets/imgs/ic_birthday_gray.png" /> **/**/****
-                </p>
+                <p *ngIf="birthday" class="user_row_icon"><img src="assets/imgs/ic_birthday_gray.png" /> **/**/****</p>
               </div>
               <div *ngIf="is_user_current">
-                <p *ngIf="birthday" class="iconPage">
-                  <img src="assets/imgs/ic_birthday_gray.png" /> {{birthday}}
-                </p>
+                <p *ngIf="birthday" class="user_row_icon"><img src="assets/imgs/ic_birthday_gray.png" /> {{birthday}}</p>
               </div>
 
               <!-- Show phone number -->
-              <p class="iconPage" *ngIf="!is_user_current && !is_hidden_phone_number">
+              <p class="user_row_icon" *ngIf="!is_user_current && !is_hidden_phone_number">
                 <img src="assets/imgs/ic_phone_gray.png" /> {{user.mobilelogin}}
               </p>
-              <p class="iconPage" *ngIf="is_user_current ">
+              <p class="user_row_icon" *ngIf="is_user_current ">
                 <img src="assets/imgs/ic_phone_gray.png" /> {{user.mobilelogin}}
               </p>
-              <p class="iconPage" *ngIf="!is_user_current && is_hidden_phone_number">
+              <p class="user_row_icon" *ngIf="!is_user_current && is_hidden_phone_number">
                 <img src="assets/imgs/ic_phone_gray.png" /> ***********
               </p>
 
-
             </ion-col>
             <ion-col col-6>
-              <p *ngIf="user.mood" class="iconPage">
-                <img src="{{iconMood}}" />{{user.mood.title}}
-              </p>
-              <p *ngIf="is_user_current" class="iconPage">
-                <img src="assets/imgs/offer-number.png" /> {{user.offer_count ?user.offer_count: '0'}}/{{limitOffer}}
+              <p *ngIf="is_user_current" class="user_row_icon">
+                <img src="assets/imgs/ic_gift_1.png" /> {{user.gift_count?user.gift_count:0}}/{{limitGift}}</p>
+              <p *ngIf="user.mood" class="user_row_icon"><img src="{{iconMood}}" />{{user.mood.title}}</p>
+              <p *ngIf="is_user_current" class="user_row_icon">
+                <img src="assets/imgs/ic_gift_1.png" /> {{user.offer_count ?user.offer_count: '0'}}/{{limitOffer}}
               </p>
             </ion-col>
           </ion-row>
@@ -152,7 +141,8 @@
       </div>
     </div>
   </div>
-  <div *ngIf="is_failed" style="position: absolute;top: 40%;">
+
+  <div *ngIf="is_failed" class="user_nodata">
     Không thể lấy thông tin người dùng.Vui lòng kiểm tra tình trạng mạng hoặc danh sách chặn .
   </div>
 </ion-content>
