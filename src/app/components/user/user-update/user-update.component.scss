@@ -17,6 +17,14 @@ app-user-update {
     }
 
     .user_update_list {
-        margin: -1px 0 5px;
+        margin: -1px 0 0px;
+    }
+
+    .user_update_send {
+        background-color: #f0ad42;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin: 15px 0px 0px 0px;
     }
 }

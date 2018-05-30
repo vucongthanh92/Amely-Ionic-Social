@@ -17,6 +17,7 @@ import { CustomService } from '../../services/custom.service';
     NativeGeocoder
   ]
 })
+
 export class MapComponent implements OnInit {
   @ViewChild('map') element;
   map: GoogleMap;
@@ -34,16 +35,13 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-
-
   }
 
   ionViewDidLoad() {
 
   }
+
   loadMap() {
-
-
     this.geolocation.getCurrentPosition().then((resp) => {
       let mapOptions: GoogleMapOptions = {
         camera: {
@@ -98,8 +96,6 @@ export class MapComponent implements OnInit {
                     }
                   }).then(marker => { });
 
-
-
                 })
                 .catch((error: any) => console.log(error));
             }
@@ -121,4 +117,9 @@ export class MapComponent implements OnInit {
       });
     }
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }
