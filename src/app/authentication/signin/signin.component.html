@@ -9,13 +9,13 @@
       <ion-row>
         <ion-col>
           <ion-list inset class="no-border">
-            <ion-item>
+            <ion-item style="background-color: #fff;">
               <ion-label>
                 <img class="login_icon" src="assets/imgs/ic_username.png" />
               </ion-label>
               <ion-input type="text" name="username" [(ngModel)]="username" (ionChange)="setUsername(username)" placeholder="Tên đăng nhập"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item style="background-color: #fff;">
               <ion-label>
                 <img class="login_icon" src="assets/imgs/ic_password.png" />
               </ion-label>
@@ -26,25 +26,32 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <button ion-button class="login-button" type="submit" id="btnLogin">Đăng Nhập</button>
+          <button class="login-button" type="submit" id="btnLogin">
+            <img style="max-width: 35%;" src="assets/imgs/buttonLogin.png" alt="">
+          </button>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col>
           <div class="txtRememberRegister" (click)="forgotPassword()">
-            <span>Quên Mật Khẩu</span>
-            <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon>
+            <span style="color: black;"><ins>Quên Mật Khẩu?</ins></span>
           </div>
         </ion-col>
         
-        <ion-col>
+        <!-- <ion-col>
           <div (click)="onRegister()" class="txtRememberRegister">
             <span>Đăng Ký</span>
             <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon>
           </div>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </form>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar (click)="onRegister()">
+    <ion-title>ĐĂNG KÝ</ion-title>
+  </ion-toolbar>
+</ion-footer>
