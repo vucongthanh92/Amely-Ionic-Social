@@ -1,5 +1,4 @@
 app-group-menu {
-
     .group_menu_list {
         margin: 0px;
     }
@@ -11,10 +10,17 @@ app-group-menu {
             padding: 0px 5px 0px 10px;
 
             span {
-                margin: 0px 0px 0px 5px;
-                font-size: 1.5rem;
-                vertical-align: text-top;
+                margin: 0px;
+                font-size: 1.4rem;
+                vertical-align: middle;
             }
+        }
+
+        img {
+            width: 25px;
+            height: auto;
+            margin: 0px 7px 0px 0px;
+            vertical-align: middle;
         }
     }
 
