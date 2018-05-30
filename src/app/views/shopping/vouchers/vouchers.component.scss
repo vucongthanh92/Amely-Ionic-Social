@@ -91,6 +91,10 @@ app-vouchers {
 
   .vouchers_button {
     background-color: #ffb76b;
+
+    ion-scroll {
+      height:50px;
+    }
   }
 
   .scroll-content {
