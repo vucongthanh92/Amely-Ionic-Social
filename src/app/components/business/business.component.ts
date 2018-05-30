@@ -1,11 +1,12 @@
 import { InventoryComponent } from './../inventory/inventory.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { App, NavParams, NavController, PopoverController, LoadingController } from 'ionic-angular';
 import { GiftComponent } from '../gift/gift.component';
 import { BusinessService } from '../../services/business.service';
 import { Business } from '../../api/models/business';
 import { CustomService } from '../../services/custom.service';
 import { BusinessMenuComponent } from './business-menu/business-menu.component';
+import { FeedsComponent } from '../feeds/feeds.component';
 
 @Component({
   selector: 'app-business',
@@ -15,6 +16,8 @@ export class BusinessComponent implements OnInit {
   private business_guid: number;
   public page: Business;
   public is_owner: boolean = false;
+  public is_show_fab: boolean = false;
+  @ViewChild('feeds') feeds: FeedsComponent;
   constructor(public nav: NavController, public appCtrl: App, private nav_param: NavParams, private service: BusinessService
     , private customService: CustomService, public popoverCtrl: PopoverController, private loadingCtrl: LoadingController) {
     this.business_guid = this.nav_param.get('guid');
@@ -33,6 +36,7 @@ export class BusinessComponent implements OnInit {
       data => {
         this.page = data;
         this.is_owner = this.customService.user_current.guid == data.owner.guid;
+        this.is_show_fab = data.owner.guid == this.customService.user_current.guid;
       },
       err => {
         this.loadData(--retry)
@@ -119,6 +123,10 @@ export class BusinessComponent implements OnInit {
     this.nav.pop();
   }
 
+
+  addFeed() {
+    this.feeds.addNewFeed()
+  }
 }
 
 

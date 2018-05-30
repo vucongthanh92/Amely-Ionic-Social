@@ -84,3 +84,8 @@
     </ion-list>
   </div>
 </ion-content>
+<ion-fab class="user_fab" *ngIf="is_show_fab">
+  <button ion-fab class="user_fab_icon" (click)="addFeed()">
+    <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
+  </button>
+</ion-fab>

@@ -155,4 +155,13 @@ app-business {
     display: none;
   }
 
+   .user_fab {
+    bottom: 12px;
+    right: 12px;
+
+    .user_fab_icon {
+      color: #fff;
+      background-color: #f0ad4e;
+    }
+  }
 }

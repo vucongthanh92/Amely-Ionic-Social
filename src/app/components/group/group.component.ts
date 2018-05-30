@@ -2,17 +2,18 @@ import { GroupMenuComponent } from './group-menu/group-menu.component';
 import { CustomService } from './../../services/custom.service';
 import { Group } from './../../api/models/group';
 import { GroupService } from './../../services/group.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { App, NavController, NavParams, AlertController, PopoverController } from 'ionic-angular';
 import { MessageComponent } from '../message/message.component';
 import { GiftComponent } from '../gift/gift.component';
+import { FeedsComponent } from '../feeds/feeds.component';
 
 @Component({
   selector: 'app-group',
   templateUrl: './group.component.html'
 })
 export class GroupComponent implements OnInit {
-
+  is_show_fab: boolean = false;
   groupGuid: string;
   feed_type = "group";
   group: Group;
@@ -21,6 +22,7 @@ export class GroupComponent implements OnInit {
   is_admin: boolean;
   reloadCallback: any;
   isMenu: boolean;
+  @ViewChild('feeds') feeds: FeedsComponent;
 
   constructor(public alertCtrl: AlertController, public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private groupService: GroupService, private customService: CustomService, public popoverCtrl: PopoverController) {
@@ -39,6 +41,10 @@ export class GroupComponent implements OnInit {
     }
   }
 
+  addFeed() {
+    this.feeds.addNewFeed()
+  }
+
   getGroup(retry) {
     if (retry == 0) {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
@@ -48,8 +54,8 @@ export class GroupComponent implements OnInit {
       data => {
         this.groups.push(data);
         this.group = data;
-        this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid );
-        
+        this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid);
+
         this.dateCreated = new Date(this.group.time_created * 1000);
         this.is_admin = this.group.owner_guid == this.customService.user_current.guid;
         if (!this.group.voted) this.showVoteAdmin();

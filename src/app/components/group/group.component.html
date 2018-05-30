@@ -75,7 +75,7 @@
     <ion-list>
       <ion-list *ngIf="groupGuid">
         <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-        <app-feeds [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid" [admin_guid]="group.owner_guid"></app-feeds>
+        <app-feeds #feeds [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid" [admin_guid]="group.owner_guid"></app-feeds>
         <!-- </ion-item> -->
       </ion-list>
     </ion-list>
@@ -85,3 +85,9 @@
     <app-friends [from]="'group'" [guid]="group.guid" [object]="group"></app-friends>
   </div>
 </ion-content>
+
+  <ion-fab class="user_fab" >
+    <button ion-fab class="user_fab_icon" (click)="addFeed()">
+      <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
+    </button>
+  </ion-fab>

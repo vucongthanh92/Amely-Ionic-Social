@@ -133,4 +133,14 @@ app-event {
     margin: 1px 7px 0px 0px;
   }
 
+   .user_fab {
+    bottom: 12px;
+    right: 12px;
+
+    .user_fab_icon {
+      color: #fff;
+      background-color: #f0ad4e;
+    }
+  }
+
 }
