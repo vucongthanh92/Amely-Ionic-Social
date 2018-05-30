@@ -77,19 +77,19 @@ app-user {
   } 
 
   .user_row_icon {
-    margin: 0px 0 10px 0;
+    margin: 0px 0 12px 0;
 
     img {
-      width: 25px;
-      height: 25px;
+      width: 23px;
+      height: auto;
       margin: 0 5px 0 0;
       display: inline;
       vertical-align: middle;
     }
 
     span {
-      font-size: 1.5rem;
-      color: #333;
+      font-size: 1.4rem;
+      color: #444;
       vertical-align: middle;
     }
   }
@@ -177,6 +177,16 @@ app-user {
   .user_nodata {
     position: absolute;
     top: 40%;
+  }
+
+  .user_fab {
+    bottom: 12px;
+    right: 12px;
+
+    .user_fab_icon {
+      color: #fff;
+      background-color: #f0ad4e;
+    }
   }
 
 }

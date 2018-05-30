@@ -1,7 +1,7 @@
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { App, NavController, Refresher, NavParams, PopoverController, ModalController } from 'ionic-angular';
 import { AlbumComponent } from '../album/album.component';
 import { FriendsComponent } from '../friends/friends.component';
@@ -12,6 +12,7 @@ import { CustomService } from '../../services/custom.service';
 import { User } from '../../api/models';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ModalImageUserComponent } from '../modal-image/modal-image-user/modal-image-user.component';
+import { FeedsComponent } from '../feeds/feeds.component';
 
 @Component({
   selector: 'app-user',
@@ -42,6 +43,8 @@ export class UserComponent {
   isLoadSuccess: boolean = false;
   limitOffer: number;
   limitGift: number;
+  is_show_fab: boolean = false;
+  @ViewChild('feeds') feeds: FeedsComponent;
   constructor(
     public messagesService: MessagesService,
     public nav: NavController,
@@ -53,8 +56,6 @@ export class UserComponent {
     imageViewerCtrl: ImageViewerController,
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-    console.log(this.userCurrent);
-    
     this.urlImage = this.userCurrent.avatar;
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
@@ -84,7 +85,12 @@ export class UserComponent {
   ngOnInit() {
     this.userGuid = this.navParams.get('userGuid');
     this.username = this.navParams.get('username');
+    this.is_show_fab = this.userCurrent.guid == this.userGuid;
     this.loadData(5);
+  }
+
+  addFeed() {
+    this.feeds.addNewFeed()
   }
 
   loadData(retry) {
@@ -100,7 +106,7 @@ export class UserComponent {
         this.user = data;
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);
-        this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_blue.png' : 'assets/imgs/ic_gender_female_pink.png';
+        this.genderIcon = this.user.gender === 'male' ? 'assets/imgs/ic_gender_male_gray.png' : 'assets/imgs/ic_gender_female_gray.png';
         this.genderLabel = this.user.gender === "male" ? "Nam" : "Nữ";
         this.is_hidden_birthday = this.user.birthdate_hidden == undefined || this.user.birthdate_hidden == '0' ? false : true;
         this.is_hidden_friend = this.user.friends_hidden == undefined || this.user.friends_hidden == '0' ? false : true;
