@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> Quên mật khẩu</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="margin-top: 30%;">
+    <div>
+      <ion-input [(ngModel)]="password" class="inputForgot" name="password" type="password" placeholder="Nhập mật khẩu mới"></ion-input>
+    </div>
+    <br>
+    <div>
+      <ion-input [(ngModel)]="rePassword" class="inputForgot" name="rePassword" type="password" placeholder="Xác nhận mật khẩu"></ion-input>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <button class="buttonSubmit" ion-button (click)="changePassword()">TIẾP TỤC</button>
+    </div>
+  </div>
+
+</ion-content>

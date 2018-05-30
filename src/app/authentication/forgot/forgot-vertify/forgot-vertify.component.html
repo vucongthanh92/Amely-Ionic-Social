@@ -10,16 +10,16 @@
 <ion-content padding>
   <div style="margin-top: 30%;">
     <div>
-      <ion-input [(ngModel)]="emailInput" class="inputForgot" type="text" placeholder="Email của bạn"></ion-input>
+      <ion-input [(ngModel)]="code" class="inputForgot" type="text" placeholder="Mã xác nhận"></ion-input>
     </div>
+    <!-- <br>
+    <div style="text-align: center;">
+      <label for="">Gửi lại mã xác nhận</label>
+    </div> -->
     <br>
     <div style="text-align: center;">
-      <label for="">Vui lòng kiểm tra email đã nhập để nhập mã xác nhận</label>
-    </div>
-    <br>
-    <div style="text-align: center;">
-      <button class="buttonSubmit" ion-button (click)="forgotPassword()">TIẾP TỤC</button>
+      <button class="buttonSubmit" ion-button (click)="activationCode()">TIẾP TỤC</button>
     </div>
   </div>
- 
+
 </ion-content>
