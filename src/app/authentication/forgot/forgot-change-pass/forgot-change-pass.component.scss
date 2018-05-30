@@ -1,11 +1,11 @@
-app-forgot {
+app-forgot-change-pass{
     .inputForgot {
         background-color: #f4f4f4;
         border-radius: 20px;
     }
 
     .text-input-ios {
-    margin: 11px 8px 11px 20px;
+        text-align: center;
     }
 
     .buttonSubmit {
@@ -15,6 +15,7 @@ app-forgot {
         height: 40px;
         width: 140px;
     }
+
     .button-inner {
         color: white;
     }
