@@ -4,7 +4,6 @@
       <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div *ngIf="event" class="ion_navbar_title">sự kiện</div>
     </ion-buttons>
 
     <ion-buttons end *ngIf="event && (type=='guest' || type =='member')">
@@ -16,7 +15,8 @@
 </ion-header>
 
 <ion-content class="outer-content" *ngIf="event">
-  <div class="event_cover" [style.background]="'url(' + event.cover + ')'">
+  <div class="event_cover" [style.background]="'url(' + event.cover + ')'"></div>
+  <div class="event_avatar_row">
     <div class="event_avatar">
       <img *ngIf="event.avatar" src="{{event.avatar}}" imageViewer>
       <img *ngIf="!event.avatar" src="assets/imgs/logo.png" imageViewer>

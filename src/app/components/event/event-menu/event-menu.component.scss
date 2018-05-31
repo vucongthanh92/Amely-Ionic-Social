@@ -11,8 +11,15 @@ app-event-menu {
 
             span {
                 margin: 0px 0px 0px 7px;
-                font-size: 1.7rem;
+                font-size: 1.4rem;
+                vertical-align: middle;
             }
         }
+    }
+
+    .event_menu_icon {
+        width: 25px;
+        vertical-align: middle;
+        height: auto;
     }
 }

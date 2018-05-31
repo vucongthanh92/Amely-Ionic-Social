@@ -41,7 +41,11 @@ app-contact-business {
     }
 
     .list-ios {
-        margin: 19px 0px 32px 0px;
+        margin: 0px 0px 35px 0px;
+
+        ion-item {
+            padding: 3px 0px 5px 0px;
+        }
     }
     
     .fakeItem {

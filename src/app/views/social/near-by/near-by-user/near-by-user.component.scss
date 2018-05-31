@@ -13,12 +13,16 @@ app-near-by-user{
         padding-left:0px;
 
         ion-avatar img {
-            width:55px;
-            height:55px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         ion-avatar[item-start]{
             margin: 0px 10px 5px 0;
+            width: 5.5rem;
+            height: 5.5rem;
         }
 
         .number-circle{
