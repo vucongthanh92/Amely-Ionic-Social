@@ -19,7 +19,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconUser.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="firstname" type="text" placeholder="Họ"></ion-input>
         </ion-item>
@@ -30,7 +31,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconUser.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="lastname" type="text" placeholder="Tên"></ion-input>
         </ion-item>
@@ -41,7 +43,9 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-calendar" md="md-calendar"></ion-icon> <span class="register_icon_title">Ngày sinh</span>
+            <img class="register_icon" src="assets/imgs/iconCalendar.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-calendar" md="md-calendar"></ion-icon>  -->
+            <span class="register_icon_title">Ngày sinh</span>
           </ion-label>
             <ion-datetime class="register_form_datetime" (ionChange)='onChangeTime($event)' [(ngModel)]="birthdate" displayFormat="YYYY-MM-DD" placeholder=""></ion-datetime>
         </ion-item>
@@ -60,7 +64,8 @@
       <!-- GENDER -->
       <ion-col class="register_colum" col-2>
         <ion-item class="register_box2">
-          <ion-icon class="register_icon" ios="md-male" md="md-maler"></ion-icon>
+          <img class="register_icon" src="assets/imgs/iconGender.png" />
+          <!-- <ion-icon class="register_icon" ios="md-male" md="md-maler"></ion-icon> -->
         </ion-item>
       </ion-col>
       <ion-col class="register_colum" col-10>
@@ -81,7 +86,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconUser.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập" (ionChange)="setUsername(username)"></ion-input>
         </ion-item>
@@ -92,7 +98,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconPass.png" />            
+            <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="password" type="password" placeholder="Mật khẩu"></ion-input>
         </ion-item>
@@ -103,7 +110,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconPass.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="password_re" type="password" placeholder="Nhập lại mật khẩu"></ion-input>
         </ion-item>
@@ -114,7 +122,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-mail" md="md-mail"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconMail.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-mail" md="md-mail"></ion-icon> -->
           </ion-label>
           <ion-input [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
         </ion-item>
@@ -136,7 +145,8 @@
       <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
-            <ion-icon class="register_icon" ios="ios-call" md="md-call"></ion-icon>
+            <img class="register_icon" src="assets/imgs/iconPhone.png" />
+            <!-- <ion-icon class="register_icon" ios="ios-call" md="md-call"></ion-icon> -->
           </ion-label>
           <ion-input type="tel" [(ngModel)]="mobilelogin" placeholder="Số điện thoại"></ion-input>
         </ion-item>

@@ -47,7 +47,15 @@ export class SigninComponent implements OnInit {
     this.is_logging = true;
     this.loader = this.loadingCtrl.create();
     this.loader.present();
-    this.retryLogin(5);
+    if (!this.username) {
+      this.loader.dismiss();
+      this.customService.toastMessage('Tên đăng nhập không được phép để trống!', 'bottom', 3000);
+    } else if (!this.password){
+      this.loader.dismiss();
+      this.customService.toastMessage('Mật khẩu không được phép để trống!', 'bottom', 3000);
+    } else {
+      this.retryLogin(5);
+    }
   }
 
   setUsername(username) {
@@ -76,7 +84,7 @@ export class SigninComponent implements OnInit {
           this.nav.push(VerifycodeComponent, { user: u });
         } else {
           const toast = this.toastCtrl.create({
-            message: 'Đăng nhập thất bại!',
+            message: 'Đăng nhập thất bại, Tên đăng nhập hoặc mật khẩu không đúng !',
             position: "bottom",
             duration: 3000
           });
