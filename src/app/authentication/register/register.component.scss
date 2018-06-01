@@ -1,8 +1,5 @@
 app-register {
     
-    .scroll-content {
-        overflow: visible;
-    }
 
 	ion-content {
 		background-image: url("../assets/imgs/background.jpg");
@@ -19,7 +16,6 @@ app-register {
 
     ion-input {
 		font-size: 15px;
-		opacity: 0.5;
     	color: black;
 	}
     .button-inner {
@@ -28,11 +24,11 @@ app-register {
 
     .select-ios {
     color: black;
-    opacity: 0.5;
+    // opacity: 0.5;
     padding: 11px 8px 11px 16px;
     }
     .label-ios {
-        opacity: 0.5;
+        // opacity: 0.5;
         color: black;
     margin: 11px 8px 11px 0;
 }
@@ -44,7 +40,7 @@ app-register {
     .register_form_datetime {
         padding: 15px 8px 11px 16px;
         color: black;
-    opacity: 0.5;
+    // opacity: 0.5;
     }
 
     .register_icon_title {
@@ -174,5 +170,10 @@ app-register {
         opacity: 0.5;
         font-style: italic;
     }
+
+    .register_icon {
+		width: 25px;
+		height: 25px;
+	}
     
 }
