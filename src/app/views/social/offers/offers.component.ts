@@ -3,15 +3,24 @@ import { App, NavController } from 'ionic-angular';
 import { OffersMyselfComponent } from './offers-myself/offers-myself.component';
 import { OffersPendingComponent } from './offers-pending/offers-pending.component';
 import { OffersSearchComponent } from './offers-search/offers-search.component';
+import { CustomService } from '../../../services/custom.service';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html'
 })
-export class OffersComponent implements OnInit {
 
+export class OffersComponent implements OnInit {
+  public device_screen: string;
   offersTab = 'myself';
-  constructor(public nav: NavController, public appCtrl: App) {}
+
+  constructor(
+    public nav: NavController,
+    public customService: CustomService,
+    public appCtrl: App
+  ) {
+    this.device_screen = customService.checkDevices();
+  }
   
   ngOnInit() {
   }

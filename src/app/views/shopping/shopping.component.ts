@@ -22,7 +22,6 @@ export class ShoppingComponent implements OnInit {
   tab1Root = ShopsComponent;
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
-  public device_screen: string;
 
   constructor(
     public nav: NavController,
@@ -33,21 +32,24 @@ export class ShoppingComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner) {
-      this.device_screen = customService.checkDevices();
+
   }
 
   ngOnInit() {
+
   }
 
   changePage() {
     this.appCtrl.getRootNav().push(CartItemsComponent);
   }
+
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create(ShoppingMenuComponent);
     popover.present({
       ev: myEvent
     });
   }
+  
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {
