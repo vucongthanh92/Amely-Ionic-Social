@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-tabs class="nearby_tabs" tabsPlacement="bottom">
+  <ion-tabs class="nearby_tabs" [ngClass]="device_screen" tabsPlacement="bottom">
     <ion-tab tabTitle="NGƯỜI DÙNG" [root]="tab1Root"></ion-tab>
     <ion-tab tabTitle="CỬA HÀNG" [root]="tab2Root"></ion-tab>
   </ion-tabs>
