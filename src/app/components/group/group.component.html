@@ -4,7 +4,6 @@
       <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div *ngIf="group" class="ion_navbar_title ion_navbar_width">{{group.title}}</div>
     </ion-buttons>
     <ion-buttons end>
       <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
@@ -15,7 +14,8 @@
 </ion-header>
 
 <ion-content class="outer-content" *ngIf="group">
-  <div class="group_cover" [style.background]="'url(' + group.cover + ')'">
+  <div class="group_cover" [style.background]="'url(' + group.cover + ')'"></div>
+  <div class="group_avatar_row">
     <div class="group_avatar"><img src="{{ group.avatar }}" imageViewer></div>
     <div class="group_cover_title">{{ group.title }}</div>
   </div>

@@ -1,0 +1,21 @@
+app-business-menu {
+    .business_menu_list {
+        margin: 0px;
+    }
+
+    .business_menu_item {
+        padding: 0px !important;
+
+        img {
+            width: 25px;
+            height: auto;
+            vertical-align: middle;
+            margin: 0px 5px 0px 12px;
+        }
+
+        span {
+            font-size: 1.4rem;
+            vertical-align: middle;
+        }
+    }
+}

@@ -64,4 +64,13 @@ app-gift {
     font-size: 16px;
     color: #cdcdcd;
   }
+
+  .gift_btn_send {
+    color: #fff;
+    
+    ion-icon {
+      margin: 0px 5px 0px 0px;
+      font-size: 2rem;
+    }
+  }
 }

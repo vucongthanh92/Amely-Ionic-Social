@@ -19,17 +19,17 @@ export class PersonalComponent implements OnInit {
   tab1Root = ContactComponent;
   tab2Root = MessagesComponent;
   tab3Root = NotificationComponent;
-  public device_screen: string;
 
   constructor(
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
     public customService: CustomService,
     public nav: NavController, public appCtrl: App, public navParams: NavParams) {
-      this.device_screen = customService.checkDevices();
-    }
+
+  }
 
   ngOnInit() {
+
   }
 
   openPopover(myEvent) {

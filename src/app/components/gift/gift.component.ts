@@ -166,4 +166,9 @@ export class GiftComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+  
 }

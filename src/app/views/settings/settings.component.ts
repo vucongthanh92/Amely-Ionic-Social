@@ -16,14 +16,13 @@ export class SettingsComponent implements OnInit {
   tabGeneral = SettingGeneralComponent;
   tabPrivate = SettingPrivateComponent;
   tabSecurity = SettingSecurityComponent;
-  public device_screen: string;
 
   constructor(
     public nav: NavController, 
     public appCtrl: App, 
     public navParams:NavParams,
     private customService:CustomService) {
-      this.device_screen = customService.checkDevices();
+      
     }
 
   ngOnInit() {

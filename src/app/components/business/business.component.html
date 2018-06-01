@@ -4,7 +4,6 @@
       <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">cộng đồng</div>
     </ion-buttons>
     <ion-buttons end>
       <button *ngIf="is_owner" ion-button (click)="openPopover($event)">
@@ -15,8 +14,12 @@
 </ion-header>
 
 <ion-content class="outer-content" *ngIf="page">
-  <div [style.background]="'url(' + page.cover + ')'" class="business_cover">
-    <div class="business_avatar" [style.background]="'url(' + page.avatar + ')'"></div>
+  <div [style.background]="'url(' + page.cover + ')'" class="business_cover"></div>
+
+  <div class="business_avatar_row">
+    <div class="business_avatar">
+      <img src="{{ page.avatar }}">
+    </div>
     <div class="business_cover_title">{{page.title}}</div>
   </div>
 

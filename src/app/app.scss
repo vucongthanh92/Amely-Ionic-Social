@@ -42,14 +42,12 @@
     }
 }
 
-#top_navigation_iphone6s {
+.top_navigation_default {
     top: 0px;
 }
 
-#top_navigation_iphone7plus {
-    top: 0px;
-}
-
-#top_navigation_iphonex {
-    top: 0px;
+.top_navigation_iphonex {
+    .show-tabbar {
+        bottom: -10px !important;
+    }
 }
