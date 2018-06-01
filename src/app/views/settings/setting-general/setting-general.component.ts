@@ -1,3 +1,4 @@
+import { CustomService } from './../../../services/custom.service';
 import { SigninComponent } from './../../../authentication/signin/signin.component';
 import { AlertController, App, NavController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SettingGeneralComponent implements OnInit {
 
   private languageResult: string = 'Tiếng Việt';
-  constructor(public alertCtrl: AlertController, public appCtrl: App, public nav: NavController) { }
+  constructor(public alertCtrl: AlertController, public appCtrl: App, public nav: NavController, private customService: CustomService) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,7 @@ export class SettingGeneralComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: () => {
+            this.customService.notifications = [];
             localStorage.clear();
             this.appCtrl.getRootNav().setRoot(SigninComponent);
           }

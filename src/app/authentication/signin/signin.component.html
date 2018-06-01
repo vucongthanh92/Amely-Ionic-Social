@@ -27,31 +27,34 @@
       <ion-row>
         <ion-col>
           <button class="login-button" type="submit" id="btnLogin">
-            <img style="max-width: 35%;" src="assets/imgs/buttonLogin.png" alt="">
+            <img style="max-width: 75%;" src="assets/imgs/buttonLogin.png" alt="">
           </button>
         </ion-col>
       </ion-row>
       <br>
       <ion-row>
-        <ion-col>
+        <ion-col style="position: relative;
+    margin-left: 6vw;">
           <div class="txtRememberRegister" (click)="forgotPassword()">
-            <span style="color: black;"><ins>Quên Mật Khẩu?</ins></span>
+            <span style="color: #289ae1;">Quên mật khẩu</span>
+            <img src="assets/imgs/iconForgot.png" style="width: 14px;" alt="">
           </div>
         </ion-col>
-        
-        <!-- <ion-col>
+
+        <ion-col style="position: relative; margin-left: -10vw;">
           <div (click)="onRegister()" class="txtRememberRegister">
-            <span>Đăng Ký</span>
-            <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon>
+            <span style="color: #289ae1;">Đăng ký</span>
+            <!-- <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon> -->
+            <img src="assets/imgs/iconRegister.png" style="width: 14px;" alt="">
           </div>
-        </ion-col> -->
+        </ion-col>
       </ion-row>
     </form>
   </div>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar (click)="onRegister()">
     <ion-title>ĐĂNG KÝ</ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

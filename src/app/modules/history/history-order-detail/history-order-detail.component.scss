@@ -57,4 +57,29 @@ app-history-order-detail {
     text-transform: capitalize;
     text-decoration: line-through;
   }
+
+  ion-fab[middle] {
+        margin-top: -28px;
+    top: 10vw;
+    margin-left: 33vw;
+}
+ion-fab-list {
+    margin: 66px 0;
+    position: relative;
+    top: -12vw;
+    right: 83vw;
+    margin-right: 95px;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: left;
+    min-width: 100%;
+    min-height: 100%;
+}
 }

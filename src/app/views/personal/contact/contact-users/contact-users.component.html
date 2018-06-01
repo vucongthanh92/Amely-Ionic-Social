@@ -33,7 +33,12 @@
       </ion-item-options>
     </ion-item-sliding>
     <div *ngIf="friends.length==0" style="font-size: 20px; text-align: center;">
-      Không có dữ liệu...
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
     </div>
   </ion-list>
   <ion-list *ngIf="!friends">

@@ -10,7 +10,7 @@
 
         <div class="wallphoto_quantity_4" *ngIf="voucher.images[0]" [style.background]="'url(' + voucher.images[0] + ')'"></div>
         <div class="wallphoto_quantity_4" *ngIf="voucher.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
-        
+
         <div class="voucher_limit"> * không giới hạn</div>
       </ion-card>
       <h3 class="voucher_title">{{voucher.title}}</h3>
@@ -26,7 +26,12 @@
       </div>
     </ion-item>
     <div *ngIf="vouchers.length == 0" class="voucher_nodata">
-      Không có dữ liệu...
+      <div>
+        <img src="assets/imgs/ic_feed.png" class="imgNodata" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
     </div>
   </ion-card>
 
