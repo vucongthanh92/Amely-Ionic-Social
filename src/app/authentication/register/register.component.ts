@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public email: string;
   // public email_re: string;
   public firstname: string;
-  public gender: string = 'male';
+  public gender: string;
   public lastname: string;
   public mobilelogin: string;
   public password: string;
@@ -160,5 +160,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onChange($event) {
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

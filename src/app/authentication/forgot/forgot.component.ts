@@ -43,5 +43,9 @@ export class ForgotComponent implements OnInit {
       this.retrySendEmail(--retry, email)
     })
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
  
 }

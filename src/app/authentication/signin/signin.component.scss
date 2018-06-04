@@ -1,6 +1,6 @@
 app-signin {
 	ion-content {
-		background-image: url("../assets/imgs/background.jpg");
+		background-image: url("../assets/imgs/background.png");
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -70,8 +70,8 @@ app-signin {
 	}
 
 	.login_icon {
-		width: 25px;
-		height: 25px;
+		width: 16px;
+        height: 16px;
 		margin: 1px 0px 0px 9px;
 	}
 	
@@ -117,4 +117,12 @@ app-signin {
 		border-width: 0.55px 0 0;
 		background-color: #25a9e0;
 	}
+	 .buttonSubmit {
+        border-radius: 20px;
+        color: #fff;
+        background-color: #f47b37;
+        height: 40px;
+        width: 140px;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+    }
 }

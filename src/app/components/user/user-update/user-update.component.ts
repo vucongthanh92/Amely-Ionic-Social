@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../api/models';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FirebaseService } from '../../../services/firebase.service';
+import { SigninComponent } from '../../../authentication/signin/signin.component';
 
 @Component({
   selector: 'app-user-update',
@@ -111,7 +112,7 @@ export class UserUpdateComponent implements OnInit {
           this.customService.user_current.ward = this.ward_id;
           this.customService.user_current.address = this.address;
           this.callback(true).then(() => {
-            this.nav.pop()
+            this.nav.setRoot(SigninComponent);
           });
           this.updateUserFirebase(this.birthdate, this.gender);
         } else {
