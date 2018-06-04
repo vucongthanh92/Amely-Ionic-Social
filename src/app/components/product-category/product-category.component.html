@@ -40,7 +40,7 @@
   <ion-grid class="product_category_container">
     <ion-list *ngIf='products'>
       <ion-item class="product_category_item" *ngFor="let product of products" (click)="openProductDetail(product)">
-        <ion-row >
+        <ion-row>
           <ion-col col-3>
             <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
               <span class="ribbon cruzeiro">
@@ -64,6 +64,14 @@
           </ion-col>
         </ion-row>
       </ion-item>
+      <div *ngIf="products.length == 0" class="category_nodata">
+        <div>
+          <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+        </div>
+        <div style="color: #999;">
+          Không có dữ liệu...
+        </div>
+      </div>
     </ion-list>
 
     <ion-list *ngIf='!products'>

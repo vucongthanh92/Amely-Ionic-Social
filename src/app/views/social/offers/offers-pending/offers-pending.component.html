@@ -31,7 +31,12 @@
     </ion-item-sliding>
 
     <div *ngIf="counterOffers.length == 0" class="offer_pending_nodata">
-      Không có dữ liệu...
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
     </div>
   </ion-list>
 </ion-content>

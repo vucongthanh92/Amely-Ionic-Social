@@ -74,8 +74,11 @@ export class ProductCategoryComponent implements OnInit {
     }
     this.shopping_service.getProducts(this.category_id, this.shop_guid, this.type_product, null, 0, this.offset, this.limit).subscribe(data => {
       // loading.dismiss();
+      this.products = [];
       if (data.products instanceof Array) {
         this.products = data.products;
+      } else {
+        this.products = [];
       }
     }, err => this.loadData(--retry));
   }
