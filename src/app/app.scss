@@ -43,11 +43,19 @@
 }
 
 .top_navigation_default {
-    top: 0px;
+    top: 1px;
 }
 
 .top_navigation_iphonex {
     .show-tabbar {
-        bottom: -15px !important;
+        bottom: -20px !important;
+    }
+
+    .vouchers_button ion-scroll {
+        height: 60px;
+    }
+
+    .inventory_footer_box {
+        margin-bottom: 15px !important;
     }
 }

@@ -62,12 +62,6 @@ app-inventory {
     text-align: center;
   }
 
-  .inventory_footer{
-    min-height: 45px;
-    background-color: #ffb76b;
-    bottom: 0px;
-  }
-
   .inventory_metro_badge{
     border-radius: 50% !important;
     color: #fff;
@@ -160,6 +154,18 @@ app-inventory {
     z-index: 10;
     display: block;
     width: 100%;
+    background-color: #ffb76b;
+
+    .inventory_footer_box {
+      text-align: center;
+      color: white;
+      text-transform: capitalize;
+      margin: 9px 0px 9px 0px;
+    }
+
+    .inventory_footer_box:first-child {
+      border-right: 1px solid white;
+    }
   }
 
   .inventory_metro_menu {
@@ -168,17 +174,6 @@ app-inventory {
 
   .inventory_metro_etc {
     color: #666;
-  }
-
-  .inventory_footer_box {
-    text-align: center;
-    color: white;
-    text-transform: capitalize;
-    line-height: 30px;
-  }
-
-  .inventory_footer_box:first-child {
-    border-right: 1px solid white;
   }
 
   .inventory_footer_quantity {

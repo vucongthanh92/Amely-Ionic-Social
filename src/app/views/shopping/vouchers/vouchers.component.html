@@ -46,10 +46,9 @@
       </div>
     </ion-item>
   </ion-card>
-
 </ion-content>
 
-<ion-footer class="vouchers_button">
+<ion-footer [ngClass]="device_screen">
   <ion-scroll scrollX>
     <div class="scroll-item">
       <ion-col *ngFor="let category of categories" (click)="goToPage('category',null,category);">

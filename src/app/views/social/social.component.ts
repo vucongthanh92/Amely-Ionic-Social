@@ -28,7 +28,6 @@ export class SocialComponent implements OnInit {
   tab4Root = EventsComponent;
   tab5Root = NearByComponent;
   tab6Root = EventsComponent;
-  public device_screen: string;
 
   constructor(
     public nav: NavController, 
@@ -42,7 +41,7 @@ export class SocialComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private fbService: FirebaseService
   ) {
-    this.device_screen = customService.checkDevices();
+    
   }
 
   ngOnInit() {
