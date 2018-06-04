@@ -4,6 +4,7 @@ import { EventsGuestComponent } from './events-guest/events-guest.component';
 import { Component, OnInit } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { CreateEventComponent } from '../../../components/create-event/create-event.component';
+import { CustomService } from '../../../services/custom.service';
 
 @Component({
   selector: 'app-events',
@@ -14,12 +15,20 @@ export class EventsComponent implements OnInit {
   userPage = true;
   guestPage = false;
   historyPage = false;
+
+  public device_screen: string;
   
   tab1Root = EventsUserComponent;
   tab2Root = EventsGuestComponent;
   tab3Root = EventsHistoryComponent;
   
-  constructor(public nav: NavController, public appCtrl: App) {}
+  constructor(
+    public nav: NavController,
+    public customService: CustomService, 
+    public appCtrl: App
+  ) {
+    this.device_screen = customService.checkDevices();
+  }
 
   ngOnInit() {
   }

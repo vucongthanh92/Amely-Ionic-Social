@@ -25,6 +25,7 @@ export class NearByComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   nearbyTab = 'user';
   userPage = true;
   shopPage = false;

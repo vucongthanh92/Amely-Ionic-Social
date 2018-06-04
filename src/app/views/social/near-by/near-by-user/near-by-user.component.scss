@@ -37,10 +37,14 @@ app-near-by-user{
         }
     }
 
-    .nearby_friendly_item {
-        margin: 0px 0px 0px 0px;
-        border-bottom: 1px solid #c8c7cc !important;
-        padding: 12px 0px 12px 12px;
+    .nearby_friendly {
+        margin: 0px;
+
+        .nearby_friendly_item {
+            margin: 0px 0px 0px 0px;
+            border-bottom: 1px solid #c8c7cc !important;
+            padding: 12px 0px 12px 12px;
+        }
     }
 
     .nearby_title {
