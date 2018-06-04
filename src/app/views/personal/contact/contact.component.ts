@@ -22,6 +22,7 @@ export class ContactComponent implements OnInit {
   contactTab = 'user';
   friends: any;
   is_load_group: boolean;
+  public device_screen: string;
 
   tab1Root = ContactUsersComponent;
   tab2Root = ContactGroupsComponent;
@@ -30,8 +31,13 @@ export class ContactComponent implements OnInit {
   constructor(
     public nav: NavController,
     public appCtrl: App,
-    public personalService: PersonalService, private groupService: GroupService, private customService: CustomService, public loadingCtrl: LoadingController
-  ) { }
+    public personalService: PersonalService, 
+    private groupService: GroupService, 
+    private customService: CustomService, 
+    public loadingCtrl: LoadingController
+  ) {
+    this.device_screen = customService.checkDevices();
+  }
 
   ngOnInit() {
     this.initGroupsContact();

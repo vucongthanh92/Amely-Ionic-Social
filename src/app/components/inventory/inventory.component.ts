@@ -47,11 +47,20 @@ export class InventoryComponent implements OnInit {
   isAdminGroup: any;
   isAdminEvent: any;
 
-  constructor(public nav: NavController, public appCtrl: App, public inventorySerive: InventoriesService, private navParams: NavParams,
-    public loadingCtrl: LoadingController, private customService: CustomService) {
+  public device_screen: string;
+
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App, 
+    public inventorySerive: InventoriesService, 
+    private navParams: NavParams,
+    public loadingCtrl: LoadingController, 
+    private customService: CustomService
+  ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
     this.isAdminGroup = this.navParams.get("isAdminGroup");
     this.isAdminEvent = this.navParams.get("isAdminEvent");
+    this.device_screen = customService.checkDevices();
   }
 
   types: Array<{ item_type: string, title: string, image: string, badge: number, position: number }> = [];
