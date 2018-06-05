@@ -17,9 +17,7 @@
       </div>
       
       <div class="msg-detail" (click)="clickMessage(message)">
-        <div class="msg-info">
-          <p>{{ message.from }}</p>
-        </div>
+        <div class="message_from_content">{{ message.from }}</div>
         <div class="message_box_info">
           <span class="triangle"></span>
           <div *ngIf="message.gift">
@@ -36,13 +34,11 @@
             <img width="100%" src="{{ message.gift.item_image }}" />
             <!-- <p class="line-breaker">{{ message.text }}</p> -->
 
-            <p style="font-weight: bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+            <div class="message_text_bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
               Đã gửi vị trí : {{ message.text }}
-            </p>
+            </div>
             <ng-template #other_content>
-              <p>
-                {{ message.text }}
-              </p>
+              <p>{{ message.text }}</p>
             </ng-template>
 
             <div *ngIf="message.chat_type == 'group'">
@@ -59,6 +55,7 @@
                 </ion-col>
               </ion-row>
             </div>
+            
             <ion-row *ngIf="!message.isSender">
               <ion-col col-6>
                 <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
@@ -82,10 +79,10 @@
               Đã gửi vị trí {{ message.text }}
             </p>
             <ng-template #other_content>
-              <p>{{ message.text }}</p>
+              <div>{{ message.text }}</div>
             </ng-template>
           </div>
-
+          
           <div [ngClass]="message.isSender? 'message_box_time_left' : 'message_box_time_right'">
             <time>{{ message.time | amTimeAgo }}</time>
           </div>
@@ -96,27 +93,27 @@
 </ion-content>
 
 <ion-footer no-border>
-  <ion-row text-center style="border: 1px solid #eee;">
+  <ion-row class="message_choose_box">
     <ion-col col-4 class="message_choose_btn">
-      <button ion-button icon-left clear (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
-        <ion-icon name="archive"></ion-icon>
+      <button ion-button icon-left clear small (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
+        <img class="message_choose_img" src="assets/imgs/vector_present-01-01.png">
       </button>
     </ion-col>
     <ion-col col-4 class="message_choose_btn">
       <button ion-button icon-left clear small (click)="selectFromGallery()">
-        <img class="iconMenu" src="assets/imgs/ic_image_grey.png">
+        <img class="message_choose_img" src="assets/imgs/ic_image_01.png">
       </button>
     </ion-col>
     <ion-col col-4>
       <button ion-button icon-left clear small (click)="sendLocation()">
-        <img class="iconMenu" src="assets/imgs/ic_place_grey.png">
+        <img class="message_choose_img" src="assets/imgs/ic_location_gray.png">
       </button>
     </ion-col>
   </ion-row>
   
   <ion-row>
     <ion-col col-2>
-      <button ion-button clear icon-only item-right (click)="takePicture()">
+      <button ion-button clear icon-only item-right class="message_input_icon" (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
       </button>
     </ion-col>
@@ -126,7 +123,6 @@
     <ion-col col-2>
       <button ion-button clear icon-only item-right (click)="sendMessage()">
         <img src="assets/imgs/ic_send_blue.png">
-        <!-- <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon> -->
       </button>
     </ion-col>
   </ion-row>
