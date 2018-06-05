@@ -35,7 +35,7 @@
   </div>
 </ion-content>
 
-<ion-footer class="inventory_public_footer">
+<ion-footer [ngClass]="device_screen">
   <div class="bar bar-header bar-dark">
     <ion-segment color="primary" [(ngModel)]="inventoryPublicTab">
       <ion-segment-button value="group" class="segment-button" (click)="goToPage('group')">
