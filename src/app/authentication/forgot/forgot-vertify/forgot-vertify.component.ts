@@ -41,4 +41,8 @@ export class ForgotVertifyComponent implements OnInit {
       }
     })
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

@@ -51,4 +51,7 @@ export class ForgotChangePassComponent implements OnInit {
     }, err => this.retryChangePassword(--retry, password))
   }
 
+  dismiss() {
+    this.nav.pop();
+  }
 }

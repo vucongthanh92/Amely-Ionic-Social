@@ -1,4 +1,7 @@
 app-forgot-vertify {
+    ion-content {
+		background-image: url("../assets/imgs/background.png");
+    }
     .inputForgot {
         background-color: #f4f4f4;
         border-radius: 20px;
@@ -9,9 +12,9 @@ app-forgot-vertify {
     }
 
     .buttonSubmit {
-        border-radius: 10px;
+        border-radius: 20px;
         color: #fff;
-        background-color: #f0ad4e;
+        background-color: #f47b37;
         height: 40px;
         width: 140px;
     }

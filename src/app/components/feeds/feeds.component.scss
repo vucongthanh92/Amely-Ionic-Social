@@ -162,4 +162,9 @@ app-feeds {
     .offer_myself_location .item-inner {
         border-bottom: none !important;
     }  
+
+    ion-card img {
+        display: initial;
+        width: 100%;
+    }
 }
