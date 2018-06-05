@@ -43,4 +43,8 @@ export class CreateWalletComponent implements OnInit {
   onCancel() {
     this.nav.pop();
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }
