@@ -184,6 +184,8 @@ export class CreateOfferComponent implements OnInit {
       return;
     }
     this.offerService.createOffer(obj).subscribe(data => {
+      console.log(data);
+      
       if (data.offer_guid) {
         loading.dismiss();
         let owner_from = data.offer_guid;
