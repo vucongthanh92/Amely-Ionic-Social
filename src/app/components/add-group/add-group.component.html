@@ -36,7 +36,8 @@
         <ion-col col-3>
           <div class="add_group_center_icon_user">
             <ion-icon class="checkboxIcon" ios="md-key" md="md-key"></ion-icon>
-            <ion-icon class="iconContent" ios="ios-contact" md="md-contact"></ion-icon>
+            <div class="add_group_user_images" [style.background]="'url(' + userCurrent.avatar + ')'"></div>
+            <ion-label class="add_group_user_name">{{userCurrent.fullname}}</ion-label>
           </div>
         </ion-col>
         <ion-col col-9>

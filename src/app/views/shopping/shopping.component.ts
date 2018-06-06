@@ -22,7 +22,6 @@ export class ShoppingComponent implements OnInit {
   tab1Root = ShopsComponent;
   tab2Root = VouchersComponent;
   tab3Root = ShopsFriendlyComponent;
-  public device_screen: string;
 
   constructor(
     public nav: NavController,
@@ -33,34 +32,24 @@ export class ShoppingComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public paymentService: PaymentService,
     private barcodeScanner: BarcodeScanner) {
-      var ratio = window.devicePixelRatio || 1;
-      var screen = {
-        width: window.screen.width * ratio,
-        height: window.screen.height * ratio
-      };
-      if (screen.width == 1125 && screen.height == 2436) {
-        this.device_screen = "top_navigation_iphonex";
-      }
-      else if (screen.width == 1242 && screen.height == 2208) {
-        this.device_screen = "top_navigation_iphone7plus";
-      }
-      else {
-        this.device_screen = "top_navigation_iphone6s";
-      }
+
   }
 
   ngOnInit() {
+
   }
 
   changePage() {
     this.appCtrl.getRootNav().push(CartItemsComponent);
   }
+
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create(ShoppingMenuComponent);
     popover.present({
       ev: myEvent
     });
   }
+  
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {

@@ -14,13 +14,14 @@ export class RegisterComponent implements OnInit {
   public email: string;
   // public email_re: string;
   public firstname: string;
-  public gender: string = 'male';
+  public gender: string;
   public lastname: string;
   public mobilelogin: string;
   public password: string;
   public password_re: string;
   public username: string;
   public is_show_privacy: boolean = false;
+  public test: boolean = false;
   public privacy: boolean = false;
   private year_current: number = (new Date()).getFullYear();
   constructor(public nav: NavController, private customService: CustomService, private userService: UserService,
@@ -31,6 +32,10 @@ export class RegisterComponent implements OnInit {
     u.username = '12';
     u.password = '321';
     u.mobilelogin = '4124';
+  }
+
+  setUsername(username) {
+    this.username = username.toLowerCase();
   }
 
   onChangeTime(e) {
@@ -60,9 +65,9 @@ export class RegisterComponent implements OnInit {
     } else if (!this.password) {
       loading.dismiss();
       this.customService.toastMessage('Mật khẩu không được để trống', 'bottom', 2000);
-    } else if (this.password.length < 8) {
+    } else if (! this.customService.checkPasswordStrength(this.password)) {
       loading.dismiss();
-      this.customService.toastMessage('Mật khẩu tối đa 8 ký tự', 'bottom', 2000);
+      this.customService.toastMessage('Mật khẩu tối đa 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số', 'bottom', 2000);
     } else if (!this.password_re) {
       loading.dismiss();
       this.customService.toastMessage('Nhập lại mật khẩu', 'bottom', 2000);
@@ -82,7 +87,11 @@ export class RegisterComponent implements OnInit {
     } else if (this.is_show_privacy && !this.privacy) {
       loading.dismiss();
       this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
-    } else {
+    } else if (this.test == false) {
+      loading.dismiss();
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản !', 'bottom', 2000);
+    }
+    else {
       this.retryRegister(5,loading);
     }
   }
@@ -94,6 +103,8 @@ export class RegisterComponent implements OnInit {
     }
     this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
       data => {
+        console.log(data);
+        
         if (data.status) {
           let u: User = new User();
           u.username = this.username;
@@ -146,5 +157,12 @@ export class RegisterComponent implements OnInit {
           }
         }
       }, err => { this.retryRegister(--retry, loading) })
+  }
+
+  onChange($event) {
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

@@ -3,6 +3,7 @@ import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../api/models';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-change-phonenumber',
@@ -12,7 +13,14 @@ export class ChangePhonenumberComponent implements OnInit {
   @Input('phone_number') phone_number: string;
   @Input('password') password: string;
   private userCurrent: User;
-  constructor(private userService: UserService, private customService: CustomService, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+  
+  constructor(
+    private userService: UserService, 
+    private customService: CustomService, 
+    private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController,
+    public nav: NavController
+  ) {
   }
 
   ngOnInit() {
@@ -71,6 +79,8 @@ export class ChangePhonenumberComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: data => {
+            console.log(data);
+            
             if (data.code) {
               loading.present();
               this.retryVerifyCode(5, data.code, loading)
@@ -90,6 +100,11 @@ export class ChangePhonenumberComponent implements OnInit {
       return;
     }
 
+    console.log(this.password);
+    console.log(this.phone_number);
+    console.log(code);
+    console.log(this.userCurrent.username);
+    
     this.userService.activeUser(this.userCurrent.username, this.password, this.phone_number, code).subscribe(data => {
       console.log(data);
       loading.dismiss();
@@ -100,4 +115,9 @@ export class ChangePhonenumberComponent implements OnInit {
       }
     }, err => this.retryVerifyCode(--retry, code, loading))
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
+
 }

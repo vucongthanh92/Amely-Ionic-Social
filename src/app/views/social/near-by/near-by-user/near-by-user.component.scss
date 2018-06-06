@@ -1,17 +1,7 @@
 app-near-by-user{
-    
-    #nearby_user_container {
-        top: 44px;
-    }
-
     .scroll-content {
         padding-top: 0px !important;
-    }
-
-    .nearby_friendly {
-        background-color: white;
-        margin: 0px;
-        padding: 18px 0px 25px 0px;
+        margin-bottom: 42px !important;
     }
 
     .icon{
@@ -24,12 +14,16 @@ app-near-by-user{
         padding-left:0px;
 
         ion-avatar img {
-            width:55px;
-            height:55px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         ion-avatar[item-start]{
             margin: 0px 10px 5px 0;
+            width: 5.5rem;
+            height: 5.5rem;
         }
 
         .number-circle{
@@ -43,10 +37,14 @@ app-near-by-user{
         }
     }
 
-    .nearby_friendly_item {
-        margin: 0px 0px 0px 0px;
-        border-bottom: 1px solid #c8c7cc !important;
-        padding: 10px 0px 5px 15px;
+    .nearby_friendly {
+        margin: 0px;
+
+        .nearby_friendly_item {
+            margin: 0px 0px 0px 0px;
+            border-bottom: 1px solid #c8c7cc !important;
+            padding: 12px 0px 12px 12px;
+        }
     }
 
     .nearby_title {

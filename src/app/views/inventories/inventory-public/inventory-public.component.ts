@@ -18,10 +18,18 @@ export class InventoryPublicComponent implements OnInit {
   public usersGroup: Array<User> = [];
   public groups: Array<Group> = [];
   public userCurrent: User;
+  public device_screen: string;
 
-  constructor(public nav: NavController, public appCtrl: App, private groupService: GroupService, 
-    private eventsService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App, 
+    private groupService: GroupService, 
+    private eventsService: EventsService, 
+    private customService: CustomService, 
+    public loadingCtrl: LoadingController
+  ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    this.device_screen = customService.checkDevices();
   }
 
   ngOnInit() {

@@ -24,8 +24,8 @@ export class ChangePasswordComponent implements OnInit {
       this.customService.toastMessage('Mật khẩu cũ không được để trống .', 'bottom', 2000);
     } else if (!this.new_pass) {
       this.customService.toastMessage('Mật khẩu mới không được để trống .', 'bottom', 2000);
-    } else if (this.new_pass.length < 7) {
-      this.customService.toastMessage('Mật khẩu mới phải ít nhất 8 ký tự .', 'bottom', 2000);
+    } else if (!this.customService.checkPasswordStrength(this.new_pass)) {
+      this.customService.toastMessage('Mật khẩu tối đa 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số.', 'bottom', 2000);
     } else if (!this.renew_pass) {
       this.customService.toastMessage('Nhập lại mật khẩu mới .', 'bottom', 2000);
     } else if (this.new_pass != this.renew_pass) {
@@ -58,5 +58,9 @@ export class ChangePasswordComponent implements OnInit {
     }, err => {
       this.retryChangePass(--retry, loading);
     })
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

@@ -11,6 +11,7 @@
 
     .tabs-ios .tabbar {
         padding: 2px 0px 0px 0px;
+        margin: 0px;
     }
     .tab-button-text {
         padding: 3px 0px 0px 0px;
@@ -19,7 +20,8 @@
         padding: 0px 0px 5px 0px;
     }
     .tabs-ios .tab-button[aria-selected=true] {
-        border-bottom: 1px solid #488aff;
+        border-bottom: 1px solid #00bdf2;
+        color: #00bdf2;
     }
 
     .tabs-ios {
@@ -37,7 +39,7 @@
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: center;
-                border-bottom: 1px solid #488aff;
+                border-bottom: 1px solid #00bdf2;
             }
         }
     }
@@ -57,7 +59,7 @@
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: center;
-                border-bottom: 1px solid #488aff;
+                border-bottom: 1px solid #00bdf2;
             }
         }
     }
@@ -77,7 +79,7 @@
                 background-size: 100%;
                 background-repeat: no-repeat;
                 background-position: center;
-                border-bottom: 1px solid #488aff;
+                border-bottom: 1px solid #00bdf2;
             }
         }
     }

@@ -1,8 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Bookmark trao đổi</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Bookmark trao đổi</div>
+    </ion-buttons>
+
     <ion-buttons end>
-      <button ion-button (click)="openMenu()">
+      <button ion-button class="offer_bookmark_more" (click)="openMenu()">
         <ion-icon name="md-more"></ion-icon>
       </button>
     </ion-buttons>

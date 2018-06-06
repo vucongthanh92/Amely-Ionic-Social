@@ -3,9 +3,10 @@ import { CustomService } from './../../services/custom.service';
 import { EventsService } from './../../services/events.service';
 import { EventMenuComponent } from './event-menu/event-menu.component';
 import { NavController, App, NavParams, PopoverController, LoadingController } from 'ionic-angular';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Event, User } from '../../api/models';
 import { GiftComponent } from '../gift/gift.component';
+import { FeedsComponent } from '../feeds/feeds.component';
 
 @Component({
   selector: 'app-event',
@@ -15,11 +16,13 @@ import { GiftComponent } from '../gift/gift.component';
 export class EventComponent implements OnInit {
   //intent form event user ,guest =true , history = false
   public type: string;;
+  public is_show_fab: boolean = false;;
   public event_guid: number;
   public event: Event;
   public users: User[];
   public string_members: Array<string>;
   public string_guests: Array<string>;
+  @ViewChild('feeds') feeds: FeedsComponent;
   callback: any;
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, public popoverCtrl: PopoverController,
     public eventService: EventsService, private customService: CustomService, public loadingCtrl: LoadingController) {
@@ -61,6 +64,20 @@ export class EventComponent implements OnInit {
             this.eventService.publish = 3;
           }
           loading.dismiss();
+          console.log(this.customService.user_current.guid);
+          console.log(data.events.owner_user);
+          console.log(data.events.members_accepted);
+          console.log(data.events.invites_accepted);
+
+          if (data.events.owner_user == this.customService.user_current.guid) {
+            this.is_show_fab = true;
+          } else if (data.events.members_accepted && data.events.members_accepted.length > 0) {
+            this.is_show_fab = data.events.members_accepted.split(",").some(e => this.customService.user_current.guid + "" == e)
+          } 
+          if (data.events.invites_accepted && data.events.invites_accepted.length > 0 && !this.is_show_fab) {
+            this.is_show_fab = data.events.invites_accepted.split(",").some(e => this.customService.user_current.guid + "" == e)
+          }
+          console.log(this.is_show_fab);
 
         }
       },
@@ -132,6 +149,10 @@ export class EventComponent implements OnInit {
     }
   }
 
+  addFeed() {
+    this.feeds.addNewFeed()
+  }
+
   dismiss() {
     this.nav.pop();
   }
@@ -161,10 +182,10 @@ export class EventComponent implements OnInit {
           this.nav.pop();
         });
       } catch (error) {
-        
+
       }
-       
-    
+
+
       resolve();
     });
   }

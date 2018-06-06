@@ -14,7 +14,7 @@ import { User } from '../../../api/models';
   templateUrl: './notification.component.html'
 })
 export class NotificationComponent implements OnInit {
-
+  notifications: Array<Notification> = [];
   loading: any;
 
   constructor(public customService: CustomService, private appCtrl: App,
@@ -23,6 +23,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
     this.customService.notifications.sort(this.compareUser)
+    this.customService.notifications = this.customService.notifications.filter((item, pos) => this.customService.notifications .indexOf(item) == pos    )
   }
   compareUser(a, b) {
     if (a.time_created < b.time_created)

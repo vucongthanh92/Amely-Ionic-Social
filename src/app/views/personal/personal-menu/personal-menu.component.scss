@@ -9,6 +9,22 @@ app-personal-menu {
             margin: 0px 5px 0px 0px;
             font-size: 2.2rem;
         }
+
+        .personal_menu_contact_icon {
+            width: 27px;
+            height: auto;
+            vertical-align: middle;
+            margin: 0px 3px 0px 0px;
+        }
+
+        span {
+            vertical-align: middle;
+            font-size: 1.5rem;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     .personal_menu_item {

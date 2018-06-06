@@ -1,6 +1,5 @@
 <ion-header>
   <ion-navbar>
-
     <ion-buttons start>
       <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
@@ -26,8 +25,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-tabs tabsPlacement="top" class="top_navigation_device" [id]="device_screen" primary>
-  <ion-tab [root]="tab1Root" tabTitle="AMELY MALL" tabIcon="store"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
-</ion-tabs>
+<ion-content>
+  <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
+    <ion-tab [root]="tab1Root" tabTitle="AMELY MALL" tabIcon="store"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
+  </ion-tabs>
+</ion-content>

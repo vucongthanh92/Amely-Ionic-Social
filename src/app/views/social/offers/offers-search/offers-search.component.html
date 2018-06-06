@@ -1,4 +1,4 @@
-<ion-content class="outer-content" id="offer_search_container">
+<ion-content class="outer-content">
   <ion-row class="offer_search_row">
     <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers">
       <div (click)="changePage(offer)">
@@ -44,7 +44,7 @@
 </ion-content>
 
 <ion-fab right bottom>
-  <button ion-fab color="primary" class="offer_search_button" (click)="doRadio()">
+  <button ion-fab class="offer_search_button" (click)="doRadio()">
     <ion-icon name="funnel"></ion-icon>
   </button>
 </ion-fab>

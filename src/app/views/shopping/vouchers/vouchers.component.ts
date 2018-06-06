@@ -18,8 +18,17 @@ export class VouchersComponent implements OnInit {
   public categories: Array<Category>;
   public offset: number = 0;
   public limit: number = 20;
-  constructor(public nav: NavController, public appCtrl: App, private shoppingsService: ShoppingsService, public customService: CustomService,
-    public loadingCtrl: LoadingController) { }
+  public device_screen: string;
+
+  constructor(
+    public nav: NavController, 
+    public appCtrl: App, 
+    private shoppingsService: ShoppingsService, 
+    public customService: CustomService,
+    public loadingCtrl: LoadingController
+  ) {
+    this.device_screen = customService.checkDevices();
+  }
 
   ngOnInit() {
     this.loadData(15);

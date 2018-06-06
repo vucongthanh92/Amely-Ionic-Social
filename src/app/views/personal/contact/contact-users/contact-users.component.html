@@ -1,6 +1,6 @@
-<ion-content class="outer-content" id="contact_user_container">
-  <ion-list class="contact_user" *ngIf="friends">
-    <ion-item-sliding #item  *ngFor="let friend of friends">
+<ion-content class="contact_user_content">
+  <ion-list class="contact_user" *ngIf="friends && isArray(friends)">
+    <ion-item-sliding #item *ngFor="let friend of friends">
       <ion-item>
         <ion-row>
           <ion-col col-10 (click)="goToPage(friend)">
@@ -11,7 +11,7 @@
               <ion-col class="contact_user_info" col-8>
                 <div class="contact_user_title">{{ friend.fullname }}</div>
                 <div class="contact_user_description" *ngIf="friend.thought"> {{getThought( friend.thought)}}</div>
-                <div *ngIf="friend.mood">
+                <div class="contact_user_mood" *ngIf="friend.mood">
                   <img class="contact_user_mood_icon" src="{{getMoodIcon(friend.mood.guid).image}}">
                   <span class="contact_user_mood_title">{{ friend.mood.title }}</span>
                 </div>
@@ -32,8 +32,15 @@
         <button ion-button (click)="removeFriend(friend)">Xóa bạn</button>
       </ion-item-options>
     </ion-item-sliding>
+    <div *ngIf="friends.length==0" style="font-size: 20px; text-align: center;">
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
+    </div>
   </ion-list>
-
   <ion-list *ngIf="!friends">
     <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
       <ion-row>

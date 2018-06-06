@@ -149,7 +149,7 @@ export class CustomService {
       report.present();
     });
   }
-  
+
 
   confirmPassword(alertCtrl: AlertController, userService: UserService) {
     return new Promise((resolve, reject) => {
@@ -245,6 +245,12 @@ export class CustomService {
                 // Handle error
               });
             }
+          }, {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
           }
         ]
       });
@@ -292,8 +298,35 @@ export class CustomService {
       actionSheet.present();
     });
   }
+  
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
-  
+
+  isInteger(number: string) {
+    if (isNaN(+number) || +number % 1 != 0) return false;
+    else return true;
+  }
+
+  checkPasswordStrength(password) {
+    var re = new RegExp('^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*[\$\%\&])|(?=.*[A-Z])(?=.*\d)(?=.*[\$\%\&])|(?=.*[A-Z])(?=.*[a-z])(?=.*[\$\%\&])).{8,16}$');
+    return re.test(password);
+  }
+
+  checkDevices() {
+    var ratio = window.devicePixelRatio || 1;
+    var screen = {
+      width: window.screen.width * ratio,
+      height: window.screen.height * ratio
+    };
+    if (screen.width == 1125 && screen.height == 2436) {
+      return "top_navigation_iphonex";
+    }
+    else if (screen.width == 1242 && screen.height == 2208) {
+      return "top_navigation_iphone7plus";
+    }
+    else {
+      return "top_navigation_iphone6s";
+    }
+  }
 }

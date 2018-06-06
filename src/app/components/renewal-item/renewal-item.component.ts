@@ -46,7 +46,10 @@ export class RenewalItemComponent implements OnInit {
   }
 
   onChangeTime(value) {
-    this.total_price = this.customService.formatCurrency((this.number_day * this.item.adjourn_price) + "", this.item.currency);
+    if (!this.customService.isInteger(this.number_day + "")) {
+      this.customService.toastMessage('Số ngày không hợp lệ', 'bottom', 3000)
+    } else
+      this.total_price = this.customService.formatCurrency((+this.number_day * this.item.adjourn_price) + "", this.item.currency);
   }
 
   onRenewal() {
@@ -60,7 +63,9 @@ export class RenewalItemComponent implements OnInit {
         {
           text: 'Chấp nhận',
           handler: () => {
-            this.retryRenewalItem(5);
+            if (!this.customService.isInteger(this.number_day + "")) {
+              this.customService.toastMessage('Số ngày không hợp lệ', 'bottom', 3000)
+            } else this.retryRenewalItem(5);
           }
         }
       ]
@@ -71,6 +76,7 @@ export class RenewalItemComponent implements OnInit {
   retryRenewalItem(retry) {
     if (retry == 0)
       return;
+
     this.inventoriesService.renewalItem(this.item.guid, this.number_day).subscribe(data => {
       if (!data.status && data.error == "balance_enough") {
         this.customService.toastMessage("Số tiền trong ví không đủ", "bottom", 2000);

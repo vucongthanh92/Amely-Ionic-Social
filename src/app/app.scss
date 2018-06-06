@@ -42,27 +42,24 @@
     }
 }
 
-.top_navigation_device {
-    top: 64px;
+.top_navigation_default {
+    top: 1px;
 }
 
-#top_navigation_iphone6s {
-    top: 64px;
-}
-.platform-ios #top_navigation_iphone6s {
-    top: 64px;
-}
+.top_navigation_iphonex {
+    .show-tabbar {
+        bottom: -20px !important;
+    }
 
-#top_navigation_iphone7plus {
-    top: 44px;
-}
-.platform-ios #top_navigation_iphone7plus {
-    top: 44px;
-}
+    .vouchers_button ion-scroll {
+        height: 60px;
+    }
 
-#top_navigation_iphonex {
-    top: 44px;
-}
-.platform-ios #top_navigation_iphonex {
-    top: 44px;
+    .inventory_footer_box {
+        margin-bottom: 15px !important;
+    }
+
+    ion-footer {
+        height: 50px !important;
+    }
 }

@@ -103,7 +103,8 @@ export class OffersSearchComponent implements OnInit {
               //     that.offers.push(data);
               //   }
               // });
-              this.retryGetOffer(5, that, key);
+              that.retryGetOffer(5, that, key);
+
             });
             loading.dismiss();
             break;
@@ -122,7 +123,7 @@ export class OffersSearchComponent implements OnInit {
   }
 
   retryGetOffer(retry, that, key) {
-    if (retry) return;
+    if (retry == 0) return;
     that.offersServie.getOffer(key).subscribe(data => {
       if (data.owner.guid != that.customService.user_current.guid) {
         that.offers.push(data);
@@ -131,7 +132,7 @@ export class OffersSearchComponent implements OnInit {
   }
 
   retryGetOffers(retry) {
-    if (retry==0) return;
+    if (retry == 0) return;
     this.offersServie.getOffers(0, 9999, 'friends').subscribe(data => {
       if (data instanceof Array) {
         this.offers = data;

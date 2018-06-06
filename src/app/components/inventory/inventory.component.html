@@ -21,7 +21,7 @@
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" *ngIf="group.avatar" src="{{group.avatar}}" imageViewer>
+						<img class="inventory_product_image" inventory_product_box*ngIf="group.avatar" src="{{group.avatar}}" imageViewer>
 						<img class="inventory_product_image" *ngIf="!group.avatar" src="assets/imgs/logo.png" imageViewer>
 					</ion-thumbnail>
 					<p class="inventory_product_title">{{group.title}}</p>
@@ -149,7 +149,7 @@
 	</ion-grid>
 </ion-content>
 
-<ion-footer class="inventory_footer">
+<ion-footer [ngClass]="device_screen">
 	<ion-grid>
 		<ion-row>
 			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">

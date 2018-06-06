@@ -44,7 +44,8 @@ export class WalletComponent implements OnInit {
     this.customService.getTransactions('wallet').subscribe(data => {
       if (data instanceof Array) {
         this.transactions = data;
-        this.transactions = this.transactions.filter(e => e.status != "cancel");
+        this.transactions = this.transactions.filter(e => e.status != "cancel" );
+        this.transactions = this.transactions.filter(e => e.status != "new" );
       }
     }, err => this.retryGetTransactions(--retry));
   }

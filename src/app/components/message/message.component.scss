@@ -1,6 +1,6 @@
 app-message {
 
-  $userBackgroundColor: #387ef5;
+  $userBackgroundColor: #00bdf2;
   $toUserBackgroundColor: #fff;
 
   ion-content .scroll-content {
@@ -18,37 +18,32 @@ app-message {
 
   .input-wrap {
     padding: 0 5px;
-    ion-textarea {
-      position: static;
+      ion-textarea {
+        position: static;
+      }
 
-    }
-    ion-col.col {
-      padding: 0;
-    }
-    button {
-      width: 100%;
-      height: 55px;
-      font-size: 1.3em;
-      margin: 0;
-    }
-    textarea {
+      ion-col.col {
+        padding: 0;
+      }
+
+      button {
+        width: 100%;
+        height: 55px;
+        font-size: 1.3em;
+        margin: 0;
+      }
+
+    .message_input_textarea {
       border-bottom: 1px $userBackgroundColor;
-      border-style: solid;
     }
   }
 
   .message-wrap {
     padding: 0 10px;
+
     .message {
       position: relative;
       padding: 7px 0;
-      .user-img {
-        position: absolute;
-        border-radius: 45px;
-        width: 45px;
-        height: 45px;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
-      }
 
       .msg-detail {
         width: 100%;
@@ -63,15 +58,16 @@ app-message {
           }
         }
 
-        .msg-content {
+        .message_box_info {
           position: relative;
           margin-top: 5px;
           border-radius: 5px;
-          padding: 8px;
+          padding: 8px 15px 12px 12px;
           border: 1px solid #ddd;
           color: #fff;
           width: auto;
           max-width: 80%;
+
           span.triangle {
             background-color: #fff;
             border-radius: 2px;
@@ -87,22 +83,22 @@ app-message {
             position: absolute;
           }
         }
-
       }
     }
 
     .message.left {
-      .msg-content {
+      .message_box_info {
         background-color: $toUserBackgroundColor;
         float: left;
       }
       .msg-detail {
         padding-left: 60px;
       }
-      .user-img {
+      .message_box_images {
         left: 0;
       }
-      .msg-content {
+
+      .message_box_info {
         color: #343434;
         span.triangle {
           border-top-width: 0;
@@ -120,15 +116,18 @@ app-message {
           text-align: right;
         }
       }
-      .user-img {
+
+      .message_box_images {
         right: 0;
       }
+
       ion-spinner {
         position: absolute;
         right: 10px;
         top: 50px;
       }
-      .msg-content {
+
+      .message_box_info {
         background-color: $userBackgroundColor;
         float: right;
         span.triangle {
@@ -138,12 +137,44 @@ app-message {
           right: -5px;
         }
       }
-
     }
-
   }
+
   .iconMenu{
     width: 40px;
+  }
+
+  .message_box_images {
+    position: absolute;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .message_box_time_right {
+    font-size: 1.1rem; 
+    color: #8e9093;
+    margin: 5px 0px 0px 0px;
+  }
+
+  .message_box_time_left {
+    font-size: 1.1rem; 
+    color: #eaeaea;
+    margin: 5px 0px 0px 0px;
+  }
+
+  .message_box_local {
+    font-weight: bold;
+  }
+
+  .message_choose_btn {
+    border-right: 1px solid #eee
   }
 
 }

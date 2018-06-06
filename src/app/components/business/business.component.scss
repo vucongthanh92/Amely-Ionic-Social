@@ -1,5 +1,9 @@
 app-business {
 
+  .scroll-content {
+    margin: 0px !important;
+  }
+
   .business_more_icon {
     color: #fff;
     margin: 1px 7px 0px 0px;
@@ -11,36 +15,41 @@ app-business {
   }
 
   .business_cover {
-    padding: 21px 0px 0px 0px;
     width: 100%;
-    min-height: 180px;
+    min-height: 200px;
     text-align: center;
     background-size: cover !important;
-    margin: 44px 0px 0px 0px;
+    margin: 64px 0px 0px 0px;
     background-position: center !important;
-    position: relative;
+    box-shadow: inset 0px 0px 45px #000000;
+  }
+
+  .business_avatar_row {
+    margin: -48px 0px 20px 0px;
   }
 
   .business_avatar {
     background-size: cover !important;
     background-position: center !important;
-    width: 85px;
+    width: 88px;
     height: 95px;
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     margin: 0px auto 0px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   .business_cover_title {
     text-align: center;
-    color: white;
-    text-transform: capitalize;
-    font-size: 21px;
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    font-weight: bold;
-    text-shadow: 1px 2px 1px #333;
+    color: #333;
+    font-size: 2.4rem;
+    margin: 9px 0px 0px 0px;
   }
 
   .business_nav {
@@ -62,11 +71,12 @@ app-business {
 
   .business_nav_row {
     text-align: center;
-    border-bottom: 1px solid #efeff4
+    border-bottom: 1px solid #c8c7cc;
+    border-top: 1px solid #c8c7cc;
   }
 
   .business_nav_col {
-    border-right: 1px solid #efeff4;
+    border-right: 1px solid #c8c7cc;
   }
 
   .business_info {
@@ -80,13 +90,13 @@ app-business {
 
     .card-content {
       padding: 0px 0px 5px 0px;
-      border-bottom: 1px solid #efeff4;
+      border-bottom: 1px solid #c8c7cc;
     }
 
     .business_info_border {
-      border-bottom: 1px solid #efeff4;
+      border-bottom: 1px solid #c8c7cc;
       margin: 0px 0px 15px 0px;
-      padding-top: 10px;
+      padding-top: 15px;
     }
 
     .business_info_item {
@@ -94,7 +104,7 @@ app-business {
       color: #666666;
       padding-left: 21px;
       min-height: unset;
-      padding-bottom: 9px;
+      padding-bottom: 12px;
 
       ion-label {
         margin: 0px;
@@ -155,4 +165,13 @@ app-business {
     display: none;
   }
 
+   .user_fab {
+    bottom: 12px;
+    right: 12px;
+
+    .user_fab_icon {
+      color: #fff;
+      background-color: #f0ad4e;
+    }
+  }
 }

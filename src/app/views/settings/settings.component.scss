@@ -8,7 +8,11 @@ app-settings{
         color: #fff;
         line-height: 20px;
     }
-        
+
+    .tabs-ios .tabbar {
+        margin: 0px;
+    }
+    
     .tabs-ios {
         a[aria-selected=false]{
             .tab-button-icon[ng-reflect-name=setting-general], .tab-button-icon[aria-label=setting-general] {
@@ -96,5 +100,10 @@ app-settings{
     .setting_search_box {
         font-size: 18px;
         color: #fff;
+    }
+
+    .tabs-ios .tab-button[aria-selected=true] {
+        border-bottom: 1px solid #00bdf2;
+        color: #00bdf2;
     }
 }

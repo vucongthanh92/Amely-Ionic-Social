@@ -48,8 +48,7 @@ app-inventory-public {
         max-width: 18vw;
     }
 
-    .inventory_public_footer {
-        bottom: 64px;
+    ion-footer {
         height: 40px;
         background-color: #f8f8f8;
 
@@ -62,15 +61,13 @@ app-inventory-public {
         .segment-ios-primary .segment-button {
             border: none;
             color: #666;
-            background-color: #f8f8f8;
-            border-radius: 0px !important;
+            background-color: #f8f8f8 !important;
             text-transform: uppercase;
             border-top: 1px solid #efeff4;
-            padding: 1px 0px 0px 0px;
             padding: 0px;
             font-size: 14px;
             height: 100%;
-            line-height: 39px;
+            line-height: 40px;
         }
     }
 

@@ -1,9 +1,15 @@
 <ion-header>
+  <ion-navbar hideBackButton>
 
-  <ion-navbar>
-    <ion-title>Click chọn vị trí</ion-title>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">chọn vị trí</div>
+    </ion-buttons>
+
     <ion-buttons end>
-      <button ion-button (click)="confirm()">
+      <button class="map_icon_send" ion-button (click)="confirm()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>

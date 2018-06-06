@@ -1,5 +1,5 @@
-<ion-content class="outer-content" id="offer_pending_container">
-  <ion-list class="offer_pending_main">
+<ion-content class="outer-content">
+  <ion-list class="offer_pending_main" *ngIf="counterOffers" >
     <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers" (press)="openMenu($event,counterOffer)">
       <ion-item class="offer_pending_row">
 
@@ -29,5 +29,14 @@
       </ion-item-options>
 
     </ion-item-sliding>
+
+    <div *ngIf="counterOffers.length == 0" class="offer_pending_nodata">
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
+    </div>
   </ion-list>
 </ion-content>

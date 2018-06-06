@@ -1,5 +1,4 @@
-<ion-content class="outer-content" id="offer_myself_container">
-
+<ion-content class="outer-content">
   <ion-row class="offer_myself_row" *ngIf="offers" >
     <ion-col col-6 class="offer_myself_box" *ngFor="let offer of offers" (click)="changePage(offer)" (press)="openMenu($event,offer)">
       <div class="offer_myself_datetime">
@@ -32,6 +31,14 @@
       </div>
   
     </ion-col>
+    <div *ngIf="offers.length == 0" class="offer_myself_nodata">
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
+    </div>
   </ion-row>
 
   <ion-row class="offer_myself_row" *ngIf="!offers">

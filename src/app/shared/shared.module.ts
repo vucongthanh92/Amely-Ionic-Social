@@ -77,6 +77,8 @@ import { ModalImageComponent } from '../components/modal-image/modal-image.compo
 import { BusinessMenuComponent } from '../components/business/business-menu/business-menu.component';
 import { RenewalItemComponent } from '../components/renewal-item/renewal-item.component';
 import { BannerComponent } from '../components/banner/banner.component';
+import { ForgotChangePassComponent } from '../authentication/forgot/forgot-change-pass/forgot-change-pass.component';
+import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/forgot-vertify.component';
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
 // import { WalletModule } from './../modules/wallet/wallet.module';
 
@@ -162,7 +164,8 @@ import { BannerComponent } from '../components/banner/banner.component';
     ModalImageComponent,
     BusinessMenuComponent,
     RenewalItemComponent,
-    BannerComponent
+    BannerComponent,
+    ForgotChangePassComponent,ForgotVertifyComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -227,7 +230,8 @@ import { BannerComponent } from '../components/banner/banner.component';
     ModalImageComponent,
     BusinessMenuComponent,
     RenewalItemComponent,
-    BannerComponent
+    BannerComponent,
+    ForgotChangePassComponent,ForgotVertifyComponent
   ],
   exports: [
     CategoriesComponent,
@@ -292,7 +296,9 @@ import { BannerComponent } from '../components/banner/banner.component';
     ModalImageComponent,
     BusinessMenuComponent,
     RenewalItemComponent,
-    BannerComponent
+    BannerComponent,
+    ForgotChangePassComponent,
+    ForgotVertifyComponent
   ]
 })
 export class SharedModule { }

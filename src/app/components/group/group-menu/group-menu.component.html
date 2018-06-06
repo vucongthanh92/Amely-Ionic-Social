@@ -1,33 +1,33 @@
 <ion-list class="group_menu_list">
   <ion-item *ngIf="has_inventory" (click)="openInventory()" class="group_menu_item">
-    <ion-icon ios="ios-albums" md="md-albums"></ion-icon> <span>Vào kho</span>
+    <img src="assets/imgs/vector_vao_kho_qua-01.png"><span>Vào kho</span>
   </ion-item>
 
   <ion-item *ngIf="is_owner" (click)="changeAvatarCover(true)" class="group_menu_item">
-    <ion-icon ios="ios-image" md="md-image"></ion-icon> <span>Đổi ảnh đại diện</span>
+    <img src="assets/imgs/change-avatar.png"><span>Đổi ảnh đại diện</span>
   </ion-item>
 
   <ion-item *ngIf="is_owner" (click)="changeAvatarCover(false)" class="group_menu_item">
-    <ion-icon ios="ios-images" md="md-images"></ion-icon> <span>Đổi ảnh nền</span>
+    <img src="assets/imgs/change-cover.png"><span>Đổi ảnh nền</span>
   </ion-item>
 
   <ion-item *ngIf="has_inventory" (click)="openQR()" class="group_menu_item">
-    <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
+    <img src="assets/imgs/quet-qr-01.png"><span>Mã QR</span>
   </ion-item>
 
   <ion-item *ngIf="has_inventory && is_owner" (click)="changeAdmin()" class="group_menu_item">
-    <ion-icon ios="ios-contact" md="md-contact"></ion-icon> <span>Chuyển quyền admin</span>
+    <img src="assets/imgs/vector_admin-01.png"><span>Chuyển quyền admin</span>
   </ion-item>
 
   <ion-item *ngIf="is_show_request_change_admin" (click)="requestChangeAdmin()" class="group_menu_item">
-    <ion-icon ios="md-contact" md="md-contact"></ion-icon> <span>Yêu cầu chuyển quyền admin</span>
+    <img src="assets/imgs/ic_user_admin_gray.png"><span>Yêu cầu chuyển quyền admin</span>
   </ion-item>
 
   <ion-item *ngIf="!is_owner" (click)="outGroup()" class="group_menu_item">
-    <ion-icon ios="ios-undo" md="md-undo"></ion-icon> <span>Rời nhóm</span>
+    <img src="assets/imgs/roi_nhom-01.png"><span>Rời nhóm</span>
   </ion-item>
 
   <ion-item *ngIf="is_owner && group.members.length==1" (click)="deleteGroup()" class="group_menu_item">
-    <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon> <span>Xóa nhóm</span>
+    <img src="assets/imgs/block.png"><span>Xóa nhóm</span>
   </ion-item>
 </ion-list>

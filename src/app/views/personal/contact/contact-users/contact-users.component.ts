@@ -103,10 +103,15 @@ export class ContactUsersComponent implements OnInit {
       return;
     }
     this.personalService.getFriends(this.userCurrent.guid).subscribe(data => {
-      this.friends = data;
+      if (data instanceof Array) {
+        this.friends = data;
+      } else this.friends = [];
     }, err => this.getFriends(--retry));
   }
 
+  isArray(obj) {
+    return obj instanceof Array;
+  }
   getThought(thought: string) {
     if (thought.indexOf('_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))') != -1 || thought.indexOf("null:data") != -1)
       return '';
@@ -135,7 +140,7 @@ export class ContactUsersComponent implements OnInit {
               enableBackdropDismiss: true
             });
             loading.present();
-            this.retryDeleteFriend(5,u,loading)
+            this.retryDeleteFriend(5, u, loading)
           }
         }
       ]
@@ -150,6 +155,6 @@ export class ContactUsersComponent implements OnInit {
         this.friends = this.friends.filter(e => e.guid != u.guid);
       } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
       loading.dismiss();
-    },err=>this.retryDeleteFriend(--retry,u,loading));
+    }, err => this.retryDeleteFriend(--retry, u, loading));
   }
 }

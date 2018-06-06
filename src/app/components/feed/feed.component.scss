@@ -1,6 +1,15 @@
 app-feed{
     .item-ios ion-avatar[item-start] {
         margin-right: 0px;
+        width: 4.5rem;
+        height: 4.5rem;
+
+        img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .feed_title {
@@ -44,10 +53,10 @@ app-feed{
     }
 
     .card-content-ios {
-        padding: 10px 5px 3px 3px;
+        padding: 10px 5px 5px 3px;
         white-space: normal;
         clear: both;
-        margin: 9px 0px 0px 0px;
+        margin: 0px;
         
         p {
             line-height: 20px;

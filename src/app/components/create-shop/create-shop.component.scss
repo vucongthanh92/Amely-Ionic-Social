@@ -1,4 +1,31 @@
 app-create-shop {
-  .selectItem {
+  .create_shop_list {
+    margin: 0px 0px 0px 0px;
+  }
+
+  .create_shop_item {
+    padding: 0px;
+
+    .item-inner {
+      padding: 5px 5px 7px 10px;
+    }
+  }
+
+  .create_shop_label {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 9px 0px 9px 10px;
+  }
+
+  .create_shop_note {
+    margin: 15px 9px 18px 10px;
+    color: #333;
+  }
+
+  .create_shop_send {
+    background-color: #f0ad4e;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 }

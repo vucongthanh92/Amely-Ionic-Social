@@ -6,6 +6,7 @@ import { CustomService } from '../../services/custom.service';
 import { PROVINCES } from '../../provinces';
 import { DISTRICTS } from '../../districts';
 import { WARDS } from '../../wards';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-create-shop',
@@ -37,8 +38,14 @@ export class CreateShopComponent implements OnInit {
   public owner_district: any;
   public owner_ward: any;
 
-  constructor(private navParams: NavParams, private appCtrl: App, private customService: CustomService, private shopService: ShopsService,
-    public loadingCtrl: LoadingController) {
+  constructor(
+    private navParams: NavParams, 
+    private appCtrl: App, 
+    private customService: CustomService, 
+    private shopService: ShopsService,
+    public loadingCtrl: LoadingController,
+    public nav: NavController
+  ) {
     this.shop = this.navParams.get('shop');
     if (this.shop.guid != null) {
       this.name = this.shop.title;
@@ -177,5 +184,9 @@ export class CreateShopComponent implements OnInit {
           loading.dismiss();
         },
         err => { this.retryCreateShop(--retry, loading) })
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }

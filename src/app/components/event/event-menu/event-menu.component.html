@@ -1,39 +1,38 @@
 <ion-list class="event_menu_list">
   <ion-item class="event_menu_item" (click)="publicEvent()" *ngIf="eventSerive.publish==1 && is_user_current">
-    <ion-icon ios="ios-megaphone" md="md-megaphone"></ion-icon> <span>Công bố sự kiện</span>
+    <img class="event_menu_icon" src="assets/imgs/cong-bo-su-kien.png"><span>Công bố sự kiện</span>
   </ion-item>
 
   <ion-item class="event_menu_item" *ngIf="is_user_current" (click)="closeOpenEvent()">
     <div *ngIf="(eventSerive.publish==1 || eventSerive.publish==2 )">
-      <ion-icon ios="ios-close" md="md-close"></ion-icon> <span>Đóng sự kiện</span>
+      <img class="event_menu_icon" src="assets/imgs/ic_setting_security.png"><span>Đóng sự kiện</span>
     </div>
     <div *ngIf="(eventSerive.publish==0 ||eventSerive.publish==3)">
-      <ion-icon ios="ios-open" md="md-open"></ion-icon> <span>Mở sự kiện</span>
+      <img class="event_menu_icon" src="assets/imgs/ic_event_actived.png"><span>Mở sự kiện</span>
     </div>
   </ion-item>
 
-  <ion-item (click)="changeCover()" *ngIf="is_user_current">
-    <ion-icon ios="ios-image" md="md-image"></ion-icon> Thay đổi ảnh bìa
+  <ion-item class="event_menu_item" (click)="changeCover()" *ngIf="is_user_current">
+    <img class="event_menu_icon" src="assets/imgs/change-cover.png"><span>Thay đổi ảnh bìa</span>
   </ion-item>
   
-  <ion-item (click)="changeAvatar()" *ngIf="is_user_current">
-    <ion-icon ios="ios-camera" md="md-camera"></ion-icon> Thay đổi ảnh đại diện
+  <ion-item class="event_menu_item" (click)="changeAvatar()" *ngIf="is_user_current">
+    <img class="event_menu_icon" src="assets/imgs/change-avatar.png"><span>Thay đổi ảnh đại diện</span>
   </ion-item>
 
-  <ion-item (click)="openInventory()" *ngIf="has_inventory">
-    <ion-icon ios="ios-albums" md="md-albums"></ion-icon>
-    <span>Vào kho</span>
+  <ion-item class="event_menu_item" (click)="openInventory()" *ngIf="has_inventory">
+    <img class="event_menu_icon" src="assets/imgs/vector_vao_kho_qua-01.png"><span>Vào kho</span>
   </ion-item>
 
-  <ion-item (click)="deleteEvent()" *ngIf="is_user_current">
-    <ion-icon ios="ios-trash" md="md-trash"></ion-icon> Xóa sự kiện
+  <ion-item class="event_menu_item" (click)="deleteEvent()" *ngIf="is_user_current">
+    <img class="event_menu_icon" src="assets/imgs/xoa-01.png"><span>Xóa sự kiện</span>
   </ion-item>
 
   <ion-item class="event_menu_item" (click)="openQR()" *ngIf="has_inventory">
-      <ion-icon ios="ios-qr-scanner" md="md-qr-scanner"></ion-icon> <span>Mã QR</span>
+    <img class="event_menu_icon" src="assets/imgs/quet-qr-01.png"><span>Mã QR</span>
   </ion-item>
 
-  <ion-item (click)="report()">
-    <ion-icon ios="ios-remove-circle" md="md-remove-circle"></ion-icon> Report
+  <ion-item class="event_menu_item" (click)="report()">
+    <img class="event_menu_icon" src="assets/imgs/bao_cao-01.png"><span>Report</span>
   </ion-item>
 </ion-list>

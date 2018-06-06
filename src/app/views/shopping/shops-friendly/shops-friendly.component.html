@@ -7,6 +7,15 @@
       <h2 class="shops_friendly_title">{{shop.title}}</h2>
       <p class="shops_friendly_description" *ngIf="shop.introduce">{{shop.introduce}}</p>
     </ion-item>
+
+    <div *ngIf="shops.length == 0" class="shop_friendly_nodata">
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
+    </div>
   </ion-list>
 
   <ion-list no-lines *ngIf="!shops">

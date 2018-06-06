@@ -3,16 +3,24 @@ app-user-menu {
         margin: 0px 0 0px;
 
         .item-ios {
-            padding: 0px 0px 0px 0px;
+            padding: 0px;
 
             .label-ios {
-                margin: 0px 3px 0px 14px;
+                margin: 0px 0px 0px 12px;
                 color: #333;
             }
         }
 
-        ion-icon {
-            margin: 0px 5px 0px 0px;
+        span {
+            vertical-align: middle;
+            font-size: 1.5rem;
+        }
+
+        .user_menu_icon {
+            width: 25px;
+            height: auto;
+            vertical-align: middle;
+            margin: 0px 7px 0px 0px;
         }
     }
 }

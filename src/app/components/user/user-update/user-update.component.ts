@@ -6,6 +6,8 @@ import { CustomService } from './../../../services/custom.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../api/models';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { FirebaseService } from '../../../services/firebase.service';
+import { SigninComponent } from '../../../authentication/signin/signin.component';
 
 @Component({
   selector: 'app-user-update',
@@ -17,6 +19,7 @@ export class UserUpdateComponent implements OnInit {
   public first_name: string;
   public last_name: string;
   public birthdate: string;
+  public email: string;
   public mobile_hidden: boolean;
   public birthdate_hidden: boolean;
   public friend_hidden: boolean;
@@ -30,11 +33,13 @@ export class UserUpdateComponent implements OnInit {
   public district_id;
   public showError: boolean;
   public user_current: User;
-  constructor(private customService: CustomService, private userService: UserService, private nav: NavController, private navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(private customService: CustomService, private userService: UserService, private nav: NavController,
+    private navParams: NavParams, public loadingCtrl: LoadingController, private fbService: FirebaseService) {
     this.user_current = this.customService.user_current;
     this.gender = this.user_current.gender;
     this.first_name = this.user_current.first_name;
     this.last_name = this.user_current.last_name;
+    this.email = this.user_current.email;
     this.birthdate = this.user_current.birthdate;
     this.province_id = this.user_current.province;
     this.district_id = this.user_current.district;
@@ -107,8 +112,9 @@ export class UserUpdateComponent implements OnInit {
           this.customService.user_current.ward = this.ward_id;
           this.customService.user_current.address = this.address;
           this.callback(true).then(() => {
-            this.nav.pop()
+            this.nav.setRoot(SigninComponent);
           });
+          this.updateUserFirebase(this.birthdate, this.gender);
         } else {
           this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
         }
@@ -120,4 +126,12 @@ export class UserUpdateComponent implements OnInit {
     this.nav.pop();
   }
 
+  updateUserFirebase(birthdate, gender) {
+    try {
+      let d: Date = new Date(birthdate);
+      this.fbService.updateProfile(this.user_current.username, d.getFullYear() + "", gender);
+    } catch (error) {
+      
+    }
+  }
 }

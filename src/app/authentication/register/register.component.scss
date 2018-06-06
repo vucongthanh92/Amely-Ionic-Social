@@ -1,11 +1,8 @@
 app-register {
     
-    .scroll-content {
-        overflow: visible;
-    }
 
 	ion-content {
-		background-image: url("../assets/imgs/background.jpg");
+		background-image: url("../assets/imgs/background.png");
     }
     
 	ion-grid {
@@ -17,17 +14,38 @@ app-register {
        flex: none;
     }
 
+    ion-input {
+		font-size: 15px;
+    	color: black;
+	}
+    .button-inner {
+        color: white;
+    }
+
+    .select-ios {
+    color: black;
+    // opacity: 0.5;
+    padding: 11px 8px 11px 16px;
+    }
+    .label-ios {
+        // opacity: 0.5;
+        color: black;
+    margin: 11px 8px 11px 0;
+}
     .register_icon {
-        margin: 0px 0px 0px 5px;
+        margin: 0px 0px 0px 0px;
         font-size: 24px;
+        width: 16px;
+        height: 16px;
     }
 
     .register_form_datetime {
         padding: 15px 8px 11px 16px;
+        color: black;
+    // opacity: 0.5;
     }
 
     .register_icon_title {
-        opacity: 0.5;
         margin: 0px 0px 0px 20px;
     }
 
@@ -40,12 +58,12 @@ app-register {
     }
 
     .register_box {
-		margin-bottom: 15px;
-        border-radius: 3px;
-        font-size: 15px;
-        height: 42px;
-        background-color: #ffffff45;
-        color: white;
+		margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    height: 45px;
+    color: black;
+    background-color: white;
         
         ion-item {
             background-color: transparent;
@@ -53,6 +71,39 @@ app-register {
             color: white;
             font-size: 15px;
             padding: 0px 0px 0px 21px;
+        }
+    }
+    .register_box2 {
+		margin-bottom: 20px;
+    border-radius: 20px 0px 0px 20px;
+    font-size: 15px;
+    height: 45px;
+    color: black;
+    background-color: white;
+        
+        ion-item {
+            background-color: transparent;
+            border: none !important;
+            color: white;
+            font-size: 15px;
+            padding: 0px 0px 0px 21px;
+        }
+    }
+    .register_box3 {
+        margin: 0px 0 32px;
+		margin-bottom: 20px;
+    border-radius: 0px 20px 20px 0px;
+    font-size: 15px;
+    height: 45px;
+    color: black;
+    background-color: white;
+        
+        ion-item {
+            background-color: transparent;
+            border: none !important;
+            color: white;
+            font-size: 15px;
+            padding: 0px 0px 0px 5px;
         }
     }
     
@@ -112,13 +163,31 @@ app-register {
     }
 
     .text-input:-ms-input-placeholder {
-		color:white;
-		opacity: 0.5;
+		color:black;
+        opacity: 0.5;
+        font-style: italic;
 	}
 
 	.text-input::-webkit-input-placeholder {
-		color:white;
-		opacity: 0.5;
+		color:black;
+        opacity: 0.5;
+        font-style: italic;
     }
     
+    .select-ios .select-placeholder {
+    color: #999;
+    position: relative;
+    left: -4vw;
+    }
+    .select-text{
+        position: relative;
+    left: -4vw;
+    }
+
+    .select-ios .select-icon {
+    position: relative;
+    width: 12px;
+    height: 18px;
+    left: -3vw;
+}
 }

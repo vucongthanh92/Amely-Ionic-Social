@@ -1,8 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Tặng quà</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">tặng quà</div>
+    </ion-buttons>
+
     <ion-buttons end>
-      <button ion-button (click)="createGift()" >
+      <button class="gift_btn_send" ion-button (click)="createGift()" >
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>

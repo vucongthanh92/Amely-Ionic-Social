@@ -1,4 +1,4 @@
-<ion-content class="outer-content" class="events_container">
+<ion-content class="event_user_content">
   <ion-list class="events_list" *ngIf="events">
     <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
@@ -16,6 +16,14 @@
         </ion-col>
       </ion-row>
     </ion-item>
+    <div *ngIf="events.length == 0" style="font-size: 20px; text-align: center; padding: 20px 0px 30px 0px;">
+      <div>
+        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+      </div>
+      <div style="color: #999;">
+        Không có dữ liệu...
+      </div>
+    </div>
   </ion-list>
 
   <ion-list class="events_list" *ngIf="!events">

@@ -1,0 +1,45 @@
+app-forgot {
+    ion-content {
+		background-image: url("../assets/imgs/background.png");
+    }
+
+
+    .text-input-ios {
+    margin: 11px 8px 11px 20px;
+    }
+
+    .buttonSubmit {
+        border-radius: 20px;
+        color: #fff;
+        background-color: #f47b37;
+        height: 40px;
+        width: 140px;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+    }
+    .button-inner {
+        color: white;
+    }
+    .forgot_icon {
+        margin: 0px 0px 0px 5px;
+        font-size: 24px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .forgot_box {
+		margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    height: 45px;
+    color: black;
+    background-color: white;
+        
+        ion-item {
+            background-color: transparent;
+            border: none !important;
+            color: white;
+            font-size: 15px;
+            padding: 0px 0px 0px 21px;
+        }
+    }
+}
