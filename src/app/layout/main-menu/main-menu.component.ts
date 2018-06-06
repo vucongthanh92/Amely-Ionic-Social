@@ -369,7 +369,8 @@ export class MainMenuComponent implements OnInit {
     
 
     this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
+      id:id,
+      text: txt,
       led: 'FF0000'
     });
  
