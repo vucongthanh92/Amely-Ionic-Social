@@ -2,7 +2,7 @@ import { ForgotVertifyComponent } from './forgot-vertify/forgot-vertify.componen
 import { Component, OnInit } from '@angular/core';
 import { CustomService } from '../../services/custom.service';
 import { AuthenticationService } from '../authentication.service';
-import { LoadingController, AlertController, NavController } from 'ionic-angular';
+import { LoadingController, NavController } from 'ionic-angular';
 
 @Component({
   selector: 'app-forgot',
@@ -12,7 +12,7 @@ export class ForgotComponent implements OnInit {
   emailInput: string;
   email: string;
   constructor(private customService: CustomService, private authenticationService: AuthenticationService,
-    public loadingCtrl: LoadingController, private alertCtrl: AlertController, public nav: NavController) { }
+    public loadingCtrl: LoadingController, public nav: NavController) { }
 
   ngOnInit() {
   }

@@ -15,9 +15,9 @@ export class DeliveryInfoComponent implements OnInit {
   fullname: string;
   phone: string;
   address: string;
-  province: string;
-  district: string;
-  ward: string;
+  province: any;
+  district: any;
+  ward: any;
   province_id: string;
   district_id: string;
   ward_id: string;
@@ -34,12 +34,23 @@ export class DeliveryInfoComponent implements OnInit {
     this.provinces = PROVINCES;
     this.fullname = this.customService.user_current.fullname;
     this.phone = this.customService.user_current.mobilelogin;
-
+    this.initAddress()
   }
 
   ngOnInit() {
   }
 
+  initAddress() {
+    if (this.customService.user_current.province && this.customService.user_current.district && this.customService.user_current.ward) {
+      // this.province = PROVINCES.filter(e => e.provinceid == this.customService.user_current.province)[0];
+      this.address = this.customService.user_current.address;
+      this.province = this.customService.user_current.province;
+      this.districts = DISTRICTS.filter(data => data.provinceid == this.province);
+      this.district = this.customService.user_current.district;
+      this.wards = WARDS.filter(data => data.districtid == this.district);
+      this.ward = this.customService.user_current.ward;
+    }
+  }
   onProvinceChange(provinceid: string) {
     this.districts = DISTRICTS.filter(data => data.provinceid == provinceid);
     this.wards = false;
@@ -65,6 +76,7 @@ export class DeliveryInfoComponent implements OnInit {
     } else if (!this.district_id || !this.ward_id || !this.province_id || !this.address) {
       this.customService.toastMessage('Thông tin địa chỉ người nhận chưa hoàn tất', 'bottom', 2000);
     } else {
+      //goi api tinh tien ship
       this.nav.push(DeliveryConfirmComponent, {
         item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
         address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,

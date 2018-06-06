@@ -3,7 +3,7 @@ import { CustomService } from './../../services/custom.service';
 import { GeolocationService } from './../../services/geolocation.service';
 import { AuthenticationService } from './../authentication.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { RegisterComponent } from "../register/register.component";
 import { ToastController } from 'ionic-angular';
 import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
@@ -34,8 +34,8 @@ export class SigninComponent implements OnInit {
     private toastCtrl: ToastController,
     private api: ApiService,
     private customService: CustomService,
-    public loadingCtrl: LoadingController,
-    private alertCtrl: AlertController
+    public loadingCtrl: LoadingController
+    // private alertCtrl: AlertController
   ) {
   }
 

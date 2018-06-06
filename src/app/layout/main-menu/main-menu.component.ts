@@ -67,7 +67,7 @@ export class MainMenuComponent implements OnInit {
     }
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
-    
+
   }
 
   ngOnInit() {
@@ -84,7 +84,7 @@ export class MainMenuComponent implements OnInit {
     }
     this.api.getProfile({}).subscribe(data => {
       console.log(data);
-      
+
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
         this.customService.user_current = data;
@@ -159,14 +159,16 @@ export class MainMenuComponent implements OnInit {
       dataSnapshot.forEach(items => {
         let notify: Notification;
         notify = items.val();
+        console.log(items.key);
+
         if (notify.poster_guid)
-          this.retryLoadNotifyUser(5, notify);
+          this.retryLoadNotifyUser(5, notify, items.key);
         return false;
       });
     })
   }
 
-  retryLoadNotifyUser(retry, notify) {
+  retryLoadNotifyUser(retry, notify, keyFirebase) {
     if (retry == 0) {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
@@ -178,8 +180,8 @@ export class MainMenuComponent implements OnInit {
         case 'like:post':
           notify.title = data.fullname + ' đã thích bài viết của bạn';
           this.customService.notifications.push(notify);
-          if (!notify.viewed) {
-            this.showNotify(notify.subject_guid, notify.title);
+          if (notify.viewed == false) {
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
           }
           // console.log('like: post');
           break;
@@ -187,48 +189,48 @@ export class MainMenuComponent implements OnInit {
           // console.log("comments:post");
           notify.title = data.fullname + ' đã bình luận bài viết của bạn';
           this.customService.notifications.push(notify);
-          if (!notify.viewed) {
-            this.showNotify(notify.subject_guid, notify.title);
+          if (notify.viewed == false) {
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
           }
           break;
         case 'group:inviterequest':
-          this.initNotifyGroup(notify, data);
+          this.initNotifyGroup(notify, data, keyFirebase);
           break;
         case "friend:request":
           // console.log("friend:request");
           notify.title = data.fullname + ' đã gửi lời mời kết bạn';
           this.customService.notifications.push(notify);
-          if (!notify.viewed) {
-            this.showNotify(notify.subject_guid, notify.title);
+          if (notify.viewed == false) {
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
           }
           break;
         case "gift:request":
           // console.log("gift:request");
-          this.initNotifyGift(notify, data);
+          this.initNotifyGift(notify, data, keyFirebase);
           break;
         case "gift:accept":
           // console.log("gift:accept");
-          this.initNotifyGift(notify, data);
+          this.initNotifyGift(notify, data, keyFirebase);
           break;
         case "gift:reject":
           // console.log("gift:reject");
-          this.initNotifyGift(notify, data);
+          this.initNotifyGift(notify, data, keyFirebase);
           break;
         case "event:member":
           // console.log("event:member");
-          this.initNotifyEvent(notify, data)
+          this.initNotifyEvent(notify, data, keyFirebase)
           break;
         case "event:invite":
           // console.log("event:invite");
-          this.initNotifyEvent(notify, data)
+          this.initNotifyEvent(notify, data, keyFirebase)
           break;
         case "offer":
           // console.log('offer');
-          this.initNotifyOffer(notify, data)
+          this.initNotifyOffer(notify, data, keyFirebase)
           break;
         case "counter":
           // console.log('counter');
-          this.initNotifyOffer(notify, data)
+          this.initNotifyOffer(notify, data, keyFirebase)
           break;
         case "redeem:finished":
           // console.log("redeem:finished");
@@ -236,10 +238,10 @@ export class MainMenuComponent implements OnInit {
           break;
 
       }
-    }, err => this.retryLoadNotifyUser(--retry, notify))
+    }, err => this.retryLoadNotifyUser(--retry, notify, keyFirebase))
   }
 
-  initNotifyGroup(notify: Notification, user: User) {
+  initNotifyGroup(notify: Notification, user: User, keyFirebase) {
     this.groupService.getGroup(notify.subject_guid).subscribe(data => {
       if (data.guid != null) {
         notify.title = user.fullname + " đã mời bạn vào nhóm " + data.title;
@@ -248,7 +250,7 @@ export class MainMenuComponent implements OnInit {
     })
   }
 
-  initNotifyGift(notify: Notification, user: User) {
+  initNotifyGift(notify: Notification, user: User, keyFirebase) {
     this.giftService.getGift(notify.subject_guid).subscribe(data => {
       notify.gift = data;
       switch (notify.notification_type) {
@@ -262,8 +264,8 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã tặng " + data.item.title + " đến bạn"
             }
             this.customService.notifications.push(notify);
-            if (!notify.viewed) {
-              this.showNotify(notify.subject_guid, notify.title);
+            if (notify.viewed == false) {
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
             }
           }
           break;
@@ -279,8 +281,8 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã đồng ý nhận " + data.item.title + " từ bạn";
             }
             this.customService.notifications.push(notify);
-            if (!notify.viewed) {
-              this.showNotify(notify.subject_guid, notify.title);
+            if (notify.viewed == false) {
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
             }
           }
           break;
@@ -296,8 +298,8 @@ export class MainMenuComponent implements OnInit {
               notify.title = user.fullname + " đã từ chối nhận " + data.item.title + " từ bạn";
             }
             this.customService.notifications.push(notify);
-            if (!notify.viewed) {
-              this.showNotify(notify.subject_guid, notify.title);
+            if (notify.viewed == false) {
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
             }
           }
           break;
@@ -305,20 +307,20 @@ export class MainMenuComponent implements OnInit {
     })
   }
 
-  initNotifyEvent(notify: Notification, user: User) {
+  initNotifyEvent(notify: Notification, user: User, keyFirebase) {
     this.eventService.getEvent(notify.subject_guid).subscribe(data => {
       try {
         notify.title = user.fullname + " đã mời bạn tham gia sự kiện " + data.events.title;
         this.customService.notifications.push(notify);
-        if (!notify.viewed) {
-          this.showNotify(notify.subject_guid, notify.title);
+        if (notify.viewed == false) {
+          this.showNotify(notify.subject_guid, notify.title, keyFirebase);
         }
       } catch (e) {
       }
     })
   }
 
-  initNotifyOffer(notify: Notification, user: User) {
+  initNotifyOffer(notify: Notification, user: User, keyFirebase) {
     this.offerService.getOffer(notify.subject_guid).subscribe(data => {
       notify.offer = data;
       if (notify.notification_type == 'counter') {
@@ -353,15 +355,26 @@ export class MainMenuComponent implements OnInit {
             break;
         }
         this.customService.notifications.push(notify);
-        if (!notify.viewed) {
-          this.showNotify(notify.subject_guid, notify.title);
+        if (notify.viewed == false) {
+          this.showNotify(notify.subject_guid, notify.title, keyFirebase);
         }
       }
 
     })
   }
 
-  showNotify(id, txt: string) {
+  showNotify(id, txt: string, keyFirebase) {
+    alert(txt + " " + id);
+    this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
+    
+
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      led: 'FF0000'
+    });
+ 
+
+
     return new Promise((resolve, reject) => {
       this.localNotifications.schedule([{
         id: id,

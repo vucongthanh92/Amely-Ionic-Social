@@ -130,4 +130,7 @@ export class FirebaseService {
     this.afDatabase.object('/redeem/' + qr).remove();
   }
 
+  updateViewedNotify(id, username) {
+    this.afDatabase.database.ref('/notifications/' + username + "/" + id).update({ viewed: true });
+  }
 }

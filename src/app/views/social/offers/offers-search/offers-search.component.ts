@@ -125,8 +125,6 @@ export class OffersSearchComponent implements OnInit {
   retryGetOffer(retry, that, key) {
     if (retry == 0) return;
     that.offersServie.getOffer(key).subscribe(data => {
-      console.log(data);
-
       if (data.owner.guid != that.customService.user_current.guid) {
         that.offers.push(data);
       }
