@@ -37,7 +37,8 @@ app-inventory-public {
 
     .inventory_public_image {
         background-position: center !important;
-        background-size: cover !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
         height: 10vh;
         width: 18vw;
         overflow: hidden;
