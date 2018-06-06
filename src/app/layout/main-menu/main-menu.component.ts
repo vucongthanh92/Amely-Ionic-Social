@@ -68,6 +68,11 @@ export class MainMenuComponent implements OnInit {
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
 
+    this.localNotifications.on('click').subscribe(notification => {
+      // Insert your logic here
+      alert(JSON.stringify(notification))
+    });
+
   }
 
   ngOnInit() {
@@ -366,36 +371,15 @@ export class MainMenuComponent implements OnInit {
   showNotify(id, txt: string, keyFirebase) {
     alert(txt + " " + id);
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
-    
+
 
     this.localNotifications.schedule({
-      id:id,
+      id: id,
       text: txt,
       led: 'FF0000'
     });
- 
 
 
-    return new Promise((resolve, reject) => {
-      this.localNotifications.schedule([{
-        id: id,
-        text: txt
-      }]);
-      // let that = this;
-      this.plt.ready().then((readySource) => {
-        // this.localNotifications.on('click', (notification, state) => {
-
-        //   let alert = that.alertCtrl.create({
-        //     title: 'Low battery',
-        //     subTitle: notification + "  " + state,
-        //     buttons: ['Dismiss']
-        //   });
-        //   alert.present();
-
-        //   that.customService.toastMessage('click ' + id, 'bottom', 2000)
-        // })
-      });
-    })
 
   }
 }
