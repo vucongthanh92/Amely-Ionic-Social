@@ -4,13 +4,13 @@ app-group {
   }
 
   .group_cover {
-    padding: 0px;
     width: 100%;
     min-height: 200px;
     text-align: center;
     background-position: center !important;
     background-size: cover !important;
     box-shadow: inset 0px 0px 45px #000000;
+    margin: 64px 0px 0px 0px;
   }
 
   .group_avatar_row {
@@ -24,6 +24,7 @@ app-group {
       border-radius: 5px;
       border: 5px solid #efeff4;
       box-shadow: 0px 1px 5px 1px #999;
+      background-color: #fff;
 
       img {
         width: 100%;
@@ -167,7 +168,8 @@ app-group {
   }
 
   .list-ios {
-      margin: 0px !important;
+    margin: 0px;
+    border-top: 1px solid #c7c8cc;
   }
 
   ion-infinite-scroll-content {
@@ -188,5 +190,8 @@ app-group {
       background-color: #f0ad4e;
     }
   }
-  
+
+  .group_bar_add_group {
+    margin-left: 3px;
+  }
 }

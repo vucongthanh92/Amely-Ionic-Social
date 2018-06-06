@@ -29,7 +29,7 @@
     color: #fff;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 16rem;
+    min-width: 12rem;
     white-space: nowrap;
 }
 
@@ -51,12 +51,12 @@
         bottom: -25px !important;
     }
 
-    .vouchers_button ion-scroll {
-        height: 60px;
+    .voucher_footer_scroll {
+        height: 60px !important;
     }
 
     .inventory_footer_box {
-        margin-bottom: 15px !important;
+        margin-bottom: 18px !important;
     }
 
     ion-footer {

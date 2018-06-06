@@ -16,7 +16,10 @@
 <ion-content class="outer-content" *ngIf="group">
   <div class="group_cover" [style.background]="'url(' + group.cover + ')'"></div>
   <div class="group_avatar_row">
-    <div class="group_avatar"><img src="{{ group.avatar }}" imageViewer></div>
+    <div class="group_avatar">
+      <img *ngIf="group.avatar" src="{{ group.avatar }}" imageViewer>
+      <img *ngIf="group.avatar == null" src="assets/imgs/logo.png">
+    </div>
     <div class="group_cover_title">{{ group.title }}</div>
   </div>
 
@@ -41,8 +44,8 @@
       </ion-col>
       <ion-col col-5 *ngIf="is_admin">
           <button ion-button icon-left clear small class="group_bar_button" (click)="inviteMember()">
-            <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
-            <div class="group_bar_title">Mời thành viên</div>
+            <img class="group_bar_icon" src="assets/imgs/ic_add_friend.png">
+            <div class="group_bar_title group_bar_add_group">Mời thành viên</div>
           </button>
       </ion-col>
       <ion-col col-3>

@@ -49,7 +49,7 @@
 </ion-content>
 
 <ion-footer [ngClass]="device_screen">
-  <ion-scroll scrollX>
+  <ion-scroll class="voucher_footer_scroll" scrollX>
     <div class="scroll-item">
       <ion-col *ngFor="let category of categories" (click)="goToPage('category',null,category);">
         <div class="item-card">
