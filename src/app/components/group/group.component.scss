@@ -1,4 +1,9 @@
 app-group {
+
+  .scroll-content {
+    margin-top: 0px;
+  }
+
   .ion_navbar_width {
     width: 27rem;
   }
@@ -119,7 +124,7 @@ app-group {
   }
 
   .group_tab {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #c7c8cc;
 
     .group_tab_box{
       border: 0px;
@@ -146,6 +151,8 @@ app-group {
   }
 
   .group_bar {
+    border-bottom: 1px solid #c7c8cc;
+
     ion-col {
       padding: 7px 0px 7px 0px;
     }
@@ -155,6 +162,7 @@ app-group {
     margin-left: 0px;
     margin-right: 0px;
     width: 100%;
+    margin: 0px 0px 10px 0px;
 
     .card-content-ios {
         padding: 5px 16px 5px;
@@ -169,7 +177,6 @@ app-group {
 
   .list-ios {
     margin: 0px;
-    border-top: 1px solid #c7c8cc;
   }
 
   ion-infinite-scroll-content {

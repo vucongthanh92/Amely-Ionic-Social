@@ -3,8 +3,10 @@
     <ion-list class="inventory_public_list">
       <ion-item class="inventory_public_item" *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid,group);">
         <ion-row>
-          <ion-col *ngIf="group.avatar" [style.background]="'url(' + group.avatar + ')'" class="inventory_public_image" col-3></ion-col>
-          <ion-col *ngIf="group.avatar==null" style="background-image:url('assets/imgs/logo.png')" class="inventory_public_image" col-3></ion-col>
+          <ion-col class="inventory_public_image" col-3>
+            <img *ngIf="group.avatar" src="{{ group.avatar }}">
+            <img *ngIf="group.avatar==null" src="assets/imgs/logo.png">
+          </ion-col>
           
           <ion-col col-9>
             <div class="inventory_public_title">{{group.title}}</div>

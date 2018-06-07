@@ -34,4 +34,18 @@ app-history-offer {
         color: #999;
         font-size: 1.5rem;
     }
+
+    .history_offer_nodata {
+        font-size: 20px; 
+        text-align: center;
+
+        img {
+            max-width: 30%;
+            margin-top: 2.5rem;
+        }
+
+        .history_offer_nodata_title {
+            color: #999;
+        }
+    }
 }
