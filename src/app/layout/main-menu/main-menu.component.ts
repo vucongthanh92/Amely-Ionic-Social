@@ -68,10 +68,13 @@ export class MainMenuComponent implements OnInit {
     this.customService.mood_local = this.moodLocal;
     localStorage.setItem("mood_local", JSON.stringify(this.moodLocal));
 
-    this.localNotifications.on('click').subscribe(notification => {
-      // Insert your logic here
-      alert(JSON.stringify(notification))
-    });
+    // this.plt.ready().then(()=>{
+    //   this.localNotifications.on('click').subscribe(notification => {
+    //     // Insert your logic here
+    //     alert(JSON.stringify(notification))
+    //   });
+    // })
+
 
   }
 
@@ -371,8 +374,6 @@ export class MainMenuComponent implements OnInit {
   showNotify(id, txt: string, keyFirebase) {
     alert(txt + " " + id);
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
-
-
     this.localNotifications.schedule({
       id: id,
       text: txt,

@@ -25,7 +25,7 @@ export class DeliveryItemComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
-    this.retryDelevery(5,loading);
+    this.retryDelevery(5, loading);
   }
 
   retryDelevery(retry, loading) {
@@ -37,7 +37,10 @@ export class DeliveryItemComponent implements OnInit {
       this.payment_methods = (<any>Object).values(data);
       this.payment_methods = this.payment_methods.filter(e => e.filename == 'sq/standard' || e.filename == 'sq/express')
       loading.dismiss();
-    }, err => this.retryDelevery(--retry, loading))
+    }, err => {
+      console.log(err);
+      this.retryDelevery(--retry, loading);
+    })
   }
 
   decrease() {
