@@ -1,8 +1,4 @@
 app-create-wallet {
-  .divContent {
-
-  }
-
   .divCenter {
     top: 14vw;
     background-color: #ffffff;
@@ -11,6 +7,7 @@ app-create-wallet {
     margin-right: 2vw;
     border-radius: 5px;
   }
+  
   .divCenterContent {
     color: #828282;
     top: 25vw;
@@ -21,9 +18,11 @@ app-create-wallet {
     margin-right: 2vw;
     border-radius: 5px;
   }
+  
   .divFooter {
     top: 144vw;
   }
+  
   .buttonDecline {
     margin-left: 10px;
     background-color: #ffffff;

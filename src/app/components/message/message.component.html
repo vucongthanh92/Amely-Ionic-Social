@@ -12,14 +12,16 @@
 <ion-content has-header="false" padding="true" has-tabs="false" hide-nav-bar="true">
   <div class="message-wrap">
     <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
-      <img (click)="openProfile(message)" *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}" alt="ionic logo">
+      <div class="message_box_images">
+        <img (click)="openProfile(message)" *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}">
+      </div>
+      
       <div class="msg-detail" (click)="clickMessage(message)">
         <div class="msg-info">
           <p>{{ message.from }}</p>
         </div>
-        <div class="msg-content">
+        <div class="message_box_info">
           <span class="triangle"></span>
-
           <div *ngIf="message.gift">
             <ion-row>
               <ion-col col-10>
@@ -70,24 +72,23 @@
               </ion-col>
             </ion-row>
           </div>
+
           <div *ngIf="message.attachment">
             <img *ngIf="message.attachment.media_type == 'image'" width="100%" src="{{ message.attachment.url }}" />
           </div>
-          <div *ngIf="!message.gift">
 
-            <p style="font-weight: bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+          <div *ngIf="!message.gift">
+            <p class="message_box_local" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
               Đã gửi vị trí {{ message.text }}
             </p>
             <ng-template #other_content>
-              <p>
-                {{ message.text }}
-              </p>
+              <p>{{ message.text }}</p>
             </ng-template>
-
           </div>
-          <p [ngClass]="message.isSender? 'text-left' : 'text-right'">
-            <time style="font-size: 10px; color: #000;">{{ message.time | amTimeAgo }}</time>
-          </p>
+
+          <div [ngClass]="message.isSender? 'message_box_time_left' : 'message_box_time_right'">
+            <time>{{ message.time | amTimeAgo }}</time>
+          </div>
         </div>
       </div>
     </div>
@@ -96,12 +97,12 @@
 
 <ion-footer no-border>
   <ion-row text-center style="border: 1px solid #eee;">
-    <ion-col col-4 style="border-right: 1px solid #eee">
-      <button ion-button icon-left clear small (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
+    <ion-col col-4 class="message_choose_btn">
+      <button ion-button icon-left clear (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
         <ion-icon name="archive"></ion-icon>
       </button>
     </ion-col>
-    <ion-col col-4 style="border-right: 1px solid #eee">
+    <ion-col col-4 class="message_choose_btn">
       <button ion-button icon-left clear small (click)="selectFromGallery()">
         <img class="iconMenu" src="assets/imgs/ic_image_grey.png">
       </button>
@@ -112,6 +113,7 @@
       </button>
     </ion-col>
   </ion-row>
+  
   <ion-row>
     <ion-col col-2>
       <button ion-button clear icon-only item-right (click)="takePicture()">
@@ -119,8 +121,7 @@
       </button>
     </ion-col>
     <ion-col col-8>
-      <ion-textarea #chat_input [(ngModel)]="messageText" name="title" placeholder="Text Input">
-      </ion-textarea>
+      <ion-textarea #chat_input [(ngModel)]="messageText" name="title" class="message_input_textarea" placeholder="nội dung..."></ion-textarea>
     </ion-col>
     <ion-col col-2>
       <button ion-button clear icon-only item-right (click)="sendMessage()">
