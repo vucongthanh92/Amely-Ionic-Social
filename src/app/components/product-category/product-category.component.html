@@ -4,7 +4,7 @@
       <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div *ngIf="!is_search" class="ion_navbar_title">{{title}}</div>
+      <div *ngIf="!is_search" class="ion_navbar_title product_category_navbar_title">{{title}}</div>
     </ion-buttons>
 
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search"></ion-searchbar>
@@ -65,12 +65,8 @@
         </ion-row>
       </ion-item>
       <div *ngIf="products.length == 0" class="category_nodata">
-        <div>
-          <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-        </div>
-        <div style="color: #999;">
-          Không có dữ liệu...
-        </div>
+        <img src="assets/imgs/ic_feed.png">
+        <div class="category_nodata_title">Không có dữ liệu...</div>
       </div>
     </ion-list>
 

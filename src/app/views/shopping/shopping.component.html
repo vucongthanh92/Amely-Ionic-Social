@@ -4,7 +4,7 @@
       <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
       </button>
-      <div class="ion_navbar_title" *ngIf="!is_search_show">mua sắm</div>
+      <div class="ion_navbar_title shopping_navbar_title" *ngIf="!is_search_show">mua sắm</div>
     </ion-buttons>
     
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>

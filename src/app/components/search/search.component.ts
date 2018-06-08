@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     private searchService: SearchService,
     private customService: CustomService,
     public loadingCtrl: LoadingController) {
-    this.contentSearch = this.navParams.get('param');
+      this.contentSearch = this.navParams.get('param');
   }
 
   ngOnInit() {
@@ -65,8 +65,8 @@ export class SearchComponent implements OnInit {
         this.is_has_data = 1;
         this.search = 'business';
       }
+
       if (data.events) {
-      
         this.events = data.events;
         this.is_has_data = 1;
         this.search = 'event';
@@ -97,6 +97,7 @@ export class SearchComponent implements OnInit {
         this.is_has_data = 1;
         this.search = 'peoples';
       }
+
       if (!this.users && !this.events && !this.products && !this.groups && !this.shops && !this.business) {
         this.is_has_data = 2;
       }
@@ -104,6 +105,7 @@ export class SearchComponent implements OnInit {
       
     }, err => this.loadData(--retry))
   }
+  
   formatCurrency(product: Product, currency: string) {
     let result: string;
     switch (currency) {
@@ -150,5 +152,9 @@ export class SearchComponent implements OnInit {
 
   goToProduct(product: Product) {
     this.nav.push(ProductComponent, { product: product });
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 }
