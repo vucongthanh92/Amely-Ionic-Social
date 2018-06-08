@@ -1,34 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle class="ion_navbar_box">
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
       </button>
-      <div class="ion_navbar_title" *ngIf="!is_search_show">mua sắm</div>
-    </ion-buttons>
-    
-    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
-    <ion-buttons end>
-      <button ion-button class="shopping_bar_icon" (click)="search()" class="shopping_search_box">
+            <div class="ion_navbar_title" *ngIf="!is_search_show">mua sắm</div>
+        </ion-buttons>
+
+        <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button class="shopping_bar_icon" (click)="search()" class="shopping_search_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button ion-button class="shopping_bar_icon" (click)="changePage()" class="shopping_cart">
+            <button ion-button class="shopping_bar_icon" (click)="changePage()" class="shopping_cart">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
       </button>
-        <button ion-button (click)="payment()" style="font-size: 18px;">
+            <button ion-button (click)="payment()" style="font-size: 18px;">
           <ion-icon name="qr-scanner"></ion-icon>
         </button>
-      <button class="personal_event" ion-button (click)="openPopover($event)" class="shopping_more">
+            <button class="personal_event" ion-button (click)="openPopover($event)" class="shopping_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
-    <ion-tab [root]="tab1Root" tabTitle="AMELY MALL" tabIcon="store"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
-  </ion-tabs>
+    <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
+        <ion-tab [root]="tab1Root" tabTitle="AMELY MALL" tabIcon="store"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="VOUCHER" tabIcon="voucher"></ion-tab>
+        <ion-tab [root]="tab3Root" tabTitle="CỬA HÀNG QUEN" tabIcon="store-friendly"></ion-tab>
+    </ion-tabs>
 </ion-content>
