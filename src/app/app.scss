@@ -22,14 +22,14 @@
 .ion_navbar_title {
     font-size: 1.8rem;
     vertical-align: unset;
-    margin: 6px 0px 0px 5px;
-    font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+    margin: 6px 0px 0px 3px;
+    font-family: "Helvetica Neue", "Roboto", sans-serif;
     text-transform: capitalize;
     float: left;
     color: #fff;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 15rem;
+    min-width: 12rem;
     white-space: nowrap;
 }
 
@@ -48,15 +48,15 @@
 
 .top_navigation_iphonex {
     .show-tabbar {
-        bottom: -20px !important;
+        bottom: -25px !important;
     }
 
-    .vouchers_button ion-scroll {
-        height: 60px;
+    .voucher_footer_scroll {
+        height: 60px !important;
     }
 
     .inventory_footer_box {
-        margin-bottom: 15px !important;
+        margin-bottom: 18px !important;
     }
 
     ion-footer {

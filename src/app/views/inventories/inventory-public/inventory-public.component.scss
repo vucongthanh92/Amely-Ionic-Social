@@ -36,16 +36,19 @@ app-inventory-public {
     }
 
     .inventory_public_image {
-        background-position: center !important;
-        background-size: cover !important;
-        height: 10vh;
-        width: 18vw;
+        height: 5.8rem;
+        width: 6.5rem;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 3px;
         padding: 0px;
-        -webkit-box-flex: unset;
-        flex-grow: unset;
-        max-width: 18vw;
+        max-width: 6.5rem;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     ion-footer {
