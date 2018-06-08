@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   public password_re: string;
   public username: string;
   public is_show_privacy: boolean = false;
-  public test: boolean = false;
+  public rules: boolean = false;
   public privacy: boolean = false;
   private year_current: number = (new Date()).getFullYear();
   constructor(public nav: NavController, private customService: CustomService, private userService: UserService,
@@ -87,9 +87,9 @@ export class RegisterComponent implements OnInit {
     } else if (this.is_show_privacy && !this.privacy) {
       loading.dismiss();
       this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
-    } else if (this.test == false) {
+    } else if (this.rules == false) {
       loading.dismiss();
-      this.customService.toastMessage('Bạn chưa đồng ý điều khoản !', 'bottom', 2000);
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản và chính sách bảo mật !', 'bottom', 2000);
     }
     else {
       this.retryRegister(5,loading);
