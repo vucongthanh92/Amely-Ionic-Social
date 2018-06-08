@@ -4,11 +4,16 @@ app-product-category{
   $atletico: darken(#f4f4f4, 45%);
   $javascript: #f7e023;
 
+  .product_category_navbar_title {
+    width: 80%;
+  }
+  
   .item-ribbon {
     background-color: #fff;
     position: relative;
     filter: none;
     opacity: 1;
+    
     .ribbon {
       position: absolute;
       right: 0px;
@@ -204,7 +209,15 @@ app-product-category{
 
   .category_nodata {
     font-size: 2rem; 
-    text-align: center; 
-  }
+    text-align: center;
+    margin-top: 2rem;
 
+    img {
+      max-width: 30%;
+    }
+
+    .category_nodata_title {
+      color: #999;
+    }
+  }
 }
