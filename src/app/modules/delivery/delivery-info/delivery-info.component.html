@@ -21,19 +21,20 @@
 
 <ion-content class="outer-content">
     <div style="background-color: #fff;">
-        <ion-list radio-group [(ngModel)]="payment_method">
+        <!-- <ion-list radio-group [(ngModel)]="payment_method"> -->
 
-            <ion-list-header>
-                Phương thức giao hàng
-            </ion-list-header>
+        <ion-list-header>
+            <!-- Phương thức giao hàng -->
+            {{payment_methods[0].displayname}}
+        </ion-list-header>
 
-            <div *ngFor="let item of payment_methods">
+        <!-- <div *ngFor="let item of payment_methods">
                 <ion-item>
                     <ion-label>{{item.displayname}}</ion-label>
                     <ion-radio value="{{item.filename}}"></ion-radio>
                 </ion-item>
-            </div>
-        </ion-list>
+            </div> -->
+        <!-- </ion-list> -->
         <ion-list>
 
             <ion-item>

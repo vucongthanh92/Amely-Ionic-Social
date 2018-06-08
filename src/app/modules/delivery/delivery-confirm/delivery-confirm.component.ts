@@ -4,7 +4,7 @@ import { DISTRICTS } from './../../../districts';
 import { WARDS } from './../../../wards';
 import { PROVINCES } from './../../../provinces';
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../../../api/models';
+import { Item, User } from '../../../api/models';
 import { NavParams, NavController, LoadingController } from 'ionic-angular';
 
 @Component({
@@ -20,10 +20,11 @@ export class DeliveryConfirmComponent implements OnInit {
   ward_id: string;
   province_id: string;
   district_id: string;
-  payment_method: string;
-  payment_method_label: string;
+  payment_method: any;
+  shipping_fee: number;
   note: string;
   full_address: string;
+  userCurrent: User;
   payment_methods = [];
   constructor(private navParams: NavParams, private nav: NavController, private inventoryService: InventoriesService,
     private customService: CustomService, public loadingCtrl: LoadingController) {
@@ -37,8 +38,10 @@ export class DeliveryConfirmComponent implements OnInit {
     this.district_id = this.navParams.get('district');
     this.payment_method = this.navParams.get('payment_method');
     this.payment_methods = this.navParams.get('payment_methods');
+    this.shipping_fee = this.navParams.get('shipping_fee');
     this.note = this.navParams.get('note');
-    this.payment_method_label = this.payment_methods.find(e => e.filename == this.payment_method).displayname;
+    this.userCurrent = this.customService.user_current;
+
     this.full_address = this.address + " " + WARDS.find(data => data.wardid == this.ward_id).name + " " + DISTRICTS.find(data => data.districtid == this.district_id).name
       + " " + PROVINCES.find(data => data.provinceid == this.province_id).name;
   }
@@ -55,17 +58,23 @@ export class DeliveryConfirmComponent implements OnInit {
     loading.present();
     this.initDelevery(5, loading);
   }
-  
+
+  formatCurrency(amount: number) {
+    return this.customService.formatCurrency("" + amount, this.userCurrent.usercurrency);
+  }
+
   initDelevery(retry, loading) {
     if (retry == 0) {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.inventoryService.delevery(this.ward_id, 'confirm', this.phone, this.address, this.province_id, this.district_id, this.fullname, this.note, this.payment_method, '0', this.item.guid + "",
+    this.inventoryService.delevery(this.ward_id, 'confirm', this.phone, this.address, this.province_id, this.district_id, this.fullname,
+      this.note, this.payment_method.filename, '0', this.item.guid + "",
       this.quantity, this.item.product_snapshot.shop.guid).subscribe(data => {
         if (data.status) {
           this.nav.popToRoot();
           loading.dismiss();
+          this.customService.toastMessage('Giao hàng thành công.', 'bottom', 2000);
         } else {
           loading.dismiss();
           this.customService.toastMessage('Xác nhận thất bại. Vui lòng thử lại', 'bottom', 2000);

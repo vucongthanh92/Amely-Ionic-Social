@@ -44,11 +44,12 @@ export class InventoriesService {
     return this.apiService.deleteGiveList(guid);
   }
 
-  delevery(shipping_ward: string, step: string, shipping_phone: string, shipping_address: string, shipping_province: string, shipping_district: string, shipping_fullname: string, shipping_note: string, shipping_method: string, shipping_fee: string, item: string, quantity: number, shop_guid: number) {
+  delevery(shipping_ward: string, step: string, shipping_phone: string, shipping_address: string, shipping_province: string, shipping_district: string,
+    shipping_fullname: string, shipping_note: string, shipping_method: string, shipping_fee: string, item: string, quantity: number, shop_guid: number) {
     return this.apiService.createDO({
       shipping_ward: shipping_ward, step: step, shipping_phone: shipping_phone, shipping_address: shipping_address, shipping_province: shipping_province,
       shipping_district: shipping_district, shipping_fullname: shipping_fullname, shipping_note: shipping_note, shipping_method: shipping_method,
-      shipping_fee: shipping_fee, item: item, quantity: quantity, shop_guid: shop_guid
+      shipping_fee: shipping_fee, item: item, quantity: quantity, shop_guid: shop_guid, product_snapshot: null
     })
   }
 
@@ -56,4 +57,10 @@ export class InventoriesService {
     return this.apiService.extendDays({ duration: duration, item_guid: item_guid })
   }
 
+  shippingFeeDelevery(product_snapshot: string, shipping_method: string, shipping_address: string, shipping_province: string, shipping_district: string, shipping_ward: string) {
+    return this.apiService.createDO({
+      step: "check_fee", product_snapshot: product_snapshot, shipping_method: shipping_method, shipping_address: shipping_address,
+      shipping_province: shipping_province, shipping_district: shipping_district, shipping_ward: shipping_ward
+    });
+  }
 }

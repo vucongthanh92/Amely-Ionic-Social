@@ -1,93 +1,99 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title ion_navbar_width">xác nhận</div>
-    </ion-buttons>
-    
-    <!-- <ion-buttons end>
+            <div class="ion_navbar_title ion_navbar_width">xác nhận</div>
+        </ion-buttons>
+
+        <!-- <ion-buttons end>
       <button ion-button icon-only (click)="changePage()">COMPLETE</button>
     </ion-buttons>
      *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content" -->
-     
-  </ion-navbar>
+
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list no-border>
-    <ion-list-header>Khách hàng</ion-list-header>
-    <ion-item>
-      <ion-icon name='contacts' item-start></ion-icon>
-      Họ tên <ion-note item-end>{{ confirm.fullname }}</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name='call' item-start></ion-icon>
-      Số điện thoại <ion-note item-end>{{ confirm.phone }}</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name='navigate' item-start></ion-icon>
-      Địa chỉ: <p>{{ customer_address }}</p>
-    </ion-item>
-  </ion-list>
-
-  <div class="" *ngIf="is_show_shipping_method" >
     <ion-list no-border>
-      <ion-list-header>Người nhận</ion-list-header>
-      <ion-item>
-        <ion-icon name='contacts' item-start></ion-icon>
-        Họ tên <ion-note item-end>{{ confirm.shipping_fullname }}</ion-note>
-      </ion-item>
+        <ion-list-header>Khách hàng</ion-list-header>
+        <ion-item>
+            <ion-icon name='contacts' item-start></ion-icon>
+            Họ tên
+            <ion-note item-end>{{ confirm.fullname }}</ion-note>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name='call' item-start></ion-icon>
-        Số điện thoại <ion-note item-end>{{ confirm.shipping_phone }}</ion-note>
-      </ion-item>
+        <ion-item>
+            <ion-icon name='call' item-start></ion-icon>
+            Số điện thoại
+            <ion-note item-end>{{ confirm.phone }}</ion-note>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name='navigate' item-start></ion-icon>
-        Địa chỉ: <p>{{ reciver_address }}</p>
-      </ion-item>
+        <ion-item>
+            <ion-icon name='navigate' item-start></ion-icon>
+            Địa chỉ:
+            <p>{{ customer_address }}</p>
+        </ion-item>
     </ion-list>
-  </div>
+
+    <div class="" *ngIf="is_show_shipping_method">
+        <ion-list no-border>
+            <ion-list-header>Người nhận</ion-list-header>
+            <ion-item>
+                <ion-icon name='contacts' item-start></ion-icon>
+                Họ tên
+                <ion-note item-end>{{ confirm.shipping_fullname }}</ion-note>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name='call' item-start></ion-icon>
+                Số điện thoại
+                <ion-note item-end>{{ confirm.shipping_phone }}</ion-note>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name='navigate' item-start></ion-icon>
+                Địa chỉ:
+                <p>{{ reciver_address }}</p>
+            </ion-item>
+        </ion-list>
+    </div>
 
 
-  <div class="">
-    <ion-list no-border>
-      <ion-list-header>Thông tin thanh toán</ion-list-header>
-      
-      <ion-item>
-        <ion-icon name='card' item-start></ion-icon>
-        Phí vận chuyển
-        <ion-note item-end style="color: red;">
-          {{ customService.formatCurrency( paymentService.param_create_order.shipping_fee, items.currency) }}
-        </ion-note>
-      </ion-item>
+    <div class="">
+        <ion-list no-border>
+            <ion-list-header>Thông tin thanh toán</ion-list-header>
 
-      <ion-item>
-        <ion-icon name='card' item-start></ion-icon>
-        Tổng tiền
-        <ion-note item-end style="color: red;">{{ formatTotalPrice() }}</ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='card' item-start></ion-icon>
+                Phí vận chuyển
+                <ion-note item-end style="color: red;">
+                    {{ customService.formatCurrency( paymentService.param_create_order.shipping_fee, items.currency) }}
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='cash' item-start></ion-icon>
-        Phương thức thanh toán
-        <p>{{ payment_method }}</p>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='card' item-start></ion-icon>
+                Tổng tiền
+                <ion-note item-end style="color: red;">{{ formatTotalPrice() }}</ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='basket' item-start></ion-icon>
-        Hình thức giao hàng
-        <p>{{ shipping_method }}</p>
-      </ion-item>
-    </ion-list>
-  </div>
+            <ion-item>
+                <ion-icon name='cash' item-start></ion-icon>
+                Phương thức thanh toán
+                <p>{{ payment_method }}</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name='basket' item-start></ion-icon>
+                Hình thức giao hàng
+                <p>{{ shipping_method }}</p>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>
 
 <ion-footer>
-  <button ion-button full class="payment_confirm_complete" (click)="changePage()">Hoàn thành</button>
+    <button ion-button full class="payment_confirm_complete" (click)="changePage()">Hoàn thành</button>
 </ion-footer>

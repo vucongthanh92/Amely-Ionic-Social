@@ -1,63 +1,63 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button icon-only menuToggle>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>
-      Xác nhận giao hàng
-    </ion-title>
+        <ion-title>
+            Xác nhận giao hàng
+        </ion-title>
 
-    <ion-buttons end>
-      <button ion-button icon-only (click)="changePage()">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="changePage()">
         Next
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 
 
 <ion-content class="outer-content">
-  <ion-card>
-    <ion-card-header>
-      Thông tin nhận quà
-    </ion-card-header>
+    <ion-card>
+        <ion-card-header>
+            Thông tin nhận quà
+        </ion-card-header>
 
-    <ion-list>
-        <ion-label>Họ tên : {{fullname}}</ion-label>
+        <ion-list padding>
+            <ion-label>Họ tên : {{fullname}}</ion-label>
 
-        <ion-label>Điện thoại : {{phone}}</ion-label>
+            <ion-label>Điện thoại : {{phone}}</ion-label>
 
-        <ion-label>Địa chỉ : {{full_address}}</ion-label>
+            <ion-label>Địa chỉ : {{full_address}}</ion-label>
 
-        <ion-label>Lời nhắn : {{note}}</ion-label>
+            <ion-label>Lời nhắn : {{note}}</ion-label>
 
-        <ion-label>Ghi chú : {{payment_method_label}}</ion-label>
-    </ion-list>
-  </ion-card>
+            <ion-label>Ghi chú : {{payment_method.displayname}}</ion-label>
+            <ion-label>Phí giao hàng : {{formatCurrency(shipping_fee)}}</ion-label>
+        </ion-list>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      Thông tin quà
-    </ion-card-header>
+    <ion-card>
+        <ion-card-header>
+            Thông tin quà
+        </ion-card-header>
 
-    <ion-row>
-      <ion-col col-4>
-        <img src="{{item.product_snapshot.images[0]}}">
-      </ion-col>
-      <ion-col col-8>
-        <ion-row>
-          {{item.product_snapshot.title}}
+        <ion-row padding>
+            <ion-col col-4>
+                <img src="{{item.product_snapshot.images[0]}}">
+            </ion-col>
+            <ion-col col-8>
+                <ion-row>
+                    {{item.product_snapshot.title}}
+                </ion-row>
+                <ion-row>
+                    {{item.description}}
+                </ion-row>
+                <ion-row>
+                    So luong : {{quantity}}
+                </ion-row>
+            </ion-col>
         </ion-row>
-        <ion-row >
-           {{item.description}}
-        </ion-row>
-        <ion-row >
-          So luong : {{quantity}}
-        </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-</ion-content>
+    </ion-card>

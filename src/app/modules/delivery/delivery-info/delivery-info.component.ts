@@ -1,11 +1,13 @@
+import { InventoriesService } from './../../../services/inventories.service';
 import { DeliveryConfirmComponent } from './../delivery-confirm/delivery-confirm.component';
 import { CustomService } from './../../../services/custom.service';
 import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { NavParams, Item } from 'ionic-angular';
+import { NavParams, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../../../api/models';
 
 @Component({
   selector: 'app-delivery-info',
@@ -27,14 +29,17 @@ export class DeliveryInfoComponent implements OnInit {
   wards: any;
   payment_method: any;
   item: Item; quantity: number; payment_methods = [];
-  constructor(private navParams: NavParams, private nav: NavController, private customService: CustomService) {
+  constructor(private navParams: NavParams, private nav: NavController, private customService: CustomService, private inventoryService: InventoriesService,
+    private loadingCtrl: LoadingController) {
     this.item = this.navParams.get('item');
     this.quantity = this.navParams.get('quantity');
     this.payment_methods = this.navParams.get('payment_methods');
     this.provinces = PROVINCES;
     this.fullname = this.customService.user_current.fullname;
     this.phone = this.customService.user_current.mobilelogin;
-    this.initAddress()
+    this.initAddress();
+    console.log(this.payment_methods);
+    this.payment_method = this.payment_methods[0];
   }
 
   ngOnInit() {
@@ -45,10 +50,14 @@ export class DeliveryInfoComponent implements OnInit {
       // this.province = PROVINCES.filter(e => e.provinceid == this.customService.user_current.province)[0];
       this.address = this.customService.user_current.address;
       this.province = this.customService.user_current.province;
+
       this.districts = DISTRICTS.filter(data => data.provinceid == this.province);
       this.district = this.customService.user_current.district;
       this.wards = WARDS.filter(data => data.districtid == this.district);
       this.ward = this.customService.user_current.ward;
+      this.province_id = this.customService.user_current.province;
+      this.ward_id = this.customService.user_current.ward;
+      this.district_id = this.customService.user_current.district;
     }
   }
   onProvinceChange(provinceid: string) {
@@ -76,12 +85,23 @@ export class DeliveryInfoComponent implements OnInit {
     } else if (!this.district_id || !this.ward_id || !this.province_id || !this.address) {
       this.customService.toastMessage('Thông tin địa chỉ người nhận chưa hoàn tất', 'bottom', 2000);
     } else {
-      //goi api tinh tien ship
-      this.nav.push(DeliveryConfirmComponent, {
-        item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
-        address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
-        payment_methods: this.payment_methods
-      })
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss:true
+      });
+
+      loading.present();
+
+      this.inventoryService.shippingFeeDelevery(this.item.product_snapshot.guid + "", this.payment_method.filename, this.address, this.province_id, this.district_id, this.ward_id)
+        .subscribe(data => {
+          loading.dismiss();
+          console.log(data);
+          this.nav.push(DeliveryConfirmComponent, {
+            item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
+            address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
+            payment_methods: this.payment_methods, shipping_fee: data.shipping_fee
+          })
+        })
     }
   }
 }

@@ -1,179 +1,179 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-    </ion-buttons>
+        </ion-buttons>
 
-    <ion-buttons end>
-      <button *ngIf="isLoadSuccess" ion-button (click)="openPopover($event)">
+        <ion-buttons end>
+            <button *ngIf="isLoadSuccess" ion-button (click)="openPopover($event)">
         <ion-icon class="user_profile_more" name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <div *ngIf="!is_failed && user">
-    <div [style.background]="'url(' + user.cover + ')'" class="profile_cover"></div>
-    <div class="profile_avatar_row">
-      <div class="profile_avatar">
-        <img src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)">
-      </div>
-      <div class="profile_cover_title">{{user.fullname}}</div>
-    </div>
+    <div *ngIf="!is_failed && user">
+        <div [style.background]="'url(' + user.cover + ')'" class="profile_cover"></div>
+        <div class="profile_avatar_row">
+            <div class="profile_avatar">
+                <img src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)">
+            </div>
+            <div class="profile_cover_title">{{user.fullname}}</div>
+        </div>
 
-    <div class="bar bar-header bar-dark profile_bar">
-      <ion-segment color="primary" [(ngModel)]="userTab">
-        <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button profile_tab" (click)="goToPage(user,'newfeeds');">
-          <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
-          <div class="profile_tab_title">Cập Nhật</div>
-        </ion-segment-button>
-        <ion-segment-button value="images" class="segment-button profile_tab" (click)="goToPage(user,'images');">
-          <ion-icon ios="ios-images" md="md-images"></ion-icon>
-          <div class="profile_tab_title">Hình Ảnh</div>
-        </ion-segment-button>
-        <ion-segment-button value="friends" class="segment-button profile_tab" (click)="goToPage(user,'friends');">
-          <ion-icon ios="ios-people" md="md-people"></ion-icon>
-          <div class="profile_tab_title">Bạn Bè</div>
-        </ion-segment-button>
-      </ion-segment>
+        <div class="bar bar-header bar-dark profile_bar">
+            <ion-segment color="primary" [(ngModel)]="userTab">
+                <ion-segment-button id="tabFeeds" value="newfeeds" class="segment-button profile_tab" (click)="goToPage(user,'newfeeds');">
+                    <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+                    <div class="profile_tab_title">Cập Nhật</div>
+                </ion-segment-button>
+                <ion-segment-button value="images" class="segment-button profile_tab" (click)="goToPage(user,'images');">
+                    <ion-icon ios="ios-images" md="md-images"></ion-icon>
+                    <div class="profile_tab_title">Hình Ảnh</div>
+                </ion-segment-button>
+                <ion-segment-button value="friends" class="segment-button profile_tab" (click)="goToPage(user,'friends');">
+                    <ion-icon ios="ios-people" md="md-people"></ion-icon>
+                    <div class="profile_tab_title">Bạn Bè</div>
+                </ion-segment-button>
+            </ion-segment>
 
-      <ion-row text-center class="profile_gift" *ngIf="!is_user_current">
-        <ion-col col-4>
-          <button ion-button icon-left clear small (click)="goToPage(user, 'gift');">
+            <ion-row text-center class="profile_gift" *ngIf="!is_user_current">
+                <ion-col col-4>
+                    <button ion-button icon-left clear small (click)="goToPage(user, 'gift');">
             <img class="iconSubTab" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
             <div class="profile_gift_title">Tặng quà</div>
           </button>
-        </ion-col>
+                </ion-col>
 
-        <ion-col col-4 *ngIf="!is_friend" (click)="addFriend()">
-          <button ion-button icon-left clear small color="danger">
+                <ion-col col-4 *ngIf="!is_friend" (click)="addFriend()">
+                    <button ion-button icon-left clear small color="danger">
             <img class="iconSubTab" src="assets/imgs/ic_add_friend.png" alt="ionic logo">
             <div class="profile_gift_title">{{title_add_friend}}</div>
           </button>
-        </ion-col>
+                </ion-col>
 
-        <ion-col col-4>
-          <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'chat');">
+                <ion-col col-4>
+                    <button ion-button icon-left clear small color="danger" (click)="goToPage(user, 'chat');">
             <img class="iconSubTab" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
             <div class="profile_gift_title">Nhắn tin</div>
           </button>
-        </ion-col>
-      </ion-row>
+                </ion-col>
+            </ion-row>
+        </div>
+
+        <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
+            <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+
+        <div *ngIf="newfeedsPage">
+            <ion-card *ngIf="user.shop.guid" class="profile_store">
+                <ion-card-content *ngIf="user.shop.status == '3' || user.shop.status == '5'">
+                    <ion-item (click)="goToPage(user.shop.guid, 'shop')">
+                        <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card class="profile_info">
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col col-6>
+                            <div class="user_row_icon">
+                                <img src="{{genderIcon}}" /><span>{{genderLabel}}</span>
+                            </div>
+
+                            <div *ngIf="!is_user_current && !is_hidden_birthday">
+                                <p *ngIf="birthday" class="user_row_icon">
+                                    <img src="assets/imgs/ic_birthday_gray.png" />
+                                    <span>{{birthday}}</span>
+                                </p>
+                            </div>
+
+                            <div *ngIf="!is_user_current && is_hidden_birthday">
+                                <p *ngIf="birthday" class="user_row_icon">
+                                    <img src="assets/imgs/ic_birthday_gray.png" />
+                                    <span>**/**/****</span>
+                                </p>
+                            </div>
+
+                            <div *ngIf="is_user_current">
+                                <p *ngIf="birthday" class="user_row_icon">
+                                    <img src="assets/imgs/ic_birthday_gray.png" />
+                                    <span>{{birthday}}</span>
+                                </p>
+                            </div>
+
+                            <div class="user_row_icon" *ngIf="!is_user_current && !is_hidden_phone_number">
+                                <img src="assets/imgs/ic_phone_gray.png" />
+                                <span>{{user.mobilelogin}}</span>
+                            </div>
+
+                            <div class="user_row_icon" *ngIf="is_user_current ">
+                                <img src="assets/imgs/ic_phone_gray.png" />
+                                <span>{{user.mobilelogin}}</span>
+                            </div>
+
+                            <div class="user_row_icon" *ngIf="!is_user_current && is_hidden_phone_number">
+                                <img src="assets/imgs/ic_phone_gray.png" />
+                                <span>***********</span>
+                            </div>
+                        </ion-col>
+
+                        <ion-col col-6>
+                            <div *ngIf="is_user_current" class="user_row_icon">
+                                <img src="assets/imgs/ic_gift_1.png" />
+                                <span>{{user.gift_count?user.gift_count:0}}/{{limitGift}}</span>
+                            </div>
+
+                            <div *ngIf="user.mood" class="user_row_icon">
+                                <img src="{{iconMood}}" />
+                                <span>{{user.mood.title}}</span>
+                            </div>
+
+                            <div *ngIf="is_user_current" class="user_row_icon">
+                                <img src="assets/imgs/ic_gift_4.png" />
+                                <span>{{user.offer_count ?user.offer_count: '0'}}/{{limitOffer}}</span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-list *ngIf="userGuid">
+                <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+                <app-feeds #feeds [type]="'user'" [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
+                <!-- </ion-item> -->
+            </ion-list>
+        </div>
+        <div *ngIf="imagesPage">
+            <app-album [guid]="userGuid" [type]="'user'"></app-album>
+        </div>
+        <div *ngIf="friendsPage">
+            <div *ngIf="!is_user_current && is_hidden_friend">
+                <app-friends [from]="'user'" [guid]="userGuid" [dontShow]=true></app-friends>
+            </div>
+
+            <div *ngIf="is_user_current">
+                <app-friends [from]="'user'" [guid]="userGuid"></app-friends>
+            </div>
+
+            <div *ngIf="!is_user_current && !is_hidden_friend">
+                <app-friends [from]="'user'" [guid]="userGuid"></app-friends>
+            </div>
+        </div>
     </div>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
-      <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
-      </ion-refresher-content>
-    </ion-refresher>
-
-    <div *ngIf="newfeedsPage">
-      <ion-card *ngIf="user.shop.guid" class="profile_store">
-        <ion-card-content *ngIf="user.shop.status == '3' || user.shop.status == '5'">
-          <ion-item (click)="goToPage(user.shop.guid, 'shop')">
-            <img src="assets/imgs/ic_tab_store_actived.png" /> Cửa hàng
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card class="profile_info">
-        <ion-card-content>
-          <ion-row>
-            <ion-col col-6>
-              <div class="user_row_icon">
-                <img src="{{genderIcon}}" /><span>{{genderLabel}}</span>
-              </div>
-
-              <div *ngIf="!is_user_current && !is_hidden_birthday">
-                <p *ngIf="birthday" class="user_row_icon">
-                  <img src="assets/imgs/ic_birthday_gray.png" />
-                  <span>{{birthday}}</span>
-                </p>
-              </div>
-              
-              <div *ngIf="!is_user_current && is_hidden_birthday">
-                <p *ngIf="birthday" class="user_row_icon">
-                  <img src="assets/imgs/ic_birthday_gray.png" />
-                  <span>**/**/****</span>
-                </p>
-              </div>
-              
-              <div *ngIf="is_user_current">
-                <p *ngIf="birthday" class="user_row_icon">
-                  <img src="assets/imgs/ic_birthday_gray.png" />
-                  <span>{{birthday}}</span>
-                </p>
-              </div>
-
-              <div class="user_row_icon" *ngIf="!is_user_current && !is_hidden_phone_number">
-                <img src="assets/imgs/ic_phone_gray.png" />
-                <span>{{user.mobilelogin}}</span>
-              </div>
-
-              <div class="user_row_icon" *ngIf="is_user_current ">
-                <img src="assets/imgs/ic_phone_gray.png" />
-                <span>{{user.mobilelogin}}</span>
-              </div>
-
-              <div class="user_row_icon" *ngIf="!is_user_current && is_hidden_phone_number">
-                <img src="assets/imgs/ic_phone_gray.png" />
-                <span>***********</span>
-              </div>
-            </ion-col>
-
-            <ion-col col-6>
-              <div *ngIf="is_user_current" class="user_row_icon">
-                <img src="assets/imgs/ic_gift_1.png" /> 
-                <span>{{user.gift_count?user.gift_count:0}}/{{limitGift}}</span>
-              </div>
-              
-              <div *ngIf="user.mood" class="user_row_icon">
-                <img src="{{iconMood}}" />
-                <span>{{user.mood.title}}</span>
-              </div>
-              
-              <div *ngIf="is_user_current" class="user_row_icon">
-                <img src="assets/imgs/ic_gift_4.png" />
-                <span>{{user.offer_count ?user.offer_count: '0'}}/{{limitOffer}}</span>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-list *ngIf="userGuid">
-        <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-        <app-feeds #feeds [type]="'user'" [feed_type]="feed_type" [owner_guid]="userGuid"></app-feeds>
-        <!-- </ion-item> -->
-      </ion-list>
+    <div *ngIf="is_failed" class="user_nodata">
+        Không thể lấy thông tin người dùng.Vui lòng kiểm tra tình trạng mạng hoặc danh sách chặn .
     </div>
-    <div *ngIf="imagesPage">
-      <app-album [guid]="userGuid" [type]="'user'"></app-album>
-    </div>
-    <div *ngIf="friendsPage">
-      <div *ngIf="!is_user_current && is_hidden_friend">
-        <app-friends [from]="'user'" [guid]="userGuid" [dontShow]=true></app-friends>
-      </div>
-
-      <div *ngIf="is_user_current">
-        <app-friends [from]="'user'" [guid]="userGuid"></app-friends>
-      </div>
-
-      <div *ngIf="!is_user_current && !is_hidden_friend">
-        <app-friends [from]="'user'" [guid]="userGuid"></app-friends>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="is_failed" class="user_nodata">
-    Không thể lấy thông tin người dùng.Vui lòng kiểm tra tình trạng mạng hoặc danh sách chặn .
-  </div>
 </ion-content>
 
-  <ion-fab class="user_fab" *ngIf="is_show_fab">
+<ion-fab class="user_fab" *ngIf="is_show_fab">
     <button ion-fab class="user_fab_icon" (click)="addFeed()">
       <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
     </button>
-  </ion-fab>
+</ion-fab>

@@ -153,6 +153,7 @@ export class ContactUsersComponent implements OnInit {
     this.userService.deleteFriend(u.guid).subscribe(data => {
       if (data.status) {
         this.friends = this.friends.filter(e => e.guid != u.guid);
+        this.customService.friends = this.friends;
       } else this.customService.toastMessage('Xóa kết bạn thất bại', 'bottom', 3000);
       loading.dismiss();
     }, err => this.retryDeleteFriend(--retry, u, loading));

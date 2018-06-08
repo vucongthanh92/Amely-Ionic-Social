@@ -84,12 +84,12 @@ export class PaymentConfirmComponent implements OnInit {
 
   retryCreateOrder(retry, loading) {
     if (retry == 0) {
+      this.loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.paymentService.createOrder().subscribe(data => {
       console.log(data);
-
       this.loading.dismiss();
       this.nav.push(PaymentWebviewComponent, { url: data.url });
       const browser = this.iab.create(data.url, '_blank', { location: 'no', zoom: 'yes' });
