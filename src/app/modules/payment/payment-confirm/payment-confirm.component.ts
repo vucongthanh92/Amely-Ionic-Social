@@ -35,6 +35,8 @@ export class PaymentConfirmComponent implements OnInit {
     this.items = this.paymentService.items;
     this.payment_method = this.paymentService.payment_methods.payment_methods[this.paymentService.param_create_order.payment].displayname;
     this.shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].displayname;
+    console.log(this.paymentService.items);
+    
     this.is_show_shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].filename != 'sq/storage';
     if (this.paymentService.param_create_order.shipping_method != 'sq/express') this.paymentService.param_create_order.shipping_fee = "0";
 
@@ -114,8 +116,8 @@ export class PaymentConfirmComponent implements OnInit {
 
       browser.on('loadstart').subscribe(e => {
 
-      }, err => { this.retryCreateOrder(--retry, loading) });
-    })
+      });
+    }, err => { this.retryCreateOrder(--retry, loading) })
   }
   formatCurrency(item: Product) {
     return this.customService.formatCurrency(this.customService.netPrice(item) + "", item.display_currency);
