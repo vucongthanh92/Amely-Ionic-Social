@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './create-wallet.component.html'
 })
 export class CreateWalletComponent implements OnInit {
+  public rules: boolean = false;
 
   constructor(private nav: NavController, private inventoryService: InventoriesService, private customService: CustomService, public loadingCtrl: LoadingController) { }
 
@@ -22,7 +23,13 @@ export class CreateWalletComponent implements OnInit {
       enableBackdropDismiss: true
     });
     loading.present();
-    this.retryCreateWallet(5, loading);
+    if (this.rules == false) {
+      loading.dismiss();
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản sử dụng ví của Amely !', 'bottom', 3000);
+    }else{
+      this.retryCreateWallet(5, loading);
+    }
+    
   }
 
   retryCreateWallet(retry, loading) {
@@ -46,5 +53,7 @@ export class CreateWalletComponent implements OnInit {
 
   dismiss() {
     this.nav.pop();
+  }
+  onChange($event) {
   }
 }
