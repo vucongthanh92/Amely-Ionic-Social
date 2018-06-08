@@ -57,6 +57,11 @@ export class FirebaseService {
     return this.afDatabase.list(path).push(message);
   }
 
+  updateLastRead(owner_from, owner_to, owner_to_type) {
+    let path = "/users/" + owner_from + "/chat/" + owner_to_type + "/" + owner_to;
+    this.afDatabase.database.ref(path).update({ last_read: Date.now() });
+  }
+
   getGiftBySubject(subject_id, username) {
     let path = "/notifications/" + username;
     return this.afDatabase.list(path).query.orderByChild('subject_guid').equalTo(subject_id);
