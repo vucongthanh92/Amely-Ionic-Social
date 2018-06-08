@@ -122,6 +122,8 @@ export class CartItemsComponent implements OnInit {
       return
     }
     this.shoppingsService.putCart({ items: carts }).subscribe(data => {
+      console.log(data);
+      
       if (data.status != undefined) {
         this.customService.toastMessage('Số lượng sản phẩm đã hết!', 'bottom', 3000);
       } else {
