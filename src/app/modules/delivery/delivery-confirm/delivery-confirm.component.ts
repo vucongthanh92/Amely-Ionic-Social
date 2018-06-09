@@ -74,6 +74,7 @@ export class DeliveryConfirmComponent implements OnInit {
         if (data.status) {
           this.nav.popToRoot();
           loading.dismiss();
+          this.customService.toastMessage('Giao hàng thành công.', 'bottom', 2000);
         } else {
           loading.dismiss();
           this.customService.toastMessage('Xác nhận thất bại. Vui lòng thử lại', 'bottom', 2000);

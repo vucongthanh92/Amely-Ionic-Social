@@ -8,7 +8,7 @@
   <ion-list *ngIf="user_list" >
     <ion-item *ngFor="let user of user_list" (click)="changePageConfirm(user, 'user')" >
       <ion-thumbnail item-start>
-        <img src="{{ user.avatar }}">
+        <img src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
       <h2>{{ user.fullname }}</h2>
     </ion-item>
@@ -16,7 +16,7 @@
   <ion-list *ngIf="group_list">
     <ion-item *ngFor="let group of group_list" (click)="changePageConfirm(group, 'group')">
       <ion-thumbnail item-start>
-        <img src="{{ group.avatar }}">
+        <img src="{{ group.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
       <h2>{{ group.title }}</h2>
     </ion-item>

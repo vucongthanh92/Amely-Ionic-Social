@@ -1,3 +1,4 @@
+import { guid } from './../../api/models/guid';
 import { MapComponent } from './../map/map.component';
 import { GiftsService } from './../../services/gifts.service';
 import { Camera } from '@ionic-native/camera';
@@ -204,6 +205,11 @@ export class MessageComponent implements OnInit {
     // loading.present();
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
+      if (this.param.chat_type == "group") {
+        this.messagesService.updateLastRead(this.userCurrent.username, this.param.guid, "group");
+      } else {
+        this.messagesService.updateLastRead(this.userCurrent.username, this.param.from, "individual");
+      }
       this.messagesService.sendMessage(message, this.param.key);
       // setTimeout(() => {
       //   this.content.scrollToBottom(100);

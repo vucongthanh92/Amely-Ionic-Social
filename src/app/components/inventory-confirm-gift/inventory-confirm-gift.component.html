@@ -16,7 +16,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-thumbnail item-start>
-        <img src="{{ avatar }}">
+        <img src="{{ avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
       <h2>{{ title }}</h2>
     </ion-card-content>
@@ -29,8 +29,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-4>
-            <img width="100%" *ngIf="imageUrl" src="{{imageUrl}}" />
-            <img width="100%" *ngIf="imageUrl==''" src="assets/imgs/image_not_found.jpg" />
+            <img width="100%" src="{{imageUrl}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
           </ion-col>
           <ion-col col-8>
             <ion-row>

@@ -35,7 +35,7 @@ app-group {
         width: 100%;
         height: 100%;
         text-align: center;
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
         image-rendering: pixelated;
       }
