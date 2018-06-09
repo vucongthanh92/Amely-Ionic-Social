@@ -72,6 +72,10 @@ export class MessagesService {
     return this.fbService.createMessage(message, key_chat);
   }
 
+  updateLastRead(owner_from, owner_to, owner_to_type) {
+    return this.fbService.updateLastRead(owner_from, owner_to, owner_to_type);
+  }
+
   getGift(subject_id, username) {
     return this.fbService.getGiftBySubject(subject_id, username);
   }

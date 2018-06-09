@@ -1,7 +1,7 @@
 <ion-card *ngIf="post.item_type==null">
   <ion-item class="feed_item">
     <ion-avatar item-start>
-      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}">
+      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
     </ion-avatar>
     <h2 class="feed_title">{{ user.fullname }}
       <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
@@ -101,7 +101,7 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
   <ion-item>
     <ion-avatar item-start>
-      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}">
+      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
     </ion-avatar>
     <h2 class="feed_title">{{ user.fullname }}
       <span (click)="openOwner(post.type,post.owner_guid)"> </span>
@@ -120,7 +120,7 @@
   <ion-card *ngIf="postShare" class="feed_share_info" padding>
     <ion-item>
       <ion-avatar item-start>
-        <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}">
+        <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="feed_title">
         <span (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
@@ -230,7 +230,7 @@
 <ion-card *ngIf="post.item_type=='cover:photo' || post.item_type=='profile:photo'">
   <ion-item>
     <ion-avatar item-start>
-      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}">
+      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
     </ion-avatar>
     <h2 class="feed_title">{{ user.fullname }}
       <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>

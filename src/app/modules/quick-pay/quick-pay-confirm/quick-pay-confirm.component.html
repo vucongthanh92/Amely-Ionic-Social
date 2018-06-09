@@ -1,129 +1,129 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button icon-only menuToggle>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>
-      Xác nhận
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="submitPayment()">
+        <ion-title>
+            Xác nhận
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="submitPayment()">
         COMPLETE
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div class="">
-    <ion-list no-border>
-      <ion-list-header>
-        Khách hàng
-      </ion-list-header>
+    <div class="">
+        <ion-list no-border>
+            <ion-list-header>
+                Khách hàng
+            </ion-list-header>
 
-      <ion-item>
-        <ion-icon name='contacts' item-start></ion-icon>
-        Họ tên
-        <ion-note item-end>
-          {{userCurrent.fullname}}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='contacts' item-start></ion-icon>
+                Họ tên
+                <ion-note item-end>
+                    {{userCurrent.fullname}}
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='call' item-start></ion-icon>
-        Số điện thoại
-        <ion-note item-end>
-          {{userCurrent.mobilelogin}}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='call' item-start></ion-icon>
+                Số điện thoại
+                <ion-note item-end>
+                    {{userCurrent.mobilelogin}}
+                </ion-note>
+            </ion-item>
 
-      <!-- <ion-item>
+            <!-- <ion-item>
         <ion-icon name='navigate' item-start></ion-icon>
         Địa chỉ:
         <p>123/321 Quang Trung,Go Vap</p>
       </ion-item> -->
-    </ion-list>
-  </div>
-  <div class="">
-    <ion-list no-border>
-      <ion-list-header>
-        Cửa hàng
-      </ion-list-header>
+        </ion-list>
+    </div>
+    <div class="">
+        <ion-list no-border>
+            <ion-list-header>
+                Cửa hàng
+            </ion-list-header>
 
-      <ion-item>
-        <ion-icon name='contacts' item-start></ion-icon>
-        Cửa hàng
-        <ion-note item-end>
-          {{shop.title}}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='contacts' item-start></ion-icon>
+                Cửa hàng
+                <ion-note item-end>
+                    {{shop.title}}
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='call' item-start></ion-icon>
-        Số điện thoại
-        <ion-note item-end>
-          {{shop.shop_phone}}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='call' item-start></ion-icon>
+                Số điện thoại
+                <ion-note item-end>
+                    {{shop.shop_phone}}
+                </ion-note>
+            </ion-item>
 
-      <!-- <ion-item>
+            <!-- <ion-item>
         <ion-icon name='navigate' item-start></ion-icon>
         Địa chỉ:
         <p>123/123/123 To ky, Quan 12</p>
       </ion-item> -->
-    </ion-list>
-  </div>
-  <div class="">
-    <ion-list no-border>
-      <ion-list-header>
-        Thông tin thanh toán
-      </ion-list-header>
+        </ion-list>
+    </div>
+    <div class="">
+        <ion-list no-border>
+            <ion-list-header>
+                Thông tin thanh toán
+            </ion-list-header>
 
-      <ion-item>
-        <ion-icon name='card' item-start></ion-icon>
-        Phí giao hàng
-        <ion-note item-end style="color: red;">
-          {{ formartShippingFee() }}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='card' item-start></ion-icon>
+                Phí giao hàng
+                <ion-note item-end style="color: red;">
+                    {{ formartShippingFee() }}
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='card' item-start></ion-icon>
-        Tổng tiền
-        <ion-note item-end style="color: red;">
-          {{ formartTotalPrice() }}
-        </ion-note>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='card' item-start></ion-icon>
+                Tổng tiền
+                <ion-note item-end style="color: red;">
+                    {{ formartTotalPrice() }}
+                </ion-note>
+            </ion-item>
 
-      <ion-item>
-        <ion-icon name='cash' item-start></ion-icon>
-        Phương thức thanh toán
-        <p>{{payment_method.displayname}}</p>
-      </ion-item>
+            <ion-item>
+                <ion-icon name='cash' item-start></ion-icon>
+                Phương thức thanh toán
+                <p>{{payment_method.displayname}}</p>
+            </ion-item>
 
-      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
-        <ion-icon name='basket' item-start></ion-icon>
-        Nhận hàng
-        <p>{{shipping.displayname}}</p>
-      </ion-item>
+            <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+                <ion-icon name='basket' item-start></ion-icon>
+                Nhận hàng
+                <p>{{shipping.displayname}}</p>
+            </ion-item>
 
-      <ion-item *ngIf="shipping_methods !=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
-        <ion-icon name='locate' item-start></ion-icon>
-        Địa chỉ giao
-        <p>{{getAddress()}}</p>
-      </ion-item>
-      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
-        <ion-icon name='contacts' item-start></ion-icon>
-        Người nhận
-        <p>{{shipping.shipping_fullname}}</p>
-      </ion-item>
-      <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
-        <ion-icon name='call' item-start></ion-icon>
-        Số điện thoại
-        <p>{{shipping.shipping_phone}}</p>
-      </ion-item>
+            <ion-item *ngIf="shipping_methods !=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+                <ion-icon name='locate' item-start></ion-icon>
+                Địa chỉ giao
+                <p class="adrress">{{getAddress()}}</p>
+            </ion-item>
+            <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+                <ion-icon name='contacts' item-start></ion-icon>
+                Người nhận
+                <p>{{shipping.shipping_fullname}}</p>
+            </ion-item>
+            <ion-item *ngIf="shipping_methods!=null &&(shipping_methods.filename =='sq/standard' || shipping_methods.filename =='sq/express')">
+                <ion-icon name='call' item-start></ion-icon>
+                Số điện thoại
+                <p>{{shipping.shipping_phone}}</p>
+            </ion-item>
 
-    </ion-list>
-  </div>
+        </ion-list>
+    </div>
 </ion-content>

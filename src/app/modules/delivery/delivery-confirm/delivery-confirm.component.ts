@@ -69,11 +69,12 @@ export class DeliveryConfirmComponent implements OnInit {
       return;
     }
     this.inventoryService.delevery(this.ward_id, 'confirm', this.phone, this.address, this.province_id, this.district_id, this.fullname,
-      this.note, this.payment_method.filename, '0', this.item.guid + "",
+      this.note, this.payment_method.filename, this.shipping_fee + "", this.item.guid + "",
       this.quantity, this.item.product_snapshot.shop.guid).subscribe(data => {
         if (data.status) {
           this.nav.popToRoot();
           loading.dismiss();
+          this.customService.toastMessage('Giao hàng thành công.', 'bottom', 2000);
         } else {
           loading.dismiss();
           this.customService.toastMessage('Xác nhận thất bại. Vui lòng thử lại', 'bottom', 2000);

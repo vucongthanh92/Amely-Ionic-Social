@@ -4,7 +4,7 @@
         <ion-item *ngFor="let u of users">
             <ion-row>
                 <ion-col col-2>
-                    <img src="{{u.avatar}}" class="message_avatar"/>
+                    <img src="{{u.avatar}}" class="message_avatar" onError="this.src='assets/imgs/image_not_found.jpg';"/>
                 </ion-col>
                 <ion-col col-7>
                     <p class="message_title">{{u.fullname}}</p>
@@ -23,7 +23,7 @@
         <ion-item *ngFor="let g of groups">
             <ion-row>
                 <ion-col class="message_image_box">
-                    <img class="message_avatar" src="{{g.avatar}}" />
+                    <img class="message_avatar" src="{{g.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
                 </ion-col>
                 <ion-col class="message_info" col-7>
                     <p class="message_title">{{g.title}}</p>
@@ -41,7 +41,7 @@
         <ion-item *ngFor="let e of events">
             <ion-row>
                 <ion-col class="message_image_box">
-                    <img class="message_avatar" src="{{e.avatar}}" />
+                    <img class="message_avatar" src="{{e.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
                 </ion-col>
                 <ion-col class="message_info" col-7>
                     <p class="message_title">{{e.title}}</p>

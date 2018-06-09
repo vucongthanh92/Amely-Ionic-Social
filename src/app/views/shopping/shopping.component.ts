@@ -99,7 +99,7 @@ export class ShoppingComponent implements OnInit {
         this.retryGetTempOrder(5, barcodeData, loading);
       }
     }, (err) => {
-      this.customService.toastMessage("Mã QR không hợp lệ hoặc đã hết hạn", 'bottom', 4000);
+      this.customService.toastMessage(err, 'bottom', 4000);
     });
 
     // this.paymentService.getTempOrder(test).subscribe(data => {

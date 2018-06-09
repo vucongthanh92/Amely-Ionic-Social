@@ -1,9 +1,13 @@
-app-payment-confirm{
+app-payment-confirm {
     .payment_confirm_complete {
         margin: 0px;
         background-color: #f0ad4e;
         text-transform: uppercase;
         color: #fff;
         font-weight: bold;
+    }
+    .adrress {
+        word-wrap: break-word;
+        white-space: normal;
     }
 }
