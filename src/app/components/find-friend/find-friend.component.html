@@ -16,7 +16,7 @@
           </ion-row>
           <ion-row class="find_friend_result" *ngIf="user_found" (click)="openUserProfile()">
             <ion-col col-3 text-center>
-              <img src="{{user_found.avatar}}" class="find_friend_result_img">
+              <img src="{{user_found.avatar}}" class="find_friend_result_img" onError="this.src='assets/imgs/image_not_found.jpg';">
             </ion-col>
             <ion-col col-9>
               <div class="find_friend_result_fullname">{{user_found.fullname}}</div>

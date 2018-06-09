@@ -17,10 +17,10 @@
           <ion-item class="comment_item">
             <ion-avatar class="comment_avatar" item-start>
               <div *ngIf="!checkUserCurrent(comment.owner_guid)">
-                <img class="comment_avatar_image" *ngIf="findUser(comment.owner_guid)" src="{{findUser(comment.owner_guid).avatar}}" />
+                <img class="comment_avatar_image" *ngIf="findUser(comment.owner_guid)" src="{{findUser(comment.owner_guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
               </div>
               <div *ngIf="checkUserCurrent(comment.owner_guid)">
-                <img class="comment_avatar_image" src="{{user_current.avatar}}" />
+                <img class="comment_avatar_image" src="{{user_current.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
               </div>
             </ion-avatar>
 
@@ -30,7 +30,7 @@
               </div>
               <div *ngIf="checkUserCurrent(comment.owner_guid)"><h2 class="comment_body_title">{{user_current.fullname}}</h2></div>
               <p class="comment_body_content">{{comment.content}}</p>
-              <p><img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer /></p>
+              <p><img *ngIf="comment.photo" class="comment_body_image" src="{{comment.photo}}" imageViewer onError="this.src='assets/imgs/image_not_found.jpg';"/></p>
               <p class="comment_body_datetime">{{formatDate(comment.time_created)| amTimeAgo}}</p>
             </div>
           </ion-item>

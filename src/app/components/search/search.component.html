@@ -35,8 +35,7 @@
     <ion-list class="search_list" *ngSwitchCase="'peoples'">
       <ion-item class="search_item" *ngFor="let user of users" (click)="goToUserProfile(user)">
         <ion-thumbnail item-start>
-          <img width="80%" *ngIf="user.avatar" src="{{user.avatar}}" />
-          <img width="80%" *ngIf="!user.avatar" src="assets/imgs/logo.png" />
+          <img width="80%" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{user.fullname}}</h2>
         <!-- <ion-thumbnail item-end>
@@ -48,8 +47,7 @@
     <ion-list class="search_list" *ngSwitchCase="'product'">
       <ion-item class="search_item" *ngFor="let product of products" (click)="goToProduct(product)">
         <ion-thumbnail item-start>
-          <img *ngIf="product.images[0]" src="{{product.images[0]}}" />
-          <img *ngIf="!product.images[0]" src="assets/imgs/logo.png" />
+          <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{product.title}}</h2>
         <h2 class="search_box_price">
@@ -68,8 +66,7 @@
     <ion-list class="search_list" *ngSwitchCase="'store'">
       <ion-item class="search_item" *ngFor="let shop of shops" (click)="goToShopProfile(shop)">
         <ion-thumbnail item-start>
-          <img *ngIf="shop.avatar" src="{{shop.avatar}}" />
-          <img *ngIf="!shop.avatar" src="assets/imgs/logo.png" />
+          <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{shop.title}}</h2>
       </ion-item>
@@ -78,8 +75,7 @@
     <ion-list class="search_list" *ngSwitchCase="'group'">
       <ion-item class="search_item" *ngFor="let group of groups" (click)="goToGroupProfile(group)">
         <ion-thumbnail class="search_thumbnail" item-start>
-          <img *ngIf="group.avatar" src="{{group.avatar}}" />
-          <img *ngIf="!group.avatar" src="assets/imgs/logo.png" />
+          <img src="{{group.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{group.title}}</h2>
       </ion-item>
@@ -88,8 +84,7 @@
     <ion-list class="search_list" *ngSwitchCase="'event'">
       <ion-item class="search_item" *ngFor="let event of events" (click)="goToEventrProfile(event)">
         <ion-thumbnail item-start>
-          <img *ngIf="event.avatar" src="{{event.avatar}}" />
-          <img *ngIf="!event.avatar" src="assets/imgs/logo.png" />
+          <img src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{event.title}}</h2>
         <h2 class="search_datetime">{{formatDate(event.time_created) | date:'dd/MM/yyyy'}}</h2>
@@ -99,8 +94,7 @@
     <ion-list class="search_list" *ngSwitchCase="'business'">
       <ion-item class="search_item" *ngFor="let b of business" (click)="goToBusinessProfile(b)">
         <ion-thumbnail item-start>
-          <img *ngIf="b.avatar" src="{{b.avatar}}" />
-          <img *ngIf="!b.avatar" src="assets/imgs/logo.png" />
+          <img  src="{{b.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-thumbnail>
         <h2 class="search_title">{{b.title}}</h2>
         <h2>{{b.thought}}</h2>

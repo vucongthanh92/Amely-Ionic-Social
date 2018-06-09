@@ -3,7 +3,7 @@
     <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
         <ion-col class="events_image" col-3>
-          <img width="100%" src="{{event.avatar}}" />
+          <img width="100%" src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
         </ion-col>
         <ion-col col-9>
           <div class="events_title">{{event.title}}</div>

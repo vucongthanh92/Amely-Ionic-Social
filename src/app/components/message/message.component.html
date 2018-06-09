@@ -13,7 +13,7 @@
   <div class="message-wrap">
     <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
       <div class="message_box_images">
-        <img (click)="openProfile(message)" *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}">
+        <img (click)="openProfile(message)" *ngIf="message.avatar" class="user-img" src="{{ message.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </div>
       
       <div class="msg-detail" (click)="clickMessage(message)">
@@ -31,7 +31,7 @@
                 <ion-icon *ngIf="message.gift.notification_type == 'gift:reject'" name="close-circle" color="danger"></ion-icon>
               </ion-col>
             </ion-row>
-            <img width="100%" src="{{ message.gift.item_image }}" />
+            <img width="100%" src="{{ message.gift.item_image }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
             <!-- <p class="line-breaker">{{ message.text }}</p> -->
 
             <div class="message_text_bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
@@ -71,7 +71,7 @@
           </div>
 
           <div *ngIf="message.attachment">
-            <img *ngIf="message.attachment.media_type == 'image'" width="100%" src="{{ message.attachment.url }}" />
+            <img *ngIf="message.attachment.media_type == 'image'" width="100%" src="{{ message.attachment.url }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
           </div>
 
           <div *ngIf="!message.gift">

@@ -3,7 +3,7 @@
     <ion-list-header>Cá Nhân</ion-list-header>
     <ion-item *ngFor="let individual of individualList" (click)="goToPage(individual, 'individual')">
       <ion-avatar class="messages_avatar" item-start>
-        <img src="{{ individual.avatar }}">
+        <img src="{{ individual.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="messages_title">{{ individual.from }}</h2>
       <p class="messages_content">{{ individual.text }}</p>
@@ -14,7 +14,7 @@
     <ion-list-header>Nhóm</ion-list-header>
     <ion-item *ngFor="let group of groups" (click)="goToPage(group, 'group')">
       <ion-avatar class="messages_avatar" item-start>
-        <img src="{{ group.avatar }}">
+        <img src="{{ group.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="messages_title">{{ group.title }}</h2>
       <p class="messages_content">{{ group.last_message }}</p>
