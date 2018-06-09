@@ -14,7 +14,7 @@
   <ion-list class="nearby_shop" no-lines *ngIf="datas">
     <ion-item class="nearby_shop_item" *ngFor="let data of datas" (click)="goToShop(data.shop.guid)">
       <ion-avatar item-start>
-        <img class="nearby_image" src="{{data.shop.avatar}}">
+        <img class="nearby_image" src="{{data.shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="nearby_title">{{data.shop.title}}</h2>
       <div class="nearby_description">{{data.shop.store.address}}</div>
