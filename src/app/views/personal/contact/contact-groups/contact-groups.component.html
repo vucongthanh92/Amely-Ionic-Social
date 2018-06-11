@@ -3,47 +3,39 @@
     <div *ngIf="groups">
       <ion-item *ngFor="let group of groups">
         <ion-row>
-          <div class="contact_group_box_image" (click)="goToPage(group.guid)" [style.background]="'url(' + group.avatar + ')'"></div>
-          <ion-col col-8 (click)="goToPage(group.guid)">
-            <div class="contact_group_title">{{group.title}}</div>
-            <div class="contact_group_mood">
-              <ion-row>
-                <ion-col class="contact_group_imageinfo" col-1>
-                  <img src="assets/imgs/ic_user_admin_gray.png" />
-                </ion-col>
-                <ion-col col-6 class="textInfo">
-                  {{getOwner(group.owner_guid).fullname}}
-                </ion-col>
-                <ion-col class="contact_group_imageinfo" col-1>
-                  <img src="assets/imgs/ic_friend_actived.png" />
-                </ion-col>
-                <ion-col col-1 class="textInfo">
-                  {{group.members_count}}
-                </ion-col>
-                <ion-col *ngIf="group.has_inventory" class="contact_group_imageinfo" col-1>
-                  <img src="assets/imgs/ic_gift_1.png" />
-                </ion-col>
-                <ion-col *ngIf="group.has_inventory" col-1 class="textInfo">
-                  {{group.inventory_items}}
-                </ion-col>
-              </ion-row>
-            </div>
+          <ion-col class="contact_group_box_image" col-2>
+            <img (click)="goToPage(group.guid)" src="{{ group.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg'">
           </ion-col>
-          <ion-col class="contact_group_chatbox">
-            <img class="contact_group_chat" src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')" />
+
+          <ion-col col-9 (click)="goToPage(group.guid)">
+            <div class="contact_group_title">{{group.title}}</div>
+            <ion-row class="contact_group_mood">
+              <ion-col class="contact_group_icon" col-6>
+                <img src="assets/imgs/ic_user_admin_gray.png" />
+                <div class="contact_group_icon_title">{{getOwner(group.owner_guid).fullname}}</div>
+              </ion-col>
+              <ion-col class="contact_group_icon" col-3>
+                <img src="assets/imgs/ic_friend_actived.png" />
+                <div class="contact_group_icon_title">{{group.members_count}}</div>
+              </ion-col>
+              <ion-col *ngIf="group.has_inventory" class="contact_group_icon" col-3>
+                <img src="assets/imgs/ic_gift_1.png" />
+                <div class="contact_group_icon_title">{{group.inventory_items}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col col-1 class="contact_group_chatbox">
+            <img src="assets/imgs/ic_chat.png" (click)="goToPageChat(group, 'group')" />
           </ion-col>
         </ion-row>
       </ion-item>
-      <div *ngIf="groups.length==0" style="font-size: 20px; text-align: center;">
-        <div>
-          <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-        </div>
-        <div style="color: #999;">
-          Không có dữ liệu...
-        </div>
+
+      <div *ngIf="groups.length == 0" class="contact_group_nodata">
+        <img src="assets/imgs/ic_feed.png">
+        <div class="contact_group_nodata_title">Không có dữ liệu...</div>
       </div>
     </div>
-
   </ion-list>
 
   <ion-list *ngIf="!groups">

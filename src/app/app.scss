@@ -46,6 +46,16 @@
     top: 1px;
 }
 
+.top_navigation_iphone5s {
+    .offer_myself_button {
+        bottom: 50px;
+    }
+
+    .user_page_navigator {
+        min-height: 44px !important;
+    }
+}
+
 .top_navigation_iphonex {
     .show-tabbar {
         bottom: -25px !important;
