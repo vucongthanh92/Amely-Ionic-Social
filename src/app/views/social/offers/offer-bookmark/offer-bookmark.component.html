@@ -20,7 +20,7 @@
     <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers">
       <div (click)="changePage(offer)">
         <ion-row class="offer_search_user_info" margin-top>
-          <img class="offer_search_avatar" src="{{users[offer.owner_guid].avatar}}" />
+          <img class="offer_search_avatar" src="{{users[offer.owner_guid].avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
           <ion-col class="offer_search_datetime">
             <strong>
               <ion-icon name="timer"></ion-icon>
@@ -48,8 +48,7 @@
               <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
                 <span>RANDOM</span>
               </span>
-              <div *ngIf="offer.product_snapshot.images[0]" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'" class="offer_myself_image"></div>
-              <div *ngIf="offer.product_snapshot.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="offer_myself_image"></div>
+              <img src="{{offer.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';" class="offer_myself_image">
             </div>
             <p class="offer_search_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
           </div>

@@ -47,8 +47,7 @@
                 <span>VOUCHER</span>
               </span>
             </div>
-            <div *ngIf="product.images[0]" [style.background]="'url(' + product.images[0] + ')'" class="product_category_images"></div>
-            <div *ngIf="product.images==''" style="background-image: url('assets/imgs/image_not_found.jpg')" class="product_category_images"></div>
+            <img src="{{product.images[0]}}" class="product_category_images" onError="this.src='assets/imgs/image_not_found.jpg';">
           </ion-col>
           <ion-col col-9>
             <ion-row class="product_category_title">{{product.title}}</ion-row>

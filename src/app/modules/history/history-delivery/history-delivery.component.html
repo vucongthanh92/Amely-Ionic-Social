@@ -13,7 +13,7 @@
   <ion-list class="history_delivery_list" *ngIf="dos">
     <ion-item class="history_delivery_item" *ngFor="let do of dos " (click)="openDetail(do)">
       <ion-thumbnail item-left>
-        <div *ngIf="do.product.images" class="history_delivery_img" [style.background]="'url(' + do.product.images[0] + ')'"></div>
+        <img class="history_delivery_img" src="{{do.product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
       <h2 class="history_delivery_title">
         <img *ngIf='do.shipping_method=="sq/express"' class="history_delivery_icon" src="assets/imgs/vector_giao_hang_nhanh-01.png">

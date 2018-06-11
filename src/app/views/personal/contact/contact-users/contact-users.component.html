@@ -6,13 +6,13 @@
           <ion-col col-10 (click)="goToPage(friend)">
             <ion-row>
               <ion-col class="contact_user_image_box" col-4>
-                <img width="100%" src="{{ friend.avatar }}" />
+                <img width="100%" src="{{ friend.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
               </ion-col>
               <ion-col class="contact_user_info" col-8>
                 <div class="contact_user_title">{{ friend.fullname }}</div>
                 <div class="contact_user_description" *ngIf="friend.thought"> {{getThought( friend.thought)}}</div>
                 <div class="contact_user_mood" *ngIf="friend.mood">
-                  <img class="contact_user_mood_icon" src="{{getMoodIcon(friend.mood.guid).image}}">
+                  <img class="contact_user_mood_icon" src="{{getMoodIcon(friend.mood.guid).image}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                   <span class="contact_user_mood_title">{{ friend.mood.title }}</span>
                 </div>
               </ion-col>
