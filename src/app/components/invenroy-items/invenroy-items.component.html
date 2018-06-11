@@ -23,8 +23,7 @@
               <span>VOUCHER</span>
             </span>
           </div>
-          <div class="items_box_image" *ngIf="item.product_snapshot.images" [style.background]="'url(' + item.product_snapshot.images[0] + ')'"></div>
-          <div class="items_box_image" *ngIf="item.product_snapshot.images== undefined" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
+          <img class="items_box_image" src="{{item.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">          
           <div style="padding: 5px">
             <h3 class="items_box_title">{{item.product_snapshot.title}}</h3>
             <p class="items_box_quantity">SL: {{item.quantity}}</p>

@@ -16,7 +16,7 @@
   <ion-list class="quick_pay_list_main">
     <ion-item class="quick_pay_list_item">
       <ion-thumbnail item-left>
-        <div class="quick_pay_list_item_img" [style.background]="'url(' + shop.avatarurl + ')'" ></div>
+        <img class="quick_pay_list_item_img" src="{{shop.avatarurl}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
       <h2 class="quick_pay_list_item_title">{{shop.title}}</h2>
       <ion-row class="quick_pay_list_item_info">

@@ -8,7 +8,7 @@
     <div class="scroll-item">
       <ion-col col-6 *ngFor="let shop of shops" (click)="openShop(shop)">
         <div class="item-card">
-          <div class="shop_feature_image" *ngIf="shop.avatar" [style.background]="'url(' + shop.avatar + ')'"></div>
+          <img class="shop_feature_image" src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
           <div>
             <h4 class="shop_feature_title">{{shop.title}}</h4>
           </div>

@@ -13,7 +13,7 @@
   <div class="category_all_main" *ngIf="categoriesParent">
     <ion-row *ngIf="categoriesParent">
       <ion-col col-4 style="text-align: center" *ngFor="let category of categoriesParent" (click)="goToPage(category);">
-        <div class="categories_images" [style.background]="'url(' + category.logo + ')'"></div>
+        <img class="categories_images" src="{{category.logo}}" onError="this.src='assets/imgs/image_not_found.jpg';">
         <h4 class="categories_title">{{category.title}}</h4>
       </ion-col>
     </ion-row>

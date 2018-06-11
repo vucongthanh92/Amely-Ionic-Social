@@ -7,7 +7,8 @@
           <p class="main_title">{{customService.user_current.fullname }}</p>
         </ion-col> -->
         <ion-col class="main-nav" col-9 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
-          <div [style.background]="'url(' + p.image + ')'" class="menu_images"></div>
+          <!-- <div [style.background]="'url(' + p.image + ')'" class="menu_images"></div> -->
+          <img src="{{p.image}}" class="menu_images" onError="this.src='assets/imgs/image_not_found.jpg';">
           <p class="main_title">{{ p.title }}</p>
         </ion-col>
       </ion-row>
