@@ -9,49 +9,78 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-card padding>
-        <ion-card-header>
-            Thông tin nhận hàng
+    <ion-card padding *ngIf="deliveryOrder" >
+        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
+            Thông Tin Người Nhận
         </ion-card-header>
         <ion-card-content>
             <ion-row>
                 <ion-col col-5>
-                    Họ tên người nhận
+                    Người nhận:
                 </ion-col>
                 <ion-col col-7>
-                    NGUYEN VAN A
+                    {{deliveryOrder.shipping_fullname}}
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col col-5>
-                    Địa chỉ nhận hàng
+                    Địa chỉ:
                 </ion-col>
                 <ion-col col-7>
-                    23/32 NGUYEN VAN QUA, Q.12.
+                    {{deliveryOrder.address}}
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col col-5>
-                    Phí giao hàng
+                    Phí giao hàng:
                 </ion-col>
                 <ion-col col-7>
-                    20k
+                    <i style="color: red;">{{ formatTotalPrice() }}</i>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col col-5>
-                    Trạng thái
+                    Trạng thái:
                 </ion-col>
                 <ion-col col-7 style="">
-                    Dang giao
+                    <i style="color: #24ce57;">{{deliveryOrder.ghtk_status_text}}</i>
                 </ion-col>
             </ion-row>
+            <ion-row>
+                <ion-col col-5>
+                    Ghi chú:
+                </ion-col>
+                <ion-col col-7 style="">
+                    {{deliveryOrder.shipping_note}}
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+    <ion-card padding *ngIf="deliveryOrder" >
+        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
+            Thông Tin Cửa Hàng
+        </ion-card-header>
+        <ion-card-content>
             <ion-item>
                 <ion-thumbnail item-left>
-                    <img src="assets/imgs/logo.png">
+                    <img src="{{deliveryOrder.owner.avatar}}"  onError="this.src='assets/imgs/image_not_found.jpg';">
                 </ion-thumbnail>
-                <h2>San pham A</h2>
-                <p>SL: 3</p>
+                <h2>{{deliveryOrder.owner.title}}</h2>
+                <p>{{deliveryOrder.owner.shop_phone}}</p>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-card padding *ngIf="deliveryOrder" >
+        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
+            Danh Sách Sản Phẩm
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item *ngFor="let item of deliveryOrder.products" >
+                <ion-thumbnail item-left>
+                    <img src="{{item.images[0]}}"  onError="this.src='assets/imgs/image_not_found.jpg';">
+                </ion-thumbnail>
+                <h2>{{item.title}}</h2>
+                <p>Số lượng: <i style="color: red;">{{item.display_quantity}}</i></p>
             </ion-item>
         </ion-card-content>
     </ion-card>

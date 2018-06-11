@@ -17,7 +17,7 @@ import { MessagesService } from '../../../../services/messages.service';
 export class ContactGroupsComponent implements OnInit {
   fakeUsers: Array<any> = new Array(5);
   @Input('callback') callback;
-  private groups: Group[];
+  public groups: Group[];
   private users: User[];
   private userCurrent: User;
   constructor(

@@ -119,7 +119,7 @@ export class WalletComponent implements OnInit {
   orderDetail(trans: Transaction) {
     if (trans.order_guid) {
       this.appCtrl.getRootNav().push(HistoryOrderDetailComponent, { guid: trans.order_guid })
-    } else if (trans.product_snapshot){
+    } else if (trans.do_guid){
       this.appCtrl.getRootNav().push(HistoryDeliveryFromStorageComponent, { guid: trans.do_guid })
     }
   }
@@ -134,7 +134,7 @@ export class WalletComponent implements OnInit {
                   </ion-thumbnail>
                   <h2>Sử dụng tiền trong ví</h2>
                   <p>Bạn đã sử dụng <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) +
-            `</strong> để để giao sản phẩm <strong>` + trans.product_snapshot + `</strong> </p>`
+            `</strong> để để giao sản phẩm <strong>` + trans.do_guid + `</strong> </p>`
 
         } else if (trans.order_guid) {
           return `<ion-thumbnail item-start>

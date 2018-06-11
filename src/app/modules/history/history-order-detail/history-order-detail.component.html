@@ -17,9 +17,9 @@
       </ion-thumbnail>
       <h2>{{shop.title}}</h2>
     </ion-item>
-    <!-- <div >
+    <div >
       <ion-list >
-        <ion-item style="padding-left: 15px" *ngFor="let p of  getProductsShop(shop.guid)">
+        <ion-item style="padding-left: 30px" *ngFor="let p of  getProductsShop(shop.guid)">
           <ion-thumbnail item-left>
             <img *ngIf="p.images" src="{{p.images[0]}}">
             <img *ngIf="!p.images" src="assets/imgs/image_not_found.jpg">
@@ -41,8 +41,8 @@
           </ng-template>
         </ion-item>
       </ion-list>
-    </div> -->
-    <ion-fab center middle>
+    </div>
+    <!-- <ion-fab center middle>
       <button ion-fab mini>
         <ion-icon name="ios-arrow-dropdown"></ion-icon>
       </button>
@@ -75,7 +75,7 @@
           </ion-list>
         </div>
       </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
   </div>
 
  

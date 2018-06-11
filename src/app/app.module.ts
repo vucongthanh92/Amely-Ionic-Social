@@ -54,6 +54,7 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
+import { HistoryDeliveryOrderService } from './services/history-delivery-order.service';
 
 
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
@@ -131,6 +132,7 @@ export const firebaseConfig = {
     InvitationService,
     WalletsService,
     HistoryService,
+    HistoryDeliveryOrderService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

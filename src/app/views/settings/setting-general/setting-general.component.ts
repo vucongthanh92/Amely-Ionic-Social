@@ -29,6 +29,7 @@ export class SettingGeneralComponent implements OnInit {
           text: 'Chấp nhận',
           handler: () => {
             this.customService.notifications = [];
+            this.customService.cart = [];
             localStorage.clear();
             this.appCtrl.getRootNav().setRoot(SigninComponent);
           }
