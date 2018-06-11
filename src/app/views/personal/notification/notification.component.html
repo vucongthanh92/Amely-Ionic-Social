@@ -2,7 +2,7 @@
   <ion-list class="notification_list" no-lines>
     <ion-item class="notification_item" *ngFor="let n of customService.notifications" (click)="goToPage(n)">
       <ion-avatar item-start>
-        <img src="{{n.from_user.avatar}}">
+        <img src="{{n.from_user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="notification_title">{{n.title}}</h2>
       <p>{{ convertDate(n.time_created) | date: 'H:mm dd/MM/yyyy'}}</p>

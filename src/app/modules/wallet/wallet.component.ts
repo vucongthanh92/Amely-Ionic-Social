@@ -1,3 +1,4 @@
+import { HistoryDeliveryFromStorageComponent } from './../history/history-delivery-from-storage/history-delivery-from-storage.component';
 import { PaymentItemsComponent } from './../payment/payment-items/payment-items.component';
 import { PaymentService } from './../../services/payment.service';
 import { WalletsService } from './../../services/wallets.service';
@@ -44,8 +45,8 @@ export class WalletComponent implements OnInit {
     this.customService.getTransactions('wallet').subscribe(data => {
       if (data instanceof Array) {
         this.transactions = data;
-        this.transactions = this.transactions.filter(e => e.status != "cancel" );
-        this.transactions = this.transactions.filter(e => e.status != "new" );
+        this.transactions = this.transactions.filter(e => e.status != "cancel");
+        this.transactions = this.transactions.filter(e => e.status != "new");
       }
     }, err => this.retryGetTransactions(--retry));
   }
@@ -118,6 +119,8 @@ export class WalletComponent implements OnInit {
   orderDetail(trans: Transaction) {
     if (trans.order_guid) {
       this.appCtrl.getRootNav().push(HistoryOrderDetailComponent, { guid: trans.order_guid })
+    } else if (trans.do_guid){
+      this.appCtrl.getRootNav().push(HistoryDeliveryFromStorageComponent, { guid: trans.do_guid })
     }
   }
 
@@ -125,7 +128,15 @@ export class WalletComponent implements OnInit {
     switch (trans.description) {
       case "":
         let content;
-        if (trans.order_guid) {
+        if (trans.do_guid) {
+          return `<ion-thumbnail item-start>
+                  <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
+                  </ion-thumbnail>
+                  <h2>Sử dụng tiền trong ví</h2>
+                  <p>Bạn đã sử dụng <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) +
+            `</strong> để để giao sản phẩm <strong>` + trans.do_guid + `</strong> </p>`
+
+        } else if (trans.order_guid) {
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>

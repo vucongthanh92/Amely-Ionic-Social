@@ -1,4 +1,4 @@
-
+import { CONFIG } from './config';
 import { HistoryService } from './services/history.service';
 import { WalletsService } from './services/wallets.service';
 import { InvitationService } from './services/invitation.service';
@@ -54,6 +54,7 @@ import { BusinessService } from './services/business.service';
 import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
+import { HistoryDeliveryOrderService } from './services/history-delivery-order.service';
 
 
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
@@ -75,6 +76,8 @@ export const firebaseConfig = {
 	  // messagingSenderId: "384999181815"
 };
 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -84,7 +87,7 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, swipeBackEnabled: true }),
     IonicPageModule.forChild(MainMenuComponent),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(CONFIG.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
@@ -129,6 +132,7 @@ export const firebaseConfig = {
     InvitationService,
     WalletsService,
     HistoryService,
+    HistoryDeliveryOrderService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Camera,
     FilePath,

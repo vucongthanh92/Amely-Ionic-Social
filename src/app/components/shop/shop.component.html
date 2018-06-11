@@ -11,7 +11,7 @@
 
 <ion-content class="outer-content" *ngIf="shop">
   <div [style.background]="'url(' + shop.cover + ')'" class="shop_cover">
-    <img class="shop_avatar" src="{{shop.avatar}}" alt="{{shop.title}}" imageViewer>
+    <img class="shop_avatar" src="{{shop.avatar}}" alt="{{shop.title}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
     <div class="shop_cover_title">{{shop.title}}</div>
   </div>
 

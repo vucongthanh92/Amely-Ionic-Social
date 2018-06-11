@@ -18,7 +18,7 @@
             <ion-col *ngFor="let user of friends" (click)="chooseUser(user)">
               <div class="item-card">
                 <ion-col col-4>
-                  <div class="add_group_user_images" [style.background]="'url(' + user.avatar + ')'"></div>
+                  <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                   <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
                 </ion-col>
               </div>
@@ -28,7 +28,7 @@
       </ion-row>
     </ion-grid>
   </div>
-
+  
   <div class="scroll-content add_group_center">
     <ion-label class="labelCenter">Số lượng thành viên</ion-label>
     <ion-grid>
@@ -36,7 +36,7 @@
         <ion-col col-3>
           <div class="add_group_center_icon_user">
             <ion-icon class="checkboxIcon" ios="md-key" md="md-key"></ion-icon>
-            <div class="add_group_user_images" [style.background]="'url(' + userCurrent.avatar + ')'"></div>
+            <img class="add_group_user_images" src="{{userCurrent.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
             <ion-label class="add_group_user_name">{{userCurrent.fullname}}</ion-label>
           </div>
         </ion-col>
@@ -46,7 +46,7 @@
               <ion-col *ngFor="let user of users_choosed" (click)="removeUser(user)">
                 <div class="add_group_center_card">
                   <ion-col col-4>
-                    <div class="add_group_user_images" [style.background]="'url(' + user.avatar + ')'"></div>
+                    <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                     <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
                     <!-- <ion-checkbox class="checkboxIcon"></ion-checkbox> -->
                   </ion-col>

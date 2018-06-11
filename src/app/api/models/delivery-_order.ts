@@ -4,7 +4,7 @@ import { Product } from './product';
 /**
  */
 export class Delivery_order {
-    shipping_province?: string;
+    shipping_ward?: string;
     guid?: number;
     owner_guid?: number;
     description?: string;
@@ -13,14 +13,17 @@ export class Delivery_order {
     shipping_fullname?: string;
     shipping_phone?: string;
     shipping_address?: string;
-    time_created?: string;
+    shipping_province?: string;
     shipping_district?: string;
-    shipping_ward?: string;
+    time_created?: string;
     shipping_note?: string;
     shipping_method?: string;
     shipping_fee?: string;
     item?: string;
     quantity?: number;
     shipping_owner?: string;
+    ghtk_success?: string;
     product?: Product;
+    products?: Product[];
+    address?: string;
 }
