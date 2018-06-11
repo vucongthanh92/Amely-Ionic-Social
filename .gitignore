@@ -28,8 +28,6 @@ plugins/
 plugins/android.json
 plugins/ios.json
 www/
-src/app/api/api-configuration.ts
-src/app/app.module.ts
 
 $RECYCLE.BIN/
 
