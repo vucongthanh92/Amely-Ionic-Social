@@ -29,8 +29,11 @@
             <p>SL :
               <span style="color: red">{{p.display_quantity}}</span>
             </p>
-            <p>Tổng tiền :
+            <p>Giá :
               <span style="color: red">{{formatTotalPrive(p.display_price,p.display_currency)}}</span>
+            </p>
+            <p>Thuế :
+              <span style="color: red">{{p.tax}}%</span>
             </p>
           </div>
           <ng-template #other_content>
