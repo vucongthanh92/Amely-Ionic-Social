@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+            <div class="ion_navbar_title">lịch sử giao hàng</div>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card padding>
+        <ion-card-header>
+            Thông tin nhận hàng
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-5>
+                    Họ tên người nhận
+                </ion-col>
+                <ion-col col-7>
+                    NGUYEN VAN A
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-5>
+                    Địa chỉ nhận hàng
+                </ion-col>
+                <ion-col col-7>
+                    23/32 NGUYEN VAN QUA, Q.12.
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-5>
+                    Phí giao hàng
+                </ion-col>
+                <ion-col col-7>
+                    20k
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-5>
+                    Trạng thái
+                </ion-col>
+                <ion-col col-7 style="">
+                    Dang giao
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img src="assets/imgs/logo.png">
+                </ion-thumbnail>
+                <h2>San pham A</h2>
+                <p>SL: 3</p>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -3,7 +3,7 @@
 /**
  */
 export class Transaction {
-    tax?: number;
+    sub_total?: number;
     guid?: number;
     owner_guid?: number;
     description?: string;
@@ -14,8 +14,8 @@ export class Transaction {
     status?: string;
     currency?: string;
     quantity?: number;
+    tax?: number;
     time_created?: number;
-    sub_total?: number;
     shipping_fee?: number;
     commission_price?: number;
     commission_percent?: number;
@@ -26,4 +26,6 @@ export class Transaction {
     paypal_email?: string;
     onepay_result?: string;
     order_guid?: number;
+    product_snapshot?: string;
+    do_guid?: string;
 }

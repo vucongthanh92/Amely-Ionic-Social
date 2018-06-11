@@ -2041,8 +2041,6 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   createDO(body: body_23): Observable<Delivery_order> {
-    console.log(body);
-    
     return this.createDOResponse(body).pipe(
       map(_r => _r.body)
     );
