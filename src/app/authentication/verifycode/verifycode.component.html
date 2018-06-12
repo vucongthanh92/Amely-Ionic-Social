@@ -1,16 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons>
-      <button ion-button icon-only (click)="onBackPress()">
-        <ion-icon name="arrow-back"></ion-icon>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="onBackPress()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
+      <div class="ion_navbar_title">KÍCH HOẠT TÀI KHOẢN</div>
     </ion-buttons>
-    <ion-title>Xác thực tài khoản</ion-title>
-
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<!-- <ion-content>
   <ion-card>
 
     <ion-card-header>
@@ -21,16 +20,13 @@
       <ion-grid>
 
         <ion-row>
-          <!-- PHONE NUMBER -->
           <ion-col col-12>
             <ion-label>Số điện thoại :</ion-label>
             <ion-label id="txtPhoneNumber">{{user.mobilelogin}}</ion-label>
           </ion-col>
         </ion-row>
-        <!-- END PHONE NUMBER -->
 
 
-        <!-- VERIFY CODE -->
         <ion-row>
           <ion-col col-12>
             <ion-label>Nhập mã xác thực </ion-label>
@@ -45,9 +41,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <!-- END VERIFY CODE -->
 
-        <!-- BUTTON SUBMIT -->
         <ion-row>
           <ion-col col-6>
             <button ion-button round (click)="sendVerifyCode();">Gửi xác thực</button>
@@ -56,11 +50,70 @@
             <button ion-button round>Yêu cầu mã mới</button>
           </ion-col>
         </ion-row>
-        <!-- END BUTTON SUBMIT -->
 
       </ion-grid>
     </ion-card-content>
 
   </ion-card>
+
+</ion-content> -->
+
+<ion-content padding>
+<div >
+  <!-- <div>
+    <ion-item no-lines class="forgot_box">
+      <ion-label>
+        <img class="forgot_icon" src="assets/imgs/iconMail.png" />
+      </ion-label>
+      <ion-input [(ngModel)]="emailInput" type="email" placeholder="Email của bạn"></ion-input>
+    </ion-item>
+  </div> -->
+
+  <ion-grid>
+  
+    <ion-row>
+      <ion-col col-12>
+          <ion-label>Số điện thoại đăng ký</ion-label>        
+        <ion-item id="edtVerifyCode" no-lines class="forgot_box">
+          <!-- <ion-label id="txtPhoneNumber">{{user.mobilelogin}}</ion-label> -->
+          <ion-input type="text" [(ngModel)]="mobile" disabled></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  
+  
+    <ion-row>
+  
+      <ion-col col-12>
+          <ion-label>Nhập mã xác thực </ion-label>
+        
+        <ion-item id="edtVerifyCode" no-lines class="forgot_box">
+          <ion-input [(ngModel)]="code" type="text" placeholder="Mã xác thực"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <!-- <ion-row>
+      <ion-col col-6>
+        <button ion-button round (click)="sendVerifyCode();">Gửi xác thực</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button round>Yêu cầu mã mới</button>
+      </ion-col>
+    </ion-row> -->
+  
+  </ion-grid>
+  <div style="text-align: center;">
+    <label for="">Tin nhắn chứa mã xác thực sẽ nhận được sau vài phút, nếu không nhận được tin nhắn, hãy thử chức
+    năng gửi lại mã. <br><br> 
+    <a *ngIf="hide==true" (click)="startTimer();"><u>Gửi lại mã xác thực</u></a>
+    <p *ngIf="hide==false">Thử lại sau <u style="color: red">{{timerVal}}</u> giây</p>
+  </label>
+  </div>
+  <br>
+  <div style="text-align: center;">
+    <button class="buttonSubmit" ion-button (click)="sendVerifyCode();">KÍCH HOẠT</button>
+  </div>
+</div>
 
 </ion-content>
