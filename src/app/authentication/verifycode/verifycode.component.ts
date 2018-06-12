@@ -64,9 +64,14 @@ export class VerifycodeComponent implements OnInit {
       this.retryActiveUser(--retry, loading);
     })
   }
-  startTimer() {
+  reActionUser() {
     if (this.hide) {
-      console.log(123213213);
+      this.userService.reActionUser(this.user.mobilelogin, null).subscribe(data => {
+        if (data.status) {
+          console.log(data);
+          this.customService.toastMessage('Vui lòng kiểm tra tin nhắn điện thoại !!!', 'bottom', 3000);
+        }
+      })
       
     }
     this.timerVar = Observable.interval(1000).subscribe(x => {

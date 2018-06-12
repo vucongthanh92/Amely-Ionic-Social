@@ -3,8 +3,7 @@
 /**
  */
 export class body_59 {
-    mobile?: string;
-    text_search?: string;
-    category?: string;
-    type?: string;
+    report_type?: string;
+    guid?: number;
+    reason?: string;
 }

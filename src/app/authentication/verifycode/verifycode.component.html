@@ -106,7 +106,7 @@
   <div style="text-align: center;">
     <label for="">Tin nhắn chứa mã xác thực sẽ nhận được sau vài phút, nếu không nhận được tin nhắn, hãy thử chức
     năng gửi lại mã. <br><br> 
-    <a *ngIf="hide==true" (click)="startTimer();"><u>Gửi lại mã xác thực</u></a>
+    <a *ngIf="hide==true" (click)="reActionUser();"><u>Gửi lại mã xác thực</u></a>
     <p *ngIf="hide==false">Thử lại sau <u style="color: red">{{timerVal}}</u> giây</p>
   </label>
   </div>

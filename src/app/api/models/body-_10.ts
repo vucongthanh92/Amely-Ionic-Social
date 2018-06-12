@@ -3,11 +3,7 @@
 /**
  */
 export class body_10 {
-    business_guid?: number;
-    name?: string;
-    description?: string;
-    category?: string;
-    phone?: string;
-    address?: string;
-    website?: string;
+    owner_guid?: number;
+    offset?: number;
+    limit?: number;
 }

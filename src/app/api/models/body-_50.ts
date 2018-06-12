@@ -3,36 +3,12 @@
 /**
  */
 export class body_50 {
-    friendly_url?: string;
-    product_guid?: number;
-    title?: string;
-    description?: string;
-    manufacturer?: string;
-    is_special?: number;
-    voucher_category?: number;
-    ticket_category?: number;
-    tax?: number;
-    price?: number;
-    currency?: string;
-    quantity?: number;
-    expiry?: number;
-    duration?: number;
-    begin_day?: string;
-    end_day?: string;
-    sku?: string;
-    origin?: string;
-    order?: string;
-    weight?: number;
-    storage_duration?: number;
-    product_group?: number;
-    featured?: number;
-    status?: string;
-    ossn_photo?: string[];
-    shop_category?: string[];
-    market_category?: string[];
-    custom_attribute_keys?: string[];
-    custom_attribute_values?: string[];
-    images?: string[];
-    unit?: string;
-    enabled?: string;
+    category_guid?: number;
+    shop_guid?: number;
+    type_product?: string;
+    product_filter?: number;
+    get_all?: number;
+    offset?: number;
+    limit?: number;
+    product_number?: string;
 }
