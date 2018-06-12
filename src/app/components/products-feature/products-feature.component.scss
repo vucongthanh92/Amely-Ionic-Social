@@ -19,12 +19,12 @@ app-products-feature {
     }
   }
   
-  .imgageProduct{
+  .products_feature_img{
     width: 95%;
     height: 180px;
     margin: auto;
-    background-size: cover !important;
-    background-position: center !important;
+    object-fit: cover;
+    object-position: center;
   }
 
   .product_feature {

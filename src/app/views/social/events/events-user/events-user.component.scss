@@ -10,7 +10,6 @@ app-events-user {
 
         .item-inner {
             padding-right: 0px !important;
-            border-bottom: none !important;
         }
     }
 
@@ -40,8 +39,9 @@ app-events-user {
         width: 70px;
         height: 70px;
         padding: 0px;
-        border: 1px solid #eee;
-        border-radius: 3px;
+        border: 1px solid #c7c8cc;
+        border-radius: 5px;
+        overflow: hidden;
 
         img {
             object-fit: cover;

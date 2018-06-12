@@ -16,6 +16,7 @@ app-notification {
                 height: 100%;
                 width: 100%;
                 object-position: center;
+                border: 1px solid #c7c8cc;
             }
         }
 
@@ -34,6 +35,7 @@ app-notification {
         float: left;
         line-height: 1;
     }
+
     .notification_title {
         color: #333;
         text-overflow: ellipsis;
