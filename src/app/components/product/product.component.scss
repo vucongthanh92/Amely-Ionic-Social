@@ -22,8 +22,14 @@ app-product {
     }
 
     .product_image {
+        padding: 0px;
+        
+        img {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+        }
+
         .slide-zoom {
-            height: 27rem;
+            height: 30rem;
         }
 
         img {
@@ -79,14 +85,6 @@ app-product {
         padding: 0px;
     }
 
-    .product_image {
-        padding: 10px 12px 0px 12px;
-        
-        img {
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
-        }
-    }
-
     .product_description {
         ion-card-header {
             padding-bottom: 10px;
@@ -96,5 +94,23 @@ app-product {
         ion-card-content {
             color: #333;
         }
+    }
+
+    .product_info_card {
+        margin: 12px 0px 12px 0px;
+        width: 100%;
+
+        ion-col {
+            color: #8e9093;
+        }
+    }
+
+    .product_info_description {
+        color: #8e9093;
+    }
+
+    .product_info_product {
+        margin: 0px 0px 12px 0px;
+        width: 100%;
     }
 }

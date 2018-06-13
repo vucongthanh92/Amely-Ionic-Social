@@ -35,7 +35,7 @@ export class MainMenuComponent implements OnInit {
   pages: Array<{ title: string, component: any, image: string }>;
   loggin_user: any;
   moodLocal: any;
-
+  public device_screen: string;
 
   constructor(
     public customService: CustomService,
@@ -53,6 +53,9 @@ export class MainMenuComponent implements OnInit {
     public geolocation: Geolocation,
     private appCtrl: App
   ) {
+    
+    this.device_screen = customService.checkDevices();
+
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
     //   { guid: '7724', title: 'WANNA_GIFT', image: 'assets/imgs/ic_gift_4.png' },
@@ -372,15 +375,12 @@ export class MainMenuComponent implements OnInit {
   }
 
   showNotify(id, txt: string, keyFirebase) {
-    alert(txt + " " + id);
+    // alert(txt + " " + id);
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
     this.localNotifications.schedule({
       id: id,
       text: txt,
       led: 'FF0000'
     });
-
-
-
   }
 }

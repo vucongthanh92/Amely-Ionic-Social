@@ -35,19 +35,20 @@
     <ion-list class="search_list" *ngSwitchCase="'peoples'">
       <ion-item class="search_item" *ngFor="let user of users" (click)="goToUserProfile(user)">
         <ion-thumbnail item-start>
-          <img width="80%" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image user_image">
+            <img src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{user.fullname}}</h2>
-        <!-- <ion-thumbnail item-end>
-          <button type="button" name="button" ion-button style="height: 40px; width: 90px;">Thêm bạn</button>
-        </ion-thumbnail> -->
       </ion-item>
     </ion-list>
 
     <ion-list class="search_list" *ngSwitchCase="'product'">
       <ion-item class="search_item" *ngFor="let product of products" (click)="goToProduct(product)">
         <ion-thumbnail item-start>
-          <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image">
+            <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{product.title}}</h2>
         <h2 class="search_box_price">
@@ -66,7 +67,9 @@
     <ion-list class="search_list" *ngSwitchCase="'store'">
       <ion-item class="search_item" *ngFor="let shop of shops" (click)="goToShopProfile(shop)">
         <ion-thumbnail item-start>
-          <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image">
+            <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{shop.title}}</h2>
       </ion-item>
@@ -75,7 +78,9 @@
     <ion-list class="search_list" *ngSwitchCase="'group'">
       <ion-item class="search_item" *ngFor="let group of groups" (click)="goToGroupProfile(group)">
         <ion-thumbnail class="search_thumbnail" item-start>
-          <img src="{{group.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image">
+            <img src="{{group.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{group.title}}</h2>
       </ion-item>
@@ -84,7 +89,9 @@
     <ion-list class="search_list" *ngSwitchCase="'event'">
       <ion-item class="search_item" *ngFor="let event of events" (click)="goToEventrProfile(event)">
         <ion-thumbnail item-start>
-          <img src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image">
+            <img src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{event.title}}</h2>
         <h2 class="search_datetime">{{formatDate(event.time_created) | date:'dd/MM/yyyy'}}</h2>
@@ -94,7 +101,9 @@
     <ion-list class="search_list" *ngSwitchCase="'business'">
       <ion-item class="search_item" *ngFor="let b of business" (click)="goToBusinessProfile(b)">
         <ion-thumbnail item-start>
-          <img  src="{{b.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          <div class="search_item_image">
+            <img  src="{{b.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+          </div>
         </ion-thumbnail>
         <h2 class="search_title">{{b.title}}</h2>
         <h2>{{b.thought}}</h2>

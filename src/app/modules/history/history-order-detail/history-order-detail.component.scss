@@ -58,28 +58,43 @@ app-history-order-detail {
     text-decoration: line-through;
   }
 
-  ion-fab[middle] {
+    ion-fab[middle] {
         margin-top: -28px;
-    top: 10vw;
-    margin-left: 33vw;
-}
-ion-fab-list {
-    margin: 66px 0;
-    position: relative;
-    top: -12vw;
-    right: 83vw;
-    margin-right: 95px;
-    display: none;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: left;
-    min-width: 100%;
-    min-height: 100%;
-}
+        top: 10vw;
+        margin-left: 33vw;
+    }
+    ion-fab-list {
+        margin: 66px 0;
+        position: relative;
+        top: -12vw;
+        right: 83vw;
+        margin-right: 95px;
+        display: none;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: left;
+        min-width: 100%;
+        min-height: 100%;
+    }
+    
+    .history_order_shop_image {
+        width: 4rem;
+        height: 4rem;
+        border: 1px solid #c7c8cc;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }

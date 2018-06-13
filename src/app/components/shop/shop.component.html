@@ -10,9 +10,12 @@
 </ion-header>
 
 <ion-content class="outer-content" *ngIf="shop">
-  <div [style.background]="'url(' + shop.cover + ')'" class="shop_cover">
-    <img class="shop_avatar" src="{{shop.avatar}}" alt="{{shop.title}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
-    <div class="shop_cover_title">{{shop.title}}</div>
+  <div [style.background]="'url(' + shop.cover + ')'" class="shop_cover"></div>
+  <div class="shop_avatar_row">
+    <div class="shop_avatar">
+      <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+    </div>
+    <div class="shop_avatar_title">{{shop.title}}</div>
   </div>
 
   <div class="bar bar-header bar-dark" class="shop_tabcontainer">
@@ -58,101 +61,59 @@
   </div>
 
   <div *ngIf="infoPage">
-    <ion-card>
-      <ion-card-header>
-        Thông tin cửa hàng
-      </ion-card-header>
+    <ion-card class="shop_info_card">
+      <ion-card-header>Thông tin cửa hàng</ion-card-header>
       <ion-card-content>
         <ion-row>
-          <ion-col col-6>
-            Tên cửa hàng
-          </ion-col>
-          <ion-col col-6>
-            {{shop.title}}
-          </ion-col>
+          <ion-col col-5>Tên cửa hàng</ion-col>
+          <ion-col col-7>{{shop.title}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6>
-            Địa chỉ cửa hàng
-          </ion-col>
-          <ion-col col-6>
-            {{shop.shop_address}}
-          </ion-col>
+          <ion-col col-5>Địa chỉ cửa hàng</ion-col>
+          <ion-col col-7>{{shop.shop_address}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6>
-            Số điện thoại
-          </ion-col>
-          <ion-col col-6>
-            {{shop.shop_phone}}
-          </ion-col>
+          <ion-col col-5>Số điện thoại</ion-col>
+          <ion-col col-7>{{shop.shop_phone}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6>
-            Mã số thuế
-          </ion-col>
-          <ion-col col-6>
-            {{shop.shop_bidn}}
-          </ion-col>
+          <ion-col col-5>Mã số thuế</ion-col>
+          <ion-col col-7>{{shop.shop_bidn}}</ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Thông tin chủ cửa hàng
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row>
-          <ion-col col-6>
-            Họ tên
-          </ion-col>
-          <ion-col col-6>
-             {{shop.owner_name}}
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Địa chỉ
-          </ion-col>
-          <ion-col col-6>
-             {{shop.owner_address}}
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
-            Số điện thoại
-          </ion-col>
-          <ion-col col-6>
-           {{shop.owner_phone}}
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Danh sách cửa hàng
-      </ion-card-header>
 
+    <ion-card class="shop_info_card">
+      <ion-card-header>Thông tin chủ cửa hàng</ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-5>Họ tên</ion-col>
+          <ion-col col-7>{{shop.owner_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>Địa chỉ</ion-col>
+          <ion-col col-7>{{shop.owner_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>Số điện thoại</ion-col>
+          <ion-col col-7>{{shop.owner_phone}}</ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card class="shop_info_card">
+      <ion-card-header>Danh sách cửa hàng</ion-card-header>
       <ion-card-content *ngFor="let store of shop.stores" (click)="openStoreLocation(store)" > 
         <ion-card-header>{{store.title}}</ion-card-header>
         <ion-row>
-          <ion-col col-6>
-            Địa chỉ
-          </ion-col>
-          <ion-col col-6>
-            {{store.address}}
-          </ion-col>
+          <ion-col col-5>Địa chỉ</ion-col>
+          <ion-col col-7>{{store.address}}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-6>
-            Số điện thoại
-          </ion-col>
-          <ion-col col-6>
-             {{store.phone}}
-          </ion-col>
+          <ion-col col-5>Số điện thoại</ion-col>
+          <ion-col col-7>{{store.phone}}</ion-col>
         </ion-row>
       </ion-card-content>
-
     </ion-card>
   </div>
 </ion-content>
