@@ -65,6 +65,10 @@
 }
 
 .top_navigation_iphonex {
+    .user_page_navigator {
+        min-height: 44px !important;
+    }
+    
     .show-tabbar {
         bottom: -25px !important;
     }

@@ -1,4 +1,9 @@
 app-quick-pay-list-item {
+
+    .quickpay_listitem_next {
+        color: #fff;
+    }
+
     .quick_pay_list_container {
         margin: 0px;
     }
@@ -96,5 +101,19 @@ app-quick-pay-list-item {
         position: relative;
         font-weight: bold;
         font-size: 1.5rem;
+    }
+
+    .quick_pay_list_product_image {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 3px;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
