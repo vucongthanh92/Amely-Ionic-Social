@@ -17,6 +17,8 @@ export class HistoryDeliveryFromStorageComponent implements OnInit {
     this.guid = this.navParams.get('guid');
     this.historyDeliveryOrder.historyDeliveryOrder(this.guid).subscribe(data => {
       this.deliveryOrder = data;
+      console.log(this.deliveryOrder);
+      
     });
    }
 

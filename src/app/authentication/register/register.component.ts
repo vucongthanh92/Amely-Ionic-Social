@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
   onSubmitRegister() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
-      enableBackdropDismiss: true
     });
     loading.present();
     if (!this.firstname || !this.lastname) {
