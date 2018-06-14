@@ -3,7 +3,7 @@
 /**
  */
 export class body_3 {
-    invitation_type?: string;
-    from_guid?: number;
-    to_guid?: number;
+    advertise_type?: string;
+    offset?: number;
+    limit?: number;
 }

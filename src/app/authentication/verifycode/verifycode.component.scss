@@ -1,50 +1,49 @@
 app-verifycode{
 
-    ion-content {
-        background-image: url("../../assets/imgs/background.png");
-    }	
-
-    ion-label{
-        font-size: 4vw;
-       
+   ion-content {
+		background-image: url("../assets/imgs/background.png");
     }
 
-    img{
-        max-width: 15vw;
-        border: 0px;
+
+    .text-input-ios {
+    margin: 11px 8px 11px 20px;
     }
 
-    .toolbar-title {
-        font-size: 5vw;
-        padding: 4vw;
+    .buttonSubmit {
+        border-radius: 20px;
+        color: #fff;
+        background-color: #f47b37;
+        height: 40px;
+        width: 140px;
+        box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
+    }
+    .button-inner {
+        color: white;
+    }
+    .forgot_icon {
+        margin: 0px 0px 0px 5px;
+        font-size: 24px;
+        width: 16px;
+        height: 16px;
     }
 
-    .card-header {
-        color: blue;
-        border-bottom: 0.5px solid blue ;
-        margin: 5px;
-        font-size: 5vw;
+    .forgot_box {
+		margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    height: 45px;
+    color: black;
+    background-color: white;
+        
+        ion-item {
+            background-color: transparent;
+            border: none !important;
+            color: white;
+            font-size: 15px;
+            padding: 0px 0px 0px 21px;
+        }
     }
-
-    #txtPhoneNumber{
-        display: contents !important;
-        font-style: italic;
-        color: blue;
-        font-size: 4vw;
-    }
-
-    #edtVerifyCode{
-        margin-bottom: 5vw;
-		border-radius: 2vw;
-        font-size: 5vw;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        border: 1px solid #808080;
-    }
-    .button-inner{
-        font-size: 4vw;
-    }
-    .button-round{
-        padding: 5vw;
-    }
+    .text-input[disabled] {
+    opacity: 1;
+}
 }
