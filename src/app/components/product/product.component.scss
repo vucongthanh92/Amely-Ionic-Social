@@ -22,10 +22,15 @@ app-product {
     }
 
     .product_image {
+        .slide-zoom {
+            height: 27rem;
+        }
+
         img {
-            max-width: 100%;
-            height: 300px;
+            height: 100%;
             width: 100%;
+            object-fit: cover;
+            object-position: center;
         }
     }
 
@@ -92,5 +97,4 @@ app-product {
             color: #333;
         }
     }
-
 }

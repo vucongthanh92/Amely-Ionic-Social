@@ -3,6 +3,7 @@
 /**
  */
 export class body_4 {
-    username: string;
-    password: string;
+    invitation_type?: string;
+    from_guid?: number;
+    to_guid?: number;
 }

@@ -22,14 +22,13 @@
     <ion-col col-12 *ngIf="product.images_entities" class="product_image">
       <ion-slides *ngIf="product.images_entities[product.images[0]]" autoplay="4000" class="shops_slides">
         <ion-slide *ngFor="let img of imageProduct" >
-          <img imageViewer src="{{img}}">
+          <img imageViewer src="{{img}}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-slide>
       </ion-slides>
       <!-- <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}"> -->
     </ion-col>
     <ion-col col-12 *ngIf="!product.images_entities" class="product_image">
-      <img imageViewer *ngIf="product.images[0]" src="{{ product.images[0] }}">
-      <img imageViewer *ngIf="!product.images[0]" src="assets/imgs/image_not_found.jpg">
+      <img imageViewer src="{{ product.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
     </ion-col>
   </ion-row>
 
@@ -55,20 +54,20 @@
     <ion-card-header>Thông tin cửa hàng</ion-card-header>
     <ion-card-content (click)="openShop()">
       <ion-row>
-        <ion-col col-6 class="product_info_label">Tên cửa hàng</ion-col>
-        <ion-col col-6>{{shop.owner_name}}</ion-col>
+        <ion-col col-5 class="product_info_label">Tên cửa hàng</ion-col>
+        <ion-col col-7>{{shop.owner_name}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6 class="product_info_label">Địa chỉ cửa hàng</ion-col>
-        <ion-col col-6>{{shop.owner_address}}</ion-col>
+        <ion-col col-5 class="product_info_label">Địa chỉ cửa hàng</ion-col>
+        <ion-col col-7>{{shop.owner_address}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6 class="product_info_label">Số điện thoại</ion-col>
-        <ion-col col-6>{{shop.owner_phone}}</ion-col>
+        <ion-col col-5 class="product_info_label">Số điện thoại</ion-col>
+        <ion-col col-7>{{shop.owner_phone}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6 class="product_info_label">Mã số thuế</ion-col>
-        <ion-col col-6>{{shop.shop_bidn}}</ion-col>
+        <ion-col col-5 class="product_info_label">Mã số thuế</ion-col>
+        <ion-col col-7>{{shop.shop_bidn}}</ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>

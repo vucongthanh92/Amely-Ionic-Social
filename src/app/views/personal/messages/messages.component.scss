@@ -1,5 +1,5 @@
 app-messages {
-   ion-note {
+    ion-note {
         font-size: 12px;
         align-self: flex-start;
         margin-top: 14px;
@@ -8,7 +8,8 @@ app-messages {
     .messages_content {
         line-height: 20px;
         overflow: hidden;
-        white-space: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     .message_date {

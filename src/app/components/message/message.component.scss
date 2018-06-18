@@ -48,14 +48,10 @@ app-message {
       .msg-detail {
         width: 100%;
         display: inline-block;
-        p {
-          margin: 0;
-        }
-        .msg-info {
-          p {
+
+        .message_from_content {
             font-size: .8em;
             color: #888;
-          }
         }
 
         .message_box_info {
@@ -63,10 +59,10 @@ app-message {
           margin-top: 5px;
           border-radius: 5px;
           padding: 8px 15px 12px 12px;
-          border: 1px solid #ddd;
           color: #fff;
           width: auto;
           max-width: 80%;
+          box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 
           span.triangle {
             background-color: #fff;
@@ -112,7 +108,8 @@ app-message {
     .message.right {
       .msg-detail {
         padding-right: 60px;
-        .msg-info {
+
+        .message_from_content {
           text-align: right;
         }
       }
@@ -130,6 +127,7 @@ app-message {
       .message_box_info {
         background-color: $userBackgroundColor;
         float: right;
+
         span.triangle {
           background-color: $userBackgroundColor;
           border-bottom-width: 0;
@@ -138,10 +136,6 @@ app-message {
         }
       }
     }
-  }
-
-  .iconMenu{
-    width: 40px;
   }
 
   .message_box_images {
@@ -174,7 +168,24 @@ app-message {
   }
 
   .message_choose_btn {
-    border-right: 1px solid #eee
+    border-right: 1px solid #c7c8cc;
+  }
+
+  .message_choose_img {
+    width: 25px;
+  }
+
+  .message_input_icon {
+    color: #00bdf2;
+  }
+
+  .message_choose_box {
+    border: 1px solid #c7c8cc;
+    text-align: center;
+  }
+
+  .message_text_bold {
+    font-weight: bold
   }
 
 }

@@ -1,16 +1,21 @@
 app-group {
+
+  .scroll-content {
+    margin-top: 0px;
+  }
+
   .ion_navbar_width {
     width: 27rem;
   }
 
   .group_cover {
-    padding: 0px;
     width: 100%;
     min-height: 200px;
     text-align: center;
     background-position: center !important;
     background-size: cover !important;
     box-shadow: inset 0px 0px 45px #000000;
+    margin: 64px 0px 0px 0px;
   }
 
   .group_avatar_row {
@@ -24,12 +29,13 @@ app-group {
       border-radius: 5px;
       border: 5px solid #efeff4;
       box-shadow: 0px 1px 5px 1px #999;
+      background-color: #fff;
 
       img {
         width: 100%;
         height: 100%;
         text-align: center;
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
         image-rendering: pixelated;
       }
@@ -118,7 +124,7 @@ app-group {
   }
 
   .group_tab {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #c7c8cc;
 
     .group_tab_box{
       border: 0px;
@@ -145,6 +151,8 @@ app-group {
   }
 
   .group_bar {
+    border-bottom: 1px solid #c7c8cc;
+
     ion-col {
       padding: 7px 0px 7px 0px;
     }
@@ -154,6 +162,7 @@ app-group {
     margin-left: 0px;
     margin-right: 0px;
     width: 100%;
+    margin: 0px 0px 10px 0px;
 
     .card-content-ios {
         padding: 5px 16px 5px;
@@ -167,7 +176,7 @@ app-group {
   }
 
   .list-ios {
-      margin: 0px !important;
+    margin: 0px;
   }
 
   ion-infinite-scroll-content {
@@ -188,5 +197,8 @@ app-group {
       background-color: #f0ad4e;
     }
   }
-  
+
+  .group_bar_add_group {
+    margin-left: 3px;
+  }
 }

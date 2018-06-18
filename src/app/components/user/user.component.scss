@@ -1,4 +1,8 @@
 app-user {
+  .scroll-content {
+    margin-top: 63px !important;
+  }
+
   .profile_cover {
     padding: 0px;
     width: 100%;
@@ -132,8 +136,8 @@ app-user {
   .profile_bar {
     background-color: white;
     color: #999;
-    border-bottom: 1px solid #c8c7cc;
     border-top: 1px solid #c8c7cc;
+    border-bottom: 1px solid #c8c7cc;
   }
 
   .profile_store {
@@ -141,7 +145,6 @@ app-user {
     margin-right: 0px;
     width: 100%;
     margin: 0px;
-    border-top: 1px solid #c8c7cc;
     border-bottom: 1px solid #c8c7cc;
     box-shadow: none;
 

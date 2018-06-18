@@ -8,8 +8,7 @@
           </span>
         </div>
 
-        <div class="wallphoto_quantity_4" *ngIf="voucher.images[0]" [style.background]="'url(' + voucher.images[0] + ')'"></div>
-        <div class="wallphoto_quantity_4" *ngIf="voucher.images[0]==''" style="background-image: url('assets/imgs/image_not_found.jpg')"></div>
+        <img class="wallphoto_quantity_4" src="{{voucher.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
 
         <div class="voucher_limit"> * không giới hạn</div>
       </ion-card>
@@ -49,7 +48,7 @@
 </ion-content>
 
 <ion-footer [ngClass]="device_screen">
-  <ion-scroll scrollX>
+  <ion-scroll class="voucher_footer_scroll" scrollX>
     <div class="scroll-item">
       <ion-col *ngFor="let category of categories" (click)="goToPage('category',null,category);">
         <div class="item-card">

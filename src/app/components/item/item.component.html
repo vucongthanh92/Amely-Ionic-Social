@@ -11,23 +11,34 @@
 
 <ion-content class="item_product_main" *ngIf="product">
   <ion-card class="item_product_image">
-    <img imageViewer *ngIf="product.images[0]" src="{{product.images[0]}}" />
-    <img imageViewer *ngIf="product.images[0]==null" src="assets/imgs/logo.png" />
-    <div *ngIf="!is_remove_item" style="position: absolute;right: 0;bottom: 0">
-      <button (click)="onWishList(false)" *ngIf="item.wishlist=='2'" ion-button icon-only class="item_wishlist_off">
-        <ion-icon class="iconLike1" name="iconLike1"></ion-icon>
-      </button>
-      <button (click)="onWishList(true)" *ngIf="item.wishlist=='1' || item.wishlist==undefined" ion-button icon-only class="item_wishlist_on">
-        <ion-icon class="iconLike" name="iconLike"></ion-icon>
-      </button>
+    
+      <ion-slides autoplay="4000">
+        <ion-slide *ngFor="let img of imageProduct">
+          <img imageViewer src="{{img}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+          <div *ngIf="!is_remove_item" style="position: absolute;right: 0;bottom: 0">
+            <button (click)="onWishList(false)" *ngIf="item.wishlist=='2'" ion-button icon-only class="item_wishlist_off">
+              <ion-icon class="iconLike1" name="iconLike1"></ion-icon>
+            </button>
+            <button (click)="onWishList(true)" *ngIf="item.wishlist=='1' || item.wishlist==undefined" ion-button icon-only class="item_wishlist_on">
+              <ion-icon class="iconLike" name="iconLike"></ion-icon>
+            </button>
+          
+            <button *ngIf="item.givelist=='2'" (click)="onGiveList(false)" ion-button icon-only class="item_givelist_off">
+              <ion-icon class="iconWannaSend1" name="iconWannaSend"></ion-icon>
+            </button>
+            <button (click)="onGiveList(true)" *ngIf="item.givelist=='1' || item.givelist==undefined" ion-button icon-only class="item_givelist_on">
+              <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
+            </button>
+          </div>
+        </ion-slide>
+        
+      </ion-slides>
+      <!-- <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}"> -->
 
-      <button *ngIf="item.givelist=='2'" (click)="onGiveList(false)" ion-button icon-only class="item_givelist_off">
-        <ion-icon class="iconWannaSend1" name="iconWannaSend"></ion-icon>
-      </button>
-      <button (click)="onGiveList(true)" *ngIf="item.givelist=='1' || item.givelist==undefined" ion-button icon-only class="item_givelist_on">
-        <ion-icon class="iconWannaSend" name="iconWannaSend"></ion-icon>
-      </button>
-    </div>
+
+    <!-- <img imageViewer *ngIf="product.images[0]" src="{{product.images[0]}}" />
+    <img imageViewer *ngIf="product.images[0]==null" src="assets/imgs/logo.png" /> -->
+    
   </ion-card>
 
   <ion-card>

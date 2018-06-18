@@ -3,10 +3,8 @@
 /**
  */
 export class body_8 {
-    name?: string;
-    description?: string;
-    category?: string;
-    phone?: string;
-    address?: string;
-    website?: string;
+    owner_guid?: number;
+    bookmark_type?: string;
+    offset?: number;
+    limit?: number;
 }

@@ -34,7 +34,6 @@ export class ShopsFriendlyComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    setTimeout(() => {
       this.shoppingsService.getFriendlyShop().subscribe(data => {
         if (data.shops instanceof Array) {
           
@@ -46,7 +45,6 @@ export class ShopsFriendlyComponent implements OnInit {
           this.users = [];
         }
       }, err => this.loadData(--retry));
-    }, 2500);
    
   }
   goToPage(value, guid) {

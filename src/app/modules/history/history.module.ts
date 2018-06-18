@@ -7,6 +7,7 @@ import { HistoryOrderDetailComponent } from './history-order-detail/history-orde
 import { HistoryOrderComponent } from './history-order/history-order.component';
 import { HistoryOfferComponent } from './history-offer/history-offer.component';
 import { HistoryOfferDetailComponent } from './history-offer-detail/history-offer-detail.component';
+import { HistoryDeliveryFromStorageComponent } from './history-delivery-from-storage/history-delivery-from-storage.component';
 
 @NgModule({
   imports: [
@@ -14,8 +15,8 @@ import { HistoryOfferDetailComponent } from './history-offer-detail/history-offe
     IonicModule
   ],
   declarations: [HistoryDeliveryComponent, HistoryDeliveryDetailComponent, HistoryOrderDetailComponent,
-    HistoryOrderComponent, HistoryOfferComponent, HistoryOfferDetailComponent],
+    HistoryOrderComponent, HistoryOfferComponent, HistoryOfferDetailComponent, HistoryDeliveryFromStorageComponent],
   entryComponents: [HistoryDeliveryComponent, HistoryDeliveryDetailComponent, HistoryOrderDetailComponent,
-    HistoryOrderComponent, HistoryOfferComponent, HistoryOfferDetailComponent]
+    HistoryOrderComponent, HistoryOfferComponent, HistoryOfferDetailComponent, HistoryDeliveryFromStorageComponent]
 })
 export class HistoryModule { }

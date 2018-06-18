@@ -3,7 +3,6 @@
 /**
  */
 export class body_2 {
-    advertise_type?: string;
-    offset?: number;
-    limit?: number;
+    user_poll?: number;
+    group_guid?: number;
 }

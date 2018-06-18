@@ -3,6 +3,6 @@
 /**
  */
 export class body_32 {
-    owner_guid?: number;
-    type?: string;
+    new_password?: string;
+    email?: string;
 }

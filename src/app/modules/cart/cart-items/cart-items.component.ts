@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { App, NavController, AlertController, LoadingController } from 'ionic-angular';
 import { PaymentItemsComponent } from '../../payment/payment-items/payment-items.component';
 import { ShoppingsService } from '../../../services/shoppings.service';
-import { Product } from '../../../api/models';
+import { Product, User } from '../../../api/models';
 
 @Component({
   selector: 'app-cart-items',
@@ -15,6 +15,7 @@ export class CartItemsComponent implements OnInit {
   items: any;
   number_items = 0;
   total = 0;
+  public userCurrent: User;
 
   constructor(
     private paymentService: PaymentService,
@@ -26,6 +27,7 @@ export class CartItemsComponent implements OnInit {
     public appCtrl: App) { }
 
   ngOnInit() {
+    this.userCurrent = this.customService.user_current;
   }
 
   ionViewDidEnter() {
@@ -147,5 +149,9 @@ export class CartItemsComponent implements OnInit {
 
   dismiss() {
     this.nav.pop();
+  }
+
+  formatTotalPrice() {
+    return this.customService.formatCurrency(this.total + "", this.userCurrent.usercurrency)
   }
 }

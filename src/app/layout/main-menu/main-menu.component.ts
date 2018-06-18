@@ -372,15 +372,12 @@ export class MainMenuComponent implements OnInit {
   }
 
   showNotify(id, txt: string, keyFirebase) {
-    alert(txt + " " + id);
+    // alert(txt + " " + id);
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
     this.localNotifications.schedule({
       id: id,
       text: txt,
       led: 'FF0000'
     });
-
-
-
   }
 }

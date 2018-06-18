@@ -72,6 +72,10 @@ export class MessagesService {
     return this.fbService.createMessage(message, key_chat);
   }
 
+  updateLastRead(owner_from, owner_to, owner_to_type) {
+    return this.fbService.updateLastRead(owner_from, owner_to, owner_to_type);
+  }
+
   getGift(subject_id, username) {
     return this.fbService.getGiftBySubject(subject_id, username);
   }
@@ -83,7 +87,8 @@ export class MessagesService {
   selectFromGallery(key_chat) {
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL
+      destinationType: this.camera.DestinationType.DATA_URL,
+      correctOrientation: true
     };
     this.camera.getPicture(options).then((imageData) => {
       let owner_from = this.customService.user_current.username;
@@ -105,7 +110,8 @@ export class MessagesService {
       quality: 80,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
     }).then((imageData) => {
       let owner_from = this.customService.user_current.username;
       let extension = ".jpg";

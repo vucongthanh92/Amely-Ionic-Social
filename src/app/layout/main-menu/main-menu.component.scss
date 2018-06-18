@@ -12,15 +12,16 @@ app-main-menu {
 
     .menu_images {
         border-radius: 50%;
-        width: 65px;
-        height: 65px;
+        width: 6.5rem;
+        height: 6.5rem;
         background-position: center !important;
         background-size: cover !important;
         margin: auto;
     }
 
     .main-nav {
-        margin: 18px auto 0px auto;
+        margin: 2rem auto auto auto;
+        text-align: center;
     }
 
     .main_title {

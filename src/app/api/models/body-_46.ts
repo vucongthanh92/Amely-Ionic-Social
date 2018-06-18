@@ -3,7 +3,6 @@
 /**
  */
 export class body_46 {
-    to_guid?: string;
-    product_guid?: string;
-    redeem_quantity?: number;
+    offer_guid?: number;
+    counter_offer_guid?: number;
 }

@@ -47,7 +47,6 @@ export class VouchersComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    setTimeout(() => {
       this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
         this.vouchers = []
         if (data instanceof Array) {
@@ -60,7 +59,6 @@ export class VouchersComponent implements OnInit {
           this.categories = data;
         }
       }, err => this.loadData(--retry))
-    }, 2500);
     
   }
   goToPage(value, voucher: Product, category: Category) {

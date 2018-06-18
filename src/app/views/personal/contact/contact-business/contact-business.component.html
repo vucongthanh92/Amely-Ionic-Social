@@ -3,7 +3,7 @@
     <ion-item *ngFor="let page of business_pages" (click)="goToPage(page)">
       <ion-row>
         <ion-col class="contact_business_box_image" col-3>
-          <div class="contact_business_avatar" [style.background]="'url(' + page.avatar + ')'"></div>
+          <img class="contact_business_avatar" src="{{page.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-col>
         <ion-col col-9>
           <div class="contact_business_title">{{page.title}}</div>

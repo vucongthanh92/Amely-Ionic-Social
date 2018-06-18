@@ -1,17 +1,17 @@
 <ion-grid class="album_container" *ngIf="photos">
 	<ion-row>
 		<ion-col col-4 *ngIf="photosAvatar[0]" (click)="onShowImage('avatar')">
-			<div class="album_box"  [style.background]="'url(' + photosAvatar[0].value + ')'"></div>
+			<img class="album_box" src="{{photosAvatar[0].value}}" onError="this.src='assets/imgs/image_not_found.jpg';">
 			<div class="album_title">Album Ảnh Đại Diện</div>
 		</ion-col>
 
 		<ion-col col-4 *ngIf="photosCover[0]" (click)="onShowImage('cover')">
-			<div  class="album_box" [style.background]="'url(' + photosCover[0].value + ')'"></div>
+			<img class="album_box" src="{{photosCover[0].value}}" onError="this.src='assets/imgs/image_not_found.jpg';">
 			<div class="album_title">Album Ảnh Bìa</div>
 		</ion-col>
 
 		<ion-col col-4 *ngIf="photosFeeds[0]" (click)="onShowImage('feed')">
-			<div  class="album_box" [style.background]="'url(' + photosFeeds[0].value + ')'"></div>
+			<img class="album_box" src="{{photosFeeds[0].value}}" onError="this.src='assets/imgs/image_not_found.jpg';">
 			<div class="album_title">Ảnh Trên Dòng Thời Gian</div>
 		</ion-col>
 	</ion-row>
@@ -21,21 +21,21 @@
 	<ion-row class="images_box" *ngIf="isShowAvatar">
 		<div class="images_title">Album Ảnh Đại Diện</div>
 		<ion-col class="images_layout" col-4 *ngFor="let photo of photosAvatar">
-			<img src="{{photo.value}}" />
+			<img src="{{photo.value}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
 		</ion-col>
 	</ion-row>
 
 	<ion-row class="images_box" *ngIf="isShowCover">
 		<div class="images_title">Album Ảnh Bìa</div>
 		<ion-col class="images_layout" col-4 *ngFor="let photo of photosCover">
-			<img src="{{photo.value}}" />
+			<img src="{{photo.value}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
 		</ion-col>
 	</ion-row>
 
 	<ion-row class="images_box" *ngIf="isShowFeed">
 		<div class="images_title">Ảnh Trên Dòng Thời Gian</div>
 		<ion-col class="images_layout" col-4 *ngFor="let photo of photos">
-			<img src="{{photo.value}}"  imageViewer/>
+			<img src="{{photo.value}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer/>
 		</ion-col>
 	</ion-row>
 

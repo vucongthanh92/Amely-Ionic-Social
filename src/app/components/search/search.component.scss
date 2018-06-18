@@ -1,31 +1,69 @@
- app-search {
-   ion-segment {
-        display: block;
-        white-space: nowrap;
-        font-size: 0;
-        overflow: auto;
+app-search {
+    .search_list {
+        margin: 0px;
+    }
 
-        &::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
+    .search_item {
+        padding: 7px 0px 9px 9px;
+    }
 
-        ion-segment-button.segment-button {
-            display: inline-block;
-            min-width: 100px;
-            width: auto;
+    .product_feature_price {
+        color: #D9534F;
+        font-size: 14px;
+        text-transform: capitalize;
+    }
+
+    .product_sale_price {
+        color: #b6b7b7;
+        font-size: 14px;
+        text-transform: capitalize;
+        text-decoration: line-through;
+    }
+
+    ion-segment {
+        height: 40px;
+    }
+
+    .segment-ios .segment-button.segment-activated {
+        color: #00bdf2;
+        border-bottom: 1px solid #00bdf2;
+    }
+
+    .segment-ios .segment-button {
+        border-radius: 0px !important;
+        background-color: #fff !important;
+        color: #333;
+        border: none;
+        border-right: 1px solid #c7c8cc;
+        font-size: 1.5rem;
+        height: 100%;
+        line-height: 4rem;
+    }
+
+    .search_box_price {
+        color: red; 
+        font-weight: bold;
+    }
+
+    ion-thumbnail {
+        width: 56px;
+        height: 56px;
+
+        img {
+            object-fit: contain;
+            object-position: center;
         }
     }
-     .product_feature_price {
-    color: #D9534F;
-    font-size: 14px;
-    text-transform: capitalize;
-  }
-  .product_sale_price {
-    color: #b6b7b7;
-    font-size: 14px;
-    text-transform: capitalize;
-    text-decoration: line-through;
-  }
- }
+
+    .search_title {
+        color: #333;
+        font-size: 1.7rem;
+        text-transform: capitalize;
+    }
+
+    .search_datetime {
+        font-size: 1.4rem;
+        color: #8e9093;
+        margin: 5px 0px 0px 0px;
+    }
+}

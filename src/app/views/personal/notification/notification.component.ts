@@ -74,7 +74,7 @@ export class NotificationComponent implements OnInit {
       case "event:invite":
       case 'group:inviterequest':
       case "friend:request":
-        let addFriend = this.modalCtrl.create(AddFriendComponent, { position_selected: 2 });
+        let addFriend = this.modalCtrl.create(AddFriendComponent, { position_selected: 1 });
         addFriend.present();
 
         break;
