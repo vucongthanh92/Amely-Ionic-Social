@@ -211,12 +211,13 @@ export class CustomService {
                 destinationType: camera.DestinationType.DATA_URL,
                 encodingType: camera.EncodingType.JPEG,
                 correctOrientation: true,
+                allowEdit: true,
                 mediaType: camera.MediaType.PICTURE
               }).then((imageData) => {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
@@ -239,7 +240,7 @@ export class CustomService {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });

@@ -88,13 +88,14 @@ export class MessagesService {
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
-      correctOrientation: true
+      correctOrientation: true,
+      allowEdit: true
     };
     this.camera.getPicture(options).then((imageData) => {
       let owner_from = this.customService.user_current.username;
       let extension = ".jpg";
       let content_type = "image/jpg";
-      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type,false).then(task => {
         let attachment = { media_type: "image", url: task.downloadURL };
         let message = { from: owner_from, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
         this.fbService.createMessage(message, key_chat);
@@ -111,12 +112,13 @@ export class MessagesService {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      correctOrientation: true,
+      allowEdit: true
     }).then((imageData) => {
       let owner_from = this.customService.user_current.username;
       let extension = ".jpg";
       let content_type = "image/jpg";
-      this.fbService.uploadImage(owner_from, imageData, extension, content_type).then(task => {
+      this.fbService.uploadImage(owner_from, imageData, extension, content_type,false).then(task => {
         let attachment = { media_type: "image", url: task.downloadURL };
         let message = { from: owner_from, status: "Đã gửi", text: "", time: Date.now(), attachment: attachment };
         this.fbService.createMessage(message, key_chat);
