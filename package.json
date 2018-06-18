@@ -20,6 +20,7 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
+    "@ionic-native/android-permissions": "^4.7.0",
     "@ionic-native/barcode-scanner": "^4.5.3",
     "@ionic-native/camera": "^4.5.3",
     "@ionic-native/contacts": "^4.6.0",
@@ -44,6 +45,7 @@
     "angularfire2": "^5.0.0-rc.6",
     "cordova-android": "~7.0.0",
     "cordova-ios": "~4.5.4",
+    "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-contacts": "^3.0.1",
@@ -111,7 +113,8 @@
       },
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-contacts": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android",

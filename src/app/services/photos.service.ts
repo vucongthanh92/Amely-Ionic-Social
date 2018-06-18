@@ -25,7 +25,8 @@ export class PhotosService {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      correctOrientation: true,
+      allowEdit: true
     }).then((imageData) => {
       const filePath = "chat/"+this.userCurrent.username + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) +".jpg";
       this.storage.ref(filePath).putString(imageData, 'base64', { contentType: 'image/jpg' }).then( task => {
@@ -47,7 +48,8 @@ export class PhotosService {
     var options = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
-      correctOrientation: true
+      correctOrientation: true,
+      allowEdit: true
     };
     this.camera.getPicture(options).then((imageData) => {
       const filePath = "chat/" + this.userCurrent.username + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + ".jpg";
