@@ -210,6 +210,7 @@ export class CustomService {
                 quality: 80,
                 destinationType: camera.DestinationType.DATA_URL,
                 encodingType: camera.EncodingType.JPEG,
+                correctOrientation: true,
                 mediaType: camera.MediaType.PICTURE
               }).then((imageData) => {
                 let owner_from = this.user_current.username;
@@ -231,7 +232,8 @@ export class CustomService {
               loading.present();
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
-                destinationType: camera.DestinationType.DATA_URL
+                destinationType: camera.DestinationType.DATA_URL,
+                correctOrientation:true
               };
               camera.getPicture(options).then((imageData) => {
                 let owner_from = this.user_current.username;
