@@ -24,6 +24,10 @@ export class AddFriendComponent implements OnInit {
   ngOnInit() {
   }
   
+  ionViewDidEnter() {
+    this.tabRef.select(this.position_selected);
+  }
+  
   dismiss() {
     this.viewCtrl.dismiss();
   }

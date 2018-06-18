@@ -10,7 +10,9 @@
 </ion-header>
 
 <ion-content class="history_delivery_container">
-  <ion-list class="history_delivery_list" *ngIf="dos">
+
+  <!-- CODE CU -->
+  <!-- <ion-list class="history_delivery_list" *ngIf="dos">
     <ion-item class="history_delivery_item" *ngFor="let do of dos " (click)="openDetail(do)">
       <ion-thumbnail item-left>
         <img class="history_delivery_img" src="{{do.product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
@@ -33,6 +35,21 @@
         Trạng thái: 
         <span *ngIf="do.status=='new'" class="history_delivery_text">Chờ duyệt</span>
         <span *ngIf="do.status=='approved'" class="history_delivery_text">Đã duyệt</span>
+      </div>
+    </ion-item>
+  </ion-list> -->
+
+  <!-- CODE MOI -->
+  <ion-list>
+    <ion-item *ngFor="let tran of transactions " (click)="openDetail(tran)">
+      <div>
+        Đơn hàng số {{tran.related_guid}}
+      </div>
+    <div class="history_delivery_row">
+      Ngày tạo: {{convertDate(+tran.time_created) | date:'dd/MM/yyyy'}}
+    </div>
+      <div class="history_delivery_row">
+        Phí giao hàng: {{ formatSalePriceShow( tran.quantity, "VND") }}
       </div>
     </ion-item>
   </ion-list>

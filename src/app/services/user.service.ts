@@ -56,6 +56,11 @@ export class UserService {
     return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code, email: "" });
   }
 
+  reActionUser(mobilelogin: string, email: string) {
+    return this.api.reActiveUser({ mobilelogin: mobilelogin, email: email });
+  }
+
+
   blockUser(guid) {
     return this.api.createBlock({ user_guid: guid })
   }

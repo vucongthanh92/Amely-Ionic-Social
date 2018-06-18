@@ -3,6 +3,9 @@
 /**
  */
 export class body_1 {
-    user_poll?: number;
-    group_guid?: number;
+    username?: string;
+    password?: string;
+    mobilelogin?: string;
+    code?: string;
+    email?: string;
 }

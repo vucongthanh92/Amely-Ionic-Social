@@ -3,5 +3,6 @@
 /**
  */
 export class body_12 {
-    items?: string;
+    guid?: number;
+    quantity?: number;
 }

@@ -18,15 +18,21 @@ export class ForgotComponent implements OnInit {
   }
 
   forgotPassword() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if (this.emailInput && this.emailInput.length > 5) {
-      this.retrySendEmail(5, this.emailInput)
+      this.retrySendEmail(5, this.emailInput, loading)
     } else {
+      loading.dismiss();
       this.customService.toastMessage("Email không hợp lệ", 'bottom', 3000);
     }
   }
 
-  retrySendEmail(retry, email) {
+  retrySendEmail(retry, email, loading) {
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -35,12 +41,14 @@ export class ForgotComponent implements OnInit {
         this.email = email;
         // this.activationCode();
         this.nav.push(ForgotVertifyComponent, { email: this.emailInput });
+        loading.dismiss();
       } else {
         this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+        loading.dismiss();
       }
 
     }, err => {
-      this.retrySendEmail(--retry, email)
+      this.retrySendEmail(--retry, email, loading)
     })
   }
 

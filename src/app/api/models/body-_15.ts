@@ -3,10 +3,11 @@
 /**
  */
 export class body_15 {
-    offset?: number;
-    limit?: number;
-    shop_guid?: number;
-    is_shop?: boolean;
-    type?: number;
-    get_all?: number;
+    title?: string;
+    description?: string;
+    friendly_url?: string;
+    sort_order?: number;
+    enabled?: string;
+    parent_guid?: number;
+    image?: string;
 }
