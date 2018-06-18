@@ -41,6 +41,9 @@ app-shops-friendly {
             z-index: 2;
             width: 5rem;
             height: 5rem;
+            position: relative;
+            top: 0px;
+            left: 0px;
 
             .shops_friendly_image {
                 width: 100%;
@@ -66,7 +69,9 @@ app-shops-friendly {
                 padding: 8px 0px 7px 20px;
                 border-bottom-right-radius: 15px;
                 border-top-right-radius: 15px;
-                margin: 0px 0px 0px -15px;
+                position: relative;
+                z-index: 1;
+                left: -1rem;
             }
 
             .shops_friendly_description {
