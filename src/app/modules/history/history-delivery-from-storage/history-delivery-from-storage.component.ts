@@ -11,12 +11,16 @@ import { User } from '../../../api/models';
 export class HistoryDeliveryFromStorageComponent implements OnInit {
   guid: number;
   deliveryOrder: any;
+  products: any=[];
   public userCurrent: User;
   constructor(private nav: NavController, private navParams: NavParams, private historyDeliveryOrder: HistoryDeliveryOrderService, 
     public customService: CustomService) {
     this.guid = this.navParams.get('guid');
     this.historyDeliveryOrder.historyDeliveryOrder(this.guid).subscribe(data => {
       this.deliveryOrder = data;
+      this.products = data.products;
+      console.log(data);
+      
     });
    }
 

@@ -20,15 +20,21 @@ export class ForgotVertifyComponent implements OnInit {
   }
 
   activationCode() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if (this.code) {
-      this.retryActivation(5, this.email, this.code);
+      this.retryActivation(5, this.email, this.code, loading);
     } else {
       this.customService.toastMessage("Chưa nhập mã xác nhận", 'bottom', 3000);
+      loading.dismiss();
     }
   }
 
-  retryActivation(retry, email, code) {
+  retryActivation(retry, email, code, loading) {
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -36,9 +42,13 @@ export class ForgotVertifyComponent implements OnInit {
       if (data.status) {
         // this.changePassword();
         this.nav.push(ForgotChangePassComponent, {email: this.email});
+        loading.dismiss();
       } else {
         this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+        loading.dismiss();
       }
+     },err => {
+       this.retryActivation(--retry, email, code, loading)
     })
   }
 

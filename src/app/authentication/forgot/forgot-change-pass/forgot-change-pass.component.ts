@@ -24,20 +24,28 @@ export class ForgotChangePassComponent implements OnInit {
   }
 
   changePassword(){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if (!this.password || !this.rePassword) {
       this.customService.toastMessage("Vui lòng nhập đủ thông tin", "bottom", 3000);
+      loading.dismiss();
     } else if (!this.customService.checkPasswordStrength(this.password)) {
       this.customService.toastMessage("Mật khẩu ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự in, thường và số.", "bottom", 3000);
+      loading.dismiss();
     }
     else if (this.password != this.rePassword) {
       this.customService.toastMessage("Mật khẩu không trùng khớp", "bottom", 3000);
+      loading.dismiss();
     } else {
-      this.retryChangePassword(5, this.password);
+      this.retryChangePassword(5, this.password, loading);
     }
   }
 
-  retryChangePassword(retry, password) {
+  retryChangePassword(retry, password, loading) {
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
@@ -45,10 +53,12 @@ export class ForgotChangePassComponent implements OnInit {
       if (data.status) {
         this.customService.toastMessage("Mật khẩu đã được thay đổi", "bottom", 3000)
         this.nav.setRoot(SigninComponent);
+        loading.dismiss();
       } else {
         this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
+        loading.dismiss();
       }
-    }, err => this.retryChangePassword(--retry, password))
+    }, err => this.retryChangePassword(--retry, password, loading))
   }
 
   dismiss() {

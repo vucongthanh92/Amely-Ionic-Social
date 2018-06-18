@@ -36,6 +36,7 @@ export class ItemComponent implements OnInit {
   isAdminEvent: boolean;
   ownerGuidEvent: any;
   user_current: User;
+  imageProduct: any = [];
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams,
     private inventoriesService: InventoriesService, private customService: CustomService,
@@ -67,9 +68,9 @@ export class ItemComponent implements OnInit {
         this.item = data;
         this.expiryType = +this.item.is_special;
         this.product = data.product_snapshot;
+        this.imageProduct = this.product.images;
         this.shop = data.product_snapshot.shop;
         this.is_remove_item = this.item.stored_expried || this.item.used;
-        // loading.dismiss();
         this.formatStoredDate();
       },
       err => {
