@@ -41,7 +41,7 @@
 
   <!-- CODE MOI -->
   <ion-list>
-    <ion-item *ngFor="let tran of transactions " (click)="openDetail()">
+    <ion-item *ngFor="let tran of transactions " (click)="openDetail(tran)">
       <div>
         Đơn hàng số {{tran.related_guid}}
       </div>

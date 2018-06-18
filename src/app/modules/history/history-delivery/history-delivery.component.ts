@@ -95,8 +95,8 @@ export class HistoryDeliveryComponent {
     return this.customService.formatCurrency(shippingFee + "", currency);
   }
 
-  openDetail() {
-    this.appCtrl.getRootNav().push(HistoryDeliveryFromStorageComponent, { guid: this.related_guid })
+  openDetail(tran) {
+    this.appCtrl.getRootNav().push(HistoryDeliveryFromStorageComponent, { guid: tran.related_guid })
   }
 
   dismiss() {
