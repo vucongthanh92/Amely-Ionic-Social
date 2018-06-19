@@ -1,89 +1,89 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">tạo nhóm</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">tạo nhóm</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <div class="scroll-content add_group_content">
-    <ion-grid>
-      <ion-row id="row-scroll-item">
-        <ion-scroll scrollX class="add_group_chooce">
-          <div class="scroll-item">
-            <ion-col *ngFor="let user of friends" (click)="chooseUser(user)">
-              <div class="item-card">
-                <ion-col col-4>
-                  <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-                  <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
-                </ion-col>
-              </div>
-            </ion-col>
-          </div>
-        </ion-scroll>
-      </ion-row>
-    </ion-grid>
-  </div>
-  
-  <div class="scroll-content add_group_center">
-    <ion-label class="labelCenter">Số lượng thành viên</ion-label>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <div class="add_group_center_icon_user">
-            <ion-icon class="checkboxIcon" ios="md-key" md="md-key"></ion-icon>
-            <img class="add_group_user_images" src="{{userCurrent.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            <ion-label class="add_group_user_name">{{userCurrent.fullname}}</ion-label>
-          </div>
-        </ion-col>
-        <ion-col col-8>
-          <ion-scroll scrollX class="add_group_center_box">
-            <div class="scroll-item">
-              <ion-col *ngFor="let user of users_choosed" (click)="removeUser(user)">
-                <div class="add_group_center_card">
-                  <ion-col col-4>
-                    <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-                    <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
-                    <!-- <ion-checkbox class="checkboxIcon"></ion-checkbox> -->
-                  </ion-col>
-                </div>
-              </ion-col>
-            </div>
-          </ion-scroll>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+    <div class="scroll-content add_group_content">
+        <ion-grid>
+            <ion-row id="row-scroll-item">
+                <ion-scroll scrollX class="add_group_chooce">
+                    <div class="scroll-item">
+                        <ion-col *ngFor="let user of friends" tappable (click)="chooseUser(user)">
+                            <div class="item-card">
+                                <ion-col col-4>
+                                    <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                                    <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
+                                </ion-col>
+                            </div>
+                        </ion-col>
+                    </div>
+                </ion-scroll>
+            </ion-row>
+        </ion-grid>
+    </div>
 
-  <div class="scroll-content add_group_fillname">
-      <ion-item>
-        <ion-input [(ngModel)]="group_name" type="text" placeholder="Đặt tên nhóm"></ion-input>
-      </ion-item>
-  </div>
-  
-  <div class="scroll-content add_group_regulation">
-    <div class="divFooterCheckbox">
-      <ion-col col-3>
-        <label class="">
+    <div class="scroll-content add_group_center">
+        <ion-label class="labelCenter">Số lượng thành viên</ion-label>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4>
+                    <div class="add_group_center_icon_user">
+                        <ion-icon class="checkboxIcon" ios="md-key" md="md-key"></ion-icon>
+                        <img class="add_group_user_images" src="{{userCurrent.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <ion-label class="add_group_user_name">{{userCurrent.fullname}}</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-scroll scrollX class="add_group_center_box">
+                        <div class="scroll-item">
+                            <ion-col *ngFor="let user of users_choosed" tappable (click)="removeUser(user)">
+                                <div class="add_group_center_card">
+                                    <ion-col col-4>
+                                        <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                                        <ion-label class="add_group_user_name">{{user.fullname}}</ion-label>
+                                        <!-- <ion-checkbox class="checkboxIcon"></ion-checkbox> -->
+                                    </ion-col>
+                                </div>
+                            </ion-col>
+                        </div>
+                    </ion-scroll>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="scroll-content add_group_fillname">
+        <ion-item>
+            <ion-input [(ngModel)]="group_name" type="text" placeholder="Đặt tên nhóm"></ion-input>
+        </ion-item>
+    </div>
+
+    <div class="scroll-content add_group_regulation">
+        <div class="divFooterCheckbox">
+            <ion-col col-3>
+                <label class="">
           <ion-checkbox  [(ngModel)]="has_inventory" class="checkboxFotter"></ion-checkbox> Tạo kho quà đồng sở hữu của nhóm
         </label>
-      </ion-col>
+            </ion-col>
+        </div>
+        <div class="">
+            <ion-label class="marginLabelFooter">Lưu ý</ion-label>
+            <ion-label class="marginLabelFooter2">1. Admin (avatar có gắn chìa khóa) là người phụ trách
+                <br> nhóm.</ion-label>
+            <ion-label class="marginLabelFooter2">2. Nếu nhóm có kho quà chung, Admin sẽ toàn quyền
+                <br> thao tác với quà trong kho.</ion-label>
+            <ion-label class="marginLabelFooter2">3.
+                <a href="https://amely.com/static/quy-tac-chuyen-quyen-admin-nhom" target="_blank">Chuyển quyền Admin</a> theo quy tắc chung của Apps.</ion-label>
+        </div>
+        <div class="divButtonFotter">
+            <button class="buttonFotter" ion-button tappable (click)="createAGroup()">Tạo nhóm</button>
+        </div>
     </div>
-    <div class="">
-      <ion-label class="marginLabelFooter">Lưu ý</ion-label>
-      <ion-label class="marginLabelFooter2">1. Admin (avatar có gắn chìa khóa) là người phụ trách
-        <br> nhóm.</ion-label>
-      <ion-label class="marginLabelFooter2">2. Nếu nhóm có kho quà chung, Admin sẽ toàn quyền
-        <br> thao tác với quà trong kho.</ion-label>
-      <ion-label class="marginLabelFooter2">3.
-        <a href="https://amely.com/static/quy-tac-chuyen-quyen-admin-nhom" target="_blank">Chuyển quyền Admin</a> theo quy tắc chung của Apps.</ion-label>
-    </div>
-    <div class="divButtonFotter">
-      <button class="buttonFotter" ion-button (click)="createAGroup()">Tạo nhóm</button>
-    </div>
-  </div>
 </ion-content>
