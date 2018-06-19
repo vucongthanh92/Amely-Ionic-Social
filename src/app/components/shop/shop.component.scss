@@ -1,41 +1,65 @@
 app-shop {
   .shop_cover {
-    padding: 30px 30px 25px 30px;
+    padding: 0px;
     width: 100%;
-    min-height: 150px;
-    text-align: center;
-    background-size: cover !important;
-    margin: 50px 0px 0px 0px;
+    min-height: 200px;
     background-position: center !important;
+    background-size: cover !important;
+    box-shadow: inset 0px 0px 45px #000000;
   }
 
-  .shop_avatar {
-    width: 65px;
-    height: 65px;
-    border: 1px solid white;
-    margin: 10px 0px 0px 0px;
-  }
+  .shop_avatar_row {
+    background-color: #fff;
 
-  .shop_cover_title {
-    color: white;
-    font-size: 2rem;
-    margin: 7px 0px 0px 0px;
-    text-transform: capitalize;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    .shop_avatar {
+      width: 12rem;
+      height: 12rem;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 3px;
+      border: 5px solid #efeff4;
+      box-shadow: 0px 1px 5px 1px #999;
+      position: relative;
+      top: -5.5rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        object-fit: cover;
+        object-position: center;
+        image-rendering: pixelated;
+      }
+    }
+    
+    .shop_avatar_title {
+      color: #333;
+      font-size: 2.2rem;
+      text-transform: capitalize;
+      margin: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+      position: relative;
+      top: -3rem;
+    }
   }
 
   .shop_tabcontainer {
     background-color: #fff;
+    border-bottom: 1px solid #c7c8cc;
+    border-top: 1px solid #c7c8cc;
   }
 
   .shop_tab {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #c7c8cc;
   }
 
   .shop_tab_product {
     border-radius: 0px !important;
     border: 0px !important;
-    border-right: 1px solid #eee !important;
+    border-right: 1px solid #c7c8cc !important;
     margin: 7px 0px 7px 0px;
   }
 
@@ -54,7 +78,7 @@ app-shop {
 
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
-    color:#488aff !important;
+    color:#00bdf2 !important;
   }
 
   .about-info p {
@@ -92,7 +116,7 @@ app-shop {
 
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
-    color:blue;
+    color: #00bdf2;
   }
 
   .shop_tab_title{
@@ -134,5 +158,14 @@ app-shop {
     color: #999;
     text-transform: capitalize;
     font-size: 13px;
+  }
+
+  .shop_info_card {
+    margin: 12px 0px 12px 0px;
+    width: 100%;
+
+    ion-col {
+      color: #8e9093;
+    }
   }
 }

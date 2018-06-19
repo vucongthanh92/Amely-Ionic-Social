@@ -7,9 +7,10 @@ app-contact-users {
         padding: 0px;
         border-radius: 50%;
         overflow: hidden;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         -webkit-flex: unset;
+        border: 1px solid #c7c8cc;
 
         img {
             height: 100%;
@@ -21,7 +22,7 @@ app-contact-users {
 
     .list-ios .item-block .item-inner {
         border-bottom: 0.55px solid #c8c7cc;
-        padding: 1px 10px 1px 12px;
+        padding: 1px 7px 1px 10px;
     }
 
     .list-ios {
@@ -50,13 +51,12 @@ app-contact-users {
     }
 
     .contact_user_description {
-        font-size: 14px;
+        font-size: 1.4rem;
         color: #8e9093;
         margin: 0px 0px 5px 7px;
-        white-space: normal;
+        white-space: nowrap;
         overflow: hidden;
-        max-height: 35px;
-        line-height: 18px;
+        text-overflow: ellipsis;
     }
 
     .contact_user_mood {
@@ -77,13 +77,11 @@ app-contact-users {
 
     .contact_user_chatbox {
         text-align: right;
-        margin: 0px;
-        padding: 0px;
-    }
 
-    .contact_user_chat {
-        width: 50%;
-        margin: 50% 0px 0px 0px;
+        img {
+            width: 2.5rem;
+            margin: 1.5rem 0 0 0;
+        }
     }
 
     .contact_user_fab {

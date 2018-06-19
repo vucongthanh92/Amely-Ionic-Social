@@ -123,4 +123,8 @@ export class QuickPayListItemComponent implements OnInit {
       resolve();
     });
   }
+
+  dismiss() {
+    this.nav.pop();
+  }
 }

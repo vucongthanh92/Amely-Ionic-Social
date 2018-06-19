@@ -2,17 +2,15 @@
   <ion-list no-lines *ngIf="shops">
     <ion-item class="shops_friendly_item" *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
       <ion-avatar item-start>
-        <img class="shops_friendly_image" *ngIf="shop.avatar" src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <img class="shops_friendly_image" src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="shops_friendly_title">{{shop.title}}</h2>
       <p class="shops_friendly_description" *ngIf="shop.introduce">{{shop.introduce}}</p>
     </ion-item>
 
     <div *ngIf="shops.length == 0" class="shop_friendly_nodata">
-      <div>
-        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-      </div>
-      <div style="color: #999;">
+      <img src="assets/imgs/ic_feed.png">
+      <div class="shop_friendly_nodata_title">
         Không có dữ liệu...
       </div>
     </div>
@@ -26,5 +24,4 @@
       <h2></h2>
     </ion-item>
   </ion-list>
-
 </ion-content>

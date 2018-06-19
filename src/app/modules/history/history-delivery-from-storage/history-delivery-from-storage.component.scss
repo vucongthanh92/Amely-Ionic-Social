@@ -1,7 +1,74 @@
-
 app-history-delivery-from-storage{
-
     .row, h2 {
         color: #666;
+    }
+
+    .history_delivery_card {
+        margin: 0px 0px 10px 0px;
+        width: 100%;
+
+        ion-card-header {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: normal;
+            padding-bottom: 1.2rem;
+        }
+    }
+
+    .history_delivery_shop {
+        padding: 0px;
+
+        ion-thumbnail {
+            width: 5rem;
+            height: 5rem;
+            border: 1px solid #c7c8cc;
+            overflow: hidden;
+            border-radius: 50%;
+
+            img {
+                object-fit: cover;
+                object-position: center;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .history_delivery_shop_title {
+            font-size: 1.5rem;
+            margin: 0px 0px 3px 0px;
+        }
+    }
+
+    .history_delivery_product {
+        padding: 0px;
+
+        ion-thumbnail {
+            width: 5rem;
+            height: 5rem;
+            border: 1px solid #c7c8cc;
+            overflow: hidden;
+            border-radius: 3px;
+
+            img {
+                object-fit: cover;
+                object-position: center;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .history_delivery_product_title {
+            font-size: 1.5rem;
+            margin: 0px 0px 5px 0px;
+        }
+    }
+
+    .history_delivery_price {
+        color: #a52714;
+    }
+
+    .history_delivery_status {
+        color: #24ce57;
     }
 }
