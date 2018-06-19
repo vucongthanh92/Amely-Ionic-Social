@@ -33,14 +33,14 @@
     <ion-label class="labelCenter">Số lượng thành viên</ion-label>
     <ion-grid>
       <ion-row>
-        <ion-col col-3>
+        <ion-col col-4>
           <div class="add_group_center_icon_user">
             <ion-icon class="checkboxIcon" ios="md-key" md="md-key"></ion-icon>
             <img class="add_group_user_images" src="{{userCurrent.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
             <ion-label class="add_group_user_name">{{userCurrent.fullname}}</ion-label>
           </div>
         </ion-col>
-        <ion-col col-9>
+        <ion-col col-8>
           <ion-scroll scrollX class="add_group_center_box">
             <div class="scroll-item">
               <ion-col *ngFor="let user of users_choosed" (click)="removeUser(user)">

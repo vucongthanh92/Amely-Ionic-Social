@@ -44,6 +44,8 @@ export class UserComponent {
   limitOffer: number;
   limitGift: number;
   is_show_fab: boolean = false;
+  public device_screen: string;
+
   @ViewChild('feeds') feeds: FeedsComponent;
   constructor(
     public messagesService: MessagesService,
@@ -61,6 +63,7 @@ export class UserComponent {
     this.nav.swipeBackEnabled = true;
     this.imageViewerCtrl = imageViewerCtrl;
     this.retryGetServices(5);
+    this.device_screen = customService.checkDevices();
   }
 
   retryGetServices(retry) {

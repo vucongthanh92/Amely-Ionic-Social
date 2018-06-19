@@ -37,6 +37,8 @@ export class CreateShopComponent implements OnInit {
   public owner_province: any;
   public owner_district: any;
   public owner_ward: any;
+  public rules: boolean = false;
+  public relesDisabled: boolean = false;
 
   constructor(
     private navParams: NavParams, 
@@ -46,7 +48,10 @@ export class CreateShopComponent implements OnInit {
     public loadingCtrl: LoadingController,
     public nav: NavController
   ) {
+    
     this.shop = this.navParams.get('shop');
+    console.log(this.shop);
+    
     if (this.shop.guid != null) {
       this.name = this.shop.title;
       this.phone = this.shop.shop_phone;
@@ -66,7 +71,11 @@ export class CreateShopComponent implements OnInit {
       this.owner_district = this.shop.owner_district;
       this.owner_province = this.shop.owner_province;
       this.owner_ward = this.shop.owner_ward;
-
+      if (this.shop.status == '1' || this.shop.status == '2' || this.shop.status == '3' || this.shop.status == '4' || this.shop.status == '5') {
+        this.rules = true;
+        this.relesDisabled = true;
+        
+      }
       this.districts = DISTRICTS.filter(data => data.provinceid == this.province);
       this.wards = WARDS.filter(data => data.districtid == this.district);
       this.owner_districts = DISTRICTS.filter(data => data.provinceid == this.owner_province);
@@ -162,7 +171,10 @@ export class CreateShopComponent implements OnInit {
     } else if (!this.owner_province && !this.owner_district && !this.owner_ward) {
       loading.dismiss();
       this.customService.toastMessage('Chưa chọn địa chỉ chủ cửa hàng', 'bottom', 2000);
-    } else {
+    } else if (this.rules == false) {
+      loading.dismiss();
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản của Amely !', 'bottom', 2000);
+    }else {
       this.retryCreateShop(5, loading)
     }
   }
@@ -178,6 +190,7 @@ export class CreateShopComponent implements OnInit {
         data => {
           if (data.status) {
             this.appCtrl.getRootNav().pop();
+            this.customService.toastMessage('Đăng ký thành công, đang chờ được duyệt !', 'bottom', 3000)
           } else {
             this.customService.toastMessage('Đăng ký thất bại , vui lòng thử lại .', 'bottom', 3000)
           }
@@ -188,5 +201,8 @@ export class CreateShopComponent implements OnInit {
 
   dismiss() {
     this.nav.pop();
+  }
+
+  onChange($event) {
   }
 }

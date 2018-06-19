@@ -55,7 +55,7 @@ export class InventoryPublicComponent implements OnInit {
       if (data.owners) {
         this.usersGroup = data.owners;
       }
-    }, err => this.loadData(--retry));
+    }, err =>{ this.loadData(--retry)});
 
     this.eventsService.getEvents(0, 9999, 'all').subscribe(data => {
       if (data.events) {
@@ -64,7 +64,9 @@ export class InventoryPublicComponent implements OnInit {
       if (data.users) {
         this.usersEvent = data.users;
       }
-    }, err => this.loadData(--retry));
+    }, er => {this.loadData(--retry)});
+
+
     loading.dismiss();
     
   }

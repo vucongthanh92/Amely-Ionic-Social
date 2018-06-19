@@ -1,9 +1,4 @@
 app-business {
-
-  .scroll-content {
-    margin: 0px !important;
-  }
-
   .business_more_icon {
     color: #fff;
     margin: 1px 7px 0px 0px;
@@ -19,13 +14,12 @@ app-business {
     min-height: 200px;
     text-align: center;
     background-size: cover !important;
-    margin: 64px 0px 0px 0px;
     background-position: center !important;
     box-shadow: inset 0px 0px 45px #000000;
   }
 
   .business_avatar_row {
-    margin: -48px 0px 20px 0px;
+      background-color: #fff;
   }
 
   .business_avatar {
@@ -36,6 +30,8 @@ app-business {
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     margin: 0px auto 0px;
+    position: relative;
+    top: -5rem;
 
     img {
       width: 100%;
@@ -49,7 +45,8 @@ app-business {
     text-align: center;
     color: #333;
     font-size: 2.4rem;
-    margin: 9px 0px 0px 0px;
+    position: relative;
+    top: -3rem;
   }
 
   .business_nav {
