@@ -382,14 +382,14 @@ export class MainMenuComponent implements OnInit {
   showNotify(id, txt: string, keyFirebase, notify: Models.Notification) {
     var that = this;
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
-    // var a = new Notification("Amely", {
-    //   tag: id,
-    //   body: txt,
-    //   icon: 'assets/imgs/logo.png'
-    // })
-    // a.onclick = function () {
-    //   that.goToPage(notify)
-    // };
+    var a = new Notification("Amely", {
+      tag: id,
+      body: txt,
+      icon: 'assets/imgs/logo.png'
+    })
+    a.onclick = function () {
+      that.goToPage(notify)
+    };
   }
 
   goToPage(n: Models.Notification) {
