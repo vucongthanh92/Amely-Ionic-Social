@@ -10,7 +10,6 @@ app-contact-groups{
         margin: 0px;
         padding: 0px;
         max-width: none;
-        border: 1px solid #c8c7cc;
 
         img {
             width: 100%;
@@ -58,7 +57,7 @@ app-contact-groups{
         max-height: 40px;
         overflow: hidden;
         text-transform: capitalize;
-        padding: 3px 0px 0px 7px;
+        padding: 3px 7px 0px 7px;
         text-overflow: ellipsis;
         color: #333;
     }

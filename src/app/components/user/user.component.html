@@ -5,7 +5,6 @@
                 <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-
         <ion-buttons end>
             <button *ngIf="isLoadSuccess" ion-button (click)="openPopover($event)">
                 <ion-icon class="user_profile_more" name="md-more"></ion-icon>
@@ -16,12 +15,15 @@
 
 <ion-content class="outer-content">
     <div *ngIf="!is_failed && user">
-        <div [style.background]="'url(' + user.cover + ')'" class="profile_cover"></div>
-        <div class="profile_avatar_row">
-            <div class="profile_avatar">
-                <img src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <div class="profile_cover">
+            <img src="{{user.cover}}" (click)="openModal(this.userCurrent.cover)" onError="this.src='assets/imgs/banner.png';">
+        </div>
+        <div class="profile_avatar">
+            <div class="profile_avatar_image">
+                <img *ngIf="genderLabel == 'Nam'" src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/avatar-nam.png'">
+                <img *ngIf="genderLabel == 'Nữ'" src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/avatar-nu.png'">
             </div>
-            <div class="profile_cover_title">{{user.fullname}}</div>
+            <div class="profile_avatar_title">{{user.fullname}}</div>
         </div>
 
         <div class="bar bar-header bar-dark profile_bar">

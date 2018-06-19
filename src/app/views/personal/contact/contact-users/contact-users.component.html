@@ -6,7 +6,8 @@
           <ion-col col-10 (click)="goToPage(friend)">
             <ion-row>
               <ion-col class="contact_user_image_box" col-4>
-                <img width="100%" src="{{ friend.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+                <img *ngIf="friend.gender == 'male'"  src="{{ friend.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'"/>
+                <img *ngIf="friend.gender == 'female'" src="{{ friend.avatar }}" onError="this.src='assets/imgs/avatar-nu.png'" />
               </ion-col>
               <ion-col class="contact_user_info" col-8>
                 <div class="contact_user_title">{{ friend.fullname }}</div>
