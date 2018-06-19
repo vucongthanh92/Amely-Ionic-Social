@@ -8,79 +8,56 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content>
-    <ion-card padding *ngIf="deliveryOrder" >
-        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
-            Thông Tin Người Nhận
-        </ion-card-header>
+
+<ion-content class="outer-content">
+    <ion-card class="history_delivery_card" *ngIf="deliveryOrder" >
+        <ion-card-header>Thông Tin Người Nhận</ion-card-header>
         <ion-card-content>
             <ion-row>
-                <ion-col col-5>
-                    Người nhận:
-                </ion-col>
-                <ion-col col-7>
-                    {{deliveryOrder.shipping_fullname}}
-                </ion-col>
+                <ion-col col-5>Người nhận:</ion-col>
+                <ion-col col-7>{{deliveryOrder.shipping_fullname}}</ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-5>
-                    Địa chỉ:
-                </ion-col>
-                <ion-col col-7>
-                    {{deliveryOrder.address}}
-                </ion-col>
+                <ion-col col-5>Địa chỉ:</ion-col>
+                <ion-col col-7>{{deliveryOrder.address}}</ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-5>
-                    Phí giao hàng:
-                </ion-col>
-                <ion-col col-7>
-                    <i style="color: red;">{{ formatTotalPrice() }}</i>
-                </ion-col>
+                <ion-col col-5>Phí giao hàng:</ion-col>
+                <ion-col col-7><span class="history_delivery_price">{{ formatTotalPrice() }}</span></ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-5>
-                    Trạng thái:
-                </ion-col>
-                <ion-col col-7 style="">
-                    <i style="color: #24ce57;">{{deliveryOrder.ghtk_status_text}}</i>
-                </ion-col>
+                <ion-col col-5>Trạng thái:</ion-col>
+                <ion-col col-7><span class="history_delivery_status">{{deliveryOrder.ghtk_status_text}}</span></ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-5>
-                    Ghi chú:
-                </ion-col>
-                <ion-col col-7 style="">
-                    {{deliveryOrder.shipping_note}}
-                </ion-col>
+                <ion-col col-5>Ghi chú:</ion-col>
+                <ion-col col-7>{{deliveryOrder.shipping_note}}</ion-col>
             </ion-row>
         </ion-card-content>
     </ion-card>
-    <ion-card padding *ngIf="deliveryOrder" >
-        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
-            Thông Tin Cửa Hàng
-        </ion-card-header>
+    
+    <ion-card class="history_delivery_card" *ngIf="deliveryOrder" >
+        <ion-card-header>Thông Tin Cửa Hàng</ion-card-header>
         <ion-card-content>
-            <ion-item>
+            <ion-item class="history_delivery_shop">
                 <ion-thumbnail item-left>
                     <img src="{{deliveryOrder.owner.avatar}}"  onError="this.src='assets/imgs/image_not_found.jpg';">
                 </ion-thumbnail>
-                <h2>{{deliveryOrder.owner.title}}</h2>
+                <h2 class="history_delivery_shop_title">{{deliveryOrder.owner.title}}</h2>
                 <p>{{deliveryOrder.owner.shop_phone}}</p>
             </ion-item>
         </ion-card-content>
     </ion-card>
-    <ion-card padding *ngIf="deliveryOrder" >
-        <ion-card-header style="text-align: center; font-size: 20px; color: #666;">
-            Danh Sách Sản Phẩm
-        </ion-card-header>
+    
+    <ion-card class="history_delivery_card" *ngIf="deliveryOrder" >
+        <ion-card-header>Danh Sách Sản Phẩm</ion-card-header>
         <ion-card-content>
-            <ion-item *ngFor="let item of products" >
+            <ion-item class="history_delivery_product" *ngFor="let item of products" >
                 <ion-thumbnail item-left>
-                    <img src="{{item.images[0]}}"  onError="this.src='assets/imgs/image_not_found.jpg';">
+                    <img src="{{item.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                 </ion-thumbnail>
-                <h2>{{item.title}}</h2>
-                <p>Số lượng: <i style="color: red;">{{item.display_quantity}}</i></p>
+                <h2 class="history_delivery_product_title">{{item.title}}</h2>
+                <p>Số lượng: <span class="history_delivery_price">{{item.display_quantity}}</span></p>
             </ion-item>
         </ion-card-content>
     </ion-card>

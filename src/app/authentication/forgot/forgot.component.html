@@ -8,33 +8,33 @@
 </ion-header> -->
 
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Quên mật khẩu</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">Quên mật khẩu</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div style="margin-top: 30%;">
-    <div>
-        <ion-item no-lines class="forgot_box">
-          <ion-label>
-            <img class="forgot_icon" src="assets/imgs/iconMail.png" />
-          </ion-label>
-          <ion-input [(ngModel)]="emailInput" type="email" placeholder="Email của bạn"></ion-input>
-        </ion-item>
+    <div style="margin-top: 30%;">
+        <div>
+            <ion-item no-lines class="forgot_box">
+                <ion-label>
+                    <img class="forgot_icon" src="assets/imgs/iconMail.png" />
+                </ion-label>
+                <ion-input [(ngModel)]="emailInput" type="email" placeholder="Email của bạn"></ion-input>
+            </ion-item>
+        </div>
+        <div style="text-align: center;">
+            <label for="">Vui lòng kiểm tra email đã nhập để nhận mã xác nhận</label>
+        </div>
+        <br>
+        <div style="text-align: center;">
+            <button class="buttonSubmit" ion-button tappable (click)="forgotPassword()">TIẾP TỤC</button>
+        </div>
     </div>
-    <div style="text-align: center;">
-      <label for="">Vui lòng kiểm tra email đã nhập để nhận mã xác nhận</label>
-    </div>
-    <br>
-    <div style="text-align: center;">
-      <button class="buttonSubmit" ion-button (click)="forgotPassword()">TIẾP TỤC</button>
-    </div>
-  </div>
- 
+
 </ion-content>

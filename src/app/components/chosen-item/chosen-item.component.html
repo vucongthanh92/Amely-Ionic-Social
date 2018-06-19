@@ -1,40 +1,40 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">chọn quà</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">chọn quà</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="chosen_item_main">
-  <div class="chosen_item_content">
-    <ion-row>
-      <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;">
-        <div style="width: 110px;">
-          <div (click)="presentItemDetail(item)">
-            <img src="{{item.product_snapshot.images[0]}}" class="offer_myself_image" onError="this.src='assets/imgs/image_not_found.jpg';">
-            <div style="padding: 5px">
-              <div class="chosen_item_product_title">{{item.product_snapshot.title}}</div>
-              <div class="chosen_item_product_quantity">SL: {{item.quantity}}</div>
-            </div>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </div>
+    <div class="chosen_item_content">
+        <ion-row>
+            <ion-col col-4 *ngFor="let item of inventoriesItem" style="padding: 5px;">
+                <div style="width: 110px;">
+                    <div tappable (click)="presentItemDetail(item)">
+                        <img src="{{item.product_snapshot.images[0]}}" class="offer_myself_image" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <div style="padding: 5px">
+                            <div class="chosen_item_product_title">{{item.product_snapshot.title}}</div>
+                            <div class="chosen_item_product_quantity">SL: {{item.quantity}}</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
 </ion-content>
 
 <ion-footer>
-  <ion-scroll scrollX style="height:120px;">
-    <div class="scroll-item">
-      <div class="item-card" *ngFor="let type of types" (click)="onFilterItem(type.item_type)">
-        <img src="{{type.image}}">
-        <div id="item-badge"><a>{{type.badge}}</a></div>
-        <div class="chosen_item_footer_title">{{type.title}}</div>
-      </div>
-    </div>
-  </ion-scroll>
+    <ion-scroll scrollX style="height:120px;">
+        <div class="scroll-item">
+            <div class="item-card" *ngFor="let type of types" tappable (click)="onFilterItem(type.item_type)">
+                <img src="{{type.image}}">
+                <div id="item-badge"><a>{{type.badge}}</a></div>
+                <div class="chosen_item_footer_title">{{type.title}}</div>
+            </div>
+        </div>
+    </ion-scroll>
 </ion-footer>

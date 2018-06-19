@@ -10,7 +10,6 @@ import { MainMenuComponent } from '../../layout/main-menu/main-menu.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ApiService } from '../../api/services';
 import { ForgotComponent } from '../forgot/forgot.component';
-
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html'
@@ -40,7 +39,7 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-
+  
   }
 
   onLogin() {

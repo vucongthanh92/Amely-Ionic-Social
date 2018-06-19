@@ -19,6 +19,7 @@ export class InventoriesComponent implements OnInit {
   tabInventoryPublic = InventoryPublicComponent;
   tabInventoryHistory = InventoryHistoryComponent;
   popover: Popover;
+  public device_screen;
 
   constructor(
     public popoverCtrl: PopoverController, 
@@ -26,8 +27,8 @@ export class InventoriesComponent implements OnInit {
     public nav: NavController, 
     public appCtrl: App, 
     public navParams: NavParams) {
-
-  }
+      this.device_screen = window.localStorage.getItem("device_screen");
+    }
 
   ngOnInit() {
     

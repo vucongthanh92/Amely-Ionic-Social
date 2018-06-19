@@ -1,12 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Hóa đơn cần thanh toán</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Hóa đơn cần thanh toán</div>
+    </ion-buttons>
+
     <ion-buttons end>
-      <button ion-button icon-only (click)="next()">Next
-        <ion-icon name="arrow-forward"></ion-icon>
+      <button ion-button icon-only (click)="next()">
+        <ion-icon class="quickpay_listitem_next" name="arrow-forward"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,10 +23,10 @@
       </ion-thumbnail>
       <h2 class="quick_pay_list_item_title">{{shop.title}}</h2>
       <ion-row class="quick_pay_list_item_info">
-        <ion-col col-8>
+        <ion-col col-12>
           <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.shop_phone}}</span>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-12>
           <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.shop_address}}</span>
         </ion-col>
       </ion-row>
@@ -31,10 +34,10 @@
     <ion-item class="quick_pay_list_owner">
       <div class="quick_pay_list_item_title">Thông tin chủ cửa hàng: {{shop.owner_name}}</div>
       <ion-row class="quick_pay_list_item_info">
-        <ion-col col-9>
+        <ion-col col-12>
           <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.owner_phone}}</span>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-12>
           <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.owner_address}}</span>
         </ion-col>
       </ion-row>
@@ -44,8 +47,8 @@
   <div class="quick_pay_list_product">
     <ion-list>
       <ion-item class="quick_pay_list_product_item" *ngFor="let product of products">
-        <ion-thumbnail item-left>
-          <img *ngIf="product.images" src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <ion-thumbnail class="quick_pay_list_product_image" item-left>
+          <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-thumbnail>
         <h2 class="quick_pay_list_product_item">{{product.title}}</h2>
         <p style="color: red; position: relative;font-weight: bold">{{formatCurrency(product,product.currency)}}

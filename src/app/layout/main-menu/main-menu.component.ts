@@ -1,3 +1,6 @@
+import * as Models from './../../api/models';
+import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { SigninComponent } from './../../authentication/signin/signin.component';
 import { OfferService } from './../../services/offer.service';
 import { GiftsService } from './../../services/gifts.service';
@@ -5,7 +8,7 @@ import { EventsService } from './../../services/events.service';
 import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
-import { Nav, MenuController, Platform, App } from 'ionic-angular';
+import { Nav, MenuController, Platform, App, ModalController, LoadingController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 import { PersonalComponent } from './../../views/personal/personal.component';
@@ -14,17 +17,20 @@ import { ShoppingComponent } from './../../views/shopping/shopping.component';
 import { InventoriesComponent } from './../../views/inventories/inventories.component';
 import { SettingsComponent } from './../../views/settings/settings.component';
 import { UserService } from '../../services/user.service';
-import { Notification, User } from '../../api/models';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+import { User } from '../../api/models';
 import { GeolocationService } from '../../services/geolocation.service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserUpdateComponent } from '../../components/user/user-update/user-update.component';
-
+import { AddFriendComponent } from '../../components/add-friend/add-friend.component';
+import { GiftDetailComponent } from '../../components/gift/gift-detail/gift-detail.component';
+import { OfferResultComponent } from '../../views/social/offers/offer-result/offer-result.component';
+import { FeedDetailComponent } from '../../components/feed/feed-detail/feed-detail.component';
+import { FeedsService } from '../../services/feeds.service';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
   providers: [
-    LocalNotifications
+    PhonegapLocalNotification
   ]
 })
 export class MainMenuComponent implements OnInit {
@@ -35,7 +41,7 @@ export class MainMenuComponent implements OnInit {
   pages: Array<{ title: string, component: any, image: string }>;
   loggin_user: any;
   moodLocal: any;
-
+  public device_screen: string;
 
   constructor(
     public customService: CustomService,
@@ -47,12 +53,17 @@ export class MainMenuComponent implements OnInit {
     private eventService: EventsService,
     private giftService: GiftsService,
     private offerService: OfferService,
-    private localNotifications: LocalNotifications,
-    private plt: Platform,
+    private localNotification: PhonegapLocalNotification,
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController,
+    private feedService: FeedsService,
     private appCtrl: App
   ) {
+    
+    this.device_screen = customService.checkDevices();
+
     // this.moodLocal = [
     //   { guid: '7723', title: 'WANNA_TRADE', image: 'assets/imgs/ic_gift_1.png' },
     //   { guid: '7724', title: 'WANNA_GIFT', image: 'assets/imgs/ic_gift_4.png' },
@@ -165,7 +176,7 @@ export class MainMenuComponent implements OnInit {
   notifyFirebase() {
     this.fbService.getNotify(this.customService.user_current.username).query.on("value", dataSnapshot => {
       dataSnapshot.forEach(items => {
-        let notify: Notification;
+        let notify: Models.Notification;
         notify = items.val();
         console.log(items.key);
 
@@ -189,7 +200,7 @@ export class MainMenuComponent implements OnInit {
           notify.title = data.fullname + ' đã thích bài viết của bạn';
           this.customService.notifications.push(notify);
           if (notify.viewed == false) {
-            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
           // console.log('like: post');
           break;
@@ -198,7 +209,7 @@ export class MainMenuComponent implements OnInit {
           notify.title = data.fullname + ' đã bình luận bài viết của bạn';
           this.customService.notifications.push(notify);
           if (notify.viewed == false) {
-            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
           break;
         case 'group:inviterequest':
@@ -209,7 +220,7 @@ export class MainMenuComponent implements OnInit {
           notify.title = data.fullname + ' đã gửi lời mời kết bạn';
           this.customService.notifications.push(notify);
           if (notify.viewed == false) {
-            this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+            this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
           break;
         case "gift:request":
@@ -249,7 +260,7 @@ export class MainMenuComponent implements OnInit {
     }, err => this.retryLoadNotifyUser(--retry, notify, keyFirebase))
   }
 
-  initNotifyGroup(notify: Notification, user: User, keyFirebase) {
+  initNotifyGroup(notify: Models.Notification, user: User, keyFirebase) {
     this.groupService.getGroup(notify.subject_guid).subscribe(data => {
       if (data.guid != null) {
         notify.title = user.fullname + " đã mời bạn vào nhóm " + data.title;
@@ -258,7 +269,7 @@ export class MainMenuComponent implements OnInit {
     })
   }
 
-  initNotifyGift(notify: Notification, user: User, keyFirebase) {
+  initNotifyGift(notify: Models.Notification, user: User, keyFirebase) {
     this.giftService.getGift(notify.subject_guid).subscribe(data => {
       notify.gift = data;
       switch (notify.notification_type) {
@@ -273,7 +284,7 @@ export class MainMenuComponent implements OnInit {
             }
             this.customService.notifications.push(notify);
             if (notify.viewed == false) {
-              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
           }
           break;
@@ -290,7 +301,7 @@ export class MainMenuComponent implements OnInit {
             }
             this.customService.notifications.push(notify);
             if (notify.viewed == false) {
-              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
           }
           break;
@@ -307,7 +318,7 @@ export class MainMenuComponent implements OnInit {
             }
             this.customService.notifications.push(notify);
             if (notify.viewed == false) {
-              this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+              this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
           }
           break;
@@ -315,20 +326,20 @@ export class MainMenuComponent implements OnInit {
     })
   }
 
-  initNotifyEvent(notify: Notification, user: User, keyFirebase) {
+  initNotifyEvent(notify: Models.Notification, user: User, keyFirebase) {
     this.eventService.getEvent(notify.subject_guid).subscribe(data => {
       try {
         notify.title = user.fullname + " đã mời bạn tham gia sự kiện " + data.events.title;
         this.customService.notifications.push(notify);
         if (notify.viewed == false) {
-          this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+          this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
         }
       } catch (e) {
       }
     })
   }
 
-  initNotifyOffer(notify: Notification, user: User, keyFirebase) {
+  initNotifyOffer(notify: Models.Notification, user: User, keyFirebase) {
     this.offerService.getOffer(notify.subject_guid).subscribe(data => {
       notify.offer = data;
       if (notify.notification_type == 'counter') {
@@ -364,20 +375,129 @@ export class MainMenuComponent implements OnInit {
         }
         this.customService.notifications.push(notify);
         if (notify.viewed == false) {
-          this.showNotify(notify.subject_guid, notify.title, keyFirebase);
+          this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
         }
       }
 
     })
   }
 
-  showNotify(id, txt: string, keyFirebase) {
-    // alert(txt + " " + id);
+  showNotify(id, txt: string, keyFirebase, notify: Models.Notification) {
+    var that = this;
     this.fbService.updateViewedNotify(keyFirebase, this.customService.user_current.username);
-    this.localNotifications.schedule({
-      id: id,
-      text: txt,
-      led: 'FF0000'
+    var a = new Notification("Amely", {
+      tag: id,
+      body: txt,
+      icon: 'assets/imgs/logo.png'
+    })
+    a.onclick = function () {
+      that.goToPage(notify)
+    };
+  }
+
+  goToPage(n: Models.Notification) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
     });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1500);
+    switch (n.notification_type) {
+      case 'like:post':
+      case "comments:post":
+        this.retryGetFeed(5, n);
+        break;
+      case "event:member":
+      case "event:invite":
+      case 'group:inviterequest':
+      case "friend:request":
+        let addFriend = this.modalCtrl.create(AddFriendComponent, { position_selected: 1 });
+        addFriend.present();
+        break;
+      case "gift:request":
+        let giftRequest = this.modalCtrl.create(GiftDetailComponent, { status: 'request', gift_id: n.gift.guid, notify: n });
+        giftRequest.present();
+        break;
+      case "gift:accept":
+        let giftAccept = this.modalCtrl.create(GiftDetailComponent, { status: 'accept', gift_id: n.gift.guid, notify: n });
+        giftAccept.present();
+        break;
+      case "gift:reject":
+        let giftReject = this.modalCtrl.create(GiftDetailComponent, { status: 'reject', gift_id: n.gift.guid, notify: n });
+        giftReject.present();
+        break;
+      case "offer":
+        // console.log('offer');
+        // switch (n.offer.offer_type) {
+        //   case 'giveaway':
+        //     let offerRult = this.modalCtrl.create(OfferResultComponent, { offer: n.offer, notify: n });
+        //     offerRult.present();
+        //     break;
+        //   case 'normal':
+        //     let offerRult = this.modalCtrl.create(OfferResultComponent, { offer: n.offer, notify: n });
+        //     offerRult.present();
+        //     break;
+        //   case 'random':
+        console.log('offer ' + n.item_guid);
+
+        let offerRult = this.modalCtrl.create(OfferResultComponent, { offer: n.offer, notify: n, cOfferGuid: n.item_guid });
+        offerRult.present();
+        // break;
+        // }
+        break;
+      case "counter":
+        // console.log('counter');
+        break;
+      case "redeem:finished":
+        // console.log("redeem:finished");
+        break;
+
+    }
+  }
+  retryGetFeed(retry, n) {
+    if (retry == 0) return;
+    this.feedService.getFeed(n.subject_guid).subscribe(data => {
+      if (data.post) {
+        this.appCtrl.getRootNav().push(FeedDetailComponent, {
+          post: data.post,
+          user: this.getPoster(data.post.poster_guid, data.users),
+          mood: data.post.mood ? this.getMood(data.post.mood.guid) : null,
+          user_tag: this.getUsersTag(data.post.description, data.users)
+        })
+        return;
+      } else {
+        this.customService.toastMessage('Bài viết đã bị xóa', 'bottom', 2000);
+      }
+    }, err => this.retryGetFeed(--retry, n))
+  }
+  getPoster(poster_guid, users: Array<User>) {
+    if (poster_guid) {
+      return users[poster_guid];
+    }
+    return null;
+  }
+
+  getMood(moodGuid) {
+    if (moodGuid) {
+      if (this.customService.mood_local[moodGuid]) {
+        return this.customService.mood_local[moodGuid];
+      }
+    }
+    return null;
+  }
+
+  getUsersTag(desc, users: Array<User>) {
+    let description = JSON.parse(desc);
+    let arrUserTag = [];
+    if (description.friend) {
+      let userGuidTag = description.friend.split(",");
+      userGuidTag.forEach(e => {
+        arrUserTag.push(users[e])
+      });
+    }
+    return arrUserTag;
   }
 }

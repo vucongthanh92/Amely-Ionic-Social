@@ -7,11 +7,10 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { MainMenuComponent } from './layout/main-menu/main-menu.component';
 import { AuthenticationService } from './authentication/authentication.service';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [Keyboard, AndroidPermissions]
+  providers: [Keyboard]
 })
 
 export class MyApp {
@@ -26,8 +25,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
     private keyboard: Keyboard,
-    private authenticationService: AuthenticationService,
-    private androidPermissions: AndroidPermissions
+    private authenticationService: AuthenticationService
     // private cordova: cordova
   ) {
     this.checkLogin();
@@ -44,16 +42,6 @@ export class MyApp {
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString("#1d325e");
       this.splashScreen.hide();
-      this.androidPermissions.requestPermissions(
-        [
-          this.androidPermissions.PERMISSION.CAMERA,
-          this.androidPermissions.PERMISSION.CALL_PHONE,
-          this.androidPermissions.PERMISSION.GET_ACCOUNTS,
-          this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
-          this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE
-        ]
-      );
-
     });
   }
 

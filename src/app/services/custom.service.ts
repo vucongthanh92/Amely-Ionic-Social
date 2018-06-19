@@ -301,7 +301,7 @@ export class CustomService {
       actionSheet.present();
     });
   }
-  
+
   share(share_type: string, subject_guid: number, post: string) {
     return this.api.share({ share_type: share_type, subject_guid: subject_guid, post: post });
   }
@@ -322,7 +322,10 @@ export class CustomService {
       width: window.screen.width * ratio,
       height: window.screen.height * ratio
     };
-    if (screen.width == 1125 && screen.height == 2436) {
+    if (screen.width == 640 && screen.height == 1136) {
+      return "top_navigation_iphone5s";
+    }
+    else if (screen.width == 1125 && screen.height == 2436) {
       return "top_navigation_iphonex";
     }
     else if (screen.width == 1242 && screen.height == 2208) {
