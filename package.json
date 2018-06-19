@@ -34,6 +34,7 @@
     "@ionic-native/keyboard": "^4.6.0",
     "@ionic-native/local-notifications": "^4.7.0",
     "@ionic-native/native-geocoder": "^4.6.0",
+    "@ionic-native/phonegap-local-notification": "^4.7.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "^4.4.0",
     "@ionic/pro": "1.0.16",
@@ -75,6 +76,7 @@
     "moment": "^2.20.1",
     "ngx-qrcode2": "0.0.5",
     "phonegap-plugin-barcodescanner": "^7.1.1",
+    "phonegap-plugin-local-notification": "^1.0.1",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "websocket-driver": "^0.7.0",
@@ -114,7 +116,8 @@
       "cordova-plugin-nativegeocoder": {},
       "cordova-plugin-contacts": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-android-permissions": {}
+      "cordova-plugin-android-permissions": {},
+      "phonegap-plugin-local-notification": {}
     },
     "platforms": [
       "android",
