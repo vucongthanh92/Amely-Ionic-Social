@@ -20,8 +20,7 @@
         </div>
         <div class="profile_avatar">
             <div class="profile_avatar_image">
-                <img *ngIf="genderLabel == 'Nam'" src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/avatar-nam.png'">
-                <img *ngIf="genderLabel == 'Nữ'" src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/avatar-nu.png'">
+                <img src="{{user.avatar}}" (click)="openModal(this.userCurrent.avatar)" onError="this.src='assets/imgs/avatar-nam.png'">
             </div>
             <div class="profile_avatar_title">{{user.fullname}}</div>
         </div>

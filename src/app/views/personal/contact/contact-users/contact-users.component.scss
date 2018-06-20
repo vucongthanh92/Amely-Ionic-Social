@@ -117,25 +117,41 @@ app-contact-users {
          max-width: 250px;
     }
   }
- .divCustom{
-     background: linear-gradient(to right, lightgray, white, lightgray);
-     animation: skeleton 2s infinite;
-     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-     background-repeat: no-repeat;
-     background-position-x: -300px;
-     background-position-y: 0;
-     background-color: lightgray;
-     opacity: 0.5;
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-  }
- @keyframes skeleton {
-     0% {
-         background-position-x: -150px;
+    
+    .divCustom{
+        background: linear-gradient(to right, lightgray, white, lightgray);
+        animation: skeleton 2s infinite;
+        animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+        background-repeat: no-repeat;
+        background-position-x: -300px;
+        background-position-y: 0;
+        background-color: lightgray;
+        opacity: 0.5;
+        height: 70px;
+        width: 70px;
+        border-radius: 100px;
     }
-     100% {
-         background-position-x: 150px;
+
+    @keyframes skeleton {
+        0% {
+            background-position-x: -150px;
+        }
+    
+        100% {
+            background-position-x: 150px;
+        }
     }
-  }
+
+    .contact_user_nodata {
+        font-size: 20px; 
+        text-align: center;
+
+        img {
+            max-width: 30%
+        }
+
+        .contact_user_nodata_title {
+            color: #999;
+        }
+    }
 }

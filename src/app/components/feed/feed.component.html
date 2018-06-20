@@ -1,7 +1,7 @@
 <ion-card *ngIf="post.item_type==null">
   <ion-item class="feed_item">
     <ion-avatar item-start>
-      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+      <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
     </ion-avatar>
     <h2 class="feed_title">{{ user.fullname }}
       <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
@@ -19,7 +19,7 @@
   <ion-row *ngIf="userTag">
     <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
       <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
-        <a>{{user.first_name}} {{user.last_name}},</a>
+        {{user.first_name}} {{user.last_name}},
       </ion-item>
     </div>
   
@@ -32,12 +32,15 @@
       </div>
     </ng-template>
   </ion-row>
+  
   <ion-card-content (click)="openFeedDetail()">
     <p>{{ descriptionPost }}</p>
   </ion-card-content>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
-    <div class="wallphoto_quantity_1" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
+    <div class="wallphoto_quantity_1" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)">
+      <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
@@ -88,7 +91,7 @@
 
     <ion-col>
       <button ion-button icon-left clear small (click)="changePage()">
-        <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
+        <ion-icon color="primary" id="icLikeComment" class="feed_icon_comment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
     </ion-col>
@@ -183,8 +186,6 @@
       </ion-item>
     </ion-list>
 
-
-
     <ion-card-content (click)="openFeedDetail()">
       <p>{{ descriptionPostShare }}</p>
     </ion-card-content>
@@ -205,6 +206,7 @@
         </div>
       </ng-template>
     </ion-row> -->
+
   </ion-card>
   <ion-row class="feed_interactive">
     <ion-col>
@@ -217,7 +219,7 @@
 
     <ion-col>
       <button ion-button icon-left clear small (click)="changePage()">
-        <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
+        <ion-icon color="primary" id="icLikeComment" class="feed_icon_comment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
     </ion-col>
@@ -262,7 +264,7 @@
 
     <ion-col>
       <button ion-button icon-left clear small (click)="changePage()">
-        <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
+        <ion-icon color="primary" id="icLikeComment" class="feed_icon_comment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
     </ion-col>
