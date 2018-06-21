@@ -10,10 +10,12 @@ import { ShoppingsService } from '../../../services/shoppings.service';
   selector: 'app-shops-friendly',
   templateUrl: './shops-friendly.component.html'
 })
+
 export class ShopsFriendlyComponent implements OnInit {
   fakeUsers: Array<any> = new Array(10);
   public users: Array<User>;
   public shops: Array<Shop>;
+  
   constructor(public nav: NavController, public appCtrl: App, public shoppingsService: ShoppingsService, private customService: CustomService,
     public loadingCtrl: LoadingController) { }
 
@@ -39,6 +41,8 @@ export class ShopsFriendlyComponent implements OnInit {
           
           // loading.dismiss();
           this.shops = data.shops;
+          console.log(this.shops);
+          
           this.users = data.owners;
         }else {
           this.shops = [];

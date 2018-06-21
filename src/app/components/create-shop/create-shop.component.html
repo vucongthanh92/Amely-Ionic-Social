@@ -109,15 +109,14 @@
   <ion-grid>
     <ion-row>
       <ion-col class="register_colum" col-2>
-        <ion-item class="register_box2">
+        <ion-item class="register_box2" no-lines>
           <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)" [disabled]="relesDisabled">
         </ion-item>
       </ion-col>
       <ion-col class="register_colum" col-10>
-        <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;">
+        <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;" no-lines>
           <ion-label>Tôi đồng ý với
-            <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">các điều khoản của
-              <br> sàn giao dịch hỗn hợp Amely</a>
+            <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">các điều khoản của sàn <br> giao dịch hỗn hợp Amely</a>
           </ion-label>
         </ion-item>
       </ion-col>

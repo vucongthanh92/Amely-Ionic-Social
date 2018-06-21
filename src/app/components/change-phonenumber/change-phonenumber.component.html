@@ -9,12 +9,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="change_phone_content">
-  <ion-list>
+<ion-content padding>
+  <!-- <ion-list>
     <ion-item>
       <ion-input [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại mới"></ion-input>
     </ion-item>
   </ion-list>
 
-  <button (click)="changePhoneNumber()" ion-button class="change_phone_send" full no-margin>CẬP NHẬT</button>
+  <button (click)="changePhoneNumber()" ion-button class="change_phone_send" full no-margin>CẬP NHẬT</button> -->
+
+  <div>
+    <div>
+      <ion-input [(ngModel)]="phone_number" class="inputForgot" type="text" placeholder="Nhập số điện thoại mới"></ion-input>
+    </div>
+    <!-- <br>
+      <div style="text-align: center;">
+        <label for="">Gửi lại mã xác nhận</label>
+      </div> -->
+    <br>
+    <div style="text-align: center;">
+      <button class="buttonSubmit" ion-button (click)="changePhoneNumber()">CẬP NHẬT</button>
+    </div>
+  </div>
 </ion-content>
