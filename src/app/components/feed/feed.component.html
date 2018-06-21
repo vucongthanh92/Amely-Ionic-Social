@@ -22,14 +22,12 @@
         {{user.first_name}} {{user.last_name}},
       </ion-item>
     </div>
-  
+
     <ng-template #elseSubArr>
-      <div>
-        <div *ngFor="let user of subArrUserTag" style="float: left">
-          <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
-        </div>
-        <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
+      <div *ngFor="let user of subArrUserTag" class="usertag_content">
+        <a class="usertag_content_link">{{user.first_name}} {{user.last_name}},</a>
       </div>
+      <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
     </ng-template>
   </ion-row>
   
@@ -44,19 +42,33 @@
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
-    <div class="wallphoto_quantity_2" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-    <div class="wallphoto_quantity_2" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
+    <div class="wallphoto_quantity_2" (click)="openModal('post', 0)">
+      <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
+    <div class="wallphoto_quantity_2" (click)="openModal('post', 1)">
+      <img src="{{ post.wallphoto[1] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==3">
-    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
-    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)"></div>
+    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)">
+      <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
+    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)">
+      <img src="{{ post.wallphoto[1] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
+    <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)">
+      <img src="{{ post.wallphoto[2] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
   </ion-list>
 
   <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==4">
-    <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-    <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
+    <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)">
+      <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
+    <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)">
+      <img src="{{ post.wallphoto[1] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </div>
     <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)"></div>
     <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[3] + ')'" (click)="openModal('post', 3)"></div>
   </ion-list>
@@ -141,22 +153,34 @@
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <div class="wallphoto_quantity_1" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
+      <div class="wallphoto_quantity_1" (click)="openModal('postShare', 0)">
+        <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==2">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
-      <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
+      <div class="wallphoto_quantity_2" (click)="openModal('postShare', 0)">
+        <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
+      <div class="wallphoto_quantity_2" (click)="openModal('postShare', 1)">
+        <img src="{{ post.wallphoto[1] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
     <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==3">
       <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
-      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
-      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
+      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
+        <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
+      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)">
+        <img src="{{ post.wallphoto[1] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
+      <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)">
+        <img src="{{ post.wallphoto[2] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+      </div>
       <!-- </ion-item> -->
     </ion-list>
 
