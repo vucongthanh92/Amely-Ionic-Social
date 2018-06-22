@@ -92,8 +92,8 @@
     <ion-grid>
       <ion-row>
         <ion-col class="register_colum" col-2>
-          <ion-item class="register_box2">
-            <ion-checkbox [(ngModel)]="rules" (ionChange)="onChange($event)"></ion-checkbox>
+          <ion-item class="register_box2" no-lines>
+            <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)">
           </ion-item>
         </ion-col>
         <ion-col class="register_colum" col-10>

@@ -5,7 +5,9 @@
         <img class="shops_friendly_image" src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-avatar>
       <h2 class="shops_friendly_title">{{shop.title}}</h2>
-      <p class="shops_friendly_description" *ngIf="shop.introduce">{{shop.introduce}}</p>
+      <p class="shops_friendly_description" *ngIf="shop.introduce" innerHtml="{{shop.introduce}}"></p>
+
+      <!-- <span innerHtml="{{shop.introduce}}"></span> -->
     </ion-item>
 
     <div *ngIf="shops.length == 0" class="shop_friendly_nodata">
