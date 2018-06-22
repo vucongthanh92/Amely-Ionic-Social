@@ -1,26 +1,28 @@
 app-categories {
-     .ion-page > .content {
-         background-color: #fff;
+    .ion-page > .content {
+        background-color: #fff;
     }
-     #divTitle {
-         position: relative;
-         left: 0px;
+    
+    #divTitle {
+        position: relative;
+        left: 0px;
     }
-     .categories_label {
-         float: left;
-         font-size: 16px;
-         font-weight: normal;
-         margin: 10px 0px 5px 0px;
-         text-transform: uppercase;
-         color: #333;
+
+    .categories_label {
+        float: left;
+        font-size: 1.5rem;
+        margin: 10px 0px 5px 0px;
+        text-transform: uppercase;
+        color: #333;
     }
-     .categories_readmore{
-         padding: 0px 5px 0px 0px;
-         font-size: 14px;
-         font-weight: 400;
-         color: #00bdf2;
-         font-style: italic;
-         margin: 12px 0px 0px 0px;
+
+    .categories_readmore{
+        padding: 0px 5px 0px 0px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #00bdf2;
+        font-style: italic;
+        margin: 12px 0px 0px 0px;
     }
     
     .categories_title {
@@ -36,57 +38,62 @@ app-categories {
     
     .categories_images {
         width: 100%;
-        height: 90px;
+        height: 9rem;
 
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
         }
     }
 
-     .fakeItem {
-         h2, h3, p {
-             background: linear-gradient(to right, lightgray, white, lightgray);
-             animation: skeleton 2s infinite;
-             animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-             background-repeat: no-repeat;
-             background-position-x: -300px;
-             background-position-y: 0;
-             background-color: lightgray;
-             opacity: 0.5;
-             height: 1em;
-             margin-top: 10px;
+    .fakeItem {
+        h2, h3, p {
+            background: linear-gradient(to right, lightgray, white, lightgray);
+            animation: skeleton 2s infinite;
+            animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+            background-repeat: no-repeat;
+            background-position-x: -300px;
+            background-position-y: 0;
+            background-color: lightgray;
+            opacity: 0.5;
+            height: 1em;
+            margin-top: 10px;
         }
-         h2 {
+        
+        h2 {
              max-width: 95px;
         }
-         h3 {
+        
+        h3 {
              max-width: 95px;
         }
-         p {
+        
+        p {
              max-width: 250px;
         }
     }
-     .divCustom{
-         background: linear-gradient(to right, lightgray, white, lightgray);
-         animation: skeleton 2s infinite;
-         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
-         background-repeat: no-repeat;
-         background-position-x: -300px;
-         background-position-y: 0;
-         background-color: lightgray;
-         opacity: 0.5;
-         height: 7em;
-         width: 95px;
+    
+    .divCustom{
+        background: linear-gradient(to right, lightgray, white, lightgray);
+        animation: skeleton 2s infinite;
+        animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+        background-repeat: no-repeat;
+        background-position-x: -300px;
+        background-position-y: 0;
+        background-color: lightgray;
+        opacity: 0.5;
+        height: 7em;
+        width: 95px;
     }
-     @keyframes skeleton {
-         0% {
-             background-position-x: -150px;
+
+    @keyframes skeleton {
+        0% {
+            background-position-x: -150px;
         }
-         100% {
-             background-position-x: 150px;
+        100% {
+            background-position-x: 150px;
         }
     }
 
