@@ -11,4 +11,5 @@ export class DefaultResponse {
     code?: string;
     url?: string;
     to_guid?: number;
+    guid?: string;
 }

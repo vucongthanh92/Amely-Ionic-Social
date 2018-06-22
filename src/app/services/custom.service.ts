@@ -217,7 +217,7 @@ export class CustomService {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type, true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
@@ -234,13 +234,13 @@ export class CustomService {
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
                 destinationType: camera.DestinationType.DATA_URL,
-                correctOrientation:true
+                correctOrientation: true
               };
               camera.getPicture(options).then((imageData) => {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type, true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
@@ -334,5 +334,27 @@ export class CustomService {
     else {
       return "top_navigation_iphone6s";
     }
+  }
+
+  checkUrlImage(url, timeoutT) {
+    return new Promise(function (resolve, reject) {
+      var timeout = timeoutT || 5000;
+      var timer, img = new Image();
+      img.onerror = img.onabort = function () {
+        clearTimeout(timer);
+        reject("error");
+      };
+      img.onload = function () {
+        clearTimeout(timer);
+        resolve("success");
+      };
+      timer = setTimeout(function () {
+        // reset .src to invalid URL so it stops previous
+        // loading, but doens't trigger new load
+        img.src = "//!!!!/noexist.jpg";
+        reject("timeout");
+      }, timeout);
+      img.src = url;
+    });
   }
 }

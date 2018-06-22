@@ -161,6 +161,14 @@ export class AddFeedComponent implements OnInit {
         this.isCreatingFeed = false;
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
+          if (this.image != null && this.image.length>0) {
+            console.log(123);
+            console.log(data.guid);
+            
+            localStorage.setItem(data.guid, JSON.stringify([this.image]));
+            console.log(localStorage.getItem(data.guid));
+            
+          }
           this.callback().then(() => {
             this.nav.pop();
           });
