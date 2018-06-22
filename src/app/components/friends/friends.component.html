@@ -1,22 +1,22 @@
 <ion-list class="friends_container" no-lines>
-	<ion-item *ngFor="let user of users" (click)="goToPage(user.guid)">
-		<ion-avatar item-start>
-			<img src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-		</ion-avatar>
-		<h2 class="friends_fullname">{{user.fullname}}</h2>
-		
-		<ion-col class="friends_action" item-end *ngIf="from=='user'">
-			<div *ngIf="!isUserCurrent && friendsUserCurrent.length>0 && isFriend(user.guid) !== 0">
-				<button *ngIf="isFriend(user.guid) === 1" ion-button small color="light">Bạn chung</button>
-				<button *ngIf="isFriend(user.guid) === 2" ion-button small>Thêm bạn</button>
-			</div>
-		</ion-col>
-		<ion-col class="friends_action" item-end *ngIf="from=='group'">
-			<div>
-				<button *ngIf="isFriend(user.guid) === 1" ion-button small color="light">Bạn chung</button>
-				<!-- <button *ngIf="isFriend(user.guid) === 2" ion-button small>Thêm bạn</button> -->
-			</div>
-		</ion-col>
+    <ion-item *ngFor="let user of users" tappable (click)="goToPage(user.guid)">
+        <ion-avatar item-start>
+            <img src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        </ion-avatar>
+        <h2 class="friends_fullname">{{user.fullname}}</h2>
 
-	</ion-item>
+        <ion-col class="friends_action" item-end *ngIf="from=='user'">
+            <div *ngIf="!isUserCurrent && friendsUserCurrent.length>0 && isFriend(user.guid) !== 0">
+                <button *ngIf="isFriend(user.guid) === 1" ion-button small color="light">Bạn chung</button>
+                <button *ngIf="isFriend(user.guid) === 2" ion-button small>Thêm bạn</button>
+            </div>
+        </ion-col>
+        <ion-col class="friends_action" item-end *ngIf="from=='group'">
+            <div>
+                <button *ngIf="isFriend(user.guid) === 1" ion-button small color="light">Bạn chung</button>
+                <!-- <button *ngIf="isFriend(user.guid) === 2" ion-button small>Thêm bạn</button> -->
+            </div>
+        </ion-col>
+
+    </ion-item>
 </ion-list>

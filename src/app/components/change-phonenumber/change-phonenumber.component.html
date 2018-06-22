@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">đổi số điện thoại</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">đổi số điện thoại</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="change_phone_content">
-  <ion-list>
-    <ion-item>
-      <ion-input [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại mới"></ion-input>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-input [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại mới"></ion-input>
+        </ion-item>
+    </ion-list>
 
-  <button (click)="changePhoneNumber()" ion-button class="change_phone_send" full no-margin>CẬP NHẬT</button>
+    <button tappable (click)="changePhoneNumber()" ion-button class="change_phone_send" full no-margin>CẬP NHẬT</button>
 </ion-content>
