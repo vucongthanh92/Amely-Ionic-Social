@@ -1,10 +1,10 @@
 <ion-card *ngIf="post.item_type==null">
     <ion-item class="feed_item">
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
-            <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
+            <span *ngIf="post.owner_title && type=='user'" tappable (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
         </h2>
         <ion-col class="feed_mood item-inner" *ngIf="mood">
             <span>{{mood.title}}</span>
@@ -13,7 +13,7 @@
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
         <p class="feed_date" *ngIf="location">{{location}}</p>
         <ion-col class="feed_event" col-2>
-            <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
+            <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
     <ion-row *ngIf="userTag">
@@ -32,55 +32,6 @@
             </div>
         </ng-template>
     </ion-row>
-    <<<<<<< HEAD <ion-card-content (click)="openFeedDetail()">
-        <p>{{ descriptionPost }}</p>
-        </ion-card-content>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
-            <div class="wallphoto_quantity_1" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-        </ion-list>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
-            <div class="wallphoto_quantity_2" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-            <div class="wallphoto_quantity_2" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
-        </ion-list>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==3">
-            <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-            <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
-            <div class="wallphoto_quantity_3" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)"></div>
-        </ion-list>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==4">
-            <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-            <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
-            <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)"></div>
-            <div class="wallphoto_quantity_4" [style.background]="'url(' + post.wallphoto[3] + ')'" (click)="openModal('post', 3)"></div>
-        </ion-list>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4  && !is_open_from_detail">
-            <div class="wallphoto_quantity_5" [style.background]="'url(' + post.wallphoto[0] + ')'" (click)="openModal('post', 0)"></div>
-            <div class="wallphoto_quantity_5" [style.background]="'url(' + post.wallphoto[1] + ')'" (click)="openModal('post', 1)"></div>
-            <div class="wallphoto_quantity_5" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 2)"></div>
-            <div class="wallphoto_quantity_5" [style.background]="'url(' + post.wallphoto[2] + ')'" (click)="openModal('post', 3)">
-                <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{post.wallphoto.length-4}}</div>
-            </div>
-        </ion-list>
-
-        <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4 && is_open_from_detail">
-            <ion-item *ngFor="let wallphoto of post.wallphoto , let i = index">
-                <img src="{{wallphoto }}" (click)="openModal('post', i)">
-            </ion-item>
-        </ion-list>
-
-        <div class="clearfix"></div>
-
-
-
-        <ion-row class="feed_interactive">
-            <ion-col>
-                <button ion-button icon-left clear small (click)="likeFeed()">
-=======
     <ion-card-content tappable (click)="openFeedDetail()">
         <p>{{ descriptionPost }}</p>
     </ion-card-content>
@@ -129,24 +80,20 @@
     <ion-row class="feed_interactive">
         <ion-col>
             <button ion-button icon-left clear small tappable (click)="likeFeed()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
         <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
         <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
         {{ +post.likes }} thích
       </button>
-            </ion-col>
+        </ion-col>
 
-            <ion-col>
-                <<<<<<< HEAD <button ion-button icon-left clear small (click)="changePage()">
-                    =======
-                    <button ion-button icon-left clear small tappable (click)="changePage()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+        <ion-col>
+            <button ion-button icon-left clear small tappable (click)="changePage()">
         <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
-            </ion-col>
-            <ion-col></ion-col>
-        </ion-row>
+        </ion-col>
+        <ion-col></ion-col>
+    </ion-row>
 </ion-card>
 
 <!-- SHARE -->
@@ -154,26 +101,18 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <<<<<<< HEAD <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
-            <span (click)="openOwner(post.type,post.owner_guid)"> </span> =======
-            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </ion-avatar>
-            <h2 class="feed_title">{{ user.fullname }}
-                <span tappable (click)="openOwner(post.type,post.owner_guid)"> </span> >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-            </h2>
-            <ion-col class="feed_mood item-inner">
-                <span>Đã chia sẻ bài viết</span>
-            </ion-col>
-            <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-            <ion-col class="feed_event" col-2>
-                <<<<<<< HEAD <ion-icon name="more" (click)="openPopover($event)">
-                    </ion-icon>
-                    =======
-                    <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
-                    >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-            </ion-col>
+            <span tappable (click)="openOwner(post.type,post.owner_guid)"> </span>
+        </h2>
+        <ion-col class="feed_mood item-inner">
+            <span>Đã chia sẻ bài viết</span>
+        </ion-col>
+        <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
+        <ion-col class="feed_event" col-2>
+            <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
+        </ion-col>
     </ion-item>
 
     <!-- INFO SHARE -->
@@ -181,114 +120,76 @@
     <ion-card *ngIf="postShare" class="feed_share_info" padding>
         <ion-item>
             <ion-avatar item-start>
-                <<<<<<< HEAD <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                <img tappable (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
             </ion-avatar>
             <h2 class="feed_title">
-                <span (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span> =======
-                <img tappable (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-                </ion-avatar>
-                <h2 class="feed_title">
-                    <span tappable (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span> >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                </h2>
+                <span tappable (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
+            </h2>
 
-                <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
+            <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
         <span>{{mood.title}}</span>
         <img id="iconMood" src="{{mood.image}}">
       </ion-col> -->
 
-                <p class="feed_date">{{ convertDate(postShare.time_created) | amTimeAgo }}</p>
-                <p class="feed_date" *ngIf="location">{{location}}</p>
+            <p class="feed_date">{{ convertDate(postShare.time_created) | amTimeAgo }}</p>
+            <p class="feed_date" *ngIf="location">{{location}}</p>
 
         </ion-item>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
             <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-            <<<<<<< HEAD <div class="wallphoto_quantity_1" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
-                </div>
-                =======
-                <div class="wallphoto_quantity_1" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
-                >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                <!-- </ion-item> -->
+            <div class="wallphoto_quantity_1" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
+            <!-- </ion-item> -->
         </ion-list>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==2">
             <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-            <<<<<<< HEAD <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
-                </div>
-                <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
-                =======
-                <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
-                <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[1] + ')'" tappable (click)="openModal('postShare', 1)"></div>
-                >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                <!-- </ion-item> -->
+            <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
+            <div class="wallphoto_quantity_2" [style.background]="'url(' + postShare.wallphoto[1] + ')'" tappable (click)="openModal('postShare', 1)"></div>
+            <!-- </ion-item> -->
         </ion-list>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==3">
             <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-            <<<<<<< HEAD <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
-                </div>
-                <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
-                <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
-                =======
-                <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
-                <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[1] + ')'" tappable (click)="openModal('postShare', 1)"></div>
-                <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[2] + ')'" tappable (click)="openModal('postShare', 2)"></div>
-                >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                <!-- </ion-item> -->
+            <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
+            <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
+            <div class="wallphoto_quantity_3" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
+            <!-- </ion-item> -->
         </ion-list>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==4">
             <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-            <<<<<<< HEAD <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
-                </div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[3] + ')'" (click)="openModal('postShare', 3)"></div>
-                =======
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[1] + ')'" tappable (click)="openModal('postShare', 1)"></div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[2] + ')'" tappable (click)="openModal('postShare', 2)"></div>
-                <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[3] + ')'" tappable (click)="openModal('postShare', 3)"></div>
-                >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                <!-- </ion-item> -->
+            <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
+            <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
+            <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
+            <div class="wallphoto_quantity_4" [style.background]="'url(' + postShare.wallphoto[3] + ')'" (click)="openModal('postShare', 3)"></div>
+            <!-- </ion-item> -->
         </ion-list>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4  && !is_open_from_detail">
             <!-- <ion-item *ngFor="let wallphoto of postShare.wallphoto"> -->
-            <<<<<<< HEAD <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)">
-                </div>
-                <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
-                <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
-                <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[3] + ')'" (click)="openModal('postShare', 3)">
-                    =======
-                    <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[0] + ')'" tappable (click)="openModal('postShare', 0)"></div>
-                    <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[1] + ')'" tappable (click)="openModal('postShare', 1)"></div>
-                    <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[2] + ')'" tappable (click)="openModal('postShare', 2)"></div>
-                    <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[3] + ')'" tappable (click)="openModal('postShare', 3)">
-                        >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                        <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
-                    </div>
-                    <!-- </ion-item> -->
+            <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[0] + ')'" (click)="openModal('postShare', 0)"></div>
+            <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[1] + ')'" (click)="openModal('postShare', 1)"></div>
+            <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[2] + ')'" (click)="openModal('postShare', 2)"></div>
+            <div class="wallphoto_quantity_5" [style.background]="'url(' + postShare.wallphoto[3] + ')'" (click)="openModal('postShare', 3)">
+                <div class="wallphoto_col_more" (click)="openFeedDetailFromImage()">+{{postShare.wallphoto.length-4}}</div>
+            </div>
+            <!-- </ion-item> -->
         </ion-list>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length>4 && is_open_from_detail">
             <ion-item *ngFor="let wallphoto of postShare.wallphoto,  let i = index">
-                <<<<<<< HEAD <img src="{{wallphoto }}" (click)="openModal('postShare', i)">
-                    =======
-                    <img src="{{wallphoto }}" tappable (click)="openModal('postShare', i)"> >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+                <img src="{{wallphoto }}" (click)="openModal('postShare', i)">
             </ion-item>
         </ion-list>
 
 
 
-        <<<<<<< HEAD <ion-card-content (click)="openFeedDetail()">
-            =======
-            <ion-card-content tappable (click)="openFeedDetail()">
-                >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-                <p>{{ descriptionPostShare }}</p>
-            </ion-card-content>
+        <ion-card-content (click)="openFeedDetail()">
+            <p>{{ descriptionPostShare }}</p>
+        </ion-card-content>
 
-            <!-- <ion-row *ngIf="userTag">
+        <!-- <ion-row *ngIf="userTag">
       <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
         <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
           <a>{{users[postShare.owner_guid].first_name}} {{users[postShare.owner_guid]user.last_name}},</a>
@@ -307,10 +208,7 @@
     </ion-card>
     <ion-row class="feed_interactive">
         <ion-col>
-            <<<<<<< HEAD <button ion-button icon-left clear small (click)="likeFeed()">
-                =======
-                <button ion-button icon-left clear small tappable (click)="likeFeed()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+            <button ion-button icon-left clear small (click)="likeFeed()">
         <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
         <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
         {{ +post.likes }} thích
@@ -318,10 +216,7 @@
         </ion-col>
 
         <ion-col>
-            <<<<<<< HEAD <button ion-button icon-left clear small (click)="changePage()">
-                =======
-                <button ion-button icon-left clear small tappable (click)="changePage()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+            <button ion-button icon-left clear small (click)="changePage()">
         <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
@@ -335,60 +230,42 @@
 <ion-card *ngIf="post.item_type=='cover:photo' || post.item_type=='profile:photo'">
     <ion-item>
         <ion-avatar item-start>
-            <<<<<<< HEAD <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
-            <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span> =======
-            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </ion-avatar>
-            <h2 class="feed_title">{{ user.fullname }}
-                <span *ngIf="post.owner_title && type=='user'" tappable (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span> >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-            </h2>
-            <ion-col class="feed_mood item-inner" *ngIf="mood">
-                <span>{{mood.title}}</span>
-                <img id="iconMood" src="{{mood.image}}">
-            </ion-col>
-            <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-            <p class="feed_date" *ngIf="location">{{location}}</p>
-            <ion-col class="feed_event" col-2>
-                <<<<<<< HEAD <ion-icon name="more" (click)="openPopover($event)">
-                    </ion-icon>
-            </ion-col>
+            <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
+        </h2>
+        <ion-col class="feed_mood item-inner" *ngIf="mood">
+            <span>{{mood.title}}</span>
+            <img id="iconMood" src="{{mood.image}}">
+        </ion-col>
+        <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
+        <p class="feed_date" *ngIf="location">{{location}}</p>
+        <ion-col class="feed_event" col-2>
+            <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
+        </ion-col>
     </ion-item>
 
     <ion-card-content (click)="openFeedDetail()">
-        =======
-        <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
-        </ion-col>
-        </ion-item>
+        <p *ngIf="post.item_type=='cover:photo'">Đã đổi ảnh bìa</p>
+        <p *ngIf="post.item_type=='profile:photo'">Đã đổi ảnh đại diện</p>
+    </ion-card-content>
 
-        <ion-card-content tappable (click)="openFeedDetail()">
-            >>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
-            <p *ngIf="post.item_type=='cover:photo'">Đã đổi ảnh bìa</p>
-            <p *ngIf="post.item_type=='profile:photo'">Đã đổi ảnh đại diện</p>
-        </ion-card-content>
-
-        <ion-row class="feed_interactive">
-            <ion-col>
-                <<<<<<< HEAD <button ion-button icon-left clear small (click)="likeFeed()">
-                    =======
-                    <button ion-button icon-left clear small tappable (click)="likeFeed()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+    <ion-row class="feed_interactive">
+        <ion-col>
+            <button ion-button icon-left clear small (click)="likeFeed()">
         <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
         <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
         {{ +post.likes }} thích
       </button>
-            </ion-col>
+        </ion-col>
 
-            <ion-col>
-                <<<<<<< HEAD <button ion-button icon-left clear small (click)="changePage()">
-                    =======
-                    <button ion-button icon-left clear small tappable (click)="changePage()">
->>>>>>> b4c2716027b3a21884b973538b48f3c9ef74bd87
+        <ion-col>
+            <button ion-button icon-left clear small (click)="changePage()">
         <ion-icon color="primary" id="icLikeComment" name='ios-text'></ion-icon>
         {{ post.comments }} bình luận
       </button>
-            </ion-col>
-            <ion-col></ion-col>
-        </ion-row>
+        </ion-col>
+        <ion-col></ion-col>
+    </ion-row>
 </ion-card>
