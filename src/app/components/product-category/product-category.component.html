@@ -15,6 +15,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 <ion-content class="product_category_main">
   <!-- <app-banner></app-banner> -->
   <div class="product_category_label" *ngIf="categories_parent.length>0">
@@ -47,7 +48,9 @@
                 <span>VOUCHER</span>
               </span>
             </div>
-            <img src="{{product.images[0]}}" class="product_category_images" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <div class="product_category_images">
+              <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg'">
+            </div>
           </ion-col>
           <ion-col col-9>
             <ion-row class="product_category_title">{{product.title}}</ion-row>
@@ -82,8 +85,8 @@
         </ion-row>
       </ion-item>
     </ion-list>
-
   </ion-grid>
+
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

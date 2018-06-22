@@ -14,14 +14,17 @@
 </ion-header>
 
 <ion-content class="outer-content">
-    <div *ngIf="page">
-        <div [style.background]="'url(' + page.cover + ')'" class="business_cover"></div>
-        <div class="business_avatar_row">
-            <div class="business_avatar">
-                <img src="{{ page.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </div>
-            <div class="business_cover_title">{{page.title}}</div>
-        </div>
+
+  <div *ngIf="page">
+    <div class="business_cover">
+      <img src="{{page.cover}}" onError="this.src='assets/imgs/banner.png'">
+    </div>
+    <div class="business_avatar">
+      <div class="business_avatar_image">
+        <img src="{{ page.avatar }}" onError="this.src='assets/imgs/OA-nam.png'">
+      </div>
+      <div class="business_cover_title">{{page.title}}</div>
+    </div>
 
         <div class="bar bar-header bar-dark business_nav">
             <ion-row class="business_nav_row">

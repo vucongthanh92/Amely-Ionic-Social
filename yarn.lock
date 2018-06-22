@@ -244,6 +244,10 @@
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.6.tgz#a4b81ca8cdeb1acbc7923289a4a514f61b59db86"
 
+"@ionic-native/android-permissions@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/android-permissions/-/android-permissions-4.7.0.tgz#3b7d86432725dec4f2fd83acd8181b52b31e3f3a"
+
 "@ionic-native/barcode-scanner@^4.5.3":
   version "4.5.3"
   resolved "https://registry.yarnpkg.com/@ionic-native/barcode-scanner/-/barcode-scanner-4.5.3.tgz#b68a71a61346e4f4f8c4752f42ad0c2fc83e332d"
@@ -288,25 +292,25 @@
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/keyboard/-/keyboard-4.6.0.tgz#7a63ee1bcf0602d6ea7922a45987d007c96fb1f3"
 
-"@ionic-native/local-notifications@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/local-notifications/-/local-notifications-4.6.0.tgz#5d4b378c4dfe594bf1b9885773a4edaaa3ad950c"
+"@ionic-native/local-notifications@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/local-notifications/-/local-notifications-4.7.0.tgz#bac016a224468c3900eaeebd770fb727b1db6811"
 
 "@ionic-native/native-geocoder@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/native-geocoder/-/native-geocoder-4.6.0.tgz#39bcefd55654185ba90633c369bee8fb82545e48"
 
+"@ionic-native/phonegap-local-notification@^4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/phonegap-local-notification/-/phonegap-local-notification-4.7.0.tgz#da05b66fda8b286635944f7a8426a110d574f019"
+
 "@ionic-native/splash-screen@4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-4.4.0.tgz#81ed723d7fd3f0d643072b5461fa0c32dcc330b1"
 
-"@ionic-native/status-bar@4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-4.4.0.tgz#35bcf2012ece652bd765a972008bec5a7f258a95"
-
-"@ionic-native/user-agent@^4.7.0":
+"@ionic-native/status-bar@^4.4.0":
   version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/user-agent/-/user-agent-4.7.0.tgz#80272d6f5940f429d1ec47ef7be4362e6da19a04"
+  resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-4.7.0.tgz#f292bf67c2d5fef43b1fc7b442f5bc75139cc8e3"
 
 "@ionic/app-scripts@3.1.6":
   version "3.1.6"
@@ -1527,13 +1531,17 @@ cordova-ios@~4.5.4:
     xcode "^0.9.0"
     xml-escape "^1.1.0"
 
+cordova-plugin-android-permissions@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-android-permissions/-/cordova-plugin-android-permissions-1.0.0.tgz#9e7c116be668eb7dfa41491b13d8d47da9548149"
+
 cordova-plugin-badge@^0.8.7:
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/cordova-plugin-badge/-/cordova-plugin-badge-0.8.7.tgz#fe4942aa24af6822da85c01ccce6a831afff5931"
 
-cordova-plugin-camera@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.0.2.tgz#309410927ef40adc6bebd4b0e91df2c8c644f38a"
+cordova-plugin-camera@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.0.3.tgz#7373a5938318c86ccfd84e3713e2382d10fe076b"
 
 cordova-plugin-contacts@^3.0.1:
   version "3.0.1"
@@ -1547,9 +1555,9 @@ cordova-plugin-file@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
 
-cordova-plugin-filepath@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-filepath/-/cordova-plugin-filepath-1.2.0.tgz#63cc36c7610404ab8451cd57f4dc92303a027a48"
+cordova-plugin-filepath@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-filepath/-/cordova-plugin-filepath-1.3.0.tgz#2d47ad4d8fcdbfe6e00e04d6ea6219a91eeb22e1"
 
 cordova-plugin-geolocation@^4.0.1:
   version "4.0.1"
@@ -1569,9 +1577,9 @@ cordova-plugin-inappbrowser@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-2.0.2.tgz#a448fcbe974ca6b42988bd3455109d923d6c9769"
 
-cordova-plugin-ionic-webview@^1.1.16:
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-1.1.16.tgz#92d5f2e4a5a829f91b487b1761848765a31c9f1e"
+cordova-plugin-ionic-webview@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-1.2.1.tgz#6d2162a2b1c593de436359d0746afc28b6a28d57"
 
 cordova-plugin-local-notification@^0.9.0-beta.2:
   version "0.9.0-beta.2"
@@ -1585,13 +1593,13 @@ cordova-plugin-splashscreen@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-4.1.0.tgz#81028ab7643e615593d27f2ad02445611f1946b6"
 
+cordova-plugin-statusbar@^2.4.1:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.2.tgz#fc1fbdc0d8d7033a7e8e1f1f7ff167ac9bd4faf6"
+
 cordova-plugin-telerik-imagepicker@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.1.8.tgz#e2d531db60950abeb9d9346ffd7bf1aed4799043"
-
-cordova-plugin-useragent@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-useragent/-/cordova-plugin-useragent-1.0.6.tgz#19cc4fa01f5c91b64f1ad4258547228603aec239"
 
 cordova-plugin-whitelist@^1.3.3:
   version "1.3.3"
@@ -4617,9 +4625,13 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-phonegap-plugin-barcodescanner@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-7.0.2.tgz#49039da3c243d25d2e2c99b48ac107ac0b521d8a"
+phonegap-plugin-barcodescanner@^7.1.1:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/phonegap-plugin-barcodescanner/-/phonegap-plugin-barcodescanner-7.1.2.tgz#100b909f2b2deeae96eb73b4f0dce19cb50cb3a3"
+
+phonegap-plugin-local-notification@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/phonegap-plugin-local-notification/-/phonegap-plugin-local-notification-1.0.1.tgz#184f43fb54dc01113ccba579a03aceeba795a9db"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
