@@ -38,6 +38,9 @@
           </div>
         </ion-row>
       </div>
+      <div *ngIf="offer.offer_type=='random'" class="offer_myself_counter">
+         {{ counterOfferRandom(offer.counter_number)}}/{{offer.limit_counter}}
+      </div>
       <img (click)="bookmarkOffer(offer)" class="offer_search_icon_offer" src="assets/imgs/ic_pin.png">
     </ion-col>
   </ion-row>
