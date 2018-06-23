@@ -18,6 +18,9 @@
         </div>
       </ion-thumbnail>
       <h2 class="history_order_shop_title">{{shop.title}}</h2>
+      <p class="history_order_product_row">Phí giao hàng:
+        <span class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</span>
+      </p>
     </ion-item>
 
     <ion-list class="history_order_product">
