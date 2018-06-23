@@ -1,11 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <!-- <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
-    </ion-buttons> -->
-    <ion-title>Thông tin quà tặng</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+      <div class="ion_navbar_title">Thông Tin Quà Tặng</div>
+    </ion-buttons>
+
     <ion-buttons end>
-      <button ion-button (click)="choosenItem()">
+      <button class="gift_item_send_btn" ion-button (click)="choosenItem()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
@@ -16,7 +19,9 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <img width="100%"  src="{{imageUrl}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+        <div class="gift_item_image">
+          <img src="{{ imageUrl }}" onError="this.src='assets/imgs/image_not_found.jpg'"/>
+        </div>
       </ion-col>
       <ion-col col-8>
         <ion-row>
