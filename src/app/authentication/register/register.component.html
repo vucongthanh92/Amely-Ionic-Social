@@ -1,140 +1,139 @@
-
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Đăng ký</div>
-    </ion-buttons>
-    <ion-buttons end>
-      <button ion-button icon-only style="font-size: 2.5rem;" (click)="onSubmitRegister();">
+            <div class="ion_navbar_title">Đăng ký</div>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button icon-only style="font-size: 2.5rem;" tappable (click)="onSubmitRegister();">
         <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <!-- FIRSTNAME -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconUser.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="firstname" type="text" placeholder="Họ"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END FIRSTNAME  -->
+    <ion-grid>
+        <ion-row>
+            <!-- FIRSTNAME -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconUser.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="firstname" type="text" placeholder="Họ"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END FIRSTNAME  -->
 
-      <!-- LASTNAME  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconUser.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="lastname" type="text" placeholder="Tên"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END LASTNAME -->
+            <!-- LASTNAME  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconUser.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="lastname" type="text" placeholder="Tên"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END LASTNAME -->
 
-      <!-- BIRTHDAY  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconCalendar.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-calendar" md="md-calendar"></ion-icon>  -->
-            <!-- <span class="register_icon_title">Ngày sinh</span> -->
-          </ion-label>
-            <ion-datetime class="register_form_datetime" (ionChange)='onChangeTime($event)' [(ngModel)]="birthdate" displayFormat="YYYY-MM-DD" placeholder="Ngày sinh"></ion-datetime>
-        </ion-item>
-      </ion-col>
+            <!-- BIRTHDAY  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconCalendar.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-calendar" md="md-calendar"></ion-icon>  -->
+                        <!-- <span class="register_icon_title">Ngày sinh</span> -->
+                    </ion-label>
+                    <ion-datetime class="register_form_datetime" (ionChange)='onChangeTime($event)' [(ngModel)]="birthdate" displayFormat="YYYY-MM-DD" placeholder="Ngày sinh"></ion-datetime>
+                </ion-item>
+            </ion-col>
 
-      <ion-col class="register_colum" col-12 *ngIf="is_show_privacy">
-        <ion-list class="register_regulation">
-          <ion-item>
-            <ion-label class="register_regulation_content">Với tài khoản dưới 15 tuổi cần có sự đồng ý của người giám hộ</ion-label>
-            <ion-checkbox [(ngModel)]="privacy"></ion-checkbox>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <!-- END BIRTHDAY -->
+            <ion-col class="register_colum" col-12 *ngIf="is_show_privacy">
+                <ion-list class="register_regulation">
+                    <ion-item>
+                        <ion-label class="register_regulation_content">Với tài khoản dưới 15 tuổi cần có sự đồng ý của người giám hộ</ion-label>
+                        <ion-checkbox [(ngModel)]="privacy"></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <!-- END BIRTHDAY -->
 
-      <!-- GENDER -->
-      <ion-col class="register_colum" col-2>
-        <ion-item class="register_box2">
-          <img class="register_icon" src="assets/imgs/iconGender.png" />
-          <!-- <ion-icon class="register_icon" ios="md-male" md="md-maler"></ion-icon> -->
-        </ion-item>
-      </ion-col>
-      <ion-col class="register_colum" col-10>
-        <ion-list class="register_box3" style="padding: 0px 0px 0px 0px;">
-          <ion-item>
-            <!-- <ion-label>Giới Tính</ion-label> -->
-            <ion-select [(ngModel)]="gender" placeholder="Giới Tính">
-              <ion-option value="male">Nam</ion-option>
-              <ion-option value="female">Nữ</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+            <!-- GENDER -->
+            <ion-col class="register_colum" col-2>
+                <ion-item class="register_box2">
+                    <img class="register_icon" src="assets/imgs/iconGender.png" />
+                    <!-- <ion-icon class="register_icon" ios="md-male" md="md-maler"></ion-icon> -->
+                </ion-item>
+            </ion-col>
+            <ion-col class="register_colum" col-10>
+                <ion-list class="register_box3" style="padding: 0px 0px 0px 0px;">
+                    <ion-item>
+                        <!-- <ion-label>Giới Tính</ion-label> -->
+                        <ion-select [(ngModel)]="gender" placeholder="Giới Tính">
+                            <ion-option value="male">Nam</ion-option>
+                            <ion-option value="female">Nữ</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
 
-      </ion-col>
-      <!--  END GENDER -->
+            </ion-col>
+            <!--  END GENDER -->
 
-      <!-- USERNAME  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconUser.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập" (ionChange)="setUsername(username)"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END USERNAME -->
+            <!-- USERNAME  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconUser.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-person" md="md-person"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="username" type="text" placeholder="Tài khoản đăng nhập" (ionChange)="setUsername(username)"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END USERNAME -->
 
-      <!-- PASSWORD  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconPass.png" />            
-            <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="password" type="password" placeholder="Mật khẩu"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END PASSWORD -->
+            <!-- PASSWORD  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconPass.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="password" type="password" placeholder="Mật khẩu"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END PASSWORD -->
 
-      <!-- REPASSWORD  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconPass.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="password_re" type="password" placeholder="Nhập lại mật khẩu"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END REPASSWORD -->
+            <!-- REPASSWORD  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconPass.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-key" md="md-key"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="password_re" type="password" placeholder="Nhập lại mật khẩu"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END REPASSWORD -->
 
-      <!-- EMAIL  -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconMail.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-mail" md="md-mail"></ion-icon> -->
-          </ion-label>
-          <ion-input [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END EMAIL -->
+            <!-- EMAIL  -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconMail.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-mail" md="md-mail"></ion-icon> -->
+                    </ion-label>
+                    <ion-input [(ngModel)]="email" type="email" placeholder="Email"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END EMAIL -->
 
-      <!-- REEMAIL  -->
-      <!-- <ion-col class="register_colum" col-12>
+            <!-- REEMAIL  -->
+            <!-- <ion-col class="register_colum" col-12>
         <ion-item class="register_box">
           <ion-label>
             <ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon>
@@ -142,31 +141,31 @@
           <ion-input [(ngModel)]="email_re" type="email" placeholder="Nhập lại email"></ion-input>
         </ion-item>
       </ion-col> -->
-      <!-- END REEMAIL -->
+            <!-- END REEMAIL -->
 
-      <!-- NUMBER PHONE -->
-      <ion-col class="register_colum" col-12>
-        <ion-item class="register_box">
-          <ion-label>
-            <img class="register_icon" src="assets/imgs/iconPhone.png" />
-            <!-- <ion-icon class="register_icon" ios="ios-call" md="md-call"></ion-icon> -->
-          </ion-label>
-          <ion-input type="tel" [(ngModel)]="mobilelogin" placeholder="Số điện thoại"></ion-input>
-        </ion-item>
-      </ion-col>
-      <!-- END NUMBER PHONE -->
-      <ion-col class="register_colum" col-2>
-        <ion-item class="register_box2">
-          <ion-checkbox [(ngModel)]="rules" (ionChange)="onChange($event)"></ion-checkbox>
-        </ion-item>
-      </ion-col>
-      <ion-col class="register_colum" col-10>
-        <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;">
-          <ion-label>Tôi đồng ý với <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">điều khoản sử dụng</a> <br> và <a href="https://amely.com/static/chinh-sach-bao-mat" target="_blank">chính sách bảo mật.</a></ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+            <!-- NUMBER PHONE -->
+            <ion-col class="register_colum" col-12>
+                <ion-item class="register_box">
+                    <ion-label>
+                        <img class="register_icon" src="assets/imgs/iconPhone.png" />
+                        <!-- <ion-icon class="register_icon" ios="ios-call" md="md-call"></ion-icon> -->
+                    </ion-label>
+                    <ion-input type="tel" [(ngModel)]="mobilelogin" placeholder="Số điện thoại"></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- END NUMBER PHONE -->
+            <ion-col class="register_colum" col-2>
+                <ion-item class="register_box2">
+                    <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)">
+                </ion-item>
+            </ion-col>
+            <ion-col class="register_colum" col-10>
+                <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;">
+                    <ion-label>Tôi đồng ý với <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">điều khoản sử dụng</a> <br> và <a href="https://amely.com/static/chinh-sach-bao-mat" target="_blank">chính sách bảo mật.</a></ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
 
-    
-  </ion-grid>
+
+    </ion-grid>
 </ion-content>

@@ -103,7 +103,13 @@ export class UserMenuComponent implements OnInit {
 
   retryPutFeed(retry, content, images) {
     if (retry == 0) return;
-    this.feedService.putFeed(content, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
+    this.feedService.putFeed(content, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => {
+      if (data.status) {
+        if (images != null && images.length > 0) {
+          localStorage.setItem(data.guid, JSON.stringify(images));
+        }
+      }
+    })
   }
 
   report() {

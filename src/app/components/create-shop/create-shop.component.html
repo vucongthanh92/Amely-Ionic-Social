@@ -1,85 +1,86 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">tạo shop</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">tạo shop</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list class="create_shop_list">
-    <ion-item class="create_shop_item" *ngIf="shop.status=='2'">
-      Cửa hàng không được phê duyệt vì {{shop.reason}}
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Tên cửa hàng</ion-label>
-      <ion-input [(ngModel)]="name" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Số điện thoại cửa hàng</ion-label>
-      <ion-input type="tel" [(ngModel)]="phone" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Mã doanh nghiệp</ion-label>
-      <ion-input type="number" [(ngModel)]="BIDN"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Giá lưu kho</ion-label>
-      <ion-input type="number" [(ngModel)]="price" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Friend Url</ion-label>
-      <ion-input [(ngModel)]="friend_url" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
+    <ion-list class="create_shop_list">
+        <ion-item class="create_shop_item" *ngIf="shop.status=='2'">
+            Cửa hàng không được phê duyệt vì {{shop.reason}}
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Tên cửa hàng</ion-label>
+            <ion-input [(ngModel)]="name" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Số điện thoại cửa hàng</ion-label>
+            <ion-input type="tel" [(ngModel)]="phone" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Mã doanh nghiệp</ion-label>
+            <ion-input type="number" [(ngModel)]="BIDN"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Giá lưu kho</ion-label>
+            <ion-input type="number" [(ngModel)]="price" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>SEO Url</ion-label>
+            <ion-input [(ngModel)]="friend_url" type="text"></ion-input>
+        </ion-item>
+        <!-- <ion-item class="create_shop_item">
       <ion-label>Phương thức vận chuyển</ion-label>
       <ion-select [(ngModel)]="shipping_method" interface="popover">
         <ion-option value="Self">Self</ion-option>
         <ion-option value="SieuQua">SieuQua</ion-option>
       </ion-select>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Tên chủ shop</ion-label>
-      <ion-input [(ngModel)]="owner_name" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Số điện thoại của chủ shop</ion-label>
-      <ion-input type="tel" [(ngModel)]="owner_phone_number" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label stacked>SSN</ion-label>
-      <ion-input type="number" [(ngModel)]="ssn" type="text"></ion-input>
-    </ion-item>
-  </ion-list>
+    </ion-item> -->
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Tên chủ shop</ion-label>
+            <ion-input [(ngModel)]="owner_name" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Số điện thoại của chủ shop</ion-label>
+            <ion-input type="tel" [(ngModel)]="owner_phone_number" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Mã số thuế</ion-label>
+            <ion-input type="number" [(ngModel)]="ssn" type="text"></ion-input>
+        </ion-item>
+    </ion-list>
 
-  <ion-label class="create_shop_label">Địa chỉ cửa hàng</ion-label>
-  <ion-list class="create_shop_list">
-    <ion-item class="create_shop_item">
-      <ion-label stacked>Địa chỉ cửa hàng</ion-label>
-      <ion-input [(ngModel)]="address" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label>Thành phố / Tỉnh</ion-label>
-      <ion-select *ngIf="provinces" [(ngModel)]="province" name="province" (ionChange)="onProvinceChange($event)">
-        <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label>Quận / Huyện</ion-label>
-      <ion-select *ngIf="districts" [(ngModel)]="district" name="district" (ionChange)="onDistrictChange($event)">
-        <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item class="create_shop_item">
-      <ion-label>Phường / Xã</ion-label>
-      <ion-select *ngIf="wards" [(ngModel)]="ward" name="ward" (ionChange)="onWardChange($event)">
-        <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+    <ion-label class="create_shop_label">Địa chỉ cửa hàng</ion-label>
+    <ion-list class="create_shop_list">
+        <ion-item class="create_shop_item">
+            <ion-label stacked>Địa chỉ cửa hàng</ion-label>
+            <ion-input [(ngModel)]="address" type="text"></ion-input>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label>Thành phố / Tỉnh</ion-label>
+            <ion-select *ngIf="provinces" [(ngModel)]="province" name="province" (ionChange)="onProvinceChange($event)">
+                <ion-option *ngFor="let province of provinces" value="{{ province.provinceid }}">{{ province.name }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label>Quận / Huyện</ion-label>
+            <ion-select *ngIf="districts" [(ngModel)]="district" name="district" (ionChange)="onDistrictChange($event)">
+                <ion-option *ngFor="let district of districts" value="{{ district.districtid }}">{{ district.name }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="create_shop_item">
+            <ion-label>Phường / Xã</ion-label>
+            <ion-select *ngIf="wards" [(ngModel)]="ward" name="ward" (ionChange)="onWardChange($event)">
+                <ion-option *ngFor="let ward of wards" value="{{ ward.wardid }}">{{ ward.name }}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
 
   <ion-label class="create_shop_label">Địa chỉ chủ cửa hàng</ion-label>
   <ion-list class="create_shop_list">
@@ -106,17 +107,33 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  
-  <div class="create_shop_note">*** In clicking submit you are agreeing to the Terms and Conditions</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="register_colum" col-2>
+        <ion-item class="register_box2" no-lines>
+          <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)" [disabled]="relesDisabled">
+        </ion-item>
+      </ion-col>
+      <ion-col class="register_colum" col-10>
+        <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;" no-lines>
+          <ion-label>Tôi đồng ý với
+            <a href="https://amely.com/static/dieu-khoan-su-dung" target="_blank">các điều khoản của sàn <br> giao dịch hỗn hợp Amely</a>
+          </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
 
-  <!-- define('SHOP_REQUESTING', 0);
+
+    </ion-grid>
+
+    <!-- define('SHOP_REQUESTING', 0);
     define('SHOP_PENDING', 1);
     define('SHOP_REJECTED', 2); 
     define('SHOP_APPROVED',  3); 
     define('SHOP_SUSPENDED', 4); 
     define('SHOP_UNPUBLISHED', 5); -->
-    
+
     <button *ngIf="shop.status=='1'" [disabled]=true ion-button class="create_shop_send" full no-margin>Đang đợi phê duyệt</button>
-    <button *ngIf="shop.status=='2'" (click)="createShop()" ion-button class="create_shop_send" full no-margin>Cập nhật</button>
-    <button *ngIf="shop.status==false" (click)="createShop()" ion-button class="create_shop_send" full no-margin>Tạo cửa hàng</button>
+    <button *ngIf="shop.status=='2'" tappable (click)="createShop()" ion-button class="create_shop_send" full no-margin>Cập nhật</button>
+    <button *ngIf="shop.status==false" tappable (click)="createShop()" ion-button class="create_shop_send" full no-margin>Tạo cửa hàng</button>
 </ion-content>

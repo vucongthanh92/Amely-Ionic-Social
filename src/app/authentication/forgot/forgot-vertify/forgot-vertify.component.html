@@ -1,27 +1,27 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Quên mật khẩu</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">Quên mật khẩu</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div style="margin-top: 30%;">
-    <div>
-      <ion-input [(ngModel)]="code" class="inputForgot" type="text" placeholder="Mã xác nhận"></ion-input>
-    </div>
-    <!-- <br>
+    <div style="margin-top: 30%;">
+        <div>
+            <ion-input [(ngModel)]="code" class="inputForgot" type="text" placeholder="Mã xác nhận"></ion-input>
+        </div>
+        <!-- <br>
     <div style="text-align: center;">
       <label for="">Gửi lại mã xác nhận</label>
     </div> -->
-    <br>
-    <div style="text-align: center;">
-      <button class="buttonSubmit" ion-button (click)="activationCode()">TIẾP TỤC</button>
+        <br>
+        <div style="text-align: center;">
+            <button class="buttonSubmit" ion-button tappable (click)="activationCode()">TIẾP TỤC</button>
+        </div>
     </div>
-  </div>
 
 </ion-content>

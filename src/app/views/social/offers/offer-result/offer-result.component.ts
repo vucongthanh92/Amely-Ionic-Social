@@ -49,6 +49,8 @@ export class OfferResultComponent implements OnInit {
     this.offerService.getCounterOffer(this.cOfferGuid).subscribe(data => {
       if (data.status != 'false') {
         this.cOffer = data;
+        console.log(this.cOffer);
+        
       }
     }, err => this.retryGetCounterOffer(--retry));
   }

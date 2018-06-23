@@ -1,55 +1,55 @@
 <ion-content class="find_friend_container">
-  <div class="scroll-content find_friend_main">
-    <ion-row class="find_friend_box">
-      <ion-col col-12 class="find_friend_col">
-        <ion-label>Theo số điện thoại</ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-grid>
-          <ion-row class="find_friend_result_box">
-            <ion-col col-9>
-              <ion-input class="find_friend_input" [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại"></ion-input>
+    <div class="scroll-content find_friend_main">
+        <ion-row class="find_friend_box">
+            <ion-col col-12 class="find_friend_col">
+                <ion-label>Theo số điện thoại</ion-label>
             </ion-col>
-            <ion-col col-3>
-              <button (click)="findUser()" class="find_friend_result_search" ion-button>TÌM</button>
+            <ion-col>
+                <ion-grid>
+                    <ion-row class="find_friend_result_box">
+                        <ion-col col-9>
+                            <ion-input class="find_friend_input" [(ngModel)]="phone_number" type="text" placeholder="Nhập số điện thoại"></ion-input>
+                        </ion-col>
+                        <ion-col col-3>
+                            <button tappable (click)="findUser()" class="find_friend_result_search" ion-button>TÌM</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="find_friend_result" *ngIf="user_found" (click)="openUserProfile()">
+                        <ion-col col-3 text-center>
+                            <img src="{{user_found.avatar}}" class="find_friend_result_img" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        </ion-col>
+                        <ion-col col-9>
+                            <div class="find_friend_result_fullname">{{user_found.fullname}}</div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
             </ion-col>
-          </ion-row>
-          <ion-row class="find_friend_result" *ngIf="user_found" (click)="openUserProfile()">
-            <ion-col col-3 text-center>
-              <img src="{{user_found.avatar}}" class="find_friend_result_img" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </ion-col>
-            <ion-col col-9>
-              <div class="find_friend_result_fullname">{{user_found.fullname}}</div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-    </ion-row>
-  </div>
+        </ion-row>
+    </div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar class="find_friend_other">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12 class="find_friend_other_container">
-          <ion-label>Theo cách khác</ion-label>
-        </ion-col>
+    <ion-toolbar class="find_friend_other">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12 class="find_friend_other_container">
+                    <ion-label>Theo cách khác</ion-label>
+                </ion-col>
 
-        <ion-col col-6 class="find_friend_other_col" (click)="scanQR()">
-          <button class="find_friend_other_icon" ion-button>
+                <ion-col col-6 class="find_friend_other_col" tappable (click)="scanQR()">
+                    <button class="find_friend_other_icon" ion-button>
             <ion-icon class="iconFooter" ios="ios-barcode-outline" md="md-barcode"></ion-icon>
           </button>
-          <ion-label class="find_friend_other_title">Quét mã QR</ion-label>
-        </ion-col>
+                    <ion-label class="find_friend_other_title">Quét mã QR</ion-label>
+                </ion-col>
 
-        <ion-col col-6 class="find_friend_other_col">
-          <button class="find_friend_other_icon" ion-button>
+                <ion-col col-6 class="find_friend_other_col">
+                    <button class="find_friend_other_icon" ion-button>
             <ion-icon class="iconFooter" ios="logo-facebook" md="logo-facebook"></ion-icon>
           </button>
-          <ion-label class="find_friend_other_title">Tìm bạn từ Facebook</ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+                    <ion-label class="find_friend_other_title">Tìm bạn từ Facebook</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
 </ion-footer>

@@ -2,8 +2,8 @@
   <ion-list class="events_list" *ngIf="events">
     <ion-item class="events_item" *ngFor="let event of events" (click)="goToPage(event.guid)">
       <ion-row>
-        <ion-col col-3>
-          <img class="events_image" src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <ion-col class="events_image" col-3>
+          <img src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-col>
         <ion-col col-6>
           <div class="events_title">{{event.title}}</div>
@@ -16,11 +16,10 @@
         </ion-col>
       </ion-row>
     </ion-item>
-    <div *ngIf="events.length == 0" style="font-size: 20px; text-align: center; padding: 20px 0px 30px 0px;">
-      <div>
-        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-      </div>
-      <div style="color: #999;">
+
+    <div *ngIf="events.length == 0" class="event_user_nodata">
+      <img src="assets/imgs/ic_feed.png" alt="">
+      <div class="event_user_nodata_title">
         Không có dữ liệu...
       </div>
     </div>
@@ -33,14 +32,19 @@
           <div class="divCustom"></div>
         </ion-col>
         <ion-col col-6 style="bottom: 8px;">
-          <div class="events_title"><h2></h2></div>
-          <div class="events_date"><h3></h3></div>
-          <div class="events_author"><p></p></div>
+          <div class="events_title">
+            <h2></h2>
+          </div>
+          <div class="events_date">
+            <h3></h3>
+          </div>
+          <div class="events_author">
+            <p></p>
+          </div>
         </ion-col>
       </ion-row>
     </ion-item>
   </ion-list>
-
 </ion-content>
 
 <ion-fab right bottom (click)="createEvent()">

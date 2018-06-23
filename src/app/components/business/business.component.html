@@ -1,94 +1,99 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button *ngIf="is_owner" ion-button (click)="openPopover($event)">
+        </ion-buttons>
+        <ion-buttons end>
+            <button *ngIf="is_owner" ion-button tappable (click)="openPopover($event)">
         <ion-icon class="business_more_icon" name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" *ngIf="page">
-  <div [style.background]="'url(' + page.cover + ')'" class="business_cover"></div>
+<ion-content class="outer-content">
 
-  <div class="business_avatar_row">
-    <div class="business_avatar">
-      <img src="{{ page.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+  <div *ngIf="page">
+    <div class="business_cover">
+      <img src="{{page.cover}}" onError="this.src='assets/imgs/banner.png'">
     </div>
-    <div class="business_cover_title">{{page.title}}</div>
-  </div>
+    <div class="business_avatar">
+      <div class="business_avatar_image">
+        <img src="{{ page.avatar }}" onError="this.src='assets/imgs/OA-nam.png'">
+      </div>
+      <div class="business_cover_title">{{page.title}}</div>
+    </div>
 
-  <div class="bar bar-header bar-dark business_nav">
-    <ion-row class="business_nav_row">
-      <ion-col class="business_nav_col" col-4 *ngIf="is_owner">
+        <div class="bar bar-header bar-dark business_nav">
+            <ion-row class="business_nav_row">
+                <ion-col class="business_nav_col" col-4 *ngIf="is_owner">
 
-        <button ion-button icon-left clear small color="danger" (click)="goInventory();">
-          <img class="business_nav_icon" src="assets/imgs/ic_go_to_inventory.png">
-          <div class="business_nav_text">Vào kho</div>
-        </button>
-      </ion-col>
-      <ion-col class="business_nav_col" col-4>
-        <button ion-button icon-left clear small color="danger" (click)="goToPage('gift',page);">
-          <img class="business_nav_icon" src="assets/imgs/ic_send_gift_blue.png">
-          <div class="business_nav_text">Tặng quà</div>
-        </button>
-      </ion-col>
+                    <button ion-button icon-left clear small color="danger" tappable (click)="goInventory();">
+            <img class="business_nav_icon" src="assets/imgs/ic_go_to_inventory.png">
+            <div class="business_nav_text">Vào kho</div>
+          </button>
+                </ion-col>
+                <ion-col class="business_nav_col" col-4>
+                    <button ion-button icon-left clear small color="danger" tappable (click)="goToPage('gift',page);">
+            <img class="business_nav_icon" src="assets/imgs/ic_send_gift_blue.png">
+            <div class="business_nav_text">Tặng quà</div>
+          </button>
+                </ion-col>
 
-      <ion-col col-4 *ngIf="page.followed" (click)="likePage(false)">
-        <button ion-button icon-left clear small color="danger">
-          <img class="business_nav_icon" src="assets/imgs/ic_like_actived.png">
-          <div class="business_nav_text">Đã thích</div>
-        </button>
-      </ion-col>
+                <ion-col col-4 *ngIf="page.followed" tappable (click)="likePage(false)">
+                    <button ion-button icon-left clear small color="danger">
+            <img class="business_nav_icon" src="assets/imgs/ic_like_actived.png">
+            <div class="business_nav_text">Đã thích</div>
+          </button>
+                </ion-col>
 
-      <ion-col col-4 *ngIf="!page.followed" (click)="likePage(true)">
-        <button ion-button icon-left clear small color="danger">
-          <img class="business_nav_icon" src="assets/imgs/ic_like.png">
-          <div class="business_nav_text">Thích</div>
-        </button>
-      </ion-col>
-    </ion-row>
-  </div>
+                <ion-col col-4 *ngIf="!page.followed" tappable (click)="likePage(true)">
+                    <button ion-button icon-left clear small color="danger">
+            <img class="business_nav_icon" src="assets/imgs/ic_like.png">
+            <div class="business_nav_text">Thích</div>
+          </button>
+                </ion-col>
+            </ion-row>
+        </div>
 
-  <div *ngIf="newfeedsPage">
-    <ion-card class="business_info">
-      <ion-card-content>
-        <ion-item class="business_info_item business_info_border">
-          <img class="business_info_image" src="assets/imgs/ic_info_gay.png"> {{page.category}}
-        </ion-item>
+        <div *ngIf="newfeedsPage">
+            <ion-card class="business_info">
+                <ion-card-content>
+                    <ion-item class="business_info_item business_info_border">
+                        <img class="business_info_image" src="assets/imgs/ic_info_gay.png"> {{page.category}}
+                    </ion-item>
 
-        <ion-item class="business_info_item">
-          <ion-icon class="business_info_icon" ios="ios-heart" md="md-heart" color="danger"></ion-icon> {{page.follow}}
-        </ion-item>
+                    <ion-item class="business_info_item">
+                        <ion-icon class="business_info_icon" ios="ios-heart" md="md-heart" color="danger"></ion-icon> {{page.follow}}
+                    </ion-item>
 
-        <ion-item class="business_info_item">
-          <img class="business_info_image" src="assets/imgs/ic_location_actived.png"> {{page.address}}
-        </ion-item>
+                    <ion-item class="business_info_item">
+                        <img class="business_info_image" src="assets/imgs/ic_location_actived.png"> {{page.address}}
+                    </ion-item>
 
-        <ion-item class="business_info_item">
-          <ion-icon class="business_info_icon" ios="ios-globe" md="md-globe"></ion-icon>{{page.website}}
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
+                    <ion-item class="business_info_item">
+                        <ion-icon class="business_info_icon" ios="ios-globe" md="md-globe"></ion-icon>{{page.website}}
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
 
-    <ion-card class="business_description">
-      <ion-card-header>Mô tả</ion-card-header>
-      <ion-card-content>{{page.description}}</ion-card-content>
-    </ion-card>
-    <ion-list *ngIf="business_guid">
-      <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-      <app-feeds [type]="'businesspage'" [feed_type]="'business'" [owner_guid]="business_guid" [admin_guid]="page.owner.guid"></app-feeds>
-      <!-- </ion-item> -->
-    </ion-list>
-  </div>
+            <ion-card class="business_description">
+                <ion-card-header>Mô tả</ion-card-header>
+                <ion-card-content>{{page.description}}</ion-card-content>
+            </ion-card>
+            <ion-list *ngIf="business_guid">
+                <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+                <app-feeds [type]="'businesspage'" [feed_type]="'business'" [owner_guid]="business_guid" [admin_guid]="page.owner.guid"></app-feeds>
+                <!-- </ion-item> -->
+            </ion-list>
+        </div>
+    </div>
 </ion-content>
+
 <ion-fab class="user_fab" *ngIf="is_show_fab">
-  <button ion-fab class="user_fab_icon" (click)="addFeed()">
+    <button ion-fab class="user_fab_icon" tappable (click)="addFeed()">
     <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
   </button>
 </ion-fab>

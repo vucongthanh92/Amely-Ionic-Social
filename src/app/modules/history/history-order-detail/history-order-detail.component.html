@@ -9,42 +9,44 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content">
+<ion-content class="history_order_detail_content">
   <div *ngFor="let shop of shops">
-    <ion-item>
+    <ion-item class="history_order_shop">
       <ion-thumbnail item-left>
-        <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <div class="history_order_shop_image">
+          <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        </div>
       </ion-thumbnail>
-      <h2>{{shop.title}}</h2>
+      <h2 class="history_order_shop_title">{{shop.title}}</h2>
+      <p class="history_order_product_row">Phí giao hàng:
+        <span class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</span>
+      </p>
     </ion-item>
-    <div >
-      <ion-list >
-        <ion-item style="padding-left: 30px" *ngFor="let p of  getProductsShop(shop.guid)">
-          <ion-thumbnail item-left>
-            <img *ngIf="p.images" src="{{p.images[0]}}">
-            <img *ngIf="!p.images" src="assets/imgs/image_not_found.jpg">
-          </ion-thumbnail>
-          <h2>{{p.title}}</h2>
-          <div *ngIf="!p.redeem_quantity ||p.redeem_quantity==0;else other_content">
-            <p>SL :
-              <span style="color: red">{{p.display_quantity}}</span>
-            </p>
-            <p>Giá :
-              <span style="color: red">{{formatTotalPrive(p.display_price,p.display_currency)}}</span>
-            </p>
-            <p>Thuế :
-              <span style="color: red">{{p.tax}}%</span>
-            </p>
-          </div>
-          <ng-template #other_content>
-            <div>
-              <p>Sử dụng trong kho
-                <span style="color: red">{{p.redeem_quantity}}</span> sản phảm</p>
-            </div>
-          </ng-template>
-        </ion-item>
-      </ion-list>
-    </div>
+
+    <ion-list class="history_order_product">
+      <ion-item *ngFor="let p of  getProductsShop(shop.guid)">
+        <ion-thumbnail item-left>
+          <img src="{{p.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        </ion-thumbnail>
+        <h2 class="history_order_product_title">{{p.title}}</h2>
+        <div *ngIf="!p.redeem_quantity || p.redeem_quantity==0;else other_content">
+          <p class="history_order_product_row">SL: 
+            <span class="history_order_product_label">{{p.display_quantity}}</span>
+          </p>
+          <p class="history_order_product_row">Giá: 
+            <span class="history_order_product_label">{{formatTotalPrive(p.display_price,p.display_currency)}}</span>
+          </p>
+          <p class="history_order_product_row">Thuế: 
+            <span class="history_order_product_label">{{p.tax}}%</span>
+          </p>
+        </div>
+        <ng-template #other_content>
+          <p>Sử dụng trong kho
+            <span class="history_order_product_label">{{p.redeem_quantity}}</span> sản phảm</p>
+        </ng-template>
+      </ion-item>
+    </ion-list>
+
     <!-- <ion-fab center middle>
       <button ion-fab mini>
         <ion-icon name="ios-arrow-dropdown"></ion-icon>
@@ -80,21 +82,17 @@
       </ion-fab-list>
     </ion-fab> -->
   </div>
-
- 
 </ion-content>
 
 <ion-footer class="history_order_total" *ngIf="order">
-  <div class="history_order_total_box" padding-horizontal>
-    <ion-item>
-      Phí giao hàng
-      <ion-note class="ionNote" item-end *ngIf="user_current">
+  <div class="history_order_total_box">
+    <ion-item *ngIf="shippingFee != 0">Phí giao hàng
+      <ion-note class="history_order_product_label" item-end *ngIf="user_current">
         {{formatTotalPrive(shippingFee,user_current.usercurrency)}}
       </ion-note>
     </ion-item>
-    <ion-item>
-      Tổng tiền
-      <ion-note class="ionNote" item-end *ngIf="user_current">
+    <ion-item>Tổng tiền
+      <ion-note class="history_order_product_label" item-end *ngIf="user_current">
         {{formatTotalPrive(totalPrice,user_current.usercurrency)}}
       </ion-note>
     </ion-item>

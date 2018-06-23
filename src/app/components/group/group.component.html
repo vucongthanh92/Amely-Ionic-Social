@@ -1,95 +1,102 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
-        <ion-icon class="group_more_icon" name="md-more"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+                <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
+                <ion-icon class="group_more_icon" name="md-more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content" *ngIf="group">
-  <div class="group_cover" [style.background]="'url(' + group.cover + ')'"></div>
-  <div class="group_avatar_row">
-    <div class="group_avatar">
-      <img src="{{ group.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+<ion-content class="outer-content">
+    <div *ngIf="group">
+        <div class="group_cover">
+            <img src="{{group.cover}}" onError="this.src='assets/imgs/banner.png'">
+        </div>
+        <div class="group_avatar">
+            <div class="group_avatar_image">
+                <img src="{{ group.avatar }}" onError="this.src='assets/imgs/nhom.png'" imageViewer>
+            </div>
+            <div class="group_avatar_title">{{ group.title }}</div>
+        </div>
+
+        <div class="bar bar-header bar-dark" class="group_navigation">
+            <ion-segment color="primary" [(ngModel)]="groupTab" class="group_tab">
+                <ion-segment-button value="newfeed" class="group_tab_box tab_border" (click)="goToPage('newfeed');">
+                    <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+                    <div class="group_tab_title">Cập Nhật</div>
+                </ion-segment-button>
+                <ion-segment-button value="members" class="group_tab_box" (click)="goToPage('members');">
+                    <ion-icon ios="ios-people" md="md-people"></ion-icon>
+                    <div class="group_tab_title">Thành viên</div>
+                </ion-segment-button>
+            </ion-segment>
+
+            <ion-row text-center class="group_bar">
+                <ion-col col-4 *ngIf="group.has_inventory != ''">
+                    <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('gift', group)">
+                        <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
+                        <div class="group_bar_title">Tặng quà</div>
+                    </button>
+                </ion-col>
+                
+                <ion-col col-5 *ngIf="is_admin">
+                    <button ion-button icon-left clear small class="group_bar_button" (click)="inviteMember()">
+                        <img class="group_bar_icon" src="assets/imgs/ic_add_friend.png">
+                        <div class="group_bar_title group_bar_add_group">Mời thành viên</div>
+                    </button>
+                </ion-col>
+                
+                <ion-col col-3>
+                    <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('chat', group)">
+                        <img class="group_bar_icon" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
+                        <div class="group_bar_title">Nhắn tin</div>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </div>
+
+        <div *ngIf="newfeedsPage">
+            <ion-card class="group_info">
+                <ion-card-content>
+                    <ion-row *ngIf="group">
+                        <ion-col col-12>
+                            <p class="group_info_row">
+                                <img class="iconGroup" src="assets/imgs/ic_setting_private_actived.png"> Quản trị nhóm: {{getOwner(group.owner_guid)}}
+                            </p>
+                            <p class="group_info_row">
+                                <img class="iconGroup" src="assets/imgs/ic_inventory_history_actived.png"> Ngày lập: {{dateCreated | date:'dd/MM/yyyy' }}
+                            </p>
+                            <p class="group_info_row">
+                                <img class="iconGroup" src="assets/imgs/ic_member_actived.png"> Số thành viên:{{group.members.length}}
+                            </p>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+            
+            <ion-list>
+                <ion-list *ngIf="groupGuid">
+                    <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
+                    <app-feeds #feeds [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid" [admin_guid]="group.owner_guid"></app-feeds>
+                    <!-- </ion-item> -->
+                </ion-list>
+            </ion-list>
+        </div>
     </div>
-    <div class="group_cover_title">{{ group.title }}</div>
-  </div>
-
-  <div class="bar bar-header bar-dark" class="group_navigation">
-    <ion-segment color="primary" [(ngModel)]="groupTab" class="group_tab">
-      <ion-segment-button value="newfeed" class="group_tab_box tab_border" (click)="goToPage('newfeed');">
-        <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
-        <div class="group_tab_title">Cập Nhật</div>
-      </ion-segment-button>
-      <ion-segment-button value="members" class="group_tab_box" (click)="goToPage('members');">
-        <ion-icon ios="ios-people" md="md-people"></ion-icon>
-        <div class="group_tab_title">Thành viên</div>
-      </ion-segment-button>
-    </ion-segment>
-
-    <ion-row text-center class="group_bar">
-      <ion-col col-4 *ngIf="group.has_inventory != ''">
-        <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('gift', group)">
-          <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
-          <div class="group_bar_title">Tặng quà</div>
-        </button>
-      </ion-col>
-      <ion-col col-5 *ngIf="is_admin">
-          <button ion-button icon-left clear small class="group_bar_button" (click)="inviteMember()">
-            <img class="group_bar_icon" src="assets/imgs/ic_add_friend.png">
-            <div class="group_bar_title group_bar_add_group">Mời thành viên</div>
-          </button>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('chat', group)">
-          <img class="group_bar_icon" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
-          <div class="group_bar_title">Nhắn tin</div>
-        </button>
-      </ion-col>
-    </ion-row>
-  </div>
-
-  <div *ngIf="newfeedsPage">
-    <ion-card class="group_info">
-      <ion-card-content>
-        <ion-row *ngIf="group">
-          <ion-col col-12>
-            <p class="group_info_row">
-              <img class="iconGroup" src="assets/imgs/ic_setting_private_actived.png"> Quản trị nhóm: {{getOwner(group.owner_guid)}}
-            </p>
-            <p class="group_info_row">
-              <img class="iconGroup" src="assets/imgs/ic_inventory_history_actived.png"> Ngày lập: {{dateCreated | date:'dd/MM/yyyy' }}
-            </p>
-            <p class="group_info_row">
-              <img class="iconGroup" src="assets/imgs/ic_member_actived.png"> Số thành viên:{{group.members.length}}
-            </p>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-    <ion-list>
-      <ion-list *ngIf="groupGuid">
-        <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
-        <app-feeds #feeds [type]="'group'" [feed_type]="feed_type" [owner_guid]="groupGuid" [admin_guid]="group.owner_guid"></app-feeds>
-        <!-- </ion-item> -->
-      </ion-list>
-    </ion-list>
-  </div>
   
-  <div *ngIf="membersPage">
-    <app-friends [from]="'group'" [guid]="group.guid" [object]="group"></app-friends>
-  </div>
+    <div *ngIf="membersPage">
+        <app-friends [from]="'group'" [guid]="group.guid" [object]="group"></app-friends>
+    </div>
 </ion-content>
 
-  <ion-fab class="user_fab" >
+<ion-fab class="user_fab" >
     <button ion-fab class="user_fab_icon" (click)="addFeed()">
-      <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
+        <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
     </button>
-  </ion-fab>
+</ion-fab>

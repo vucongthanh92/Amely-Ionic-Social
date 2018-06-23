@@ -14,7 +14,7 @@ app-feed{
 
     .feed_title {
         display: inline-block;
-        font-size: 15px;
+        font-size: 1.4rem;
     }
 
     .label-ios {
@@ -53,7 +53,7 @@ app-feed{
     }
 
     .card-content-ios {
-        padding: 10px 5px 5px 3px;
+        padding: 7px 5px 9px 3px;
         white-space: normal;
         clear: both;
         margin: 0px;
@@ -69,7 +69,7 @@ app-feed{
     }
 
     .feed_wallphoto {
-        margin: 5px 0px 0px 0px;
+        margin: 0px;
     }
 
     .feed_wallphoto .item-ios, .feed_wallphoto .label-ios {
@@ -78,7 +78,12 @@ app-feed{
 
     .feed_interactive {
         padding: 0px;
-        margin: 5px 0px 0px 0px;
+        margin: 0px;
+        border-top: 1px solid #efeff4;
+
+        .feed_icon_comment {
+            color: #00bdf2;
+        }
     }
 
     .feed_tag {
@@ -89,7 +94,14 @@ app-feed{
         float: left;
         margin: 0px !important;
         font-size: 14px;
-        padding: 0px !important;
+        padding: 5px 0px 0px 1px !important;
+        min-height: 0px !important;
+
+        .label-ios {
+            margin: 3px 5px 3px 1px;
+            color: #00bdf2;
+            font-size: 1.3rem;
+        }
     }
 
     .clearfix {
@@ -102,6 +114,13 @@ app-feed{
         background-repeat: no-repeat !important;
         width: 100%;
         height: 240px;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .wallphoto_quantity_2 {
@@ -111,7 +130,14 @@ app-feed{
         width: 49%;
         float: left;
         margin: 0px 1px 0px 1px;
-        height: 240px;
+        height: 18rem;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .wallphoto_quantity_3:first-child {
@@ -122,7 +148,7 @@ app-feed{
         width: 49%;
         margin: 0px 2px 0px 0px;
         overflow: hidden;
-        height: 240px;
+        height: 22.2rem;
     }
     
     .wallphoto_quantity_3 {
@@ -133,8 +159,15 @@ app-feed{
         width: 50%;
         padding: 0px;
         overflow: hidden;
-        height: 119px;
+        height: 11rem;
         margin: 0px 0px 2px 0px;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .wallphoto_quantity_4:first-child {
@@ -142,7 +175,7 @@ app-feed{
         background-size: cover !important;
         background-repeat: no-repeat !important;
         width: 100%;
-        height: 150px;
+        height: 18rem;
         clear: both;
         float: none;
         overflow: hidden;
@@ -154,10 +187,17 @@ app-feed{
         background-size: cover !important;
         background-repeat: no-repeat !important;
         width: 33%;
-        height: 90px;
+        height: 8rem;
         float: left;
         overflow: hidden;
         margin: 0px 1px 0px 0px;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .wallphoto_quantity_5:first-child {
@@ -165,7 +205,7 @@ app-feed{
         background-size: cover !important;
         background-repeat: no-repeat !important;
         width: 100%;
-        height: 200px;
+        height: 18rem;
         clear: both;
         float: none;
         overflow: hidden;
@@ -177,7 +217,7 @@ app-feed{
         background-size: cover !important;
         background-repeat: no-repeat !important;
         width: 33%;
-        height: 100px;
+        height: 9rem;
         float: left;
         overflow: hidden;
         margin: 0px 1px 0px 0px;
@@ -197,11 +237,27 @@ app-feed{
             padding: 30% 0px 0px 0px; 
             background-color: rgba(0, 0, 0, 0.5);
         }
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .feed_share_info {
         border: 1px solid #ddd;
         border-radius: 3px;
         padding: 1px 7px 7px 9px !important;
+    }
+
+    .usertag_content {
+        float: left;
+        margin: 5px 5px 1px 3px;
+    }
+
+    .usertag_content_link {
+        color: #00bdf2;
     }
 }

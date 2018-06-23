@@ -79,8 +79,13 @@ export class FirebaseService {
    * @param content_type image/jpg | image/png
    */
 
-  uploadImage(owner_from, img_base64, extension, content_type) {
-    const filePath = "chat/" + owner_from + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + extension;
+  uploadImage(owner_from, img_base64, extension, content_type, isUserUpload) {
+    let filePath;
+    if (!isUserUpload) {
+      filePath = "chat/" + owner_from + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + extension;
+    } else {
+      filePath = "users_upload/" + owner_from + "" + Date.now() + "" + ((Math.random() * 1000000) + 1) + extension;
+    }
     return this.storage.ref(filePath).putString(img_base64, 'base64', { contentType: content_type });
   }
 

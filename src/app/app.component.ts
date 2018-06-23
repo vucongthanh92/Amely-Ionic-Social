@@ -25,7 +25,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
     private keyboard: Keyboard,
-    private authenticationService: AuthenticationService,
+    private authenticationService: AuthenticationService
     // private cordova: cordova
   ) {
     this.checkLogin();
@@ -41,7 +41,6 @@ export class MyApp {
       this.statusBar.styleLightContent();
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString("#1d325e");
-
       this.splashScreen.hide();
     });
   }

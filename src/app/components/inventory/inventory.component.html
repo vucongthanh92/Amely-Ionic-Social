@@ -72,7 +72,7 @@
 		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
 				<ion-card-header>
-					TỔNG: {{totalItem}}/{{total}}
+					TỔNG: {{total}}/{{totalItem}}
 				</ion-card-header>
 			</ion-card>
 
@@ -89,14 +89,14 @@
 		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
 				<ion-card-header>
-					TỔNG :{{totalItem}}/{{total}}
+					TỔNG : {{total}}/{{totalItem}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
 		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
 			<ion-card>
 				<ion-card-header>
-					GIÁ TRỊ:{{formatCurrency()}}
+					GIÁ TRỊ: {{formatCurrency()}}
 				</ion-card-header>
 			</ion-card>
 		</ion-col>
@@ -147,7 +147,7 @@
 </ion-content>
 
 <ion-footer [ngClass]="device_screen">
-	<ion-grid>
+	<ion-grid class="inventory_footer_grid">
 		<ion-row>
 			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">
 				Sắp hết hạn dùng

@@ -70,6 +70,9 @@ export class InventoryComponent implements OnInit {
 
   loadData() {
     this.types = [];
+    this.total = 0;
+    this.totalItem = 0;
+    this.totalPrice = 0;
     if (this.inventoryType == undefined) {
       this.inventoryType = this.navParams.get("type");
     }
@@ -174,7 +177,8 @@ export class InventoryComponent implements OnInit {
   myCallbackFunction = (values) => {
     return new Promise((resolve, reject) => {
       if (values) {
-        this.loadData();
+        // this.loadData();
+        this.nav.getActive().component;
       }
       resolve();
     });

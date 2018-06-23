@@ -1,95 +1,95 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">danh sách phản hồi</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">danh sách phản hồi</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="counter_offer_main">
-  <div *ngIf="offer.offer_type == 'normal'">
-    <ion-list *ngIf="counters">
-      <ion-item-sliding *ngFor="let counter of counters">
-        <ion-item>
-          <ion-thumbnail class="counter_offer_product_img" item-start>
-            <img src="{{ counter.product_snapshot.images[0] }}" (click)="openProduct(counter.product_snapshot.guid)" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </ion-thumbnail>
-          <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
-          <p>{{ counter.description }}</p>
-          <ion-item class="counter_offer_user">
-            <ion-avatar item-start>
-              <img src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';" (click)="openOwner(counter.owner.guid, counter.owner.username)">
-            </ion-avatar>
-            <h2>{{ counter.owner.username }}</h2>
-          </ion-item>
-          <ion-icon name="md-arrow-back" item-end></ion-icon>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="secondary" (click)="agree(counter)">
+    <div *ngIf="offer.offer_type == 'normal'">
+        <ion-list *ngIf="counters">
+            <ion-item-sliding *ngFor="let counter of counters">
+                <ion-item>
+                    <ion-thumbnail class="counter_offer_product_img" item-start>
+                        <img src="{{ counter.product_snapshot.images[0] }}" tappable (click)="openProduct(counter.product_snapshot.guid)" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </ion-thumbnail>
+                    <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
+                    <p>{{ counter.description }}</p>
+                    <ion-item class="counter_offer_user">
+                        <ion-avatar item-start>
+                            <img src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';" tappable (click)="openOwner(counter.owner.guid, counter.owner.username)">
+                        </ion-avatar>
+                        <h2>{{ counter.owner.username }}</h2>
+                    </ion-item>
+                    <ion-icon name="md-arrow-back" item-end></ion-icon>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" tappable (click)="agree(counter)">
             <ion-icon name="thumbs-up"></ion-icon>Chấp nhận
           </button>
-          <button ion-button color="danger" (click)="reject(counter)">
+                    <button ion-button color="danger" tappable (click)="reject(counter)">
             <ion-icon name="trash"></ion-icon>Từ chối
           </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </div>
-  
-  <div *ngIf="offer.offer_type == 'random'">
-    <ion-list>
-      <ion-item>
-        <ion-thumbnail class="counter_offer_product_img" item-start>
-          <img width="100%" src="{{ offer.product_snapshot.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-        </ion-thumbnail>
-        <h2 class="counter_offer_product_title">{{ offer.product_snapshot.title }}</h2>
-        <p>{{ offer.description }}</p>
-        <ion-item class="counter_offer_user">
-          <ion-avatar item-start>
-            <img width="100%" src="{{ offer.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </ion-avatar>
-          <h2>{{ offer.owner.username }}</h2>
-        </ion-item>
-      </ion-item>
-      <div *ngIf="counters">
-        <ion-item *ngFor="let counter of counters">
-          <ion-thumbnail class="counter_offer_product_img" item-start>
-            <img width="100%" src="{{ counter.product_snapshot.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </ion-thumbnail>
-          <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
-          <p>{{ counter.description }}</p>
-          <ion-item class="counter_offer_user">
-            <ion-avatar item-start>
-              <img width="100%" src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </ion-avatar>
-            <h2>{{ counter.owner.username }}</h2>
-          </ion-item>
-        </ion-item>
-      </div>
-    </ion-list>
-  </div>
-  
-  <div *ngIf="offer.offer_type == 'giveaway'">
-    <ion-list *ngIf="counters">
-      <ion-item-sliding *ngFor="let counter of counters">
-        <ion-item class="counter_offer_user">
-          <ion-avatar item-start>
-            <img src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </ion-avatar>
-          <h2 class="counter_offer_product_title">{{ counter.owner.username }}</h2>
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="secondary" (click)="agree(counter)">
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </div>
+
+    <div *ngIf="offer.offer_type == 'random'">
+        <ion-list>
+            <ion-item>
+                <ion-thumbnail class="counter_offer_product_img" item-start>
+                    <img width="100%" src="{{ offer.product_snapshot.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                </ion-thumbnail>
+                <h2 class="counter_offer_product_title">{{ offer.product_snapshot.title }}</h2>
+                <p>{{ offer.description }}</p>
+                <ion-item class="counter_offer_user">
+                    <ion-avatar item-start>
+                        <img width="100%" src="{{ offer.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </ion-avatar>
+                    <h2>{{ offer.owner.username }}</h2>
+                </ion-item>
+            </ion-item>
+            <div *ngIf="counters">
+                <ion-item *ngFor="let counter of counters">
+                    <ion-thumbnail class="counter_offer_product_img" item-start>
+                        <img width="100%" src="{{ counter.product_snapshot.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </ion-thumbnail>
+                    <h2 class="counter_offer_product_title">{{ counter.product_snapshot.title }}</h2>
+                    <p>{{ counter.description }}</p>
+                    <ion-item class="counter_offer_user">
+                        <ion-avatar item-start>
+                            <img width="100%" src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        </ion-avatar>
+                        <h2>{{ counter.owner.username }}</h2>
+                    </ion-item>
+                </ion-item>
+            </div>
+        </ion-list>
+    </div>
+
+    <div *ngIf="offer.offer_type == 'giveaway'">
+        <ion-list *ngIf="counters">
+            <ion-item-sliding *ngFor="let counter of counters">
+                <ion-item class="counter_offer_user">
+                    <ion-avatar item-start>
+                        <img src="{{ counter.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </ion-avatar>
+                    <h2 class="counter_offer_product_title">{{ counter.owner.username }}</h2>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" tappable (click)="agree(counter)">
             <ion-icon name="chatbubbles"></ion-icon>Chấp nhận
           </button>
-          <button ion-button color="danger" (click)="reject(counter)">
+                    <button ion-button color="danger" tappable (click)="reject(counter)">
             <ion-icon name="trash"></ion-icon>Từ chối
           </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </div>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </div>
 </ion-content>

@@ -32,7 +32,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-card>
+  <ion-card class="product_info_product">
     <ion-card-content>
       <ion-row>
         <ion-col class="product_box_title" col-12>{{product.title}}</ion-col>
@@ -50,31 +50,31 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="shop">
+  <ion-card class="product_info_card" *ngIf="shop">
     <ion-card-header>Thông tin cửa hàng</ion-card-header>
     <ion-card-content (click)="openShop()">
       <ion-row>
-        <ion-col col-5 class="product_info_label">Tên cửa hàng</ion-col>
+        <ion-col col-5>Tên cửa hàng</ion-col>
         <ion-col col-7>{{shop.owner_name}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-5 class="product_info_label">Địa chỉ cửa hàng</ion-col>
+        <ion-col col-5>Địa chỉ cửa hàng</ion-col>
         <ion-col col-7>{{shop.owner_address}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-5 class="product_info_label">Số điện thoại</ion-col>
+        <ion-col col-5>Số điện thoại</ion-col>
         <ion-col col-7>{{shop.owner_phone}}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-5 class="product_info_label">Mã số thuế</ion-col>
+        <ion-col col-5>Mã số thuế</ion-col>
         <ion-col col-7>{{shop.shop_bidn}}</ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="product_description">
+  <ion-card class="product_info_card">
     <ion-card-header>Mô tả sản phẩm</ion-card-header>
-    <ion-card-content>{{product.description}}</ion-card-content>
+    <ion-card-content class="product_info_description">{{product.description}}</ion-card-content>
   </ion-card>
 </ion-content>
 
