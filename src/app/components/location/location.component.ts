@@ -1,16 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavParams, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NavController } from 'ionic-angular';
+
 import {
   GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapOptions,
 } from '@ionic-native/google-maps';
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html'
 })
+
 export class LocationComponent implements OnInit {
   @ViewChild('map') element;
   map: GoogleMap;
@@ -18,8 +22,12 @@ export class LocationComponent implements OnInit {
   lng: number;
   title: string;
 
-  constructor(public geolocation: Geolocation,
-    public navParams: NavParams, platform: Platform) {
+  constructor(
+    public geolocation: Geolocation,
+    public navParams: NavParams, 
+    platform: Platform,
+    public nav: NavController
+  ) {
     this.lat = this.navParams.get('lat');
     this.lng = this.navParams.get('lng');
     this.title = this.navParams.get('title');
@@ -59,9 +67,9 @@ export class LocationComponent implements OnInit {
         }).then(marker => { });
       })
       .catch(e => console.log(e));
-
-
   }
 
-
+  dismiss() {
+    this.nav.pop();
+  }
 }

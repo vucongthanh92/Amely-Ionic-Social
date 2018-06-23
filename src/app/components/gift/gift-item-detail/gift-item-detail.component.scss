@@ -1,5 +1,4 @@
 app-gift-item-detail{
-
   .gift_item_send_btn {
     ion-icon {
       color: #fff;
@@ -7,7 +6,9 @@ app-gift-item-detail{
   }
 
   .gift_item_image {
-    height: 9rem;
+    height: 8rem;
+    border-radius: 5px;
+    overflow: hidden;
 
     img {
       object-fit: cover;
@@ -17,14 +18,30 @@ app-gift-item-detail{
     }
   }
 
-  .buttonIon2 {
-    width: 35px;
-    height: 30px;
-    border-width: 1px;
-    border-style: inset;   
-    background-color: #488aff;
-    color: white;
+  .gift_item_title {
+    font-size: 1.8rem;
+    color: #333;
+    text-transform: capitalize;
+    margin: 5px 0px 0px 3px;
   }
+
+  .gift_item_description {
+    margin: 10px 0 0 3px;
+    background-color: #efeff4;
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px 7px 10px 9px;
+    color: #333;
+  }
+
+  .gift_item_quantity {
+    margin: 12px 0 0 3px;
+    color: #333;
+
+    span {
+      color: rgb(173, 43, 43)
+    }
+  }
+
   .list.list-inline {
     display: -moz-box;
     display: flex;
