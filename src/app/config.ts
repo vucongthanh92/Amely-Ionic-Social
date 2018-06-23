@@ -18,5 +18,5 @@ const configAmely = {
 
 export const CONFIG = {
 	'url': "https://dev.helloqua.com/ws/v1",
-	'firebase': configAmely
+	'firebase': configHelloqua
 };
