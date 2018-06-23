@@ -118,26 +118,25 @@
     <ion-card-content tappable (click)="openFeedDetail()">
       <p>{{ descriptionPost }}</p>
     </ion-card-content>
+  </ion-list> <!-- Fix miss Comment and Like -->
+  <ion-row class="feed_interactive">
+    <ion-col>
+      <button ion-button icon-left clear small (click)="likeFeed()">
 
-    <ion-row class="feed_interactive">
-      <ion-col>
-        <button ion-button icon-left clear small (click)="likeFeed()">
+        <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
+        <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
+        {{ +post.likes }} thích
+      </button>
+    </ion-col>
 
-          <ion-icon color="danger" id="icLikeComment" *ngIf="post.liked" name='ios-heart'></ion-icon>
-          <ion-icon color="danger" id="icLikeComment" *ngIf="!post.liked" name='ios-heart-outline'></ion-icon>
-          {{ +post.likes }} thích
-        </button>
-      </ion-col>
-
-      <ion-col>
-        <button ion-button icon-left clear small (click)="changePage()">
-          <ion-icon color="primary" id="icLikeComment" class="feed_icon_comment" name='ios-text'></ion-icon>
-          {{ post.comments }} bình luận
-        </button>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-list>
+    <ion-col>
+      <button ion-button icon-left clear small (click)="changePage()">
+        <ion-icon color="primary" id="icLikeComment" class="feed_icon_comment" name='ios-text'></ion-icon>
+        {{ post.comments }} bình luận
+      </button>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
 </ion-card>
 
 <!-- SHARE -->
