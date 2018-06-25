@@ -16,15 +16,17 @@
       <ion-list>
         <ion-row>
           <ion-col col-3>
-            <div *ngIf="offer.product_snapshot.images" [style.background]="'url(' + offer.product_snapshot.images[0] + ')'" class="history_offer_detail_img">
+            <div *ngIf="offer.product_snapshot.images" class="history_offer_detail_img">
+              <img src="{{ offer.product_snapshot.images[0] }}" onError="this.src='assets/imgs/avatar-nam.png'">
               <div class="history_offer_detail_quantity">x{{ offer.quantity }}</div>
             </div>
           </ion-col>
 
           <ion-col col-9>
             <h2 class="history_offer_detail_creator">{{offer.product_snapshot.title}}</h2>
-            <div *ngIf="offer.product_snapshot.images" [style.background]="'url(' + offer.owner.avatar + ')'" 
-              class="history_offer_detail_creator_img"></div>
+            <div *ngIf="offer.product_snapshot.images" class="history_offer_detail_creator_img">
+              <img src="{{ offer.owner.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            </div>
             <div class="history_offer_detail_creator_title">{{offer.owner.fullname}}</div>
 
             <div class="history_offer_detail_creator_gender" *ngIf="offer.owner.gender=='male'">
@@ -41,22 +43,27 @@
     </ion-card-content>
   </ion-card>
 
+  <div class="history_offer_change">
+    <img src="assets/imgs/exchange_location.png">
+  </div>
+
   <ion-card class="history_offer_detail_item" *ngIf="offer && offer.offer_type!='giveaway'">
     <ion-card-header class="history_offer_detail_title">Người trao đổi</ion-card-header>
     <ion-card-content class="history_offer_detail_info" *ngIf="offer.counter_offers">
       <ion-list>
         <ion-row>
           <ion-col col-3>
-            <div *ngIf="offer.counter_offers[0].product_snapshot.images" [style.background]="'url(' + offer.counter_offers[0].product_snapshot.images[0] + ')'" 
-              class="history_offer_detail_img" >
+            <div *ngIf="offer.counter_offers[0].product_snapshot.images" class="history_offer_detail_img">
+              <img src="{{ offer.counter_offers[0].product_snapshot.images[0] }}" onError="this.src='assets/imgs/avatar-nam.png'">
               <div class="history_offer_detail_quantity">x{{ offer.counter_offers[0].quantity }}</div>
             </div>
           </ion-col>
 
           <ion-col col-9>
             <h2 class="history_offer_detail_creator">{{offer.counter_offers[0].product_snapshot.title}}</h2>
-            <div *ngIf="offer.counter_offers[0].product_snapshot.images" [style.background]="'url(' + offer.counter_offers[0].owner.avatar + ')'" 
-              class="history_offer_detail_creator_img"></div>
+            <div *ngIf="offer.counter_offers[0].product_snapshot.images" class="history_offer_detail_creator_img">
+              <img src="{{ offer.counter_offers[0].owner.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            </div>
             <div class="history_offer_detail_creator_title">{{offer.counter_offers[0].owner.fullname}}</div>
 
             <div class="history_offer_detail_creator_gender" *ngIf="offer.counter_offers[0].owner.gender=='male'">

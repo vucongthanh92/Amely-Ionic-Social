@@ -77,10 +77,13 @@ app-offers-myself{
         color: #55acee;
         font-size: 13px;
         text-align: center;
-    }
 
-    .offer_myself_location .item-inner {
-        border-bottom: none !important;
+        img {
+            width: 1.5rem;
+            height: auto;
+            vertical-align: bottom;
+            margin: 0px 2px 0px 0px;
+        }
     }
 
     .offer_myself_image {

@@ -47,8 +47,11 @@ app-offers-item-detail {
     font-size: 1.6rem;
     vertical-align: middle;
 
-    ion-icon {
-      vertical-align: bottom;
+    img {  
+      width: 1.8rem;
+      height: auto;
+      vertical-align: top;
+      display: inline-block;
       margin: 0px 3px 0px 0px;
     }
   }
@@ -75,6 +78,7 @@ app-offers-item-detail {
   .offer_item_description_label {
     color: #333;
     margin: 0px 0px 3px 0px;
+    font-size: 1.6rem;
   }
 
   .offer_item_description_content {
