@@ -52,6 +52,18 @@ export class GroupComponent implements OnInit {
     }
     this.groupService.getGroup(this.groupGuid).subscribe(
       data => {
+        if (data.owner_guid==this.customService.user_current.guid) {
+          this.customService.checkUrlImage(data.cover, 0)
+            .then(result => localStorage.removeItem("cover" + data.guid))
+            .catch(err => {
+              data.cover = localStorage.getItem("cover" + data.guid);
+            })
+          this.customService.checkUrlImage(data.avatar, 0)
+            .then(result => localStorage.removeItem("avatar" + data.guid))
+            .catch(err => {
+              data.avatar = localStorage.getItem("avatar" + data.guid);
+            })
+        }
         this.groups.push(data);
         this.group = data;
         this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid);

@@ -127,6 +127,8 @@ export class OffersSearchComponent implements OnInit {
     that.offersServie.getOffer(key).subscribe(data => {
       if (data.owner.guid != that.customService.user_current.guid) {
         that.offers.push(data);
+        console.log(data);
+        
       }
     }, err => this.retryGetOffer(--retry, that, key));
   }
@@ -209,5 +211,9 @@ export class OffersSearchComponent implements OnInit {
         this.customService.toastMessage('Trao đổi đã bookmark', 'bottom', 3000);
       }
     }, err => this.retryBookmarkOffer(--retry, offer));
+  }
+
+  counterOfferRandom(offerRandom: any) {
+    return + offerRandom + 1;
   }
 }

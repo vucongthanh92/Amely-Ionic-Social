@@ -78,6 +78,7 @@ export class UserMenuComponent implements OnInit {
     }
     this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
       if (data.status) {
+        localStorage.setItem("cover"+this.customService.user_current.guid, images[0]);
         this.callback(true).then(() => { });
         this.retryPutFeed(5, this.customService.content_change_cover, images);
       } else {
@@ -93,6 +94,7 @@ export class UserMenuComponent implements OnInit {
     }
     this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
       if (data.status) {
+        localStorage.setItem("avatar" + this.customService.user_current.guid, images[0]);
         this.callback(true).then(() => { });
         this.retryPutFeed(5, this.customService.content_change_avatar, images);
       } else {

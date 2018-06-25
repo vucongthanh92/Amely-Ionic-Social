@@ -116,14 +116,14 @@ export class EventMenuComponent implements OnInit {
 
   changeCover() {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       this.retryUpdateCover(5, images);
     })
   }
   changeAvatar() {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
       let images = [url + ''];
       this.retryChangeAvatar(5, images)
 
@@ -187,6 +187,7 @@ export class EventMenuComponent implements OnInit {
 
     this.customService.updateCover(+this.event.guid, "event", images).subscribe(data => {
       if (data.status) {
+        localStorage.setItem("cover" + this.event.guid, images[0]);
         this.callback({ url: data + "", isAvatar: false }).then(() => {
         });
       } else {
@@ -201,9 +202,8 @@ export class EventMenuComponent implements OnInit {
       return;
     }
     this.customService.updateAvatar(+this.event.guid, "event", images).subscribe(data => {
-      console.log(data);
-
       if (data.status) {
+        localStorage.setItem("avatar"+this.event.guid,images[0]);
         this.callback({ url: data + "", isAvatar: true }).then(() => {
         });
       } else {

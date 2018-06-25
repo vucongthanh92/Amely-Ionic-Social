@@ -32,6 +32,8 @@ export class CartItemsComponent implements OnInit {
 
   ionViewDidEnter() {
     this.items = this.customService.cart;
+    console.log(this.items);
+    
     this.update();
   }
 
