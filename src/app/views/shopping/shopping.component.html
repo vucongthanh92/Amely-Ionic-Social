@@ -7,7 +7,7 @@
           <div class="ion_navbar_title shopping_navbar_title" *ngIf="!is_search_show">mua sắm</div>
         </ion-buttons>
     
-    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
+    <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="shopping_searchbar"></ion-searchbar>
     <ion-buttons end>
       <button ion-button class="shopping_bar_icon" (click)="search()" class="shopping_search_box">
 

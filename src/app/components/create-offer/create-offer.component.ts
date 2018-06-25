@@ -111,7 +111,7 @@ export class CreateOfferComponent implements OnInit {
             obj.offer_type = this.offer_type;
             obj.duration = this.duration;
             obj.target = this.target;
-            obj.limit_counter = this.limit_counter;
+            obj.limit_counter = (+this.limit_counter)+1;
             obj.giveaway_approval = this.giveaway_approval;
             obj.random_expiration = false;
             obj.item_guid = this.item.guid;

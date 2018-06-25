@@ -133,7 +133,7 @@ export class OffersMyselfComponent implements OnInit {
       return;
     }
     this.offersService.delete(o.guid).subscribe(data => {
-      this.offers = []
+      // this.offers = []
       if (data.status) {
         this.offers = this.offers.filter(e => e.guid != o.guid);
         this.customService.toastMessage('Xóa trao đổi thành công', 'bottom', 2000);

@@ -7,7 +7,7 @@
       <div class="ion_navbar_title" *ngIf="!isOn">của tôi</div>
     </ion-buttons>
 
-    <ion-searchbar [(ngModel)]="search" *ngIf="isOn" class="personal_searchbar"></ion-searchbar>
+    <ion-searchbar #searchbar [(ngModel)]="search" *ngIf="isOn" class="personal_searchbar"></ion-searchbar>
     <ion-buttons end>
       <button class="personal_search" ion-button (click)="toggleDetails()" class="personal_box">
         <ion-icon name="ios-search"></ion-icon>
