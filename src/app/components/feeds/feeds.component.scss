@@ -22,7 +22,7 @@ app-feeds {
     }
 
     .label-ios {
-        margin: 7px 10px 3px 10px;
+        margin: 5px 5px 1px 9px;
         background-color: white;
     }
     
@@ -37,16 +37,15 @@ app-feeds {
 
     .item-ios {
         background-color: #fff;
-        margin: 1px 0px 10px 0px;
-        padding: 1px 1px 0px 1px;
-        box-sizing: border-box;
-        width: auto;
+        margin: 0px 0px 7px 0px;
+        padding: 0px;
     }
     
     ion-scroll[scrollX] {
         white-space: nowrap;
+
         .scroll-item {
-        display: inline-block;
+            display: inline-block;
         }
     }
 

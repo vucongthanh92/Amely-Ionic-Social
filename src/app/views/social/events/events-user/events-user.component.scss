@@ -13,6 +13,10 @@ app-events-user {
         }
     }
 
+    .events_list {
+        margin: -1px 0 10px;
+    }
+
     .events_title {
         text-transform: capitalize;
         font-size: 1.5rem;
@@ -118,5 +122,9 @@ app-events-user {
         img {
             max-width: 30%;
         }
+    }
+
+    .events_item:last-child {
+        border-bottom: none !important;
     }
 }

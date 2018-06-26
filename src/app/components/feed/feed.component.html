@@ -12,10 +12,11 @@
         </ion-col>
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
         <p class="feed_date" *ngIf="location">{{location}}</p>
-        <ion-col class="feed_event" col-2>
+        <ion-col class="feed_event" col-1>
             <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
+
     <ion-row *ngIf="userTag">
         <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
             <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
@@ -40,7 +41,7 @@
         <div class="wallphoto_quantity_1" (click)="openModal('post', 0)">
             <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
         </div>
-    </ion-list>
+    </ion-list>    
     <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
         <div class="wallphoto_quantity_2" (click)="openModal('post', 0)">
             <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
@@ -89,6 +90,7 @@
             <img src="{{ post.wallphoto[3] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
         </div>
     </ion-list>
+
     <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length>4 && is_open_from_detail">
         <ion-item *ngFor="let wallphoto of post.wallphoto , let i = index">
             <img src="{{ wallphoto }}" (click)="openModal('post', i)">
@@ -137,36 +139,28 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
         </ion-avatar>
-        <h2 class="feed_title">{{ user.fullname }}
-            <span tappable (click)="openOwner(post.type,post.owner_guid)"> </span>
-        </h2>
-        <ion-col class="feed_mood item-inner">
-            <span>Đã chia sẻ bài viết</span>
+        <ion-col col-11 class="feed_share_title">
+            <span class="feed_share_fullname" tappable (click)="openOwner(post.type,post.owner_guid)">{{ user.fullname }}</span>
+            <span>đã chia sẻ bài viết</span>
+            <span class="feed_share_fullname">{{users[postShare.poster_guid].fullname}}</span>
         </ion-col>
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-        <ion-col class="feed_event" col-2>
+        <ion-col class="feed_event" col-1>
             <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
     <!-- INFO SHARE -->
     <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
     <ion-card *ngIf="postShare" class="feed_share_info" padding>
-        <ion-item>
-            <ion-avatar item-start>
-                <img tappable (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-            </ion-avatar>
-            <h2 class="feed_title">
-                <span tappable (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
-            </h2>
-            <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
+        <!-- <ion-item class="feed_share_item">
+            <ion-col class="feed_mood item-inner" *ngIf="mood">
               <span>{{mood.title}}</span>
                 <img id="iconMood" src="{{mood.image}}">
-            </ion-col> -->
-            <p class="feed_date">{{ convertDate(postShare.time_created) | amTimeAgo }}</p>
+            </ion-col>
             <p class="feed_date" *ngIf="location">{{location}}</p>
-        </ion-item>
+        </ion-item> -->
 
         <ion-card-content (click)="openFeedDetail()">
           <p>{{ descriptionPostShare }}</p>
@@ -242,23 +236,23 @@
         </ion-list>
 
         <!-- <ion-row *ngIf="userTag">
-      <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
-        <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
-          <a>{{users[postShare.owner_guid].first_name}} {{users[postShare.owner_guid]user.last_name}},</a>
-        </ion-item>
-      </div>
-  
-      <ng-template #elseSubArr>
-        <div>
-          <div *ngFor="let user of subArrUserTag" style="float: left">
-            <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
-          </div>
-          <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
+        <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
+            <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
+                <a>{{users[postShare.owner_guid].first_name}} {{users[postShare.owner_guid]user.last_name}},</a>
+            </ion-item>
         </div>
-      </ng-template>
+  
+        <ng-template #elseSubArr>
+            <div>
+                <div *ngFor="let user of subArrUserTag" style="float: left">
+                    <a style="color: black;margin-right: 5px">{{user.first_name}} {{user.last_name}},</a>
+                </div>
+                <a *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
+            </div>
+        </ng-template>
     </ion-row> -->
     </ion-card>
-    
+
     <ion-row class="feed_interactive">
         <ion-col>
             <button ion-button icon-left clear small (click)="likeFeed()">
@@ -281,7 +275,7 @@
 <ion-card *ngIf="post.item_type=='cover:photo' || post.item_type=='profile:photo'">
     <ion-item>
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
             <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
@@ -292,7 +286,7 @@
         </ion-col>
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
         <p class="feed_date" *ngIf="location">{{location}}</p>
-        <ion-col class="feed_event" col-2>
+        <ion-col class="feed_event" col-1>
             <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
