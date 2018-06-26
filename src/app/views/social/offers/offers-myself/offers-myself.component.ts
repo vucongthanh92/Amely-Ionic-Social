@@ -50,6 +50,8 @@ export class OffersMyselfComponent implements OnInit {
         if (data instanceof Array) {
 
           this.offers = data;
+          console.log(this.offers);
+          
         }
         // loading.dismiss();
       }, err => this.getOffers(--retry))
