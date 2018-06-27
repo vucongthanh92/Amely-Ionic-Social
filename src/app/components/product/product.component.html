@@ -21,14 +21,14 @@
   <ion-row>
     <ion-col col-12 *ngIf="product.images_entities" class="product_image">
       <ion-slides *ngIf="product.images_entities[product.images[0]]" autoplay="4000" class="shops_slides">
-        <ion-slide *ngFor="let img of imageProduct" >
-          <img imageViewer src="{{img}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <ion-slide *ngFor="let img of imageProduct">
+          <img imageViewer src="{{img}}" onError="this.src='assets/imgs/image_not_found.jpg'">
         </ion-slide>
       </ion-slides>
       <!-- <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}"> -->
     </ion-col>
     <ion-col col-12 *ngIf="!product.images_entities" class="product_image">
-      <img imageViewer src="{{ product.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+      <img imageViewer src="{{ product.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
     </ion-col>
   </ion-row>
 
@@ -78,9 +78,7 @@
   </ion-card>
 </ion-content>
 
-<ion-footer *ngIf="product" >
-
-
+<ion-footer *ngIf="product" [ngClass]="device_screen">
   <button *ngIf="product.quantity>0 && product.approved != 'new' && product.approved != 'suspended';else other_content" 
     ion-button block class="product_add_cart_btn" (click)="putCartLocal(product)"> Thêm vào giỏ hàng
   </button>

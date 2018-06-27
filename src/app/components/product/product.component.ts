@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
   public categories: Array<Category>;
   private guid: number;
   public shop: Shop;
+  public device_screen: string;
   count_product: number;
   // cart = [];
   imageProduct: any = [];
@@ -30,10 +31,11 @@ export class ProductComponent implements OnInit {
     private productsService: ProductsService,
     private navParam: NavParams,
     public customService: CustomService,
-    public loadingCtrl: LoadingController) {
-
-    this.product = this.navParam.get('product');
-    this.guid = this.navParam.get('guid');
+    public loadingCtrl: LoadingController
+  ) {
+      this.product = this.navParam.get('product');
+      this.guid = this.navParam.get('guid');
+      this.device_screen = customService.checkDevices();
   }
 
   ngOnInit() {
