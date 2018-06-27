@@ -23,7 +23,7 @@ export class BusinessMenuComponent implements OnInit {
 
   changeCover() {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService,false).then(url => {
       let images = [url + ''];
       this.retryUpdateCover(5, images);
     })
@@ -46,7 +46,7 @@ export class BusinessMenuComponent implements OnInit {
 
   changeAvatar() {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => {
       let images = [url + ''];
       this.retryChangeAvatar(5, images)
 

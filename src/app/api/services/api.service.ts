@@ -136,6 +136,7 @@ import { inline_response_200_24 } from '../models/inline-_response-_200_24';
 import { body_67 } from '../models/body-_67';
 import { Temp_order } from '../models/temp-_order';
 import { Param_create_TempOrder } from '../models/param-_create-_temp-order';
+import { RedeemHistoryDetail } from '../models/redeem-history-detail';
 import { Transaction } from '../models/transaction';
 import { body_68 } from '../models/body-_68';
 import { body_69 } from '../models/body-_69';
@@ -2610,6 +2611,85 @@ export class ApiService extends BaseService {
     );
   }
   /**
+   * Return friend request list of user
+   */
+  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Return friend request list of user
+   */
+  getFriendRequest(): Observable<DefaultResponse> {
+    return this.getFriendRequestResponse().pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (guid != null) __params = __params.set("guid", guid.toString());
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/friend_requests`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Delete a friend request
+   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
+   * list of the currently logged in user. If not, a friends list of user with queried GUID
+   * will be returned if available.
+   */
+  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
+    return this.deleteFriendRequestResponse(guid).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * Return a friends list of an user (if not specified, the current logged in user)
    * @param user_guid - undefined
    */
@@ -2688,85 +2768,6 @@ export class ApiService extends BaseService {
    */
   deleteFriend(guid: number): Observable<DefaultResponse> {
     return this.deleteFriendResponse(guid).pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * Return friend request list of user
-   */
-  getFriendRequestResponse(): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Return friend request list of user
-   */
-  getFriendRequest(): Observable<DefaultResponse> {
-    return this.getFriendRequestResponse().pipe(
-      map(_r => _r.body)
-    );
-  }
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequestResponse(guid: number): Observable<HttpResponse<DefaultResponse>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (guid != null) __params = __params.set("guid", guid.toString());
-    let req = new HttpRequest<any>(
-      "DELETE",
-      this.rootUrl + `/friend_requests`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: DefaultResponse = null;
-        _body = _resp.body as DefaultResponse
-        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
-      })
-    );
-  }
-
-  /**
-   * Delete a friend request
-   * @param guid - (Optional) If not presents, indicate that client is requesting the friends
-   * list of the currently logged in user. If not, a friends list of user with queried GUID
-   * will be returned if available.
-   */
-  deleteFriendRequest(guid: number): Observable<DefaultResponse> {
-    return this.deleteFriendRequestResponse(guid).pipe(
       map(_r => _r.body)
     );
   }
@@ -5969,6 +5970,52 @@ export class ApiService extends BaseService {
     );
   }
   /**
+   * @param snapshot_guid - undefined
+   * @param seller_guid - undefined
+   * @param quantity - undefined
+   * @param owner_guid - undefined
+   */
+  getTransactionRedeemResponse(params: ApiService.GetTransactionRedeemParams): Observable<HttpResponse<RedeemHistoryDetail>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.snapshotGuid != null) __params = __params.set("snapshot_guid", params.snapshotGuid.toString());
+    if (params.sellerGuid != null) __params = __params.set("seller_guid", params.sellerGuid.toString());
+    if (params.quantity != null) __params = __params.set("quantity", params.quantity.toString());
+    if (params.ownerGuid != null) __params = __params.set("owner_guid", params.ownerGuid.toString());
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/transaction_redeem`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: RedeemHistoryDetail = null;
+        _body = _resp.body as RedeemHistoryDetail
+        return _resp.clone({body: _body}) as HttpResponse<RedeemHistoryDetail>;
+      })
+    );
+  }
+
+  /**
+   * @param snapshot_guid - undefined
+   * @param seller_guid - undefined
+   * @param quantity - undefined
+   * @param owner_guid - undefined
+   */
+  getTransactionRedeem(params: ApiService.GetTransactionRedeemParams): Observable<RedeemHistoryDetail> {
+    return this.getTransactionRedeemResponse(params).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
    * Return transactions
    * @param transaction_type - undefined
    */
@@ -6415,5 +6462,11 @@ export module ApiService {
   export interface GetShopParams {
     storeGuid: string;
     shopGuid: string;
+  }
+  export interface GetTransactionRedeemParams {
+    snapshotGuid: string;
+    sellerGuid: string;
+    quantity: string;
+    ownerGuid: string;
   }
 }

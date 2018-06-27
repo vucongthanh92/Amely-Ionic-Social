@@ -192,7 +192,7 @@ export class CustomService {
     });
   }
 
-  imageAction(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+  imageAction(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService, isMutil: boolean) {
 
     return new Promise((resolve, reject) => {
       let actionSheet = actionSheetCtrl.create({
@@ -234,7 +234,8 @@ export class CustomService {
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
                 destinationType: camera.DestinationType.DATA_URL,
-                correctOrientation: true
+                correctOrientation: true,
+                maximumImagesCount: isMutil ? 5 : 1
               };
               camera.getPicture(options).then((imageData) => {
                 let owner_from = this.user_current.username;
@@ -261,7 +262,7 @@ export class CustomService {
     });
   }
 
-  imageActionTest(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+  imageActionTest(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService, isMutil: boolean) {
     return new Promise((resolve, reject) => {
       let actionSheet = actionSheetCtrl.create({
         title: 'Chọn tác vụ',

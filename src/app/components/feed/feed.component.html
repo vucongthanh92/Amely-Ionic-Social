@@ -169,7 +169,7 @@
         </ion-item>
 
         <ion-card-content (click)="openFeedDetail()">
-          <p>{{ descriptionPostShare }}</p>
+            <p>{{ descriptionPostShare }}</p>
         </ion-card-content>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">
@@ -258,7 +258,7 @@
       </ng-template>
     </ion-row> -->
     </ion-card>
-    
+
     <ion-row class="feed_interactive">
         <ion-col>
             <button ion-button icon-left clear small (click)="likeFeed()">
