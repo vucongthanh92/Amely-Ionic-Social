@@ -2,15 +2,15 @@
     <ion-navbar hideBackButton>
         <ion-buttons start>
             <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
-      </button>
+                <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
             <div class="ion_navbar_title">Đăng bài viết mới</div>
         </ion-buttons>
 
         <ion-buttons end>
             <button class="add_feed_send_btn" ion-button tappable (click)="putFeed()" [ladda]="isCreatingFeed">
-        <ion-icon name="send"></ion-icon>
-      </button>
+                <ion-icon name="send"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -43,8 +43,8 @@
                 </ion-select>
 
                 <button class="add_feed_mood" ion-button clear item-end tappable (click)="showMood()">
-          <img class="addfeed_icon_mood" src="assets/imgs/mood.png">
-        </button>
+                    <img class="addfeed_icon_mood" src="assets/imgs/mood.png">
+                </button>
 
             </ion-item>
         </ion-item>
@@ -78,19 +78,19 @@
 
     <ion-row class="addfeed_bottom_nav">
         <ion-col col-4>
-            <button ion-button full clear>
-        <ion-icon class="addfeed_bottom_nav_icon" name="people" tappable (click)="showTagFriend()"></ion-icon>
-      </button>
+            <button ion-button full clear tappable (click)="showTagFriend()">
+                <ion-icon class="addfeed_bottom_nav_icon" name="people"></ion-icon>
+            </button>
         </ion-col>
         <ion-col col-4>
             <button ion-button full clear tappable (click)="onLocation()">
-        <ion-icon name="flag"></ion-icon>
-      </button>
+                <ion-icon name="flag"></ion-icon>
+            </button>
         </ion-col>
         <ion-col col-4>
             <button ion-button full clear tappable (click)='imageAction()'>
-        <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
-      </button>
+                <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
+            </button>
         </ion-col>
     </ion-row>
 </ion-footer>

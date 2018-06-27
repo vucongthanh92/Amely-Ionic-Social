@@ -41,8 +41,18 @@ app-history-delivery {
     }
 
     .history_delivery_row {
-        margin: 0px 0px 3px 5px;
         font-size: 1.4rem;
         color: #333;
     }
+
+    .item-ios {
+    padding-left: 0px;
+    border-radius: 0;
+    position: relative;
+    font-size: 1.7rem;
+    color: #000;
+    background-color: #fff;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
 }
