@@ -49,6 +49,18 @@ export class EventComponent implements OnInit {
     this.eventService.getEvent(this.event_guid).subscribe(
       data => {
         if (data.events.guid != null) {
+          if (data.events.creator.guid==this.customService.user_current.guid) {
+            this.customService.checkUrlImage(data.events.cover, 0)
+              .then(result => localStorage.removeItem("cover" + data.events.guid))
+              .catch(err => {
+                data.events.cover = localStorage.getItem("cover" + data.events.guid);
+              })
+            this.customService.checkUrlImage(data.events.avatar, 0)
+              .then(result => localStorage.removeItem("avatar" + data.events.guid))
+              .catch(err => {
+                data.events.avatar = localStorage.getItem("avatar" + data.events.guid);
+              })
+          }
           this.event = data.events;
           this.users = data.users;
           this.string_guests = this.event.invites_accepted.split(',');
@@ -73,7 +85,7 @@ export class EventComponent implements OnInit {
             this.is_show_fab = true;
           } else if (data.events.members_accepted && data.events.members_accepted.length > 0) {
             this.is_show_fab = data.events.members_accepted.split(",").some(e => this.customService.user_current.guid + "" == e)
-          } 
+          }
           if (data.events.invites_accepted && data.events.invites_accepted.length > 0 && !this.is_show_fab) {
             this.is_show_fab = data.events.invites_accepted.split(",").some(e => this.customService.user_current.guid + "" == e)
           }
@@ -167,11 +179,7 @@ export class EventComponent implements OnInit {
         enableBackdropDismiss: true
       });
 
-      loading.present();
-      setTimeout(() => {
-        loading.dismiss();
-        this.loadData(5)
-      }, 4000);
+      this.loadData(5)
       resolve();
     });
   }

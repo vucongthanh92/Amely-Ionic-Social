@@ -1,3 +1,4 @@
+import { guid } from './../../api/models/guid';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';
@@ -106,6 +107,19 @@ export class UserComponent {
         this.is_failed = true;
       } else {
         this.isLoadSuccess = true;
+        //todo check avatar ,cover's usercurrent is valid, if not get data from localstorage
+        if (this.userGuid == this.userCurrent.guid) {
+          this.customService.checkUrlImage(data.cover, 0)
+            .then(result => localStorage.removeItem("cover" + this.userCurrent.guid))
+            .catch(err => {
+              data.cover = localStorage.getItem("cover" + this.userCurrent.guid);
+            })
+          this.customService.checkUrlImage(data.avatar, 0)
+            .then(result => localStorage.removeItem("avatar" + this.userCurrent.guid))
+            .catch(err => {
+              data.avatar = localStorage.getItem("avatar" + this.userCurrent.guid);
+            })
+        }
         this.user = data;
         this.is_user_current = this.user.guid == this.userCurrent.guid;
         this.is_friend = this.customService.friends.some(e => e.guid == data.guid);

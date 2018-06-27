@@ -48,7 +48,7 @@ app-feed{
     }
 
     .feed_date {
-        font-size: 12px;
+        font-size: 1.3rem;
         margin: 2px 0px 0px 0px;
     }
 
@@ -80,6 +80,7 @@ app-feed{
         padding: 0px;
         margin: 0px;
         border-top: 1px solid #efeff4;
+        clear: both;
 
         .feed_icon_comment {
             color: #00bdf2;

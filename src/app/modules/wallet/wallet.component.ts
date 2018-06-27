@@ -75,7 +75,11 @@ export class WalletComponent implements OnInit {
   }
 
   deposit() {
-    this.nav.push(DepositPaymentMethodComponent, { wallet: this.wallet });
+    if (+this.wallet.balance > 20000000) {
+      this.customService.toastMessage('Vượt quá giới hạn nạp tiền !!', 'bottom', 4000);
+    } else {
+      this.nav.push(DepositPaymentMethodComponent, { wallet: this.wallet });
+    }
   }
 
   withdrawn() {

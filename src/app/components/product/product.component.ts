@@ -57,6 +57,8 @@ export class ProductComponent implements OnInit {
     }
     this.productsService.getProduct(this.product ? this.product.guid:this.guid).subscribe(data => {
       loading.dismiss();
+      console.log(data);
+      
       this.product = data.product;
       this.imagesA = data.product.images;
       this.imagesA.forEach(e => {
