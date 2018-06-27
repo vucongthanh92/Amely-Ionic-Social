@@ -53,13 +53,12 @@ app-contact-groups{
 
     .contact_group_title {
         white-space: nowrap;
-        font-size: 15px;
-        max-height: 40px;
         overflow: hidden;
         text-transform: capitalize;
-        padding: 3px 7px 0px 7px;
+        padding: 0px 4px 0px 6px;
         text-overflow: ellipsis;
         color: #333;
+        font-size: 1.5rem;
     }
 
     .item-ios {

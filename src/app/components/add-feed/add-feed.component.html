@@ -19,7 +19,7 @@
     <ion-list no-lines class="addfeed_main">
         <ion-item class="addfeed_item">
             <ion-avatar class="addfeed_item_image" item-start>
-                <img src="{{user_current.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                <img src="{{user_current.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'">
             </ion-avatar>
 
             <h2 class="addfeed_fullname">{{user_current.fullname}}</h2>
@@ -78,19 +78,19 @@
 
     <ion-row class="addfeed_bottom_nav">
         <ion-col col-4>
-            <button ion-button full clear>
-        <ion-icon class="addfeed_bottom_nav_icon" name="people" tappable (click)="showTagFriend()"></ion-icon>
-      </button>
+            <button ion-button full clear tappable (click)="showTagFriend()">
+                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_member_actived.png">
+            </button>
         </ion-col>
         <ion-col col-4>
             <button ion-button full clear tappable (click)="onLocation()">
-        <ion-icon name="flag"></ion-icon>
-      </button>
+                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_location_actived.png">
+            </button>
         </ion-col>
         <ion-col col-4>
             <button ion-button full clear tappable (click)='imageAction()'>
-        <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
-      </button>
+                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_image_actived.png">
+            </button>
         </ion-col>
     </ion-row>
 </ion-footer>

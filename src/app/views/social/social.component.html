@@ -1,11 +1,16 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons start>
+    <!-- <ion-buttons start>
       <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon name="menu" class="ion_navbar_icon"></ion-icon>
       </button>
       <div class="ion_navbar_title" *ngIf="!is_search_show">xã hội</div>
-    </ion-buttons>
+    </ion-buttons> -->
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!is_search_show">Xã Hội</ion-title>
 
     <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="social_searchbar"></ion-searchbar>
     <ion-buttons end>
