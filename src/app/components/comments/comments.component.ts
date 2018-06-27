@@ -158,7 +158,7 @@ export class CommentsComponent implements OnInit {
   }
 
   imageAction() {
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => { this.image = url + '' });
     // this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
   }
 

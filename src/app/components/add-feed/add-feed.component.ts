@@ -185,7 +185,7 @@ export class AddFeedComponent implements OnInit {
     // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
     //   .then(url => { this.image = url + '' })
 
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService,true)
       .then(url => { this.image = url + '' })
   }
 

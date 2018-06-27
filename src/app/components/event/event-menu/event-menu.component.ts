@@ -116,14 +116,14 @@ export class EventMenuComponent implements OnInit {
 
   changeCover() {
     this.nav.pop();
-    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => {
       let images = [url + ''];
       this.retryUpdateCover(5, images);
     })
   }
   changeAvatar() {
     this.nav.pop();
-    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => {
       let images = [url + ''];
       this.retryChangeAvatar(5, images)
 
