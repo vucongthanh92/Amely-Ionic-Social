@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+            <div class="ion_navbar_title">Chi tiết sử dụng</div>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+    <ion-card class="history_delivery_card" *ngIf="detail">
+        <ion-card-header>Thông Tin Cửa Hàng</ion-card-header>
+        <ion-card-content>
+            <ion-item class="history_delivery_shop">
+                <ion-thumbnail item-left>
+                    <img src="{{detail.shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                </ion-thumbnail>
+                <h2 class="history_delivery_shop_title">{{detail.shop.title}}</h2>
+                <p>{{detail.shop.shop_phone}}</p>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="history_delivery_card" *ngIf="detail">
+        <ion-card-header>Sản Phẩm</ion-card-header>
+        <ion-card-content>
+            <ion-item class="history_delivery_product">
+                <ion-thumbnail item-left>
+                    <img src="{{detail.snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                </ion-thumbnail>
+                <h2 class="history_delivery_product_title">{{detail.snapshot.title}}</h2>
+                <p>Số lượng:
+                    <span class="history_delivery_price">{{detail.snapshot.display_quantity}}</span>
+                </p>
+
+
+            </ion-item>
+            <p id="txtDescProduct" *ngIf="detail.snapshot.description" [innerHTML]="detail.snapshot.description"> </p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

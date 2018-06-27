@@ -3,7 +3,7 @@
 /**
  */
 export class Transaction {
-    sub_total?: number;
+    shipping_fee?: number;
     guid?: number;
     owner_guid?: number;
     description?: string;
@@ -15,8 +15,8 @@ export class Transaction {
     currency?: string;
     quantity?: number;
     tax?: number;
+    sub_total?: number;
     time_created?: number;
-    shipping_fee?: number;
     commission_price?: number;
     commission_percent?: number;
     related_guid?: number;
@@ -28,4 +28,5 @@ export class Transaction {
     order_guid?: number;
     product_snapshot?: string;
     do_guid?: string;
+    seller?: string;
 }

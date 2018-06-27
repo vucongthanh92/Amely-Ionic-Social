@@ -8,23 +8,18 @@ app-history-delivery {
         border: 1px solid #e8e8ef;
         border-radius: 3px;
     }
-
     .history_delivery_item {
-
         border-bottom: 0.55px solid #c8c7cc;
-
         .item-inner {
             border: none !important;
         }
     }
-
     .history_delivery_icon {
         width: 24px;
         height: 24px;
         vertical-align: middle;
         margin: -4px 0px 0px 0px;
     }
-
     .history_delivery_title {
         font-weight: normal;
         font-size: 1.4rem;
@@ -35,11 +30,9 @@ app-history-delivery {
         margin: 3px 0px 1px 0px;
         text-overflow: ellipsis;
     }
-    
     .history_delivery_text {
         color: #ffa346;
     }
-
     .history_delivery_row {
         margin: 0px 0px 3px 5px;
         font-size: 1.4rem;
