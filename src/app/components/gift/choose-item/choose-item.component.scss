@@ -1,84 +1,84 @@
 app-choose-item{
-    ion-scroll{
-        position: unset;
-    }
-
-    ion-scroll .scroll-content {
-      left: 0;
-      right: 0;
-      top: 5px;
-      bottom: 0;
-      position: absolute;
-      overflow-y: hidden;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-      will-change: scroll-position;
+  ion-scroll{
+    position: unset;
   }
 
-    .item-card {
-        padding:5px 0 0 0;
-        width: 20%;
-        width: 100px;
-        height: 100px;
-        margin: 0px 2.5px 0 2.5px ;
-        background-color: #fff;
-        border-radius: 10px;
-        display: inline-block;
-        position: relative;
-      }
+  ion-scroll .scroll-content {
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: 0;
+    position: absolute;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
 
-      .item-card img{
-        width: 43px;
-        height: 43px;
-        position: absolute;
-        left: 28px;
-        top: 27px;
-      }
-      .item-card p{
-        position: absolute;
-        color: black;
-        width: 100%;
-        text-align: center;
-        bottom: -5px;
-        
-      }
+  .item-card {
+    padding:5px 0 0 0;
+    width: 20%;
+    width: 100px;
+    height: 100px;
+    margin: 0px 2.5px 0 2.5px ;
+    background-color: #fff;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+  }
 
-      #item-badge{
-        position: absolute;
-        right: 5px;
-        top: 5px;
-      }
+  .item-card img{
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    left: 28px;
+    top: 27px;
+  }
 
-      #item-badge a {
-        background-color: red ;
-        text-align: center;
-        width: 45px;
-        color: #fff;
-        padding:2px 10px 2px 10px;
-        border-radius: 10px;
-      }
+  .item-card p{
+    position: absolute;
+    color: black;
+    width: 100%;
+    text-align: center;
+    bottom: -5px;  
+  }
 
-      ion-scroll[scrollX] {
-        white-space: nowrap;
-        .scroll-item {
-          display: inline-block;
-        }
-      }
+  #item-badge{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
 
-    #divContent{
-        margin: 0 0 1% 1%;
-        vertical-align: middle;
-        text-align: center;
-        background-color: #fff;
-        left: 1%;
-        // position: absolute;
-        min-height: 98%;
-        margin-top: 5px;
-        border-radius: 8px;
-        width: 98%;
-      }
+  #item-badge a {
+    background-color: red ;
+    text-align: center;
+    width: 45px;
+    color: #fff;
+    padding:2px 10px 2px 10px;
+    border-radius: 10px;
+  }
 
-       .offer_myself_image {
+  ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+      display: inline-block;
+    }
+  }
+
+  #divContent{
+    margin: 0 0 1% 1%;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #fff;
+    left: 1%;
+    // position: absolute;
+    min-height: 98%;
+    margin-top: 5px;
+    border-radius: 8px;
+    width: 98%;
+  }
+
+  .offer_myself_image {
     background-position: center !important;
     background-size: cover !important;
     padding: 0px;
@@ -86,7 +86,6 @@ app-choose-item{
     height: 100px;
     margin: 0px 0px 5px 0px;
   }
-
 
   @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
     span {
@@ -171,4 +170,67 @@ app-choose-item{
     @include ribbonize($javascript, black);
   }
 
+  .chosen_item_main {
+    background-color: #57bde3;
+    height: 100%;
+    position: relative;
+  }
+
+  .chosen_item_product_title {
+    margin: 0px 0px 3px 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    color: #000;
+  }
+
+  .chosen_item_product_quantity {
+    font-size: 1.2rem;
+    color: #77797c;
+  }
+
+  .chosen_item_footer_title {
+    color: #8e9093 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 3px 0px 3px;
+    font-size: 1.3rem;
+    margin: 0px;
+    bottom: 5px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chosen_item_content{
+    margin: 0 0 1% 1%;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #fff;
+    left: 1%;
+    min-height: 98%;
+    margin-top: 5px;
+    border-radius: 8px;
+    width: 98%;
+  }
+
+  .offer_myself_image {
+    background-position: center !important;
+    background-size: cover !important;
+    padding: 0px;
+    width: 100%;
+    height: 100px;
+    margin: 0px 0px 5px 0px;
+    border: 1px solid #e8e8ef;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
