@@ -32,6 +32,8 @@ export class HistoryRedeemDetailComponent implements OnInit {
       return;
     }
     this.historyService.getRedeemDetail(this.transaction.related_guid + "", this.transaction.seller, this.transaction.quantity + "", this.transaction.owner_guid + "").subscribe(data => {
+      console.log(data);
+      
       if (data && data.owner && data.shop && data.snapshot) {
         this.detail = data;
       } else {
