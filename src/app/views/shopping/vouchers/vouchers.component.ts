@@ -21,9 +21,9 @@ export class VouchersComponent implements OnInit {
   public device_screen: string;
 
   constructor(
-    public nav: NavController,
-    public appCtrl: App,
-    private shoppingsService: ShoppingsService,
+    public nav: NavController, 
+    public appCtrl: App, 
+    private shoppingsService: ShoppingsService, 
     public customService: CustomService,
     public loadingCtrl: LoadingController
   ) {
@@ -47,23 +47,23 @@ export class VouchersComponent implements OnInit {
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
-    this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      this.vouchers = []
-      if (data instanceof Array) {
-        this.vouchers = data;
-      }
-    }, err => this.loadData(--retry));
+      this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
+        this.vouchers = []
+        if (data instanceof Array) {
+          this.vouchers = data;
+        }
+      }, err => this.loadData(--retry));
 
-    this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
-      if (data instanceof Array) {
-        this.categories = data;
-      }
-    }, err => this.loadData(--retry))
-
+      this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
+        if (data instanceof Array) {
+          this.categories = data;
+        }
+      }, err => this.loadData(--retry))
+    
   }
   goToPage(value, voucher: Product, category: Category) {
     switch (value) {
-      case 'category':
+      case 'category':     
         this.appCtrl.getRootNav().push(ProductCategoryComponent, { guid: category.guid, arr: this.categories, title: category.title });
         break;
       case 'product':
@@ -80,9 +80,5 @@ export class VouchersComponent implements OnInit {
 
   formatSalePrice(price: number, currency: string) {
     return this.customService.formatCurrency(price + "", currency);
-  }
-
-  getDiscountPercent(product: Product) {
-   return (100 - ((product.display_price * 100) / product.display_old_price));
   }
 }

@@ -120,7 +120,7 @@ export class InventoryComponent implements OnInit {
         this.totalItem = data.length;
         data.forEach(e => {
           this.total += +e.quantity;
-          this.totalPrice += +e.product_snapshot.display_price;
+          this.totalPrice += (+e.product_snapshot.display_price) * (+e.quantity);
         });
         console.log(this.total);
 

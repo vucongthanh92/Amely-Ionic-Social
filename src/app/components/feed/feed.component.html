@@ -111,7 +111,7 @@
             </ng-template>
         </ion-row>
 
-        <ion-card-content tappable (click)="openFeedDetail()">
+        <ion-card-content (click)="openFeedDetail()">
             <p>{{ descriptionPost }}</p>
         </ion-card-content>
     </ion-list>
@@ -139,28 +139,22 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-avatar>
-        <ion-col col-11 class="feed_share_title">
-            <span class="feed_share_fullname" tappable (click)="openOwner(post.type,post.owner_guid)">{{ user.fullname }}</span>
-            <span>đã chia sẻ bài viết</span>
-            <span class="feed_share_fullname">{{users[postShare.poster_guid].fullname}}</span>
+        <h2 class="feed_title">{{ user.fullname }}
+            <span (click)="openOwner(post.type,post.owner_guid)"> </span>
+        </h2>
+        <ion-col class="feed_mood item-inner">
+            <span>Đã chia sẻ bài viết</span>
         </ion-col>
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-        <ion-col class="feed_event" col-1>
-            <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
+        <ion-col class="feed_event" col-2>
+            <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
     <!-- INFO SHARE -->
     <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
     <ion-card *ngIf="postShare" class="feed_share_info" padding>
-        <!-- <ion-item class="feed_share_item">
-            <ion-col class="feed_mood item-inner" *ngIf="mood">
-              <span>{{mood.title}}</span>
-                <img id="iconMood" src="{{mood.image}}">
-            </ion-col>
-            <p class="feed_date" *ngIf="location">{{location}}</p>
-        </ion-item> -->
 
         <ion-card-content (click)="openFeedDetail()">
             <p>{{ descriptionPostShare }}</p>

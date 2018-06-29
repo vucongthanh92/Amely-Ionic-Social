@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="onBackPress()">
+            <button class="ion_navbar_box" ion-button (click)="onBackPress()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
             <div class="ion_navbar_title">KÍCH HOẠT TÀI KHOẢN</div>
@@ -106,13 +106,13 @@
         <div style="text-align: center;">
             <label for="">Tin nhắn chứa mã xác thực sẽ nhận được sau vài phút, nếu không nhận được tin nhắn, hãy thử chức
     năng gửi lại mã. <br><br> 
-    <a *ngIf="hide==true" tappable (click)="reActionUser();"><u>Gửi lại mã xác thực</u></a>
+    <a *ngIf="hide==true"   (click)="reActionUser();"><u>Gửi lại mã xác thực</u></a>
     <p *ngIf="hide==false">Thử lại sau <u style="color: red">{{timerVal}}</u> giây</p>
   </label>
         </div>
         <br>
         <div style="text-align: center;">
-            <button class="buttonSubmit" ion-button tappable (click)="sendVerifyCode();">KÍCH HOẠT</button>
+            <button class="buttonSubmit" ion-button (click)="sendVerifyCode();">KÍCH HOẠT</button>
         </div>
     </div>
 
