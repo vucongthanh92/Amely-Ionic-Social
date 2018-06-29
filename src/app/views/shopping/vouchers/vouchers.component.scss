@@ -1,253 +1,261 @@
 app-vouchers {
-    .content-ios.outer-content {
-        background: #efeff4;
+  .content-ios.outer-content {
+    background: #efeff4;
+  }
+
+  .voucher_content .label-ios {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .button-ios span {
+    color:white;
+    font-size: 15px;
+  }
+
+  .button-ios {
+    padding: 0px 9px 0px 9px;
+    text-transform: capitalize;
+    color: #4a8bfc;
+  }
+
+  .card-ios {
+    box-shadow: none;
+    margin-bottom: 65px;
+  }
+  
+  .item-card {
+    display: inline-block;
+    position: relative;
+  }
+
+  .label-ios {
+    margin: 3px 0px 12px 0;
+    background-color: white;
+  }
+
+  .item-ios.item-block .item-inner {
+    padding: 0px;
+  }
+
+  .item-ios {
+    background-color: #efeff4;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+  
+  ion-scroll[scrollX] {
+    white-space: nowrap;
+    .scroll-item {
+      display: inline-block;
     }
-    .voucher_content .label-ios {
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .voucher_title {
+    text-transform: capitalize;
+    font-size: 15px;
+    margin: 12px 0px 5px 0px;
+    font-weight: 400;
+    color: #333;
+    white-space: normal;
+    line-height: 21px;
+    padding: 0vw 5vw 0vw 5vw;
+  }
+
+  .voucher_price {
+    color: #D9534F;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0vw 5vw 0vw 5vw;
+    margin: 0px 0px 12px 0px;
+  }
+
+  .voucher_image_box {
+    position: relative;
+    max-height: 35vh;
+    overflow: hidden;
+    margin-bottom: 0px;
+  }
+
+  .voucher_limit {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-align: right;
+    padding: 9px 10px 9px 0px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  ion-footer {
+    background-color: #ffb76b;
+
+    ion-scroll {
+      height:50px;
     }
-    .button-ios span {
-        color: white;
-        font-size: 15px;
+  }
+
+  .scroll-content {
+    padding-top: 0px !important;
+  }
+
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fakeItem {
+     h2, h3, p {
+         background: linear-gradient(to right, lightgray, white, lightgray);
+         animation: skeleton 2s infinite;
+         animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+         background-repeat: no-repeat;
+         background-position-x: -300px;
+         background-position-y: 0;
+         background-color: lightgray;
+         opacity: 0.5;
+         height: 1em;
+         margin-top: 10px;
     }
-    .button-ios {
-        padding: 0px 9px 0px 9px;
-        text-transform: capitalize;
-        color: #4a8bfc;
+     h2 {
+        //  max-width: 95px;
     }
-    .card-ios {
-        box-shadow: none;
-        margin-bottom: 65px;
+     h3 {
+        //  max-width: 95px;
     }
-    .item-card {
-        display: inline-block;
-        position: relative;
+     p {
+         max-width: 250px;
     }
-    .label-ios {
-        margin: 3px 0px 12px 0;
-        background-color: white;
+  }
+ .divCustom{
+     background: linear-gradient(to right, lightgray, white, lightgray);
+     animation: skeleton 2s infinite;
+     animation-timing-function: cubic-bezier(0.36,0.66,0.04,1);
+     background-repeat: no-repeat;
+     background-position-x: -300px;
+     background-position-y: 0;
+     background-color: lightgray;
+     opacity: 0.5;
+     width: 100%;
+    height: 14em;
+  }
+ @keyframes skeleton {
+     0% {
+         background-position-x: -150px;
     }
-    .item-ios.item-block .item-inner {
-        padding: 0px;
+     100% {
+         background-position-x: 150px;
     }
-    .item-ios {
-        background-color: #efeff4;
-        margin: 0px 0px 0px 0px;
-        padding: 0px 0px 0px 0px;
-    }
-    ion-scroll[scrollX] {
-        white-space: nowrap;
-        .scroll-item {
-            display: inline-block;
-        }
-    }
-    .voucher_title {
-        text-transform: capitalize;
-        font-size: 15px;
-        margin: 12px 0px 5px 0px;
-        font-weight: 400;
-        color: #333;
-        white-space: normal;
-        line-height: 21px;
-        padding: 0vw 5vw 0vw 5vw;
-    }
-    .voucher_price {
-        color: #D9534F;
-        font-size: 18px;
-        font-weight: 600;
-        padding: 0vw 5vw 0vw 5vw;
-        margin: 0px 0px 12px 0px;
-    }
-    .voucher_image_box {
-        position: relative;
-        max-height: 35vh;
-        overflow: hidden;
-        margin-bottom: 0px;
-    }
-    .voucher_limit {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        position: absolute;
-        width: 100%;
-        bottom: 0px;
-        text-align: right;
-        padding: 9px 10px 9px 0px;
-        box-sizing: border-box;
-        font-size: 15px;
-        font-style: italic;
-    }
-    ion-footer {
-        background-color: #ffb76b;
-        ion-scroll {
-            height: 50px;
-        }
-    }
-    .scroll-content {
-        padding-top: 0px !important;
-    }
-     ::-webkit-scrollbar,
-    *::-webkit-scrollbar {
-        display: none;
-    }
-    .fakeItem {
-        h2,
-        h3,
-        p {
-            background: linear-gradient(to right, lightgray, white, lightgray);
-            animation: skeleton 2s infinite;
-            animation-timing-function: cubic-bezier(0.36, 0.66, 0.04, 1);
-            background-repeat: no-repeat;
-            background-position-x: -300px;
-            background-position-y: 0;
-            background-color: lightgray;
-            opacity: 0.5;
-            height: 1em;
-            margin-top: 10px;
-        }
-        h2 {
-            //  max-width: 95px;
-        }
-        h3 {
-            //  max-width: 95px;
-        }
-        p {
-            max-width: 250px;
-        }
-    }
-    .divCustom {
-        background: linear-gradient(to right, lightgray, white, lightgray);
-        animation: skeleton 2s infinite;
-        animation-timing-function: cubic-bezier(0.36, 0.66, 0.04, 1);
-        background-repeat: no-repeat;
-        background-position-x: -300px;
-        background-position-y: 0;
-        background-color: lightgray;
-        opacity: 0.5;
-        width: 100%;
-        height: 14em;
-    }
-    @keyframes skeleton {
-        0% {
-            background-position-x: -150px;
-        }
-        100% {
-            background-position-x: 150px;
-        }
-    }
-    $default: #f53d3d;
-    $cruzeiro: #387ef5;
-    $atletico: darken(#f4f4f4, 45%);
-    $javascript: #f7e023;
-    .item-ribbon {
-        background-color: #fff;
-        position: relative;
-        filter: none;
-        opacity: 1;
-        .ribbon {
-            position: absolute;
-            right: 0px;
-            top: -5px;
-            z-index: 2;
-            overflow: hidden;
-            width: 75px;
-            height: 75px;
-            text-align: right;
-            span {
-                font-size: 1rem;
-                font-weight: bold;
-                color: #fff;
-                text-transform: uppercase;
-                text-align: center;
-                line-height: 20px;
-                transform: rotate(45deg);
-                -webkit-transform: rotate(45deg);
-                width: 100px;
-                display: block;
-                background: $default;
-                position: absolute;
-                top: 19px;
-                right: -26px;
-                &::before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    top: 100%;
-                    z-index: -1;
-                    border-left: 3px solid $default;
-                    border-right: 3px solid transparent;
-                    border-bottom: 3px solid transparent;
-                    border-top: 3px solid $default;
-                }
-                &::after {
-                    content: "";
-                    position: absolute;
-                    right: 0;
-                    top: 100%;
-                    z-index: -1;
-                    border-left: 3px solid transparent;
-                    border-right: 3px solid $default;
-                    border-bottom: 3px solid transparent;
-                    border-top: 3px solid $default;
-                }
-            }
-        }
-    }
-    // Creates a ribbon effect with the given options:
-    @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
-        span {
-            color: $text-color;
-            background: $ribbon-color;
-            &::before {
-                border-left: $border-width solid $ribbon-color;
-                border-top: $border-width solid $ribbon-color;
-            }
-            &::after {
-                border-right: $border-width solid $ribbon-color;
-                border-top: $border-width solid $ribbon-color;
-            }
-        }
-    }
-    .product_feature_price {
-        color: #D9534F;
-        font-size: 17px;
-        text-transform: capitalize;
-    }
-    .product_sale_price {
-        color: #b6b7b7;
-        font-size: 17px;
-        text-transform: capitalize;
-        text-decoration: line-through;
-    }
-    .wallphoto_quantity_4 {
-        background-position: center !important;
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-        width: 100%;
-        height: 230px;
-    }
-    .voucher_nodata {
-        font-size: 2rem;
-        text-align: center;
-        background-color: #efeff4;
-    }
-    .imgNodata {
-        display: initial;
-    }
-    .voucher_sale_price {
-        background-color: #f53d3d;
-        position: absolute;
-        top: 1.8rem;
-        left: 1.8rem;
-        text-align: center;
+  }
+
+
+  $default: #f53d3d;
+  $cruzeiro: #387ef5;
+  $atletico: darken(#f4f4f4, 45%);
+  $javascript: #f7e023;
+
+  .item-ribbon {
+    background-color: #fff;
+    position: relative;
+    filter: none;
+    opacity: 1;
+    .ribbon {
+      position: absolute;
+      right: 0px;
+      top: -5px;
+      z-index: 2;
+      overflow: hidden;
+      width: 75px;
+      height: 75px;
+      text-align: right;
+      span {
+        font-size: 1rem;
+        font-weight: bold;
         color: #fff;
-        padding: 1.7rem 0 0 0;
-        border-radius: 50%;
-        width: 8rem;
-        height: 7rem;
-        font-size: 1.3rem;
-        font-weight: normal;
-        .voucher_sale_content {
-            font-weight: bold;
-            font-size: 2rem;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 20px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        width: 100px;
+        display: block;
+        background: $default;
+        position: absolute;
+        top: 19px;
+        right: -26px;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 100%;
+          z-index: -1;
+          border-left: 3px solid $default;
+          border-right: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid $default;
         }
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 100%;
+          z-index: -1;
+          border-left: 3px solid transparent;
+          border-right: 3px solid $default;
+          border-bottom: 3px solid transparent;
+          border-top: 3px solid $default;
+        }
+      }
     }
+  }
+
+
+  // Creates a ribbon effect with the given options:
+  @mixin ribbonize ($ribbon-color, $text-color: white, $border-width: 3px) {
+    span {
+      color: $text-color;
+      background: $ribbon-color;
+      &::before {
+        border-left: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+      &::after {
+        border-right: $border-width solid $ribbon-color;
+        border-top: $border-width solid $ribbon-color;
+      }
+    }
+  }
+
+  .product_feature_price {
+    color: #D9534F;
+    font-size: 17px;
+    text-transform: capitalize;
+  }
+  .product_sale_price {
+    color: #b6b7b7;
+    font-size: 17px;
+    text-transform: capitalize;
+    text-decoration: line-through;
+  }
+
+  .wallphoto_quantity_4 {
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 230px;
+  }
+
+  .voucher_nodata {
+    font-size: 2rem; 
+    text-align: center; 
+    background-color: #efeff4;
+  }
+
+  .imgNodata {
+    display: initial;
+  }
+
 }

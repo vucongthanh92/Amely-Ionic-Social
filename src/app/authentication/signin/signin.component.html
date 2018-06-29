@@ -37,15 +37,15 @@
             <br>
             <ion-row>
                 <ion-col style="position: relative; margin-left: 6vw;">
-                    <div class="txtRememberRegister" tappable (click)="forgotPassword()">
-                        <span>Quên mật khẩu</span>
-                        <img src="assets/imgs/iconForgot.png">
+                    <div class="txtRememberRegister" (click)="forgotPassword()">
+                        <span style="color: #289ae1;">Quên mật khẩu</span>
+                        <img src="assets/imgs/iconForgot.png" style="width: 14px;" alt="">
                     </div>
                 </ion-col>
 
                 <ion-col style="position: relative; margin-left: -10vw;">
-                    <div tappable (click)="onRegister()" class="txtRememberRegister">
-                        <span>Đăng ký</span>
+                    <div (click)="onRegister()" class="txtRememberRegister">
+                        <span style="color: #289ae1;">Đăng ký</span>
                         <!-- <ion-icon class="signin_icon" name="arrow-dropright-circle"></ion-icon> -->
                         <img src="assets/imgs/iconRegister.png">
                     </div>

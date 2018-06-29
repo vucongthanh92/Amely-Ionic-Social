@@ -1,34 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle class="ion_navbar_box">
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon name="menu" class="ion_navbar_icon"></ion-icon>
       </button>
-      <div class="ion_navbar_title" *ngIf="!is_search_show">xã hội</div>
-    </ion-buttons>
+            <div class="ion_navbar_title" *ngIf="!is_search_show">xã hội</div>
+        </ion-buttons>
 
-    <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="social_searchbar"></ion-searchbar>
-    <ion-buttons end>
-      <button ion-button tappable (click)="search()" class="search_box">
+        <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="social_searchbar"></ion-searchbar>
+        <ion-buttons end>
+            <button ion-button (tap)="search()" class="search_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <!-- <button ion-button (click)="payment()" style="font-size: 18px;">
+            <!-- <button ion-button (click)="payment()" style="font-size: 18px;">
         <ion-icon name="qr-scanner"></ion-icon>
       </button> -->
-      <button ion-button (click)="openPopover($event)" class="social_more">
+            <button ion-button (click)="openPopover($event)" class="social_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs #myTabsNav tabsPlacement="top" class="top_navigation_default" primary>
-    <ion-tab [root]="tab1Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="TRAO ĐỔI" tabIcon="offer"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
-    <ion-tab [root]="tab4Root" tabTitle="SỰ KIỆN" tabIcon="event"></ion-tab>
-  </ion-tabs>
+    <ion-tabs #myTabsNav tabsPlacement="top" class="top_navigation_default" primary>
+        <ion-tab [root]="tab1Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="TRAO ĐỔI" tabIcon="offer"></ion-tab>
+        <ion-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
+        <ion-tab [root]="tab4Root" tabTitle="SỰ KIỆN" tabIcon="event"></ion-tab>
+    </ion-tabs>
 </ion-content>
 
 <!-- 
@@ -42,7 +42,7 @@
   <ion-tab [root]="tab5Root" tabTitle="CẬP NHẬT" tabIcon="feed"></ion-tab>
   <ion-tab [root]="tab6Root" tabTitle="XUNG QUANH" tabIcon="around"></ion-tab>
 </ion-tabs> -->
-    <!-- <super-tabs tabsPlacement="bottom" primary>
+<!-- <super-tabs tabsPlacement="bottom" primary>
       <super-tab [root]="tab1Root" tabTitle="CẬP NHẬT" tabIcon="feed"></super-tab>
       <super-tab [root]="tab2Root" tabTitle="TRAO ĐỔI" tabIcon="offer"></super-tab>
       <super-tab [root]="tab3Root" tabTitle="XUNG QUANH" tabIcon="around"></super-tab>

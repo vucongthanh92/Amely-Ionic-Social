@@ -1,9 +1,9 @@
 <ion-list class="event_menu_list">
-    <ion-item class="event_menu_item" tappable (click)="publicEvent()" *ngIf="eventSerive.publish==1 && is_user_current">
+    <ion-item class="event_menu_item" (click)="publicEvent()" *ngIf="eventSerive.publish==1 && is_user_current">
         <img class="event_menu_icon" src="assets/imgs/cong-bo-su-kien.png"><span>Công bố sự kiện</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" *ngIf="is_user_current" tappable (click)="closeOpenEvent()">
+    <ion-item class="event_menu_item" *ngIf="is_user_current" (click)="closeOpenEvent()">
         <div *ngIf="(eventSerive.publish==1 || eventSerive.publish==2 )">
             <img class="event_menu_icon" src="assets/imgs/ic_setting_security.png"><span>Đóng sự kiện</span>
         </div>
@@ -12,27 +12,27 @@
         </div>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="changeCover()" *ngIf="is_user_current">
+    <ion-item class="event_menu_item" (click)="changeCover()" *ngIf="is_user_current">
         <img class="event_menu_icon" src="assets/imgs/change-cover.png"><span>Thay đổi ảnh bìa</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="changeAvatar()" *ngIf="is_user_current">
+    <ion-item class="event_menu_item" (click)="changeAvatar()" *ngIf="is_user_current">
         <img class="event_menu_icon" src="assets/imgs/change-avatar.png"><span>Thay đổi ảnh đại diện</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="openInventory()" *ngIf="has_inventory">
+    <ion-item class="event_menu_item" (click)="openInventory()" *ngIf="has_inventory">
         <img class="event_menu_icon" src="assets/imgs/vector_vao_kho_qua-01.png"><span>Vào kho</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="deleteEvent()" *ngIf="is_user_current">
+    <ion-item class="event_menu_item" (click)="deleteEvent()" *ngIf="is_user_current">
         <img class="event_menu_icon" src="assets/imgs/xoa-01.png"><span>Xóa sự kiện</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="openQR()" *ngIf="has_inventory">
+    <ion-item class="event_menu_item" (click)="openQR()" *ngIf="has_inventory">
         <img class="event_menu_icon" src="assets/imgs/quet-qr-01.png"><span>Mã QR</span>
     </ion-item>
 
-    <ion-item class="event_menu_item" tappable (click)="report()">
+    <ion-item class="event_menu_item" (click)="report()">
         <img class="event_menu_icon" src="assets/imgs/bao_cao-01.png"><span>Report</span>
     </ion-item>
 </ion-list>

@@ -218,7 +218,7 @@ export class CreateEventComponent implements OnInit {
           let callback = this.params.get("callback");
           callback().then(() => {
             this.nav.pop();
-            
+
           });
 
         } else {
@@ -232,4 +232,7 @@ export class CreateEventComponent implements OnInit {
     this.nav.pop();
   }
 
+  checkHasInventory() {
+    this.has_inventory = !this.has_inventory;
+  }
 }
