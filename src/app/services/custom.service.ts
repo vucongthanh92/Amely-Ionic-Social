@@ -192,7 +192,7 @@ export class CustomService {
     });
   }
 
-  imageAction(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+  imageAction(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService, isMutil: boolean) {
 
     return new Promise((resolve, reject) => {
       let actionSheet = actionSheetCtrl.create({
@@ -217,7 +217,7 @@ export class CustomService {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type, true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
@@ -234,13 +234,14 @@ export class CustomService {
               var options = {
                 sourceType: camera.PictureSourceType.PHOTOLIBRARY,
                 destinationType: camera.DestinationType.DATA_URL,
-                correctOrientation:true
+                correctOrientation: true,
+                maximumImagesCount: isMutil ? 5 : 1
               };
               camera.getPicture(options).then((imageData) => {
                 let owner_from = this.user_current.username;
                 let extension = ".jpg";
                 let content_type = "image/jpg";
-                fbService.uploadImage(owner_from, imageData, extension, content_type,true).then(task => {
+                fbService.uploadImage(owner_from, imageData, extension, content_type, true).then(task => {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
@@ -261,7 +262,7 @@ export class CustomService {
     });
   }
 
-  imageActionTest(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService) {
+  imageActionTest(actionSheetCtrl: ActionSheetController, camera: Camera, fbService: FirebaseService, isMutil: boolean) {
     return new Promise((resolve, reject) => {
       let actionSheet = actionSheetCtrl.create({
         title: 'Chọn tác vụ',
@@ -334,5 +335,27 @@ export class CustomService {
     else {
       return "top_navigation_iphone6s";
     }
+  }
+
+  checkUrlImage(url, timeoutT) {
+    return new Promise(function (resolve, reject) {
+      var timeout = timeoutT || 5000;
+      var timer, img = new Image();
+      img.onerror = img.onabort = function () {
+        clearTimeout(timer);
+        reject("error");
+      };
+      img.onload = function () {
+        clearTimeout(timer);
+        resolve("success");
+      };
+      timer = setTimeout(function () {
+        // reset .src to invalid URL so it stops previous
+        // loading, but doens't trigger new load
+        img.src = "//!!!!/noexist.jpg";
+        reject("timeout");
+      }, timeout);
+      img.src = url;
+    });
   }
 }

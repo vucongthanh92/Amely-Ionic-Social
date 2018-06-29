@@ -6,7 +6,7 @@
           <ion-col col-10 (click)="goToPage(friend)">
             <ion-row>
               <ion-col class="contact_user_image_box" col-4>
-                <img width="100%" src="{{ friend.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+                <img src="{{ friend.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'"/>
               </ion-col>
               <ion-col class="contact_user_info" col-8>
                 <div class="contact_user_title">{{ friend.fullname }}</div>
@@ -23,6 +23,7 @@
           </ion-col>
         </ion-row>
       </ion-item>
+      
       <!-- <ion-item-options side="left">
         <button ion-button (click)="favorite(item)">Favorite</button>
         <button ion-button color="danger" (click)="share(item)">Share</button>
@@ -32,15 +33,13 @@
         <button ion-button (click)="removeFriend(friend)">Xóa bạn</button>
       </ion-item-options>
     </ion-item-sliding>
-    <div *ngIf="friends.length==0" style="font-size: 20px; text-align: center;">
-      <div>
-        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-      </div>
-      <div style="color: #999;">
-        Không có dữ liệu...
-      </div>
+
+    <div *ngIf="friends.length==0" class="contact_user_nodata">
+      <img src="assets/imgs/ic_feed.png">
+      <div class="contact_user_nodata_title">Không có dữ liệu...</div>
     </div>
   </ion-list>
+  
   <ion-list *ngIf="!friends">
     <ion-item *ngFor='let fake of fakeUsers' class='fakeItem'>
       <ion-row>
@@ -55,6 +54,7 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
 <ion-fab right bottom (click)="addFriend();">
   <button ion-fab class="contact_user_fab">
     <ion-icon ios="md-person-add" md="md-person-add"></ion-icon>

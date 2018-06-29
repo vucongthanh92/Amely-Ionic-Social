@@ -170,7 +170,7 @@ export class GroupMenuComponent implements OnInit {
   }
   changeAvatarCover(isAvatar: string) {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => {
       let images = [url + ''];
       if (isAvatar) {
         this.retryUpdateAvatar(5, images, url);
@@ -188,6 +188,7 @@ export class GroupMenuComponent implements OnInit {
       this.customService.toastMessage('Thay đổi ảnh đại diện thành công ', 'bottom', 10000)
       if (data.status) {
         this.group.avatar = url + "";
+        localStorage.setItem("avatar"+this.group.guid,images[0]);
         this.callback(this.group).then(() => { })
       } else {
         this.customService.toastMessage('Thay đổi ảnh đại diện thất bại ', 'bottom', 2000);
@@ -204,6 +205,7 @@ export class GroupMenuComponent implements OnInit {
       this.customService.toastMessage('Thay đổi ảnh bìa thành công ', 'bottom', 10000)
       if (data.status) {
         this.group.cover = url + "";
+        localStorage.setItem("cover" + this.group.guid, images[0]);
         this.callback(this.group).then(() => { })
       } else {
         this.customService.toastMessage('Thay đổi ảnh bìa thất bại ', 'bottom', 2000);

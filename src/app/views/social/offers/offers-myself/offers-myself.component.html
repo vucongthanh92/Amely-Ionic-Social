@@ -9,16 +9,18 @@
       <div class="offer_myself_main">
 
         <p *ngIf="offer.target=='public'" class="offer_myself_location">
-          <ion-icon item-start class="public"></ion-icon> Xung quanh
+          <img src="assets/imgs/person.png"> Xung quanh
         </p>
         <p *ngIf="offer.target=='location'" class="offer_myself_location">
-          <ion-icon item-start class="around"></ion-icon> Theo vị trí
+          <img src="assets/imgs/location.png"> Theo vị trí
         </p>
         <p *ngIf="offer.target=='friends'" class="offer_myself_location">
-          <ion-icon item-start class="friend"></ion-icon> Bạn bè
+          <img src="assets/imgs/friend.png"> Bạn bè
         </p>
 
-        <img class="offer_myself_image" src="{{offer.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <div class="offer_myself_image">
+          <img src="{{offer.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg'">
+        </div>
         <p class="offer_myself_title">#{{offer.guid}} {{offer.product_snapshot.title}}</p>
       </div>
   

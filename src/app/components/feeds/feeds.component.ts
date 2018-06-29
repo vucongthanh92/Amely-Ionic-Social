@@ -1,6 +1,6 @@
 import { CustomService } from './../../services/custom.service';
 import { AddFeedComponent } from './../add-feed/add-feed.component';
-import { App, LoadingController } from 'ionic-angular';
+import { App, LoadingController, NavController } from 'ionic-angular';
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
@@ -31,6 +31,7 @@ export class FeedsComponent implements OnInit {
     private customService: CustomService,
     private feedsService: FeedsService,
     private appCtrl: App,
+    private nav: NavController,
     public loadingCtrl: LoadingController,
   ) { }
   someMethod(obj) {
@@ -78,14 +79,26 @@ export class FeedsComponent implements OnInit {
 
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(
       data => {
-        console.log(data);
-        
         if (data.posts != null) {
-          this.offset = this.offset + data.posts.length;
-          this.posts = data.posts;
-          this.users = data.users;
-          this.shares = data.shares;
-          this.isHasData = true;
+          data.posts.forEach(e => {
+            if (e.wallphoto != null && e.wallphoto.length > 0) {
+              this.customService.checkUrlImage(e.wallphoto[0], 0)
+                .then(result => {
+                  localStorage.removeItem(e.guid + "");
+                })
+                .catch(err => {
+                  if (localStorage.getItem(e.guid + "")!=null) {
+                    e.wallphoto = JSON.parse(localStorage.getItem(e.guid + ""));
+                  }
+                })
+            }
+          });
+
+            this.offset = this.offset + data.posts.length;
+            this.posts = data.posts;
+            this.users = data.users;
+            this.shares = data.shares;
+            this.isHasData = true;
         } else {
           this.posts = [];
           this.isHasData = true;
@@ -101,7 +114,7 @@ export class FeedsComponent implements OnInit {
 
   doInfinite(infiniteScroll) {
     this.retryLoadmore(5, infiniteScroll);
-      
+
   }
 
   retryLoadmore(retry, infiniteScroll) {
@@ -150,8 +163,6 @@ export class FeedsComponent implements OnInit {
   }
 
   addNewFeed() {
-    console.log(this.owner_guid + "   " + this.type);
-
     this.appCtrl.getRootNav().push(AddFeedComponent, { owner_guid: this.owner_guid, type: this.type, callback: this.myCallbackFunction });
   }
 
@@ -177,6 +188,21 @@ export class FeedsComponent implements OnInit {
     }
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
       if (data.posts) {
+        data.posts.forEach(e => {
+          console.log(e);
+          
+          if (e.wallphoto != null && e.wallphoto.length > 0) {
+            this.customService.checkUrlImage(e.wallphoto[0], 0)
+              .then(result => {
+                localStorage.removeItem(e.guid + "");
+              })
+              .catch(err => {
+                if (localStorage.getItem(e.guid + "") != null) {
+                  e.wallphoto = JSON.parse(localStorage.getItem(e.guid + ""));
+                }
+              })
+          }
+        });
         this.offset = this.offset + data.posts.length;
         this.posts = data.posts;
         this.users = data.users;

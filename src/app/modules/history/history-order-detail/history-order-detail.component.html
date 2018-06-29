@@ -18,6 +18,9 @@
         </div>
       </ion-thumbnail>
       <h2 class="history_order_shop_title">{{shop.title}}</h2>
+      <p class="history_order_product_row">Phí giao hàng:
+        <span class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</span>
+      </p>
     </ion-item>
 
     <ion-list class="history_order_product">
@@ -83,7 +86,7 @@
 
 <ion-footer class="history_order_total" *ngIf="order">
   <div class="history_order_total_box">
-    <ion-item>Phí giao hàng
+    <ion-item *ngIf="shippingFee != 0">Phí giao hàng
       <ion-note class="history_order_product_label" item-end *ngIf="user_current">
         {{formatTotalPrive(shippingFee,user_current.usercurrency)}}
       </ion-note>

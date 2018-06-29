@@ -61,7 +61,7 @@ export class MainMenuComponent implements OnInit {
     private feedService: FeedsService,
     private appCtrl: App
   ) {
-    
+
     this.device_screen = customService.checkDevices();
 
     // this.moodLocal = [
@@ -178,7 +178,7 @@ export class MainMenuComponent implements OnInit {
       dataSnapshot.forEach(items => {
         let notify: Models.Notification;
         notify = items.val();
-        console.log(items.key);
+        // console.log(items.key);
 
         if (notify.poster_guid)
           this.retryLoadNotifyUser(5, notify, items.key);

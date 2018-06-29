@@ -5,7 +5,6 @@
                 <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-
         <ion-buttons end>
             <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
                 <ion-icon class="group_more_icon" name="md-more"></ion-icon>
@@ -16,12 +15,14 @@
 
 <ion-content class="outer-content">
     <div *ngIf="group">
-        <div class="group_cover" [style.background]="'url(' + group.cover + ')'"></div>
-        <div class="group_avatar_row">
-            <div class="group_avatar">
-                <img src="{{ group.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+        <div class="group_cover">
+            <img src="{{group.cover}}" onError="this.src='assets/imgs/banner.png'">
+        </div>
+        <div class="group_avatar">
+            <div class="group_avatar_image">
+                <img src="{{ group.avatar }}" onError="this.src='assets/imgs/nhom.png'" imageViewer>
             </div>
-            <div class="group_cover_title">{{ group.title }}</div>
+            <div class="group_avatar_title">{{ group.title }}</div>
         </div>
 
         <div class="bar bar-header bar-dark" class="group_navigation">

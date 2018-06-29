@@ -53,8 +53,6 @@ export class FeedComponent {
     private customService: CustomService,
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
-
-
   }
 
   hasWallPhoto = true;
@@ -62,6 +60,7 @@ export class FeedComponent {
   ngOnInit() {
     if (this.post && this.post.item_guid) {
       try {
+      
         this.postShare = this.shares.posts[this.post.item_guid];
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
@@ -81,11 +80,11 @@ export class FeedComponent {
     }
     if (this.post) {
       let description = JSON.parse(this.post.description);
-      
+
       if (Array.isArray(this.post.wallphoto) === false) {
         this.hasWallPhoto = false;
       }
-      
+
       this.descriptionPost = description.post;
       this.location = description.location;
       if (this.isShowMoreContent) {
@@ -110,7 +109,7 @@ export class FeedComponent {
       }
       // console.log(this.post.wallphoto);
     }
-    }
+  }
 
   changePage() {
     this.appCtrl.getRootNav().push(CommentsComponent, { guid: this.post.guid });
@@ -194,13 +193,13 @@ export class FeedComponent {
   }
 
   openModal(urlImage, position) {
-    let description ;
+    let description;
     if (urlImage == 'postShare') {
-      description=JSON.parse(this.postShare.description).post;
-      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description, position : position });           
-    }else{
-      description= JSON.parse(this.post.description).post;
-      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description, position: position }); 
+      description = JSON.parse(this.postShare.description).post;
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.postShare.wallphoto, description: description, position: position });
+    } else {
+      description = JSON.parse(this.post.description).post;
+      this.appCtrl.getRootNav().push(ModalImageFeedComponent, { urlImage: this.post.wallphoto, description: description, position: position });
     }
   }
 }

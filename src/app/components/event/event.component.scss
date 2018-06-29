@@ -1,24 +1,23 @@
 app-event {
   .event_cover {
-    padding: 0px;
     width: 100%;
-    min-height: 200px;
-    text-align: center;
-    background-position: center !important;
-    background-size: cover !important;
-    box-shadow: inset 0px 0px 45px #000000;
+    height: 16rem;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .event_avatar_row {
+  .event_avatar {
     background-color: #fff;
 
-    .event_avatar {
+    .event_avatar_image {
       width: 12rem;
       height: 12rem;
       margin: auto;
-      border-radius: 5px;
-      border: 5px solid #efeff4;
-      box-shadow: 0px 1px 5px 1px #999;
       position: relative;
       top: -6rem;
 
@@ -28,13 +27,12 @@ app-event {
         text-align: center;
         object-fit: cover;
         object-position: center;
-        image-rendering: pixelated;
       }
     }
 
-    .event_cover_title {
+    .event_avatar_title {
       color: #333;
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       text-transform: capitalize;
       white-space: nowrap;
       overflow: hidden;
@@ -42,7 +40,7 @@ app-event {
       text-align: center;
       padding: 0px 7px;
       position: relative;
-      top: -3rem;
+      top: -3.5rem;
     }
   }
 
@@ -51,7 +49,6 @@ app-event {
 
     .event_tab_box {
       border-top: 1px solid #c8c7cc;
-      border-bottom: 1px solid #c8c7cc;
       padding: 2px 0px 2px 0px;
     }
 

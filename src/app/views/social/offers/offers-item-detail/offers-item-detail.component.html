@@ -26,12 +26,12 @@
       </ion-col>
       <ion-col col-12>
         <ion-item class="offer_item_nearby" *ngIf="offer.owner">
-            <span *ngIf="offer.target == 'public'" class="offer_detail_relation">
-              <ion-icon name="globe"></ion-icon> Xung quanh</span>
-            <span *ngIf="offer.target == 'friends'" class="offer_detail_relation">
-              <ion-icon name="people"></ion-icon> Bạn bè</span>
-            <span *ngIf="offer.target == 'location'" class="offer_detail_relation">
-              <ion-icon name="locate"></ion-icon> Vị trí</span>
+            <div *ngIf="offer.target == 'public'" class="offer_detail_relation">
+              <img src="assets/imgs/person.png"> Xung quanh</div>
+            <div *ngIf="offer.target == 'friends'" class="offer_detail_relation">
+              <img src="assets/imgs/friend.png"> Bạn bè</div>
+            <div *ngIf="offer.target == 'location'" class="offer_detail_relation">
+              <img src="assets/imgs/location.png"> Vị trí</div>
           <button class="offer_item_invent" *ngIf="!is_counter && offer.offer_type!='giveaway'" type="button" name="button" (click)="chosenItem(offer)" 
             ion-button>Tham gia trao đổi</button>
           <button class="offer_item_invent" *ngIf="!is_counter && offer.offer_type =='giveaway'" type="button" name="button" (click)="requestOffer(offer)" 
@@ -40,7 +40,7 @@
 
         <ion-card-content class="offer_item_product">
           <p class="offer_item_description_label">Thông tin sản phẩm: </p>
-          <p class="offer_item_description_content">{{ offer.product_snapshot.description }}</p>
+          <p class="offer_item_description_content" innerHTML="{{ offer.product_snapshot.description }}"></p>
         </ion-card-content>
       </ion-col>
     </ion-row>

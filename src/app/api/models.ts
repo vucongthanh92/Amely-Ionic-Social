@@ -49,6 +49,7 @@ export { Notification } from './models/notification';
 export { Temp_order } from './models/temp-_order';
 export { Order_redeem } from './models/order-_redeem';
 export { search_responses } from './models/search-_responses';
+export { RedeemHistoryDetail } from './models/redeem-history-detail';
 export { body } from './models/body';
 export { body_1 } from './models/body-_1';
 export { body_2 } from './models/body-_2';

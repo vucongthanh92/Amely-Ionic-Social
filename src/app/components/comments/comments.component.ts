@@ -7,6 +7,7 @@ import { CustomService } from '../../services/custom.service';
 import { FirebaseService } from '../../services/firebase.service';
 import { Camera } from '@ionic-native/camera';
 import { NavController } from 'ionic-angular';
+import { STORAGE_PROVIDERS } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-comments',
@@ -24,12 +25,12 @@ export class CommentsComponent implements OnInit {
   public image: string;
 
   constructor(
-    private nav_params: NavParams, 
-    private feed_service: FeedsService, 
-    private customService: CustomService, 
-    private actionSheetCtrl: ActionSheetController, 
-    private fbService: FirebaseService, 
-    private camera: Camera, 
+    private nav_params: NavParams,
+    private feed_service: FeedsService,
+    private customService: CustomService,
+    private actionSheetCtrl: ActionSheetController,
+    private fbService: FirebaseService,
+    private camera: Camera,
     public loadingCtrl: LoadingController,
     public nav: NavController
   ) {
@@ -55,8 +56,21 @@ export class CommentsComponent implements OnInit {
     this.feed_service.getComments(this.feed_guid, this.offset, this.limit).subscribe(
       data => {
         if (data.comments instanceof Array) {
+          data.comments.forEach(e => {
+            this.customService.checkUrlImage(e.photo, 0)
+              .then(result => localStorage.removeItem("comment" + e.id))
+              .catch(err => {
+                console.log(localStorage.getItem("comment" + e.id));
+                
+                if (localStorage.getItem("comment" + e.id) != null) {
+                  e.photo = localStorage.getItem("comment" + e.id);
+                }
+              })
+          });
+
           this.comments = data.comments;
           this.users = data.users;
+
         }
         loading.dismiss();
       }
@@ -82,9 +96,9 @@ export class CommentsComponent implements OnInit {
     //   enableBackdropDismiss: true
     // });
     // loading.present();
-      this.offset = this.offset + this.limit;
+    this.offset = this.offset + this.limit;
     this.retryGetComments(5, infiniteScroll);
-      
+
   }
 
   retryGetComments(retry, infiniteScroll) {
@@ -108,9 +122,8 @@ export class CommentsComponent implements OnInit {
       content: 'Please wait...',
       enableBackdropDismiss: true
     });
-    loading.present();
     if (this.content) {
-
+      loading.present();
       let contentTmp = this.content;
       let images;
       if (this.image) {
@@ -135,13 +148,17 @@ export class CommentsComponent implements OnInit {
         this.comment = { content: contentTmp, owner_guid: this.user_current.guid, subject_guid: this.feed_guid + "", time_created: Date.now() / 1000, photo: this.image };
         if (this.comments == undefined) this.comments = [];
         this.comments.unshift(this.comment);
+        if (this.image) {
+          localStorage.setItem("comment" + data.guid, this.image)
+        }
         this.image = null;
+        //save image to localstorage
       }
     }, err => this.retryPutComment(--retry, loading, contentTmp, images))
   }
 
   imageAction() {
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => { this.image = url + '' });
     // this.customService.imageActionTest(this.actionSheetCtrl, this.camera, this.fbService).then(url => { this.image = url + '' });
   }
 

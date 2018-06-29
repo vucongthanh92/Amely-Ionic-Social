@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
             <div class="ion_navbar_title">bình luận</div>
@@ -51,13 +51,13 @@
     </ion-row>
     <ion-toolbar>
         <ion-buttons start>
-            <button ion-button icon-right color="royal" tappable (click)="imageAction()">
+            <button ion-button icon-right color="royal" (click)="imageAction()">
         <ion-icon class="comment_footer_icon" name="camera"></ion-icon>
       </button>
         </ion-buttons>
         <ion-input [(ngModel)]="content" placeholder="Nhập bình luận..."></ion-input>
         <ion-buttons end>
-            <button ion-button icon-right color="royal" tappable (click)="onSend()">
+            <button ion-button icon-right color="royal" (click)="onSend()">
         <ion-icon class="comment_footer_send" name="send"></ion-icon>
       </button>
         </ion-buttons>

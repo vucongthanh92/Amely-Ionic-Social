@@ -61,7 +61,7 @@ export class UserMenuComponent implements OnInit {
 
   changeCoverAvatar(isAvatar) {
     this.nav.pop();
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService).then(url => {
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, false).then(url => {
       let images = [url + ''];
       if (isAvatar) {
         this.retryChangeAvatar(5, images);
@@ -78,6 +78,7 @@ export class UserMenuComponent implements OnInit {
     }
     this.customService.updateCover(this.user.guid, 'user', images).subscribe(data => {
       if (data.status) {
+        localStorage.setItem("cover"+this.customService.user_current.guid, images[0]);
         this.callback(true).then(() => { });
         this.retryPutFeed(5, this.customService.content_change_cover, images);
       } else {
@@ -93,6 +94,7 @@ export class UserMenuComponent implements OnInit {
     }
     this.customService.updateAvatar(this.user.guid, 'user', images).subscribe(data => {
       if (data.status) {
+        localStorage.setItem("avatar" + this.customService.user_current.guid, images[0]);
         this.callback(true).then(() => { });
         this.retryPutFeed(5, this.customService.content_change_avatar, images);
       } else {
@@ -103,7 +105,13 @@ export class UserMenuComponent implements OnInit {
 
   retryPutFeed(retry, content, images) {
     if (retry == 0) return;
-    this.feedService.putFeed(content, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => { })
+    this.feedService.putFeed(content, null, null, 2, null, images, this.customService.user_current.guid, 'user').subscribe(data => {
+      if (data.status) {
+        if (images != null && images.length > 0) {
+          localStorage.setItem(data.guid, JSON.stringify(images));
+        }
+      }
+    })
   }
 
   report() {
