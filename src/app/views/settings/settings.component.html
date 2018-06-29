@@ -7,7 +7,7 @@
       <div class="ion_navbar_title" *ngIf="!is_search_show">thiết lập</div>
     </ion-buttons>
 
-    <ion-searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="setting_searchbar"></ion-searchbar>
+    <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="setting_searchbar"></ion-searchbar>
     <ion-buttons end>
       <button ion-button (click)="search()" class="setting_search_box">
         <ion-icon name="ios-search"></ion-icon>

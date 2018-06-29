@@ -39,6 +39,8 @@ export class OffersItemDetailComponent implements OnInit {
       this.getOffer(5);
     } else {
       this.offer = this.navParams.get('param');
+      console.log(this.offer);
+      
       this.setupData();
     }
   }
