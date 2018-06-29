@@ -109,7 +109,7 @@
             </ng-template>
         </ion-row>
 
-        <ion-card-content tappable (click)="openFeedDetail()">
+        <ion-card-content (click)="openFeedDetail()">
             <p>{{ descriptionPost }}</p>
         </ion-card-content>
     </ion-list>
@@ -137,17 +137,17 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <img tappable (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
-            <span tappable (click)="openOwner(post.type,post.owner_guid)"> </span>
+            <span (click)="openOwner(post.type,post.owner_guid)"> </span>
         </h2>
         <ion-col class="feed_mood item-inner">
             <span>Đã chia sẻ bài viết</span>
         </ion-col>
         <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
         <ion-col class="feed_event" col-2>
-            <ion-icon name="more" tappable (click)="openPopover($event)"></ion-icon>
+            <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
     <!-- INFO SHARE -->
@@ -155,10 +155,10 @@
     <ion-card *ngIf="postShare" class="feed_share_info" padding>
         <ion-item>
             <ion-avatar item-start>
-                <img tappable (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                <img (click)="openOwner('user',postShare.poster_guid)" src="{{ users[postShare.poster_guid].avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
             </ion-avatar>
             <h2 class="feed_title">
-                <span tappable (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
+                <span (click)="openOwner('user',postShare.poster_guid)"> {{users[postShare.poster_guid].fullname}}</span>
             </h2>
             <!-- <ion-col class="feed_mood item-inner" *ngIf="mood">
               <span>{{mood.title}}</span>

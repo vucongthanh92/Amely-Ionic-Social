@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
             <div class="ion_navbar_title">tạo nhóm</div>
@@ -15,7 +15,7 @@
             <ion-row id="row-scroll-item">
                 <ion-scroll scrollX class="add_group_chooce">
                     <div class="scroll-item">
-                        <ion-col *ngFor="let user of friends" tappable (click)="chooseUser(user)">
+                        <ion-col *ngFor="let user of friends" (click)="chooseUser(user)">
                             <div class="item-card">
                                 <ion-col col-4>
                                     <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
@@ -43,7 +43,7 @@
                 <ion-col col-8>
                     <ion-scroll scrollX class="add_group_center_box">
                         <div class="scroll-item">
-                            <ion-col *ngFor="let user of users_choosed" tappable (click)="removeUser(user)">
+                            <ion-col *ngFor="let user of users_choosed" (click)="removeUser(user)">
                                 <div class="add_group_center_card">
                                     <ion-col col-4>
                                         <img class="add_group_user_images" src="{{user.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
@@ -83,7 +83,7 @@
                 <a href="https://amely.com/static/quy-tac-chuyen-quyen-admin-nhom" target="_blank">Chuyển quyền Admin</a> theo quy tắc chung của Apps.</ion-label>
         </div>
         <div class="divButtonFotter">
-            <button class="buttonFotter" ion-button tappable (click)="createAGroup()">Tạo nhóm</button>
+            <button class="buttonFotter" ion-button (click)="createAGroup()">Tạo nhóm</button>
         </div>
     </div>
 </ion-content>

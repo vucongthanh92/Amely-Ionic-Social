@@ -1,29 +1,29 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle class="ion_navbar_box">
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
       </button>
-      <div class="ion_navbar_title" *ngIf="!is_search_show">kho quà</div>
-    </ion-buttons>
-    
-    <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="inventories_searchbar"></ion-searchbar>
-    
-    <ion-buttons end>
-      <button ion-button (click)="search()" class="inventories_search_box">
+            <div class="ion_navbar_title" *ngIf="!is_search_show">kho quà</div>
+        </ion-buttons>
+
+        <ion-searchbar #searchbar [(ngModel)]="search_content" *ngIf="is_search_show" class="inventories_searchbar"></ion-searchbar>
+
+        <ion-buttons end>
+            <button ion-button (tap)="search()" class="inventories_search_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button class="inventory_action_btn" ion-button (click)="openPopover($event)" class="inventories_more">
+            <button class="inventory_action_btn" ion-button (click)="openPopover($event)" class="inventories_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
-    <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
-    <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
-    <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
-  </ion-tabs>
+    <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
+        <ion-tab [root]="tabInventoryPrivate" tabTitle="KHO CÁ NHÂN" tabIcon="inventory-personal"></ion-tab>
+        <ion-tab [root]="tabInventoryPublic" tabTitle="KHO CHUNG" tabIcon="inventory-general"></ion-tab>
+        <ion-tab [root]="tabInventoryHistory" tabTitle="LỊCH SỬ" tabIcon="inventory-history"></ion-tab>
+    </ion-tabs>
 </ion-content>

@@ -77,20 +77,24 @@
     </ion-row>
 
     <ion-row class="addfeed_bottom_nav">
+
         <ion-col col-4>
-            <button ion-button full clear (click)="showTagFriend()">
+            <button ion-button full clear (tap)="showTagFriend()">
                 <ion-icon class="addfeed_bottom_nav_icon" name="people"></ion-icon>
             </button>
         </ion-col>
+
         <ion-col col-4>
-            <button ion-button full clear (click)="onLocation()">
+            <button ion-button full clear (tap)="onLocation()">
                 <ion-icon name="flag"></ion-icon>
             </button>
         </ion-col>
+
         <ion-col col-4>
-            <button ion-button full clear (click)='imageAction()'>
+            <button ion-button full clear (tap)='imageAction()'>
                 <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
             </button>
         </ion-col>
+
     </ion-row>
 </ion-footer>

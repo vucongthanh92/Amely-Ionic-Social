@@ -1,13 +1,13 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
         </ion-buttons>
 
         <ion-buttons end *ngIf="event && (type=='guest' || type =='member')">
-            <button ion-button tappable (click)="openPopover($event)">
+            <button ion-button (click)="openPopover($event)">
         <ion-icon class="event_more_icon" name="md-more"></ion-icon>
       </button>
         </ion-buttons>
@@ -28,11 +28,11 @@
 
         <div class="bar bar-header bar-dark event_tab">
             <ion-segment color="primary" [(ngModel)]="eventTab" class="event_tab_box">
-                <ion-segment-button value="newfeed" class="segment-button event_tab_btn" tappable (click)="goToPage('newfeed');">
+                <ion-segment-button value="newfeed" class="segment-button event_tab_btn" (click)="goToPage('newfeed');">
                     <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
                     <div class="event_tab_title">Cập Nhật</div>
                 </ion-segment-button>
-                <ion-segment-button value="members" class="segment-button event_tab_btn" tappable (click)="goToPage('members');">
+                <ion-segment-button value="members" class="segment-button event_tab_btn" (click)="goToPage('members');">
                     <ion-icon ios="ios-people" md="md-people"></ion-icon>
                     <div class="event_tab_title">Bạn Bè</div>
                 </ion-segment-button>
@@ -40,7 +40,7 @@
 
             <ion-row class="event_inventory" *ngIf="event.has_inventory=='1'">
                 <ion-col col-12>
-                    <button ion-button icon-left clear small tappable (click)="goToPage('gift',event)">
+                    <button ion-button icon-left clear small (click)="goToPage('gift',event)">
             <img class="event_give_gift" src="assets/imgs/ic_send_gift_blue.png">
             <div class="event_give_gift_title">Tặng quà</div>
           </button>
@@ -91,7 +91,7 @@
                 <ion-list-header>chủ sự kiện</ion-list-header>
                 <ion-item class="members_row" *ngIf="getUser(event.creator.guid)">
                     <ion-avatar item-start>
-                        <img tappable (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <img (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                     </ion-avatar>
                     {{getUser(event.creator.guid).fullname}}
                 </ion-item>
@@ -101,7 +101,7 @@
                 <ion-list-header>đồng tổ chức</ion-list-header>
                 <ion-item class="members_row" *ngFor="let guid of string_members">
                     <ion-avatar item-start *ngIf="guid">
-                        <img tappable (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                     </ion-avatar>
                     {{getUser(guid).fullname}}
                 </ion-item>
@@ -112,7 +112,7 @@
                 <div *ngFor="let guid of string_guests">
                     <ion-item class="members_row" *ngIf="guid">
                         <ion-avatar item-start>
-                            <img tappable (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                            <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                         </ion-avatar>
                         <!-- {{getUser(guid).fullname}} -->
                     </ion-item>
@@ -123,7 +123,7 @@
 </ion-content>
 
 <ion-fab class="user_fab" *ngIf="is_show_fab">
-    <button ion-fab class="user_fab_icon" tappable (click)="addFeed()">
+    <button ion-fab class="user_fab_icon" (click)="addFeed()">
     <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
   </button>
 </ion-fab>

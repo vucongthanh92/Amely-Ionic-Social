@@ -36,17 +36,16 @@ export class AddFeedComponent implements OnInit {
   private callback;
   private location;
   private friends: string;
-
   constructor(
-    public nav: NavController, 
-    private navParams: NavParams, 
-    public appCtrl: App, 
+    public nav: NavController,
+    private navParams: NavParams,
+    public appCtrl: App,
     private actionSheetCtrl: ActionSheetController,
-    private userService: UserService, 
-    private customService: CustomService, 
-    public alertCtrl: AlertController, 
+    private userService: UserService,
+    private customService: CustomService,
+    public alertCtrl: AlertController,
     private fbService: FirebaseService,
-    private feedService: FeedsService, 
+    private feedService: FeedsService,
     private camera: Camera
   ) {
     this.user_current = this.customService.user_current;
@@ -71,7 +70,6 @@ export class AddFeedComponent implements OnInit {
     }, err => { this.retryGetFriends(5) })
   }
   showTagFriend() {
-    this.is_show_tag = !this.is_show_tag;
     if (this.is_show_tag) {
       setTimeout(() => {
         if (this.searchbar) {
@@ -79,7 +77,7 @@ export class AddFeedComponent implements OnInit {
         }
       }, 0);
     }
-
+    this.is_show_tag = !this.is_show_tag;
   }
 
   chooseUserTag(user: User) {
@@ -161,13 +159,13 @@ export class AddFeedComponent implements OnInit {
         this.isCreatingFeed = false;
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
-          if (this.image != null && this.image.length>0) {
+          if (this.image != null && this.image.length > 0) {
             console.log(123);
             console.log(data.guid);
-            
+
             localStorage.setItem(data.guid, JSON.stringify([this.image]));
             console.log(localStorage.getItem(data.guid));
-            
+
           }
           this.callback().then(() => {
             this.nav.pop();
@@ -185,7 +183,7 @@ export class AddFeedComponent implements OnInit {
     // this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService)
     //   .then(url => { this.image = url + '' })
 
-    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService,true)
+    this.customService.imageAction(this.actionSheetCtrl, this.camera, this.fbService, true)
       .then(url => { this.image = url + '' })
   }
 

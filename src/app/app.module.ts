@@ -85,7 +85,16 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, swipeBackEnabled: true }),
+    IonicModule.forRoot(MyApp, { 
+      activator: 'highlight', //Pressing effect buttons
+      iconMode: 'md',
+      menuType: 'overlay',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out',
+      mode: 'md',
+      pageTransition: 'md',
+      tabsHideOnSubPages: true, 
+      swipeBackEnabled: true }),
     IonicPageModule.forChild(MainMenuComponent),
     AngularFireModule.initializeApp(CONFIG.firebase),
     AngularFireDatabaseModule,
