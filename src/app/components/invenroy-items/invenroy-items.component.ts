@@ -62,6 +62,8 @@ export class InvenroyItemsComponent implements OnInit {
         data => {
           if (data instanceof Array) {
             this.inventoriesItem = data;
+            console.log(this.inventoriesItem);
+            
           } else {
             this.inventoriesItem = [];
           }
@@ -75,6 +77,7 @@ export class InvenroyItemsComponent implements OnInit {
         data => {
           if (data instanceof Array) {
             this.inventoriesItem = data;
+            console.log(this.inventoriesItem);
           } else {
             this.inventoriesItem = [];
           }
