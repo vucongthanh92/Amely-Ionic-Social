@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+            <div class="ion_navbar_title">Lịch sử sử dụng vật phẩm</div>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="history_order_content">
+    <ion-item *ngFor="let trans of transactions" (click)="openDetail(trans)">
+        <ion-row>
+            <ion-col col-8>
+                <div>
+                    <a style="color: #333;">Đơn giao hàng số #{{trans.guid}}</a>
+                </div>
+                <div class="history_delivery_row">
+                    <p>Số lượng:
+                        <i style="color: red;">{{trans.quantity}}</i>
+                    </p>
+                </div>
+            </ion-col>
+            <ion-col col-4 style="text-align: end;">
+                <div class="history_delivery_row">
+                    {{convertDate(+trans.time_created) | date:'dd/MM/yyyy'}}
+                </div>
+                <!-- <div class="history_delivery_row">
+            <i style="color: #24ce57;">{{tran.ghtk_status_text}}</i>
+          </div> -->
+            </ion-col>
+        </ion-row>
+    </ion-item>
+</ion-content>

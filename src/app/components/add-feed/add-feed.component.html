@@ -1,16 +1,16 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
-      </button>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+                <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
             <div class="ion_navbar_title">Đăng bài viết mới</div>
         </ion-buttons>
 
         <ion-buttons end>
-            <button class="add_feed_send_btn" ion-button tappable (click)="putFeed()" [ladda]="isCreatingFeed">
-        <ion-icon name="send"></ion-icon>
-      </button>
+            <button class="add_feed_send_btn" ion-button (click)="putFeed()" [ladda]="isCreatingFeed">
+                <ion-icon name="send"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -26,7 +26,7 @@
             <div class="addfeed_showmood">
                 <div class="addfeed_tag" *ngIf="usersTag.length > 0"> - cùng với
                     <div class="addfeed_tag_item" *ngFor="let user of usersTag">
-                        <a tappable (click)="removeUserTag(user)">{{user.fullname}}, </a>
+                        <a (click)="removeUserTag(user)">{{user.fullname}}, </a>
                     </div>
                 </div>
 
@@ -42,9 +42,9 @@
                     <ion-option value="1">Chỉ mình tôi</ion-option>
                 </ion-select>
 
-                <button class="add_feed_mood" ion-button clear item-end tappable (click)="showMood()">
-          <img class="addfeed_icon_mood" src="assets/imgs/mood.png">
-        </button>
+                <button class="add_feed_mood" ion-button clear item-end (click)="showMood()">
+                    <img class="addfeed_icon_mood" src="assets/imgs/mood.png">
+                </button>
 
             </ion-item>
         </ion-item>
@@ -61,7 +61,7 @@
     </ion-row>
 
     <ion-row *ngIf="image">
-        <img class="add_feed_images" src="{{image}}" tappable (click)="deleteImage()">
+        <img class="add_feed_images" src="{{image}}" (click)="deleteImage()">
     </ion-row>
 
 </ion-content>
@@ -69,7 +69,7 @@
 <ion-footer>
     <ion-row *ngIf="is_show_tag">
         <ion-list *ngIf="is_show_autocomplete">
-            <ion-item *ngFor="let user of usersTmp" tappable (click)="chooseUserTag(user)">
+            <ion-item *ngFor="let user of usersTmp" (click)="chooseUserTag(user)">
                 {{ user.fullname }}
             </ion-item>
         </ion-list>
@@ -78,18 +78,18 @@
 
     <ion-row class="addfeed_bottom_nav">
         <ion-col col-4>
-            <button ion-button full clear tappable (click)="showTagFriend()">
-                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_member_actived.png">
+            <button ion-button full clear (click)="showTagFriend()">
+                <ion-icon class="addfeed_bottom_nav_icon" name="people"></ion-icon>
             </button>
         </ion-col>
         <ion-col col-4>
-            <button ion-button full clear tappable (click)="onLocation()">
-                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_location_actived.png">
+            <button ion-button full clear (click)="onLocation()">
+                <ion-icon name="flag"></ion-icon>
             </button>
         </ion-col>
         <ion-col col-4>
-            <button ion-button full clear tappable (click)='imageAction()'>
-                <img class="addfeed_bottom_nav_icon" src="assets/imgs/ic_image_actived.png">
+            <button ion-button full clear (click)='imageAction()'>
+                <ion-icon class="addfeed_bottom_nav_icon" name="images"></ion-icon>
             </button>
         </ion-col>
     </ion-row>

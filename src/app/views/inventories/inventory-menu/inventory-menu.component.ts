@@ -4,6 +4,7 @@ import { InventoriesService } from './../../../services/inventories.service';
 import { CreateWalletComponent } from './../../../modules/wallet/create-wallet/create-wallet.component';
 import { NavController, App, LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
+import { HistoryRedeemComponent } from '../../../modules/history/history-redeem/history-redeem.component';
 
 @Component({
   selector: 'app-inventory-menu',
@@ -47,6 +48,11 @@ export class InventoryMenuComponent implements OnInit {
 
   historyDelivery() {
     this.appCtrl.getRootNav().push(HistoryDeliveryComponent)
+    this.nav.pop();
+  }
+
+  historyRedeem() {
+    this.appCtrl.getRootNav().push(HistoryRedeemComponent)
     this.nav.pop();
   }
 }

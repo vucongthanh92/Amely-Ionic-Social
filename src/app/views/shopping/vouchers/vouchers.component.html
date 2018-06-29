@@ -1,60 +1,64 @@
 <ion-content class="outer-content">
-  <ion-card class="voucher_content" *ngIf="vouchers">
-    <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
-      <ion-card class="voucher_image_box">
-        <div class="item-ribbon offer_search_ribbon">
-          <span class="ribbon cruzeiro">
+    <ion-card class="voucher_content" *ngIf="vouchers">
+        <ion-item *ngFor="let voucher of vouchers" (click)="goToPage('product',voucher);">
+            <ion-card class="voucher_image_box">
+                <div class="item-ribbon offer_search_ribbon">
+                    <span class="ribbon cruzeiro">
             <span>VOUCHER</span>
-          </span>
+                    </span>
+                </div>
+
+                <img class="wallphoto_quantity_4" src="{{voucher.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+
+                <div class="voucher_limit"> * không giới hạn</div>
+            </ion-card>
+            <h3 class="voucher_title">{{voucher.title}}</h3>
+            <div class="voucher_price">
+                <div *ngIf="voucher.sale_price == 0 || voucher.sale_price == null; else other_content">
+                    <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.display_currency) }}</div>
+                </div>
+                <ng-template #other_content>
+                    <div class="product_feature_price">{{formatSalePrice(voucher.display_price,voucher.display_currency)}}</div>
+                    <div class="product_sale_price">{{ formatSalePrice( voucher.display_old_price, voucher.display_currency) }}</div>
+                </ng-template>
+                <!-- {{formatCurrency(voucher)}} -->
+            </div>
+            <div *ngIf="voucher.sale_price" class="voucher_sale_price">
+                <div class="voucher_sale_title">Giảm đến</div>
+                <div class="voucher_sale_content">{{getDiscountPercent(voucher)| number:0}}%</div>
+            </div>
+        </ion-item>
+        <div *ngIf="vouchers.length == 0" class="voucher_nodata">
+            <div>
+                <img src="assets/imgs/ic_feed.png" class="imgNodata" style="max-width: 30%" alt="">
+            </div>
+            <div style="color: #999;">
+                Không có dữ liệu...
+            </div>
         </div>
+    </ion-card>
 
-        <img class="wallphoto_quantity_4" src="{{voucher.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-
-        <div class="voucher_limit"> * không giới hạn</div>
-      </ion-card>
-      <h3 class="voucher_title">{{voucher.title}}</h3>
-      <div class="voucher_price">
-        <div *ngIf="voucher.sale_price == 0 || voucher.sale_price == null; else other_content">
-          <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.display_currency) }}</div>
-        </div>
-        <ng-template #other_content>
-          <div class="product_feature_price">{{formatSalePrice(voucher.display_price,voucher.display_currency)}}</div>
-          <div class="product_sale_price">{{ formatSalePrice( voucher.display_old_price, voucher.display_currency) }}</div>
-        </ng-template>
-        <!-- {{formatCurrency(voucher)}} -->
-      </div>
-    </ion-item>
-    <div *ngIf="vouchers.length == 0" class="voucher_nodata">
-      <div>
-        <img src="assets/imgs/ic_feed.png" class="imgNodata" style="max-width: 30%" alt="">
-      </div>
-      <div style="color: #999;">
-        Không có dữ liệu...
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card *ngIf="!vouchers">
-    <ion-item *ngFor="let fake of fakeUsers" class="fakeItem">
-      <ion-card class="voucher_image_box">
-        <div class="divCustom"></div>
-      </ion-card>
-      <h2 class="voucher_title"></h2>
-      <div class="voucher_price">
-        <h3></h3>
-      </div>
-    </ion-item>
-  </ion-card>
+    <ion-card *ngIf="!vouchers">
+        <ion-item *ngFor="let fake of fakeUsers" class="fakeItem">
+            <ion-card class="voucher_image_box">
+                <div class="divCustom"></div>
+            </ion-card>
+            <h2 class="voucher_title"></h2>
+            <div class="voucher_price">
+                <h3></h3>
+            </div>
+        </ion-item>
+    </ion-card>
 </ion-content>
 
 <ion-footer [ngClass]="device_screen">
-  <ion-scroll class="voucher_footer_scroll" scrollX>
-    <div class="scroll-item">
-      <ion-col *ngFor="let category of categories" (click)="goToPage('category',null,category);">
-        <div class="item-card">
-          <button ion-button clear>{{category.title}}</button>
+    <ion-scroll class="voucher_footer_scroll" scrollX>
+        <div class="scroll-item">
+            <ion-col *ngFor="let category of categories" (click)="goToPage('category',null,category);">
+                <div class="item-card">
+                    <button ion-button clear>{{category.title}}</button>
+                </div>
+            </ion-col>
         </div>
-      </ion-col>
-    </div>
-  </ion-scroll>
+    </ion-scroll>
 </ion-footer>
