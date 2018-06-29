@@ -111,10 +111,14 @@ export class UserUpdateComponent implements OnInit {
           this.customService.user_current.district = this.district_id;
           this.customService.user_current.ward = this.ward_id;
           this.customService.user_current.address = this.address;
-          this.callback(true).then(() => {
-            this.nav.setRoot(SigninComponent);
-          });
-          this.updateUserFirebase(this.birthdate, this.gender);
+          if (this.showError) {
+            this.callback(true).then(() => {
+              this.nav.setRoot(SigninComponent);
+            });
+            this.updateUserFirebase(this.birthdate, this.gender);
+          }else{
+            this.nav.pop();
+          }
         } else {
           this.customService.toastMessage('Cập nhật thông tin thất bại. Vui lòng thử lại.', 'bottom', 2000);
         }
