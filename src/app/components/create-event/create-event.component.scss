@@ -1,17 +1,17 @@
 app-create-event {
-
     .create_event_type {
         background-color: #ffffff;
         height: 16vh;
         overflow: visible;
         padding: 7px 0px 5px 0px;
+        box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
     }
 
     .create_event_info {
         background-color: #ffffff;
-        height: 33vh;
-        margin: 17vh 0px 7px 0px;
+        margin: 11.5rem 0px 7px 0px;
         padding: 0px 5px 0px 5px;
+        box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
     }
 
     .create_event_prepare {
@@ -26,7 +26,7 @@ app-create-event {
     }
 
     .create_event_time {
-         height: 65vw;
+        height: 65vw;
     }
 
     .create_event_description {
@@ -83,8 +83,13 @@ app-create-event {
     }
 
     .create_event_title_box {
-        font-size: 14px;
-        margin: 15px 0px 0px 5px;
+        font-size: 1.5rem;
+        margin: 10px 0px 0px 3px;
+        color: #333;
+
+        ion-scroll {
+            height:70px; 
+        }
     }
 
     .create_event_time_half_col {
@@ -127,14 +132,25 @@ app-create-event {
     }
 
     .create_event_user_image {
-        width: 35px;
-        height: 35px;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
-        border: 1px solid #efeff4;
+        display: inline-block;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .create_event_inventory {
-        margin-top: 9px;
+        margin-top: 20px;
+    }
+
+    .create_event_member {
+        margin-top: 16px;
     }
     
     .create_event_title {
@@ -147,9 +163,8 @@ app-create-event {
     }
 
     .create_event_info_icon {
-        font-size: 2.7em;
+        font-size: 2em;
         color: #289ae1;
-        float: left;
     }
     
     .location {
@@ -219,10 +234,6 @@ app-create-event {
         color: #333;
         font-size: 1.3rem;
     }
-     .icon{
-         width: 20px;
-         display: inline-block;
-     }
 
      #iconDay {
         content: url(../assets/imgs/ic_calendar_blue.png);
@@ -264,16 +275,6 @@ app-create-event {
         }
     }
 
-    .item-card {
-        display: inline-block;
-        position: relative;
-    }
-  
-    .item-card {
-        display: inline-block;
-        position: relative;
-    }
-
     .create_event_send {
         color: #fff;
         font-size: 2.4rem;
@@ -282,7 +283,7 @@ app-create-event {
 
     .add_feed_send_btn {
         background: transparent;
-        margin: 5px 0px 0px 0px;
+        margin: 0px;
 
         ion-icon {
             font-size: 2.5rem;

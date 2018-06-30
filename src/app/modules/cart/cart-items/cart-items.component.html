@@ -16,7 +16,9 @@
         <ion-grid class="cart_items_product">
           <ion-row>
             <ion-col col-3>
-              <img class="cart_item_image" src="{{item.images_entities[item.images[0]]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+              <div class="cart_item_image">
+                <img src="{{item.images_entities[item.images[0]]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+              </div>
             </ion-col>
             <ion-col col-7>
               <h4 class="cart_items_product_title" style="font-weight: bold;">{{ item.title }}</h4>

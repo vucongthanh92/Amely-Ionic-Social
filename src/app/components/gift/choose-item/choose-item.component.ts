@@ -15,6 +15,7 @@ export class ChooseItemComponent implements OnInit {
   public inventoriesItem: Array<Item> = [];
   private arrTagBadge: any;
   private userCurrent: User;
+  
   constructor(
     public params: NavParams,
     public modalCtrl: ModalController,
@@ -93,8 +94,13 @@ export class ChooseItemComponent implements OnInit {
       },
       err => { this.retryOnFilterItem(--retry, item_type, loading) })
   }
+
   goToDetail(item) {
     this.appCtrl.getRootNav().push(GiftItemDetailComponent, { item: item });
+  }
+
+  dismiss() {
+    this.nav.pop();
   }
 
 }

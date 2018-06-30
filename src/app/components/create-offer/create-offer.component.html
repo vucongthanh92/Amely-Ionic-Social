@@ -1,14 +1,14 @@
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
             <div class="ion_navbar_title">Tạo đề xuất trao đổi</div>
         </ion-buttons>
 
         <ion-buttons end>
-            <button ion-button tappable (click)="offer()">
+            <button ion-button (click)="offer()">
         <ion-icon class="create_offer_send_icon" name="send"></ion-icon>
       </button>
         </ion-buttons>
@@ -105,7 +105,7 @@
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-6 offset-3 tappable (click)="chosenItem()">
+                <ion-col col-6 offset-3 (click)="chosenItem()">
                     <div *ngIf="!item" style="text-align: center;">
                         <button class="buttonChoose" type="button" name="button">
               <ion-icon class="iconSize1" name="ios-add-circle-outline"></ion-icon>

@@ -13,8 +13,9 @@ app-feed{
     }
 
     .feed_title {
-        display: inline-block;
         font-size: 1.4rem;
+        color: #333;
+        margin: 0px 20px 3px 0px;
     }
 
     .label-ios {
@@ -26,6 +27,7 @@ app-feed{
         top: 0px;
         right: 0px;
         text-align: right;
+        padding: 0px;
     }
 
     .feed_mood {
@@ -53,7 +55,7 @@ app-feed{
     }
 
     .card-content-ios {
-        padding: 7px 5px 9px 3px;
+        padding: 7px 5px 10px 3px;
         white-space: normal;
         clear: both;
         margin: 0px;
@@ -248,9 +250,8 @@ app-feed{
     }
 
     .feed_share_info {
-        border: 1px solid #ddd;
         border-radius: 3px;
-        padding: 1px 7px 7px 9px !important;
+        padding: 0px !important;
     }
 
     .usertag_content {
@@ -260,5 +261,18 @@ app-feed{
 
     .usertag_content_link {
         color: #00bdf2;
+    }
+
+    .feed_share_title {
+        display: block;
+        font-size: 1.4rem;
+        white-space: normal;
+        padding: 0px;
+        line-height: 1.5;
+        color: #8e9093;
+    }
+
+    .feed_share_fullname {
+        color: #333;
     }
 }

@@ -1,15 +1,14 @@
 <ion-header>
     <ion-navbar hideBackButton>
-
         <ion-buttons start>
-            <button class="ion_navbar_box" ion-button tappable (click)="dismiss()">
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
             <div class="ion_navbar_title">tạo sự kiện</div>
         </ion-buttons>
 
         <ion-buttons end>
-            <button ion-button tappable tappable (click)="createEvent()" [ladda]="isCreatingFeed" class="add_feed_send_btn">
+            <button ion-button (click)="createEvent()" [ladda]="isCreatingFeed" class="add_feed_send_btn">
         <ion-icon class="create_event_send" name="send"></ion-icon>
       </button>
         </ion-buttons>
@@ -20,7 +19,7 @@
     <div class="scroll-content create_event_type">
         <ion-grid>
             <ion-row>
-                <ion-col col-3 class="create_event_type_box" tappable (click)="chooseTemplate('default')">
+                <ion-col col-3 class="create_event_type_box" (click)="chooseTemplate('default')">
                     <div>
                         <ion-icon class="iconTopDefault" name="md-calendar"></ion-icon>
                     </div>
@@ -28,7 +27,7 @@
                         <ion-label class="ionLabelTop">Mặc định</ion-label>
                     </div>
                 </ion-col>
-                <ion-col col-3 class="create_event_type_box" tappable (click)="chooseTemplate('marry')">
+                <ion-col col-3 class="create_event_type_box" (click)="chooseTemplate('marry')">
                     <div>
                         <ion-icon class="iconTopWedding" name="md-heart-outline"></ion-icon>
                     </div>
@@ -36,7 +35,7 @@
                         <ion-label class="ionLabelTop">Đám cưới</ion-label>
                     </div>
                 </ion-col>
-                <ion-col col-3 class="create_event_type_box" tappable (click)="chooseTemplate('birthday')">
+                <ion-col col-3 class="create_event_type_box" (click)="chooseTemplate('birthday')">
                     <div>
                         <ion-icon class="iconTopBirthday" name="ios-pizza-outline"></ion-icon>
                     </div>
@@ -44,7 +43,7 @@
                         <ion-label class="ionLabelTop">Sinh nhật</ion-label>
                     </div>
                 </ion-col>
-                <ion-col col-3 class="create_event_type_box" tappable (click)="chooseTemplate('philanthropize')">
+                <ion-col col-3 class="create_event_type_box" (click)="chooseTemplate('philanthropize')">
                     <div>
                         <ion-icon class="iconTopFundraising" name="ios-cash-outline"></ion-icon>
                     </div>
@@ -62,14 +61,13 @@
                 <ion-label>{{title_event}}</ion-label>
             </ion-col>
             <ion-col>
-                <i>
-          <ion-item class="create_event_title">
-            <ion-input [(ngModel)]="name" type="text" placeholder="Tên sự kiện"></ion-input>
-          </ion-item>
-        </i>
+                <ion-item class="create_event_title">
+                    <ion-input [(ngModel)]="name" type="text" placeholder="Tên sự kiện"></ion-input>
+                </ion-item>
             </ion-col>
         </ion-row>
-        <ion-row>
+
+        <ion-row (tap)="checkHasInventory()">
             <ion-col col-5 class="marginCol2">
                 <ion-label>Tạo kho quà chung</ion-label>
             </ion-col>
@@ -77,19 +75,24 @@
                 <ion-checkbox [(ngModel)]="has_inventory" checked="false"></ion-checkbox>
             </ion-col>
         </ion-row>
+
         <ion-row>
-            <ion-col col-6 class="create_event_info_row">
+            <ion-col col-6 class="create_event_title_box">
                 <ion-label>Đồng tổ chức</ion-label>
             </ion-col>
+            <ion-col col-3 class="create_event_member">
+                <ion-icon tappable (click)="chooseMember()" class="create_event_info_icon" ios="ios-add-circle"></ion-icon>
+            </ion-col>
         </ion-row>
+
         <ion-row>
             <ion-col col-12 class="create_event_info_row">
-                <ion-icon tappable (click)="chooseMember()" class="create_event_info_icon" ios="ios-add-circle"></ion-icon>
+                <ion-icon (click)="chooseMember()" class="create_event_info_icon" ios="ios-add-circle"></ion-icon>
                 <ion-scroll scrollX style="height:70px; margin-left: 30px;" *ngIf="members_chosen.length>0">
                     <div class="scroll-item">
                         <ion-col *ngFor="let u of members_chosen">
-                            <div class="item-card">
-                                <img class="create_event_user_image" src="{{findUser(u).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                            <div class="create_event_user_image">
+                                <img class="create_event_user_image" src="{{findUser(u).avatar}}" onError="this.src='assets/imgs/avatar-nam.png'">
                             </div>
                         </ion-col>
                     </div>
@@ -98,7 +101,7 @@
         </ion-row>
     </div>
 
-    <ion-textarea [(ngModel)]="description" class="create_event_description" placeholder="Mô tả"> </ion-textarea>
+    <ion-textarea [(ngModel)]="description" class="create_event_description" placeholder="Mô tả"></ion-textarea>
 
     <div class="create_event_prepare">
         <ion-label>Chuẩn bị {{title_event}}</ion-label>
@@ -130,14 +133,14 @@
         <ion-row class="create_event_time_row">
             <ion-col class="create_event_time_full_col">
                 <ion-input [(ngModel)]="location" class="create_event_inner" type="text" placeholder="Địa điểm"></ion-input>
-                <button class="create_event_btn_location" tappable (click)="chooseLocation()">
+                <button class="create_event_btn_location" (click)="chooseLocation()">
           <ion-label class="create_event_map">Bản đồ </ion-label>
           <ion-icon class="iconLocation" id="iconPlace"></ion-icon>
         </button>
             </ion-col>
         </ion-row>
 
-        <ion-row class="create_event_time_row" tappable (click)="chooseGuest()">
+        <ion-row class="create_event_time_row" (click)="chooseGuest()">
             <ion-col class="create_event_time_full_col">
                 <ion-input [disabled]="true" class="create_event_customer" type="text" value="Khách mời ({{guests_chosen.length}})"></ion-input>
                 <ion-icon class="iconBottom1" id="iconContact"></ion-icon>

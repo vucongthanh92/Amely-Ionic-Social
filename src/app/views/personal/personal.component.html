@@ -1,28 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle class="ion_navbar_box">
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button menuToggle class="ion_navbar_box">
         <ion-icon class="ion_navbar_icon" name="menu"></ion-icon>
       </button>
-      <div class="ion_navbar_title" *ngIf="!isOn">của tôi</div>
-    </ion-buttons>
+            <div class="ion_navbar_title" *ngIf="!isOn">của tôi</div>
+        </ion-buttons>
 
-    <ion-searchbar #searchbar [(ngModel)]="search" *ngIf="isOn" class="personal_searchbar"></ion-searchbar>
-    <ion-buttons end>
-      <button class="personal_search" ion-button (click)="toggleDetails()" class="personal_box">
+        <ion-searchbar #searchbar [(ngModel)]="search" *ngIf="isOn" class="personal_searchbar"></ion-searchbar>
+        <ion-buttons end>
+            <button class="personal_search" ion-button (tap)="toggleDetails()" class="personal_box">
         <ion-icon name="ios-search"></ion-icon>
       </button>
-      <button class="personal_event" ion-button (click)="openPopover($event)" class="personal_more">
+            <button class="personal_event" ion-button (click)="openPopover($event)" class="personal_more">
         <ion-icon name="md-more"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
-    <ion-tab [root]="tab1Root" tabTitle="Danh bạ" tabIcon="contactpage"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="Tin nhắn" tabIcon="chat"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="Thông báo" tabIcon="notify"></ion-tab>
-  </ion-tabs>
+    <ion-tabs tabsPlacement="top" class="top_navigation_default" primary>
+        <ion-tab [root]="tab1Root" tabTitle="Danh bạ" tabIcon="contactpage"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="Tin nhắn" tabIcon="chat"></ion-tab>
+        <ion-tab [root]="tab3Root" tabTitle="Thông báo" tabIcon="notify"></ion-tab>
+    </ion-tabs>
 </ion-content>

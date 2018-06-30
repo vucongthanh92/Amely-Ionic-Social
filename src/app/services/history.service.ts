@@ -16,5 +16,11 @@ export class HistoryService {
 
   getOrder(guid) {
     return this.apiService.getOrder(guid);
-  } 
+  }
+
+  getRedeemDetail(snapshotGuid: string, sellerGuid: string, quantity: string, ownerGuid: string) {
+    return this.apiService.getTransactionRedeem({
+      snapshotGuid: snapshotGuid, sellerGuid: sellerGuid, quantity: quantity, ownerGuid: ownerGuid
+    })
+  }
 }

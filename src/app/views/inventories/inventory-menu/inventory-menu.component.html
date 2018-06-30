@@ -1,11 +1,16 @@
 <ion-list>
-  <ion-item [ladda]="is_press_wallet" (click)="openWallet()">
-    <img class="inventory_menu_wallet" src="assets/imgs/vector_wallet-01.png">
-    <span>Ví của tôi</span>
-  </ion-item>
-  
-  <ion-item (click)="historyDelivery()" class="inventory_menu_history">
-    <img class="inventory_menu_payment" src="assets/imgs/ic_clock_blue.png">
-    <span>Lịch sử giao hàng</span>
-  </ion-item>
+    <ion-item [ladda]="is_press_wallet" (click)="openWallet()">
+        <img class="inventory_menu_wallet" src="assets/imgs/vector_wallet-01.png">
+        <span>Ví của tôi</span>
+    </ion-item>
+
+    <ion-item (click)="historyDelivery()" class="inventory_menu_history">
+        <img class="inventory_menu_payment" src="assets/imgs/ic_clock_blue.png">
+        <span>Lịch sử giao hàng</span>
+    </ion-item>
+
+    <ion-item (click)="historyRedeem()" class="inventory_menu_history">
+        <img class="inventory_menu_payment" src="assets/imgs/ic_clock_blue.png">
+        <span>Lịch sử sử dụng vật phẩm</span>
+    </ion-item>
 </ion-list>
