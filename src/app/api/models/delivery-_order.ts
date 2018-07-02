@@ -26,4 +26,5 @@ export class Delivery_order {
     product?: Product;
     products?: Product[];
     address?: string;
+    url?: string;
 }
