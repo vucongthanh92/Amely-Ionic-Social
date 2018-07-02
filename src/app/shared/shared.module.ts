@@ -1,3 +1,4 @@
+import { PaymentMethodComponent } from './../components/payment-method/payment-method.component';
 import { QuickPayModule } from './../modules/quick-pay/quick-pay.module';
 import { CategoriesAllComponent } from './../components/categories-all/categories-all.component';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
@@ -165,7 +166,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     BusinessMenuComponent,
     RenewalItemComponent,
     BannerComponent,
-    ForgotChangePassComponent,ForgotVertifyComponent
+    ForgotChangePassComponent,ForgotVertifyComponent,
+    PaymentMethodComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -231,7 +233,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     BusinessMenuComponent,
     RenewalItemComponent,
     BannerComponent,
-    ForgotChangePassComponent,ForgotVertifyComponent
+    ForgotChangePassComponent, ForgotVertifyComponent,
+    PaymentMethodComponent
   ],
   exports: [
     CategoriesComponent,
@@ -298,7 +301,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     RenewalItemComponent,
     BannerComponent,
     ForgotChangePassComponent,
-    ForgotVertifyComponent
+    ForgotVertifyComponent,
+    PaymentMethodComponent
   ]
 })
 export class SharedModule { }
