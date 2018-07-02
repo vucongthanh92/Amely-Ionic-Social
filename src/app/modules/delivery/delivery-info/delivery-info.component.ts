@@ -1,3 +1,4 @@
+import { PaymentMethodComponent } from './../../../components/payment-method/payment-method.component';
 import { InventoriesService } from './../../../services/inventories.service';
 import { DeliveryConfirmComponent } from './../delivery-confirm/delivery-confirm.component';
 import { CustomService } from './../../../services/custom.service';
@@ -87,7 +88,7 @@ export class DeliveryInfoComponent implements OnInit {
     } else {
       let loading = this.loadingCtrl.create({
         content: 'Please wait...',
-        enableBackdropDismiss:true
+        enableBackdropDismiss: true
       });
 
       loading.present();
@@ -96,11 +97,13 @@ export class DeliveryInfoComponent implements OnInit {
         .subscribe(data => {
           loading.dismiss();
           console.log(data);
-          this.nav.push(DeliveryConfirmComponent, {
+          this.inventoryService.deliverOption = {
             item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
             address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
             payment_methods: this.payment_methods, shipping_fee: data.shipping_fee
-          })
+          };
+          this.nav.push(PaymentMethodComponent, { paymentMethods: this.inventoryService.paymentMethods })
+
         })
     }
   }

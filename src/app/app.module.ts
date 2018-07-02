@@ -81,14 +81,11 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    MainMenuComponent
+    MainMenuComponent,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, { 
-      activator: 'highlight', //Pressing effect buttons
-      iconMode: 'md',
-      menuType: 'overlay',
       tabsHideOnSubPages: true, 
       swipeBackEnabled: true }),
     IonicPageModule.forChild(MainMenuComponent),

@@ -25,6 +25,7 @@
     <preference name="Orientation" value="portrait" />
     <preference name="AllowBackForwardNavigationGestures" value="true" />
     <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="target-device" value="iphone" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <platform name="android">
         <allow-intent href="market:*" />
