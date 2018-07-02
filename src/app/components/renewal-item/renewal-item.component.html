@@ -1,41 +1,47 @@
 <ion-header>
-  <ion-navbar>
+    <ion-navbar>
 
-    <ion-title>Gia hạn sản phẩm</ion-title>
-  </ion-navbar>
+        <ion-title>Gia hạn sản phẩm</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="item_product_main" *ngIf="item" padding>
 
-  <ion-row style="margin: 25px 0 0 0;">
-    <h4>Số tiền trong ví</h4>
-  </ion-row>
-  <ion-row *ngIf="wallet">
-    <h5 class="text_right">{{formatCurrencyWallet(wallet)}}</h5>
-  </ion-row>
+    <ion-item *ngIf="paymentMethods">
+        <ion-label>Phương thức thanh toán</ion-label>
+        <ion-select [(ngModel)]="paymentMethodSelected">
+            <ion-option *ngFor="let e of paymentMethods" value="{{e.filename}}">{{e.displayname}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-row style="margin: 25px 0 0 0;" *ngIf="inviable">
+        <h4>Số tiền trong ví</h4>
+    </ion-row>
+    <ion-row *ngIf="wallet && inviable">
+        <h5 class="text_right">{{formatCurrencyWallet(wallet)}}</h5>
+    </ion-row>
 
-  <ion-row style="margin: 25px 0 0 0;">
-    <h5>Phí / ngày</h5>
-  </ion-row>
-  <ion-row>
-    <h5 class="text_right">{{formatCurrency(item.adjourn_price+"",item.currency)}}</h5>
-  </ion-row>
+    <ion-row style="margin: 25px 0 0 0;">
+        <h5>Phí / ngày</h5>
+    </ion-row>
+    <ion-row>
+        <h5 class="text_right">{{formatCurrency(item.adjourn_price+"",item.currency)}}</h5>
+    </ion-row>
 
-  <ion-row style="margin: 25px 0 0 0;">
-    <ion-input id="input_renewal" placeholder="Số ngày gia hạn" [(ngModel)]='number_day' type="number" (ionChange)='onChangeTime($event)'></ion-input>
-  </ion-row>
+    <ion-row style="margin: 25px 0 0 0;">
+        <ion-input id="input_renewal" placeholder="Số ngày gia hạn" [(ngModel)]='number_day' type="number" (ionChange)='onChangeTime($event)'></ion-input>
+    </ion-row>
 
-  <ion-row style="margin: 25px 0 0 0;">
-    <ion-col col-6>
-      <h4>Phí</h4>
-    </ion-col>
-    <ion-col>
-      <h5 class="text_right">{{total_price}}</h5>
-    </ion-col>
-  </ion-row>
+    <ion-row style="margin: 25px 0 0 0;">
+        <ion-col col-6>
+            <h4>Phí</h4>
+        </ion-col>
+        <ion-col>
+            <h5 class="text_right">{{total_price}}</h5>
+        </ion-col>
+    </ion-row>
 
 </ion-content>
 
 <ion-footer>
-  <button ion-button full (click)="onRenewal()">Xác nhận</button>
+    <button ion-button full (click)="onRenewal()">Xác nhận</button>
 </ion-footer>
