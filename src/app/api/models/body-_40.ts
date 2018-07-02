@@ -5,4 +5,5 @@
 export class body_40 {
     duration?: number;
     item_guid?: number;
+    payment_method?: string;
 }
