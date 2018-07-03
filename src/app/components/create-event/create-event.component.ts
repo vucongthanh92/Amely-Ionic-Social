@@ -231,8 +231,4 @@ export class CreateEventComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
-
-  checkHasInventory() {
-    this.has_inventory = !this.has_inventory;
-  }
 }

@@ -67,7 +67,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-row (tap)="checkHasInventory()">
+        <ion-row>
             <ion-col col-5 class="marginCol2">
                 <ion-label>Tạo kho quà chung</ion-label>
             </ion-col>
@@ -87,7 +87,7 @@
 
         <ion-row>
             <ion-col col-12 class="create_event_info_row">
-                <ion-icon (click)="chooseMember()" class="create_event_info_icon" ios="ios-add-circle"></ion-icon>
+                <!-- <ion-icon (click)="chooseMember()" class="create_event_info_icon" ios="ios-add-circle"></ion-icon> -->
                 <ion-scroll scrollX style="height:70px; margin-left: 30px;" *ngIf="members_chosen.length>0">
                     <div class="scroll-item">
                         <ion-col *ngFor="let u of members_chosen">

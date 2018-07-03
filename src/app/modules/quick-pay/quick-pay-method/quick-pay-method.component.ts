@@ -85,7 +85,7 @@ export class QuickPayMethodComponent implements OnInit {
         break;
       case 'WOD':
         payment.filename = quickpay;
-        payment.displayname = 'Ví của tôi, nhận hàng';
+        payment.displayname = 'Amely Sec, nhận hàng';
         this.nav.push(QuickPayConfirmComponent);
         this.paymentService.quick_pay_send_data.paymentMethod = payment;
         this.paymentService.quick_pay_send_data.shipping_methods = null;

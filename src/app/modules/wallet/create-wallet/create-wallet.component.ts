@@ -25,7 +25,7 @@ export class CreateWalletComponent implements OnInit {
     loading.present();
     if (this.rules == false) {
       loading.dismiss();
-      this.customService.toastMessage('Bạn chưa đồng ý điều khoản sử dụng ví của Amely !', 'bottom', 3000);
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản sử dụng của Amely Sec !', 'bottom', 3000);
     }else{
       this.retryCreateWallet(5, loading);
     }
@@ -43,7 +43,7 @@ export class CreateWalletComponent implements OnInit {
         this.nav.push(WalletComponent)
       } else {
         loading.dismiss();
-        this.customService.toastMessage('Tạo ví thất bại. Vui lòng thử lại !', 'bottom', 2000)
+        this.customService.toastMessage('Tạo Amely Sec thất bại. Vui lòng thử lại !', 'bottom', 2000)
       }
     }, err => this.retryCreateWallet(--retry, loading))
   }

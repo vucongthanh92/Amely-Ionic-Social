@@ -136,7 +136,7 @@ export class WalletComponent implements OnInit {
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>
-                  <h2>Sử dụng tiền trong ví</h2>
+                  <h2>Sử dụng tiền trong Amely Sec</h2>
                   <p>Bạn đã sử dụng <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) +
             `</strong> để để giao sản phẩm <strong>` + trans.do_guid + `</strong> </p>`
 
@@ -144,7 +144,7 @@ export class WalletComponent implements OnInit {
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>
-                  <h2>Sử dụng tiền trong ví</h2>
+                  <h2>Sử dụng tiền trong Amely Sec</h2>
                   <p>Bạn đã sử dụng <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) +
             `</strong> để thanh toán hóa đơn <strong>` + trans.order_guid + `</strong> </p>`
 
@@ -159,14 +159,14 @@ export class WalletComponent implements OnInit {
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_wanna_send_blue.png">
                   </ion-thumbnail>
-                  <h2>Rút tiền khỏi ví</h2>
+                  <h2>Rút tiền khỏi Amely Sec</h2>
                   <p>`+ content + `</p>`
         } else {
 
           return `<ion-thumbnail item-start>
                   <img class='iconTransaction' src="assets/imgs/ic_inventory_new.png">
                   </ion-thumbnail>
-                  <h2>Nạp tiền vào ví</h2>
+                  <h2>Nạp tiền vào Amely Sec</h2>
                   <p>Bạn đã nạp <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong> </p>`
         }
       case this.PURCHASEORDER:
@@ -187,7 +187,7 @@ export class WalletComponent implements OnInit {
                   <img class='iconTransaction' src="assets/imgs/ic_inventory_new.png">
                   </ion-thumbnail>
                   <h2>Xóa quảng cáo</h2>
-                  <p>Quảng cáo đã xóa được cộng dồn vào ví <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
+                  <p>Quảng cáo đã xóa được cộng dồn vào Amely Sec <strong>`+ this.formatCurrency(trans.quantity + '', trans.currency) + `</strong> vào ngày <strong>` + this.formatDateTime(trans.time_created * 1000) + `</strong></p>`
 
       case this.CHANGEADVERTISE:
         return `<ion-thumbnail item-start>
