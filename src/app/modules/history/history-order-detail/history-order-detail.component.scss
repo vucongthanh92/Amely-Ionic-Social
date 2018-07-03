@@ -2,16 +2,13 @@ app-history-order-detail {
     .history_order {
         background-color: #fff;
     }
-
     .history_order_price {
-        color: red;  
+        color: red;
         position: relative;
     }
-
     .history_order_item {
         border-bottom: 1px solid #c8c7cc;
     }
-
     .history_order_images {
         background-size: cover !important;
         background-position: center !important;
@@ -20,39 +17,33 @@ app-history-order-detail {
         margin: auto;
         border-radius: 3px;
     }
-
     .history_order_title {
         font-size: 1.6rem;
         margin: 5px 0px 5px 0px;
         text-transform: capitalize;
         color: #333;
     }
-
     .history_order_description {
         margin: 5px 0px 5px 0px;
         color: #333;
         font-size: 1.4rem;
     }
-
     .product_feature_price {
         color: #D9534F;
         font-size: 14px;
         text-transform: capitalize;
     }
-
     .product_sale_price {
         color: #b6b7b7;
         font-size: 14px;
         text-transform: capitalize;
         text-decoration: line-through;
     }
-
     ion-fab[middle] {
         margin-top: -28px;
         top: 10vw;
         margin-left: 33vw;
     }
-
     ion-fab-list {
         margin: 66px 0;
         position: relative;
@@ -72,25 +63,21 @@ app-history-order-detail {
         min-width: 100%;
         min-height: 100%;
     }
-
     .history_order_shop {
         ion-thumbnail {
             min-height: unset;
             margin: 15px 10px 15px 0px !important;
         }
-
         .history_order_shop_title {
             color: #333;
             font-size: 1.5rem;
         }
-
         .history_order_shop_image {
             width: 4rem;
             height: 4rem;
             border: 1px solid #c7c8cc;
             overflow: hidden;
             border-radius: 50%;
-
             img {
                 object-fit: cover;
                 object-position: center;
@@ -99,26 +86,21 @@ app-history-order-detail {
             }
         }
     }
-
     .history_order_product {
         margin: -1px 0 60px;
-
         .history_order_product_row {
             margin: 3px 0px 3px 0px;
             font-size: 1.4rem;
         }
-
         .history_order_product_title {
             color: #333;
             font-size: 1.5rem;
         }
-
         ion-thumbnail {
             width: 6rem;
             height: 6rem;
             border-radius: 5px;
             overflow: hidden;
-
             img {
                 object-fit: cover;
                 object-position: center;
@@ -127,30 +109,28 @@ app-history-order-detail {
             }
         }
     }
-
     .history_order_product_label {
         color: #a52714;
     }
-
+    .history_order_product_status_label {
+        color: #08833b;
+    }
     .history_order_total {
         background-color: #ffffff;
         padding: 0px;
         border: 1px solid #c7c8cc;
-
         .history_order_total_box {
             padding: 3px 15px 3px 15px;
-
             .item-ios {
                 min-height: unset;
-
                 .label-ios {
                     margin: 7px 5px 7px 0;
                     color: #333;
                     font-size: 1.6rem;
                 }
             }
-
-            ion-item, .item-inner {
+            ion-item,
+            .item-inner {
                 padding: 0px !important;
                 border-bottom: none !important;
             }
