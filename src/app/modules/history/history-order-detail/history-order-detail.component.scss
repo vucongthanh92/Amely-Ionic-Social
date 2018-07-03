@@ -111,9 +111,13 @@ app-history-order-detail {
     }
     .history_order_product_label {
         color: #a52714;
+        display: inline-block;
+        font-size: 1.5rem;
     }
     .history_order_product_status_label {
         color: #08833b;
+        float: right;
+        font-size: 1.5rem;
     }
     .history_order_total {
         background-color: #ffffff;
@@ -135,5 +139,9 @@ app-history-order-detail {
                 border-bottom: none !important;
             }
         }
+    }
+
+    ion-label {
+        white-space: inherit;
     }
 }

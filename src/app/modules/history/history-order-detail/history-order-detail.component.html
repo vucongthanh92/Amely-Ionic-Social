@@ -19,10 +19,10 @@
             </ion-thumbnail>
             <h2 class="history_order_shop_title">{{shop.title}}</h2>
             <p class="history_order_product_row"> {{shop.full_address}} </p>
-            <p class="history_order_product_row" *ngIf="shop.shipping_fee">Phí giao hàng:
-                <span class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</span>
-                <span class="history_order_product_status_label">{{shop.shipping_status}}</span>
-            </p>
+            <div style="font-size: 1.5rem;" class="history_order_product_row" *ngIf="shop.shipping_fee">Phí giao hàng:
+                <div class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</div>
+                <div class="history_order_product_status_label">{{shop.shipping_status}}</div>
+            </div>
         </ion-item>
 
         <ion-list class="history_order_product">
