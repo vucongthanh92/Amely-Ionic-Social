@@ -18,7 +18,7 @@
     </ion-item>
 
     <ion-row *ngIf="userTag">
-        <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
+        <div class="feed_tag" *ngIf="!isShowMoreTag; else elseSubArr">
             <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
                 {{user.first_name}} {{user.last_name}},
             </ion-item>
@@ -28,7 +28,7 @@
                 <a class="usertag_content_link">{{user.first_name}} {{user.last_name}},</a>
             </div>
             <div class="usertag_content">
-                <a class="usertag_content_link" *ngIf="isShowMoreTag">+{{userTag.length-3}}</a>
+                <a class="usertag_content_link" *ngIf="isShowMoreTag">+{{userTag.length-2}} người khác</a>
             </div>
         </ng-template>
     </ion-row>
@@ -41,7 +41,7 @@
         <div class="wallphoto_quantity_1" (click)="openModal('post', 0)">
             <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
         </div>
-    </ion-list>    
+    </ion-list>
     <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==2">
         <div class="wallphoto_quantity_2" (click)="openModal('post', 0)">
             <img src="{{ post.wallphoto[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
@@ -96,7 +96,7 @@
             <img src="{{ wallphoto }}" (click)="openModal('post', i)">
         </ion-item>
         <ion-row *ngIf="userTag">
-            <div class="feed_tag" *ngIf="isHideMoreTag; else elseSubArr">
+            <div class="feed_tag" *ngIf="!isShowMoreTag; else elseSubArr">
                 <ion-item class="feed_tag_detail" *ngFor="let user of userTag">
                     <a>{{user.first_name}} {{user.last_name}},</a>
                 </ion-item>

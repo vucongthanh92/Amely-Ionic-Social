@@ -3570,8 +3570,6 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   extendDays(body: body_40): Observable<DefaultResponse> {
-    console.log(body);
-
     return this.extendDaysResponse(body).pipe(
       map(_r => _r.body)
     );

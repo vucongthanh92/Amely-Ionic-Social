@@ -68,7 +68,6 @@ export class VerifycodeComponent implements OnInit {
     if (this.hide) {
       this.userService.reActionUser(this.user.mobilelogin, null).subscribe(data => {
         if (data.status) {
-          console.log(data);
           this.customService.toastMessage('Vui lòng kiểm tra tin nhắn điện thoại !!!', 'bottom', 3000);
         }
       })
