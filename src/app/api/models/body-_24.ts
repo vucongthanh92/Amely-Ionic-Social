@@ -17,4 +17,6 @@ export class body_24 {
     quantity?: number;
     shop_guid?: number;
     product_snapshot?: string;
+    payment_method?: string;
+    url?: string;
 }

@@ -26,14 +26,16 @@ export class DeliveryItemComponent implements OnInit {
     });
     loading.present();
     this.retryDelevery(5, loading);
+    this.retryGetPayments(5);
   }
 
   retryDelevery(retry, loading) {
     if (retry == 0) {
+      loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.inventoryService.delevery(null, 'shipping_methods', null, null, null, null, null, null, null, null, null, null, null).subscribe(data => {
+    this.inventoryService.delevery(null, 'shipping_methods', null, null, null, null, null, null, null, null, null, null, null,null).subscribe(data => {
       this.payment_methods = (<any>Object).values(data);
       this.payment_methods = this.payment_methods.filter(e => e.filename == 'sq/standard' || e.filename == 'sq/express')
       loading.dismiss();
@@ -41,6 +43,18 @@ export class DeliveryItemComponent implements OnInit {
       console.log(err);
       this.retryDelevery(--retry, loading);
     })
+  }
+
+  retryGetPayments(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.inventoryService.getPaymentMethods().subscribe(data => {
+      console.log(data);
+      
+      this.inventoryService.paymentMethods = data.payment_methods;
+    }, err => this.retryGetPayments(--retry))
   }
 
   decrease() {
