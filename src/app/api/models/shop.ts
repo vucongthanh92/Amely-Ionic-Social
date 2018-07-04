@@ -44,4 +44,7 @@ export class Shop {
     liked?: boolean;
     advertise_guid?: number;
     stores?: Store[];
+    full_address?: string;
+    shipping_status?: string;
+    shipping_fee?: string;
 }
