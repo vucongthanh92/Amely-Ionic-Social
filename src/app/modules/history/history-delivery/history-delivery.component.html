@@ -13,7 +13,7 @@
 
     <!-- CODE CU -->
     <!-- <ion-list class="history_delivery_list" *ngIf="dos">
-    <ion-item class="history_delivery_item" *ngFor="let do of dos " (click)="openDetail(do)">
+    <ion-item class="history_delivery_item" *ngFor="let do of dos" (click)="openDetail(do)">
       <ion-thumbnail item-left>
         <img class="history_delivery_img" src="{{do.product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
       </ion-thumbnail>
@@ -40,27 +40,24 @@
   </ion-list> -->
 
     <!-- CODE MOI -->
-    <ion-list>
-        <ion-item *ngFor="let tran of transactions " (click)="openDetail(tran)">
+    <ion-list class="history_delivery_list">
+        <ion-item class="history_delivery_item" *ngFor="let tran of transactions" (click)="openDetail(tran)">
             <ion-row>
                 <ion-col col-8>
-                    <div>
-                        <a style="color: #333;">Đơn giao hàng số #{{tran.related_guid}}</a> 
-                    </div>
+                    <div class="history_delivery_title">Đơn giao hàng số #{{tran.related_guid}}</div>
                     <div class="history_delivery_row">
-                        <p>Phí giao hàng: <i style="color: red;">{{ formatSalePriceShow( tran.quantity, "VND") }}</i></p>  
+                        <p>Phí giao hàng: <span class="history_delivery_price">{{ formatSalePriceShow( tran.quantity, "VND") }}</span></p>  
                     </div>
                 </ion-col>
-                <ion-col col-4 style="text-align: end;">
+                <ion-col col-4 class="history_delivery_info">
                     <div class="history_delivery_row">
                         {{convertDate(+tran.time_created) | date:'dd/MM/yyyy'}}
                     </div>
                     <div class="history_delivery_row">
-                        <i style="color: #24ce57;">{{tran.ghtk_status_text}}</i>
+                        <span class="history_delivery_status">{{tran.ghtk_status_text}}</span>
                     </div>
                 </ion-col>
             </ion-row>
-
         </ion-item>
     </ion-list>
 </ion-content>

@@ -15,7 +15,9 @@
               <span>VOUCHER</span>
             </span>
           </div>
-          <img class="products_feature_img" src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+          <div class="products_feature_img">
+            <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+          </div>
           <div class="product_feature_info">
             <h4 class="product_feature_title">{{product.title}}</h4>
             <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">

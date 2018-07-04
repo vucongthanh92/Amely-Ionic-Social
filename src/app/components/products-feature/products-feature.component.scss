@@ -21,10 +21,15 @@ app-products-feature {
   
   .products_feature_img{
     width: 100%;
-    height: 180px;
+    height: 15rem;
     margin: auto;
-    object-fit: contain;
-    object-position: center;
+
+    img {
+      object-fit: contain;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .product_feature {

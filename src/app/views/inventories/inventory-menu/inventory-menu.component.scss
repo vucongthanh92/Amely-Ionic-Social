@@ -5,6 +5,7 @@ app-inventory-menu{
         color: #000;
         border-radius: 2px;
         border-bottom: 1px solid #c8c7cc;
+        padding-left: 8px !important;
 
         .item-inner {
             border-bottom: none !important;
@@ -35,6 +36,11 @@ app-inventory-menu{
 
     .inventory_menu_history {
         border-bottom: none !important;
+        padding-left: 0px !important;
+
+        .item-inner {
+            padding-left: 7px;
+        }
     }
 
     .inventory_menu_icon {
@@ -47,7 +53,6 @@ app-inventory-menu{
     }
 
     .label-ios {
-        margin: 5px 0px 0px 0px;
+        margin: 3px 0px 3px 0px;
     }
-    
 }

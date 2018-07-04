@@ -13,7 +13,7 @@
 	<ion-row class="inventory_user">
 		<ion-item *ngIf="inventoryType=='group'" class="inventory_user_info">
 			<ion-avatar item-start>
-				<img *ngIf="group.owner.avatar" src="{{group.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+				<img *ngIf="group.owner.avatar" src="{{group.owner.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'" />
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{group.owner.fullname}}</div>
 		</ion-item>
@@ -21,7 +21,9 @@
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{group.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+						<div class="inventory_product_image">
+							<img src="{{group.avatar}}" onError="this.src='assets/imgs/nhom.png'" imageViewer>
+						</div>
 					</ion-thumbnail>
 					<p class="inventory_product_title">{{group.title}}</p>
 				</ion-item>
@@ -30,13 +32,13 @@
 
 		<ion-item *ngIf="inventoryType =='event' && event.creator" class="inventory_user_info">
 			<ion-avatar item-start>
-				<img src="{{event.creator.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+				<img src="{{event.creator.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'"/>
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{event.creator.fullname}}</div>
 		</ion-item>
 		<ion-item *ngIf="inventoryType =='event' && event.owner" class="inventory_user_info">
 			<ion-avatar item-start>
-				<img src="{{event.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+				<img src="{{event.owner.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'"/>
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{event.owner.fullname}}</div>
 		</ion-item>
@@ -44,7 +46,7 @@
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openEventProfile()">
 					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{event.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+						<img class="inventory_product_image" src="{{event.avatar}}" onError="this.src='assets/imgs/nhom.png'" imageViewer>
 					</ion-thumbnail>
 					<p class="inventory_product_title">{{event.title}}</p>
 				</ion-item>
