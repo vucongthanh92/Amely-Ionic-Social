@@ -12,12 +12,12 @@
 <ion-content class="wallet_container" *ngIf="wallet">
     <h1 class="wallet_balance">{{ formatCurrency(wallet.balance,wallet.currency)}}</h1>
     <ion-row>
-        <ion-col col-6 (click)="deposit()" class="wallet_deposit">
+        <ion-col *ngIf="visibale" col-6 (click)="deposit()" class="wallet_deposit">
             <!-- <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon> -->
             <img src="assets/imgs/recharge.png" style="max-width: 25%; margin-top: 10px;" />
             <div class="wallet_deposit_title">Nạp Tiền</div>
         </ion-col>
-        <ion-col col-6 (click)="withdrawn()" class="wallet_withdrawn">
+        <ion-col col-12 (click)="withdrawn()" class="wallet_withdrawn">
             <!-- <ion-icon ios="ios-share-alt" md="md-share-alt"></ion-icon> -->
             <img src="assets/imgs/withdrawal.png" style="max-width: 25%; margin-top: 10px;" />
             <div class="wallet_withdrawn_title">Rút Tiền</div>

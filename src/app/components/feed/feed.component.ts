@@ -32,6 +32,7 @@ export class FeedComponent {
   @Output()
   uploaded = new EventEmitter<string>();
 
+  userShare:User;
   postShare: Feed;
   descriptionPost: string;
   descriptionPostShare: string;
@@ -59,15 +60,18 @@ export class FeedComponent {
 
   ngOnInit() {
     if (this.userTag.length>2) {
-      console.log("=====================");
-      console.log(this.post.description);
-      console.log(this.userTag);
-      console.log("=====================");
+      // console.log("=====================");
+      // console.log(this.post.description);
+      // console.log(this.userTag);
+      // console.log("=====================");
     }
     if (this.post && this.post.item_guid) {
       try {
       
         this.postShare = this.shares.posts[this.post.item_guid];
+        this.userShare = this.users[this.postShare.poster_guid];
+        console.log(this.userShare);
+        
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
           this.descriptionPostShare = 'Đã thay đổi ảnh đại diện'

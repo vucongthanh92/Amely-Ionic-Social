@@ -1,37 +1,37 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">lịch sử trao đổi</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">lịch sử trao đổi</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <ion-list *ngIf="trans; else notData">
-    <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
-      <a *ngIf="transaction.description==='Requested'" class="inventory_history_row inventory_history_requested">
-        <ion-icon ios="download" class="inventory_history_icon" md="md-archive"></ion-icon>Yêu cầu trao đổi #{{transaction.guid}}</a>
+    <ion-list *ngIf="trans; else notData">
+        <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
+            <a *ngIf="transaction.description==='Requested'" class="inventory_history_row inventory_history_requested">
+                <ion-icon ios="download" class="inventory_history_icon" md="md-archive"></ion-icon>Đến nghị đến #{{transaction.guid}}</a>
 
-      <a *ngIf="transaction.description==='Created'" class="inventory_history_row inventory_history_created">
-        <ion-icon ios="add" class="inventory_history_icon" md="md-close-circle"></ion-icon>Tạo trao đổi #{{transaction.guid}}</a>
+            <a *ngIf="transaction.description==='Created'" class="inventory_history_row inventory_history_created">
+                <ion-icon ios="add" class="inventory_history_icon" md="md-close-circle"></ion-icon>Tạo trao đổi #{{transaction.guid}}</a>
 
-      <a *ngIf="transaction.description==='Sent'" class="inventory_history_row inventory_history_sent">
-        <ion-icon ios="arrow-round-forward" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Gửi trao đổi #{{transaction.guid}}</a>
+            <a *ngIf="transaction.description==='Sent'" class="inventory_history_row inventory_history_sent">
+                <ion-icon ios="arrow-round-forward" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Gửi trao đổi #{{transaction.guid}}</a>
 
-      <a *ngIf="transaction.description==='Received'" class="inventory_history_row inventory_history_received">
-        <ion-icon ios="arrow-round-back" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Nhận #{{transaction.guid}}</a>
+            <a *ngIf="transaction.description==='Received'" class="inventory_history_row inventory_history_received">
+                <ion-icon ios="arrow-round-back" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon>Nhận #{{transaction.guid}}</a>
 
-      <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
-    </ion-item>
-  </ion-list>
+            <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
+        </ion-item>
+    </ion-list>
 
-  <ng-template #notData>
-    <div class="history_offer_nodata">
-      <img src="assets/imgs/ic_feed.png">
-      <div class="history_offer_nodata_title">Không có dữ liệu...</div>
-    </div> 
-  </ng-template>
+    <ng-template #notData>
+        <div class="history_offer_nodata">
+            <img src="assets/imgs/ic_feed.png">
+            <div class="history_offer_nodata_title">Không có dữ liệu...</div>
+        </div>
+    </ng-template>
 </ion-content>

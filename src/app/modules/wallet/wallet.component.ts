@@ -22,6 +22,7 @@ export class WalletComponent implements OnInit {
   public transactions: Array<Transaction>;
   private PURCHASEORDER = "PurchaseOrder"; private CREATEADVERTISE = "CreateAdvertise";
   private DELETEADVERTISE = "DeleteAdvertise"; private CHANGEADVERTISE = "ChangeAdvertise";
+  public visibale: boolean = false;
   constructor(
     private appCtrl: App,
     private nav: NavController,
@@ -123,7 +124,7 @@ export class WalletComponent implements OnInit {
   orderDetail(trans: Transaction) {
     if (trans.order_guid) {
       this.appCtrl.getRootNav().push(HistoryOrderDetailComponent, { guid: trans.order_guid })
-    } else if (trans.do_guid){
+    } else if (trans.do_guid) {
       this.appCtrl.getRootNav().push(HistoryDeliveryFromStorageComponent, { guid: trans.do_guid })
     }
   }
