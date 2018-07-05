@@ -139,19 +139,18 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
         </ion-avatar>
-        <h2 class="feed_title">{{ user.fullname }}
-            <span (click)="openOwner(post.type,post.owner_guid)"> </span>
-        </h2>
-        <ion-col *ngIf="userShare" class="feed_mood item-inner">
-            <span>Đã chia sẻ bài viết <span (click)="openOwner('user',userShare.guid)"> {{userShare.fullname}}</span></span>
+        <ion-col *ngIf="userShare" class="feed_mood">
+            <span class="feed_title" (click)="openOwner(post.type,post.owner_guid)">{{ user.fullname }}</span>
+                Đã chia sẻ bài viết <span (click)="openOwner('user',userShare.guid)">{{userShare.fullname}}</span>
+            <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
         </ion-col>
-        <p class="feed_date">{{ convertDate(post.time_created) | amTimeAgo }}</p>
-        <ion-col class="feed_event" col-2>
+        <ion-col class="feed_event" col-1>
             <ion-icon name="more" (click)="openPopover($event)"></ion-icon>
         </ion-col>
     </ion-item>
+
     <!-- INFO SHARE -->
     <ion-card padding *ngIf="!postShare">Bài viết đã được xóa</ion-card>
     <ion-card *ngIf="postShare" class="feed_share_info" padding>

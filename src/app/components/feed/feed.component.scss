@@ -15,7 +15,9 @@ app-feed{
     .feed_title {
         font-size: 1.4rem;
         color: #333;
-        margin: 0px 20px 3px 0px;
+        margin: 0px 0px 3px 0px;
+        display: inline-block;
+        font-weight: bold;
     }
 
     .label-ios {
@@ -24,7 +26,7 @@ app-feed{
 
     .feed_event {
         position: absolute;
-        top: 0px;
+        top: 3px;
         right: 0px;
         text-align: right;
         padding: 0px;
@@ -32,11 +34,20 @@ app-feed{
 
     .feed_mood {
         text-align: left;
-        display: inline;
+        display: block;
         color: #666;
         font-size: 15px;
-        margin: 0px 0px 0px 1px;
+        margin: 0px;
         text-transform: lowercase;
+        padding: 5px 20px 5px 5px;
+        white-space: normal;
+
+        span {
+            font-weight: bold;
+            color: #333;
+            text-transform: capitalize;
+            font-size: 1.4rem;
+        }
     }
 
     .feed_item {
