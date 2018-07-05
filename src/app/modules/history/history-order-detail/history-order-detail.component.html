@@ -14,12 +14,12 @@
         <ion-item class="history_order_shop">
             <ion-thumbnail item-left>
                 <div class="history_order_shop_image">
-                    <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    <img src="{{shop.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'">
                 </div>
             </ion-thumbnail>
             <h2 class="history_order_shop_title">{{shop.title}}</h2>
-            <p class="history_order_product_row"> {{shop.full_address}} </p>
-            <div style="font-size: 1.5rem;" class="history_order_product_row" *ngIf="shop.shipping_fee">Phí giao hàng:
+            <p class="history_order_product_location"> {{shop.full_address}} </p>
+            <div class="history_order_product_shipping" *ngIf="shop.shipping_fee">Phí giao hàng:
                 <div class="history_order_product_label">{{formatPrice(shop.shipping_fee+'',shop.currency)}}</div>
                 <div class="history_order_product_status_label">{{shop.shipping_status}}</div>
             </div>

@@ -1,4 +1,4 @@
-<ion-content class="outer-content">
+<ion-content class="inventory_history_content">
   <ion-list>
     <ion-item class="inventory_history_item" *ngFor="let transaction of transactions" (click)="openHistoryDetail(transaction)">
       <a *ngIf="transaction.status==='requested'" class="inventory_history_row" style="color: #666">
