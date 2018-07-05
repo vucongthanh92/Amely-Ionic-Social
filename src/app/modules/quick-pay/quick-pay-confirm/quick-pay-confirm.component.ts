@@ -178,7 +178,7 @@ export class QuickPayConfirmComponent implements OnInit {
                   this.createAlertConfirm("Thanh toán thành công. Vui lòng nhận hàng", loading);
                   break;
                 case 'WOD':
-                  this.createAlertConfirm("Thanh toán bằng ví. Vui lòng nhận hàng", loading);
+                  this.createAlertConfirm("Thanh toán bằng Amely Sec. Vui lòng nhận hàng", loading);
                   break
               }
             } else if (snapshot.key == "status" && snapshot.val() == "cancel") {
@@ -187,7 +187,7 @@ export class QuickPayConfirmComponent implements OnInit {
            
           });
         } else if (!data.status && this.paymentService.quick_pay_send_data.paymentMethod.filename == "WOD") {
-          this.customService.toastMessage("Số tiền trong ví không đủ thực hiện thanh toán", "bottom", 3000);
+          this.customService.toastMessage("Số tiền trong Amely Sec không đủ thực hiện thanh toán", "bottom", 3000);
         } else this.customService.toastMessage("Thanh toán thất bại vui lòng thử lại", "bottom", 3000);
       }, err => this.retryQuickPay(--retry, loading1));
   }

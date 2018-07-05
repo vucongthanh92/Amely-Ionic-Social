@@ -71,31 +71,42 @@ export class RenewalItemComponent implements OnInit {
   }
 
   onRenewal() {
-    let alert = this.alertCtrl.create({
-      title: 'Xác nhận',
-      message: 'Gia hạn sản phẩm',
-      buttons: [
-        {
-          text: 'Từ chối'
-        },
-        {
-          text: 'Chấp nhận',
-          handler: () => {
-            if (!this.customService.isInteger(this.number_day + "")) {
-              this.customService.toastMessage('Số ngày không hợp lệ', 'bottom', 3000)
-            } else if (!this.paymentMethodSelected)
-              this.customService.toastMessage('Chưa chọn phương thức thanh toán', 'bottom', 3000)
-            else this.retryRenewalItem(5);
+    if (!this.customService.isInteger(this.number_day + "")) {
+      this.customService.toastMessage('Số ngày không hợp lệ', 'bottom', 3000)
+    } else if (!this.paymentMethodSelected)
+      this.customService.toastMessage('Chưa chọn phương thức thanh toán', 'bottom', 3000)
+    else {
+      let alert = this.alertCtrl.create({
+        title: 'Xác nhận',
+        message: 'Gia hạn sản phẩm',
+        buttons: [
+          {
+            text: 'Từ chối'
+          },
+          {
+            text: 'Chấp nhận',
+            handler: () => {
+              let loading = this.loadingCtrl.create({
+                content: 'Please wait...',
+                enableBackdropDismiss: true
+              });
+
+              loading.present();
+              this.retryRenewalItem(5, loading);
+            }
           }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+
+      alert.present();
+    }
   }
 
-  retryRenewalItem(retry) {
-    if (retry == 0)
+  retryRenewalItem(retry, loading) {
+    if (retry == 0) {
+      loading.dismiss();
       return;
+    }
     this.inventoriesService.renewalItem(this.item.guid, this.number_day, this.paymentMethodSelected).subscribe(data => {
       // if (!data.status && data.error == "balance_enough") {
       //   this.customService.toastMessage("Số tiền trong ví không đủ", "bottom", 2000);
@@ -107,13 +118,14 @@ export class RenewalItemComponent implements OnInit {
       // } else {
       //   this.customService.toastMessage("Gia hạn thất bại", "bottom", 2000);
       // }
+      loading.dismiss();
       if (data.url) {
         this.openBrowser(data.url);
       } else {
         this.customService.toastMessage("Gia hạn thất bại", "bottom", 2000);
       }
 
-    }, err => this.retryRenewalItem(--retry));
+    }, err => this.retryRenewalItem(--retry, loading));
   }
 
   openBrowser(url) {

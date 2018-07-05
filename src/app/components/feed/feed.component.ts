@@ -32,15 +32,16 @@ export class FeedComponent {
   @Output()
   uploaded = new EventEmitter<string>();
 
+  userShare:User;
   postShare: Feed;
   descriptionPost: string;
   descriptionPostShare: string;
   location: string;
   isShowMoreTag: any;
-  isHideMoreTag: any;
+  isHideMoreTag: boolean;
   moodLocal: any;
   moodIcon: string;
-  subArrUserTag: any;
+  subArrUserTag: Array<User>;
   is_change_avatar: boolean;
   is_change_conver: boolean;
   is_owner: boolean = false;
@@ -58,10 +59,19 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
+    if (this.userTag.length>2) {
+      // console.log("=====================");
+      // console.log(this.post.description);
+      // console.log(this.userTag);
+      // console.log("=====================");
+    }
     if (this.post && this.post.item_guid) {
       try {
       
         this.postShare = this.shares.posts[this.post.item_guid];
+        this.userShare = this.users[this.postShare.poster_guid];
+        console.log(this.userShare);
+        
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
           this.descriptionPostShare = 'Đã thay đổi ảnh đại diện'
@@ -72,11 +82,10 @@ export class FeedComponent {
     }
 
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
-    this.isShowMoreTag = this.userTag.length > 3 ? "true" : null;
-    this.isHideMoreTag = this.userTag.length < 3 ? "true" : null;
+    this.isShowMoreTag = this.userTag.length >2;
 
-    if (this.isShowMoreTag === "true") {
-      this.subArrUserTag = this.userTag.slice(0, 3);
+    if (this.isShowMoreTag ) {
+      this.subArrUserTag = this.userTag.slice(0, 2);
     }
     if (this.post) {
       let description = JSON.parse(this.post.description);

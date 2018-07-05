@@ -74,7 +74,6 @@ export class SigninComponent implements OnInit {
     this.authenticationService.login(this.username, this.password).subscribe(resp => {
       this.is_logging = false;
       this.loader.dismiss();
-      console.log(resp);
 
       if (resp.token == null) {
         if (resp.validation) {

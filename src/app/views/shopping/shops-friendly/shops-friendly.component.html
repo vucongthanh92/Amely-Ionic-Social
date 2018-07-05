@@ -2,7 +2,7 @@
   <ion-list no-lines *ngIf="shops">
     <ion-item class="shops_friendly_item" *ngFor="let shop of shops" (click)="goToPage('shop',shop.guid);">
       <ion-avatar item-start>
-        <img class="shops_friendly_image" src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+        <img class="shops_friendly_image" src="{{shop.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'">
       </ion-avatar>
       <h2 class="shops_friendly_title">{{shop.title}}</h2>
       <p class="shops_friendly_description" *ngIf="shop.introduce" innerHtml="{{shop.introduce}}"></p>

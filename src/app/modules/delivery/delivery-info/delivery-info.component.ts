@@ -90,21 +90,28 @@ export class DeliveryInfoComponent implements OnInit {
         content: 'Please wait...',
         enableBackdropDismiss: true
       });
-
       loading.present();
-
-      this.inventoryService.shippingFeeDelevery(this.item.product_snapshot.guid + "", this.payment_method.filename, this.address, this.province_id, this.district_id, this.ward_id)
-        .subscribe(data => {
-          loading.dismiss();
-          console.log(data);
-          this.inventoryService.deliverOption = {
-            item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
-            address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
-            payment_methods: this.payment_methods, shipping_fee: data.shipping_fee
-          };
-          this.nav.push(PaymentMethodComponent, { paymentMethods: this.inventoryService.paymentMethods })
-
-        })
+      this.retryGetShippingFee(5, loading);
     }
+  }
+
+  retryGetShippingFee(retry: number, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000);
+      return;
+    }
+    this.inventoryService.shippingFeeDelevery(this.item.product_snapshot.guid + "", this.payment_method.filename, this.address, this.province_id, this.district_id, this.ward_id)
+      .subscribe(data => {
+        loading.dismiss();
+        console.log(data);
+        this.inventoryService.deliverOption = {
+          item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
+          address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
+          payment_methods: this.payment_methods, shipping_fee: data.shipping_fee
+        };
+        this.nav.push(PaymentMethodComponent, { paymentMethods: this.inventoryService.paymentMethods })
+
+      }, err => this.retryGetShippingFee(--retry, loading))
   }
 }

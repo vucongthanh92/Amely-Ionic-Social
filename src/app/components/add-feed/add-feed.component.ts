@@ -134,7 +134,7 @@ export class AddFeedComponent implements OnInit {
     this.usersTag.forEach(element => {
       this.friends = this.friends + element.guid + ","
     });
-
+    
     if (!this.content) {
       this.customService.toastMessage('Nội dung không được để trống !', 'bottom', 3000);
     } else {
@@ -144,7 +144,7 @@ export class AddFeedComponent implements OnInit {
       if (this.owner_guid == undefined) {
         this.owner_guid = this.customService.user_current.guid;
       }
-
+      // this.isCreatingFeed = false;
       this.putFeedApi(5);
     }
   }
@@ -160,12 +160,7 @@ export class AddFeedComponent implements OnInit {
         if (data.status) {
           this.customService.toastMessage('Bài viết đã được đăng', 'bottom', 3000);
           if (this.image != null && this.image.length > 0) {
-            console.log(123);
-            console.log(data.guid);
-
             localStorage.setItem(data.guid, JSON.stringify([this.image]));
-            console.log(localStorage.getItem(data.guid));
-
           }
           this.callback().then(() => {
             this.nav.pop();

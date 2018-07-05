@@ -4,7 +4,9 @@
             <button class="ion_navbar_box" ion-button (click)="dismiss()">
                 <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
             </button>
+            <div class="ion_navbar_title">Nhóm</div>
         </ion-buttons>
+
         <ion-buttons end>
             <button *ngIf="isMenu" ion-button (click)="openPopover($event)">
                 <ion-icon class="group_more_icon" name="md-more"></ion-icon>

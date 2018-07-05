@@ -53,8 +53,6 @@ export class MyApp {
         this.authenticationService.setSession(dr);
       } else this.rootPage = SigninComponent;
     } catch (error) {
-      console.log(error);
-
       this.rootPage = SigninComponent;
     }
   }

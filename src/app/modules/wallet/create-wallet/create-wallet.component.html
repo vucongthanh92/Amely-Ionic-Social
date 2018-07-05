@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Tạo ví điện tử</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">Tạo Amely Sec</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <!-- <ion-content class="outer-content">
@@ -73,44 +73,44 @@
 </ion-content> -->
 
 <ion-content padding>
-  <div>
     <div>
-        <ion-list no-lines>
-          <ion-item no-lines>
-            <ion-label style="font-weight: bold;">Đơn vị tiền tệ của ví</ion-label>
-            <ion-select [(ngModel)]="gaming">
-              <ion-option value="VND" selected>VND</ion-option>              
-              <!-- <ion-option value="USD">USD</ion-option> -->
-            </ion-select>
-          </ion-item>
-        </ion-list>
-    </div>
-    <div style="text-align: center;">
-      <label for="">Vui lòng đọc kỹ điều khoản đăng ký, cách sử dụng và các quy định của sàn giao dịch điện tử hỗn hợp AMELY <a href="https://amely.com/static/dieu-khoan-su-dung-vi-amely" target="_blank">tại đây</a></label>
-    </div>
-    <br>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="register_colum" col-2>
-          <ion-item class="register_box2" no-lines>
-            <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)">
-          </ion-item>
-        </ion-col>
-        <ion-col class="register_colum" col-10>
-          <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;" no-lines>
-            <!-- <ion-label>Tôi đồng ý với các điều khoản và quy định sử dụng
+        <div>
+            <ion-list no-lines>
+                <ion-item no-lines>
+                    <ion-label style="font-weight: bold;">Đơn vị tiền tệ của Amely Sec</ion-label>
+                    <ion-select [(ngModel)]="gaming">
+                        <ion-option value="VND" selected>VND</ion-option>
+                        <!-- <ion-option value="USD">USD</ion-option> -->
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div style="text-align: center;">
+            <label for="">Vui lòng đọc kỹ điều khoản đăng ký, cách sử dụng và các quy định của sàn giao dịch điện tử hỗn hợp AMELY <a href="https://amely.com/static/dieu-khoan-su-dung-vi-amely" target="_blank">tại đây</a></label>
+        </div>
+        <br>
+        <ion-grid>
+            <ion-row>
+                <ion-col class="register_colum" col-2>
+                    <ion-item class="register_box2" no-lines>
+                        <input class="inputCheckbox" type="checkbox" [(ngModel)]="rules" (ionChange)="onChange($event)">
+                    </ion-item>
+                </ion-col>
+                <ion-col class="register_colum" col-10>
+                    <ion-item class="register_box3" style="padding: 0px 0px 0px 0px;" no-lines>
+                        <!-- <ion-label>Tôi đồng ý với các điều khoản và quy định sử dụng
             </ion-label> -->
-            <div>
-              <label for="">Tôi đồng ý với các điều khoản và <br> quy định sử dụng
+                        <div>
+                            <label for="">Tôi đồng ý với các điều khoản và <br> quy định sử dụng
               </label>
-            </div>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <div style="text-align: center;">
-      <button class="buttonSubmit" ion-button (click)="onAccept()">XÁC NHẬN</button>
+                        </div>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div style="text-align: center;">
+            <button class="buttonSubmit" ion-button (click)="onAccept()">XÁC NHẬN</button>
+        </div>
     </div>
-  </div>
 
 </ion-content>

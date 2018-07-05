@@ -11,10 +11,13 @@
 
 <ion-content class="outer-content">
   <div *ngIf="shop">
-    <div [style.background]="'url(' + shop.cover + ')'" class="shop_cover"></div>
+    <div class="shop_cover">
+      <img src="{{shop.cover}}" onError="this.src='assets/imgs/banner.png';">
+    </div>
+
     <div class="shop_avatar_row">
       <div class="shop_avatar">
-        <img src="{{shop.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+        <img src="{{shop.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'" imageViewer>
       </div>
       <div class="shop_avatar_title">{{shop.title}}</div>
     </div>

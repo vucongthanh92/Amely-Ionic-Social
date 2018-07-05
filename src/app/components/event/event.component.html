@@ -2,8 +2,9 @@
     <ion-navbar hideBackButton>
         <ion-buttons start>
             <button class="ion_navbar_box" ion-button (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
-      </button>
+                <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
+            <div class="ion_navbar_title">Sự Kiện</div>
         </ion-buttons>
 
         <ion-buttons end *ngIf="event && (type=='guest' || type =='member')">
@@ -91,7 +92,8 @@
                 <ion-list-header>chủ sự kiện</ion-list-header>
                 <ion-item class="members_row" *ngIf="getUser(event.creator.guid)">
                     <ion-avatar item-start>
-                        <img (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <img (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}" 
+                            onError="this.src='assets/imgs/avatar-nam.png'">
                     </ion-avatar>
                     {{getUser(event.creator.guid).fullname}}
                 </ion-item>
@@ -101,7 +103,8 @@
                 <ion-list-header>đồng tổ chức</ion-list-header>
                 <ion-item class="members_row" *ngFor="let guid of string_members">
                     <ion-avatar item-start *ngIf="guid">
-                        <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                        <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" 
+                            onError="this.src='assets/imgs/avatar-nam.png'">
                     </ion-avatar>
                     {{getUser(guid).fullname}}
                 </ion-item>
