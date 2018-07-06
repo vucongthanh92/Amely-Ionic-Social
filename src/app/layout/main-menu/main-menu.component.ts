@@ -1,6 +1,5 @@
 import * as Models from './../../api/models';
 import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 import { SigninComponent } from './../../authentication/signin/signin.component';
 import { OfferService } from './../../services/offer.service';
 import { GiftsService } from './../../services/gifts.service';
@@ -8,7 +7,7 @@ import { EventsService } from './../../services/events.service';
 import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
-import { Nav, MenuController, Platform, App, ModalController, LoadingController } from 'ionic-angular';
+import { Nav, MenuController, App, ModalController, LoadingController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 import { PersonalComponent } from './../../views/personal/personal.component';
@@ -53,7 +52,6 @@ export class MainMenuComponent implements OnInit {
     private eventService: EventsService,
     private giftService: GiftsService,
     private offerService: OfferService,
-    private localNotification: PhonegapLocalNotification,
     public geolocationService: GeolocationService,
     public geolocation: Geolocation,
     private modalCtrl: ModalController,

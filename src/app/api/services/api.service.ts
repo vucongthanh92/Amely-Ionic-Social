@@ -1,9 +1,8 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse,
-  HttpHeaders, HttpParams
-} from '@angular/common/http';
+  HttpClient, HttpRequest, HttpResponse, 
+  HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { Observable } from 'rxjs/Observable';
@@ -123,30 +122,32 @@ import { search_responses } from '../models/search-_responses';
 import { body_60 } from '../models/body-_60';
 import { Services } from '../models/services';
 import { body_61 } from '../models/body-_61';
-import { inline_response_200_21 } from '../models/inline-_response-_200_21';
 import { body_62 } from '../models/body-_62';
+import { inline_response_200_21 } from '../models/inline-_response-_200_21';
+import { body_63 } from '../models/body-_63';
 import { inline_response_200_22 } from '../models/inline-_response-_200_22';
 import { ShopOrder } from '../models/shop-order';
-import { body_63 } from '../models/body-_63';
 import { body_64 } from '../models/body-_64';
 import { body_65 } from '../models/body-_65';
+import { body_66 } from '../models/body-_66';
 import { inline_response_200_23 } from '../models/inline-_response-_200_23';
 import { ShopShipping } from '../models/shop-shipping';
-import { body_66 } from '../models/body-_66';
-import { inline_response_200_24 } from '../models/inline-_response-_200_24';
 import { body_67 } from '../models/body-_67';
+import { inline_response_200_24 } from '../models/inline-_response-_200_24';
+import { body_68 } from '../models/body-_68';
 import { Temp_order } from '../models/temp-_order';
 import { Param_create_TempOrder } from '../models/param-_create-_temp-order';
 import { RedeemHistoryDetail } from '../models/redeem-history-detail';
 import { Transaction } from '../models/transaction';
-import { body_68 } from '../models/body-_68';
 import { body_69 } from '../models/body-_69';
 import { body_70 } from '../models/body-_70';
+import { body_71 } from '../models/body-_71';
+import { body_72 } from '../models/body-_72';
 import { Wallet } from '../models/wallet';
 import { inline_response_200_25 } from '../models/inline-_response-_200_25';
-import { body_72 } from '../models/body-_72';
-import { body_71 } from '../models/body-_71';
+import { body_74 } from '../models/body-_74';
 import { body_73 } from '../models/body-_73';
+import { body_75 } from '../models/body-_75';
 
 
 @Injectable()
@@ -183,7 +184,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -224,7 +225,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -263,7 +264,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -300,7 +301,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -337,7 +338,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -374,7 +375,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -411,7 +412,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Advertise = null;
         _body = _resp.body as Advertise
-        return _resp.clone({ body: _body }) as HttpResponse<Advertise>;
+        return _resp.clone({body: _body}) as HttpResponse<Advertise>;
       })
     );
   }
@@ -446,7 +447,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Photo[] = null;
         _body = _resp.body as Photo[]
-        return _resp.clone({ body: _body }) as HttpResponse<Photo[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Photo[]>;
       })
     );
   }
@@ -483,7 +484,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -526,7 +527,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -566,7 +567,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -601,7 +602,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Banner[] = null;
         _body = _resp.body as Banner[]
-        return _resp.clone({ body: _body }) as HttpResponse<Banner[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Banner[]>;
       })
     );
   }
@@ -635,7 +636,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: User[] = null;
         _body = _resp.body as User[]
-        return _resp.clone({ body: _body }) as HttpResponse<User[]>;
+        return _resp.clone({body: _body}) as HttpResponse<User[]>;
       })
     );
   }
@@ -671,7 +672,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -708,7 +709,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -745,7 +746,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200 = null;
         _body = _resp.body as inline_response_200
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200>;
       })
     );
   }
@@ -782,7 +783,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -819,7 +820,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -856,7 +857,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Business = null;
         _body = _resp.body as Business
-        return _resp.clone({ body: _body }) as HttpResponse<Business>;
+        return _resp.clone({body: _body}) as HttpResponse<Business>;
       })
     );
   }
@@ -893,7 +894,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_1 = null;
         _body = _resp.body as inline_response_200_1
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_1>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_1>;
       })
     );
   }
@@ -930,7 +931,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -967,7 +968,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1004,7 +1005,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1040,7 +1041,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_2 = null;
         _body = _resp.body as inline_response_200_2
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_2>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_2>;
       })
     );
   }
@@ -1084,7 +1085,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_3 = null;
         _body = _resp.body as inline_response_200_3
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_3>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_3>;
       })
     );
   }
@@ -1129,7 +1130,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1167,7 +1168,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1205,7 +1206,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1243,7 +1244,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Category = null;
         _body = _resp.body as Category
-        return _resp.clone({ body: _body }) as HttpResponse<Category>;
+        return _resp.clone({body: _body}) as HttpResponse<Category>;
       })
     );
   }
@@ -1281,7 +1282,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Category[] = null;
         _body = _resp.body as Category[]
-        return _resp.clone({ body: _body }) as HttpResponse<Category[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Category[]>;
       })
     );
   }
@@ -1319,7 +1320,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1357,7 +1358,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1395,7 +1396,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1432,7 +1433,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1469,7 +1470,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1506,7 +1507,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1544,7 +1545,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1589,7 +1590,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_4 = null;
         _body = _resp.body as inline_response_200_4
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_4>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_4>;
       })
     );
   }
@@ -1631,7 +1632,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1670,7 +1671,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1708,7 +1709,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1745,7 +1746,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: CounterOffer = null;
         _body = _resp.body as CounterOffer
-        return _resp.clone({ body: _body }) as HttpResponse<CounterOffer>;
+        return _resp.clone({body: _body}) as HttpResponse<CounterOffer>;
       })
     );
   }
@@ -1782,7 +1783,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: CounterOffer[] = null;
         _body = _resp.body as CounterOffer[]
-        return _resp.clone({ body: _body }) as HttpResponse<CounterOffer[]>;
+        return _resp.clone({body: _body}) as HttpResponse<CounterOffer[]>;
       })
     );
   }
@@ -1819,7 +1820,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1856,7 +1857,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -1893,7 +1894,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Currency = null;
         _body = _resp.body as Currency
-        return _resp.clone({ body: _body }) as HttpResponse<Currency>;
+        return _resp.clone({body: _body}) as HttpResponse<Currency>;
       })
     );
   }
@@ -1928,7 +1929,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Currency[] = null;
         _body = _resp.body as Currency[]
-        return _resp.clone({ body: _body }) as HttpResponse<Currency[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Currency[]>;
       })
     );
   }
@@ -1964,7 +1965,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2001,7 +2002,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Delivery_order = null;
         _body = _resp.body as Delivery_order
-        return _resp.clone({ body: _body }) as HttpResponse<Delivery_order>;
+        return _resp.clone({body: _body}) as HttpResponse<Delivery_order>;
       })
     );
   }
@@ -2036,7 +2037,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_5 = null;
         _body = _resp.body as inline_response_200_5
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_5>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_5>;
       })
     );
   }
@@ -2072,7 +2073,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Delivery_order = null;
         _body = _resp.body as Delivery_order
-        return _resp.clone({ body: _body }) as HttpResponse<Delivery_order>;
+        return _resp.clone({body: _body}) as HttpResponse<Delivery_order>;
       })
     );
   }
@@ -2109,7 +2110,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_6 = null;
         _body = _resp.body as inline_response_200_6
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_6>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_6>;
       })
     );
   }
@@ -2146,7 +2147,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_7 = null;
         _body = _resp.body as inline_response_200_7
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_7>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_7>;
       })
     );
   }
@@ -2183,7 +2184,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2220,7 +2221,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2257,7 +2258,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2292,7 +2293,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Product[] = null;
         _body = _resp.body as Product[]
-        return _resp.clone({ body: _body }) as HttpResponse<Product[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Product[]>;
       })
     );
   }
@@ -2326,7 +2327,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Shop[] = null;
         _body = _resp.body as Shop[]
-        return _resp.clone({ body: _body }) as HttpResponse<Shop[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Shop[]>;
       })
     );
   }
@@ -2364,7 +2365,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_8 = null;
         _body = _resp.body as inline_response_200_8
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_8>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_8>;
       })
     );
   }
@@ -2405,7 +2406,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_9 = null;
         _body = _resp.body as inline_response_200_9
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_9>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_9>;
       })
     );
   }
@@ -2445,7 +2446,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2484,7 +2485,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2523,7 +2524,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2561,7 +2562,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2598,7 +2599,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2634,7 +2635,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2674,7 +2675,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2715,7 +2716,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: User[] = null;
         _body = _resp.body as User[]
-        return _resp.clone({ body: _body }) as HttpResponse<User[]>;
+        return _resp.clone({body: _body}) as HttpResponse<User[]>;
       })
     );
   }
@@ -2756,7 +2757,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2796,7 +2797,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Gift = null;
         _body = _resp.body as Gift
-        return _resp.clone({ body: _body }) as HttpResponse<Gift>;
+        return _resp.clone({body: _body}) as HttpResponse<Gift>;
       })
     );
   }
@@ -2833,7 +2834,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Gift[] = null;
         _body = _resp.body as Gift[]
-        return _resp.clone({ body: _body }) as HttpResponse<Gift[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Gift[]>;
       })
     );
   }
@@ -2870,7 +2871,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2907,7 +2908,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2944,7 +2945,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -2981,7 +2982,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3018,7 +3019,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3055,7 +3056,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3093,7 +3094,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Group = null;
         _body = _resp.body as Group
-        return _resp.clone({ body: _body }) as HttpResponse<Group>;
+        return _resp.clone({body: _body}) as HttpResponse<Group>;
       })
     );
   }
@@ -3131,7 +3132,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_11 = null;
         _body = _resp.body as inline_response_200_11
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_11>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_11>;
       })
     );
   }
@@ -3169,7 +3170,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_10 = null;
         _body = _resp.body as inline_response_200_10
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_10>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_10>;
       })
     );
   }
@@ -3208,7 +3209,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3247,7 +3248,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3287,7 +3288,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Item = null;
         _body = _resp.body as Item
-        return _resp.clone({ body: _body }) as HttpResponse<Item>;
+        return _resp.clone({body: _body}) as HttpResponse<Item>;
       })
     );
   }
@@ -3325,7 +3326,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Item[] = null;
         _body = _resp.body as Item[]
-        return _resp.clone({ body: _body }) as HttpResponse<Item[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Item[]>;
       })
     );
   }
@@ -3365,7 +3366,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3402,7 +3403,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_12 = null;
         _body = _resp.body as inline_response_200_12
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_12>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_12>;
       })
     );
   }
@@ -3439,7 +3440,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3482,7 +3483,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3523,7 +3524,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Item = null;
         _body = _resp.body as Item
-        return _resp.clone({ body: _body }) as HttpResponse<Item>;
+        return _resp.clone({body: _body}) as HttpResponse<Item>;
       })
     );
   }
@@ -3561,7 +3562,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3598,7 +3599,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3637,7 +3638,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3676,7 +3677,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3717,7 +3718,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -3756,7 +3757,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Manufacturer = null;
         _body = _resp.body as Manufacturer
-        return _resp.clone({ body: _body }) as HttpResponse<Manufacturer>;
+        return _resp.clone({body: _body}) as HttpResponse<Manufacturer>;
       })
     );
   }
@@ -3793,7 +3794,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Manufacturer = null;
         _body = _resp.body as Manufacturer
-        return _resp.clone({ body: _body }) as HttpResponse<Manufacturer>;
+        return _resp.clone({body: _body}) as HttpResponse<Manufacturer>;
       })
     );
   }
@@ -3830,7 +3831,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: User = null;
         _body = _resp.body as User
-        return _resp.clone({ body: _body }) as HttpResponse<User>;
+        return _resp.clone({body: _body}) as HttpResponse<User>;
       })
     );
   }
@@ -3867,7 +3868,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Mood = null;
         _body = _resp.body as Mood
-        return _resp.clone({ body: _body }) as HttpResponse<Mood>;
+        return _resp.clone({body: _body}) as HttpResponse<Mood>;
       })
     );
   }
@@ -3902,7 +3903,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Mood = null;
         _body = _resp.body as Mood
-        return _resp.clone({ body: _body }) as HttpResponse<Mood>;
+        return _resp.clone({body: _body}) as HttpResponse<Mood>;
       })
     );
   }
@@ -3937,7 +3938,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Product[] = null;
         _body = _resp.body as Product[]
-        return _resp.clone({ body: _body }) as HttpResponse<Product[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Product[]>;
       })
     );
   }
@@ -3975,7 +3976,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Notification = null;
         _body = _resp.body as Notification
-        return _resp.clone({ body: _body }) as HttpResponse<Notification>;
+        return _resp.clone({body: _body}) as HttpResponse<Notification>;
       })
     );
   }
@@ -4014,7 +4015,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4053,7 +4054,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4091,7 +4092,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Offer = null;
         _body = _resp.body as Offer
-        return _resp.clone({ body: _body }) as HttpResponse<Offer>;
+        return _resp.clone({body: _body}) as HttpResponse<Offer>;
       })
     );
   }
@@ -4128,7 +4129,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Offer[] = null;
         _body = _resp.body as Offer[]
-        return _resp.clone({ body: _body }) as HttpResponse<Offer[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Offer[]>;
       })
     );
   }
@@ -4165,7 +4166,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_13 = null;
         _body = _resp.body as inline_response_200_13
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_13>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_13>;
       })
     );
   }
@@ -4202,7 +4203,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4239,7 +4240,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4276,7 +4277,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Order_redeem = null;
         _body = _resp.body as Order_redeem
-        return _resp.clone({ body: _body }) as HttpResponse<Order_redeem>;
+        return _resp.clone({body: _body}) as HttpResponse<Order_redeem>;
       })
     );
   }
@@ -4313,7 +4314,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: OrderGet = null;
         _body = _resp.body as OrderGet
-        return _resp.clone({ body: _body }) as HttpResponse<OrderGet>;
+        return _resp.clone({body: _body}) as HttpResponse<OrderGet>;
       })
     );
   }
@@ -4348,7 +4349,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_15 = null;
         _body = _resp.body as inline_response_200_15
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_15>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_15>;
       })
     );
   }
@@ -4404,7 +4405,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_14 = null;
         _body = _resp.body as inline_response_200_14
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_14>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_14>;
       })
     );
   }
@@ -4462,7 +4463,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4499,7 +4500,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Category = null;
         _body = _resp.body as Category
-        return _resp.clone({ body: _body }) as HttpResponse<Category>;
+        return _resp.clone({body: _body}) as HttpResponse<Category>;
       })
     );
   }
@@ -4534,7 +4535,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: ProductGroup[] = null;
         _body = _resp.body as ProductGroup[]
-        return _resp.clone({ body: _body }) as HttpResponse<ProductGroup[]>;
+        return _resp.clone({body: _body}) as HttpResponse<ProductGroup[]>;
       })
     );
   }
@@ -4570,7 +4571,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_16 = null;
         _body = _resp.body as inline_response_200_16
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_16>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_16>;
       })
     );
   }
@@ -4607,7 +4608,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_17 = null;
         _body = _resp.body as inline_response_200_17
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_17>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_17>;
       })
     );
   }
@@ -4644,7 +4645,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4681,7 +4682,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4718,7 +4719,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4758,7 +4759,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: User = null;
         _body = _resp.body as User
-        return _resp.clone({ body: _body }) as HttpResponse<User>;
+        return _resp.clone({body: _body}) as HttpResponse<User>;
       })
     );
   }
@@ -4798,7 +4799,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4836,7 +4837,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_18 = null;
         _body = _resp.body as inline_response_200_18
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_18>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_18>;
       })
     );
   }
@@ -4873,7 +4874,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_19 = null;
         _body = _resp.body as inline_response_200_19
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_19>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_19>;
       })
     );
   }
@@ -4910,7 +4911,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4947,7 +4948,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -4984,7 +4985,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5022,7 +5023,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5063,7 +5064,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5103,7 +5104,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5141,7 +5142,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Item = null;
         _body = _resp.body as Item
-        return _resp.clone({ body: _body }) as HttpResponse<Item>;
+        return _resp.clone({body: _body}) as HttpResponse<Item>;
       })
     );
   }
@@ -5178,7 +5179,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5215,7 +5216,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: QRCode = null;
         _body = _resp.body as QRCode
-        return _resp.clone({ body: _body }) as HttpResponse<QRCode>;
+        return _resp.clone({body: _body}) as HttpResponse<QRCode>;
       })
     );
   }
@@ -5252,7 +5253,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5289,7 +5290,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5326,7 +5327,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5363,7 +5364,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_20 = null;
         _body = _resp.body as inline_response_200_20
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_20>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_20>;
       })
     );
   }
@@ -5400,7 +5401,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: search_responses = null;
         _body = _resp.body as search_responses
-        return _resp.clone({ body: _body }) as HttpResponse<search_responses>;
+        return _resp.clone({body: _body}) as HttpResponse<search_responses>;
       })
     );
   }
@@ -5435,7 +5436,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Services = null;
         _body = _resp.body as Services
-        return _resp.clone({ body: _body }) as HttpResponse<Services>;
+        return _resp.clone({body: _body}) as HttpResponse<Services>;
       })
     );
   }
@@ -5448,9 +5449,48 @@ export class ApiService extends BaseService {
     );
   }
   /**
+   * Get shipping fee
    * @param body - undefined
    */
-  shareResponse(body: body_61): Observable<HttpResponse<DefaultResponse>> {
+  getPolicyResponse(body: body_61): Observable<HttpResponse<DefaultResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/services`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: DefaultResponse = null;
+        _body = _resp.body as DefaultResponse
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
+      })
+    );
+  }
+
+  /**
+   * Get shipping fee
+   * @param body - undefined
+   */
+  getPolicy(body: body_61): Observable<DefaultResponse> {
+    return this.getPolicyResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * @param body - undefined
+   */
+  shareResponse(body: body_62): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5471,7 +5511,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5479,7 +5519,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  share(body: body_61): Observable<DefaultResponse> {
+  share(body: body_62): Observable<DefaultResponse> {
     return this.shareResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5488,7 +5528,7 @@ export class ApiService extends BaseService {
    * Get shipping fee
    * @param body - undefined
    */
-  getShippingFeeResponse(body: body_62): Observable<HttpResponse<inline_response_200_21>> {
+  getShippingFeeResponse(body: body_63): Observable<HttpResponse<inline_response_200_21>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5509,7 +5549,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_21 = null;
         _body = _resp.body as inline_response_200_21
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_21>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_21>;
       })
     );
   }
@@ -5518,7 +5558,7 @@ export class ApiService extends BaseService {
    * Get shipping fee
    * @param body - undefined
    */
-  getShippingFee(body: body_62): Observable<inline_response_200_21> {
+  getShippingFee(body: body_63): Observable<inline_response_200_21> {
     return this.getShippingFeeResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5547,7 +5587,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_22 = null;
         _body = _resp.body as inline_response_200_22
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_22>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_22>;
       })
     );
   }
@@ -5564,7 +5604,7 @@ export class ApiService extends BaseService {
    * get list shop order
    * @param body - undefined
    */
-  getShopOrdersResponse(body: body_63): Observable<HttpResponse<ShopOrder[]>> {
+  getShopOrdersResponse(body: body_64): Observable<HttpResponse<ShopOrder[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5585,7 +5625,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: ShopOrder[] = null;
         _body = _resp.body as ShopOrder[]
-        return _resp.clone({ body: _body }) as HttpResponse<ShopOrder[]>;
+        return _resp.clone({body: _body}) as HttpResponse<ShopOrder[]>;
       })
     );
   }
@@ -5594,7 +5634,7 @@ export class ApiService extends BaseService {
    * get list shop order
    * @param body - undefined
    */
-  getShopOrders(body: body_63): Observable<ShopOrder[]> {
+  getShopOrders(body: body_64): Observable<ShopOrder[]> {
     return this.getShopOrdersResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5621,7 +5661,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Shop = null;
         _body = _resp.body as Shop
-        return _resp.clone({ body: _body }) as HttpResponse<Shop>;
+        return _resp.clone({body: _body}) as HttpResponse<Shop>;
       })
     );
   }
@@ -5636,7 +5676,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createRequestShopResponse(body: body_64): Observable<HttpResponse<DefaultResponse>> {
+  createRequestShopResponse(body: body_65): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5657,7 +5697,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5665,7 +5705,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createRequestShop(body: body_64): Observable<DefaultResponse> {
+  createRequestShop(body: body_65): Observable<DefaultResponse> {
     return this.createRequestShopResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5673,7 +5713,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateRequestShopResponse(body: body_65): Observable<HttpResponse<DefaultResponse>> {
+  updateRequestShopResponse(body: body_66): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5694,7 +5734,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5702,7 +5742,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateRequestShop(body: body_65): Observable<DefaultResponse> {
+  updateRequestShop(body: body_66): Observable<DefaultResponse> {
     return this.updateRequestShopResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5731,7 +5771,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_23 = null;
         _body = _resp.body as inline_response_200_23
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_23>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_23>;
       })
     );
   }
@@ -5748,7 +5788,7 @@ export class ApiService extends BaseService {
    * get list shop order
    * @param body - undefined
    */
-  getShopShippingsResponse(body: body_66): Observable<HttpResponse<ShopShipping[]>> {
+  getShopShippingsResponse(body: body_67): Observable<HttpResponse<ShopShipping[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5769,7 +5809,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: ShopShipping[] = null;
         _body = _resp.body as ShopShipping[]
-        return _resp.clone({ body: _body }) as HttpResponse<ShopShipping[]>;
+        return _resp.clone({body: _body}) as HttpResponse<ShopShipping[]>;
       })
     );
   }
@@ -5778,7 +5818,7 @@ export class ApiService extends BaseService {
    * get list shop order
    * @param body - undefined
    */
-  getShopShippings(body: body_66): Observable<ShopShipping[]> {
+  getShopShippings(body: body_67): Observable<ShopShipping[]> {
     return this.getShopShippingsResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5809,7 +5849,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Shop = null;
         _body = _resp.body as Shop
-        return _resp.clone({ body: _body }) as HttpResponse<Shop>;
+        return _resp.clone({body: _body}) as HttpResponse<Shop>;
       })
     );
   }
@@ -5846,7 +5886,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_24 = null;
         _body = _resp.body as inline_response_200_24
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_24>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_24>;
       })
     );
   }
@@ -5862,7 +5902,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateShopResponse(body: body_67): Observable<HttpResponse<DefaultResponse>> {
+  updateShopResponse(body: body_68): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -5883,7 +5923,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -5891,7 +5931,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  updateShop(body: body_67): Observable<DefaultResponse> {
+  updateShop(body: body_68): Observable<DefaultResponse> {
     return this.updateShopResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -5920,7 +5960,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Temp_order = null;
         _body = _resp.body as Temp_order
-        return _resp.clone({ body: _body }) as HttpResponse<Temp_order>;
+        return _resp.clone({body: _body}) as HttpResponse<Temp_order>;
       })
     );
   }
@@ -5957,7 +5997,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6000,7 +6040,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: RedeemHistoryDetail = null;
         _body = _resp.body as RedeemHistoryDetail
-        return _resp.clone({ body: _body }) as HttpResponse<RedeemHistoryDetail>;
+        return _resp.clone({body: _body}) as HttpResponse<RedeemHistoryDetail>;
       })
     );
   }
@@ -6041,7 +6081,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Transaction[] = null;
         _body = _resp.body as Transaction[]
-        return _resp.clone({ body: _body }) as HttpResponse<Transaction[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Transaction[]>;
       })
     );
   }
@@ -6056,9 +6096,48 @@ export class ApiService extends BaseService {
     );
   }
   /**
+   * Return transactions
    * @param body - undefined
    */
-  upload_avatarResponse(body: body_68): Observable<HttpResponse<DefaultResponse>> {
+  postTransactionsResponse(body: body_69): Observable<HttpResponse<Transaction[]>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/transaction`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Transaction[] = null;
+        _body = _resp.body as Transaction[]
+        return _resp.clone({body: _body}) as HttpResponse<Transaction[]>;
+      })
+    );
+  }
+
+  /**
+   * Return transactions
+   * @param body - undefined
+   */
+  postTransactions(body: body_69): Observable<Transaction[]> {
+    return this.postTransactionsResponse(body).pipe(
+      map(_r => _r.body)
+    );
+  }
+  /**
+   * @param body - undefined
+   */
+  upload_avatarResponse(body: body_70): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6079,7 +6158,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6087,7 +6166,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  upload_avatar(body: body_68): Observable<DefaultResponse> {
+  upload_avatar(body: body_70): Observable<DefaultResponse> {
     return this.upload_avatarResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6095,7 +6174,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  upload_coverResponse(body: body_69): Observable<HttpResponse<DefaultResponse>> {
+  upload_coverResponse(body: body_71): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6116,7 +6195,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6124,7 +6203,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  upload_cover(body: body_69): Observable<DefaultResponse> {
+  upload_cover(body: body_71): Observable<DefaultResponse> {
     return this.upload_coverResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6132,7 +6211,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getVouchersResponse(body: body_70): Observable<HttpResponse<Product[]>> {
+  getVouchersResponse(body: body_72): Observable<HttpResponse<Product[]>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6153,7 +6232,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Product[] = null;
         _body = _resp.body as Product[]
-        return _resp.clone({ body: _body }) as HttpResponse<Product[]>;
+        return _resp.clone({body: _body}) as HttpResponse<Product[]>;
       })
     );
   }
@@ -6161,7 +6240,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  getVouchers(body: body_70): Observable<Product[]> {
+  getVouchers(body: body_72): Observable<Product[]> {
     return this.getVouchersResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6188,7 +6267,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: Wallet = null;
         _body = _resp.body as Wallet
-        return _resp.clone({ body: _body }) as HttpResponse<Wallet>;
+        return _resp.clone({body: _body}) as HttpResponse<Wallet>;
       })
     );
   }
@@ -6236,7 +6315,7 @@ export class ApiService extends BaseService {
    *   }
    * @param body - undefined
    */
-  actionsWalletResponse(body: body_72): Observable<HttpResponse<inline_response_200_25>> {
+  actionsWalletResponse(body: body_74): Observable<HttpResponse<inline_response_200_25>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6257,7 +6336,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: inline_response_200_25 = null;
         _body = _resp.body as inline_response_200_25
-        return _resp.clone({ body: _body }) as HttpResponse<inline_response_200_25>;
+        return _resp.clone({body: _body}) as HttpResponse<inline_response_200_25>;
       })
     );
   }
@@ -6298,7 +6377,7 @@ export class ApiService extends BaseService {
    *   }
    * @param body - undefined
    */
-  actionsWallet(body: body_72): Observable<inline_response_200_25> {
+  actionsWallet(body: body_74): Observable<inline_response_200_25> {
     return this.actionsWalletResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6306,7 +6385,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createWalletResponse(body: body_71): Observable<HttpResponse<DefaultResponse>> {
+  createWalletResponse(body: body_73): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6327,7 +6406,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6335,7 +6414,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createWallet(body: body_71): Observable<DefaultResponse> {
+  createWallet(body: body_73): Observable<DefaultResponse> {
     return this.createWalletResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6343,7 +6422,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createWishListResponse(body: body_73): Observable<HttpResponse<DefaultResponse>> {
+  createWishListResponse(body: body_75): Observable<HttpResponse<DefaultResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -6364,7 +6443,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6372,7 +6451,7 @@ export class ApiService extends BaseService {
   /**
    * @param body - undefined
    */
-  createWishList(body: body_73): Observable<DefaultResponse> {
+  createWishList(body: body_75): Observable<DefaultResponse> {
     return this.createWishListResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -6401,7 +6480,7 @@ export class ApiService extends BaseService {
         let _resp = _r as HttpResponse<any>;
         let _body: DefaultResponse = null;
         _body = _resp.body as DefaultResponse
-        return _resp.clone({ body: _body }) as HttpResponse<DefaultResponse>;
+        return _resp.clone({body: _body}) as HttpResponse<DefaultResponse>;
       })
     );
   }
@@ -6413,8 +6492,7 @@ export class ApiService extends BaseService {
     return this.deleteWishListResponse(itemGuid).pipe(
       map(_r => _r.body)
     );
-  }
-}
+  }}
 
 export module ApiService {
   export interface DeleteAcceptanceParams {

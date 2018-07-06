@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { MessagesService } from './../../services/messages.service';
 import { UserService } from './../../services/user.service';

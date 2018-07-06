@@ -174,10 +174,10 @@ export class EventComponent implements OnInit {
       // const url: string = _params.url;
       // const isAvatar: boolean = _params.isAvatar;
       // isAvatar ? this.page.avatar = url : this.page.cover = url;
-      let loading = this.loadingCtrl.create({
-        content: 'Please wait...',
-        enableBackdropDismiss: true
-      });
+      // let loading = this.loadingCtrl.create({
+      //   content: 'Please wait...',
+      //   enableBackdropDismiss: true
+      // });
 
       this.loadData(5)
       resolve();

@@ -1,3 +1,4 @@
+import { CONFIG } from './../config';
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 
@@ -6,5 +7,5 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = "https://dev.helloqua.com/ws/v1";
+  rootUrl: string = CONFIG.url;;
 }

@@ -3,8 +3,18 @@
 /**
  */
 export class body_66 {
+    shipping_method?: string;
     shop_guid?: number;
-    shipping_filter?: string;
-    offset?: number;
-    page_limit?: number;
+    shop_phone?: string;
+    shop_address?: string;
+    shop_bidn?: string;
+    adjourn_price?: string;
+    friendly_url?: string;
+    shop_name?: string;
+    owner_name?: string;
+    owner_phone?: string;
+    owner_address?: string;
+    owner_ssn?: string;
+    ossn_photo?: string;
+    approve?: string;
 }
