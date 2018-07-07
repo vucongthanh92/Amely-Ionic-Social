@@ -34,6 +34,7 @@ export class BusinessComponent implements OnInit {
     }
     this.service.getBusinessPage(this.business_guid).subscribe(
       data => {
+        data.avatar = this.customService.replaceImageToLarger(data.avatar);
         this.page = data;
         this.is_owner = this.customService.user_current.guid == data.owner.guid;
         this.is_show_fab = data.owner.guid == this.customService.user_current.guid;

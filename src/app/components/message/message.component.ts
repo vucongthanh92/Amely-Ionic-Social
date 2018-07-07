@@ -1,4 +1,3 @@
-import { guid } from './../../api/models/guid';
 import { MapComponent } from './../map/map.component';
 import { GiftsService } from './../../services/gifts.service';
 import { Camera } from '@ionic-native/camera';

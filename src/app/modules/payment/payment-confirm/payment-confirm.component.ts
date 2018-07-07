@@ -24,6 +24,8 @@ export class PaymentConfirmComponent implements OnInit {
   shipping_method: any;
   private loading;
   is_show_shipping_method: boolean;
+  public privacy: string;
+  public isCheckPrivacy: boolean;
   constructor(
     private nav: NavController,
     private iab: InAppBrowser,
@@ -35,8 +37,8 @@ export class PaymentConfirmComponent implements OnInit {
     this.items = this.paymentService.items;
     this.payment_method = this.paymentService.payment_methods.payment_methods[this.paymentService.param_create_order.payment].displayname;
     this.shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].displayname;
-    console.log(this.paymentService.items);
-    
+    console.log(this.paymentService);
+
     this.is_show_shipping_method = this.paymentService.payment_methods.shipping_methods[this.paymentService.param_create_order.shipping_method].filename != 'sq/storage';
     if (this.paymentService.param_create_order.shipping_method != 'sq/express') this.paymentService.param_create_order.shipping_fee = "0";
 
@@ -74,13 +76,24 @@ export class PaymentConfirmComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.paymentService.getPolicy("staticpages", "dieu-khoan-thanh-toan").subscribe(data => {
+      if (data.page) {
+        this.privacy = data.page;
+      } else {
+        this.customService.toastMessage("Lấy dữ liệu thất bại.Vui lòng thử lại", "bottom", 3000);
+      }
+    })
   }
 
   changePage() {
-    this.loading = this.loadingCtrl.create();
-    this.loading.present();
-    this.retryCreateOrder(5, this.loading);
-    console.log(this.paymentService.param_create_order);
+    if (!this.isCheckPrivacy) {
+      this.customService.toastMessage("Bạn vui lòng đồng ý với điều khoản thanh toán.", "bottom", 3000);
+    } else {
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+      this.retryCreateOrder(5, this.loading);
+      console.log(this.paymentService.param_create_order);
+    }
 
   }
 

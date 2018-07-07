@@ -1,6 +1,6 @@
 import { CustomService } from './../../services/custom.service';
 import { AddFeedComponent } from './../add-feed/add-feed.component';
-import { App, LoadingController, NavController } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 import { FeedsService } from './../../services/feeds.service';
 import { Mood } from './../../api/models/mood';
 import { User } from './../../api/models/user';
@@ -31,7 +31,6 @@ export class FeedsComponent implements OnInit {
     private customService: CustomService,
     private feedsService: FeedsService,
     private appCtrl: App,
-    private nav: NavController,
     public loadingCtrl: LoadingController,
   ) { }
   someMethod(obj) {

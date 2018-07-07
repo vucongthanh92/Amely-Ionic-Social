@@ -1,4 +1,4 @@
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController,  LoadingController } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CustomService } from '../../../services/custom.service';
 import { Transaction } from '../../../api/models';

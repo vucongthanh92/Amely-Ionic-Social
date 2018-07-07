@@ -3,7 +3,6 @@
 /**
  */
 export class body_69 {
-    owner_guid?: number;
-    cover_type?: string;
-    images?: string[];
+    transaction_type?: string;
+    shop_guid?: string;
 }

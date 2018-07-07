@@ -57,4 +57,8 @@ export class PaymentService {
   deleteQuickPay(toGuid: number) {
     return this.api.quickpayDelete({ toGuid: toGuid, isShop: "false" });
   }
+
+  getPolicy(name, value) {
+    return this.api.getPolicy({ name: name, value: value });
+  }
 }

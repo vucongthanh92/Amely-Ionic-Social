@@ -7,7 +7,6 @@ import { CustomService } from '../../services/custom.service';
 import { FirebaseService } from '../../services/firebase.service';
 import { Camera } from '@ionic-native/camera';
 import { NavController } from 'ionic-angular';
-import { STORAGE_PROVIDERS } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-comments',
