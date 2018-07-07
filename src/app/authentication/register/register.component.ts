@@ -10,11 +10,11 @@ import { User } from '../../api/models';
   templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
-  public birthdate: string;
+  public birthdate: string ="1990-01-01";
   public email: string;
   // public email_re: string;
   public firstname: string;
-  public gender: string;
+  public gender: string ="male";
   public lastname: string;
   public mobilelogin: string;
   public password: string;
