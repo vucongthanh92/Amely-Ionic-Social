@@ -358,4 +358,11 @@ export class CustomService {
       img.src = url;
     });
   }
+
+  replaceImageToLarger(avatar: string) {
+    if (avatar.indexOf('/larger/') > -1) {
+      return avatar.replace('/larger/', '/lgthumb/')
+    }
+    return avatar;
+  }
 }

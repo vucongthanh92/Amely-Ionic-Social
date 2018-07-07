@@ -61,6 +61,7 @@ export class EventComponent implements OnInit {
                 data.events.avatar = localStorage.getItem("avatar" + data.events.guid);
               })
           }
+          data.events.avatar = this.customService.replaceImageToLarger(data.events.avatar);
           this.event = data.events;
           this.users = data.users;
           this.string_guests = this.event.invites_accepted.split(',');

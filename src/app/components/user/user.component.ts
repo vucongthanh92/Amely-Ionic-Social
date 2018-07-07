@@ -58,6 +58,7 @@ export class UserComponent {
     imageViewerCtrl: ImageViewerController,
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    this.userCurrent.avatar = this.customService.replaceImageToLarger(this.userCurrent.avatar)
     this.urlImage = this.userCurrent.avatar;
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
     this.nav.swipeBackEnabled = true;
@@ -105,6 +106,7 @@ export class UserComponent {
       if (data.guid == null) {
         this.is_failed = true;
       } else {
+        data.avatar = this.customService.replaceImageToLarger(data.avatar)
         this.isLoadSuccess = true;
         //todo check avatar ,cover's usercurrent is valid, if not get data from localstorage
         if (this.userGuid == this.userCurrent.guid) {
