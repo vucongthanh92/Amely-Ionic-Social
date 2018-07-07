@@ -52,7 +52,7 @@ export class GroupComponent implements OnInit {
     }
     this.groupService.getGroup(this.groupGuid).subscribe(
       data => {
-        if (data.owner_guid==this.customService.user_current.guid) {
+        if (data.owner_guid == this.customService.user_current.guid) {
           this.customService.checkUrlImage(data.cover, 0)
             .then(result => localStorage.removeItem("cover" + data.guid))
             .catch(err => {
@@ -64,6 +64,7 @@ export class GroupComponent implements OnInit {
               data.avatar = localStorage.getItem("avatar" + data.guid);
             })
         }
+        data.avatar = this.customService.replaceImageToLarger(data.avatar);
         this.groups.push(data);
         this.group = data;
         this.isMenu = this.group.members.some(e => e.guid == this.customService.user_current.guid);

@@ -1,6 +1,5 @@
 import { PaymentMethodComponent } from './../../../components/payment-method/payment-method.component';
 import { InventoriesService } from './../../../services/inventories.service';
-import { DeliveryConfirmComponent } from './../delivery-confirm/delivery-confirm.component';
 import { CustomService } from './../../../services/custom.service';
 import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
