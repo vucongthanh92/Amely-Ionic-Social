@@ -11,7 +11,7 @@ export class InventoriesService {
   public deliverOption: {
     item: Item, quantity: number, fullname: string, phone: string,
     address: string, ward: string, province: string, district: string, payment_method: any, note: string,
-    payment_methods: any, shipping_fee: string
+    payment_methods: any, shipping_fee: string,shipping_method:string
   };
 
   getInventory(guid, type) {
