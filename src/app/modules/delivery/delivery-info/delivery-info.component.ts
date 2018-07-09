@@ -100,6 +100,8 @@ export class DeliveryInfoComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000);
       return;
     }
+    console.log(this.payment_method.filename);
+    
     this.inventoryService.shippingFeeDelevery(this.item.product_snapshot.guid + "", this.payment_method.filename, this.address, this.province_id, this.district_id, this.ward_id)
       .subscribe(data => {
         loading.dismiss();
@@ -107,7 +109,7 @@ export class DeliveryInfoComponent implements OnInit {
         this.inventoryService.deliverOption = {
           item: this.item, quantity: this.quantity, fullname: this.fullname, phone: this.phone,
           address: this.address, ward: this.ward_id, province: this.province_id, district: this.district_id, payment_method: this.payment_method, note: this.note,
-          payment_methods: this.payment_methods, shipping_fee: data.shipping_fee
+          payment_methods: this.payment_methods, shipping_fee: data.shipping_fee, shipping_method: this.payment_method.filename
         };
         this.nav.push(PaymentMethodComponent, { paymentMethods: this.inventoryService.paymentMethods })
 

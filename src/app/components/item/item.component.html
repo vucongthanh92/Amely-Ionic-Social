@@ -49,6 +49,7 @@
         <ion-card-header>
             Thông tin sản phẩm
         </ion-card-header>
+        <ion-row class="inventtory_item_row" innerHtml="{{product.description}}"></ion-row>
         <ion-row class="inventtory_item_row">Số lượng : {{item.quantity}}</ion-row>
         <ion-row>
             <ion-col class="inventtory_item_timeout inventtory_item_row" col-12>Ngày hết hạn lưu kho: {{stored_end | date: 'dd/MM/yyyy'}}</ion-col>

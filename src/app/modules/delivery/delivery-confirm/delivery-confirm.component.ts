@@ -21,6 +21,7 @@ export class DeliveryConfirmComponent implements OnInit {
   ward_id: string;
   province_id: string;
   district_id: string;
+  shipping_method: string;
   payment_method: any;
   shipping_fee: number;
   note: string;
@@ -54,10 +55,14 @@ export class DeliveryConfirmComponent implements OnInit {
     this.payment_methods = this.inventoryService.deliverOption.payment_methods;
     this.shipping_fee = +this.inventoryService.deliverOption.shipping_fee;
     this.note = this.inventoryService.deliverOption.note;
+    this.shipping_method = this.inventoryService.deliverOption.shipping_method;
     this.userCurrent = this.customService.user_current;
     this.payment_selected = this.navParams.get("payment_selected");
     this.full_address = this.address + " " + WARDS.find(data => data.wardid == this.ward_id).name + " " + DISTRICTS.find(data => data.districtid == this.district_id).name
       + " " + PROVINCES.find(data => data.provinceid == this.province_id).name;
+    console.log(this.payment_selected );
+    console.log(this.payment_method );
+      
   }
 
   ngOnInit() {
@@ -85,7 +90,7 @@ export class DeliveryConfirmComponent implements OnInit {
     }
     //todo remake delevery 
     this.inventoryService.delevery(this.ward_id, 'confirm', this.phone, this.address, this.province_id, this.district_id, this.fullname,
-      this.note, this.payment_method.filename, this.shipping_fee + "", this.item.guid + "",
+      this.note, this.shipping_method, this.shipping_fee + "", this.item.guid + "",
       this.quantity, this.item.product_snapshot.shop.guid, this.payment_selected).subscribe(data => {
         loading.dismiss();
         this.openBrowser(data.url)
