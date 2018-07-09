@@ -231,4 +231,8 @@ export class CreateEventComponent implements OnInit {
   dismiss() {
     this.nav.pop();
   }
+
+  onCloseOpenAction(){
+    this.is_open=!this.is_open
+  }
 }

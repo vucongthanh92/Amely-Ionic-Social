@@ -146,10 +146,14 @@
                 <ion-icon class="iconBottom1" id="iconContact"></ion-icon>
             </ion-col>
         </ion-row>
-        <ion-row class="create_event_time_row">
+        <ion-row class="create_event_time_row" (click)="onCloseOpenAction()">
             <ion-col class="create_event_time_full_col">
-                <ion-label class="labelBottom1">Đóng/Mở</ion-label>
-                <ion-toggle [(ngModel)]="is_open" class="create_event_status" checked="true"></ion-toggle>
+                <ion-label class="labelBottom1">Mở sự kiện</ion-label>
+                <!-- <ion-toggle [(ngModel)]="is_open" class="create_event_status" checked="true"></ion-toggle> -->
+
+                <!-- <ion-label class="labelBottom1">Mở</ion-label> -->
+                <ion-checkbox class="create_event_status" [(ngModel)]="is_open" checked="true"></ion-checkbox>
+
             </ion-col>
         </ion-row>
     </div>
