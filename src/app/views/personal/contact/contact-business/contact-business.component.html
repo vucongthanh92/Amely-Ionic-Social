@@ -11,6 +11,11 @@
         </ion-col>
       </ion-row>
     </ion-item>
+
+    <div *ngIf="business_pages.length == 0" class="contact_business_nodata">
+      <img src="assets/imgs/ic_feed.png">
+      <div class="contact_business_nodata_title">Không có dữ liệu...</div>
+    </div>
   </ion-list>
 
   <ion-list *ngIf="!business_pages">
