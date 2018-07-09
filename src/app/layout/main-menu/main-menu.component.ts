@@ -42,6 +42,7 @@ export class MainMenuComponent implements OnInit {
   moodLocal: any;
   public device_screen: string;
   public avatarUrl: string;
+  public fullname: string;
 
   constructor(
     public customService: CustomService,
@@ -90,7 +91,7 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit() {
     this.pages = [
-      { title: this.customService.user_current.fullname, component: PersonalComponent, image: "avatar"},
+      { title: "fullname", component: PersonalComponent, image: "avatar" },
       { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
       { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
       { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
@@ -117,7 +118,8 @@ export class MainMenuComponent implements OnInit {
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
         this.customService.user_current = data;
-        this.avatarUrl=data.avatar;
+        this.avatarUrl = data.avatar;
+        this.fullname = data.fullname;
         const year = new Date(data.birthdate).getFullYear() + '';
         if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
         else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)

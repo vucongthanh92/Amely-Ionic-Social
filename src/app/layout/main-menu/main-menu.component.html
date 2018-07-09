@@ -11,7 +11,8 @@
                         <img *ngIf="p.image!='avatar'" src="{{ p.image }}" onError="this.src='assets/imgs/avatar-nam.png'">
                         <img *ngIf="p.image=='avatar'" src="{{ avatarUrl }}" onError="this.src='assets/imgs/avatar-nam.png'">
                     </div>
-                    <p class="main_title">{{ p.title }}</p>
+                    <p *ngIf="p.title!='fullname'" class="main_title">{{ p.title }}</p>
+                    <p class="main_title" *ngIf="p.title=='fullname'">{{ fullname }}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>
