@@ -1,19 +1,20 @@
 <ion-menu [content]="mycontent" id="mainMenu">
-  <ion-content class="content-main">
-    <ion-grid>
-      <ion-row [ngClass]="device_screen">
-        <!-- <ion-col class="main-nav" col-6 offset-3 *ngIf="customService.user_current" (click)="openPageProfile()"  >
+    <ion-content class="content-main">
+        <ion-grid>
+            <ion-row [ngClass]="device_screen">
+                <!-- <ion-col class="main-nav" col-6 offset-3 *ngIf="customService.user_current" (click)="openPageProfile()"  >
           <div [style.background]="'url(' + customService.user_current.avatar + ')'" class="menu_images"></div>
           <p class="main_title">{{customService.user_current.fullname }}</p>
         </ion-col> -->
-        <ion-col class="main-nav" col-9 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
-          <div class="menu_images">
-            <img src="{{ p.image }}" onError="this.src='assets/imgs/avatar-nam.png'">
-          </div>
-          <p class="main_title">{{ p.title }}</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+                <ion-col class="main-nav" col-9 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
+                    <div class="menu_images">
+                        <img *ngIf="p.image!='avatar'" src="{{ p.image }}" onError="this.src='assets/imgs/avatar-nam.png'">
+                        <img *ngIf="p.image=='avatar'" src="{{ avatarUrl }}" onError="this.src='assets/imgs/avatar-nam.png'">
+                    </div>
+                    <p class="main_title">{{ p.title }}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
 </ion-menu>
-<ion-nav [root]="rootPage" #mycontent ></ion-nav>
+<ion-nav [root]="rootPage" #mycontent></ion-nav>

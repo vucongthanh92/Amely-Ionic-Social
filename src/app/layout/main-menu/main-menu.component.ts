@@ -41,6 +41,7 @@ export class MainMenuComponent implements OnInit {
   loggin_user: any;
   moodLocal: any;
   public device_screen: string;
+  public avatarUrl: string;
 
   constructor(
     public customService: CustomService,
@@ -88,33 +89,39 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pages = [
+      { title: this.customService.user_current.fullname, component: PersonalComponent, image: "avatar"},
+      { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
+      { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
+      { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
+      { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
+    ];
     this.getUserProfile();
   }
 
   getUserProfile() {
-    this.retryGetuserProfile(5);
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    this.retryGetuserProfile(5, loading);
   }
 
-  retryGetuserProfile(retry) {
+  retryGetuserProfile(retry, loading) {
     if (retry == 0) {
       return;
     }
     this.api.getProfile({}).subscribe(data => {
+      loading.dismiss();
       if (data.guid) {
         localStorage.setItem('loggin_user', JSON.stringify(data));
         this.customService.user_current = data;
-
+        this.avatarUrl=data.avatar;
         const year = new Date(data.birthdate).getFullYear() + '';
         if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
         else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
 
-        this.pages = [
-          { title: this.customService.user_current.fullname, component: PersonalComponent, image: data.avatar },
-          { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
-          { title: 'MUA SẮM', component: ShoppingComponent, image: 'assets/imgs/Shopping.png' },
-          { title: 'KHO QUÀ', component: InventoriesComponent, image: 'assets/imgs/Inventory.png' },
-          { title: 'THIẾT LẬP', component: SettingsComponent, image: 'assets/imgs/Settings.png' }
-        ];
         this.retryGetFriends(5, data);
         this.notifyFirebase();
         this.geolocation.getCurrentPosition().then((resp) => {
@@ -135,7 +142,7 @@ export class MainMenuComponent implements OnInit {
         this.customService.toastMessage('Thông tin tài khoản đã bị thay đổi. Vui lòng đăng nhập lại', 'bottom', 3000);
         this.nav.setRoot(SigninComponent);
       }
-    }, err => this.retryGetuserProfile(--retry))
+    }, err => this.retryGetuserProfile(--retry, loading))
   }
 
   retryGetFriends(retry, data) {
