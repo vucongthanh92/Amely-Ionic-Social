@@ -120,20 +120,14 @@ export class NoteFriendComponent implements OnInit {
   createFirebaseAcceptAddFriend(userChat) {
     this.fbService.findKeyChat(userChat, this.customService.user_current.username).once("value", snap => {
       const message = { from: this.customService.user_current.username, status: "Đang gửi", text: 'Đã đồng ý yêu cầu kết bạn .', time: Date.now() };
-      console.log(snap.val());
-   
-      
       if (snap.val() == null) {
-        
         const key = this.fbService.createKeyFirebase();
         const individual = { key: key, last_read: Date.now(), unread_count: 0 }
         this.fbService.insertIndividual(this.customService.user_current.username, userChat, individual);
         this.fbService.insertIndividual(userChat, this.customService.user_current.username, individual);
         this.fbService.getMessages(key).push(message);
-        console.log(key);
       } else {
         const key = snap.val().key;
-        console.log(key);
         this.fbService.getMessages(key).push(message);
       }
     })
