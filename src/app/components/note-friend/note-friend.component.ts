@@ -49,7 +49,7 @@ export class NoteFriendComponent implements OnInit {
       });
   }
 
-  accept(type, to_guid) {
+  accept(type, to_guid, username) {
 
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
@@ -57,19 +57,19 @@ export class NoteFriendComponent implements OnInit {
     });
     loading.present();
 
-    this.retryPutApproval(5, type, to_guid, loading);
+    this.retryPutApproval(5, type, to_guid, loading, username);
 
   }
 
-  retryPutApproval(retry, type, to_guid, loading) {
+  retryPutApproval(retry, type, to_guid, loading, username) {
     if (retry == 0) {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
     this.invitationService.putApproval(type, null, to_guid).subscribe(data => {
       loading.dismiss();
-      this.hanldeAcceptOrCancelRequest(true, data, type, to_guid);
-    }, err => this.retryPutApproval(--retry, type, to_guid, loading))
+      this.hanldeAcceptOrCancelRequest(true, data, type, to_guid, username);
+    }, err => this.retryPutApproval(--retry, type, to_guid, loading, username))
   }
 
   cancel(type, to_guid) {
@@ -89,15 +89,18 @@ export class NoteFriendComponent implements OnInit {
     }
     this.invitationService.deleteApproval(type, null, to_guid).subscribe(data => {
       loading.dismiss();
-      this.hanldeAcceptOrCancelRequest(false, data, type, to_guid);
+      this.hanldeAcceptOrCancelRequest(false, data, type, to_guid, null);
     }, err => this.retryDeleteApproval(--retry, type, to_guid, loading))
   }
-  hanldeAcceptOrCancelRequest(isAccept, data: DefaultResponse, type, to_guid) {
+  hanldeAcceptOrCancelRequest(isAccept, data: DefaultResponse, type, to_guid, username) {
     if (data.status) {
       this.customService.toastMessage('Thành công', 'bottom', 2000);
       switch (type) {
         case 'user':
-          this.users = this.users.filter(e => e.guid != to_guid)
+          this.users = this.users.filter(e => e.guid != to_guid);
+          if (isAccept) {
+            this.createFirebaseAcceptAddFriend(username);
+          }
           break;
         case 'group':
           if (isAccept) {
@@ -112,5 +115,27 @@ export class NoteFriendComponent implements OnInit {
     } else {
       this.customService.toastMessage('Thất bại !', 'bottom', 2000);
     }
+  }
+
+  createFirebaseAcceptAddFriend(userChat) {
+    this.fbService.findKeyChat(userChat, this.customService.user_current.username).once("value", snap => {
+      const message = { from: this.customService.user_current.username, status: "Đang gửi", text: 'Đã đồng ý yêu cầu kết bạn .', time: Date.now() };
+      console.log(snap.val());
+   
+      
+      if (snap.val() == null) {
+        
+        const key = this.fbService.createKeyFirebase();
+        const individual = { key: key, last_read: Date.now(), unread_count: 0 }
+        this.fbService.insertIndividual(this.customService.user_current.username, userChat, individual);
+        this.fbService.insertIndividual(userChat, this.customService.user_current.username, individual);
+        this.fbService.getMessages(key).push(message);
+        console.log(key);
+      } else {
+        const key = snap.val().key;
+        console.log(key);
+        this.fbService.getMessages(key).push(message);
+      }
+    })
   }
 }

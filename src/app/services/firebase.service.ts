@@ -47,6 +47,17 @@ export class FirebaseService {
     return this.afDatabase.list(path);
   }
 
+  findKeyChat(userChat, userCurrent) {
+    let path = "/users/" + userChat + "/chat/individual/" + userCurrent + "/";
+    return this.afDatabase.database.ref(path);
+  }
+
+  insertIndividual(userChat, userCurrent, individual) {
+    let path = "/users/" + userChat + "/chat/individual/" ;
+    return this.afDatabase.list(path).set(userCurrent, individual);
+  }
+
+
   getLastMessage(key_chat) {
     let path = "/shared/messages/" + key_chat;
     return this.afDatabase.list(path).query.orderByChild('time').limitToLast(1);
@@ -142,5 +153,9 @@ export class FirebaseService {
 
   updateViewedNotify(id, username) {
     this.afDatabase.database.ref('/notifications/' + username + "/" + id).update({ viewed: true });
+  }
+
+  createKeyFirebase() {
+    return this.afDatabase.database.ref().push().key;
   }
 }

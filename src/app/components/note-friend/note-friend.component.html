@@ -4,14 +4,14 @@
         <ion-item *ngFor="let u of users">
             <ion-row>
                 <ion-col col-2>
-                    <img src="{{u.avatar}}" class="message_avatar" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+                    <img src="{{u.avatar}}" class="message_avatar" onError="this.src='assets/imgs/image_not_found.jpg';" />
                 </ion-col>
                 <ion-col col-7>
                     <p class="message_title">{{u.fullname}}</p>
                 </ion-col>
 
                 <ion-col col-2>
-                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('user',u.guid)"></ion-icon>
+                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('user',u.guid,u.username)"></ion-icon>
                     <ion-icon name="close-circle" color="danger" (click)="cancel('user',u.guid)"></ion-icon>
                 </ion-col>
 
@@ -23,7 +23,7 @@
         <ion-item *ngFor="let g of groups">
             <ion-row>
                 <ion-col class="message_image_box">
-                    <img class="message_avatar" src="{{g.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
+                    <img class="message_avatar" src="{{g.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
                 </ion-col>
                 <ion-col class="message_info" col-7>
                     <p class="message_title">{{g.title}}</p>
