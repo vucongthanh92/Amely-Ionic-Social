@@ -52,8 +52,8 @@ export class UserService {
     })
   }
 
-  activeUser(username: string, password: string, mobilelogin: string, code: string) {
-    return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code, email: "" });
+  activeUser(username: string, password: string, mobilelogin: string, code: string,email:string) {
+    return this.api.activeUser({ username: username, password: password, mobilelogin: mobilelogin, code: code, email: email });
   }
 
   reActionUser(mobilelogin: string, email: string) {
