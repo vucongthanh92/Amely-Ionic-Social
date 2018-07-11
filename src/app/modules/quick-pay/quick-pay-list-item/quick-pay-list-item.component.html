@@ -1,76 +1,75 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Hóa đơn cần thanh toán</div>
-    </ion-buttons>
+            <div class="ion_navbar_title">Hóa đơn cần thanh toán</div>
+        </ion-buttons>
 
-    <ion-buttons end>
-      <button ion-button icon-only (click)="next()">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="next()">
         <ion-icon class="quickpay_listitem_next" name="arrow-forward"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="quick_pay_list_container">
-  <ion-list class="quick_pay_list_main">
-    <ion-item class="quick_pay_list_item">
-      <ion-thumbnail item-left>
-        <img class="quick_pay_list_item_img" src="{{shop.avatarurl}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-      </ion-thumbnail>
-      <h2 class="quick_pay_list_item_title">{{shop.title}}</h2>
-      <ion-row class="quick_pay_list_item_info">
-        <ion-col col-12>
-          <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.shop_phone}}</span>
-        </ion-col>
-        <ion-col col-12>
-          <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.shop_address}}</span>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-    <ion-item class="quick_pay_list_owner">
-      <div class="quick_pay_list_item_title">Thông tin chủ cửa hàng: {{shop.owner_name}}</div>
-      <ion-row class="quick_pay_list_item_info">
-        <ion-col col-12>
-          <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.owner_phone}}</span>
-        </ion-col>
-        <ion-col col-12>
-          <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.owner_address}}</span>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-  </ion-list>
-
-  <div class="quick_pay_list_product">
-    <ion-list>
-      <ion-item class="quick_pay_list_product_item" *ngFor="let product of products">
-        <ion-thumbnail class="quick_pay_list_product_image" item-left>
-          <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-        </ion-thumbnail>
-        <h2 class="quick_pay_list_product_item">{{product.title}}</h2>
-        <p style="color: red; position: relative;font-weight: bold">{{formatCurrency(product,product.currency)}}
-          <span *ngIf="product.hasInventory==null || product.hasInventory==1"  style="color: black;font-weight: normal"> x {{product.display_quantity}}</span>
-          <span *ngIf="product.hasInventory==2" style="color: black;font-weight: normal"> x {{product.redeem_quantity}}</span>
-        </p>
-        <div *ngIf="product.hasInventory && product.hasInventory==1" class="quick_pay_list_product_inventory">CÓ TRONG KHO CỦA TÔI</div>
-        <button class="quick_pay_list_product_btn" *ngIf="product.hasInventory && product.hasInventory==1" ion-button item-right 
-          (click)="showInventoryItem(product)">Sử dụng</button>
-        <button *ngIf="product.hasInventory && product.hasInventory==2" ion-button clear item-right>Đã sử dụng</button>
-      </ion-item>
+    <ion-list class="quick_pay_list_main">
+        <ion-item class="quick_pay_list_item">
+            <ion-thumbnail item-left>
+                <img class="quick_pay_list_item_img" src="{{shop.avatarurl}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            </ion-thumbnail>
+            <h2 class="quick_pay_list_item_title">{{shop.title}}</h2>
+            <ion-row class="quick_pay_list_item_info">
+                <ion-col col-12>
+                    <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.shop_phone}}</span>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.full_address}}</span>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+        <ion-item class="quick_pay_list_owner">
+            <div class="quick_pay_list_item_title">Thông tin chủ cửa hàng: {{shop.owner_name}}</div>
+            <ion-row class="quick_pay_list_item_info">
+                <ion-col col-12>
+                    <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon><span>{{shop.owner_phone}}</span>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-icon ios="ios-pin" md="md-pin"></ion-icon><span>{{shop.owner_address}}</span>
+                </ion-col>
+            </ion-row>
+        </ion-item>
     </ion-list>
-  </div>
 
-  <ion-row class="quick_pay_list_total">
-    <div class="quick_pay_list_total_main">
-      <ion-item>
-        Tổng tiền :
-        <ion-note class="ionNote" item-end>
-          <p class="quick_pay_list_total_row">{{formatTotalPrice()}}</p>
-        </ion-note>
-      </ion-item>
+    <div class="quick_pay_list_product">
+        <ion-list>
+            <ion-item class="quick_pay_list_product_item" *ngFor="let product of products">
+                <ion-thumbnail class="quick_pay_list_product_image" item-left>
+                    <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                </ion-thumbnail>
+                <h2 class="quick_pay_list_product_item">{{product.title}}</h2>
+                <p style="color: red; position: relative;font-weight: bold">{{formatCurrency(product,product.currency)}}
+                    <span *ngIf="product.hasInventory==null || product.hasInventory==1" style="color: black;font-weight: normal"> x {{product.display_quantity}}</span>
+                    <span *ngIf="product.hasInventory==2" style="color: black;font-weight: normal"> x {{product.redeem_quantity}}</span>
+                </p>
+                <div *ngIf="product.hasInventory && product.hasInventory==1" class="quick_pay_list_product_inventory">CÓ TRONG KHO CỦA TÔI</div>
+                <button class="quick_pay_list_product_btn" *ngIf="product.hasInventory && product.hasInventory==1" ion-button item-right (click)="showInventoryItem(product)">Sử dụng</button>
+                <button *ngIf="product.hasInventory && product.hasInventory==2" ion-button clear item-right>Đã sử dụng</button>
+            </ion-item>
+        </ion-list>
     </div>
-  </ion-row>
+
+    <ion-row class="quick_pay_list_total">
+        <div class="quick_pay_list_total_main">
+            <ion-item>
+                Tổng tiền :
+                <ion-note class="ionNote" item-end>
+                    <p class="quick_pay_list_total_row">{{formatTotalPrice()}}</p>
+                </ion-note>
+            </ion-item>
+        </div>
+    </ion-row>
 </ion-content>
