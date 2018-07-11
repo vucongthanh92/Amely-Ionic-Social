@@ -14,7 +14,7 @@ import { SigninComponent } from "./../signin/signin.component";
 })
 export class VerifycodeComponent implements OnInit {
   user: User;
-  mobile: string;
+  email: string;
   code: string;
   timerVar;
   timerVal: number = 300;
@@ -23,7 +23,9 @@ export class VerifycodeComponent implements OnInit {
   constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.user = this.navParams.get('user');
-    this.mobile = this.user.mobilelogin;
+    this.email = this.user.email;
+    console.log(this.user);
+    
   }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class VerifycodeComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.userService.activeUser(this.user.username, this.user.password, this.user.mobilelogin, this.code).subscribe(data => {
+    this.userService.activeUser(this.user.username, this.user.password,"", this.code,this.email).subscribe(data => {
       if (data.status) {
         loading.dismiss();
         this.nav.setRoot(SigninComponent);
