@@ -2,7 +2,7 @@
   <ion-list class="nearby_friendly" no-lines *ngIf="datas">
     <ion-item class="nearby_friendly_item" *ngFor="let data of datas" (click)="goToPageProfile(data.user.guid)">
       <ion-avatar item-start>
-        <img src="{{data.user.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'">
+        <img src="{{data.user.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'">
       </ion-avatar>
       <h2 class="nearby_title">{{data.user.fullname}}</h2>
       <ion-row>

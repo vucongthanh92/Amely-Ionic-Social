@@ -22,7 +22,7 @@
         </div>
         <div class="event_avatar">
             <div class="event_avatar_image">
-                <img src="{{event.avatar}}" imageViewer onError="this.src='assets/imgs/nhom.png'">
+                <img src="{{event.avatar}}" imageViewer onError="this.src='assets/imgs/default-avatar-event.png'">
             </div>
             <div class="event_avatar_title">{{event.title}}</div>
         </div>
@@ -93,7 +93,7 @@
                 <ion-item class="members_row" *ngIf="getUser(event.creator.guid)">
                     <ion-avatar item-start>
                         <img (click)="openUserProfile(getUser(event.creator.guid))" src="{{getUser(event.creator.guid).avatar}}" 
-                            onError="this.src='assets/imgs/avatar-nam.png'">
+                            onError="this.src='assets/imgs/default-avatar-user.png'">
                     </ion-avatar>
                     {{getUser(event.creator.guid).fullname}}
                 </ion-item>
@@ -104,7 +104,7 @@
                 <ion-item class="members_row" *ngFor="let guid of string_members">
                     <ion-avatar item-start *ngIf="guid">
                         <img (click)="openUserProfile(getUser(guid))" *ngIf="getUser(guid)" src="{{getUser(guid).avatar}}" 
-                            onError="this.src='assets/imgs/avatar-nam.png'">
+                            onError="this.src='assets/imgs/default-avatar-user.png'">
                     </ion-avatar>
                     {{getUser(guid).fullname}}
                 </ion-item>
