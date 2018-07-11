@@ -41,17 +41,17 @@ export class CreateShopComponent implements OnInit {
   public relesDisabled: boolean = false;
 
   constructor(
-    private navParams: NavParams, 
-    private appCtrl: App, 
-    private customService: CustomService, 
+    private navParams: NavParams,
+    private appCtrl: App,
+    private customService: CustomService,
     private shopService: ShopsService,
     public loadingCtrl: LoadingController,
     public nav: NavController
   ) {
-    
+
     this.shop = this.navParams.get('shop');
     console.log(this.shop);
-    
+
     if (this.shop.guid != null) {
       this.name = this.shop.title;
       this.phone = this.shop.shop_phone;
@@ -63,18 +63,16 @@ export class CreateShopComponent implements OnInit {
       this.owner_address = this.shop.owner_address;
       this.shipping_method = this.shop.shipping_method;
       this.ssn = this.shop.owner_ssn + '';
-      this.province=this.shop.shop_province;
-      this.district=this.shop.shop_district;
-      this.ward=this.shop.shop_ward;
-      this.address=this.shop.shop_address;
-      this.address=this.shop.shop_address;
+      this.province = this.shop.shop_province;
+      this.district = this.shop.shop_district;
+      this.ward = this.shop.shop_ward;
       this.owner_district = this.shop.owner_district;
       this.owner_province = this.shop.owner_province;
       this.owner_ward = this.shop.owner_ward;
       if (this.shop.status == '1' || this.shop.status == '2' || this.shop.status == '3' || this.shop.status == '4' || this.shop.status == '5') {
         this.rules = true;
         this.relesDisabled = true;
-        
+
       }
       this.districts = DISTRICTS.filter(data => data.provinceid == this.province);
       this.wards = WARDS.filter(data => data.districtid == this.district);
@@ -174,7 +172,7 @@ export class CreateShopComponent implements OnInit {
     } else if (this.rules == false) {
       loading.dismiss();
       this.customService.toastMessage('Bạn chưa đồng ý điều khoản của Amely !', 'bottom', 2000);
-    }else {
+    } else {
       this.retryCreateShop(5, loading)
     }
   }
