@@ -18,7 +18,7 @@
 <ion-content class="outer-content">
     <div *ngIf="!is_failed && user">
         <div class="profile_cover">
-            <img src="{{user.cover}}" (click)="openModal(this.userCurrent.cover)" onError="this.src='assets/imgs/banner.png';">
+            <img src="{{user.cover}}" onError="this.src='assets/imgs/banner.png';">
         </div>
         <div class="profile_avatar">
             <div class="profile_avatar_image">

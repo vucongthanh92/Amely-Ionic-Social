@@ -96,14 +96,14 @@
     <div class="">
         <ion-list no-border>
             <ion-list-header>Điều khoản thanh toán</ion-list-header>
-
-            <span innerHtml="{{privacy}}"></span>
+            <ion-item class="payment_confirm_regular">
+                <span innerHtml="{{privacy}}"></span>
+            </ion-item>
             <ion-item>
                 <ion-label>Tối đồng ý với điều khoản trên</ion-label>
                 <ion-checkbox [(ngModel)]="isCheckPrivacy"></ion-checkbox>
             </ion-item>
         </ion-list>
-
     </div>
 </ion-content>
 

@@ -10,4 +10,9 @@ app-payment-confirm {
         word-wrap: break-word;
         white-space: normal;
     }
+
+    .payment_confirm_regular {
+        height: 25rem;
+        overflow: scroll;
+    }
 }
