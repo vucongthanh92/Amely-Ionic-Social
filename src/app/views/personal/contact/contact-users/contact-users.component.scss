@@ -7,9 +7,10 @@ app-contact-users {
         padding: 0px;
         border-radius: 50%;
         overflow: hidden;
-        width: 60px;
-        height: 60px;
+        width: 5.5rem;
+        height: 5.5rem;
         -webkit-flex: unset;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 
         img {
             height: 100%;
@@ -147,7 +148,8 @@ app-contact-users {
         text-align: center;
 
         img {
-            max-width: 30%
+            max-width: 30%;
+            margin: 20px 0px 0px 0px;
         }
 
         .contact_user_nodata_title {

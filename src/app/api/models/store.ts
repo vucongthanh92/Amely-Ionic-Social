@@ -9,6 +9,7 @@ export class Store {
     description?: string;
     title?: string;
     time_created?: number;
+    full_address?: string;
     subtype?: string;
     address?: string;
     phone?: string;

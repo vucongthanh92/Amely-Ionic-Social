@@ -4,7 +4,7 @@
       <ion-item class="inventory_public_item" *ngFor="let group of groups" (click)="goToPage('gift','group',group.guid,group);">
         <ion-row>
           <ion-col class="inventory_public_image" col-3>
-            <img src="{{ group.avatar }}" onError="this.src='assets/imgs/nhom.png'">
+            <img src="{{ group.avatar }}" onError="this.src='assets/imgs/default-avatar-event.png'">
           </ion-col>
           
           <ion-col col-9>
@@ -24,7 +24,7 @@
             <img src="{{event.avatar}}" alt="ionic logo" width="100%">
           </ion-col> -->
           <ion-col *ngIf="event.avatar" class="inventory_public_image" col-3>
-            <img src="{{ event.avatar }}" onError="this.src='assets/imgs/nhom.png'">
+            <img src="{{ event.avatar }}" onError="this.src='assets/imgs/default-avatar-event.png'">
           </ion-col>
           <ion-col *ngIf="event.avatar==null" style="background-image:url('assets/imgs/logo.png')" class="inventory_public_image" col-3></ion-col>
           <ion-col col-9>

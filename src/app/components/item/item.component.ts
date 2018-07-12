@@ -13,6 +13,7 @@ import { Product } from '../../api/models/product';
 import { InventoryTargetsGiftComponent } from '../inventory-targets-gift/inventory-targets-gift.component';
 import { AlertController, LoadingController } from 'ionic-angular';
 import { User } from '../../api/models';
+import { QrComponent } from '../qr/qr.component';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html'
@@ -93,9 +94,11 @@ export class ItemComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
+
     this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
       if (this.createCode) {
         this.createdCode = data.code
+        this.nav.push(QrComponent, { code: data.code})
       }
       this.is_used = false;
       // loading.dismiss();

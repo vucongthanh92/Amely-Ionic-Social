@@ -1,11 +1,11 @@
 app-user {
   .profile_cover {
     width: 100%;
-    height: 16rem;
+    height: 18rem;
     background-color: #fff;
 
     img {
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       width: 100%;
       height: 100%;
@@ -24,12 +24,13 @@ app-user {
       border-radius: 50%;
       position: relative;
       top: -6rem;
+      border: 5px solid #fff;
 
       img {
         width: 100%;
         height: 100%;
         text-align: center;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
       }
     }
@@ -43,7 +44,7 @@ app-user {
       text-overflow: ellipsis;
       text-align: center;
       position: relative;
-      top: -3.5rem;
+      top: -3.6rem;
     }
   }
 
@@ -76,7 +77,7 @@ app-user {
     border: 0px;
     background-color: transparent; 
     color: #999;
-    height: 45px;
+    height: 56px;
   }
 
   .segment-ios-primary .segment-button.segment-activated{
@@ -123,10 +124,10 @@ app-user {
   }
 
   .profile_tab {
-    border-radius: 0px !important; 
+    padding: 6px 0px 6px 0px;
     border: 0px !important;
     border-right: 1px solid #c8c7cc !important;
-    margin: 9px 0px 9px 0px;
+    margin: 0px 0px 0px 0px;
   }
 
   .profile_tab:last-child {

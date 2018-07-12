@@ -109,6 +109,7 @@ export class RegisterComponent implements OnInit {
           u.username = this.username;
           u.password = this.password;
           u.mobilelogin = this.mobilelogin;
+          u.email = this.email;
           this.nav.setRoot(VerifycodeComponent, { user: u });
           loading.dismiss();
         } else {

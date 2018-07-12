@@ -1,124 +1,124 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">cửa hàng</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">cửa hàng</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-  <div *ngIf="shop">
-    <div class="shop_cover">
-      <img src="{{shop.cover}}" onError="this.src='assets/imgs/banner.png';">
-    </div>
+    <div *ngIf="shop">
+        <div class="shop_cover">
+            <img src="{{shop.cover}}" onError="this.src='assets/imgs/banner.png';">
+        </div>
 
-    <div class="shop_avatar_row">
-      <div class="shop_avatar">
-        <img src="{{shop.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'" imageViewer>
-      </div>
-      <div class="shop_avatar_title">{{shop.title}}</div>
-    </div>
+        <div class="shop_avatar_row">
+            <div class="shop_avatar">
+                <img src="{{shop.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'" imageViewer>
+            </div>
+            <div class="shop_avatar_title">{{shop.title}}</div>
+        </div>
 
-    <div class="bar bar-header bar-dark" class="shop_tabcontainer">
-      <ion-segment color="primary" [(ngModel)]="shopTab" class="shop_tab">
-        <ion-segment-button value="products" class="segment-button shop_tab_product" (click)="goToPage('products');">
-          <ion-icon ios="ios-home" md="md-home"></ion-icon>
-          <div class="shop_tab_title">Sản Phẩm</div>
-        </ion-segment-button>
-        <ion-segment-button value="info" class="segment-button shop_tab_info" (click)="goToPage('info');">
-          <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
-          <div class="shop_tab_title">Thông Tin</div>
-        </ion-segment-button>
-      </ion-segment>
+        <div class="bar bar-header bar-dark" class="shop_tabcontainer">
+            <ion-segment color="primary" [(ngModel)]="shopTab" class="shop_tab">
+                <ion-segment-button value="products" class="segment-button shop_tab_product" (click)="goToPage('products');">
+                    <ion-icon ios="ios-home" md="md-home"></ion-icon>
+                    <div class="shop_tab_title">Sản Phẩm</div>
+                </ion-segment-button>
+                <ion-segment-button value="info" class="segment-button shop_tab_info" (click)="goToPage('info');">
+                    <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+                    <div class="shop_tab_title">Thông Tin</div>
+                </ion-segment-button>
+            </ion-segment>
 
-      <ion-row text-center>
-        <ion-col col-6 (click)="likeShop()">
-          <button ion-button icon-left clear small color="danger" *ngIf="shop.liked" >
+            <ion-row text-center>
+                <ion-col col-6 (click)="likeShop()">
+                    <button ion-button icon-left clear small color="danger" *ngIf="shop.liked">
             <img class="iconSubTab" src="assets/imgs/ic_like_actived.png" alt="ionic logo">
             <div class="shop_action_title">Đã thích</div>
           </button>
-          <button ion-button icon-left clear small color="danger" *ngIf="!shop.liked" >
+                    <button ion-button icon-left clear small color="danger" *ngIf="!shop.liked">
             <img class="iconSubTab" src="assets/imgs/ic_like.png" alt="ionic logo">
             <div class="shop_action_title">Thích</div>
           </button>
-        </ion-col>
-        <ion-col col-6>
-          <button ion-button icon-left clear small color="danger" *ngIf="shop.owner_guid != userGuid" (click)="chatOwner()">
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button icon-left clear small color="danger" *ngIf="shop.owner_guid != userGuid" (click)="chatOwner()">
             <img class="iconSubTab" src="assets/imgs/ic_chat_brown.png" alt="ionic logo">
             <div class="shop_action_title">Nhắn tin</div>
           </button>
-        </ion-col>
-      </ion-row>
-    </div>
+                </ion-col>
+            </ion-row>
+        </div>
 
-    <!-- <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
+        <!-- <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
       <ion-refresher-content pullingText="Pull to refresh..." refreshingText="Refreshing...">
       </ion-refresher-content>
     </ion-refresher> -->
 
-    <div *ngIf="productsPage">
-      <app-categories [shopGuid]="shop.guid"></app-categories>
-      <app-products-feature  [shopGuid]="shop.guid"></app-products-feature>
-    </div>
+        <div *ngIf="productsPage">
+            <app-categories [shopGuid]="shop.guid"></app-categories>
+            <app-products-feature [shopGuid]="shop.guid"></app-products-feature>
+        </div>
 
-    <div *ngIf="infoPage">
-      <ion-card class="shop_info_card">
-        <ion-card-header>Thông tin cửa hàng</ion-card-header>
-        <ion-card-content>
-          <ion-row>
-            <ion-col col-5>Tên cửa hàng</ion-col>
-            <ion-col col-7>{{shop.title}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Địa chỉ cửa hàng</ion-col>
-            <ion-col col-7>{{shop.shop_address}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Số điện thoại</ion-col>
-            <ion-col col-7>{{shop.shop_phone}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Mã số thuế</ion-col>
-            <ion-col col-7>{{shop.shop_bidn}}</ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+        <div *ngIf="infoPage">
+            <ion-card class="shop_info_card">
+                <ion-card-header>Thông tin cửa hàng</ion-card-header>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col col-5>Tên cửa hàng</ion-col>
+                        <ion-col col-7>{{shop.title}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Địa chỉ cửa hàng</ion-col>
+                        <ion-col col-7>{{shop.full_address}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Số điện thoại</ion-col>
+                        <ion-col col-7>{{shop.shop_phone}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Mã số thuế</ion-col>
+                        <ion-col col-7>{{shop.shop_bidn}}</ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
 
-      <ion-card class="shop_info_card">
-        <ion-card-header>Thông tin chủ cửa hàng</ion-card-header>
-        <ion-card-content>
-          <ion-row>
-            <ion-col col-5>Họ tên</ion-col>
-            <ion-col col-7>{{shop.owner_name}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Địa chỉ</ion-col>
-            <ion-col col-7>{{shop.owner_address}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Số điện thoại</ion-col>
-            <ion-col col-7>{{shop.owner_phone}}</ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-      
-      <ion-card class="shop_info_card">
-        <ion-card-header>Danh sách cửa hàng</ion-card-header>
-        <ion-card-content *ngFor="let store of shop.stores" (click)="openStoreLocation(store)" > 
-          <ion-card-header>{{store.title}}</ion-card-header>
-          <ion-row>
-            <ion-col col-5>Địa chỉ</ion-col>
-            <ion-col col-7>{{store.address}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-5>Số điện thoại</ion-col>
-            <ion-col col-7>{{store.phone}}</ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+            <ion-card class="shop_info_card">
+                <ion-card-header>Thông tin chủ cửa hàng</ion-card-header>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col col-5>Họ tên</ion-col>
+                        <ion-col col-7>{{shop.owner_name}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Địa chỉ</ion-col>
+                        <ion-col col-7>{{shop.owner_address}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Số điện thoại</ion-col>
+                        <ion-col col-7>{{shop.owner_phone}}</ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card class="shop_info_card">
+                <ion-card-header>Danh sách cửa hàng</ion-card-header>
+                <ion-card-content *ngFor="let store of shop.stores" (click)="openStoreLocation(store)">
+                    <ion-card-header>{{store.title}}</ion-card-header>
+                    <ion-row>
+                        <ion-col col-5>Địa chỉ</ion-col>
+                        <ion-col col-7>{{store.full_address}}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>Số điện thoại</ion-col>
+                        <ion-col col-7>{{store.phone}}</ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </div>
     </div>
-  </div>
 </ion-content>

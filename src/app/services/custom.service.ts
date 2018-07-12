@@ -360,7 +360,8 @@ export class CustomService {
   }
 
   replaceImageToLarger(avatar: string) {
-    if (avatar.indexOf('/larger/') > -1) {
+
+    if (avatar && avatar.indexOf('/larger/') > -1) {
       return avatar.replace('/larger/', '/lgthumb/')
     }
     return avatar;

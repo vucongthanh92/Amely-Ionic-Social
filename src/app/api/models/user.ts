@@ -29,4 +29,5 @@ export class User {
     province?: string;
     district?: string;
     ward?: string;
+    full_address?: string;
 }

@@ -5,11 +5,12 @@ app-contact-groups{
 
     .contact_group_box_image {
         height: 6rem;
-        border-radius: 5px;
         overflow: hidden;
         margin: 0px;
         padding: 0px;
         max-width: none;
+        border-radius: 3px;
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
 
         img {
             width: 100%;
@@ -139,6 +140,7 @@ app-contact-groups{
 
         img {
             max-width: 30%;
+            margin: 20px 0px 0px 0px;
         }
 
         .contact_group_nodata_title {
