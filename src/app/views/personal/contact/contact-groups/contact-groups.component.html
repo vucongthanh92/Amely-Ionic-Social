@@ -4,7 +4,7 @@
       <ion-item *ngFor="let group of groups">
         <ion-row>
           <ion-col class="contact_group_box_image" col-2>
-            <img (click)="goToPage(group.guid)" src="{{ group.avatar }}" onError="this.src='assets/imgs/nhom.png'">
+            <img (click)="goToPage(group.guid)" src="{{ group.avatar }}" onError="this.src='assets/imgs/default-avatar-event.png'">
           </ion-col>
 
           <ion-col col-9 (click)="goToPage(group.guid)">

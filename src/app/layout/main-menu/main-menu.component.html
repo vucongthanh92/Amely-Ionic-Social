@@ -3,13 +3,14 @@
         <ion-grid>
             <ion-row [ngClass]="device_screen">
                 <!-- <ion-col class="main-nav" col-6 offset-3 *ngIf="customService.user_current" (click)="openPageProfile()"  >
-          <div [style.background]="'url(' + customService.user_current.avatar + ')'" class="menu_images"></div>
-          <p class="main_title">{{customService.user_current.fullname }}</p>
-        </ion-col> -->
+                    <div [style.background]="'url(' + customService.user_current.avatar + ')'" class="menu_images"></div>
+                    <p class="main_title">{{customService.user_current.fullname }}</p>
+                </ion-col> -->
+
                 <ion-col class="main-nav" col-9 offset-2 *ngFor="let p of pages" (click)="openPage(p)">
                     <div class="menu_images">
-                        <img *ngIf="p.image!='avatar'" src="{{ p.image }}" onError="this.src='assets/imgs/avatar-nam.png'">
-                        <img *ngIf="p.image=='avatar'" src="{{ avatarUrl }}" onError="this.src='assets/imgs/avatar-nam.png'">
+                        <img *ngIf="p.image!='avatar'" src="{{ p.image }}" onError="this.src='assets/imgs/default-avatar-user.png'">
+                        <img *ngIf="p.image=='avatar'" src="{{ avatarUrl }}" class="menu_images_avatar" onError="this.src='assets/imgs/default-avatar-user.png'">
                     </div>
                     <p *ngIf="p.title!='fullname'" class="main_title">{{ p.title }}</p>
                     <p class="main_title" *ngIf="p.title=='fullname'">{{ fullname }}</p>

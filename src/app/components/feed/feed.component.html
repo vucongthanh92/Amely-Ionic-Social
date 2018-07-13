@@ -1,7 +1,7 @@
 <ion-card *ngIf="post.item_type==null">
     <ion-item class="feed_item">
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/default-avatar-user.png'">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
             <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>
@@ -139,7 +139,7 @@
 <ion-card *ngIf="post.item_type=='post:share:post'">
     <ion-item>
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/default-avatar-user.png'">
         </ion-avatar>
         <ion-col *ngIf="userShare" class="feed_mood">
             <span class="feed_title" (click)="openOwner(post.type,post.owner_guid)">{{ user.fullname }}</span>
@@ -268,7 +268,7 @@
 <ion-card *ngIf="post.item_type=='cover:photo' || post.item_type=='profile:photo'">
     <ion-item>
         <ion-avatar item-start>
-            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/avatar-nam.png'">
+            <img (click)="openOwner('user',post.poster_guid)" src="{{ user.avatar }}" onError="this.src='assets/imgs/default-avatar-user.png'">
         </ion-avatar>
         <h2 class="feed_title">{{ user.fullname }}
             <span *ngIf="post.owner_title && type=='user'" (click)="openOwner(post.type,post.owner_guid)"> > {{post.owner_title}}</span>

@@ -36,7 +36,7 @@
       <ion-item class="search_item" *ngFor="let user of users" (click)="goToUserProfile(user)">
         <ion-thumbnail item-start>
           <div class="search_item_image user_image">
-            <img src="{{user.avatar}}" onError="this.src='assets/imgs/avatar-nam.png'" />
+            <img src="{{user.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{user.fullname}}</h2>
@@ -47,7 +47,7 @@
       <ion-item class="search_item" *ngFor="let product of products" (click)="goToProduct(product)">
         <ion-thumbnail item-start>
           <div class="search_item_image">
-            <img src="{{product.images[0]}}" onError="this.src='assets/imgs/nhom.png'" />
+            <img src="{{product.images[0]}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{product.title}}</h2>
@@ -68,7 +68,7 @@
       <ion-item class="search_item" *ngFor="let shop of shops" (click)="goToShopProfile(shop)">
         <ion-thumbnail item-start>
           <div class="search_item_image">
-            <img src="{{shop.avatar}}" onError="this.src='assets/imgs/nhom.png'"/>
+            <img src="{{shop.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'"/>
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{shop.title}}</h2>
@@ -79,7 +79,7 @@
       <ion-item class="search_item" *ngFor="let group of groups" (click)="goToGroupProfile(group)">
         <ion-thumbnail class="search_thumbnail" item-start>
           <div class="search_item_image">
-            <img src="{{group.avatar}}" onError="this.src='assets/imgs/nhom.png'"/>
+            <img src="{{group.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'"/>
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{group.title}}</h2>
@@ -90,7 +90,7 @@
       <ion-item class="search_item" *ngFor="let event of events" (click)="goToEventrProfile(event)">
         <ion-thumbnail item-start>
           <div class="search_item_image">
-            <img src="{{event.avatar}}" onError="this.src='assets/imgs/nhom.png'"/>
+            <img src="{{event.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'"/>
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{event.title}}</h2>
@@ -102,7 +102,7 @@
       <ion-item class="search_item" *ngFor="let b of business" (click)="goToBusinessProfile(b)">
         <ion-thumbnail item-start>
           <div class="search_item_image">
-            <img  src="{{b.avatar}}" onError="this.src='assets/imgs/OA-nam.png'"/>
+            <img  src="{{b.avatar}}" onError="this.src='assets/imgs/default-avatar-official.png'"/>
           </div>
         </ion-thumbnail>
         <h2 class="search_title">{{b.title}}</h2>
