@@ -44,6 +44,7 @@ export class Shop {
     full_address?: string;
     shipping_status?: string;
     shipping_fee?: string;
+    owner_full_address?: string;
     liked?: boolean;
     advertise_guid?: number;
     stores?: Store[];
