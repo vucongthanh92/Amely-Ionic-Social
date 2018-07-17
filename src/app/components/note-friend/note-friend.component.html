@@ -1,57 +1,70 @@
 <ion-content class="outer-content">
     <ion-list *ngIf="users">
         <h3 class="message_label">Cá Nhân</h3>
-        <ion-item *ngFor="let u of users">
+        <ion-item class="note_friend_item" *ngFor="let u of users">
             <ion-row>
                 <ion-col col-2>
                     <img src="{{u.avatar}}" class="message_avatar" onError="this.src='assets/imgs/image_not_found.jpg';" />
                 </ion-col>
-                <ion-col col-7>
+
+                <ion-col col-6>
                     <p class="message_title">{{u.fullname}}</p>
                 </ion-col>
 
-                <ion-col col-2>
-                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('user',u.guid,u.username)"></ion-icon>
-                    <ion-icon name="close-circle" color="danger" (click)="cancel('user',u.guid)"></ion-icon>
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="checkmark-circle" color="secondary" (click)="accept('user',u.guid,u.username)"></ion-icon>
                 </ion-col>
 
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="close-circle" color="danger" (click)="cancel('user',u.guid)"></ion-icon>
+                </ion-col>
             </ion-row>
         </ion-item>
     </ion-list>
+
     <ion-list *ngIf="groups">
         <h3 class="message_label">Nhóm</h3>
-        <ion-item *ngFor="let g of groups">
+        <ion-item class="note_friend_item" *ngFor="let g of groups">
             <ion-row>
-                <ion-col class="message_image_box">
+                <ion-col col-2 class="message_image_box">
                     <img class="message_avatar" src="{{g.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
                 </ion-col>
-                <ion-col class="message_info" col-7>
+
+                <ion-col class="message_info" col-6>
                     <p class="message_title">{{g.title}}</p>
                 </ion-col>
 
-                <ion-col col-2>
-                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('group',g.guid)"></ion-icon>
-                    <ion-icon name="close-circle" color="danger" (click)="cancel('group',g.guid)"></ion-icon>
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="checkmark-circle" color="secondary" (click)="accept('group',g.guid)"></ion-icon>
                 </ion-col>
-            </ion-row>
-        </ion-item>
-    </ion-list>
-    <ion-list *ngIf="events">
-        <h3 class="message_label">Sự kiện</h3>
-        <ion-item *ngFor="let e of events">
-            <ion-row>
-                <ion-col class="message_image_box">
-                    <img class="message_avatar" src="{{e.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
-                </ion-col>
-                <ion-col class="message_info" col-7>
-                    <p class="message_title">{{e.title}}</p>
-                </ion-col>
-                <ion-col col-2>
-                    <ion-icon name="checkmark-circle" color="secondary" (click)="accept('event',e.guid)"></ion-icon>
-                    <ion-icon name="close-circle" color="danger" (click)="cancel('event',e.guid)"></ion-icon>
+
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="close-circle" color="danger" (click)="cancel('group',g.guid)"></ion-icon>
                 </ion-col>
             </ion-row>
         </ion-item>
     </ion-list>
 
+    <ion-list *ngIf="events">
+        <h3 class="message_label">Sự kiện</h3>
+        <ion-item class="note_friend_item" *ngFor="let e of events">
+            <ion-row>
+                <ion-col class="message_image_box" col-2>
+                    <img class="message_avatar" src="{{e.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                </ion-col>
+
+                <ion-col class="message_info" col-6>
+                    <p class="message_title">{{e.title}}</p>
+                </ion-col>
+
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="checkmark-circle" color="secondary" (click)="accept('event',e.guid)"></ion-icon>
+                </ion-col>
+
+                <ion-col col-2 text-center>
+                    <ion-icon class="note_friend_icon" name="close-circle" color="danger" (click)="cancel('event',e.guid)"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
 </ion-content>

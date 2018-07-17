@@ -1,6 +1,7 @@
 app-note-friend{
     .scroll-content {
         background-color: white;
+        overflow: inherit;
     }
 
     .message_label {
@@ -47,15 +48,25 @@ app-note-friend{
         text-transform: capitalize;
         font-size: 18px;
         color: #333;
-        margin: 3px 0px 5px 0px;
+        margin: 5px 0px 5px 0px;
         white-space: nowrap;
-        max-height: 40px;
         overflow: hidden;
-        padding: 3px 0px 0px 7px;
+        padding: 0px;
         text-overflow: ellipsis;
     }
 
     .list-ios {
         margin: 0px 0 0px;
+    }
+
+    .note_friend_icon {
+        font-size: 3.2rem;
+        margin-top: 2px;
+    }
+
+    .note_friend_item {
+        .item-inner {
+            padding: 0px !important;
+        }
     }
 }

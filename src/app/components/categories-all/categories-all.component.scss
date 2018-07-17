@@ -40,9 +40,13 @@ app-categories-all {
 	.categories_images {
 		width: 100%;
 		height: 85px;
-		background-position: center !important;
-		background-size: contain !important;
-		background-repeat: no-repeat !important;
+
+		img {
+			object-fit: contain;
+			object-position: center;
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.category_all_main {
