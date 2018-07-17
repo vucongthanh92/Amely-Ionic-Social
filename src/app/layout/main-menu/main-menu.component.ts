@@ -199,7 +199,6 @@ export class MainMenuComponent implements OnInit {
     }
     this.userService.getUser(null, notify.poster_guid).subscribe(data => {
       notify.from_user = data;
-
       switch (notify.notification_type) {
         case 'like:post':
           notify.title = data.fullname + ' đã thích bài viết của bạn';

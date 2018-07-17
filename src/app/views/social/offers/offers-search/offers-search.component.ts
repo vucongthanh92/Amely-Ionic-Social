@@ -128,7 +128,7 @@ export class OffersSearchComponent implements OnInit {
       if (data.owner.guid != that.customService.user_current.guid) {
         that.offers.push(data);
         console.log(data);
-        
+
       }
     }, err => this.retryGetOffer(--retry, that, key));
   }
@@ -166,6 +166,10 @@ export class OffersSearchComponent implements OnInit {
                 that.offersServie.getOffer(key).subscribe(data => {
                   if (data.owner.guid != that.customService.user_current.guid) {
                     that.offers.push(data);
+                    if (data.offer_type == 'random') {
+                      console.log(data);
+
+                    }
                   }
                 });
               });
@@ -213,7 +217,10 @@ export class OffersSearchComponent implements OnInit {
     }, err => this.retryBookmarkOffer(--retry, offer));
   }
 
-  counterOfferRandom(offerRandom: any) {
-    return + offerRandom + 1;
+  counterOfferRandom(offer: Offer) {
+    if (offer.counter_offers) {
+      return offer.counter_offers.length;
+    }
+    return 1;
   }
 }

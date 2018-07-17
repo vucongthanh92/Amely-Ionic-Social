@@ -1,53 +1,53 @@
 <ion-content class="outer-content">
-  <ion-row class="offer_search_row">
-    <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers">
-      <div (click)="changePage(offer)">
-        <ion-row class="offer_search_user_info" margin-top>
-          <img class="offer_search_avatar" src="{{offer.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
-          <ion-col class="offer_search_datetime">
-            <strong>
+    <ion-row class="offer_search_row">
+        <ion-col class="offer_search_main" col-6 *ngFor="let offer of offers">
+            <div (click)="changePage(offer)">
+                <ion-row class="offer_search_user_info" margin-top>
+                    <img class="offer_search_avatar" src="{{offer.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                    <ion-col class="offer_search_datetime">
+                        <strong>
               <ion-icon name="timer"></ion-icon>
               <app-timer #countdownTimer [timeInSeconds]="offer.time_end - offer.current_time"></app-timer>
             </strong>
-          </ion-col>
-          <button ion-button color="danger" outline icon-only class="offer_search_bookmark">
+                    </ion-col>
+                    <button ion-button color="danger" outline icon-only class="offer_search_bookmark">
             <ion-icon name='bookmark' is-active="false"></ion-icon>
           </button>
-        </ion-row>
+                </ion-row>
 
-        <ion-row class="offer_search_content">
-          <div class="offer_search_box">
-            <p *ngIf="offer.target=='public'" class="offer_search_location">
-              <ion-icon class="public"></ion-icon> Xunh quanh</p>
-            <p *ngIf="offer.target=='location'" class="offer_search_location">
-              <ion-icon class="around"></ion-icon> Theo vị trí</p>
-            <p *ngIf="offer.target=='friends'" class="offer_search_location">
-              <ion-icon class="friend"></ion-icon> Bạn bè</p>
+                <ion-row class="offer_search_content">
+                    <div class="offer_search_box">
+                        <p *ngIf="offer.target=='public'" class="offer_search_location">
+                            <ion-icon class="public"></ion-icon> Xunh quanh</p>
+                        <p *ngIf="offer.target=='location'" class="offer_search_location">
+                            <ion-icon class="around"></ion-icon> Theo vị trí</p>
+                        <p *ngIf="offer.target=='friends'" class="offer_search_location">
+                            <ion-icon class="friend"></ion-icon> Bạn bè</p>
 
-            <div class="item-ribbon offer_search_ribbon">
-              <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
+                        <div class="item-ribbon offer_search_ribbon">
+                            <span *ngIf="offer.offer_type == 'giveaway'" class="ribbon sale">
                 <span>FREE</span>
-              </span>
-              <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
+                            </span>
+                            <span *ngIf="offer.offer_type == 'random'" class="ribbon cruzeiro">
                 <span>RANDOM</span>
-              </span>
-              <img src="{{offer.product_snapshot.images[0]}}" class="offer_myself_image" onError="this.src='assets/imgs/image_not_found.jpg';">
-              
+                            </span>
+                            <img src="{{offer.product_snapshot.images[0]}}" class="offer_myself_image" onError="this.src='assets/imgs/image_not_found.jpg';">
+
+                        </div>
+                        <p class="offer_search_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
+                    </div>
+                </ion-row>
             </div>
-            <p class="offer_search_title">{{offer.product_snapshot.title}} #{{offer.guid}}</p>
-          </div>
-        </ion-row>
-      </div>
-      <div *ngIf="offer.offer_type=='random'" class="offer_myself_counter">
-         {{ counterOfferRandom(offer.counter_number)}}/{{offer.limit_counter}}
-      </div>
-      <img (click)="bookmarkOffer(offer)" class="offer_search_icon_offer" src="assets/imgs/ic_pin.png">
-    </ion-col>
-  </ion-row>
+            <div *ngIf="offer.offer_type=='random'" class="offer_myself_counter">
+                {{ counterOfferRandom(offer)}}/{{offer.limit_counter}}
+            </div>
+            <img (click)="bookmarkOffer(offer)" class="offer_search_icon_offer" src="assets/imgs/ic_pin.png">
+        </ion-col>
+    </ion-row>
 </ion-content>
 
 <ion-fab right bottom>
-  <button ion-fab class="offer_search_button" (click)="doRadio()">
+    <button ion-fab class="offer_search_button" (click)="doRadio()">
     <ion-icon name="funnel"></ion-icon>
   </button>
 </ion-fab>

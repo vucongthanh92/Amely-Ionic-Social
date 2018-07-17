@@ -45,7 +45,6 @@ export class UserComponent {
   limitGift: number;
   is_show_fab: boolean = false;
   public device_screen: string;
-
   @ViewChild('feeds') feeds: FeedsComponent;
   constructor(
     public messagesService: MessagesService,
