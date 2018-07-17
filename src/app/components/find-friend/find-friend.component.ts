@@ -57,14 +57,11 @@ export class FindFriendComponent implements OnInit {
 
   scanQR() {
     this.barcodeScanner.scan().then((barcodeData) => {
-
       const userID = barcodeData.text.substr(barcodeData.text.indexOf('/user/') + 6);
-      this.nav.push(UserComponent, { userGuid: userID })
-    }, (err) => {
-
-      this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
-      this.appCtrl.getRootNav().push(UserComponent, { userGuid: 10 });
+      this.appCtrl.getRootNav().push(UserComponent, { userGuid: userID })
       this.viewCtrl.dismiss();
+    }, (err) => {
+      this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
     });
   }
 }
