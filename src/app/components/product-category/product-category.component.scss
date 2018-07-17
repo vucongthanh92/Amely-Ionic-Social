@@ -186,7 +186,7 @@ app-product-category{
 
   .product_category_images {
     padding: 0px;
-    height: 7rem;
+    height: 7.5rem;
     margin: auto;
     border-radius: 3px;
     overflow: hidden;
@@ -201,7 +201,7 @@ app-product-category{
   }
 
   .product_category_title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-transform: capitalize;
     margin: 3px 0px 5px 0px;
     color: #333;
@@ -222,5 +222,11 @@ app-product-category{
     .category_nodata_title {
       color: #999;
     }
+  }
+
+  .product_category_quantity {
+    color: red;
+    margin: 5px 0px 0px 1px;
+    font-size: 1.5rem;
   }
 }

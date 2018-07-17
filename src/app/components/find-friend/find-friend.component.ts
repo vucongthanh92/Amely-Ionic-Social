@@ -2,7 +2,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { User } from './../../api/models/user';
 import { CustomService } from './../../services/custom.service';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { App, ViewController } from 'ionic-angular';
+import { App, ViewController, NavController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { UserComponent } from '../user/user.component';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -16,7 +16,7 @@ export class FindFriendComponent implements OnInit {
   @Output() tabGotClosed = new EventEmitter<boolean>();
   user_found: User;
   public viewCtrl: ViewController;
-  constructor(private appCtrl: App, private userService: UserService, private customService: CustomService, params: NavParams, private barcodeScanner: BarcodeScanner) {
+  constructor(private appCtrl: App, private nav: NavController, private userService: UserService, private customService: CustomService, params: NavParams, private barcodeScanner: BarcodeScanner) {
     this.viewCtrl = params.data;
   }
 
@@ -59,6 +59,7 @@ export class FindFriendComponent implements OnInit {
     this.barcodeScanner.scan().then((barcodeData) => {
       const userID = barcodeData.text.substr(barcodeData.text.indexOf('/user/') + 6);
       this.appCtrl.getRootNav().push(UserComponent, { userGuid: userID })
+      this.viewCtrl.dismiss();
     }, (err) => {
       this.customService.toastMessage('Mã QR không hợp lệ', 'bottom', 3000);
     });

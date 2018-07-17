@@ -83,6 +83,10 @@ export class VouchersComponent implements OnInit {
   }
 
   getDiscountPercent(product: Product) {
-   return (100 - ((product.display_price * 100) / product.display_old_price));
+    return (100 - ((product.display_price * 100) / product.display_old_price));
+  }
+
+  getEndDate(endDate: number) {
+    return new Date(endDate * 1000)
   }
 }

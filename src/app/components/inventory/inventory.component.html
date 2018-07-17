@@ -17,7 +17,7 @@
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{group.owner.fullname}}</div>
 		</ion-item>
-		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'group'">
+		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'group'">
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openGroupProfile()">
 					<ion-thumbnail item-start>
@@ -42,7 +42,8 @@
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{event.owner.fullname}}</div>
 		</ion-item>
-		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'event'">
+
+		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'event'">
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openEventProfile()">
 					<ion-thumbnail item-start>
@@ -59,7 +60,7 @@
 			</ion-avatar>
 			<div class="inventory_user_fullname">{{page.owner.fullname}}</div>
 		</ion-item>
-		<ion-col class="inventory_product" col-6 *ngIf="inventoryType == 'business'">
+		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'business'">
 			<ion-card class="inventory_product_box">
 				<ion-item class="inventory_product_info" (click)="openOAProfile()">
 					<ion-thumbnail item-start>
@@ -71,7 +72,7 @@
 		</ion-col>
 
 		<!-- SHOW FOR GROUP EVENT OA -->
-		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-6 (click)="goToPage('items','all','Tất Cả')">
+		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-5 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
 				<ion-card-header>
 					TỔNG: {{total}}/{{totalItem}}
@@ -90,16 +91,12 @@
 		<!-- SHOW FOR USER -->
 		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
 			<ion-card>
-				<ion-card-header>
-					TỔNG : {{total}}/{{totalItem}}
-				</ion-card-header>
+				<ion-card-header>TỔNG : {{total}}/{{totalItem}}</ion-card-header>
 			</ion-card>
 		</ion-col>
 		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
 			<ion-card>
-				<ion-card-header>
-					GIÁ TRỊ: {{formatCurrency()}}
-				</ion-card-header>
+				<ion-card-header>GIÁ TRỊ: {{formatCurrency()}}</ion-card-header>
 			</ion-card>
 		</ion-col>
 

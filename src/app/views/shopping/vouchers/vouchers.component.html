@@ -12,7 +12,9 @@
                     <img src="{{voucher.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
                 </div>
 
-                <div class="voucher_limit"> * không giới hạn</div>
+                <div *ngIf="voucher.expiry_type=='0' || voucher.expiry_type==''" class="voucher_limit"> * không thời hạn</div>
+                <div *ngIf="voucher.expiry_type=='1'" class="voucher_limit"> Hạn sử dụng {{voucher.duration}} ngày</div>
+                <div *ngIf="voucher.expiry_type=='2'" class="voucher_limit"> Đến ngày {{getEndDate(voucher.end_day) | date: 'dd/MM/yyyy' }}</div>
             </ion-card>
             <h3 class="voucher_title">{{voucher.title}}</h3>
             <div class="voucher_price">
