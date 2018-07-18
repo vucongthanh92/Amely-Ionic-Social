@@ -1,49 +1,44 @@
 app-create-shop {
-  .create_shop_list {
-    margin: 0px 0px 0px 0px;
-  }
-
-  .create_shop_item {
-    padding: 0px;
-
-    .item-inner {
-      padding: 5px 5px 7px 10px;
+    .create_shop_list {
+        margin: 0px 0px 0px 0px;
     }
-
-    .label-ios {
-      color: #8e9093;
+    .create_shop_item {
+        padding: 0px;
+        .item-inner {
+            padding: 5px 5px 7px 10px;
+        }
+        .label-ios {
+            color: #8e9093;
+        }
     }
-  }
-
-  .create_shop_label {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    padding: 9px 0px 9px 10px;
-  }
-
-  .create_shop_note {
-    margin: 15px 9px 18px 10px;
-    color: #333;
-  }
-
-  .create_shop_send {
-    background-color: #f0ad4e;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
-   .register_colum {
+    #txtReason {
+        white-space: normal;
+    }
+    .create_shop_label {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        padding: 9px 0px 9px 10px;
+    }
+    .create_shop_note {
+        margin: 15px 9px 18px 10px;
+        color: #333;
+    }
+    .create_shop_send {
+        background-color: #f0ad4e;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .register_colum {
         padding: 0px;
     }
-.register_box2 {
-		margin-bottom: 20px;
-    // border-radius: 20px 0px 0px 20px;
-    font-size: 15px;
-    height: 45px;
-    color: black;
-    background-color: white;
-        
+    .register_box2 {
+        margin-bottom: 20px;
+        // border-radius: 20px 0px 0px 20px;
+        font-size: 15px;
+        height: 45px;
+        color: black;
+        background-color: white;
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -54,13 +49,12 @@ app-create-shop {
     }
     .register_box3 {
         margin: 0px 0 32px;
-		margin-bottom: 20px;
-    // border-radius: 0px 20px 20px 0px;
-    font-size: 15px;
-    height: 45px;
-    color: black;
-    background-color: white;
-        
+        margin-bottom: 20px;
+        // border-radius: 0px 20px 20px 0px;
+        font-size: 15px;
+        height: 45px;
+        color: black;
+        background-color: white;
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -69,11 +63,9 @@ app-create-shop {
             padding: 0px 0px 0px 5px;
         }
     }
-
     .inputCheckbox {
-      top: 3px;
-      width: 18px;
-      height: 18px;
+        top: 3px;
+        width: 18px;
+        height: 18px;
     }
-  
 }

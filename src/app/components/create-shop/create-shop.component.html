@@ -12,7 +12,7 @@
 <ion-content class="outer-content">
     <ion-list class="create_shop_list">
         <ion-item class="create_shop_item" *ngIf="shop.status=='2'">
-            Cửa hàng không được phê duyệt vì {{shop.reason}}
+            <span id="txtReason">  Cửa hàng không được phê duyệt vì {{shop.reason}}</span>
         </ion-item>
         <ion-item class="create_shop_item">
             <ion-label stacked>Tên cửa hàng</ion-label>
@@ -134,6 +134,6 @@
     define('SHOP_UNPUBLISHED', 5); -->
 
     <button *ngIf="shop.status=='1'" [disabled]=true ion-button class="create_shop_send" full no-margin>Đang đợi phê duyệt</button>
-    <button *ngIf="shop.status=='2'" (click)="createShop()" ion-button class="create_shop_send" full no-margin>Cập nhật</button>
+    <button *ngIf="shop.status=='2'" (click)="updateShop()" ion-button class="create_shop_send" full no-margin>Cập nhật</button>
     <button *ngIf="shop.status==false" (click)="createShop()" ion-button class="create_shop_send" full no-margin>Tạo cửa hàng</button>
 </ion-content>

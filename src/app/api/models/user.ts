@@ -22,6 +22,7 @@ export class User {
     birthdate_hidden?: string;
     mobile_hidden?: string;
     friends_hidden?: string;
+    full_address?: string;
     offer_count?: number;
     gift_count?: number;
     mood?: Mood;
@@ -29,5 +30,4 @@ export class User {
     province?: string;
     district?: string;
     ward?: string;
-    full_address?: string;
 }

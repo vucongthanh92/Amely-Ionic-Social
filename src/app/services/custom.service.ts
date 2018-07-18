@@ -366,4 +366,9 @@ export class CustomService {
     }
     return avatar;
   }
+
+  pushNotification(notify: Notification) {
+    if (this.notifications.some(e => e.notification_type == notify.notification_type && e.time_created == notify.time_created)) return;
+    this.notifications.push(notify);
+  }
 }

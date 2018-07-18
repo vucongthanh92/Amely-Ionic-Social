@@ -120,19 +120,11 @@ export class CreateShopComponent implements OnInit {
 
 
   createShop() {
-
     let loading = this.loadingCtrl.create({
       content: 'Please wait...',
       enableBackdropDismiss: true
     });
     loading.present();
-    console.log(this.ward);
-    console.log(this.district);
-    console.log(this.province);
-    console.log(this.owner_ward);
-    console.log(this.owner_district);
-    console.log(this.owner_province);
-
     if (!this.name) {
       loading.dismiss();
       this.customService.toastMessage('Tên cửa hàng không được để trống', 'bottom', 2000);
@@ -202,5 +194,72 @@ export class CreateShopComponent implements OnInit {
   }
 
   onChange($event) {
+  }
+
+  updateShop() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    if (!this.name) {
+      loading.dismiss();
+      this.customService.toastMessage('Tên cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.phone) {
+      loading.dismiss();
+      this.customService.toastMessage('Số điện thoại cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.address) {
+      loading.dismiss();
+      this.customService.toastMessage('Địa chỉ cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.BIDN) {
+      loading.dismiss();
+      this.customService.toastMessage('Mã doanh nghiệp không được để trống', 'bottom', 2000);
+    } else if (!this.friend_url) {
+      loading.dismiss();
+      this.customService.toastMessage('Friend url không được để trống', 'bottom', 2000);
+    } else if (!this.owner_name) {
+      loading.dismiss();
+      this.customService.toastMessage('Tên chủ cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.owner_phone_number) {
+      loading.dismiss();
+      this.customService.toastMessage('Số điện thoại chủ cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.owner_address) {
+      loading.dismiss();
+      this.customService.toastMessage('Địa chỉ chủ cửa hàng không được để trống', 'bottom', 2000);
+    } else if (!this.ssn) {
+      loading.dismiss();
+      this.customService.toastMessage('SSN không được để trống', 'bottom', 2000);
+    } else if (!this.province && !this.district && !this.ward) {
+      loading.dismiss();
+      this.customService.toastMessage('Chưa chọn địa chỉ cửa hàng', 'bottom', 2000);
+    } else if (!this.owner_province && !this.owner_district && !this.owner_ward) {
+      loading.dismiss();
+      this.customService.toastMessage('Chưa chọn địa chỉ chủ cửa hàng', 'bottom', 2000);
+    } else if (this.rules == false) {
+      loading.dismiss();
+      this.customService.toastMessage('Bạn chưa đồng ý điều khoản của Amely !', 'bottom', 2000);
+    } else {
+      this.retryUpdateShop(5, loading)
+    }
+  }
+
+  retryUpdateShop(retry, loading) {
+    if (retry == 0) {
+      loading.dismiss();
+      this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      return;
+    }
+    this.shopService.updateRequestShop(this.shop.guid, this.name, this.address, this.BIDN, this.price, this.friend_url, this.phone, this.owner_name,
+      this.owner_phone_number, this.owner_address, this.ssn, this.province, this.district, this.ward, this.owner_province, this.owner_district, this.owner_ward).subscribe(
+        data => {
+          if (data.status) {
+            this.appCtrl.getRootNav().pop();
+            this.customService.toastMessage('Cập nhật thành công, đang chờ được duyệt !', 'bottom', 3000)
+          } else {
+            this.customService.toastMessage('Cập nhật thất bại , vui lòng thử lại .', 'bottom', 3000)
+          }
+          loading.dismiss();
+        },
+        err => { this.retryCreateShop(--retry, loading) })
   }
 }
