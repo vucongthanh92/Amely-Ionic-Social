@@ -22,7 +22,8 @@ app-group {
       overflow: hidden;
       position: relative;
       top: -6rem;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      border: 5px solid #fff;
 
       img {
         width: 100%;
@@ -75,21 +76,21 @@ app-group {
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
     color: #00bdf2;
+
+    .group_segment_feed {
+      content:url(./../../assets/imgs/ic_feed_actived.png);
+    }
+
+    .group_segment_friend {
+      content:url(./../../assets/imgs/ic_friend_actived.png);
+    }
   }
 
-  .segment-activated img#tabIconFeeds {
-    content:url(./../../assets/imgs/ic_feed_actived.png);
-  }
-
-  .segment-activated img#tabIconMember {
-    content:url(./../../assets/imgs/ic_friend_actived.png);
-  }
-
-  .iconGroup{
+  .iconGroup {
     width: 25px;
     height: auto;
     float: left;
-    margin-right: 5px;
+    margin-right: 10px;
   }
 
    .group_bar_icon{
@@ -112,19 +113,21 @@ app-group {
     border-top: 1px solid #c7c8cc;
   }
 
-  .segment-ios-primary .segment-button.segment-activated {
-    background-color: transparent;
-    color: #00bdf2;
-  }
-
   .group_tab {
     border-bottom: 1px solid #c7c8cc;
 
-    .group_tab_box{
+    .group_tab_box {
       border: 0px;
       background-color: transparent; 
       color: #999;
       height: 45px;
+      padding: 9px 0px 0px 0px;
+
+      img {
+        width: 3rem;
+        height: auto;
+        margin: 1px 0px 0px 0px;
+      }
     }
 
     ion-icon {
@@ -166,7 +169,7 @@ app-group {
   }
 
   .group_info_row {
-    margin: 15px 0px 18px 0px;
+    margin: 20px 0px 20px 0px;
   }
 
   .list-ios {

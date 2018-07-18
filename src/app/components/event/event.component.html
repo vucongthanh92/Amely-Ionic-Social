@@ -30,11 +30,11 @@
         <div class="bar bar-header bar-dark event_tab">
             <ion-segment color="primary" [(ngModel)]="eventTab" class="event_tab_box">
                 <ion-segment-button value="newfeed" class="segment-button event_tab_btn" (click)="goToPage('newfeed');">
-                    <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+                    <img class="event_segment_feed" src="assets/imgs/ic_feed.png">
                     <div class="event_tab_title">Cập Nhật</div>
                 </ion-segment-button>
                 <ion-segment-button value="members" class="segment-button event_tab_btn" (click)="goToPage('members');">
-                    <ion-icon ios="ios-people" md="md-people"></ion-icon>
+                    <img class="event_segment_friend" src="assets/imgs/ic_friend.png">
                     <div class="event_tab_title">Bạn Bè</div>
                 </ion-segment-button>
             </ion-segment>

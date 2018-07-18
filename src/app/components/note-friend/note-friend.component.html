@@ -4,7 +4,9 @@
         <ion-item class="note_friend_item" *ngFor="let u of users">
             <ion-row>
                 <ion-col col-2>
-                    <img src="{{u.avatar}}" class="message_avatar" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                    <div class="message_avatar_user">
+                        <img src="{{u.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg'" />
+                    </div>
                 </ion-col>
 
                 <ion-col col-6>
@@ -26,11 +28,13 @@
         <h3 class="message_label">Nhóm</h3>
         <ion-item class="note_friend_item" *ngFor="let g of groups">
             <ion-row>
-                <ion-col col-2 class="message_image_box">
-                    <img class="message_avatar" src="{{g.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                <ion-col col-2>
+                    <div class="message_avatar_event">
+                        <img src="{{g.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
+                    </div>
                 </ion-col>
 
-                <ion-col class="message_info" col-6>
+                <ion-col col-6>
                     <p class="message_title">{{g.title}}</p>
                 </ion-col>
 
@@ -49,11 +53,13 @@
         <h3 class="message_label">Sự kiện</h3>
         <ion-item class="note_friend_item" *ngFor="let e of events">
             <ion-row>
-                <ion-col class="message_image_box" col-2>
-                    <img class="message_avatar" src="{{e.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                <ion-col col-2>
+                    <div class="message_avatar_event">
+                        <img src="{{e.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
+                    </div>
                 </ion-col>
 
-                <ion-col class="message_info" col-6>
+                <ion-col col-6>
                     <p class="message_title">{{e.title}}</p>
                 </ion-col>
 
