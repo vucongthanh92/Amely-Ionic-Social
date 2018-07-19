@@ -30,11 +30,11 @@
         <div class="bar bar-header bar-dark" class="group_navigation">
             <ion-segment color="primary" [(ngModel)]="groupTab" class="group_tab">
                 <ion-segment-button value="newfeed" class="group_tab_box tab_border" (click)="goToPage('newfeed');">
-                    <ion-icon ios="ios-paper" md="md-paper"></ion-icon>
+                    <img class="group_segment_feed" src="assets/imgs/ic_feed.png">
                     <div class="group_tab_title">Cập Nhật</div>
                 </ion-segment-button>
                 <ion-segment-button value="members" class="group_tab_box" (click)="goToPage('members');">
-                    <ion-icon ios="ios-people" md="md-people"></ion-icon>
+                    <img class="group_segment_friend" src="assets/imgs/ic_friend.png">
                     <div class="group_tab_title">Thành viên</div>
                 </ion-segment-button>
             </ion-segment>

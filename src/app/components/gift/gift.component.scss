@@ -9,7 +9,9 @@ app-gift {
   }
 
   .divSize {
-    font-size: 20px;
+    font-size: 1.8rem;
+    color: #333;
+    padding: 0px 0px 0px 5px;
   }
 
   .iconSize {
@@ -38,6 +40,10 @@ app-gift {
   .marginRow {
     margin-bottom: 15px;
     left: 32vw;
+  }
+
+  .gift_choose_box {
+    text-align: center;
   }
 
   .popover-ios .popover-content {
@@ -71,6 +77,17 @@ app-gift {
     ion-icon {
       margin: 0px 5px 0px 0px;
       font-size: 2rem;
+    }
+  }
+
+  .gift_receiver {
+    color: #333;
+    font-size: 1.6rem;
+    padding: 7px 0px 0px 5px;
+    box-sizing: border-box;
+
+    span {
+      color: #f0ad4e;
     }
   }
 }
