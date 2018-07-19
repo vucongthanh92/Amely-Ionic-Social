@@ -1,4 +1,4 @@
-import { ProductComponent } from './../product/product.component';
+import { Product } from './../../api/models/product';
 import { UserComponent } from './../user/user.component';
 import { CustomService } from './../../services/custom.service';
 import { Offer } from './../../api/models/offer';
@@ -7,6 +7,7 @@ import { OffersService } from './../../services/offers.service';
 import { NavParams, ModalController, ItemSliding, AlertController, NavController, LoadingController, App } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../api/models/counter-offer';
+import { ProductSnapshotComponent } from '../product-snapshot/product-snapshot.component';
 
 @Component({
   selector: 'app-counters-offer',
@@ -166,8 +167,8 @@ export class CountersOfferComponent implements OnInit {
     this.appCtrl.getRootNav().push(UserComponent, { userGuid: guidOwner, username: username })
   }
 
-  openProduct(guidProduct) {
-    this.appCtrl.getRootNav().push(ProductComponent, { guid: guidProduct });
+  openProduct(product:Product) {
+    this.appCtrl.getRootNav().push(ProductSnapshotComponent, { product: product });
   }
 
   dismiss() {
