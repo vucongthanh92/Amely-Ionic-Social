@@ -202,7 +202,8 @@ export class MainMenuComponent implements OnInit {
       switch (notify.notification_type) {
         case 'like:post':
           notify.title = data.fullname + ' đã thích bài viết của bạn';
-          this.customService.notifications.push(notify);
+          // this.customService.notifications.push(notify);
+          this.customService.pushNotification(notify);
           if (notify.viewed == false) {
             this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
@@ -211,7 +212,8 @@ export class MainMenuComponent implements OnInit {
         case "comments:post":
           // console.log("comments:post");
           notify.title = data.fullname + ' đã bình luận bài viết của bạn';
-          this.customService.notifications.push(notify);
+          // this.customService.notifications.push(notify);
+          this.customService.pushNotification(notify);
           if (notify.viewed == false) {
             this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
@@ -222,7 +224,8 @@ export class MainMenuComponent implements OnInit {
         case "friend:request":
           // console.log("friend:request");
           notify.title = data.fullname + ' đã gửi lời mời kết bạn';
-          this.customService.notifications.push(notify);
+          // this.customService.notifications.push(notify);
+          this.customService.pushNotification(notify);
           if (notify.viewed == false) {
             this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
           }
@@ -268,7 +271,8 @@ export class MainMenuComponent implements OnInit {
     this.groupService.getGroup(notify.subject_guid).subscribe(data => {
       if (data.guid != null) {
         notify.title = user.fullname + " đã mời bạn vào nhóm " + data.title;
-        this.customService.notifications.push(notify);
+        // this.customService.notifications.push(notify);
+        this.customService.pushNotification(notify);
       }
     })
   }
@@ -286,7 +290,8 @@ export class MainMenuComponent implements OnInit {
             } else {
               notify.title = user.fullname + " đã tặng " + data.item.title + " đến bạn"
             }
-            this.customService.notifications.push(notify);
+            // this.customService.notifications.push(notify);
+            this.customService.pushNotification(notify);
             if (notify.viewed == false) {
               this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
@@ -303,7 +308,8 @@ export class MainMenuComponent implements OnInit {
             } else {
               notify.title = user.fullname + " đã đồng ý nhận " + data.item.title + " từ bạn";
             }
-            this.customService.notifications.push(notify);
+            // this.customService.notifications.push(notify);
+            this.customService.pushNotification(notify);
             if (notify.viewed == false) {
               this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
@@ -320,7 +326,8 @@ export class MainMenuComponent implements OnInit {
             } else {
               notify.title = user.fullname + " đã từ chối nhận " + data.item.title + " từ bạn";
             }
-            this.customService.notifications.push(notify);
+            // this.customService.notifications.push(notify);
+            this.customService.pushNotification(notify);
             if (notify.viewed == false) {
               this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
             }
@@ -334,7 +341,8 @@ export class MainMenuComponent implements OnInit {
     this.eventService.getEvent(notify.subject_guid).subscribe(data => {
       try {
         notify.title = user.fullname + " đã mời bạn tham gia sự kiện " + data.events.title;
-        this.customService.notifications.push(notify);
+        // this.customService.notifications.push(notify);
+        this.customService.pushNotification(notify);
         if (notify.viewed == false) {
           this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
         }
@@ -377,7 +385,8 @@ export class MainMenuComponent implements OnInit {
             notify.title = 'Trao đổi ngẫu nhiên đã được tiến hành .';
             break;
         }
-        this.customService.notifications.push(notify);
+        // this.customService.notifications.push(notify);
+        this.customService.pushNotification(notify);
         if (notify.viewed == false) {
           this.showNotify(notify.subject_guid, notify.title, keyFirebase, notify);
         }

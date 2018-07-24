@@ -207,7 +207,7 @@ export class OffersSearchComponent implements OnInit {
   }
 
   retryBookmarkOffer(retry, offer) {
-    if (retry) return retry;
+    if (retry == 0) return retry;
     this.offersServie.bookmarkOffer(offer.guid).subscribe(data => {
       if (data.status) {
         this.customService.toastMessage('Bookmark thành công', 'bottom', 3000);

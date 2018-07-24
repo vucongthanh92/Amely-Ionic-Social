@@ -2,33 +2,44 @@ app-note-friend{
     .scroll-content {
         background-color: white;
         overflow: inherit;
+        padding-top: 10px !important;
     }
 
     .message_label {
-        padding: 15px 0px 10px 18px;
+        padding: 20px 0px 7px 18px;
         font-size: 15px;
         margin: 0px;
         color: #757575;
         font-weight: 300;
+        text-transform: capitalize;
     }
 
-    .message_image_box {
-        border-radius: 50%;
-        height: 70px;
-        overflow: hidden;
-        padding: 0px;
-        width: 70px;
-        -webkit-flex-basis: 0;
-        flex-basis: auto;
-        -webkit-box-flex: unset;
-        flex-grow: 0;
-    }
-
-    .message_avatar {
+    .message_avatar_user {
         width: 12vw;
         height: 12vw;
-        max-height: 12vw;
         border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .message_avatar_event {
+        width: 12vw;
+        height: 12vw;
+        overflow: hidden;
+        border-radius: 3px;
+
+        img {
+            object-fit: contain;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .item-ios {
@@ -41,17 +52,17 @@ app-note-friend{
     }
 
     .message_info {
-        margin: 0px 0px 0px 9px;
+        margin: 0px;
     }
 
     .message_title {
         text-transform: capitalize;
-        font-size: 18px;
+        font-size: 1.6rem;
         color: #333;
-        margin: 5px 0px 5px 0px;
+        margin: 0px;
         white-space: nowrap;
         overflow: hidden;
-        padding: 0px;
+        padding: 7px 0px 0px 3px;
         text-overflow: ellipsis;
     }
 

@@ -71,7 +71,7 @@ app-create-event {
     }
     .create_event_title_box {
         font-size: 1.5rem;
-        margin: 10px 0px 0px 3px;
+        margin: 10px 0px 0px 0px;
         color: #333;
         ion-scroll {
             height: 70px;
@@ -90,22 +90,25 @@ app-create-event {
             color: #9fd2f2;
         }
     }
+
     .create_event_time_full_col {
         background-color: #ffffff;
         border-radius: 10px;
         margin-left: 5px;
         margin-right: 5px;
+        position: relative;
+
         .create_event_time_icon {
             margin-left: 36vw;
             top: -34px;
-            position: relative;
+            position: absolute;
             font-size: 30px;
             color: #9fd2f2;
         }
     }
     .create_event_info_row {
         font-size: 14px;
-        margin-left: 5px;
+        margin: 0px;
     }
     .create_event_customer {
         margin: -3px 0px 0px 6px;
@@ -165,11 +168,12 @@ app-create-event {
         position: relative;
     }
     .create_event_status {
-        top: -36px;
-        left: 90vw;
+        top: 10px;
+        right: 10px;
+        position: absolute;
     }
     .labelBottom1 {
-        margin-left: 15px;
+        margin-left: 10px;
         color: #9d9d9d;
         margin-top: 9px;
         font-size: 14px;
@@ -225,7 +229,7 @@ app-create-event {
         background-repeat: no-repeat;
         position: absolute;
         top: 6px;
-        right: 2px;
+        right: 6px;
     }
     ion-scroll[scrollX] {
         white-space: nowrap;
@@ -253,5 +257,14 @@ app-create-event {
         max-width: 51px;
         width: 51px !important;
         height: 32px;
+    }
+
+    .create_event_inventory_checkbox {
+        margin: 10px 0px 0px 1px;
+    }
+
+    .create_event_member_choose {
+        height: 70px;
+        margin: auto;
     }
 }

@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.userService.register(this.username, this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
+    this.userService.register(this.username.toLowerCase(), this.firstname, this.lastname, this.email, this.email, this.password, this.password_re, this.mobilelogin, this.birthdate, this.gender).subscribe(
       data => {
         console.log(data);
         

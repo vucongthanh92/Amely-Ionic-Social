@@ -21,6 +21,8 @@ app-event {
       margin: auto;
       position: relative;
       top: -6rem;
+      border: 5px solid #fff;
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
 
       img {
         width: 100%;
@@ -70,11 +72,25 @@ app-event {
     background-color: transparent; 
     color: #999;
     height: 45px;
+
+    img {
+      width: 3rem;
+      height: auto;
+      margin: 1px 0px 0px 0px;
+    }
   }
 
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
     color: #00bdf2;
+
+    .event_segment_feed {
+      content:url(./../../assets/imgs/ic_feed_actived.png);
+    }
+
+    .event_segment_friend {
+      content:url(./../../assets/imgs/ic_friend_actived.png);
+    }
   }
 
   .event_give_gift_title {

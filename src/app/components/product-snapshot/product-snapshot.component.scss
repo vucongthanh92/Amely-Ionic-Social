@@ -1,0 +1,97 @@
+app-product-snapshot {
+    .scroll-content {
+        margin: 64px 0px 39px 0px;
+    }
+    .product_topbar_cart {
+        font-size: 2rem;
+        color: #fff;
+        margin: 1px 2px 0px 0px;
+        .product_topbar_cart_icon {
+            position: relative;
+            bottom: 9px;
+            right: 9px;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            font-size: 1rem;
+            padding: 3px 0px 0px 0px;
+        }
+    }
+    .product_image {
+        padding: 0px;
+        img {
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .slide-zoom {
+            height: 30rem;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    .product_add_cart_btn {
+        background-color: #f0ad4e;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 0px;
+        border-radius: 0px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 0px;
+    }
+    .product_feature_price {
+        color: #D9534F;
+        font-size: 1.8rem;
+        text-transform: capitalize;
+    }
+    .product_sale_price {
+        color: #b6b7b7;
+        font-size: 14px;
+        text-transform: capitalize;
+        text-decoration: line-through;
+    }
+    .product_info_label {
+        color: #666;
+    }
+    .product_navbar_width {
+        width: 27rem;
+    }
+    .product_box_title {
+        color: #333;
+        font-size: 1.6rem;
+        padding: 0px;
+        margin: 0px 0px 5px 0px;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    .product_box_price {
+        padding: 0px;
+    }
+    .product_description {
+        ion-card-header {
+            padding-bottom: 10px;
+            color: #333;
+        }
+        ion-card-content {
+            color: #333;
+        }
+    }
+    .product_info_card {
+        margin: 12px 0px 12px 0px;
+        width: 100%;
+        ion-col {
+            color: #8e9093;
+        }
+    }
+    .product_info_description {
+        color: #8e9093;
+    }
+    .product_info_product {
+        margin: 0px 0px 12px 0px;
+        width: 100%;
+    }
+}

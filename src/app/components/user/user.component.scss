@@ -76,12 +76,30 @@ app-user {
     border: 0px;
     background-color: transparent; 
     color: #999;
-    height: 56px;
+    height: 57px;
+
+    img {
+      width: 3rem;
+      height: auto;
+      margin: 1px 0px 0px 0px;
+    }
   }
 
   .segment-ios-primary .segment-button.segment-activated{
     background-color: transparent;
     color:#00bdf2;
+
+    .user_segment_feed {
+      content:url(./../../assets/imgs/ic_feed_actived.png);
+    }
+
+    .user_segment_images {
+      content:url(./../../assets/imgs/ic_image_actived.png);
+    }
+
+    .user_segment_friend {
+      content:url(./../../assets/imgs/ic_friend_actived.png);
+    }
   }
 
   .profile_tab_title{

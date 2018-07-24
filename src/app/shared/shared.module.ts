@@ -1,3 +1,4 @@
+import { ProductSnapshotComponent } from './../components/product-snapshot/product-snapshot.component';
 import { PaymentMethodComponent } from './../components/payment-method/payment-method.component';
 import { QuickPayModule } from './../modules/quick-pay/quick-pay.module';
 import { CategoriesAllComponent } from './../components/categories-all/categories-all.component';
@@ -167,7 +168,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     RenewalItemComponent,
     BannerComponent,
     ForgotChangePassComponent,ForgotVertifyComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    ProductSnapshotComponent
   ],
   entryComponents: [
     CategoriesComponent,
@@ -234,7 +236,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     RenewalItemComponent,
     BannerComponent,
     ForgotChangePassComponent, ForgotVertifyComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    ProductSnapshotComponent
   ],
   exports: [
     CategoriesComponent,
@@ -302,7 +305,8 @@ import { ForgotVertifyComponent } from '../authentication/forgot/forgot-vertify/
     BannerComponent,
     ForgotChangePassComponent,
     ForgotVertifyComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    ProductSnapshotComponent
   ]
 })
 export class SharedModule { }
