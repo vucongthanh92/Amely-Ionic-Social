@@ -4617,6 +4617,8 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   getProducts(body: body_50): Observable<inline_response_200_17> {
+    console.log(body);
+    
     return this.getProductsResponse(body).pipe(
       map(_r => _r.body)
     );

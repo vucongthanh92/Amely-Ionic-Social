@@ -71,7 +71,7 @@ export class SigninComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.authenticationService.login(this.username, this.password).subscribe(resp => {
+    this.authenticationService.login(this.username.toLowerCase(), this.password).subscribe(resp => {
       this.is_logging = false;
       this.loader.dismiss();
 

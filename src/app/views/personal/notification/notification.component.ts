@@ -23,7 +23,8 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
     this.customService.notifications.sort(this.compareUser)
-    this.customService.notifications = this.customService.notifications.filter((item, pos) => this.customService.notifications .indexOf(item) == pos    )
+    // this.customService.notifications = this.customService.notifications.filter((item, pos) => this.customService.notifications .indexOf(item) == pos    )
+    this.customService.notifications = Array.from(new Set(this.customService.notifications ));
   }
   compareUser(a, b) {
     if (a.time_created < b.time_created)
