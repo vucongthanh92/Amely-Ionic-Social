@@ -53,11 +53,11 @@
                 </ion-item>
             </ion-col>
 
-            <ion-col class="register_colum" col-12 *ngIf="false">
+            <ion-col class="register_colum" col-12 *ngIf="is_show_privacy">
                 <ion-list class="register_regulation">
                     <ion-item>
-                        <ion-label class="register_regulation_content">Với tài khoản dưới 18 tuổi cần có sự đồng ý của người giám hộ</ion-label>
-                        <ion-checkbox [(ngModel)]="privacy"></ion-checkbox>
+                        <ion-label class="register_regulation_content">Bạn chưa đủ 18 tuổi</ion-label>
+                        <!-- <ion-checkbox [(ngModel)]="privacy"></ion-checkbox> -->
                     </ion-item>
                 </ion-list>
             </ion-col>
