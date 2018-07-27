@@ -1,25 +1,25 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
-    </ion-buttons>
-    <ion-title>Thông tin quà tặng</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">Close</button>
+        </ion-buttons>
+        <ion-title>Thông tin quà tặng</ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of inventoryItem ">
-      <ion-thumbnail item-left>
-        <img *ngIf="product.images" src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-      </ion-thumbnail>
-      <h2>{{product.title}}
-      </h2>
-      <p>{{product.description}}</p>
+    <ion-list>
+        <ion-item *ngFor="let item of inventoryItem ">
+            <ion-thumbnail item-left>
+                <img *ngIf="product.images" src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+            </ion-thumbnail>
+            <h2 innerHtml="{{product.title}}">
+            </h2>
+            <p>{{product.description}}</p>
 
-      <ion-icon style="font-size: 4.4rem;" range-left name="remove" (click)="onMinus(item.guid)"></ion-icon>
-      <button style="font-size: 2.0rem;margin: -32px  50px 0px;" ion-button disabled="true">{{item.quantity_temp}}/{{item.quantity}}</button>
-      <ion-icon style="font-size: 4.4rem;" range-right name="add" (click)="onAdd(item.guid)"></ion-icon>
+            <ion-icon style="font-size: 4.4rem;" range-left name="remove" (click)="onMinus(item.guid)"></ion-icon>
+            <button style="font-size: 2.0rem;margin: -32px  50px 0px;" ion-button disabled="true">{{item.quantity_temp}}/{{item.quantity}}</button>
+            <ion-icon style="font-size: 4.4rem;" range-right name="add" (click)="onAdd(item.guid)"></ion-icon>
 
-    </ion-item>
-  </ion-list>
+        </ion-item>
+    </ion-list>
 </ion-content>

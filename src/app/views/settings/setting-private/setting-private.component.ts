@@ -26,12 +26,16 @@ export class SettingPrivateComponent implements OnInit {
   }
 
   openShop() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      enableBackdropDismiss: true
-    });
-    loading.present();
-    this.retryWallet(5, loading);
+    if (!this.customService.user_current.chain_store) {
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        enableBackdropDismiss: true
+      });
+      loading.present();
+      this.retryWallet(5, loading);
+    } else {
+      this.customService.toastMessage("Thiết lập này chỉ dành cho chủ cửa hàng.", 'bottom', 3000);
+    }
   }
 
   retryWallet(retry, loading) {

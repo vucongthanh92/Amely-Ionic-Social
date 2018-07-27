@@ -139,6 +139,8 @@ export class GiftComponent implements OnInit {
     if (retry == 0) return;
     this.giftsService.gift(obj).subscribe(res => {
       loading.dismiss();
+      console.log(res);
+      
       if (res.status) {
         this.nav.pop();
         this.customService.toastMessage('Tặng quà thành công !!!', 'bottom', 3000);

@@ -1,55 +1,55 @@
 <div class="product_feature_container" *ngIf="productsMostSold.length>0 && isHasData">
-  <ion-row>
-    <ion-col col-8>
-      <h3 *ngIf="!is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm bán chạy</h3>
-      <h3 *ngIf="is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm tiêu biểu</h3>
-    </ion-col>
-    <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);" *ngIf="shopGuid" >Xem tất cả</ion-col>
-  </ion-row>
-  <ion-scroll scrollX class="product_feature">
-    <div class="scroll-item" *ngIf="productsMostSold ">
-      <ion-col col-6 *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
-        <div class="item-card">
-          <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'" >
-            <span class="ribbon cruzeiro">
+    <ion-row>
+        <ion-col col-8>
+            <h3 *ngIf="!is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm bán chạy</h3>
+            <h3 *ngIf="is_feature" class="product_feature_label" style="font-weight: bold;">Sản phẩm tiêu biểu</h3>
+        </ion-col>
+        <ion-col col-4 class="product_feature_readmore" (click)="goToPage('all',null);" *ngIf="shopGuid">Xem tất cả</ion-col>
+    </ion-row>
+    <ion-scroll scrollX class="product_feature">
+        <div class="scroll-item" *ngIf="productsMostSold ">
+            <ion-col col-6 *ngFor="let product of productsMostSold" (click)="goToPage('product',product)">
+                <div class="item-card">
+                    <div class="item-ribbon offer_search_ribbon" *ngIf="product.is_special=='1'">
+                        <span class="ribbon cruzeiro">
               <span>VOUCHER</span>
-            </span>
-          </div>
-          <div class="products_feature_img">
-            <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </div>
-          <div class="product_feature_info">
-            <h4 class="product_feature_title">{{product.title}}</h4>
-            <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-              <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
-            </div>
-            <ng-template #other_content>
-              <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
-              <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
-            </ng-template>
-          </div>
+                        </span>
+                    </div>
+                    <div class="products_feature_img">
+                        <img src="{{product.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </div>
+                    <div class="product_feature_info">
+                        <h4 class="product_feature_title" innerHtml="{{product.title}}"></h4>
+                        <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+                            <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
+                        </div>
+                        <ng-template #other_content>
+                            <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
+                            <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
+                        </ng-template>
+                    </div>
+                </div>
+            </ion-col>
         </div>
-      </ion-col>
-    </div>
-  </ion-scroll>
+    </ion-scroll>
 </div>
 
 <!-- <ng-template #other_content2> -->
-  <div  class="product_feature_container" *ngIf="!isHasData">
+<div class="product_feature_container" *ngIf="!isHasData">
     <ion-scroll scrollX class="product_feature">
-      <div class="scroll-item">
-        <ion-col col-6 *ngFor="let fake of [3,3,3,3,3,3]">
-          <div class="item-card">
-            <div style="width: 110px;" class='fakeItem'>
-              <div class="divCustom"></div>
-              <div>
-                <h2></h2>
-                <h2></h2>
-              </div>
-            </div>
-          </div>
-        </ion-col>
-      </div>
+        <div class="scroll-item">
+            <ion-col col-6 *ngFor="let fake of [3,3,3,3,3,3]">
+                <div class="item-card">
+                    <div style="width: 110px;" class='fakeItem'>
+                        <div class="divCustom"></div>
+                        <div>
+                            <h2></h2>
+                            <h2></h2>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </div>
     </ion-scroll>
-  </div>
-  <!-- </ng-template> -->
+</div>
+<!-- </ng-template> -->

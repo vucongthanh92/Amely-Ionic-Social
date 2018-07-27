@@ -16,7 +16,7 @@
                 <div *ngIf="voucher.expiry_type=='1'" class="voucher_limit"> Hạn sử dụng {{voucher.duration}} ngày</div>
                 <div *ngIf="voucher.expiry_type=='2'" class="voucher_limit"> Đến ngày {{getEndDate(voucher.end_day) | date: 'dd/MM/yyyy' }}</div>
             </ion-card>
-            <h3 class="voucher_title">{{voucher.title}}</h3>
+            <h3 class="voucher_title" innerHtml="{{voucher.title}}"></h3>
             <div class="voucher_price">
                 <div *ngIf="voucher.sale_price == 0 || voucher.sale_price == null; else other_content">
                     <div class="product_feature_price">{{ formatSalePrice( voucher.display_price, voucher.display_currency) }}</div>
@@ -32,6 +32,9 @@
                 <div class="voucher_sale_content">{{getDiscountPercent(voucher)| number:0}}%</div>
             </div>
         </ion-item>
+        <ion-infinite-scroll *ngIf="!isHiddenLoadmore" (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
         <div *ngIf="vouchers.length == 0" class="voucher_nodata">
             <div>
                 <img src="assets/imgs/ic_feed.png" class="imgNodata" style="max-width: 30%" alt="">
