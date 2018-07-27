@@ -19,7 +19,7 @@ export class VouchersComponent implements OnInit {
   public offset: number = 0;
   public limit: number = 20;
   public device_screen: string;
-
+  public isHiddenLoadmore: boolean = false;
   constructor(
     public nav: NavController,
     public appCtrl: App,
@@ -31,10 +31,11 @@ export class VouchersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData(15);
+    this.loadData(5, null);
+    this.loadCategories(5)
   }
 
-  loadData(retry) {
+  loadData(retry, infiniteScroll) {
 
     // let loading = this.loadingCtrl.create({
     //   content: 'Please wait...',
@@ -44,22 +45,45 @@ export class VouchersComponent implements OnInit {
 
     if (retry == 0) {
       // loading.dismiss();
+      if (infiniteScroll) infiniteScroll.complete();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
     this.shoppingsService.getVouchers(this.offset, this.limit).subscribe(data => {
-      this.vouchers = []
-      if (data instanceof Array) {
-        this.vouchers = data;
-      }
-    }, err => this.loadData(--retry));
+      if (this.vouchers == null || this.vouchers == undefined) {
+        this.vouchers = []
 
+      }
+      if (infiniteScroll) infiniteScroll.complete();
+      if (data instanceof Array) {
+        this.vouchers = this.vouchers.concat(data);
+      }else {
+        this.isHiddenLoadmore=true
+      }
+    }, err => this.loadData(--retry, infiniteScroll));
+
+  }
+
+  loadCategories(retry) {
+    if (retry == 0) {
+      this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
+      return;
+    }
     this.shoppingsService.getCategories(0, 9999, null, 2, 0).subscribe(data => {
       if (data instanceof Array) {
         this.categories = data;
       }
-    }, err => this.loadData(--retry))
+    }, err => this.loadCategories(--retry))
+  }
 
+  doInfinite(infiniteScroll) {
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
+    this.offset = this.offset + this.limit;
+    this.loadData(5, infiniteScroll);
   }
   goToPage(value, voucher: Product, category: Category) {
     switch (value) {

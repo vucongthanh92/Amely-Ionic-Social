@@ -55,6 +55,7 @@ export class MessageComponent implements OnInit {
         } else {
           this.usernameChat = this.param.from;
         }
+        this.param.to = this.userCurrent.username;
         
       } else {
         this.getMessagesGroup();
@@ -74,6 +75,9 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
+                console.log( this.param.to);
+                console.log(this.param.from);
+              
                 let owner_gift = [this.param.from, this.param.to].filter(data => data != object.from);
                 this.messagesService.getGift(object.attachment.url, owner_gift[0]).on('value', gift => {
                   gift.forEach(g => {
@@ -116,6 +120,8 @@ export class MessageComponent implements OnInit {
   getMessagesGroup() {
     let owner = this.param.members.filter(data => data.guid == this.param.owner_guid);
     let owner_username = owner[0].username;
+    console.log(this.param);
+    
     this.messagesService.getMessages(this.param.guid).query.on("value", itemsSnapshot => {
       this.messages = [];
       let checkAvatarSender = "";
@@ -125,7 +131,7 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                this.messagesService.getGift(object.attachment.url, this.userCurrent.username).limitToFirst(1).on('value', gift => {
+                this.messagesService.getGift(object.attachment.url, owner_username).limitToFirst(1).on('value', gift => {
                   gift.forEach(g => {
                     if (g.val().item_guid) {
                       object.gift = g.val();

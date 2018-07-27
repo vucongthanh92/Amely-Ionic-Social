@@ -220,6 +220,7 @@ export class CreateOfferComponent implements OnInit {
   retryCreateCounterOffer(retry, obj, loading) {
     if (retry == 0) {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
+      loading.dismiss();
       return;
     }
     this.offerService.createCounterOffer(obj).subscribe(data => {

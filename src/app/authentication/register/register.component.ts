@@ -83,9 +83,10 @@ export class RegisterComponent implements OnInit {
     } else if (!this.mobilelogin) {
       loading.dismiss();
       this.customService.toastMessage('Số điện thoại không được phép để trống', 'bottom', 2000);
-    } else if (this.is_show_privacy && !this.privacy) {
+    // } else if (this.is_show_privacy && !this.privacy) {
+    } else if (this.is_show_privacy ) {
       loading.dismiss();
-      this.customService.toastMessage('Bạn cần đồng ý với các điều khoản của amely', 'bottom', 2000);
+      this.customService.toastMessage('Bạn chưa đủ 18 tuổi', 'bottom', 2000);
     } else if (this.rules == false) {
       loading.dismiss();
       this.customService.toastMessage('Bạn chưa đồng ý điều khoản và chính sách bảo mật !', 'bottom', 2000);

@@ -75,6 +75,8 @@ export class FirebaseService {
 
   getGiftBySubject(subject_id, username) {
     let path = "/notifications/" + username;
+    console.log(path);
+    console.log(subject_id);
     return this.afDatabase.list(path).query.orderByChild('subject_guid').equalTo(subject_id);
   }
 

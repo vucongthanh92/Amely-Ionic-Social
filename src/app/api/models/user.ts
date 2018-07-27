@@ -30,4 +30,5 @@ export class User {
     province?: string;
     district?: string;
     ward?: string;
+    chain_store?: string;
 }
