@@ -44,23 +44,23 @@ export class MessageComponent implements OnInit {
     private alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public appCtrl: App) {
-      this.param = this.navParams.get("param");
-      console.log(this.param);
-      console.log('1234');
-      this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
-      if (this.param.chat_type == "individual") {
-        this.getMessagesIndividual();
-        if (this.param.from == this.userCurrent.username) {
-          this.usernameChat = this.param.fullname;
-        } else {
-          this.usernameChat = this.param.from;
-        }
-        this.param.to = this.userCurrent.username;
-        
+    this.param = this.navParams.get("param");
+    console.log(this.param);
+    console.log('1234');
+    this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
+    if (this.param.chat_type == "individual") {
+      this.getMessagesIndividual();
+      if (this.param.from == this.userCurrent.username) {
+        this.usernameChat = this.param.fullname;
       } else {
-        this.getMessagesGroup();
-        this.usernameChat = this.param.title;
+        this.usernameChat = this.param.from;
       }
+      this.param.to = this.userCurrent.username;
+
+    } else {
+      this.getMessagesGroup();
+      this.usernameChat = this.param.title;
+    }
 
   }
 
@@ -75,9 +75,9 @@ export class MessageComponent implements OnInit {
           if (object.attachment) {
             switch (object.attachment.media_type) {
               case 'gift':
-                console.log( this.param.to);
+                console.log(this.param.to);
                 console.log(this.param.from);
-              
+
                 let owner_gift = [this.param.from, this.param.to].filter(data => data != object.from);
                 this.messagesService.getGift(object.attachment.url, owner_gift[0]).on('value', gift => {
                   gift.forEach(g => {
@@ -121,7 +121,7 @@ export class MessageComponent implements OnInit {
     let owner = this.param.members.filter(data => data.guid == this.param.owner_guid);
     let owner_username = owner[0].username;
     console.log(this.param);
-    
+
     this.messagesService.getMessages(this.param.guid).query.on("value", itemsSnapshot => {
       this.messages = [];
       let checkAvatarSender = "";
@@ -202,7 +202,7 @@ export class MessageComponent implements OnInit {
   }
 
   sendMessage() {
-    
+
     // let loading = this.loadingCtrl.create({
     //   content: 'Please wait...',
     //   enableBackdropDismiss: true
@@ -210,11 +210,11 @@ export class MessageComponent implements OnInit {
     // loading.present();
     if (this.messageText) {
       let message = { from: this.userCurrent.username, status: "Đang gửi", text: this.messageText, time: Date.now() };
-      if (this.param.chat_type == "group") {
-        this.messagesService.updateLastRead(this.userCurrent.username, this.param.guid, "group");
-      } else {
-        this.messagesService.updateLastRead(this.userCurrent.username, this.param.from, "individual");
-      }
+      // if (this.param.chat_type == "group") {
+      // this.messagesService.updateLastRead(this.userCurrent.username, this.param.guid, "group");
+      // } else {
+      // this.messagesService.updateLastRead(this.userCurrent.username, this.param.from, "individual");
+      // }
       this.messagesService.sendMessage(message, this.param.key);
       // setTimeout(() => {
       //   this.content.scrollToBottom(100);
@@ -248,7 +248,7 @@ export class MessageComponent implements OnInit {
     });
     loading.present();
     this.messagesService.rejectGift(this.userCurrent.username, gift_guid);
-    loading.dismiss();    
+    loading.dismiss();
   }
 
   newfeedsPage = true;
@@ -309,9 +309,9 @@ export class MessageComponent implements OnInit {
     }
   }
 
-  openProfile(message){
+  openProfile(message) {
     console.log(message);
-    this.appCtrl.getRootNav().push(UserComponent, { username:message.from})
+    this.appCtrl.getRootNav().push(UserComponent, { username: message.from })
   }
 
   dismiss() {
