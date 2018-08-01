@@ -1,129 +1,129 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">{{ usernameChat }}</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">{{ usernameChat }}</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content has-header="false" padding="true" has-tabs="false" hide-nav-bar="true">
-  <div class="message-wrap">
-    <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
-      <div class="message_box_images">
-        <img (click)="openProfile(message)" *ngIf="message.avatar" src="{{ message.avatar }}" onError="this.src='assets/imgs/default-avatar-user.png'">
-      </div>
-      
-      <div class="msg-detail" (click)="clickMessage(message)">
-        <div class="message_from_content">{{ message.from }}</div>
-        <div class="message_box_info">
-          <span class="triangle"></span>
-          <div *ngIf="message.gift">
-            <ion-row>
-              <ion-col col-10>
-                <p>Quà: {{ message.gift.item_title }}</p>
-                <p>Số lượng: {{ message.gift.item_quantity }}</p>
-              </ion-col>
-              <ion-col col-2 text-right>
-                <ion-icon *ngIf="message.gift.notification_type == 'gift:accept'" name="checkmark-circle" color="secondary"></ion-icon>
-                <ion-icon *ngIf="message.gift.notification_type == 'gift:reject'" name="close-circle" color="danger"></ion-icon>
-              </ion-col>
-            </ion-row>
-            <img width="100%" src="{{ message.gift.item_image }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
-            <!-- <p class="line-breaker">{{ message.text }}</p> -->
-
-            <div class="message_text_bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
-              Đã gửi vị trí : {{ message.text }}
+    <div class="message-wrap">
+        <div *ngFor="let message of messages" [ngClass]="message.isSender? 'message right' : 'message left'">
+            <div class="message_box_images">
+                <img (click)="openProfile(message)" *ngIf="message.avatar" src="{{ message.avatar }}" onError="this.src='assets/imgs/default-avatar-user.png'">
             </div>
-            <ng-template #other_content>
-              <p>{{ message.text }}</p>
-            </ng-template>
 
-            <div *ngIf="message.chat_type == 'group'">
-              <ion-row *ngIf="message.gift.owner">
-                <ion-col col-6>
-                  <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
+            <div class="msg-detail" (click)="clickMessage(message)">
+                <div class="message_from_content">{{ message.from }}</div>
+                <div class="message_box_info">
+                    <span class="triangle"></span>
+                    <div *ngIf="message.gift">
+                        <ion-row>
+                            <ion-col col-10>
+                                <p>Quà: {{ message.gift.item_title }}</p>
+                                <p>Số lượng: {{ message.gift.item_quantity }}</p>
+                            </ion-col>
+                            <ion-col col-2 text-right>
+                                <ion-icon *ngIf="message.gift.notification_type == 'gift:accept'" name="checkmark-circle" color="secondary"></ion-icon>
+                                <ion-icon *ngIf="message.gift.notification_type == 'gift:reject'" name="close-circle" color="danger"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <img width="100%" src="{{ message.gift.item_image }}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                        <!-- <p class="line-breaker">{{ message.text }}</p> -->
+
+                        <div class="message_text_bold" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+                            Đã gửi vị trí : {{ message.text }}
+                        </div>
+                        <ng-template #other_content>
+                            <p>{{ message.text }}</p>
+                        </ng-template>
+
+                        <div *ngIf="message.chat_type == 'group'">
+                            <ion-row *ngIf="message.gift.owner">
+                                <ion-col col-6>
+                                    <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
                     <ion-icon name="close-circle"></ion-icon>
                   </button>
-                </ion-col>
-                <ion-col col-6>
-                  <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
+                                </ion-col>
+                                <ion-col col-6>
+                                    <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </button>
-                </ion-col>
-              </ion-row>
-            </div>
-            
-            <ion-row *ngIf="!message.isSender">
-              <ion-col col-6>
-                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
+                                </ion-col>
+                            </ion-row>
+                        </div>
+
+                        <ion-row *ngIf="!message.isSender">
+                            <ion-col col-6>
+                                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="danger" (click)="rejectGift(message.gift.subject_guid)">
                   <ion-icon name="close-circle"></ion-icon>
                 </button>
-              </ion-col>
-              <ion-col col-6>
-                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
+                            </ion-col>
+                            <ion-col col-6>
+                                <button *ngIf="message.gift.notification_type == 'gift:request'" ion-button block icon-only color="secondary" (click)="acceptGift(message.gift.subject_guid)">
                   <ion-icon name="checkmark-circle"></ion-icon>
                 </button>
-              </ion-col>
-            </ion-row>
-          </div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
 
-          <div *ngIf="message.attachment">
-            <img *ngIf="message.attachment.media_type == 'image'" src="{{ message.attachment.url }}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
-          </div>
+                    <div *ngIf="message.attachment">
+                        <img *ngIf="message.attachment.media_type == 'image'" src="{{ message.attachment.url }}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+                    </div>
 
-          <div *ngIf="!message.gift">
-            <p class="message_box_local" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
-              Đã gửi vị trí {{ message.text }}
-            </p>
-            <ng-template #other_content>
-              <div>{{ message.text }}</div>
-            </ng-template>
-          </div>
-          
-          <div [ngClass]="message.isSender? 'message_box_time_left' : 'message_box_time_right'">
-            <time>{{ message.time | amTimeAgo }}</time>
-          </div>
+                    <div *ngIf="!message.gift">
+                        <p class="message_box_local" *ngIf="message.attachment && message.attachment.media_type =='LOCATION';else other_content">
+                            Đã gửi vị trí {{ message.text }}
+                        </p>
+                        <ng-template #other_content>
+                            <div>{{ message.text }}</div>
+                        </ng-template>
+                    </div>
+
+                    <div [ngClass]="message.isSender? 'message_box_time_left' : 'message_box_time_right'">
+                        <time>{{ message.time | amTimeAgo }}</time>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </ion-content>
 
 <ion-footer no-border>
-  <ion-row class="message_choose_box">
-    <ion-col col-4 class="message_choose_btn">
-      <button ion-button icon-left clear small (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
+    <ion-row class="message_choose_box">
+        <ion-col col-4 class="message_choose_btn">
+            <button ion-button icon-left clear small (click)="goToPage('gift')" *ngIf="param.has_inventory != ''">
         <img class="message_choose_img" src="assets/imgs/vector_present-01-01.png">
       </button>
-    </ion-col>
-    <ion-col col-4 class="message_choose_btn">
-      <button ion-button icon-left clear small (click)="selectFromGallery()">
+        </ion-col>
+        <ion-col col-4 class="message_choose_btn">
+            <button ion-button icon-left clear small (click)="selectFromGallery()">
         <img class="message_choose_img" src="assets/imgs/ic_image_01.png">
       </button>
-    </ion-col>
-    <ion-col col-4>
-      <button ion-button icon-left clear small (click)="sendLocation()">
+        </ion-col>
+        <ion-col col-4>
+            <button ion-button icon-left clear small (click)="sendLocation()">
         <img class="message_choose_img" src="assets/imgs/ic_location_gray.png">
       </button>
-    </ion-col>
-  </ion-row>
-  
-  <ion-row>
-    <ion-col col-2>
-      <button ion-button clear icon-only item-right class="message_input_icon" (click)="takePicture()">
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-2>
+            <button ion-button clear icon-only item-right class="message_input_icon" (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
       </button>
-    </ion-col>
-    <ion-col col-8>
-      <ion-textarea #chat_input [(ngModel)]="messageText" name="title" class="message_input_textarea" placeholder="nội dung..."></ion-textarea>
-    </ion-col>
-    <ion-col col-2>
-      <button ion-button clear icon-only item-right (click)="sendMessage()">
+        </ion-col>
+        <ion-col col-8>
+            <ion-textarea #chat_input [(ngModel)]="messageText" name="title" class="message_input_textarea" placeholder="nội dung..."></ion-textarea>
+        </ion-col>
+        <ion-col col-2>
+            <button ion-button clear icon-only item-right (click)="sendMessage()">
         <img src="assets/imgs/ic_send_blue.png">
       </button>
-    </ion-col>
-  </ion-row>
+        </ion-col>
+    </ion-row>
 </ion-footer>
