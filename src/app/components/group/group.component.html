@@ -40,20 +40,20 @@
             </ion-segment>
 
             <ion-row text-center class="group_bar">
-                <ion-col col-4 *ngIf="group.has_inventory != ''">
+                <ion-col col-4 *ngIf="group.has_inventory != '' && group.has_inventory != '1' ">
                     <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('gift', group)">
                         <img class="group_bar_icon" src="assets/imgs/ic_send_gift_1.png" alt="ionic logo">
                         <div class="group_bar_title">Tặng quà</div>
                     </button>
                 </ion-col>
-                
+
                 <ion-col col-5 *ngIf="is_admin">
                     <button ion-button icon-left clear small class="group_bar_button" (click)="inviteMember()">
                         <img class="group_bar_icon" src="assets/imgs/ic_add_friend.png">
                         <div class="group_bar_title group_bar_add_group">Mời thành viên</div>
                     </button>
                 </ion-col>
-                
+
                 <ion-col col-3>
                     <button ion-button icon-left clear small class="group_bar_button" (click)="goToPage('chat', group)">
                         <img class="group_bar_icon" src="assets/imgs/ic_chat_1.png" alt="ionic logo">
@@ -81,7 +81,7 @@
                     </ion-row>
                 </ion-card-content>
             </ion-card>
-            
+
             <ion-list>
                 <ion-list *ngIf="groupGuid">
                     <!-- <ion-item *ngFor="let number of [0,1,2,3,4]"> -->
@@ -91,13 +91,13 @@
             </ion-list>
         </div>
     </div>
-  
+
     <div *ngIf="membersPage">
         <app-friends [from]="'group'" [guid]="group.guid" [object]="group"></app-friends>
     </div>
 </ion-content>
 
-<ion-fab class="user_fab" >
+<ion-fab class="user_fab">
     <button ion-fab class="user_fab_icon" (click)="addFeed()">
         <ion-icon ios="ios-create-outline" md="md-create"></ion-icon>
     </button>
