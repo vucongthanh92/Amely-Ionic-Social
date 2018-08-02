@@ -19,13 +19,13 @@ export class VerifycodeComponent implements OnInit {
   timerVar;
   timerVal: number = 300;
   hide: boolean = true;
-
+  public isVerifyByEmail: string = 'false';
   constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.user = this.navParams.get('user');
-    this.email = this.user.email;
+    this.email = this.user.mobilelogin;
     console.log(this.user);
-    
+
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class VerifycodeComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.userService.activeUser(this.user.username, this.user.password,"", this.code,this.email).subscribe(data => {
+    this.userService.activeUser(this.user.username, this.user.password, this.isVerifyByEmail == 'false' ? this.user.mobilelogin : "", this.code, this.isVerifyByEmail == 'true' ? this.email : "").subscribe(data => {
       if (data.status) {
         loading.dismiss();
         this.nav.setRoot(SigninComponent);
@@ -68,22 +68,30 @@ export class VerifycodeComponent implements OnInit {
   }
   reActionUser() {
     if (this.hide) {
-      this.userService.reActionUser(this.user.mobilelogin, null).subscribe(data => {
+      this.userService.reActionUser(this.isVerifyByEmail == "false" ? this.user.mobilelogin : null, this.isVerifyByEmail == "true"?this.user.email:null).subscribe(data => {
         if (data.status) {
           this.customService.toastMessage('Vui lòng kiểm tra tin nhắn điện thoại !!!', 'bottom', 3000);
         }
       })
-      
+
     }
     this.timerVar = Observable.interval(1000).subscribe(x => {
       this.timerVal--;
       this.hide = false;
-      
+
       if (this.timerVal == 0) {
         this.timerVar.unsubscribe();
         this.timerVal = 300;
         this.hide = true;
       }
     })
+  }
+
+  onChangeMethod(isEmail: boolean) {
+    if (isEmail) {
+      this.email = this.user.email;
+    } else {
+      this.email = this.user.mobilelogin;
+    }
   }
 }

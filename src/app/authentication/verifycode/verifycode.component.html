@@ -71,15 +71,24 @@
 
         <ion-grid>
 
-            <ion-row>
-                <ion-col col-12>
-                    <ion-label>Email đăng ký</ion-label>
-                    <ion-item id="edtVerifyCode" no-lines class="forgot_box">
-                        <!-- <ion-label id="txtPhoneNumber">{{user.mobilelogin}}</ion-label> -->
-                        <ion-input type="text" [(ngModel)]="email" disabled></ion-input>
+            <ion-col col-12>
+                <!-- <ion-label>Email đăng ký</ion-label> -->
+                <ion-list radio-group [(ngModel)]="isVerifyByEmail">
+                    <ion-item>
+                        <ion-label>Điện thoại</ion-label>
+                        <ion-radio value="false" checked (ionSelect)="onChangeMethod(false)"></ion-radio>
                     </ion-item>
-                </ion-col>
-            </ion-row>
+                    <ion-item>
+                        <ion-label>Email</ion-label>
+                        <ion-radio value="true" (ionSelect)="onChangeMethod(true)"></ion-radio>
+                    </ion-item>
+                </ion-list>
+
+                <ion-item id="edtVerifyCode" no-lines class="forgot_box">
+                    <!-- <ion-label id="txtPhoneNumber">{{user.mobilelogin}}</ion-label> -->
+                    <ion-input type="text" [(ngModel)]="email" disabled></ion-input>
+                </ion-item>
+            </ion-col>
 
 
             <ion-row>
