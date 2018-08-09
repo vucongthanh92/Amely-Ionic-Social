@@ -1,42 +1,41 @@
 <ion-content class="outer-content">
-  <ion-list class="offer_pending_main" *ngIf="counterOffers" >
-    <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers" (press)="openMenu($event,counterOffer)">
-      <ion-item class="offer_pending_row">
+    <ion-list class="offer_pending_main" *ngIf="counterOffers">
+        <ion-item-sliding class="offer_pending_box" *ngFor="let counterOffer of counterOffers" (press)="openMenu($event,counterOffer)">
+            <ion-item class="offer_pending_row">
 
-        <ion-item class="offer_pending_user_info" (click)="openOwner(counterOffer.offer.owner.guid, counterOffer.offer.owner.username)">
-          <ion-avatar class="offer_pending_avatar" item-start>
-            <img src="{{ counterOffer.offer.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </ion-avatar>
-          <h2 class="offer_pending_fullname">{{ counterOffer.offer.owner.username }}</h2>
-        </ion-item>
+                <ion-item class="offer_pending_user_info" (click)="openOwner(counterOffer.offer.owner.guid, counterOffer.offer.owner.username)">
+                    <ion-avatar class="offer_pending_avatar" item-start>
+                        <img src="{{ counterOffer.offer.owner.avatar }}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                    </ion-avatar>
+                    <h2 class="offer_pending_fullname">{{ counterOffer.offer.owner.username }}</h2>
+                </ion-item>
 
-        <ion-thumbnail class="offer_pending_image" [style.background]="'url(' + counterOffer.product_snapshot.images[0] + ')'" item-start (click)="openProduct(counterOffer.product_snapshot.guid)"></ion-thumbnail>
-        <ion-thumbnail class="offer_pending_image" style="background-image: url('assets/imgs/image_not_found.jpg')" *ngIf="counterOffer.product_snapshot.images[0]==''"
-          item-start></ion-thumbnail>
-        <h2 class="offer_pending_title">{{ counterOffer.product_snapshot.title }}</h2>
-        <p class="offer_pending_description">{{ counterOffer.description }}</p>
-      </ion-item>
+                <ion-thumbnail class="offer_pending_image" [style.background]="'url(' + counterOffer.product_snapshot.images[0] + ')'" item-start (click)="openProduct(counterOffer.product_snapshot)"></ion-thumbnail>
+                <ion-thumbnail class="offer_pending_image" style="background-image: url('assets/imgs/image_not_found.jpg')" *ngIf="counterOffer.product_snapshot.images[0]==''" item-start></ion-thumbnail>
+                <h2 class="offer_pending_title">{{ counterOffer.product_snapshot.title }}</h2>
+                <p class="offer_pending_description">{{ counterOffer.description }}</p>
+            </ion-item>
 
-      <ion-item-options side="right">
-        <button ion-button color="primary" (click)="detail(counterOffer)">
+            <ion-item-options side="right">
+                <button ion-button color="primary" (click)="detail(counterOffer)">
           <ion-icon name="eye"></ion-icon>
           Xem chi tiết
         </button>
-        <button ion-button color="danger" (click)="delete(counterOffer)">
+                <button ion-button color="danger" (click)="delete(counterOffer)">
           <ion-icon name="trash"></ion-icon>
           Xóa
         </button>
-      </ion-item-options>
+            </ion-item-options>
 
-    </ion-item-sliding>
+        </ion-item-sliding>
 
-    <div *ngIf="counterOffers.length == 0" class="offer_pending_nodata">
-      <div>
-        <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
-      </div>
-      <div style="color: #999;">
-        Không có dữ liệu...
-      </div>
-    </div>
-  </ion-list>
+        <div *ngIf="counterOffers.length == 0" class="offer_pending_nodata">
+            <div>
+                <img src="assets/imgs/ic_feed.png" style="max-width: 30%" alt="">
+            </div>
+            <div style="color: #999;">
+                Không có dữ liệu...
+            </div>
+        </div>
+    </ion-list>
 </ion-content>

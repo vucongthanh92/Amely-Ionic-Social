@@ -55,6 +55,7 @@ import { SearchService } from './services/search.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OfferService } from './services/offer.service';
 import { HistoryDeliveryOrderService } from './services/history-delivery-order.service';
+import { ProductSnapshotDetailComponent } from './components/product-snapshot-detail/product-snapshot-detail.component';
 
 
 // import { DecodeHtmlEntitiesModule } from 'decode-html-entities';
@@ -82,6 +83,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     MainMenuComponent,
+    ProductSnapshotDetailComponent,
   ],
   imports: [
     BrowserModule,

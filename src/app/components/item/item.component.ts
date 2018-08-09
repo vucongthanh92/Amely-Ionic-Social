@@ -121,7 +121,7 @@ export class ItemComponent implements OnInit {
     alert.present();
   }
 
-  retryCreateRedeem(retry,quantiry:number) {
+  retryCreateRedeem(retry, quantiry: number) {
     if (retry == 0) {
       this.is_used = false;
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)

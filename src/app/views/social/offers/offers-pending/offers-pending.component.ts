@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { CounterOffer } from '../../../../api/models/counter-offer';
 import { App, AlertController, LoadingController } from 'ionic-angular';
 import { UserComponent } from '../../../../components/user/user.component';
-import { ProductComponent } from '../../../../components/product/product.component';
+import { ProductSnapshotComponent } from '../../../../components/product-snapshot/product-snapshot.component';
 
 @Component({
   selector: 'app-offers-pending',
@@ -107,7 +107,7 @@ export class OffersPendingComponent implements OnInit {
     this.app.getRootNav().push(UserComponent, { userGuid: guidOwner, username: username })
   }
 
-  openProduct(guidProduct) {
-    this.app.getRootNav().push(ProductComponent, { guid: guidProduct });
+  openProduct(product) {
+    this.app.getRootNav().push(ProductSnapshotComponent, { product: product });
   }
 }

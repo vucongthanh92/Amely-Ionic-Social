@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
+        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+      </button>
+            <div *ngIf="product" class="ion_navbar_title product_navbar_width" innerHtml="{{product.title}}"></div>
+        </ion-buttons>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content" *ngIf="product">
+    <ion-row>
+        <ion-col col-12 class="product_image">
+            <ion-slides autoplay="4000" class="shops_slides">
+                <ion-slide *ngFor="let img of product.images">
+                    <img imageViewer src="{{img}}" onError="this.src='assets/imgs/image_not_found.jpg'">
+                </ion-slide>
+            </ion-slides>
+            <!-- <img imageViewer *ngIf="product.images_entities[product.images[0]]" src="{{product.images_entities[product.images[0]]}}"> -->
+        </ion-col>
+        <!-- <ion-col col-12 *ngIf="!product.images_entities" class="product_image">
+      <img imageViewer src="{{ product.images[0] }}" onError="this.src='assets/imgs/image_not_found.jpg'">
+    </ion-col> -->
+    </ion-row>
+
+    <ion-card class="product_info_product">
+        <ion-card-content>
+            <ion-row>
+                <ion-col class="product_box_title" col-12 innerHtml="{{product.title}}"></ion-col>
+                <ion-col class="product_box_price" col-12>
+                    <!-- {{formatSalePrice(product.sale_price,product.currency)}} -->
+                    <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
+                        <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
+                    </div>
+                    <ng-template #other_content>
+                        <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
+                        <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
+                    </ng-template>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-card class="product_info_card">
+        <ion-card-header>Mô tả sản phẩm</ion-card-header>
+        <ion-card-content class="product_info_description" innerHtml="{{product.description}}"></ion-card-content>
+    </ion-card>
+</ion-content>
