@@ -1,19 +1,23 @@
 /* tslint:disable */
-import { Store } from './store';
 
 /**
  */
 export class body_68 {
-    contact?: string;
+    friendly_url?: string;
     shop_guid?: number;
-    address?: string;
-    phone?: string;
-    introduction?: string;
-    policy?: string;
-    name?: string;
+    shop_phone?: string;
+    shop_address?: string;
     shop_province?: string;
     shop_district?: string;
     shop_ward?: string;
-    stores?: Store[];
-    status?: number;
+    shop_bidn?: string;
+    shop_name?: string;
+    owner_name?: string;
+    owner_phone?: string;
+    owner_address?: string;
+    owner_province?: string;
+    owner_district?: string;
+    owner_ward?: string;
+    owner_ssn?: string;
+    adjourn_price?: string;
 }

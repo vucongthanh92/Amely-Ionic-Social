@@ -3,6 +3,8 @@
 /**
  */
 export class body_69 {
-    transaction_type?: string;
-    shop_guid?: string;
+    shop_guid?: number;
+    shipping_filter?: string;
+    offset?: number;
+    page_limit?: number;
 }

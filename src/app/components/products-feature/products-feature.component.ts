@@ -91,11 +91,19 @@ export class ProductsFeatureComponent implements OnInit {
       this.isHasData = true;
       return;
     }
-    this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
+    // this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
+    //   this.isHasData = true;
+    //   if (data.products instanceof Array) {
+    //     // loading.dismiss();
+    //     this.productsMostSold = data.products;
+    //   }
+    // }, err => this.retryInitShopProductFeatue(--retry))
+
+    this.shoppingSerivce.getShopFeatureProducts(this.shopGuid).subscribe(data => {
       this.isHasData = true;
-      if (data.products instanceof Array) {
+      if (data instanceof Array) {
         // loading.dismiss();
-        this.productsMostSold = data.products;
+        this.productsMostSold = data;
       }
     }, err => this.retryInitShopProductFeatue(--retry))
   }
