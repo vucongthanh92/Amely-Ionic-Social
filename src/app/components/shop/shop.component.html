@@ -61,7 +61,8 @@
 
         <div *ngIf="productsPage">
             <app-categories [shopGuid]="shop.guid"></app-categories>
-            <app-products-feature [shopGuid]="shop.guid"></app-products-feature>
+            <app-products-feature [shopGuid]="shop.guid" [is_feature]=true></app-products-feature>
+            <app-products-feature [shopGuid]="shop.guid" [is_feature]=false></app-products-feature>
         </div>
 
         <div *ngIf="infoPage">

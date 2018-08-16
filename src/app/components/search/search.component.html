@@ -10,108 +10,34 @@
 </ion-header>
 
 <ion-content>
-    <ion-segment [(ngModel)]="search" *ngIf="is_has_data">
-        <ion-segment-button value="peoples" *ngIf="users">
-            Người dùng
-        </ion-segment-button>
-        <ion-segment-button value="product" *ngIf="products">
-            Sản phẩm
-        </ion-segment-button>
-        <ion-segment-button value="store" *ngIf="shops">
-            Cửa hàng
-        </ion-segment-button>
-        <ion-segment-button value="group" *ngIf="groups">
-            Nhóm
-        </ion-segment-button>
-        <ion-segment-button value="event" *ngIf="events">
-            Sự kiện
-        </ion-segment-button>
-        <ion-segment-button value="business" *ngIf="business">
-            Cộng đồng
-        </ion-segment-button>
-    </ion-segment>
 
-    <div [ngSwitch]="search" *ngIf="is_has_data == 1">
-        <ion-list class="search_list" *ngSwitchCase="'peoples'">
-            <ion-item class="search_item" *ngFor="let user of users" (click)="goToUserProfile(user)">
-                <ion-thumbnail item-start>
-                    <div class="search_item_image user_image">
-                        <img src="{{user.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
-                    </div>
-                </ion-thumbnail>
-                <h2 class="search_title">{{user.fullname}}</h2>
-            </ion-item>
-        </ion-list>
-
-        <ion-list class="search_list" *ngSwitchCase="'product'">
-            <ion-item class="search_item" *ngFor="let product of products" (click)="goToProduct(product)">
+    <div *ngIf="this.is_has_data==1">
+        <ion-list class="search_list">
+            <ion-item class="search_item" *ngFor="let entry of hits" (click)="goToDetail(entry)">
                 <ion-thumbnail item-start>
                     <div class="search_item_image">
-                        <img src="{{product.images[0]}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
+                        <img src="{{entry._source.Image}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
                     </div>
                 </ion-thumbnail>
-                <h2 class="search_title" innerHtml="{{product.title}}"></h2>
+                <h2 class="search_title" innerHtml="{{entry._source.Title}}"></h2>
                 <h2 class="search_box_price">
-                    <div *ngIf="product.sale_price == 0 || product.sale_price == null; else other_content">
-                        <div class="product_feature_price">{{ formatSalePrice( product.display_price, product.display_currency) }}</div>
+                    <div *ngIf="entry._source.Price">
+                        <div class="product_feature_price">{{ formatSalePrice( entry._source.Price, userCurrent.usercurrency) }}</div>
                     </div>
-                    <ng-template #other_content>
-                        <div class="product_feature_price">{{formatSalePrice(product.display_price,product.display_currency)}}</div>
-                        <div class="product_sale_price">{{ formatSalePrice( product.display_old_price, product.display_currency) }}</div>
-                    </ng-template>
-                    <!-- {{formatCurrency(product,product.currency)}} -->
                 </h2>
+                <div *ngIf="entry._type=='user'"><img width="20px" height="20px" src="assets/imgs/friend.png"></div>
+                <div *ngIf="entry._type=='business'"><img width="20px" height="20px" src="assets/imgs/IC_Vouchers3.png"></div>
+                <div *ngIf="entry._type=='product'"><img width="20px" height="20px" src="assets/imgs/ic_quantity_gift.png"></div>
+                <div *ngIf="entry._type=='event'"><img width="20px" height="20px" src="assets/imgs/ic_birthday_gray.png"></div>
+                <div *ngIf="entry._type=='group'"><img width="20px" height="20px" src="assets/imgs/ic_member_actived.png"></div>
+                <div *ngIf="entry._type=='shop'"><img width="20px" height="20px" src="assets/imgs/amelymall-on.png"></div>
             </ion-item>
         </ion-list>
-
-        <ion-list class="search_list" *ngSwitchCase="'store'">
-            <ion-item class="search_item" *ngFor="let shop of shops" (click)="goToShopProfile(shop)">
-                <ion-thumbnail item-start>
-                    <div class="search_item_image">
-                        <img src="{{shop.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
-                    </div>
-                </ion-thumbnail>
-                <h2 class="search_title">{{shop.title}}</h2>
-            </ion-item>
-        </ion-list>
-
-        <ion-list class="search_list" *ngSwitchCase="'group'">
-            <ion-item class="search_item" *ngFor="let group of groups" (click)="goToGroupProfile(group)">
-                <ion-thumbnail class="search_thumbnail" item-start>
-                    <div class="search_item_image">
-                        <img src="{{group.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
-                    </div>
-                </ion-thumbnail>
-                <h2 class="search_title">{{group.title}}</h2>
-            </ion-item>
-        </ion-list>
-
-        <ion-list class="search_list" *ngSwitchCase="'event'">
-            <ion-item class="search_item" *ngFor="let event of events" (click)="goToEventrProfile(event)">
-                <ion-thumbnail item-start>
-                    <div class="search_item_image">
-                        <img src="{{event.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
-                    </div>
-                </ion-thumbnail>
-                <h2 class="search_title">{{event.title}}</h2>
-                <h2 class="search_datetime">{{formatDate(event.time_created) | date:'dd/MM/yyyy'}}</h2>
-            </ion-item>
-        </ion-list>
-
-        <ion-list class="search_list" *ngSwitchCase="'business'">
-            <ion-item class="search_item" *ngFor="let b of business" (click)="goToBusinessProfile(b)">
-                <ion-thumbnail item-start>
-                    <div class="search_item_image">
-                        <img src="{{b.avatar}}" onError="this.src='assets/imgs/default-avatar-official.png'" />
-                    </div>
-                </ion-thumbnail>
-                <h2 class="search_title">{{b.title}}</h2>
-                <h2>{{b.thought}}</h2>
-            </ion-item>
-        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
     </div>
-
-    <div *ngIf="is_has_data == 2">
+    <div *ngIf="this.is_has_data==2">
         <h1>Không tìm thấy dữ liệu tìm kiếm</h1>
     </div>
 </ion-content>

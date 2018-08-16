@@ -42,11 +42,9 @@ export class PersonalComponent implements OnInit {
   toggleDetails() {
     this.isOn = !this.isOn;
     if (!this.isOn) {
-      if (this.search != undefined && this.search.length >= 3) {
+      if (this.search) {
         // this.customService.goToPageSearch(this.search, this.nav);
         this.nav.push(SearchComponent, { param: this.search, service: this })
-      } else {
-        this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
       }
     }
   }
