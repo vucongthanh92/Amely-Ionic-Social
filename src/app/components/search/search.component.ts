@@ -56,15 +56,17 @@ export class SearchComponent implements OnInit {
     this.loadData(5, loading, false, null);
   }
 
-  loadData(retry, loading, isLoadmore: boolean, infiniteScroll) {
-    if (retry == 0) {
-      if (!isLoadmore) {
-        this.is_has_data = 2;
-        loading.dismiss();
-      } else {
-        infiniteScroll.complete();
-      }
-    }
+  loadData(retry: number, loading, isLoadmore: boolean, infiniteScroll) {
+    // console.log(retry);
+
+    // if (retry == 0) {
+    //   if (!isLoadmore) {
+    //     this.is_has_data = 2;
+    //     loading.dismiss();
+    //   } else {
+    //     infiniteScroll.complete();
+    //   }
+    // }
     this.searchService.elasticSearch(new SearchRequest(this.offset, this.limit, "*" + this.contentSearch + "*"))
       .then((data: SearchResponse) => {
         if (!isLoadmore) {
@@ -81,7 +83,13 @@ export class SearchComponent implements OnInit {
       })
       .catch(err => {
         console.log(err);
-        this.loadData(retry--, loading, isLoadmore, infiniteScroll)
+        if (!isLoadmore) {
+          this.is_has_data = 2;
+          loading.dismiss();
+        } else {
+          infiniteScroll.complete();
+        }
+        // this.loadData(--retry, loading, isLoadmore, infiniteScroll)
       })
   }
 

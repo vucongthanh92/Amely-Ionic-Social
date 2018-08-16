@@ -1,172 +1,145 @@
 app-shop {
-  .shop_cover {
-    width: 100%;
-    height: 16rem;
-    background-color: #fff;
-
-    img {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .shop_avatar_row {
-    background-color: #fff;
-
-    .shop_avatar {
-      width: 12rem;
-      height: 12rem;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 50%;
-      position: relative;
-      top: -6rem;
-
-      img {
+    .shop_cover {
         width: 100%;
-        height: 100%;
+        height: 16rem;
+        background-color: #fff;
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .shop_avatar_row {
+        background-color: #fff;
+        .shop_avatar {
+            width: 12rem;
+            height: 12rem;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            top: -6rem;
+            img {
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .shop_avatar_title {
+            color: #333;
+            font-size: 2.1rem;
+            text-transform: capitalize;
+            margin: auto;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            position: relative;
+            top: -4rem;
+        }
+    }
+    .shop_tabcontainer {
+        background-color: #fff;
+        border-bottom: 1px solid #c7c8cc;
+        border-top: 1px solid #c7c8cc;
+    }
+    .shop_tab {
+        border-bottom: 1px solid #c7c8cc;
+    }
+    .shop_tab_product {
+        border-radius: 0px !important;
+        border: 0px !important;
+        border-right: 1px solid #c7c8cc !important;
+        margin: 7px 0px 7px 0px;
+    }
+    .shop_tab_info {
+        border-radius: 0px;
+        border: 0px;
+        font-size: 20px
+    }
+    .segment-ios-primary .segment-button {
+        border: 0px;
+        background-color: transparent;
+        color: #999 !important;
+        height: 45px;
+    }
+    .segment-ios-primary .segment-button.segment-activated {
+        background-color: transparent;
+        color: #00bdf2 !important;
+    }
+    .about-info p {
+        color: #697072;
+        text-align: left;
+    }
+    .about-info ion-icon {
+        color: color($colors, primary);
+        width: 20px;
+    }
+    .md,
+    .wp {
+        .about-info [text-right] {
+            margin-right: 0;
+        }
+    }
+    .ios .about-info {
         text-align: center;
-        object-fit: cover;
-        object-position: center;
-      }
     }
-    
-    .shop_avatar_title {
-      color: #333;
-      font-size: 2.1rem;
-      text-transform: capitalize;
-      margin: auto;
-      white-space: normal;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-      position: relative;
-      top: -4rem;
+    .ios .about-info ion-icon {
+        width: auto;
+        margin-right: 10px;
     }
-  }
-
-  .shop_tabcontainer {
-    background-color: #fff;
-    border-bottom: 1px solid #c7c8cc;
-    border-top: 1px solid #c7c8cc;
-  }
-
-  .shop_tab {
-    border-bottom: 1px solid #c7c8cc;
-  }
-
-  .shop_tab_product {
-    border-radius: 0px !important;
-    border: 0px !important;
-    border-right: 1px solid #c7c8cc !important;
-    margin: 7px 0px 7px 0px;
-  }
-
-  .shop_tab_info {
-    border-radius: 0px; 
-    border: 0px; 
-    font-size: 20px
-  }
-
-  .segment-ios-primary .segment-button{
-    border: 0px;
-    background-color: transparent; 
-    color: #999 !important;
-    height: 45px;
-  }
-
-  .segment-ios-primary .segment-button.segment-activated{
-    background-color: transparent;
-    color:#00bdf2 !important;
-  }
-
-  .about-info p {
-    color: #697072;
-    text-align: left;
-  }
-
-  .about-info ion-icon {
-    color: color($colors, primary);
-    width: 20px;
-  }
-
-  .md, .wp {
-    .about-info [text-right] {
-      margin-right: 0;
+    .segment-ios-primary .segment-button {
+        border: 0px;
+        background-color: transparent;
+        color: black;
+        height: 45px;
     }
-  }
-
-  .ios .about-info {
-    text-align: center;
-  }
-
-  .ios .about-info ion-icon {
-    width: auto;
-    margin-right: 10px;
-  } 
-
- 
-  .segment-ios-primary .segment-button{
-    border: 0px;
-    background-color: transparent; 
-    color: black;
-    height: 45px;
-  }
-
-  .segment-ios-primary .segment-button.segment-activated{
-    background-color: transparent;
-    color: #00bdf2;
-  }
-
-  .shop_tab_title{
-    clear: both;
-    margin-top: -12px;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-
-   #tabIconProduct{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_friend.png);
-  }
-
-  .segment-activated img#tabIconProduct {
-    content:url(./../../assets/imgs/ic_friend_actived.png);
-  }
-
-   #tabIconInfo{
-    width: 30px;
-    height: 30px;
-    padding: 4px;
-    content:url(./../../assets/imgs/ic_friend.png);
-  }
-
-  .segment-activated img#tabIconInfo {
-    content:url(./../../assets/imgs/ic_friend_actived.png);
-  }
-
-  .iconSubTab{
-    width: 18px;
-    height: auto;
-    margin-right: 7px;
-  }
-
-  .shop_action_title {
-    color: #999;
-    text-transform: capitalize;
-    font-size: 13px;
-  }
-
-  .shop_info_card {
-    margin: 12px 0px 12px 0px;
-    width: 100%;
-
-    ion-col {
-      color: #8e9093;
+    .segment-ios-primary .segment-button.segment-activated {
+        background-color: transparent;
+        color: #00bdf2;
     }
-  }
+    .shop_tab_title {
+        clear: both;
+        margin-top: -12px;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+    #tabIconProduct {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+        content: url(../assets/imgs/ic_friend.png);
+    }
+    .segment-activated img#tabIconProduct {
+        content: url(../assets/imgs/ic_friend_actived.png);
+    }
+    #tabIconInfo {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+        content: url(../assets/imgs/ic_friend.png);
+    }
+    .segment-activated img#tabIconInfo {
+        content: url(../assets/imgs/ic_friend_actived.png);
+    }
+    .iconSubTab {
+        width: 18px;
+        height: auto;
+        margin-right: 7px;
+    }
+    .shop_action_title {
+        color: #999;
+        text-transform: capitalize;
+        font-size: 13px;
+    }
+    .shop_info_card {
+        margin: 12px 0px 12px 0px;
+        width: 100%;
+        ion-col {
+            color: #8e9093;
+        }
+    }
 }

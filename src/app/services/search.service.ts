@@ -19,11 +19,10 @@ export class SearchService {
 
   elasticSearch(body: SearchRequest) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.url, body,
-        { headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT' } }).subscribe(
-          (data: SearchResponse) => resolve(data),
-          err => reject(err)
-        )
+      this.http.post(this.url, body, httpOptions).subscribe(
+        (data: SearchResponse) => resolve(data),
+        err => reject(err)
+      )
     });
   }
 

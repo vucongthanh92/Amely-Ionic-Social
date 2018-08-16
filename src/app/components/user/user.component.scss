@@ -1,226 +1,190 @@
 app-user {
-  .profile_cover {
-    width: 100%;
-    height: 18rem;
-
-    img {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .profile_avatar {
-    padding: 0px;
-    background-color: #fff;
-
-    .profile_avatar_image {
-      width: 12rem;
-      height: 12rem;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 50%;
-      position: relative;
-      top: -6rem;
-      border: 5px solid #fff;
-
-      img {
+    .profile_cover {
         width: 100%;
-        height: 100%;
+        height: 18rem;
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .profile_avatar {
+        padding: 0px;
+        background-color: #fff;
+        .profile_avatar_image {
+            width: 12rem;
+            height: 12rem;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            top: -6rem;
+            border: 5px solid #fff;
+            img {
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .profile_avatar_title {
+            color: #333;
+            font-size: 2.4rem;
+            text-transform: capitalize;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            position: relative;
+            top: -3.6rem;
+        }
+    }
+    .about-info p {
+        color: #697072;
+        text-align: left;
+    }
+    .about-info ion-icon {
+        color: color($colors, primary);
+        width: 20px;
+    }
+    .md,
+    .wp {
+        .about-info [text-right] {
+            margin-right: 0;
+        }
+    }
+    .ios .about-info {
         text-align: center;
-        object-fit: cover;
-        object-position: center;
-      }
     }
-
-    .profile_avatar_title {
-      color: #333;
-      font-size: 2.4rem;
-      text-transform: capitalize;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-      position: relative;
-      top: -3.6rem;
+    .ios .about-info ion-icon {
+        width: auto;
+        margin-right: 10px;
     }
-  }
-
-  .about-info p {
-    color: #697072;
-    text-align: left;
-  }
-
-  .about-info ion-icon {
-    color: color($colors, primary);
-    width: 20px;
-  }
-
-  .md, .wp {
-    .about-info [text-right] {
-      margin-right: 0;
+    .segment-ios-primary .segment-button {
+        border: 0px;
+        background-color: transparent;
+        color: #999;
+        height: 57px;
+        img {
+            width: 3rem;
+            height: auto;
+            margin: 1px 0px 0px 0px;
+        }
     }
-  }
-
-  .ios .about-info {
-    text-align: center;
-  }
-
-  .ios .about-info ion-icon {
-    width: auto;
-    margin-right: 10px;
-  } 
-
-  .segment-ios-primary .segment-button{
-    border: 0px;
-    background-color: transparent; 
-    color: #999;
-    height: 57px;
-
-    img {
-      width: 3rem;
-      height: auto;
-      margin: 1px 0px 0px 0px;
+    .segment-ios-primary .segment-button.segment-activated {
+        background-color: transparent;
+        color: #00bdf2;
+        .user_segment_feed {
+            content: url(../assets/imgs/ic_feed_actived.png);
+        }
+        .user_segment_images {
+            content: url(../assets/imgs/ic_image_actived.png);
+        }
+        .user_segment_friend {
+            content: url(../assets/imgs/ic_friend_actived.png);
+        }
     }
-  }
-
-  .segment-ios-primary .segment-button.segment-activated{
-    background-color: transparent;
-    color:#00bdf2;
-
-    .user_segment_feed {
-      content:url(./../../assets/imgs/ic_feed_actived.png);
+    .profile_tab_title {
+        clear: both;
+        margin-top: -12px;
+        text-transform: uppercase;
+        font-size: 11px;
     }
-
-    .user_segment_images {
-      content:url(./../../assets/imgs/ic_image_actived.png);
+    .user_row_icon {
+        margin: 5px 0 15px 0;
+        img {
+            width: 1.8rem;
+            height: auto;
+            margin: 0 5px 0 0;
+            display: inline;
+            vertical-align: middle;
+        }
+        span {
+            font-size: 1.4rem;
+            color: #444;
+            vertical-align: middle;
+        }
     }
-
-    .user_segment_friend {
-      content:url(./../../assets/imgs/ic_friend_actived.png);
+    .profile_store img {
+        width: 25px;
+        height: auto;
+        margin-right: 9px;
+        float: left;
     }
-  }
-
-  .profile_tab_title{
-    clear: both;
-    margin-top: -12px;
-    text-transform: uppercase;
-    font-size: 11px;
-  }
-
-  .user_row_icon {
-    margin: 5px 0 15px 0;
-
-    img {
-      width: 1.8rem;
-      height: auto;
-      margin: 0 5px 0 0;
-      display: inline;
-      vertical-align: middle;
+    .iconSubTab {
+        width: auto;
+        height: 20px;
+        margin-right: 5px;
     }
-
-    span {
-      font-size: 1.4rem;
-      color: #444;
-      vertical-align: middle;
+    .profile_tab {
+        padding: 6px 0px 6px 0px;
+        border: 0px !important;
+        border-right: 1px solid #c8c7cc !important;
+        margin: 0px 0px 0px 0px;
     }
-  }
-
-  .profile_store img {
-    width: 25px;
-    height: auto;
-    margin-right: 9px;
-    float: left;
-  }
-
-  .iconSubTab{
-    width: auto;
-    height: 20px;
-    margin-right: 5px;
-  }
-
-  .profile_tab {
-    padding: 6px 0px 6px 0px;
-    border: 0px !important;
-    border-right: 1px solid #c8c7cc !important;
-    margin: 0px 0px 0px 0px;
-  }
-
-  .profile_tab:last-child {
-    border-right: none !important;
-  }
-
-  .profile_bar {
-    background-color: white;
-    color: #999;
-    border-top: 1px solid #c8c7cc;
-    border-bottom: 1px solid #c8c7cc;
-  }
-
-  .profile_store {
-    margin-left: 0px;
-    margin-right: 0px;
-    width: 100%;
-    margin: 0px;
-    border-bottom: 1px solid #c8c7cc;
-    box-shadow: none;
-
-    .item-ios {
-      padding-left: 3px;
+    .profile_tab:last-child {
+        border-right: none !important;
     }
-  }
-
-  .profile_store ion-label {
-    color: #666;
-    font-size: 16px;
-    margin: 0px;
-    line-height: 24px;
-  }
-
-  .profile_info {
-    margin: 0px 0px 10px 0px;
-    width: 100%;
-    border-bottom: 1px solid #c8c7cc;
-  }
-
-  .feeds_button {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .profile_gift {
-    margin: 0px;
-    width: 100%;
-    border-top: 1px solid #c8c7cc;
-    padding: 5px 0px 5px 0px;
-  }
-
-  .profile_gift_title {
-    color: #999;
-    line-height: 20px;
-    margin: 3px 0px 0px 0px;
-  }
-
-  .user_profile_more {
-    margin: 1px 7px 0px 0px;
-    color: #fff;
-  }
-
-  .user_nodata {
-    position: absolute;
-    top: 40%;
-  }
-
-  .user_fab {
-    bottom: 15px;
-    right: 15px;
-
-    .user_fab_icon {
-      color: #fff;
-      background-color: #f0ad4e;
+    .profile_bar {
+        background-color: white;
+        color: #999;
+        border-top: 1px solid #c8c7cc;
+        border-bottom: 1px solid #c8c7cc;
     }
-  }
-
+    .profile_store {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+        margin: 0px;
+        border-bottom: 1px solid #c8c7cc;
+        box-shadow: none;
+        .item-ios {
+            padding-left: 3px;
+        }
+    }
+    .profile_store ion-label {
+        color: #666;
+        font-size: 16px;
+        margin: 0px;
+        line-height: 24px;
+    }
+    .profile_info {
+        margin: 0px 0px 10px 0px;
+        width: 100%;
+        border-bottom: 1px solid #c8c7cc;
+    }
+    .feeds_button {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
+    .profile_gift {
+        margin: 0px;
+        width: 100%;
+        border-top: 1px solid #c8c7cc;
+        padding: 5px 0px 5px 0px;
+    }
+    .profile_gift_title {
+        color: #999;
+        line-height: 20px;
+        margin: 3px 0px 0px 0px;
+    }
+    .user_profile_more {
+        margin: 1px 7px 0px 0px;
+        color: #fff;
+    }
+    .user_nodata {
+        position: absolute;
+        top: 40%;
+    }
+    .user_fab {
+        bottom: 15px;
+        right: 15px;
+        .user_fab_icon {
+            color: #fff;
+            background-color: #f0ad4e;
+        }
+    }
 }
