@@ -4,8 +4,6 @@
         "cordova": {}
     },
     "type": "ionic-angular",
-    "proxies": [{
-        "path": "/_search",
-        "proxyUrl": "http://103.15.51.45:9210"
-    }]
+    "path": "/_search",
+    "proxyUrl": "http://103.15.51.45:9210"
 }
