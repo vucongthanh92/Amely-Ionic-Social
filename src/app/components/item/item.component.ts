@@ -108,10 +108,14 @@ export class ItemComponent implements OnInit {
         {
           text: 'Tiếp tục',
           handler: data => {
-            if (isNaN(+data.quantity) || +data.quantity > this.item.quantity || +data.quantity < 0 || +data.quantity % 1 != 0) {
+            console.log(data.quantity);
+            
+            if (!data.quantity ||isNaN(data.quantity) || +data.quantity > this.item.quantity || +data.quantity < 0 || +data.quantity % 1 != 0) {
+              console.log(1);
               this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000);
               this.is_used = false;
             } else {
+              console.log(2);
               this.retryCreateRedeem(5, +data.quantity);
             }
           }
