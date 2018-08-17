@@ -69,20 +69,18 @@ export class SearchComponent implements OnInit {
     // }
     this.searchService.elasticSearch(new SearchRequest(this.offset, this.limit, "*" + this.contentSearch + "*"))
       .then((data: SearchResponse) => {
+        if (loading) loading.dismiss();
+        this.is_has_data = 1;
+        this.searchResponse = data;
+        if (infiniteScroll) infiniteScroll.complete();
         if (!isLoadmore) {
-          if (loading) loading.dismiss();
-          this.is_has_data = 1;
-          this.searchResponse = data;
           this.hits = data.hits.hits;
         } else {
           this.hits = this.hits.concat(data.hits.hits);
-          if (infiniteScroll) infiniteScroll.complete();
         }
-        console.log(this.searchResponse.hits.hits);
 
       })
       .catch(err => {
-        console.log(err);
         if (!isLoadmore) {
           this.is_has_data = 2;
           if (loading) loading.dismiss();
@@ -148,7 +146,7 @@ export class SearchComponent implements OnInit {
     if (this.offset < this.searchResponse.hits.total) {
       console.log(this.offset + "  " + this.limit);
       this.loadData(5, null, true, infiniteScroll);
-    }
+    } else infiniteScroll.complete();
   }
 
 }

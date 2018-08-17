@@ -35,16 +35,20 @@ export class SearchService {
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, { headers: headers })
         .map(response => {
-          console.log(response);
-
+          console.log(0);
+          
           return response.json()
         })
         .subscribe(
           response => {
+            console.log(111);
+            
             resolve(response);
           }, error => {
+            console.log(222);
             reject(error);
-          }
+          },()=>console.log(333)
+          
         );
     });
   }
