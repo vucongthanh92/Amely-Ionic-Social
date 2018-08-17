@@ -83,26 +83,59 @@ export class ItemComponent implements OnInit {
     this.customService.confirmPassword(this.alertCtrl, this.userService)
       .then(() => {
         this.is_used = true;
-        this.retryCreateRedeem(5);
+        this.chooseQuantityRedeem();
       })
 
 
   }
 
-  retryCreateRedeem(retry) {
+  chooseQuantityRedeem() {
+    let alert = this.alertCtrl.create({
+      title: 'Số lượng vật phẩm muốn sử dụng',
+      inputs: [
+        {
+          name: 'quantity',
+          placeholder: 'Số lượng',
+          type: 'number'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Từ chối',
+          handler: data => {
+          }
+        },
+        {
+          text: 'Tiếp tục',
+          handler: data => {
+            if (!data.quantity ||isNaN(data.quantity) || +data.quantity > this.item.quantity || +data.quantity < 0 || +data.quantity % 1 != 0) {
+              this.customService.toastMessage('Số lượng sản phẩm sử dụng không hợp lệ', 'bottom', 3000);
+              this.is_used = false;
+            } else {
+              this.retryCreateRedeem(5, +data.quantity);
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  retryCreateRedeem(retry, quantiry: number) {
     if (retry == 0) {
+      this.is_used = false;
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
 
-    this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, 1).subscribe(data => {
+    this.inventoriesService.createRedeem(this.itemGuid, this.item.owner_guid, quantiry).subscribe(data => {
       if (this.createCode) {
         this.createdCode = data.code
-        this.nav.push(QrComponent, { code: data.code})
+        this.nav.push(QrComponent, { code: data.code })
       }
       this.is_used = false;
       // loading.dismiss();
-    }, err => this.retryCreateRedeem(--retry));
+    }, err => this.retryCreateRedeem(--retry, quantiry));
   }
 
   gift() {

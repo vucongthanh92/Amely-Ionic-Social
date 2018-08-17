@@ -3,8 +3,5 @@
 /**
  */
 export class body_64 {
-    shop_guid?: number;
-    order_filter?: string;
-    offset?: number;
-    page_limit?: number;
+    shop_guid?: string;
 }

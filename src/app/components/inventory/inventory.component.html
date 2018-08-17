@@ -1,161 +1,161 @@
 <ion-header *ngIf="!hidden_header">
-	<ion-navbar hideBackButton>
-		<ion-buttons start>
-			<button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
 				<ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
 			</button>
-			<div class="ion_navbar_title">kho bạn</div>
-		</ion-buttons>
-	</ion-navbar>
+            <div class="ion_navbar_title">kho bạn</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="inventory_container">
-	<ion-row class="inventory_user">
-		<ion-item *ngIf="inventoryType=='group'" class="inventory_user_info">
-			<ion-avatar item-start>
-				<img *ngIf="group.owner.avatar" src="{{group.owner.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
-			</ion-avatar>
-			<div class="inventory_user_fullname">{{group.owner.fullname}}</div>
-		</ion-item>
-		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'group'">
-			<ion-card class="inventory_product_box">
-				<ion-item class="inventory_product_info" (click)="openGroupProfile()">
-					<ion-thumbnail item-start>
-						<div class="inventory_product_image">
-							<img src="{{group.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" imageViewer>
-						</div>
-					</ion-thumbnail>
-					<p class="inventory_product_title">{{group.title}}</p>
-				</ion-item>
-			</ion-card>
-		</ion-col>
+    <ion-row class="inventory_user">
+        <ion-item *ngIf="inventoryType=='group'" class="inventory_user_info">
+            <ion-avatar item-start>
+                <img *ngIf="group.owner.avatar" src="{{group.owner.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
+            </ion-avatar>
+            <div class="inventory_user_fullname">{{group.owner.fullname}}</div>
+        </ion-item>
+        <ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'group'">
+            <ion-card class="inventory_product_box">
+                <ion-item class="inventory_product_info" (click)="openGroupProfile()">
+                    <ion-thumbnail item-start>
+                        <div class="inventory_product_image">
+                            <img src="{{group.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" imageViewer>
+                        </div>
+                    </ion-thumbnail>
+                    <p class="inventory_product_title">{{group.title}}</p>
+                </ion-item>
+            </ion-card>
+        </ion-col>
 
-		<ion-item *ngIf="inventoryType =='event' && event.creator" class="inventory_user_info">
-			<ion-avatar item-start>
-				<img src="{{event.creator.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'"/>
-			</ion-avatar>
-			<div class="inventory_user_fullname">{{event.creator.fullname}}</div>
-		</ion-item>
-		<ion-item *ngIf="inventoryType =='event' && event.owner" class="inventory_user_info">
-			<ion-avatar item-start>
-				<img src="{{event.owner.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'"/>
-			</ion-avatar>
-			<div class="inventory_user_fullname">{{event.owner.fullname}}</div>
-		</ion-item>
+        <ion-item *ngIf="inventoryType =='event' && event.creator" class="inventory_user_info">
+            <ion-avatar item-start>
+                <img src="{{event.creator.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
+            </ion-avatar>
+            <div class="inventory_user_fullname">{{event.creator.fullname}}</div>
+        </ion-item>
+        <ion-item *ngIf="inventoryType =='event' && event.owner" class="inventory_user_info">
+            <ion-avatar item-start>
+                <img src="{{event.owner.avatar}}" onError="this.src='assets/imgs/default-avatar-user.png'" />
+            </ion-avatar>
+            <div class="inventory_user_fullname">{{event.owner.fullname}}</div>
+        </ion-item>
 
-		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'event'">
-			<ion-card class="inventory_product_box">
-				<ion-item class="inventory_product_info" (click)="openEventProfile()">
-					<ion-thumbnail item-start>
-						<img class="inventory_product_image" src="{{event.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" imageViewer>
-					</ion-thumbnail>
-					<p class="inventory_product_title">{{event.title}}</p>
-				</ion-item>
-			</ion-card>
-		</ion-col>
+        <ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'event'">
+            <ion-card class="inventory_product_box">
+                <ion-item class="inventory_product_info" (click)="openEventProfile()">
+                    <ion-thumbnail item-start>
+                        <img class="inventory_product_image" src="{{event.avatar}}" onError="this.src='assets/imgs/default-avatar-event.png'" imageViewer>
+                    </ion-thumbnail>
+                    <p class="inventory_product_title">{{event.title}}</p>
+                </ion-item>
+            </ion-card>
+        </ion-col>
 
-		<ion-item *ngIf="inventoryType=='business'" class="inventory_user_info">
-			<ion-avatar item-start>
-				<img src="{{page.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';"/>
-			</ion-avatar>
-			<div class="inventory_user_fullname">{{page.owner.fullname}}</div>
-		</ion-item>
-		<ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'business'">
-			<ion-card class="inventory_product_box">
-				<ion-item class="inventory_product_info" (click)="openOAProfile()">
-					<ion-thumbnail item-start>
-						<img class="inventory_product_image"src="{{page.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
-					</ion-thumbnail>
-					<p class="inventory_product_title">{{page.title}}</p>
-				</ion-item>
-			</ion-card>
-		</ion-col>
+        <ion-item *ngIf="inventoryType=='business'" class="inventory_user_info">
+            <ion-avatar item-start>
+                <img src="{{page.owner.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" />
+            </ion-avatar>
+            <div class="inventory_user_fullname">{{page.owner.fullname}}</div>
+        </ion-item>
+        <ion-col class="inventory_product" col-7 *ngIf="inventoryType == 'business'">
+            <ion-card class="inventory_product_box">
+                <ion-item class="inventory_product_info" (click)="openOAProfile()">
+                    <ion-thumbnail item-start>
+                        <img class="inventory_product_image" src="{{page.avatar}}" onError="this.src='assets/imgs/image_not_found.jpg';" imageViewer>
+                    </ion-thumbnail>
+                    <p class="inventory_product_title">{{page.title}}</p>
+                </ion-item>
+            </ion-card>
+        </ion-col>
 
-		<!-- SHOW FOR GROUP EVENT OA -->
-		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-5 (click)="goToPage('items','all','Tất Cả')">
-			<ion-card>
-				<ion-card-header>
-					TỔNG: {{total}}/{{totalItem}}
-				</ion-card-header>
-			</ion-card>
+        <!-- SHOW FOR GROUP EVENT OA -->
+        <ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-5 (click)="goToPage('items','all','Tất Cả')">
+            <ion-card>
+                <ion-card-header>
+                    TỔNG: {{total}}/{{totalItem}}
+                </ion-card-header>
+            </ion-card>
 
-		</ion-col>
-		<ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-12>
-			<ion-card>
-				<ion-card-header>
-					GIÁ TRỊ: {{formatCurrency()}}
-				</ion-card-header>
-			</ion-card>
-		</ion-col>
+        </ion-col>
+        <ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-12>
+            <ion-card>
+                <ion-card-header>
+                    GIÁ TRỊ: {{formatCurrency()}}
+                </ion-card-header>
+            </ion-card>
+        </ion-col>
 
-		<!-- SHOW FOR USER -->
-		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
-			<ion-card>
-				<ion-card-header>TỔNG : {{total}}/{{totalItem}}</ion-card-header>
-			</ion-card>
-		</ion-col>
-		<ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
-			<ion-card>
-				<ion-card-header>GIÁ TRỊ: {{formatCurrency()}}</ion-card-header>
-			</ion-card>
-		</ion-col>
+        <!-- SHOW FOR USER -->
+        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
+            <ion-card>
+                <ion-card-header>TỔNG : {{total}}/{{totalItem}}</ion-card-header>
+            </ion-card>
+        </ion-col>
+        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
+            <ion-card>
+                <ion-card-header>GIÁ TRỊ: {{formatCurrency()}}</ion-card-header>
+            </ion-card>
+        </ion-col>
 
-		<ion-col class="inventory_total" *ngIf="!isHasData" col-6>
-			<ion-card>
-				<ion-card-header>
-					<div class='fakeItem'>
-						<h2></h2>
-					</div>
-				</ion-card-header>
-			</ion-card>
-		</ion-col>
-		<ion-col class="inventory_total" *ngIf="!isHasData" col-6>
-			<ion-card>
-				<ion-card-header>
-					<div class='fakeItem'>
-						<h2></h2>
-					</div>
-				</ion-card-header>
-			</ion-card>
-		</ion-col>
-	</ion-row>
+        <ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+            <ion-card>
+                <ion-card-header>
+                    <div class='fakeItem'>
+                        <h2></h2>
+                    </div>
+                </ion-card-header>
+            </ion-card>
+        </ion-col>
+        <ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+            <ion-card>
+                <ion-card-header>
+                    <div class='fakeItem'>
+                        <h2></h2>
+                    </div>
+                </ion-card-header>
+            </ion-card>
+        </ion-col>
+    </ion-row>
 
-	<ion-grid class="inventory_metro_menu" *ngIf="isHasData == arrTagBadge.length">
-		<ion-row>
-			<ion-col class="inventory_metro_box" col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
-				<div class="box inventory">
-					<div class="divImg">
-						<ion-badge item-end class="inventory_metro_badge">{{type.badge}}</ion-badge>
-						<img width="100%" src="{{type.image}}" />
-					</div>
-					<h6 class="inventory_metro_title">{{type.title}}</h6>
-				</div>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
+    <ion-grid class="inventory_metro_menu" *ngIf="isHasData == arrTagBadge.length">
+        <ion-row>
+            <ion-col class="inventory_metro_box" col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
+                <div class="box inventory">
+                    <div class="divImg">
+                        <ion-badge item-end class="inventory_metro_badge">{{type.badge}}</ion-badge>
+                        <img width="100%" src="{{type.image}}" />
+                    </div>
+                    <h6 class="inventory_metro_title">{{type.title}}</h6>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-	<ion-grid class="inventory_metro_menu" *ngIf="isHasData !=  arrTagBadge.length">
-		<ion-row>
-			<ion-col class="inventory_metro_box" col-4 style="text-align: center" *ngFor='let fake of [3,3,3,3,3,3,3,3,3]'>
-				<div class="box inventory" class='fakeItem'>
-					<div class="divCustom"></div>
-				</div>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
+    <ion-grid class="inventory_metro_menu" *ngIf="isHasData !=  arrTagBadge.length">
+        <ion-row>
+            <ion-col class="inventory_metro_box" col-4 style="text-align: center" *ngFor='let fake of [3,3,3,3,3,3,3,3,3]'>
+                <div class="box inventory" class='fakeItem'>
+                    <div class="divCustom"></div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
 
 <ion-footer [ngClass]="device_screen">
-	<ion-grid class="inventory_footer_grid">
-		<ion-row>
-			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">
-				Sắp hết hạn dùng
-				<span class="inventory_footer_quantity">{{badge_near_expiry}}</span>
-			</ion-col>
-			<ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_stored','Sắp hết hạn lưu kho')">
-				Sắp hết hạn lưu kho
-				<span class="inventory_footer_quantity">{{badge_near_stored}}</span>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
+    <ion-grid class="inventory_footer_grid">
+        <ion-row>
+            <ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_expiry','Sắp hết hạn dùng')">
+                Sắp hết hạn dùng
+                <span class="inventory_footer_quantity">{{badge_near_expiry}}</span>
+            </ion-col>
+            <ion-col class="inventory_footer_box" col-6 (click)="goToPage('items','nearly_stored','Sắp hết hạn lưu kho')">
+                Sắp hết hạn lưu kho
+                <span class="inventory_footer_quantity">{{badge_near_stored}}</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-footer>

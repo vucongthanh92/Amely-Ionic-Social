@@ -27,16 +27,24 @@ export class ShoppingsService {
       get_all: get_all, offset: offset, limit: limit
     });
   }
-  
+
   putCart(product_list) {
     return this.apiService.getCarts(product_list);
   }
 
-  getProductsFeature(){
+  getProductsFeature() {
     return this.apiService.getFeaturedProducts();
   }
 
-  getShopFeature(){
+  getShopFeature() {
     return this.apiService.getFeaturedShops();
-  } 
+  }
+
+  getShopFeatureProducts(shopGuid) {
+    return this.apiService.getShopFeatureProducts({ shop_guid: shopGuid });
+  }
+
+  getShopMostSoldProducts(shopGuid) {
+    return this.apiService.getShopMostSoldProducts({ shop_guid: shopGuid });
+  }
 }

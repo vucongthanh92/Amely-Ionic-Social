@@ -22,12 +22,20 @@ export class ProductsFeatureComponent implements OnInit {
     private shoppingSerivce: ShoppingsService, public customService: CustomService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    if (this.is_feature) {
+    if (this.is_feature && !this.shopGuid) {
       this.getProductsFeature(5);
-    } else if (this.shopGuid != undefined) {
-      this.initShopProductFeatue();
-    } else {
+      console.log("feature");
+    } else if (!this.is_feature && !this.shopGuid) {
+      console.log("mostsold");
       this.getMostSold(5);
+    }
+    else if (this.shopGuid && this.is_feature) {
+      this.initShopProductFeatue();
+      console.log("shop_feature");
+    }
+    else if (this.shopGuid && !this.is_feature) {
+      this.initShopMostSoldProduct();
+      console.log("shop_mostsold");
     }
   }
 
@@ -76,14 +84,11 @@ export class ProductsFeatureComponent implements OnInit {
 
   }
   initShopProductFeatue() {
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
-
-    // "default" "feature"
     this.retryInitShopProductFeatue(5);
+  }
+
+  initShopMostSoldProduct() {
+  this.retryInitShopMostSoldProduct(5);
   }
 
   retryInitShopProductFeatue(retry) {
@@ -91,17 +96,28 @@ export class ProductsFeatureComponent implements OnInit {
       this.isHasData = true;
       return;
     }
-    this.shoppingSerivce.getProducts(null, this.shopGuid, "feature", null, 0, 0, 10).subscribe(data => {
+    this.shoppingSerivce.getShopFeatureProducts(this.shopGuid).subscribe(data => {
       this.isHasData = true;
-      if (data.products instanceof Array) {
+      if (data instanceof Array) {
         // loading.dismiss();
-        this.productsMostSold = data.products;
+        this.productsMostSold = data;
       }
     }, err => this.retryInitShopProductFeatue(--retry))
   }
-  // formatCurrency(product: Product, currency: string) {
-  //   return this.customService.formatCurrency(this.customService.netPrice(product) + '', currency);
-  // }
+
+  retryInitShopMostSoldProduct(retry) {
+    if (retry == 0) {
+      this.isHasData = true;
+      return;
+    }
+    this.shoppingSerivce.getShopMostSoldProducts(this.shopGuid).subscribe(data => {
+      this.isHasData = true;
+      if (data instanceof Array) {
+        // loading.dismiss();
+        this.productsMostSold = data;
+      }
+    }, err => this.retryInitShopProductFeatue(--retry))
+  }
 
   formatSalePrice(price: number, currency: string) {
     return this.customService.formatCurrency(price + "", currency);
@@ -123,7 +139,11 @@ export class ProductsFeatureComponent implements OnInit {
         break;
       case 'all':
         // loading.dismiss();
-        this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature', product: product });
+        if (this.is_feature) {
+          this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Nổi Bật', type_product: 'feature', product: product });
+        }else{
+          this.appCtrl.getRootNav().push(ProductCategoryComponent, { shop_guid: this.shopGuid, title: 'Sản Phẩm Bán Chạy', type_product: 'default', product: product });
+        }
         break;
       default:
         break;

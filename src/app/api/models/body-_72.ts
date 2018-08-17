@@ -3,6 +3,7 @@
 /**
  */
 export class body_72 {
-    offset?: number;
-    limit?: number;
+    owner_guid?: number;
+    avatar_type?: string;
+    images?: string[];
 }

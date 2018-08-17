@@ -3,5 +3,5 @@
 /**
  */
 export class body_75 {
-    item_guid?: number;
+    currency?: string;
 }

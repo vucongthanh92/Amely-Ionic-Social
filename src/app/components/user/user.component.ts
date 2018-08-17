@@ -119,6 +119,12 @@ export class UserComponent {
             .catch(err => {
               data.avatar = localStorage.getItem("avatar" + this.userCurrent.guid);
             })
+        } else {
+          if (data.requested) {
+            this.title_add_friend = "Đã gửi lời mời";
+          } else {
+            this.title_add_friend === 'Kết bạn'
+          }
         }
         this.user = data;
         this.is_user_current = this.user.guid == this.userCurrent.guid;

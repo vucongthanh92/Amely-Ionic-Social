@@ -39,7 +39,6 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
-  
   }
 
   onLogin() {
@@ -49,7 +48,7 @@ export class SigninComponent implements OnInit {
     if (!this.username) {
       this.loader.dismiss();
       this.customService.toastMessage('Tên đăng nhập không được phép để trống!', 'bottom', 3000);
-    } else if (!this.password){
+    } else if (!this.password) {
       this.loader.dismiss();
       this.customService.toastMessage('Mật khẩu không được phép để trống!', 'bottom', 3000);
     } else {
@@ -68,6 +67,7 @@ export class SigninComponent implements OnInit {
 
   retryLogin(retry) {
     if (retry == 0) {
+      this.loader.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }

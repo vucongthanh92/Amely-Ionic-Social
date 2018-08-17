@@ -1,7 +1,9 @@
 {
-  "name": "ezqua",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
+    "name": "ezqua",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "ionic-angular",
+    "path": "/_search",
+    "proxyUrl": "http://103.15.51.45:9210"
 }

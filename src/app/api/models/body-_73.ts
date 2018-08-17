@@ -3,5 +3,7 @@
 /**
  */
 export class body_73 {
-    currency?: string;
+    owner_guid?: number;
+    cover_type?: string;
+    images?: string[];
 }

@@ -44,11 +44,9 @@ export class InventoriesComponent implements OnInit {
   search() {
     this.is_search_show = !this.is_search_show;
     if (!this.is_search_show) {
-      if (this.search_content != undefined && this.search_content.length >= 3) {
+      if (this.search_content) {
         // this.customService.goToPageSearch(this.search_content, this.nav);
         this.nav.push(SearchComponent, { param: this.search_content, service: this })
-      } else {
-        this.customService.toastMessage('Tìm kiếm phải lớn hơn 3 ký tự', 'bottom', 3000)
       }
     }
   }
