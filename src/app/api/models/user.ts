@@ -31,4 +31,5 @@ export class User {
     province?: string;
     district?: string;
     ward?: string;
+    requested?: string;
 }

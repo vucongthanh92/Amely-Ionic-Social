@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParameterCodec, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api/services';
+import { Http, Headers } from '@angular/http';
 
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT' })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT' })
+// };
 @Injectable()
 export class SearchService {
   private url = 'http://103.15.51.45:9210/_search';
-  constructor(private api: ApiService, private http: HttpClient) {
+  constructor(private api: ApiService, private http: Http) {
   }
 
   searchValues(content: string) {
@@ -18,11 +18,24 @@ export class SearchService {
 
 
   elasticSearch(body: SearchRequest) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+
     return new Promise((resolve, reject) => {
-      this.http.post(this.url, body, httpOptions).subscribe(
-        (data: SearchResponse) => resolve(data),
-        err => reject(err)
-      )
+      this.http.post(this.url, body, { headers: headers })
+        .map(response => response.json())
+        .subscribe(
+          response => {
+            console.log(response);
+
+            resolve(response);
+          }, error => {
+            reject(error);
+          }
+        );
     });
   }
 

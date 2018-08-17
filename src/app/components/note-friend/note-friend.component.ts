@@ -43,6 +43,10 @@ export class NoteFriendComponent implements OnInit {
         if (data.users && data.users.length > 0) this.users = data.users;
         if (data.groups && data.groups.length > 0) this.groups = data.groups;
         if (data.events && data.events.length > 0) this.events = data.events;
+        console.log(this.users);
+        console.log(this.groups);
+        console.log(this.events);
+        
       },
       err => {
         this.loadData(--retry)
