@@ -8,52 +8,142 @@ const httpOptions = {
 };
 @Injectable()
 export class SearchService {
-  private url = 'http://103.15.51.45:9210/_search';
+  // private url = 'http://103.15.51.45:9210';
+  private url = 'http://192.168.40.243:9210';
+  private headers;
   constructor(private api: ApiService, private http: Http) {
+    this.headers = new Headers()
+    this.headers.append('Content-Type', 'application/json');
   }
 
   searchValues(content: string) {
     return this.api.search(content);
   }
-
-
   elasticSearch(body: SearchRequest) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-    // headers.append("Content-Type", "application/json; charset=utf-8");
-    // headers.append("Accept", "/");
-    // headers.append("Access-Control-Allow-Credentials", "true");
-    // headers.append("Upgrade-Insecure-Requests", "1");
-    // headers.append("withCredentials", "true");
-    // // headers.append("Access-Control-Allow-Origin", "http://localhost:8100 28");
-    // headers.append("Access-Control-Allow-Credentials", "true");
-    // headers.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    // headers.append("Access-Control-Allow-Headers", "Content-Type, Authorization, Upgrade-Insecure-Requests");
-
     return new Promise((resolve, reject) => {
-      this.http.post(this.url, body, { headers: headers })
+      this.http.post(this.url + "/_search", body, { headers: this.headers })
         .map(response => {
-          console.log(0);
-          
           return response.json()
         })
         .subscribe(
           response => {
-            console.log(111);
-            
             resolve(response);
           }, error => {
-            console.log(222);
             reject(error);
-          },()=>console.log(333)
-          
+          }, () => console.log(333)
         );
     });
   }
 
+  geoUser(from: number, size: number, usernameCurrent: string, findable_by: string, gte: number,
+    lte: number, arrMood, gender: string, lat: number, lon: number) {
+    let request = this.createRequestGeoUser(from, size, usernameCurrent, findable_by, gte,
+      lte, arrMood, gender, lat, lon);
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + "/_search", request, { headers: this.headers })
+        .map(response => {
+          return response.json()
+        })
+        .subscribe(
+          response => {
+            resolve(response);
+          }, error => {
+            reject(error);
+          }, () => console.log(333)
+        );
+    });
+  }
+
+  updateGeoUser(userID: string, lat: number, lng: number, yob: string, mood: string, findable_by: string, gender: string) {
+    console.log("lat            " + lat);
+    console.log("lng            " + lng);
+    console.log("yob            " + yob);
+    console.log("mood           " + mood);
+    console.log("findable_by    " + findable_by);
+    console.log("gender         " + gender);
+
+    let request;
+    if (lat && lng) request = { doc: { location: { lat: lat, lon: lng } } };
+
+    if (findable_by) request = { doc: { findable_by: findable_by } };
+
+    if (mood) request = { doc: { mood: mood } };
+
+    if (yob && gender) request = { doc: { yob: yob, gender: gender } };
+
+    if (yob && gender && mood) request = { doc: { yob: yob, gender: gender, mood: mood } };
+
+    console.log(JSON.stringify(request));
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url + `/users/user/${userID}/_update`, request, { headers: this.headers })
+        .map(response => {
+          return response.json()
+        })
+        .subscribe(
+          response => {
+            resolve(response);
+          }, error => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+
+  createRequestGeoUser(from: number, size: number, usernameCurrent: string, findable_by: string, gte: number,
+    lte: number, arrMood, gender: string, lat: number, lon: number) {
+    return {
+      "from": from,
+      "size": size,
+      "query": {
+        "filtered": {
+          "query": {
+            "bool": {
+              "must_not": [
+                { "match": { "Username": usernameCurrent } },
+                { "match": { "findable_by": findable_by } }
+              ],
+              "must": [
+                {
+                  "range": {
+                    "yob": {
+                      "gte": gte,
+                      "lte": lte
+                    }
+                  }
+                },
+                { "match": { "gender": gender } },
+
+                {
+                  "bool": {
+                    "should": arrMood
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "sort": [
+        {
+          "_geo_distance": {
+            "distance": "5km",
+            "location": {
+              "lat": lat,
+              "lon": lon
+            },
+            "order": "asc",
+            "unit": "km",
+            "distance_type": "plane"
+          }
+        }
+      ]
+    }
+  }
+
 }
+
+
 export class SearchRequest {
   from: number;
   size: number;
@@ -94,6 +184,7 @@ export class HitEntry {
   _id: string;
   _score: number;
   _source: Source;
+  sort: Array<number>;
 }
 class Source {
   Title: string;
@@ -103,4 +194,8 @@ class Source {
   Email: string;
   Price: string;
   Image: string;
+  mood: string;
+  gender: string;
+  findable_by: string;
+  yob: string;
 }

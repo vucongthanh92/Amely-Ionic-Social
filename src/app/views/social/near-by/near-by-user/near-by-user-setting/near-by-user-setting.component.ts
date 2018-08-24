@@ -1,8 +1,9 @@
+import { SearchService } from './../../../../../services/search.service';
 import { CustomService } from './../../../../../services/custom.service';
-import { FirebaseService } from './../../../../../services/firebase.service';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { User } from '../../../../../api/models';
 
 @Component({
   selector: 'app-near-by-user-setting',
@@ -17,9 +18,11 @@ export class NearByUserSettingComponent implements OnInit {
   can_find: string;
   find: string;
   callback;
+  private userCurrent: User;
 
-  constructor(private navParams: NavParams, private nav: NavController, private fbService: FirebaseService, private customService: CustomService) {
+  constructor(private navParams: NavParams, private nav: NavController, private searchService: SearchService, private customService: CustomService) {
     this.callback = this.navParams.get('callback');
+    this.userCurrent = this.customService.user_current;
   }
 
   ngOnInit() {
@@ -33,11 +36,17 @@ export class NearByUserSettingComponent implements OnInit {
     // console.log('wanna_trade ' + this.wanna_trade);
     // console.log(this.can_find);
     // console.log(this.find);
-    if (this.can_find) {
-      this.fbService.updateFindableBy(this.customService.user_current.username, this.can_find);
-    }
-    this.callback({ age: this.age, wanna_date: this.wanna_date, wanna_gift: this.wanna_gift, wanna_send: this.wanna_send, 
-      wanna_trade: this.wanna_trade, find: this.find }).then(() => {
+
+    //todo update geo user
+    this.searchService.updateGeoUser(this.userCurrent.guid + "", null, null, null, null, this.can_find, null)
+      .then(result => console.log(result))
+      .catch();
+
+    //set callback send option to find nearby
+    this.callback({
+      age: this.age, wanna_date: this.wanna_date, wanna_gift: this.wanna_gift, wanna_send: this.wanna_send,
+      wanna_trade: this.wanna_trade, find: this.find, findable_by: this.can_find
+    }).then(() => {
       this.nav.pop();
     });
   }

@@ -1,3 +1,4 @@
+import { SearchService } from './../../services/search.service';
 import * as Models from './../../api/models';
 import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
 import { SigninComponent } from './../../authentication/signin/signin.component';
@@ -59,7 +60,8 @@ export class MainMenuComponent implements OnInit {
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private feedService: FeedsService,
-    private appCtrl: App
+    private appCtrl: App,
+    private searchService: SearchService
   ) {
 
     this.device_screen = customService.checkDevices();
@@ -121,8 +123,12 @@ export class MainMenuComponent implements OnInit {
         this.avatarUrl = data.avatar;
         this.fullname = data.fullname;
         const year = new Date(data.birthdate).getFullYear() + '';
-        if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
-        else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
+
+        // if (data.mood) this.fbService.syncProfileFirebase(year, data.gender, data.mood.guid + "", data.username)
+        // else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
+
+        if (data.mood) this.searchService.updateGeoUser(data.guid + "", null, null, year, data.mood.guid + "", null, data.gender).then().catch();
+        else this.searchService.updateGeoUser(data.guid + "", null, null, year, null, null, data.gender).then().catch();
 
         this.retryGetFriends(5, data);
         this.notifyFirebase();

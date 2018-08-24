@@ -1,3 +1,4 @@
+import { SearchService } from './../../../services/search.service';
 import { PROVINCES } from './../../../provinces';
 import { WARDS } from './../../../wards';
 import { DISTRICTS } from './../../../districts';
@@ -34,7 +35,7 @@ export class UserUpdateComponent implements OnInit {
   public showError: boolean;
   public user_current: User;
   constructor(private customService: CustomService, private userService: UserService, private nav: NavController,
-    private navParams: NavParams, public loadingCtrl: LoadingController, private fbService: FirebaseService) {
+    private navParams: NavParams, public loadingCtrl: LoadingController, private fbService: FirebaseService, private searchService: SearchService) {
     this.user_current = this.customService.user_current;
     this.gender = this.user_current.gender;
     this.first_name = this.user_current.first_name;
@@ -116,7 +117,7 @@ export class UserUpdateComponent implements OnInit {
               this.nav.setRoot(SigninComponent);
             });
             this.updateUserFirebase(this.birthdate, this.gender);
-          }else{
+          } else {
             this.nav.pop();
           }
         } else {
@@ -133,9 +134,10 @@ export class UserUpdateComponent implements OnInit {
   updateUserFirebase(birthdate, gender) {
     try {
       let d: Date = new Date(birthdate);
-      this.fbService.updateProfile(this.user_current.username, d.getFullYear() + "", gender);
+      // this.fbService.updateProfile(this.user_current.username, d.getFullYear() + "", gender);
+      this.searchService.updateGeoUser(this.user_current.guid + "", null, null, d.getFullYear() + "", null, null, gender).then().catch();
     } catch (error) {
-      
+
     }
   }
 }
