@@ -31,7 +31,7 @@ export class SearchService {
             resolve(response);
           }, error => {
             reject(error);
-          }, () => console.log(333)
+          }
         );
     });
   }

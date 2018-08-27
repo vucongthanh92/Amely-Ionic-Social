@@ -26,10 +26,11 @@ export class NearByUserComponent implements OnInit {
   private lng: number;
   public datas: Array<HitEntry>;
   private offset: number = 0;
-  private limit: number = 20;
+  private limit: number = 10;
   private findableBy: string
   private minage: number = (new Date()).getFullYear() - 80;
   private maxage: number = (new Date()).getFullYear() - 16;
+  private isLoadmoreFinish = false;
 
 
   constructor(public geolocationService: GeolocationService, public nav: NavController, private searchService: SearchService,
@@ -41,7 +42,7 @@ export class NearByUserComponent implements OnInit {
       localStorage.setItem("lat", this.lat + '');
       localStorage.setItem("lng", this.lng + '');
       this.searchService.updateGeoUser(this.userCurrent.guid + "", this.lat, this.lng, null, null, null, null).then().catch();
-      this.findUser();
+      this.findUser(false, null);
     }).catch((error) => {
       console.log('Error getting location', error);
       this.customSerive.toastMessage("Ứng dụng chưa được cấp quyền GPS.Vui long thử lại", 'bottom', 3000)
@@ -61,7 +62,7 @@ export class NearByUserComponent implements OnInit {
     }
   }
 
-  findUser() {
+  findUser(isLoadmore: boolean, infiniteScroll) {
     var that = this;
     that.wanna = [];
     if (that.wanna_send) that.wanna.push({ "match": { "mood": "4" } });
@@ -69,12 +70,22 @@ export class NearByUserComponent implements OnInit {
     if (that.wanna_trade) that.wanna.push({ "match": { "mood": "6" } });
     if (that.wanna_date) that.wanna.push({ "match": { "mood": "7" } });
     this.findableBy = this.userCurrent.gender == "male" ? "female" : "male";
+    console.log(this.offset + " " + this.limit);
+
     this.searchService.geoUser(this.offset, this.limit, this.userCurrent.username, this.findableBy, this.minage, this.maxage,
       that.wanna, this.find, this.lat, this.lng)
       .then((result: SearchResponse) => {
-        this.datas = result.hits.hits;
+        if (isLoadmore) {
+          infiniteScroll.complete();
+          this.datas = this.datas.concat(result.hits.hits);
+          this.isLoadmoreFinish = result.hits.hits.length == 0
+        } else {
+          this.datas = result.hits.hits;
+        }
       })
-      .catch()
+      .catch(() => {
+        infiniteScroll.complete();
+      })
   }
 
   countAge(yob: number) {
@@ -113,8 +124,22 @@ export class NearByUserComponent implements OnInit {
 
       this.findableBy = _params.findable_by;
       this.datas = [];
-      this.findUser();
+      this.findUser(false, null);
       resolve();
     });
+  }
+
+  doInfinite(infiniteScroll) {
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   enableBackdropDismiss: true
+    // });
+    // loading.present();
+    if (!this.isLoadmoreFinish) {
+      this.offset = this.offset + this.limit;
+      this.findUser(true, infiniteScroll);
+    }else{
+      infiniteScroll.complete();
+    }
   }
 }
