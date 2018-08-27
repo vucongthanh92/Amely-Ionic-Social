@@ -1,3 +1,4 @@
+import { CONFIG } from './../config';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api/services';
@@ -9,7 +10,7 @@ const httpOptions = {
 @Injectable()
 export class SearchService {
   // private url = 'http://103.15.51.45:9210';
-  private url = 'http://192.168.40.243:9210';
+  private url = CONFIG.urlElastic;
   private headers;
   constructor(private api: ApiService, private http: Http) {
     this.headers = new Headers()
@@ -39,6 +40,8 @@ export class SearchService {
     lte: number, arrMood, gender: string, lat: number, lon: number) {
     let request = this.createRequestGeoUser(from, size, usernameCurrent, findable_by, gte,
       lte, arrMood, gender, lat, lon);
+    // console.log(JSON.stringify(request));
+
     return new Promise((resolve, reject) => {
       this.http.post(this.url + "/_search", request, { headers: this.headers })
         .map(response => {
@@ -55,12 +58,12 @@ export class SearchService {
   }
 
   updateGeoUser(userID: string, lat: number, lng: number, yob: string, mood: string, findable_by: string, gender: string) {
-    console.log("lat            " + lat);
-    console.log("lng            " + lng);
-    console.log("yob            " + yob);
-    console.log("mood           " + mood);
-    console.log("findable_by    " + findable_by);
-    console.log("gender         " + gender);
+    // console.log("lat            " + lat);
+    // console.log("lng            " + lng);
+    // console.log("yob            " + yob);
+    // console.log("mood           " + mood);
+    // console.log("findable_by    " + findable_by);
+    // console.log("gender         " + gender);
 
     let request;
     if (lat && lng) request = { doc: { location: { lat: lat, lon: lng } } };
@@ -97,6 +100,15 @@ export class SearchService {
       "size": size,
       "query": {
         "filtered": {
+          "filter": {
+            "geo_distance": {
+              "distance": "5km",
+              "location": {
+                "lat": lat,
+                "lon": lon
+              }
+            }
+          },
           "query": {
             "bool": {
               "must_not": [
