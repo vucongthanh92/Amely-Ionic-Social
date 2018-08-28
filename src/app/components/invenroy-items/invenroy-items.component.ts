@@ -31,8 +31,6 @@ export class InvenroyItemsComponent implements OnInit {
     this.callback = this.navParams.get('callback');
     this.isAdminGroup = this.navParams.get("isAdminGroup");
     this.isAdminEvent = this.navParams.get("isAdminEvent");
-    console.log(this.inventoryType);
-
   }
 
   ngOnInit() {

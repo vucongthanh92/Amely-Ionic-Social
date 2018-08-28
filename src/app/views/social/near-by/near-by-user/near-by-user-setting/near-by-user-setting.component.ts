@@ -38,7 +38,7 @@ export class NearByUserSettingComponent implements OnInit {
     // console.log(this.find);
 
     //todo update geo user
-    this.searchService.updateGeoUser(this.userCurrent.guid + "", null, null, null, null, this.can_find, null)
+    this.searchService.updateGeoUser(this.userCurrent.guid + "", null, null, null, null, this.can_find, null, null)
       .then(result => console.log(result))
       .catch();
 

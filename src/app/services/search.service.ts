@@ -20,9 +20,37 @@ export class SearchService {
   searchValues(content: string) {
     return this.api.search(content);
   }
+
   elasticSearch(body: SearchRequest) {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + "/_search", body, { headers: this.headers })
+        .map(response => {
+          return response.json()
+        })
+        .subscribe(
+          response => {
+            resolve(response);
+          }, error => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  createGeoUser(userGuid: string, fullname: string, phone: string, username: string, email: string, yob: string, gender: string) {
+    let bodyRequest = {
+      "Title": fullname,
+      "Phone": phone,
+      "Username": username,
+      "Fullname": fullname,
+      "Email": email,
+      "Price": "",
+      "Image": "",
+      "yob": yob,
+      "gender": gender
+    }
+    return new Promise((resolve, reject) => {
+      this.http.put(this.url + `/users/user/${userGuid}/`, bodyRequest, { headers: this.headers })
         .map(response => {
           return response.json()
         })
@@ -57,7 +85,7 @@ export class SearchService {
     });
   }
 
-  updateGeoUser(userID: string, lat: number, lng: number, yob: string, mood: string, findable_by: string, gender: string) {
+  updateGeoUser(userID: string, lat: number, lng: number, yob: string, mood: string, findable_by: string, gender: string, avatar: string) {
     // console.log("lat            " + lat);
     // console.log("lng            " + lng);
     // console.log("yob            " + yob);
@@ -72,9 +100,9 @@ export class SearchService {
 
     if (mood) request = { doc: { mood: mood } };
 
-    if (yob && gender) request = { doc: { yob: yob, gender: gender } };
+    if (yob && gender && avatar) request = { doc: { yob: yob, gender: gender, Image: avatar } };
 
-    if (yob && gender && mood) request = { doc: { yob: yob, gender: gender, mood: mood } };
+    if (yob && gender && mood && avatar) request = { doc: { yob: yob, gender: gender, mood: mood, Image: avatar } };
 
     console.log(JSON.stringify(request));
     return new Promise((resolve, reject) => {

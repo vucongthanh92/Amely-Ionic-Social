@@ -135,7 +135,7 @@ export class UserUpdateComponent implements OnInit {
     try {
       let d: Date = new Date(birthdate);
       // this.fbService.updateProfile(this.user_current.username, d.getFullYear() + "", gender);
-      this.searchService.updateGeoUser(this.user_current.guid + "", null, null, d.getFullYear() + "", null, null, gender).then().catch();
+      this.searchService.updateGeoUser(this.user_current.guid + "", null, null, d.getFullYear() + "", null, null, gender, null).then().catch();
     } catch (error) {
 
     }

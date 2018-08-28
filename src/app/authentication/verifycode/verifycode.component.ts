@@ -19,11 +19,11 @@ export class VerifycodeComponent implements OnInit {
   timerVar;
   timerVal: number = 300;
   hide: boolean = true;
-  public isVerifyByEmail: string = 'false';
+  public isVerifyByEmail: string = 'true';
   constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.user = this.navParams.get('user');
-    this.email = this.user.mobilelogin;
+    this.email = this.user.email;
     console.log(this.user);
 
   }
@@ -68,7 +68,7 @@ export class VerifycodeComponent implements OnInit {
   }
   reActionUser() {
     if (this.hide) {
-      this.userService.reActionUser(this.isVerifyByEmail == "false" ? this.user.mobilelogin : null, this.isVerifyByEmail == "true"?this.user.email:null).subscribe(data => {
+      this.userService.reActionUser(this.isVerifyByEmail == "false" ? this.user.mobilelogin : null, this.isVerifyByEmail == "true"?this.user.email:"").subscribe(data => {
         if (data.status) {
           this.customService.toastMessage('Vui lòng kiểm tra tin nhắn điện thoại !!!', 'bottom', 3000);
         }

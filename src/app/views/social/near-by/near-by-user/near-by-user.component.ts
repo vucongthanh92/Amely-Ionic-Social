@@ -41,7 +41,7 @@ export class NearByUserComponent implements OnInit {
       this.lng = resp.coords.longitude;
       localStorage.setItem("lat", this.lat + '');
       localStorage.setItem("lng", this.lng + '');
-      this.searchService.updateGeoUser(this.userCurrent.guid + "", this.lat, this.lng, null, null, null, null).then().catch();
+      this.searchService.updateGeoUser(this.userCurrent.guid + "", this.lat, this.lng, null, null, null, null, null).then().catch();
       this.findUser(false, null);
     }).catch((error) => {
       console.log('Error getting location', error);
