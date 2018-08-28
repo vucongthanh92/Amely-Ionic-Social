@@ -1,26 +1,26 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">Lịch sử giao dịch</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">Lịch sử giao dịch</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="history_order_content">
-  <ion-list>
-    <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
-      <a *ngIf="transaction.status==='pending'" class="inventory_history_row" style="color: #666">
-        <ion-icon ios="ios-archive" class="inventory_history_icon" md="md-archive"></ion-icon>Đơn đặt hàng số #{{transaction.guid}}</a>
-      <a *ngIf="transaction.status==='cancel'" class="inventory_history_row" style="color: #DC202A">
-        <ion-icon ios="ios-close-circle" class="inventory_history_icon" md="md-close-circle"></ion-icon>Đơn đặt hàng số #{{transaction.guid}}</a>
-      <a *ngIf="transaction.status==='approved'" class="inventory_history_row" style="color: #00A474">
-        <ion-icon ios="ios-checkmark-circle" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon> Đơn đặt hàng số #{{transaction.guid}}</a>
+    <ion-list>
+        <ion-item class="inventory_history_item" *ngFor="let transaction of trans" (click)="openHistoryDetail(transaction)">
+            <a *ngIf="transaction.status==='pending'" class="inventory_history_row" style="color: #666">
+                <ion-icon ios="ios-archive" class="inventory_history_icon" md="md-archive"></ion-icon>Đơn đặt hàng số #{{transaction.related_guid}}</a>
+            <a *ngIf="transaction.status==='cancel'" class="inventory_history_row" style="color: #DC202A">
+                <ion-icon ios="ios-close-circle" class="inventory_history_icon" md="md-close-circle"></ion-icon>Đơn đặt hàng số #{{transaction.related_guid}}</a>
+            <a *ngIf="transaction.status==='approved'" class="inventory_history_row" style="color: #00A474">
+                <ion-icon ios="ios-checkmark-circle" class="inventory_history_icon" md="md-checkmark-circle"></ion-icon> Đơn đặt hàng số #{{transaction.related_guid}}</a>
 
-      <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
-      <p class="inventory_history_price">{{formatCurrency(transaction.quantity+'',transaction.currency)}}</p>
-    </ion-item>
-  </ion-list>
+            <div class="inventory_history_datetime">{{getDateCreate(transaction.time_created) | date:'dd/MM/yyyy'}}</div>
+            <p class="inventory_history_price">{{formatCurrency(transaction.quantity+'',transaction.currency)}}</p>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -1,4 +1,3 @@
-import { CONFIG } from './../config';
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 
@@ -7,5 +6,5 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = CONFIG.url;
+  rootUrl: string = "https://amely.com/ws/v1";
 }

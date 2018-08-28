@@ -72,7 +72,8 @@
         </ion-col>
 
         <!-- SHOW FOR GROUP EVENT OA -->
-        <ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-5 (click)="goToPage('items','all','Tất Cả')">
+        <ion-col class="inventory_total" *ngIf="inventoryType!='user'" col-5>
+            <!-- (click)="goToPage('items','all','Tất Cả')"> -->
             <ion-card>
                 <ion-card-header>
                     TỔNG: {{total}}/{{totalItem}}
@@ -89,18 +90,19 @@
         </ion-col>
 
         <!-- SHOW FOR USER -->
-        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6 (click)="goToPage('items','all','Tất Cả')">
+        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && types.length > 0" col-6>
+            <!-- (click)="goToPage('items','all','Tất Cả')" -->
             <ion-card>
                 <ion-card-header>TỔNG : {{total}}/{{totalItem}}</ion-card-header>
             </ion-card>
         </ion-col>
-        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && isHasData" col-6>
+        <ion-col class="inventory_total" *ngIf="inventoryType=='user' && types.length > 0" col-6>
             <ion-card>
                 <ion-card-header>GIÁ TRỊ: {{formatCurrency()}}</ion-card-header>
             </ion-card>
         </ion-col>
 
-        <ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+        <ion-col class="inventory_total" *ngIf="types.length==0" col-6>
             <ion-card>
                 <ion-card-header>
                     <div class='fakeItem'>
@@ -109,7 +111,7 @@
                 </ion-card-header>
             </ion-card>
         </ion-col>
-        <ion-col class="inventory_total" *ngIf="!isHasData" col-6>
+        <ion-col class="inventory_total" *ngIf="types.length==0" col-6>
             <ion-card>
                 <ion-card-header>
                     <div class='fakeItem'>
@@ -120,7 +122,7 @@
         </ion-col>
     </ion-row>
 
-    <ion-grid class="inventory_metro_menu" *ngIf="isHasData == arrTagBadge.length">
+    <ion-grid class="inventory_metro_menu" *ngIf="types.length>0">
         <ion-row>
             <ion-col class="inventory_metro_box" col-4 *ngFor="let type of types" (click)="goToPage('items',type.item_type,type.title)">
                 <div class="box inventory">
@@ -134,7 +136,7 @@
         </ion-row>
     </ion-grid>
 
-    <ion-grid class="inventory_metro_menu" *ngIf="isHasData !=  arrTagBadge.length">
+    <ion-grid class="inventory_metro_menu" *ngIf="types.length==0">
         <ion-row>
             <ion-col class="inventory_metro_box" col-4 style="text-align: center" *ngFor='let fake of [3,3,3,3,3,3,3,3,3]'>
                 <div class="box inventory" class='fakeItem'>

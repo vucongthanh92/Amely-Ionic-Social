@@ -70,8 +70,6 @@ export class NearByUserComponent implements OnInit {
     if (that.wanna_trade) that.wanna.push({ "match": { "mood": "6" } });
     if (that.wanna_date) that.wanna.push({ "match": { "mood": "7" } });
     this.findableBy = this.userCurrent.gender == "male" ? "female" : "male";
-    console.log(this.offset + " " + this.limit);
-
     this.searchService.geoUser(this.offset, this.limit, this.userCurrent.username, this.findableBy, this.minage, this.maxage,
       that.wanna, this.find, this.lat, this.lng)
       .then((result: SearchResponse) => {
