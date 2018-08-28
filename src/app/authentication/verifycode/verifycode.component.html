@@ -70,10 +70,10 @@
   </div> -->
 
         <ion-grid>
-
-            <ion-col col-12>
-                <!-- SHOW CHECKBOX CHOOSE EMAIL - PHONE -->
-                <!-- <ion-list radio-group [(ngModel)]="isVerifyByEmail">
+            <ion-row>
+                <ion-col col-12>
+                    <!-- SHOW CHECKBOX CHOOSE EMAIL - PHONE -->
+                    <!-- <ion-list radio-group [(ngModel)]="isVerifyByEmail">
                     <ion-item>
                         <ion-label>Điện thoại</ion-label>
                         <ion-radio value="false" checked (ionSelect)="onChangeMethod(false)"></ion-radio>
@@ -83,12 +83,12 @@
                         <ion-radio value="true" (ionSelect)="onChangeMethod(true)"></ion-radio>
                     </ion-item>
                 </ion-list>> -->
-
-                <ion-item id="edtVerifyCode" no-lines class="forgot_box">
-                    <ion-input type="text" [(ngModel)]="email" disabled></ion-input>
-                </ion-item>
-            </ion-col>
-
+                    <ion-label>Email</ion-label>
+                    <ion-item id="edtVerifyCode" no-lines class="forgot_box">
+                        <ion-input type="text" [(ngModel)]="email" disabled></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
 
             <ion-row>
 
