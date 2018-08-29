@@ -552,7 +552,12 @@ export class MainMenuComponent implements OnInit {
             handler: () => {
               // https://itunes.apple.com/us/app/amely/id1394535760?ls=1&mt=8
               const browser = this.iab.create("https://itunes.apple.com/us/app/amely/id1394535760?ls=1&mt=8");
+              browser.on('loadstop').subscribe(data => {
                 this.nav.popToRoot();
+              });
+              browser.on('exit').subscribe(data => {
+                this.nav.popToRoot();
+              });
             }
           }]
         });
