@@ -16,7 +16,9 @@ const configAmely = {
 	messagingSenderId: "384999181815"
 }
 
+
 export const CONFIG = {
 	'url': "https://amely.com/ws/v1",
-	'firebase': configAmely
+	'firebase': configAmely,
+	'urlElastic': "http://elasticsearch.amely.com:9210"
 };

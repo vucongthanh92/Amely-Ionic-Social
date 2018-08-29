@@ -11,11 +11,11 @@ export class InventoriesService {
   public deliverOption: {
     item: Item, quantity: number, fullname: string, phone: string,
     address: string, ward: string, province: string, district: string, payment_method: any, note: string,
-    payment_methods: any, shipping_fee: string,shipping_method:string
+    payment_methods: any, shipping_fee: string, shipping_method: string
   };
 
-  getInventory(guid, type) {
-    return this.apiService.getInventory({ ownerGuid: guid, inventoryType: type });
+  getInventory(guid, type, limit) {
+    return this.apiService.getInventory({ ownerGuid: guid, inventoryType: type, limit: limit });
   }
   getInventoriesByType(offset, limit, ownerGuid, itemType, inventoryType) {
     return this.apiService.getInventoryByType({ offset: offset, limit: limit, owner_guid: ownerGuid, inventory_type: inventoryType, item_type: itemType });

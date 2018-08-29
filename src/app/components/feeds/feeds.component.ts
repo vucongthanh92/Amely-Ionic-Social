@@ -188,8 +188,6 @@ export class FeedsComponent implements OnInit {
     this.feedsService.getFeeds(this.feed_type, this.owner_guid, this.offset).subscribe(data => {
       if (data.posts) {
         data.posts.forEach(e => {
-          console.log(e);
-          
           if (e.wallphoto != null && e.wallphoto.length > 0) {
             this.customService.checkUrlImage(e.wallphoto[0], 0)
               .then(result => {

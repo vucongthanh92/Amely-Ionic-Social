@@ -50,11 +50,11 @@ export class InventoryComponent implements OnInit {
   public device_screen: string;
 
   constructor(
-    public nav: NavController, 
-    public appCtrl: App, 
-    public inventorySerive: InventoriesService, 
+    public nav: NavController,
+    public appCtrl: App,
+    public inventorySerive: InventoriesService,
     private navParams: NavParams,
-    public loadingCtrl: LoadingController, 
+    public loadingCtrl: LoadingController,
     private customService: CustomService
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem("loggin_user"));
@@ -93,65 +93,33 @@ export class InventoryComponent implements OnInit {
       this.hidden_header = false;
     }
 
-    this.arrTagBadge = [
-      { position: 0, item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png' },
-      { position: 1, item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png' },
-      { position: 2, item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png' },
-      { position: 3, item_type: 'expiry', title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png' },
-      { position: 4, item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png' },
-      { position: 5, item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png' },
-      { position: 6, item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png' },
-      { position: 7, item_type: 'expired', title: 'Hết hạn dùng', image: 'assets/imgs/ic_used_actived.png' },
-      { position: 8, item_type: 'stored', title: 'Hết hạn lưu kho', image: 'assets/imgs/ic_expried.png' },
-      { position: 9, item_type: 'nearly_expiry', title: '', image: '' },
-      { position: 10, item_type: 'nearly_stored', title: '', image: '' }];
-
-
-    this.arrTagBadge.forEach(e => {
-      this.retryGetInventoriesByType(5, e);
-    })
-
     this.retryGetInventory(5);
   }
   retryGetInventory(retry) {
     if (retry == 0) return;
-    this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType).subscribe(data => {
-      if (data instanceof Array) {
-        this.totalItem = data.length;
-        data.forEach(e => {
-          this.total += +e.quantity;
-          this.totalPrice += (+e.product_snapshot.display_price) * (+e.quantity);
-        });
-        console.log(this.total);
-
-      } else {
-        this.totalItem = 0;
-      }
+    this.inventorySerive.getInventory(this.ownerGuid, this.inventoryType, 1000).subscribe(data => {
+      this.totalItem = data.total_quantity;
+      this.total = data.total_type;
+      this.totalPrice = data.total_price
+      
+      this.types = [
+        { position: 0, item_type: 'new', title: 'Mới nhập', image: 'assets/imgs/ic_inventory_new.png', badge:data.count.new},
+        { position: 1, item_type: 'wishlist', title: 'Yêu thích', image: 'assets/imgs/ic_inventory_like.png', badge: data.count.wishlist},
+        { position: 2, item_type: 'givelist', title: 'Muốn cho đi', image: 'assets/imgs/ic_inventory_wanna_send.png', badge: data.count.givelist},
+        { position: 3, item_type: 'expiry', title: 'Có hạn dùng', image: 'assets/imgs/ic_inventory_expired.png', badge: data.count.expiry },
+        { position: 4, item_type: 'non_expiry', title: 'Không hạn dùng', image: 'assets/imgs/ic_inventory_no_expired.png', badge: data.count.non_expiry },
+        { position: 5, item_type: 'voucher', title: 'E-Voucher', image: 'assets/imgs/ic_inventory_voucher.png', badge: data.count.voucher },
+        { position: 6, item_type: 'ticket', title: 'E-Ticket', image: 'assets/imgs/ic_inventory_ticket.png', badge: data.count.ticket},
+        { position: 7, item_type: 'expired', title: 'Hết hạn dùng', image: 'assets/imgs/ic_used_actived.png', badge: data.count.expired},
+        { position: 8, item_type: 'stored', title: 'Hết hạn lưu kho', image: 'assets/imgs/ic_expried.png', badge: data.count.stored},
+        // { position: 9, item_type: 'nearly_expiry', title: '', image: '', badge: data.count.nearly_expiry},
+        // { position: 10, item_type: 'nearly_stored', title: '', image: '', badge: data.count.nearly_stored}
+      ]
+      this.badge_near_stored = data.count.nearly_stored;
+      this.badge_near_expiry = data.count.nearly_expiry;
     }, err => this.retryGetInventory(--retry))
   }
 
-  retryGetInventoriesByType(retry, e) {
-    if (retry == 0) return;
-    this.inventorySerive.getInventoriesByType(0, 9999, this.ownerGuid, e.item_type, this.inventoryType).subscribe(data => {
-      this.isHasData= this.isHasData + 1;
-      
-      if (data && e.item_type != 'nearly_expiry' && e.item_type != 'nearly_stored') {
-        this.types.push({ item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position })
-        // this.types.splice(e.position, 0, { item_type: e.item_type, title: e.title, image: e.image, badge: data.length ? data.length : 0, position: e.position });
-
-        this.types.sort(this.compare);
-      }
-      // if (data && e.item_type != 'givelist' && e.item_type != 'new' && e.item_type != 'wishlist')
-      //   this.totalItem += data.length ? data.length : 0;
-      if (data && e.item_type == 'nearly_stored' && data.length) {
-        this.badge_near_stored = data.length;
-      }
-      if (data && e.item_type == 'nearly_expiry' && data.length) {
-        this.badge_near_expiry = data.length;
-      }
-
-    }, err => this.retryGetInventoriesByType(--retry, e));
-  }
 
   compare(a, b) {
     if (a.position > b.position)

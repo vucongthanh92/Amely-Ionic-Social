@@ -75,6 +75,7 @@ import { inline_response_200_11 } from '../models/inline-_response-_200_11';
 import { inline_response_200_10 } from '../models/inline-_response-_200_10';
 import { body_36 } from '../models/body-_36';
 import { body_37 } from '../models/body-_37';
+import { InventoryGetResponse } from '../models/inventory-get-response';
 import { Item } from '../models/item';
 import { body_38 } from '../models/body-_38';
 import { inline_response_200_12 } from '../models/inline-_response-_200_12';
@@ -3266,13 +3267,15 @@ export class ApiService extends BaseService {
   }
   /**
    * @param owner_guid - Global Unique IDentity
+   * @param limit - Global Unique IDentity
    * @param inventory_type - Global Unique IDentity
    */
-  getInventoryResponse(params: ApiService.GetInventoryParams): Observable<HttpResponse<Item>> {
+  getInventoryResponse(params: ApiService.GetInventoryParams): Observable<HttpResponse<InventoryGetResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     if (params.ownerGuid != null) __params = __params.set("owner_guid", params.ownerGuid.toString());
+    if (params.limit != null) __params = __params.set("limit", params.limit.toString());
     if (params.inventoryType != null) __params = __params.set("inventory_type", params.inventoryType.toString());
     let req = new HttpRequest<any>(
       "GET",
@@ -3288,18 +3291,19 @@ export class ApiService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Item = null;
-        _body = _resp.body as Item
-        return _resp.clone({body: _body}) as HttpResponse<Item>;
+        let _body: InventoryGetResponse = null;
+        _body = _resp.body as InventoryGetResponse
+        return _resp.clone({body: _body}) as HttpResponse<InventoryGetResponse>;
       })
     );
   }
 
   /**
    * @param owner_guid - Global Unique IDentity
+   * @param limit - Global Unique IDentity
    * @param inventory_type - Global Unique IDentity
    */
-  getInventory(params: ApiService.GetInventoryParams): Observable<Item> {
+  getInventory(params: ApiService.GetInventoryParams): Observable<InventoryGetResponse> {
     return this.getInventoryResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -6588,6 +6592,7 @@ export module ApiService {
   }
   export interface GetInventoryParams {
     ownerGuid?: number;
+    limit?: number;
     inventoryType?: string;
   }
   export interface GetInvitationParams {
