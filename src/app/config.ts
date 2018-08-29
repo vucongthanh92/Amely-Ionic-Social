@@ -20,5 +20,6 @@ const configAmely = {
 export const CONFIG = {
 	'url': "https://amely.com/ws/v1",
 	'firebase': configAmely,
-	'urlElastic': "http://elasticsearch.amely.com:9210"
+	'urlElastic': "http://elasticsearch.amely.com:9210",
+	"version": 51
 };

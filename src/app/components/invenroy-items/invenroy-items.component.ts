@@ -21,6 +21,9 @@ export class InvenroyItemsComponent implements OnInit {
   private callback: any;
   private isAdminGroup: any;
   private isAdminEvent: any;
+  private offset: number = 0;
+  private limit: number = 20;
+  private isLoadmoreFinish: boolean = false;
 
   constructor(public nav: NavController, public appCtrl: App, private navParams: NavParams, private inventoryService: InventoriesService,
     private customService: CustomService, public loadingCtrl: LoadingController) {
@@ -38,20 +41,21 @@ export class InvenroyItemsComponent implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.loadData(5);
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      enableBackdropDismiss: true
+    });
+    loading.present();
+    this.loadData(5, loading);
 
   }
 
-  loadData(retry) {
+  loadData(retry, loading) {
 
-    //  let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   enableBackdropDismiss: true
-    // });
-    // loading.present();
+
 
     if (retry == 0) {
-      // loading.dismiss();
+      loading.dismiss();
       this.customService.toastMessage('Kết nối máy chủ thất bại. Vui lòng thử lại !!', 'bottom', 4000);
       return;
     }
@@ -71,23 +75,24 @@ export class InvenroyItemsComponent implements OnInit {
     //       this.loadData(--retry)
     //     })
     // } else {
-    this.inventoryService.getInventoriesByType(0, 9999, this.ownerGuid, this.itemType, this.inventoryType).subscribe(
+    this.inventoryService.getInventoriesByType(this.offset, this.limit, this.ownerGuid, this.itemType, this.inventoryType).subscribe(
       data => {
+        loading.dismiss();
         if (data instanceof Array) {
           this.inventoriesItem = data;
-          console.log(this.inventoriesItem);
         } else {
           this.inventoriesItem = [];
         }
-        // loading.dismiss();
       },
       err => {
-        this.loadData(--retry)
+        this.loadData(--retry, loading)
       })
     // }
   }
 
   goToPage(value, item) {
+    console.log(JSON.stringify(item));
+
     switch (value) {
       case 'item':
         this.appCtrl.getRootNav().push(ItemComponent, {
@@ -119,4 +124,31 @@ export class InvenroyItemsComponent implements OnInit {
     this.nav.pop();
   }
 
+  doInfinite(infiniteScroll) {
+    if (!this.isLoadmoreFinish) {
+      this.offset += this.limit;
+      // console.log("offset             :" + this.offset);
+      // console.log("limit              :" + this.limit);
+      // console.log("ownerGuid          :" + this.ownerGuid);
+      // console.log("itemType           :" + this.itemType);
+      // console.log("inventoryType      :" + this.inventoryType);
+      // console.log("________________________________");
+
+      this.inventoryService.getInventoriesByType(this.offset, this.limit, this.ownerGuid, this.itemType, this.inventoryType).subscribe(
+        data => {
+          infiniteScroll.complete();
+          console.log(data.length);
+
+          if (data.length == 0 || data.length == undefined) this.isLoadmoreFinish = true;
+          this.inventoriesItem = this.inventoriesItem.concat(data);
+        },
+        err => {
+          infiniteScroll.complete();
+          this.offset -= this.limit;
+        }
+      )
+    } else {
+      infiniteScroll.complete();
+    }
+  }
 }
