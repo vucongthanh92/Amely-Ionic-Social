@@ -21,5 +21,6 @@ export const CONFIG = {
 	'url': "https://dev.helloqua.com/ws/v1",
 	// 'urlElastic': "http://elasticsearch.amely.com:9210",
 	'urlElastic': "http://192.168.40.243:9210",
-	'firebase': configHelloqua
+	'firebase': configHelloqua,
+	"version": 21
 };

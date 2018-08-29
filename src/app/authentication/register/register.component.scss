@@ -1,70 +1,58 @@
 app-register {
-    
-
-	ion-content {
-		background-image: url("../assets/imgs/background.png");
+    ion-content {
+        background-image: url("../assets/imgs/background.png");
     }
-    
-	ion-grid {
+    ion-grid {
         height: 100%;
         justify-content: center;
     }
-    
-    ion-label{
-       flex: none;
+    ion-label {
+        flex: none;
     }
-
     ion-input {
-		font-size: 15px;
-    	color: black;
-	}
+        font-size: 15px;
+        color: black;
+    }
     .button-inner {
         color: white;
     }
-
     .select-ios {
-    color: black;
-    // opacity: 0.5;
-    padding: 11px 8px 11px 16px;
+        color: black;
+        // opacity: 0.5;
+        padding: 11px 8px 11px 16px;
     }
     .label-ios {
         // opacity: 0.5;
         color: black;
-    margin: 11px 8px 11px 0;
-}
+        margin: 11px 8px 11px 0;
+    }
     .register_icon {
         margin: 0px 0px 0px 0px;
         font-size: 24px;
         width: 16px;
         height: 16px;
     }
-
     .register_form_datetime {
         padding: 15px 8px 11px 16px;
         color: black;
-    // opacity: 0.5;
+        // opacity: 0.5;
     }
-
     .register_icon_title {
         margin: 0px 0px 0px 20px;
     }
-
-    .col{
+    .col {
         margin-bottom: -10px;
     }
-    
     .register_colum {
         padding: 0px;
     }
-
     .register_box {
-		margin-bottom: 20px;
-    border-radius: 20px;
-    font-size: 15px;
-    height: 45px;
-    color: black;
-    background-color: white;
-        
+        margin-bottom: 20px;
+        border-radius: 20px;
+        font-size: 15px;
+        height: 45px;
+        color: black;
+        background-color: white;
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -73,14 +61,19 @@ app-register {
             padding: 0px 0px 0px 21px;
         }
     }
+    .register_box_password_policy {
+        margin-bottom: 0px;
+        font-size: 15px;
+        height: 45px;
+        color: rgb(82, 80, 80);
+    }
     .register_box2 {
-		margin-bottom: 20px;
-    border-radius: 20px 0px 0px 20px;
-    font-size: 15px;
-    height: 45px;
-    color: black;
-    background-color: white;
-        
+        margin-bottom: 20px;
+        border-radius: 20px 0px 0px 20px;
+        font-size: 15px;
+        height: 45px;
+        color: black;
+        background-color: white;
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -91,13 +84,12 @@ app-register {
     }
     .register_box3 {
         margin: 0px 0 32px;
-		margin-bottom: 20px;
-    border-radius: 0px 20px 20px 0px;
-    font-size: 15px;
-    height: 45px;
-    color: black;
-    background-color: white;
-        
+        margin-bottom: 20px;
+        border-radius: 0px 20px 20px 0px;
+        font-size: 15px;
+        height: 45px;
+        color: black;
+        background-color: white;
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -106,7 +98,6 @@ app-register {
             padding: 0px 0px 0px 5px;
         }
     }
-    
     .register_regulation {
         margin-bottom: 15px;
         border-radius: 3px;
@@ -114,7 +105,6 @@ app-register {
         background-color: #ffffff45;
         color: white;
         height: 58px;
-
         ion-item {
             background-color: transparent;
             border: none !important;
@@ -124,78 +114,66 @@ app-register {
             line-height: 18px;
         }
     }
-
-    .segment-ios-secondary .segment-button{
+    .segment-ios-secondary .segment-button {
         border-color: #289ae1;
         color: #289ae1;
     }
-
     .segment-ios-secondary .segment-button.segment-activated {
         color: #fff;
         background-color: #289ae1;
     }
-
-	.item-ios.item-block .item-inner{
-		border-bottom: 0px;
+    .item-ios.item-block .item-inner {
+        border-bottom: 0px;
     }
-    
-	#btnLogin{
-		width: 100%;
-		border-radius: 50vw;
-		font-size: 4vw;
-		height: 10vw;
+    #btnLogin {
+        width: 100%;
+        border-radius: 50vw;
+        font-size: 4vw;
+        height: 10vw;
     }
-    
-	.txtRememberRegister{
-		color: white;
-		width: 100%;
+    .txtRememberRegister {
+        color: white;
+        width: 100%;
         text-align: center;
     }
-
-    #btnSubmit{
-        font-size:1.7rem;
+    #btnSubmit {
+        font-size: 1.7rem;
         color: #289ae1;
     }
-
     .register_regulation_content {
         white-space: normal;
         overflow: unset;
         text-overflow: unset;
         flex: unset;
     }
-
     .text-input:-ms-input-placeholder {
-		color:black;
-        opacity: 0.5;
-        font-style: italic;
-	}
-
-	.text-input::-webkit-input-placeholder {
-		color:black;
+        color: black;
         opacity: 0.5;
         font-style: italic;
     }
-    
+    .text-input::-webkit-input-placeholder {
+        color: black;
+        opacity: 0.5;
+        font-style: italic;
+    }
     .select-ios .select-placeholder {
-    color: #999;
-    position: relative;
-    left: -4vw;
-    }
-    .select-text{
+        color: #999;
         position: relative;
-    left: -4vw;
+        left: -4vw;
     }
-
+    .select-text {
+        position: relative;
+        left: -4vw;
+    }
     .select-ios .select-icon {
-    position: relative;
-    width: 12px;
-    height: 18px;
-    left: -3vw;
-}
-
+        position: relative;
+        width: 12px;
+        height: 18px;
+        left: -3vw;
+    }
     .inputCheckbox {
-      top: 3px;
-      width: 18px;
-      height: 18px;
+        top: 3px;
+        width: 18px;
+        height: 18px;
     }
 }

@@ -3341,6 +3341,8 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   getInventoryByType(body: body_38): Observable<Item[]> {
+    console.log(JSON.stringify(body));
+    
     return this.getInventoryByTypeResponse(body).pipe(
       map(_r => _r.body)
     );

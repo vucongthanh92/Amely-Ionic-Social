@@ -1,38 +1,41 @@
 <ion-header>
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
-      <button class="ion_navbar_box" ion-button (click)="dismiss()">
+    <ion-navbar hideBackButton>
+        <ion-buttons start>
+            <button class="ion_navbar_box" ion-button (click)="dismiss()">
         <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
       </button>
-      <div class="ion_navbar_title">kho quà</div>
-    </ion-buttons>
-  </ion-navbar>
+            <div class="ion_navbar_title">kho quà</div>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="content">
-  <ion-row class="items_nav">
-    <ion-col class="items_nav_title" col-4>{{inventoriesItem.length}} Quà</ion-col>
-    <ion-col class="items_nav_title" col-5>{{title}}</ion-col>
-  </ion-row>
-  
-  <ion-row *ngIf="inventoriesItem">
-      <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" class="items_box">
-        <div class="items_box_main">
-          <div class="item-ribbon offer_search_ribbon" *ngIf="item.is_special=='1'">
-            <span class="ribbon cruzeiro">
+    <ion-row class="items_nav">
+        <!-- <ion-col class="items_nav_title" col-4>{{inventoriesItem.length}} Quà</ion-col> -->
+        <ion-col class="items_nav_title" col-12>{{title}}</ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="inventoriesItem">
+        <ion-col col-4 *ngFor="let item of inventoriesItem" (click)="goToPage('item',item)" class="items_box">
+            <div class="items_box_main">
+                <div class="item-ribbon offer_search_ribbon" *ngIf="item.is_special=='1'">
+                    <span class="ribbon cruzeiro">
               <span>VOUCHER</span>
-            </span>
-          </div>
-          <div class="items_box_image">
-            <img src="{{item.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
-          </div>
-          <div style="padding: 5px">
-            <h3 class="items_box_title">{{item.product_snapshot.title}}</h3>
-            <p class="items_box_quantity">SL: {{item.quantity}}</p>
-          </div>
-        </div>
-      </ion-col>
-  </ion-row>
+                    </span>
+                </div>
+                <div class="items_box_image" *ngIf="item.product_snapshot">
+                    <img src="{{item.product_snapshot.images[0]}}" onError="this.src='assets/imgs/image_not_found.jpg';">
+                </div>
+                <div style="padding: 5px" *ngIf="item.product_snapshot">
+                    <h3 class="items_box_title">{{item.product_snapshot.title}}</h3>
+                    <p class="items_box_quantity">SL: {{item.quantity}}</p>
+                </div>
+            </div>
+        </ion-col>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-row>
     <!-- <ion-row>
         <ion-col col-4 *ngFor='let fake of fakeUsers' style="width: 110px;" class='fakeItem'>
           <div class="items_box_main">
@@ -46,7 +49,7 @@
     </ion-row>
 </ion-content> -->
 
-<!-- <ion-footer>
+    <!-- <ion-footer>
   <ion-toolbar class="toolbarFooter">
     <ion-grid>
       <ion-row>

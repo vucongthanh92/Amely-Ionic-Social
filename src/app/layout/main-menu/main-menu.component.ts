@@ -1,3 +1,4 @@
+import { CONFIG } from './../../config';
 import { SearchService } from './../../services/search.service';
 import * as Models from './../../api/models';
 import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
@@ -8,7 +9,7 @@ import { EventsService } from './../../services/events.service';
 import { GroupService } from './../../services/group.service';
 import { FirebaseService } from './../../services/firebase.service';
 import { CustomService } from './../../services/custom.service';
-import { Nav, MenuController, App, ModalController, LoadingController } from 'ionic-angular';
+import { Nav, MenuController, App, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api/services/api.service';
 import { PersonalComponent } from './../../views/personal/personal.component';
@@ -26,6 +27,7 @@ import { GiftDetailComponent } from '../../components/gift/gift-detail/gift-deta
 import { OfferResultComponent } from '../../views/social/offers/offer-result/offer-result.component';
 import { FeedDetailComponent } from '../../components/feed/feed-detail/feed-detail.component';
 import { FeedsService } from '../../services/feeds.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
@@ -61,7 +63,9 @@ export class MainMenuComponent implements OnInit {
     private loadingCtrl: LoadingController,
     private feedService: FeedsService,
     private appCtrl: App,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private iab: InAppBrowser,
+    private alertCtrl: AlertController
   ) {
 
     this.device_screen = customService.checkDevices();
@@ -92,6 +96,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkUpdateApp();
     this.pages = [
       { title: "fullname", component: PersonalComponent, image: "avatar" },
       { title: 'XÃ HỘI', component: SocialComponent, image: 'assets/imgs/Social.png' },
@@ -128,7 +133,7 @@ export class MainMenuComponent implements OnInit {
         // else this.fbService.syncProfileFirebase(year, data.gender, null, data.username)
 
         if (data.mood)
-          this.searchService.updateGeoUser(data.guid + "", null, null, year, data.mood.guid + "", null, data.gender,data.avatar)
+          this.searchService.updateGeoUser(data.guid + "", null, null, year, data.mood.guid + "", null, data.gender, data.avatar)
             .then(result => this.redirectUpdateUser(data))
             .catch(err => this.createGeoUser(data, year));
         else this.searchService.updateGeoUser(data.guid + "", null, null, year, null, null, data.gender, data.avatar)
@@ -532,5 +537,27 @@ export class MainMenuComponent implements OnInit {
   createGeoUser(data: User, year: string) {
     this.searchService.createGeoUser(data.guid + "", data.fullname, data.mobilelogin, data.username, data.email, year, data.gender).then().catch();
     this.redirectUpdateUser(data);
+  }
+  checkUpdateApp() {
+    this.userService.getServices().subscribe(
+      data => {
+        console.log(data);
+        
+        let alert = this.alertCtrl.create({
+          title: 'Thông báo',
+          enableBackdropDismiss: false,
+          subTitle: 'Có bản cập nhật mới. Vui lòng cập nhật.',
+          buttons: [{
+            text: 'Chấp nhận',
+            handler: () => {
+              // https://itunes.apple.com/us/app/amely/id1394535760?ls=1&mt=8
+              const browser = this.iab.create("https://itunes.apple.com/us/app/amely/id1394535760?ls=1&mt=8");
+                this.nav.popToRoot();
+            }
+          }]
+        });
+        if (CONFIG.version < data.ios_version) alert.present();
+      }
+    )
   }
 }
