@@ -276,6 +276,7 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   activeUser(body: body_1): Observable<DefaultResponse> {
+    console.log(body);
     return this.activeUserResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2574,6 +2575,7 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   changeForgotPassword(body: body_32): Observable<DefaultResponse> {
+    console.log(body);
     return this.changeForgotPasswordResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -2611,6 +2613,7 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   forgotPassword(body: body_31): Observable<DefaultResponse> {
+    console.log(body);
     return this.forgotPasswordResponse(body).pipe(
       map(_r => _r.body)
     );
@@ -3341,8 +3344,6 @@ export class ApiService extends BaseService {
    * @param body - undefined
    */
   getInventoryByType(body: body_38): Observable<Item[]> {
-    console.log(JSON.stringify(body));
-    
     return this.getInventoryByTypeResponse(body).pipe(
       map(_r => _r.body)
     );

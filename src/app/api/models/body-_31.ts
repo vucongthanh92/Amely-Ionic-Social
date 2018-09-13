@@ -3,5 +3,6 @@
 /**
  */
 export class body_31 {
-    email?: string;
+    username?: string;
+    mobile?: string;
 }

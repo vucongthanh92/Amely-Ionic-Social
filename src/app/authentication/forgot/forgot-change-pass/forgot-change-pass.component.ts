@@ -2,7 +2,7 @@ import { SigninComponent } from './../../signin/signin.component';
 import { Component, OnInit } from '@angular/core';
 import { CustomService } from '../../../services/custom.service';
 import { AuthenticationService } from '../../authentication.service';
-import { LoadingController,  NavController, NavParams } from 'ionic-angular';
+import { LoadingController, NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'app-forgot-change-pass',
@@ -11,19 +11,21 @@ import { LoadingController,  NavController, NavParams } from 'ionic-angular';
 export class ForgotChangePassComponent implements OnInit {
   password: String;
   rePassword: String;
-  email: string;
+  mobile: string;
+  username: string;
   constructor(
     private customService: CustomService, private authenticationService: AuthenticationService,
-    public loadingCtrl: LoadingController,public nav: NavController, private navParams: NavParams
-  ) { 
-    this.email = this.navParams.get('email');
+    public loadingCtrl: LoadingController, public nav: NavController, private navParams: NavParams
+  ) {
+    this.username = this.navParams.get('username');
+    this.mobile = this.navParams.get('mobile');
   }
 
   ngOnInit() {
-   
+
   }
 
-  changePassword(){
+  changePassword() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -49,7 +51,7 @@ export class ForgotChangePassComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.authenticationService.changePassword(password, this.email).subscribe(data => {
+    this.authenticationService.changePassword(password, this.mobile, this.username).subscribe(data => {
       if (data.status) {
         this.customService.toastMessage("Mật khẩu đã được thay đổi", "bottom", 3000)
         this.nav.setRoot(SigninComponent);

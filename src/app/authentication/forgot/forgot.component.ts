@@ -9,8 +9,10 @@ import { LoadingController, NavController } from 'ionic-angular';
   templateUrl: './forgot.component.html'
 })
 export class ForgotComponent implements OnInit {
-  emailInput: string;
-  email: string;
+  usernameInput: string;
+  username: string;
+  phonenumberInput: string;
+  phonenumber: string;
   constructor(private customService: CustomService, private authenticationService: AuthenticationService,
     public loadingCtrl: LoadingController, public nav: NavController) { }
 
@@ -22,25 +24,26 @@ export class ForgotComponent implements OnInit {
       content: 'Please wait...'
     });
     loading.present();
-    if (this.emailInput && this.emailInput.length > 5) {
-      this.retrySendEmail(5, this.emailInput, loading)
+    if (this.usernameInput && this.phonenumberInput) {
+      this.retrySendEmail(5, this.usernameInput, this.phonenumberInput, loading)
     } else {
       loading.dismiss();
       this.customService.toastMessage("Email không hợp lệ", 'bottom', 3000);
     }
   }
 
-  retrySendEmail(retry, email, loading) {
+  retrySendEmail(retry, username, mobile, loading) {
     if (retry == 0) {
       loading.dismiss();
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.authenticationService.forgotPassword(email).subscribe(data => {
+    this.authenticationService.forgotPassword(username, mobile).subscribe(data => {
       if (data.status) {
-        this.email = email;
+        this.username = username;
+        this.phonenumber = mobile;
         // this.activationCode();
-        this.nav.push(ForgotVertifyComponent, { email: this.emailInput });
+        this.nav.push(ForgotVertifyComponent, { username: this.usernameInput, mobile: this.phonenumberInput });
         loading.dismiss();
       } else {
         this.customService.toastMessage("Thất bại. Vui lòng thử lại", "bottom", 3000)
@@ -48,12 +51,12 @@ export class ForgotComponent implements OnInit {
       }
 
     }, err => {
-      this.retrySendEmail(--retry, email, loading)
+      this.retrySendEmail(--retry, username, mobile, loading)
     })
   }
 
   dismiss() {
     this.nav.pop();
   }
- 
+
 }

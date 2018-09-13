@@ -105,19 +105,20 @@ export class SearchService {
     if (yob && gender && mood && avatar) request = { doc: { yob: yob, gender: gender, mood: mood, Image: avatar } };
 
     console.log(JSON.stringify(request));
-    return new Promise((resolve, reject) => {
-      this.http.post(this.url + `/users/user/${userID}/_update`, request, { headers: this.headers })
-        .map(response => {
-          return response.json()
-        })
-        .subscribe(
-          response => {
-            resolve(response);
-          }, error => {
-            reject(error);
-          }
-        );
-    });
+    if (request)
+      return new Promise((resolve, reject) => {
+        this.http.post(this.url + `/users/user/${userID}/_update`, request, { headers: this.headers })
+          .map(response => {
+            return response.json()
+          })
+          .subscribe(
+            response => {
+              resolve(response);
+            }, error => {
+              reject(error);
+            }
+          );
+      });
   }
 
 

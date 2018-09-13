@@ -68,7 +68,6 @@
     "decode-html-entities": "^1.1.10",
     "firebase": "^4.11.0",
     "geofire": "^4.1.2",
-    "im.ltdev.cordova.UserAgent": "~1.0.1",
     "ionic-angular": "3.9.2",
     "ionic-img-viewer": "^2.9.0",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -121,8 +120,7 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-android-permissions": {},
-      "phonegap-plugin-local-notification": {},
-      "im.ltdev.cordova.UserAgent": {}
+      "phonegap-plugin-local-notification": {}
     },
     "platforms": [
       "android",

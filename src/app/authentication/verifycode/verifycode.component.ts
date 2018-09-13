@@ -19,11 +19,11 @@ export class VerifycodeComponent implements OnInit {
   timerVar;
   timerVal: number = 300;
   hide: boolean = true;
-  public isVerifyByEmail: string = 'true';
+  public isVerifyByEmail: string = 'false';
   constructor(private nav: NavController, private navParams: NavParams, private userService: UserService, private customService: CustomService,
     public loadingCtrl: LoadingController) {
     this.user = this.navParams.get('user');
-    this.email = this.user.email;
+    this.email = this.user.mobilelogin;
     console.log(this.user);
 
   }
@@ -31,7 +31,7 @@ export class VerifycodeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBackPress() {
+  onBackPress() { 
     this.nav.setRoot(SigninComponent);
   }
 
@@ -53,7 +53,8 @@ export class VerifycodeComponent implements OnInit {
       this.customService.toastMessage("Không thể kết nối máy chủ , vui lòng thử lại.", 'bottom', 4000)
       return;
     }
-    this.userService.activeUser(this.user.username, this.user.password, this.isVerifyByEmail == 'false' ? this.user.mobilelogin : "", this.code, this.isVerifyByEmail == 'true' ? this.email : "").subscribe(data => {
+    this.userService.activeUser(this.user.username, this.user.password, this.isVerifyByEmail == 'false' ? this.user.mobilelogin : "", 
+    this.code, this.isVerifyByEmail == 'true' ? this.email : "").subscribe(data => {
       if (data.status) {
         loading.dismiss();
         this.nav.setRoot(SigninComponent);
