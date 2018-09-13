@@ -11,8 +11,8 @@
     <ion-navbar hideBackButton>
         <ion-buttons start>
             <button class="ion_navbar_box" ion-button (click)="dismiss()">
-        <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
-      </button>
+                <ion-icon class="ion_navbar_icon" ios="md-arrow-back" md="md-arrow-back"></ion-icon>
+            </button>
             <div class="ion_navbar_title">Quên mật khẩu</div>
         </ion-buttons>
     </ion-navbar>
@@ -23,14 +23,23 @@
         <div>
             <ion-item no-lines class="forgot_box">
                 <ion-label>
-                    <img class="forgot_icon" src="assets/imgs/iconMail.png" />
+                    <img class="forgot_icon" src="assets/imgs/iconUser.png" />
                 </ion-label>
-                <ion-input [(ngModel)]="emailInput" type="email" placeholder="Email của bạn"></ion-input>
+                <ion-input [(ngModel)]="usernameInput" type="email" placeholder="Nhập tài khoản của bạn"></ion-input>
             </ion-item>
         </div>
-        <div style="text-align: center;">
-            <label for="">Vui lòng kiểm tra email đã nhập để nhận mã xác nhận</label>
+
+        <div>
+            <ion-item no-lines class="forgot_box">
+                <ion-label>
+                    <img class="forgot_icon" src="assets/imgs/iconPhone.png" />
+                </ion-label>
+                <ion-input [(ngModel)]="phonenumberInput" type="tel" placeholder="Nhập số điện thoại của bạn"></ion-input>
+            </ion-item>
         </div>
+        <!-- <div style="text-align: center;">
+            <label for="">Vui lòng kiểm tra email đã nhập để nhận mã xác nhận</label>
+        </div> -->
         <br>
         <div style="text-align: center;">
             <button class="buttonSubmit" ion-button (click)="forgotPassword()">TIẾP TỤC</button>

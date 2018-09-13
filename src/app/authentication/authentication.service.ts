@@ -17,15 +17,15 @@ export class AuthenticationService {
     return true;
   }
 
-  forgotPassword(email: string) {
-    return this.api.forgotPassword({ email: email });
+  forgotPassword(username: string, mobile: string) {
+    return this.api.forgotPassword({ username: username, mobile: mobile });
   }
 
-  activation(code, email) {
-    return this.api.activeUser({ username: "", password: "", mobilelogin: "", code: code, email: email })
+  activation(code, username, phone) {
+    return this.api.activeUser({ username: username, password: "", mobilelogin: phone, code: code, email: "" })
   }
 
-  changePassword(password, email) {
-    return this.api.changeForgotPassword({ new_password: password, email: email });
+  changePassword(password, mobile, username) {
+    return this.api.changeForgotPassword({ new_password: password, mobile: mobile, username: username });
   }
 }

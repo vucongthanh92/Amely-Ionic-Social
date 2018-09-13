@@ -4,5 +4,6 @@
  */
 export class body_32 {
     new_password?: string;
-    email?: string;
+    mobile?: string;
+    username?: string;
 }
