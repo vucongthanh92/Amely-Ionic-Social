@@ -16,7 +16,7 @@
             <ion-item class="search_item" *ngFor="let entry of hits" (click)="goToDetail(entry)">
                 <ion-thumbnail item-start>
                     <div class="search_item_image">
-                        <img src="{{entry._source.Image}}" onError="this.src='assets/imgs/default-avatar-event.png'" />
+                        <img src="{{entry._source.Image}}" onError="this.src='assets/imgs/image_not_found.jpg'" />
                     </div>
                 </ion-thumbnail>
                 <h2 class="search_title" innerHtml="{{entry._source.Title}}"></h2>
