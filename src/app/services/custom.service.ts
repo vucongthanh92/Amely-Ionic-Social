@@ -221,6 +221,8 @@ export class CustomService {
                   loading.dismiss();
                   resolve(task.downloadURL)
                 });
+              }).catch(()=>{
+                loading.dismiss();
               });
             }
           }, {
@@ -246,7 +248,10 @@ export class CustomService {
                   resolve(task.downloadURL)
                 });
               }, (err) => {
+                loading.dismiss();
                 // Handle error
+              }).catch(()=>{
+                loading.dismiss();
               });
             }
           }, {
