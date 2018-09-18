@@ -28,7 +28,7 @@ export class ForgotComponent implements OnInit {
       this.retrySendEmail(5, this.usernameInput, this.phonenumberInput, loading)
     } else {
       loading.dismiss();
-      this.customService.toastMessage("Email không hợp lệ", 'bottom', 3000);
+      this.customService.toastMessage("Tài khoản hoặc số diện thoại không hợp lệ", 'bottom', 3000);
     }
   }
 

@@ -33,8 +33,8 @@
         </ng-template>
     </ion-row>
 
-    <ion-card-content (click)="openFeedDetail()">
-        <p>{{ descriptionPost }}</p>
+    <ion-card-content (click)="openFeedDetail()"  [innerHTML]="descriptionPost">
+        <!-- <p [innerHTML]="descriptionPost"></p> -->
     </ion-card-content>
 
     <ion-list class="feed_wallphoto" *ngIf="hasWallPhoto && post.wallphoto.length==1">
@@ -111,8 +111,8 @@
             </ng-template>
         </ion-row>
 
-        <ion-card-content (click)="openFeedDetail()">
-            <p>{{ descriptionPost }}</p>
+        <ion-card-content (click)="openFeedDetail()"  [innerHTML]="descriptionPost">
+            <!-- <p [innerHTML]="descriptionPost"></p> -->
         </ion-card-content>
     </ion-list>
 
@@ -156,7 +156,7 @@
     <ion-card *ngIf="postShare" class="feed_share_info" padding>
 
         <ion-card-content (click)="openFeedDetail()">
-            <p>{{ descriptionPostShare }}</p>
+            <p [innerHTML]="descriptionPostShare"></p>
         </ion-card-content>
 
         <ion-list class="feed_wallphoto" *ngIf="postShare.wallphoto && postShare.wallphoto.length==1">

@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { BusinessComponent } from './../business/business.component';
 import { GroupComponent } from './../group/group.component';
 import { EventComponent } from './../event/event.component';
@@ -32,9 +33,9 @@ export class FeedComponent {
   @Output()
   uploaded = new EventEmitter<string>();
 
-  userShare:User;
+  userShare: User;
   postShare: Feed;
-  descriptionPost: string;
+  descriptionPost;
   descriptionPostShare: string;
   location: string;
   isShowMoreTag: any;
@@ -52,6 +53,7 @@ export class FeedComponent {
     public nav: NavController, public appCtrl: App,
     private popoverCtrl: PopoverController,
     private customService: CustomService,
+    private sanitizer: DomSanitizer
   ) {
     this.moodLocal = JSON.parse(localStorage.getItem("mood_local"));
   }
@@ -59,7 +61,7 @@ export class FeedComponent {
   hasWallPhoto = true;
 
   ngOnInit() {
-    if (this.userTag.length>2) {
+    if (this.userTag.length > 2) {
       // console.log("=====================");
       // console.log(this.post.description);
       // console.log(this.userTag);
@@ -67,11 +69,11 @@ export class FeedComponent {
     }
     if (this.post && this.post.item_guid) {
       try {
-      
+
         this.postShare = this.shares.posts[this.post.item_guid];
         this.userShare = this.users[this.postShare.poster_guid];
         console.log(this.userShare);
-        
+
         this.descriptionPostShare = JSON.parse(this.postShare.description).post;
         if (this.descriptionPostShare == '_=-_tln$@ttonh!i~tki^abg*la_0@896428_=-!75@-=_=-ahihi=))gerrard') {
           this.descriptionPostShare = 'Đã thay đổi ảnh đại diện'
@@ -82,9 +84,9 @@ export class FeedComponent {
     }
 
     this.is_owner = this.customService.user_current.guid == this.post.poster_guid;
-    this.isShowMoreTag = this.userTag.length >2;
+    this.isShowMoreTag = this.userTag.length > 2;
 
-    if (this.isShowMoreTag ) {
+    if (this.isShowMoreTag) {
       this.subArrUserTag = this.userTag.slice(0, 2);
     }
     if (this.post) {
@@ -117,6 +119,9 @@ export class FeedComponent {
         this.descriptionPost = 'Đã thay đổi ảnh đại diện'
       }
       // console.log(this.post.wallphoto);
+      // this.descriptionPost = this.sanitizer.bypassSecurityTrustHtml(this.descriptionPost);
+      console.log(this.descriptionPost);
+
     }
   }
 
